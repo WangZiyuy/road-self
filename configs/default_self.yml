@@ -1,37 +1,37 @@
 TASK: &TASK ""
 
 DIR:
-  DATA_ROOT:       &DATA_ROOT "data"
-  IMAGERY_DIR:      "data/input/imagery/"
-  TEST_IMAGERY_DIR: "data/input/imagery_8192/"
-  GRAPH_DIR:        "data/input/graphs/"
-  ALL_REGION_PATH:  "data/input/regions/all_regions.txt"
-  TEST_REGION_PATH: "data/input/regions/test_regions.txt"
-  PRE_JUNC_NMS_DIR: "data/input/junction_nms/"
+  DATA_ROOT:       &DATA_ROOT "data_self"
+  # 4096×4096 24位
+  IMAGERY_DIR:      "data_self/input/imagery/"
+  TEST_IMAGERY_DIR: "data_self/input/imagery_test/"
+  TEST_TRAJ_DIR:    "data_self/input/traj_test/"
+  # 文件中应该是坐标点，阮老师给的代码里应该有.shp转graph的代码
+  GRAPH_DIR:        "data_self/input/graphs/"
+
+  # 用配送站点编号代替
+  ALL_REGION_PATH:  "data_self/input/regions/all_regions.txt"
+  TEST_REGION_PATH: "data_self/input/regions/test_regions.txt"
+  PRE_JUNC_NMS_DIR: "data_self/input/junction_nms/"
+
   CHECK_POINT_DIR: !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "ckpt"]
   LOG_DIR:         !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "logs"]
   SAVE_SEG_DIR:    !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "segmentation"]
   INFER_STEP_DIR:  !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "infer_step"]
   SAVE_GRAPH_DIR:  !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "graphs"]
 
-  TILE_DIR:         "data/input/tile/"
-  SHORTCUT_DIR:     "data/input/shortcut/"
+  TILE_DIR:         "data_self/input/tile/"
   TRAJ_DIR:         "data_self/input/traj/"
-
+  SHORTCUT_DIR:     "data_self/input/shortcut/"
 
 TRAIN:
   NUM_TARGETS: 4
   # number of t time steps per patch in training network definition
   PARALLEL_TILES: 2048
   # parallel training image cadidates
-  IMG_SZ: 4096
+  IMG_SZ: 2048
   # input image size, default 4096 x 4096
-#  TRAINING_REGIONS: [
-#    'indianapolis', 'louisville', 'columbus', 'milwaukee', 'minneapolis', 'seattle', 'portland', 'sf',
-#    'san antonio', 'vegas', 'phoenix', 'dallas', 'austin', 'san jose', 'houston', 'miami', 'tampa',
-#    'orlando', 'atlanta', 'st louis', 'nashville', 'dc', 'baltimore', 'philadelphia', 'london']
-  TRAINING_REGIONS: [
-    'columbus']
+  TRAINING_REGIONS: ['xian']
 
   MAX_PATH_LENGTH: 2048
   STEP_LENGTH: 20
@@ -39,43 +39,47 @@ TRAIN:
   SAVE_EXAMPLES: True
   WINDOW_SIZE: 256
   FOLLOW_MODE: "follow_target"  # "follow_output"
-  PRINT_ITERATION: 200
+  PRINT_ITERATION: 1
   NUM_INPUT_CHANNELS: 3
+  NUM_INPUT_TRAJECTORY_CHANNELS: 1
   SOLVER:
     METHOD: "Adam"
     LEARNING_RATE: !!float 1e-4
     WEIGHT_DECAY: !!float 2e-4
-  GPU_ID: "0,1"
+  GPU_ID: "3"
   BATCH_SIZE: 2 # 24
-  DATA_PARALLEL: True
+  DATA_PARALLEL: False
   LOAD_CHECK_POINT: False
   START_EPOCH: 0
   CHECK_POINT_NAME: "29.2047.pth.tar"
-  TOTAL_ITERATION: 100
+  TOTAL_ITERATION: 50
   RECT_RADIUS: 8
   AVG_CONFIDENCE_THRESHOLD: 0.2
   BINARIZE_MAP:
     SEGMENTATION_THRESHOLD: 0.2
     MAX_REGION_AREA: 200
-  TRAJ_FILTER: False
+  TRAJ_FILTER: True # 这个变量和USE_TRAJ好像是可以合并
+  MODEL: origin # DSFNet origin
+  USE_TRAJ: True # False True
 
 TEST:
-  CKPT: &CKPT "vecroad"
+  CKPT: &CKPT "vecroad2"
   # checkpoint pth used to load
   GPU_ID: "0"
+
   # GPU selection
-  CPU_WORKER: 15
+  CPU_WORKER: 5
   # cpu workers to do multiprocessing
-  DATA_PARALLEL: True
+  DATA_PARALLEL: False
   # torch.nn.DataParallel
-  BATCH_SIZE_SEG: 1
+  BATCH_SIZE_SEG: 2
   # batch size used to obtain road and junction segmentation
   BATCH_SIZE_ANCHOR: 15
   # batch size used to generate road graphs
 
-  TEST_IMG_SZ: 8192
+  TEST_IMG_SZ: 4096
   # input image size, default 8192 x 8192
-  CROP_SZ: 2048
+  CROP_SZ: 1024
   # cropped size to obtain road and junction segmentation, 
   # then stick them back owing to the limitation of gpu memory
   WINDOW_SIZE: 256
@@ -91,9 +95,9 @@ TEST:
   # 4. graph exploration
     # 4.1 start from junc
     # 4.2 start from road (optional)
-  SINGLE_REGION: "amsterdam"  # amsterdam
+  SINGLE_REGION: "20"  # amsterdam
   # option for inferring only one region
-  START_FROM_ROAD_PEAK: False
+  START_FROM_ROAD_PEAK: True
   # obtain starting points from road segmentation (optional)
   START_FROM_JUNC_PEAK: True
   # obtain starting points from junction segmentation
@@ -102,26 +106,30 @@ TEST:
   # number of t time steps per patch
   STEP_LENGTH: 20
   # fixed step length of each next move
-  RECT_RADIUS: 10
+  RECT_RADIUS: 5
+  # TODO 让减小这个增加
   # a hyper-parameter to detect error connection
   FOLLOW_MODE: "follow_output"
   # whether to follow the output of CNNs to obtain next point coordinate
-  AVG_CONFIDENCE_THRESHOLD: 0.2
+  AVG_CONFIDENCE_THRESHOLD: 0.1
+  # TODO 让减小这个增加
   # a hyper-parameter to detect error connection
   BINARIZE_MAP:
-    ROAD_SEG_THRESHOLE: 0.3
+    # 测试下来，好像junc的多少和ANCHOR_MAX_REGION_AREA关系不大，JUNC_SEG_THRESHOLE设置为0.01会明显增加
+    # 道路区域和ROAD_SEG_THRESHOLE关系不大（0.1和0.01），
+    ROAD_SEG_THRESHOLE: 0.01
     # a hyper-parameter to discard road segmentation lower than ROAD_SEG_THRESHOLE
     JUNC_MAX_REGION_AREA: 200
     # a hyper-parameter to detect junction starting points when doing junction segmentation nms
-    JUNC_SEG_THRESHOLE: 0.3
+    JUNC_SEG_THRESHOLE: 0.1
     # a hyper-parameter to discard junction segmentation lower than JUNC_SEG_THRESHOLE
     ANCHOR_MAX_REGION_AREA: 1000
     # a hyper-parameter to detect next points when doing road graph exploration
-    MIN_BAD_ROAD_AREA: 200
+    MIN_BAD_ROAD_AREA: 10
     # a hyper-parameter to discard road clusters smaller than MIN_BAD_ROAD_AREA
     # apply on road segmentation, when doing road starting points selection
 
-  SAVE_EXAMPLES: False
+  SAVE_EXAMPLES: True
   # whether to save intermediate results
   SAVE_IDX: 0
   # the index of region to save intermediate results

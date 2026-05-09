@@ -104,15 +104,19 @@ class Index(object):
         self.index = index
 
     def search(self, rect):
+        # intersection 方法计算两个线段是否相交，并返回交点或 None
+        # 结果看起来和手动从OSM中标记的形状大致相似，可以用这个方法直接从DelvMap真实地图中生成交点
         edge_ids = self.index.intersection((rect.start.x, rect.start.y, rect.end.x, rect.end.y))
         return [self.graph.edges[edge_id] for edge_id in edge_ids]
 
     def subgraph(self, rect):
+        # print("rect: ", rect.start, rect.end)
         ng = Graph()
         vertex_map = {}
         for edge in self.search(rect):
             src = edge.src(self.graph)
             dst = edge.dst(self.graph)
+            # print("src, dst: ", src, dst)
             if src.point == dst.point:
                 continue
             rect_contains_src_point = rect.contains(src.point)
@@ -232,6 +236,14 @@ class Graph(object):
                 for edge in ng.edges.values():
                     f.write("{} {}\n".format(edge.src_id, edge.dst_id))
 
+    def save_gis_to_graph(self, file_name):
+        with open(file_name, 'w') as f:
+            for vertex in self.vertices.values():
+                f.write("{} {}\n".format(vertex.point.x, vertex.point.y))
+            f.write("\n")
+            for edge in self.edges.values():
+                f.write("{} {}\n".format(edge.src_id, edge.dst_id))
+
     def convert_to_networkx(self):
         graph = nx.Graph()
         for vertex in self.vertices.values():
@@ -268,6 +280,10 @@ class Graph(object):
         seen_rs_linestring = []
         seen_rs_id = []
         seen_edge_id_lst = []
+
+        temp1 = []
+        temp2 = []
+
         for rs in road_segments:
             if len(rs.edges_id) == 0:
                 continue
@@ -284,6 +300,7 @@ class Graph(object):
                         continue
                     oppo_lst.append("{} {}".format(src.point.x, src.point.y))
                 oppo_lst.append("{} {}".format(dst.point.x, dst.point.y))
+                # print("2222222", src.point.x, src.point.y, dst.point.x, dst.point.y)
                 line = linestring.format(', '.join(oppo_lst))
                 if line in seen_rs_linestring:
                     continue
@@ -291,6 +308,7 @@ class Graph(object):
                     seen_rs_linestring.append(line)
 
             lst = []
+
             if rs.edges_id[0] in seen_edge_id_lst:  # loop several times
                 continue
             for edge in rs.edges(self):
@@ -299,7 +317,13 @@ class Graph(object):
                 if src.point == dst.point:
                     continue
                 lst.append("{} {}".format(src.point.x, src.point.y))
+                temp1.append(src.point.x)
+                temp2.append(src.point.y)
+
             lst.append("{} {}".format(dst.point.x, dst.point.y))
+            temp1.append(dst.point.x)
+            temp2.append(dst.point.y)
+
             line = linestring.format(', '.join(lst))
             if line in seen_rs_linestring:
                 continue
@@ -308,6 +332,10 @@ class Graph(object):
                 wkt.append(line)
                 seen_edge_id_lst.extend(rs.edges_id)
                 seen_edge_id_lst.extend([x.get_opposite_edge(self).id for x in rs.edges(self)])
+
+        print("max min x", max(temp1), min(temp1))
+        print("max min y", max(temp2), min(temp2))
+
         return wkt
 
     def clone(self):
@@ -412,9 +440,10 @@ def read_graph(file_name, merge_duplicates=True):
                     #print('ignoring self edge at {}'.format(vertices[src].point))
                     continue
                 graph.add_edge(vertices[src].id, vertices[dst].id, int(parts[0]))
+
     for vertex in graph.vertices.values():
         if len(vertex.in_edges_id) != len(vertex.out_edges_id):
-            print(vertex.in_edges_id, vertex.out_edges_id, vertex.point)
+            print("vertex.in_edges_id, vertex.out_edges_id, vertex.point: ", vertex.in_edges_id, vertex.out_edges_id, vertex.point)
     return graph
 
 
@@ -601,6 +630,9 @@ class RoadSegmentExplorationDict(object):
 
 
 def get_graph_road_segments(graph):
+    if graph is None:
+        return
+
     road_segments = []
     edge_id_to_rs_id = {}
 
@@ -638,6 +670,7 @@ def get_graph_road_segments(graph):
 
         rs = RoadSegment(len(road_segments))
         rs.add_edge(edge.id, 'forwards')
+
         edge_id_to_rs_id[edge.id] = rs.id
         res_code = search_from_edge(rs, edge, 'forwards')
         if res_code == 0:
@@ -649,10 +682,20 @@ def get_graph_road_segments(graph):
             rs.is_loop = True
             road_segments.append(rs)
             oppo_rs = RoadSegment(len(road_segments)+1)
-            oppo_rs.edges_id = [graph.edges[edges_id].get_opposite_edge(graph).id for edges_id in rs.edges_id][::-1]
-            oppo_rs.compute_edge_distances(graph)
-            oppo_rs.is_loop = True
-            road_segments.append(oppo_rs)
+
+            oppo_rs.edges_id = []
+            for edges_id in rs.edges_id:
+                opposite_edge = graph.edges[edges_id].get_opposite_edge(graph)
+                if opposite_edge is not None:
+                    oppo_rs.edges_id.append(opposite_edge.id)
+            oppo_rs.edges_id = oppo_rs.edges_id[::-1]
+            # oppo_rs.edges_id = [graph.edges[edges_id].get_opposite_edge(graph).id for edges_id in rs.edges_id][::-1]
+
+            # 这里的oppo_rs有许多是空的
+            if oppo_rs.edges_id:
+                oppo_rs.compute_edge_distances(graph)
+                oppo_rs.is_loop = True
+                road_segments.append(oppo_rs)
 
     return road_segments, edge_id_to_rs_id
 

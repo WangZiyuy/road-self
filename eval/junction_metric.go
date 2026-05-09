@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/mitroadmaps/gomapinfer/common"
-
+// 	"github.com/mitroadmaps/gomapinfer/common"
+	"github.com/WangZiyuy/gomapinfer/common"
+// 	"/home/wangziyu/golong/go/src/gomapinfer/common"
 	"fmt"
 	"io/ioutil"
 	"math"
@@ -440,28 +441,34 @@ func main() {
 		common.Point{-4096, -4096},
 		common.Point{4096, 4096},
 	}
+// 	rects := map[string]common.Rectangle{
+// 		"toronto": r4096,
+// 		"la": r4096,
+// 		"new york": r4096,//
+// 		"boston": common.Rectangle{
+// 			common.Point{4096, -4096},
+// 			common.Point{12288, 4096},
+// 		},
+// 		"chicago": common.Rectangle{
+// 			common.Point{-4096, -8192},
+// 			common.Point{4096, 0},
+// 		},
+// 		"amsterdam": r4096,
+// 		"denver": r4096,
+// 		"kansas city": r4096,//
+// 		"montreal": r4096,
+// 		"paris": r4096,
+// 		"pittsburgh": r4096,
+// 		"saltlakecity": r4096,//
+// 		"san diego": r4096,//
+// 		"tokyo": r4096,
+// 		"vancouver": r4096,
+// 	}
+
 	rects := map[string]common.Rectangle{
-		"toronto": r4096,
-		"la": r4096,
-		"new york": r4096,//
-		"boston": common.Rectangle{
-			common.Point{4096, -4096},
-			common.Point{12288, 4096},
-		},
-		"chicago": common.Rectangle{
-			common.Point{-4096, -8192},
-			common.Point{4096, 0},
-		},
-		"amsterdam": r4096,
-		"denver": r4096,
-		"kansas city": r4096,//
-		"montreal": r4096,
-		"paris": r4096,
-		"pittsburgh": r4096,
-		"saltlakecity": r4096,//
-		"san diego": r4096,//
-		"tokyo": r4096,
-		"vancouver": r4096,
+		"20": r4096,
+		"518": r4096,
+		"653": r4096,
 	}
 	regionRect := rects[os.Args[3]]
 	rect := regionRect.AddTol(-256)

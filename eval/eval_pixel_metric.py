@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
+sys.path.append('.')
 
 import argparse
 import glob
 import os
-import sys
 from multiprocessing import Pool
 from os.path import basename
 
@@ -13,12 +14,12 @@ import numba
 import cv2 as cv
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--gt_dir', type=str, default="data/input/mask_test")
-parser.add_argument('--pred_dir', type=str, default="data/graphs/vecroad_4/graphs_junc_seg")
+parser.add_argument('--gt_dir', type=str, default="data_self/input/mask_test")
+parser.add_argument('--pred_dir', type=str, default="data_self/graphs/vecroad_4/graphs_junc_seg")
 parser.add_argument('--steps', type=int, default=256)
-parser.add_argument('--relax', type=int, default=3)
+parser.add_argument('--relax', type=int, default=6)
 parser.add_argument('--num_workers', type=int, default=8)
-parser.add_argument('--thresh', type=int, default=-1, help="threshold")
+parser.add_argument('--thresh', type=int, default=128, help="threshold")
 parser.add_argument('--crop', type=int, default=0, help="crop image boundary")
 args = parser.parse_args()
 print(args)
@@ -178,3 +179,5 @@ if __name__ == '__main__':
     print("precision: {:.2f} Recall: {:.2f} F1: {:.2f}".format(
         breakeven_pt[0] * 100, breakeven_pt[1] * 100, get_f1(*breakeven_pt) * 100))
     print("max P-F1: {:.2f}".format(np.max(F1) * 100))
+
+# python eval/eval_pixel_metric.py

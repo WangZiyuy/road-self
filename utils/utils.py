@@ -8,6 +8,9 @@ import numpy as np
 import logging
 import time
 import cv2 as cv
+import torch.distributed as dist
+import numpy as np
+import cv2
 
 
 def load_pretrained(model, fname, optimizer=None, strict=True):
@@ -18,8 +21,12 @@ def load_pretrained(model, fname, optimizer=None, strict=True):
     """
     if os.path.isfile(fname):
         print("=> loading checkpoint '{}'".format(fname))
+
         checkpoint = torch.load(fname)
-        model.load_state_dict(checkpoint['state_dict'], strict=strict)
+        # model = torch.nn.DataParallel(model).cuda()
+        model = model.cuda()
+        model.load_state_dict(checkpoint['state_dict'], strict=False)
+
         if optimizer is not None:
             optimizer.load_state_dict(checkpoint['optimizer'])
             return model, optimizer
@@ -54,6 +61,32 @@ class AverageMeter(object):
 
 def numpy2tensor2cuda(batch_inputs):
     return torch.autograd.Variable(torch.from_numpy(batch_inputs).float()).cuda()
+    # return torch.from_numpy(batch_inputs).float().cuda()
+
+def dilate_label_batch(label, kernel_size=3, iterations=1):
+    """
+    对输入的 (B, 1, H, W) 标签 tensor 执行 OpenCV 膨胀操作，返回膨胀后的新 tensor。
+
+    参数:
+        label_tensor: torch.Tensor, 形状为 (B, 1, H, W)，数值范围应为 [0, 1]
+        kernel_size: 卷积核尺寸，默认 3 表示 3x3 膨胀
+        iterations: 膨胀迭代次数，默认 1 次
+
+    返回:
+        torch.Tensor: 相同形状的 tensor，值仍为 float32 格式
+    """
+    B, C, H, W = label.shape
+    new_labels = np.zeros_like(label)
+
+    kernel = np.ones((kernel_size, kernel_size), np.uint8)
+
+    for i in range(B):
+        # 输入图像需为 uint8
+        label_img = (label[i, 0] > 0.5).astype(np.uint8) * 255
+        dilated = cv2.dilate(label_img, kernel, iterations=iterations)
+        new_labels[i, 0] = dilated.astype(np.float32) / 255.0
+
+    return new_labels
 
 
 def get_logger(logger_name="logtrain", log_dir="data/logs/"):
@@ -87,6 +120,8 @@ class MapContainer(object):
         self.region_name = region_name
 
     def add_map(self, pnt, map, CROP_SZ):
+        # map[map > 0.5] = 1
+        # map[map <= 0.5] = 0
         self.map[0, pnt[0]:pnt[0] + CROP_SZ, pnt[1]:pnt[1] + CROP_SZ] += map
         self.map[1, pnt[0]:pnt[0] + CROP_SZ, pnt[1]:pnt[1] + CROP_SZ] += 1
 
@@ -120,3 +155,11 @@ def random_sample_given_probs(seq, probs):
         if probs[i] < rand < probs[i+1]:
             break
     return seq[i]
+
+def split_tile_img():
+    img = cv.imread("/home/wangziyu/VecRoad/data_self/input/imagery/653_0_0.png")
+    # 将图片填充到大图的相应位置
+    split_img = img[:4096, :4096, :]
+    cv.imwrite("/home/wangziyu/VecRoad/data_self/input/tile/653_0_0.png", split_img)
+
+split_tile_img()

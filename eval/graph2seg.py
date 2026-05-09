@@ -1,35 +1,38 @@
+import sys
+sys.path.append('.')
+
 import os
 from multiprocessing import Pool
-
 import cv2 as cv
 import numpy as np
-
 from lib import geom, graph as graph_helper
 from utils.regions import Region, get_regions
 import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "--graph_dir", type=str, help="input predict graph dir", default="data/graphs/vecroad_4/graphs_junc/"
+    "--graph_dir", type=str, help="input predict graph dir", default="data_self/graphs/vecroad_4/graphs_junc/"
 )
 parser.add_argument(
-    "--save_dir", type=str, help="save seg dir", default="data/graphs/vecroad_4/graphs_junc_seg/"
+    "--save_dir", type=str, help="save seg dir", default="data_self/graphs/vecroad_4/graphs_junc_seg/"
 )
 parser.add_argument(
-    "--region_file", type=str, help="test_region.txt file path", default="data/input/regions/test_regions.txt"
+    "--region_file", type=str, help="test_region.txt file path", default="data_self/input/regions/test_regions.txt"
 )
 parser.add_argument(
-    "--img_size", type=int, help="generated image size", default=8192
+    "--img_size", type=int, help="generated image size", default=4096
 )
 parser.add_argument(
-    "--thickness", type=int, help="generated road line thickness", default=8
+    "--thickness", type=int, help="generated road line thickness", default=5
 )
 
 args = parser.parse_args()
 
 
 def worker(region):
+    print(region)
     graph_path = os.path.join(args.graph_dir, region.name + ".graph")
+    print(graph_path)
     if not os.path.isfile(graph_path):
         print("graph: {} not found.".format(region.name))
         return
@@ -53,3 +56,5 @@ if __name__ == '__main__':
     pool.close()
     pool.join()
     # worker(regions['amsterdam'])
+
+#  python eval/graph2seg.py

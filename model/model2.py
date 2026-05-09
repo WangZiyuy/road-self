@@ -6,7 +6,6 @@ import torch.nn.functional as F
 from .res2net import res2net50_v1b_26w_4s
 from .DSFNet import Unet_multistage
 from configs.config import config
-from utils.additional_methods import assert_finite
 
 upsample = lambda x, scale: \
     F.interpolate(x, scale_factor=scale, mode='bilinear', align_corners=True)
@@ -122,6 +121,37 @@ class Hourglass(nn.Module):
         return decoder_1
 
 
+class DirectionalFilteringModule(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size=3):
+        super(DirectionalFilteringModule, self).__init__()
+        # 卷积层用于特征提取
+        self.conv = nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, padding=kernel_size // 2)
+        # 用于方向预测的卷积层
+        self.direction_conv = nn.Conv2d(in_channels, 1, kernel_size=kernel_size, padding=kernel_size // 2)
+
+    def forward(self, x):
+        # 特征提取
+        feature_map = F.relu(self.conv(x))
+
+        # 方向预测，输出方向图
+        direction_map = self.direction_conv(x)
+        direction_map = F.softmax(direction_map, dim=1)  # 假设方向预测为分类问题
+
+        # 生成注意力图，基于方向图的预测
+        attention_map = self.create_attention_map(direction_map)
+
+        # 将注意力图应用于特征图，进行过滤
+        filtered_features = feature_map * attention_map
+
+        return filtered_features
+
+    def create_attention_map(self, direction_map):
+        # 通过方向图生成一个注意力图，基于预测的方向信息
+        # 假设方向图的值为0-1之间的概率，可以根据方向图的输出生成过滤的注意力图
+        attention_map = torch.sigmoid(direction_map)  # 可以根据需要调整这里的激活函数
+        return attention_map
+
+
 class Transformer(nn.Module):
     def  __init__(self, input_dim, embed_dim, num_heads, num_layers, output_dim):
         """
@@ -137,7 +167,7 @@ class Transformer(nn.Module):
         # 输入的线性映射
         self.embedding = nn.Linear(input_dim, embed_dim)
         # Transformer 编码器层
-        encoder_layer = nn.TransformerEncoderLayer(d_model=embed_dim, nhead=num_heads)
+        encoder_layer = nn.TransformerEncoderLayer(d_model=embed_dim, nhead=num_heads, batch_first=True)
         self.transformer1 = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
         # 最后的输出层
         self.fc = nn.Linear(embed_dim, output_dim)
@@ -152,50 +182,10 @@ class Transformer(nn.Module):
         # Transformer 编码器处理
         x = self.transformer1(x, src_key_padding_mask=src_key_padding_mask)
         # 取 Transformer 输出的最后一个时间步的特征
-        # TODO 这里只用最后一个时间步不合适 好像都用的是x = x.mean(dim=1)  # (B, embed_dim) 通过均值池化获取整个序列的特征
         x = x[:, -1, :]
         # 输出层
         x = self.fc(x)
         return x
-
-
-class CrossAttentionLayer(nn.Module):
-    def __init__(self, dim_q, num_heads, dim_kv=None, dropout=0.0):
-        super().__init__()
-        dim_kv = dim_kv or dim_q
-        self.attn = nn.MultiheadAttention(
-            embed_dim=dim_q, num_heads=num_heads,
-            kdim=dim_kv, vdim=dim_kv,
-            dropout=dropout, batch_first=True
-        )
-        self.ln_q = nn.LayerNorm(dim_q)
-        self.ln_out = nn.LayerNorm(dim_q)
-        self.ln_kv = nn.LayerNorm(dim_kv)
-
-    def forward(self, q, k, v, key_padding_mask=None):
-        # q: (B, HW, dim_q)     k,v: (B, S, dim_kv)
-        q0 = q
-        q = self.ln_q(q)
-        k = self.ln_kv(k)
-        v = self.ln_kv(v)
-        out, _ = self.attn(q, k, v, key_padding_mask=key_padding_mask)  # (B, HW, dim_q)
-        out = self.ln_out(out + q0)  # 残差
-        return out
-
-
-class TrajProjector(nn.Module):
-    def __init__(self, in_dim, out_dim, hidden=128, dropout=0):
-        super().__init__()
-        self.net = nn.Sequential(
-            nn.LayerNorm(in_dim),
-            nn.Linear(in_dim, hidden),
-            nn.ReLU(inplace=True),
-            nn.Dropout(dropout),
-            nn.Linear(hidden, out_dim)
-        )
-
-    def forward(self, x):              # x: (B, S, in_dim)
-        return self.net(x)             # -> (B, S, out_dim)
 
 
 class RPNet(nn.Module):
@@ -205,11 +195,6 @@ class RPNet(nn.Module):
 
         self.num_targets = num_targets
 
-        # 例：C_img = stage_fuse 的通道数（self.conv_fuse 输出通道），F_in = neighborhood_trajectory_norm.shape[-1]
-        self.C_img = 128  # 请与 self.conv_fuse 的输出通道保持一致
-        self.F_in = 2  # 你的轨迹点特征维度（经纬度等），按实际填写
-        self.num_heads_traj = 4  # 需满足 self.C_img % num_heads == 0
-
         self.conv_2_side = ConvReLU(256, 128, 3, 1, bn=True)
         self.conv_3_side = ConvReLU(512, 128, 3, 1, bn=True)
         self.conv_4_side = ConvReLU(1024, 128, 3, 1, bn=True)
@@ -217,10 +202,9 @@ class RPNet(nn.Module):
         self.conv_fuse = ConvReLU(512, 128, 3, 1, bn=True)
         self.avgpool4 = nn.AvgPool2d(4, 4).cuda()
 
-        # self.transformer = Transformer(2, 32, num_heads=4, num_layers=1, output_dim=64)
-        self.traj_to_img_fc = TrajProjector(in_dim=self.F_in, out_dim=self.C_img, hidden=128)
-        self.cross_attention = CrossAttentionLayer(dim_q=self.C_img, num_heads=self.num_heads_traj, dim_kv=self.C_img, dropout=0.0)
+        # self.directional_filtering = DirectionalFilteringModule(512, 256)
 
+        self.transformer = Transformer(2, 32, num_heads=4, num_layers=1, output_dim=64)
         self.road_seg = nn.Sequential(
             ConvReLU(128, 64, 3, 1, bn=True),
             ConvReLU(64, 64, 1, 1, bn=True)
@@ -234,10 +218,10 @@ class RPNet(nn.Module):
         self.conv_junc_final = nn.Conv2d(64, 1, 1, 1, 0)
 
         self.fuse_module = Hourglass(
-            128 + 64 + 64 + 32 * (self.num_targets-1) + 1,  # 353
+            128  + 64 + 64 + 32 * (self.num_targets-1) + 1,  # 353
             32, [128, 128, 128, 128])
         self.fuse_module_traj = Hourglass(
-            128 + 64 + 64 + 32 * (self.num_targets-1) + 1,  # 353
+            128  + 64 + 64 + 64 + 32 * (self.num_targets-1) + 1,  # 353
             32, [128, 128, 128, 128])
 
 
@@ -263,6 +247,7 @@ class RPNet(nn.Module):
         self.upsample1 = nn.ConvTranspose2d(in_channels=64, out_channels=64, kernel_size=64, stride=64)
         self.upsample2 = nn.ConvTranspose2d(in_channels=64, out_channels=64, kernel_size=4, stride=4)
         self.next_step_256fuse = nn.Conv2d(32, 32, 1, 1, 0)
+
 
         self.init_weights()
         ## first init_weights for added parts, then init res2net
@@ -347,7 +332,7 @@ class RPNet(nn.Module):
         road_final, junc_final, traj_final = None, None, None
         road_fts, junc_fts, traj_fts = None, None, None
         stage_fuse = None
-        valid_traj_feature = None
+        
         # 用于存储中间特征图的字典
         feature_maps = {}
 
@@ -383,7 +368,7 @@ class RPNet(nn.Module):
 
             junc_fts = self.junc_seg(stage_fuse)
             junc_final = self.conv_junc_final(junc_fts)
-
+            
             # 保存中间特征图
             feature_maps['stage_1'] = stage_1
             feature_maps['stage_2'] = stage_2
@@ -398,20 +383,96 @@ class RPNet(nn.Module):
             #所以DSFNet的功能只能用来进行前置辅助信息的生成（道路和节点） 另一个生成anchor的解码器和DSFNet就无关了
             print('using DSFNet')
             stage_1_DFS, stage_2_DFS, stage_3_DFS, stage_4_DFS, stage_fuse, road_fts, junc_fts, road_final, junc_final, traj_fts, traj_final, fi_ca1 = self.DSF(traj_image, aerial_image)
+            
+            # 保存DSFNet的中间特征图
+            feature_maps['stage_1_DFS'] = stage_1_DFS
+            feature_maps['stage_2_DFS'] = stage_2_DFS
+            feature_maps['stage_3_DFS'] = stage_3_DFS
+            feature_maps['stage_4_DFS'] = stage_4_DFS
+            feature_maps['stage_fuse'] = stage_fuse
+            feature_maps['road_fts'] = road_fts
+            feature_maps['junc_fts'] = junc_fts
+            feature_maps['traj_fts'] = traj_fts
+            feature_maps['fi_ca1'] = fi_ca1
 
 # ______________________________________________________________________________________________________
 # ______________________________________________________________________________________________________
+
+        # -------------------- 轨迹特征（推理也计算并返回） --------------------
+        # 在 test 模式下也需要可视化 valid_traj_feature，因此将其前置计算
+        if have_neighborhood_trajectory and use_traj:
+            # neighborhood_trajectory_norm: [B, K, L, 2], 展平成序列送入 Transformer
+            neighborhood_trajectory = neighborhood_trajectory_norm.view(
+                neighborhood_trajectory_norm.size(0), -1, neighborhood_trajectory_norm.size(3))
+            # Transformer(batch_first=True): src_key_padding_mask 形状应为 (B, L)，True 表示需要被mask
+            padding_mask = (~valid_mask).view(neighborhood_trajectory_norm.size(0), -1)
+            valid_traj_feature = self.transformer(
+                neighborhood_trajectory, src_key_padding_mask=padding_mask)
+            valid_traj_feature = valid_traj_feature.unsqueeze(2).unsqueeze(3)
+            valid_traj_feature = self.upsample1(valid_traj_feature)
+            valid_traj_feature = self.upsample2(valid_traj_feature)
+            valid_traj_feature = F.interpolate(
+                valid_traj_feature, size=(128, 128), mode='bilinear', align_corners=False)
+            # 轻度高斯平滑，减少噪声与边界伪影
+            try:
+                channels = valid_traj_feature.shape[1]
+                gaussian_kernel = torch.tensor([[1., 2., 1.], [2., 4., 2.], [1., 2., 1.]], device=valid_traj_feature.device)
+                gaussian_kernel = gaussian_kernel / gaussian_kernel.sum()
+                weight = gaussian_kernel.view(1, 1, 3, 3).repeat(channels, 1, 1, 1)
+                valid_traj_feature = F.conv2d(valid_traj_feature, weight, padding=1, groups=channels)
+            except Exception:
+                pass
+        elif not have_neighborhood_trajectory and use_traj:
+            B = aerial_image.size(0)
+            valid_traj_feature = self.missing_traj_feature.expand(B, -1, -1, -1)
+            valid_traj_feature = F.interpolate(
+                valid_traj_feature, size=(128, 128), mode='bilinear', align_corners=False)
+            try:
+                channels = valid_traj_feature.shape[1]
+                gaussian_kernel = torch.tensor([[1., 2., 1.], [2., 4., 2.], [1., 2., 1.]], device=valid_traj_feature.device)
+                gaussian_kernel = gaussian_kernel / gaussian_kernel.sum()
+                weight = gaussian_kernel.view(1, 1, 3, 3).repeat(channels, 1, 1, 1)
+                valid_traj_feature = F.conv2d(valid_traj_feature, weight, padding=1, groups=channels)
+            except Exception:
+                pass
+
+        # 推理也保证 feature_maps 中一定包含 valid_traj_feature 键
+        if 'valid_traj_feature' in locals():
+            feature_maps['valid_traj_feature'] = valid_traj_feature
+        else:
+            B = aerial_image.size(0)
+            placeholder_traj_feature = torch.zeros(B, 64, 128, 128).cuda()
+            feature_maps['valid_traj_feature'] = placeholder_traj_feature
 
         if test:
-            # infer过程中原本的crop_sz和img_sz两个参数都是4096
-            # 在add_batch_gpu方法中会对crop进行拼接，但是显存超出需要把crop裁小
-            # 此时必须将模型输出结果也对应调整为1024，所以不再进行upsample
-            # return {
-            #     'road': upsample(road_final, 4),
-            #     'junc': upsample(junc_final, 4)}
+            # 生成“融合后特征”的可视化预览，便于对比有/无轨迹的影响
+            try:
+                B = stage_fuse.shape[0]
+                H, W = stage_fuse.shape[2], stage_fuse.shape[3]
+                walked_path_vis = walked_path if walked_path is not None else torch.zeros(B, 1, H, W, device=stage_fuse.device)
+                next_points_placeholder_vis = torch.zeros(
+                    B, 32 * (self.num_targets - 1), H, W, device=stage_fuse.device)
+
+                if use_traj:
+                    preview_in = torch.cat(
+                        [stage_fuse, road_fts, junc_fts, walked_path_vis, feature_maps['valid_traj_feature'], next_points_placeholder_vis], dim=1)
+                    stage_fuse_after = self.fuse_module_traj(preview_in)
+                else:
+                    preview_in = torch.cat(
+                        [stage_fuse, road_fts, junc_fts, walked_path_vis, next_points_placeholder_vis], dim=1)
+                    stage_fuse_after = self.fuse_module(preview_in)
+
+                feature_maps['stage_fuse_after'] = stage_fuse_after
+            except Exception:
+                # 预览失败不影响主流程
+                pass
+
+            # 推理返回：道路/路口结果 + 中间特征（含 valid_traj_feature 与 stage_fuse_after）
             return {
                 'road': road_final,
-                'junc': junc_final}
+                'junc': junc_final,
+                'feature_maps': feature_maps
+            }
 
         # 用于存储锚点结果
         next_points_placeholder = torch.zeros(
@@ -420,81 +481,20 @@ class RPNet(nn.Module):
              stage_fuse.shape[2],
              stage_fuse.shape[3])).cuda()
 
-        # valid_traj通过transformer提取特征
-        # 假设 neighborhood_trajectory 形状是 [batch_size, num_clusters, seq_len, input_dim]
-        # 需要 reshape 成 [batch_size, seq_len, input_dim] 适配 Transformer
-        # if have_neighborhood_trajectory and use_traj:
-        #     print('neighborhood_trajectory shape: ', neighborhood_trajectory_norm.shape)
-        #     neighborhood_trajectory = neighborhood_trajectory_norm.view(neighborhood_trajectory_norm.size(0), -1,neighborhood_trajectory_norm.size(3))
-        #     # 根据有效性 mask 生成注意力 mask（padding_mask），在 Transformer 的自注意力计算中忽略填充值。
-        #     padding_mask = (~valid_mask).view(neighborhood_trajectory_norm.size(0), -1)
-        #     valid_traj_feature = self.transformer(neighborhood_trajectory, src_key_padding_mask=padding_mask.transpose(0, 1))
-        #     valid_traj_feature = valid_traj_feature.unsqueeze(2).unsqueeze(3)  # [1, 64, 1, 1]
-        #     valid_traj_feature = self.upsample1(valid_traj_feature)  # [1, 64, 64, 64]
-        #     valid_traj_feature = self.upsample2(valid_traj_feature)  # [1, 64, 256, 256]
-        # elif not have_neighborhood_trajectory and use_traj:
-        #     # 如果轨迹数据无效，使用可学习的占位符参数，
-        #     # 并复制到 batch 大小
-        #     B = aerial_image.size(0)
-        #     valid_traj_feature = self.missing_traj_feature.expand(B, -1, -1, -1)
-
-        # ===== 轨迹分支：Cross-Attention 融合（替换原先 unsqueeze/upsample/concat） =====
-        if have_neighborhood_trajectory and use_traj:
-            # 轨迹展平到序列维度： (B, S, F_in)
-            neighborhood_trajectory = neighborhood_trajectory_norm.view(
-                neighborhood_trajectory_norm.size(0),  # B
-                -1,  # S
-                neighborhood_trajectory_norm.size(3)  # F_in
-            )
-
-            # 轨迹特征投影到图像通道维度： (B, S, C_img)
-            traj_kv = self.traj_to_img_fc(neighborhood_trajectory)
-
-            # key_padding_mask：True=ignore（屏蔽无效轨迹点）
-            # valid_mask: True=有效；~valid_mask: True=需要忽略
-            key_padding_mask = (~valid_mask).view(neighborhood_trajectory_norm.size(0), -1)  # (B, S)
-
-            # 准备 Query（图像）：(B, HW, C_img)
-            B, C_img, H, W = stage_fuse.shape
-            # q = stage_fuse.view(B, C_img, H * W).transpose(1, 2)  # (B, HW, C_img)
-            q_down = F.interpolate(stage_fuse, size=(64, 64), mode='bilinear', align_corners=False)  # (B,C,64,64)
-            # 展平为 Query
-            q_small = q_down.flatten(2).transpose(1, 2).contiguous()  # (B,4096,C)
-
-            # Cross-Attention：输出 (B, HW, C_img)
-            # ca_out = self.cross_attention(q, k, v, key_padding_mask=key_padding_mask)
-            with torch.cuda.amp.autocast(enabled=False):
-                ca_small = self.cross_attention(
-                    q_small.float(), traj_kv.float(), traj_kv.float(),
-                    key_padding_mask=key_padding_mask
-                ).to(q_small.dtype)  # (B,4096,C)
-
-            # 还原空间 (B, C_img, H, W)
-            # fused_feature = ca_out.transpose(1, 2).view(B, C_img, H, W)
-            ca_small = ca_small.transpose(1, 2).view(B, C_img, 64, 64)
-            fused_feature = F.interpolate(ca_small, size=(H, W), mode='bilinear', align_corners=False)
-
-            # 与其他辅助通道拼接（不再拼接“伪空间”轨迹图）
-            stage_fuse = torch.cat([fused_feature, road_fts, junc_fts, walked_path, next_points_placeholder], dim=1)
-
-            feature_maps['traj_Cross-Attention_feature'] = fused_feature
-            feature_maps['stage_fuse_traj'] = stage_fuse
-
-        elif not have_neighborhood_trajectory and use_traj:
-            # 无轨迹：退化为仅图像侧 + 占位（若你需要）
-            B = aerial_image.size(0)
-            fused_feature = self.missing_traj_feature.expand(B, -1, -1, -1)
-            stage_fuse = torch.cat([fused_feature, road_fts, junc_fts, walked_path, next_points_placeholder], dim=1)
-            print("Warning: No valid trajectory data in the batch. Using trimmed features.")
-        else:
-            # 不用轨迹：原样
-            stage_fuse = torch.cat([stage_fuse, road_fts, junc_fts, walked_path, next_points_placeholder], dim=1)
-        # ===== 轨迹分支替换结束 =====
-
+        # 训练/解码阶段后续使用的 valid_traj_feature 在上面已计算，此处不再重复
 
         # 在第二维度拼接融合信息、道路最终特征、路口最终特征、路径信息
         # print("stage_fuse shape: ", stage_fuse.shape, road_fts.shape, junc_fts.shape, walked_path.shape, next_points_placeholder.shape)
         # stage_fuse shape: torch.Size([5, 128, 64, 64]) torch.Size([5, 64, 64, 64]) torch.Size([5, 64, 64, 64]) torch.Size([5, 1, 64, 64]) torch.Size([5, 96, 64, 64])
+        if have_neighborhood_trajectory and use_traj:
+            print("Info: Valid trajectory data detected in the batch. Using trajectory-enhanced features.")
+            stage_fuse = torch.cat([stage_fuse, road_fts, junc_fts, walked_path, valid_traj_feature, next_points_placeholder], dim=1)
+        elif not have_neighborhood_trajectory and use_traj:
+            # 如果没有轨迹数据，只使用遥感图像相关数据进行处理
+            print("Warning: No valid trajectory data in the batch. Using trimmed features.")
+            stage_fuse = torch.cat([stage_fuse, road_fts, junc_fts, walked_path, valid_traj_feature, next_points_placeholder], dim=1)
+        else:
+            stage_fuse = torch.cat([stage_fuse, road_fts, junc_fts, walked_path, next_points_placeholder], dim=1)
 
         if self.training:
             stage_fuse_list = [stage_fuse]
@@ -503,7 +503,8 @@ class RPNet(nn.Module):
         next_points = []
         next_points_lowrs = []  # low resolution
 
-        for i in range(NUM_TARGETS if NUM_TARGETS is not None else self.num_targets):
+        for i in range(NUM_TARGETS if
+                       NUM_TARGETS is not None else self.num_targets):
             if self.training:
                 if use_traj:
                     next_step = self.fuse_module_traj(stage_fuse_list[i])
@@ -532,7 +533,7 @@ class RPNet(nn.Module):
                 decoded_ft_2 = self.up2_anchor(torch.cat((self.trans2_anchor(decoded_ft_3), stage_2_DFS), 1))
                 decoded_ft_1 = self.up1_anchor(torch.cat((self.trans1_anchor(decoded_ft_2), stage_1_DFS), 1))
                 decoded_ft_1 = self.up0_anchor(decoded_ft_1)
-
+            
             # 保存解码器特征图
             feature_maps[f'decoded_ft_4_step_{i}'] = decoded_ft_4
             feature_maps[f'decoded_ft_3_step_{i}'] = decoded_ft_3
@@ -555,7 +556,7 @@ class RPNet(nn.Module):
                     stage_fuse_list[i+1][:, ch_idx:ch_idx+32 if ch_idx+32 != 0 else None, :, :] = anchor_fts
                 else:
                     stage_fuse[:, ch_idx:ch_idx+32 if ch_idx+32 != 0 else None, :, :] = anchor_fts
-
+                
                 # 保存anchor_fts
                 feature_maps[f'anchor_fts_step_{i}'] = anchor_fts
 

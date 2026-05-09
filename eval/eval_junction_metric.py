@@ -2,6 +2,8 @@
 # coding=utf-8
 
 import sys
+sys.path.append('.')
+
 import os
 import time
 import math
@@ -9,18 +11,19 @@ from utils.utils import AverageMeter
 from multiprocessing import Pool
 import argparse
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "--graph_dir", type=str, help="input graph dir", default="data/graphs/vecroad_4/graphs_junc/"
+    "--graph_dir", type=str, help="input graph dir", default="data_self/graphs/vecroad_4/graphs_junc/"
 )
 parser.add_argument(
-    "--gt_dir", type=str, help="gt graph dir", default="data/input/graphs/"
+    "--gt_dir", type=str, help="gt graph dir", default="data_self/input/graphs/"
 )
 parser.add_argument(
-    "--save_dir", type=str, help="save csv dir", default="data/graphs/vecroad_4/"
+    "--save_dir", type=str, help="save csv dir", default="data_self/graphs/vecroad_4/"
 )
 parser.add_argument(
-    "--file_name", type=str, help="save file name", default="graphs_junc_jf1"
+    "--file_name", type=str, help="save file name", default="graphs_junc_jf1.csv"
 )
 
 args = parser.parse_args()
@@ -38,12 +41,14 @@ def worker(fn):
         os.path.join(args.gt_dir, fn),
         os.path.join(args.graph_dir, fn+'.graph'),
         fn)
+    print('command line', cmd)
     ret = os.popen(cmd).readlines()
+    print('ret', ret)
+
     res = ret[-1].split(' ;;; ')
     total = float(res[0].split(' ')[0])
     correct = float(res[1].split(' ')[0])
     error = float(res[1].split(' ')[-2])
-    print(fn, total, correct, error)
     return [total, correct, error]
 
 
@@ -77,5 +82,10 @@ if __name__ == '__main__':
         total_precision.update(precision)
         total_f1.update(f1)
         csv_file.write('{},{},{},{},{},{},{}\n'.format(fn, total, correct, error, precision, recall, f1))
+        print(f"region:{fn},  total:{total},  correct:{correct},  error:{error}")
     csv_file.write('{},,,,{},{},{}\n\n'.format(args.graph_dir.split('/')[-1], total_precision.avg, total_recall.avg,  total_f1.avg))
+    print(f"total_precision:{total_precision.avg},  total_recall:{total_recall.avg},  total_f1:{total_f1.avg}")
     csv_file.close()
+
+# 跑这个就直接python eval/eval_junction_metric.py
+# 默认参数是自己的路径

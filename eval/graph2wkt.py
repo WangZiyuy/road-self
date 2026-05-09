@@ -1,3 +1,6 @@
+import sys
+sys.path.append('.')
+
 from lib import graph as graph_helper
 import os
 from multiprocessing.pool import Pool
@@ -6,10 +9,10 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "--graph_dir", type=str, help="input graph dir", default="data/graphs/vecroad_4/graphs_junc/"
+    "--graph_dir", type=str, help="input graph dir", default="data_self/graphs/vecroad_4/graphs_junc/"
 )
 parser.add_argument(
-    "--save_dir", type=str, help="save wkt dir", default="data/graphs/vecroad_4/graphs_junc_wkt/"
+    "--save_dir", type=str, help="save wkt dir", default="data_self/graphs/vecroad_4/graphs_junc_wkt/"
 )
 
 args = parser.parse_args()
@@ -33,3 +36,7 @@ pool = Pool()
 pool.map(worker, files)
 pool.close()
 pool.join()
+
+# 就是按照这个读取graph和写入CSV的方法，是没问题的，输出是对的（都很大一万多）
+# 还是直接python eval/graph2wkt.py 默认参数是自己的路径
+#

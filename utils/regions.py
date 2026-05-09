@@ -24,6 +24,7 @@ def get_regions(region_file_path):
             city += " " + city_extend
         region = Region(city, int(radius_x), int(radius_y))
         # regions.append(region)
+        # 所以就每个区域只选择一副4096切片？？？
         regions[region.name] = region
-        # print(region)
+
     return regions

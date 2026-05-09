@@ -64,9 +64,7 @@ python eval/eval_junction_metric.py \
 APLS Metric (Java needed). Please refer to [Spacenet Challenge](https://github.com/SpaceNetChallenge) for more details.
 
 ``` python
-python eval/graphs2wkt.py \
-    --graph_dir data/graphs/vecroad_4/graphs_junc/ \
-    --save_dir data/graphs/vecroad_4/graphs_junc_wkt/
+python eval/graphs2wkt.py --graph_dir data/graphs/vecroad_4/graphs_junc/ --save_dir data/graphs/vecroad_4/graphs_junc_wkt/
 
 python eval/eval_apls_metric.py \
     --apls_path eval/apls-visualizer-1.0/visualizer.jar \

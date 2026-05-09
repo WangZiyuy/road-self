@@ -1,16 +1,7 @@
 #!/user/bin/python
 # coding=utf-8
-
-from skimage.morphology import thin
 from multiprocessing import Pool
-
-import sys
 import os
-import shutil
-import time
-import numpy as np
-import cv2 as cv
-import math
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -18,13 +9,13 @@ parser.add_argument(
     "--file_name", type=str, help="file_name to name result.csv", default="graphs_junc_apls"
 )
 parser.add_argument(
-    "--wkt_dir", type=str, help="input predict wkt dir", default="data/graphs/vecroad_4/graphs_junc_wkt/"
+    "--wkt_dir", type=str, help="input predict wkt dir", default="data_self/graphs/vecroad_4/graphs_junc_wkt/"
 )
 parser.add_argument(
-    "--gt_dir", type=str, help="input gt wkt dir", default="data/input/graphs_test_wkt/"
+    "--gt_dir", type=str, help="input gt wkt dir", default="data_self/input/graphs_test_wkt/"
 )
 parser.add_argument(
-    "--save_dir", type=str, help="save result.csv dir", default="data/graphs/vecroad_4/"
+    "--save_dir", type=str, help="save result.csv dir", default="data_self/graphs/vecroad_4/"
 )
 parser.add_argument(
     "--apls_path", type=str, help="apls metric jar dir", default="eval/apls-visualizer-1.0/visualizer.jar"
@@ -71,3 +62,6 @@ for i in range(len(files)):
 res_file.write("{},{}".format(args.file_name, sum(res_lst)/len(res_lst)))
 res_file.close()
 log_file.close()
+
+# python eval/eval_apls_metric.py 默认参数是自己的路径,需要设置一下输出文件名
+#
