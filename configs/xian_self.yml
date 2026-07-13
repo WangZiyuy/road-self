@@ -1,0 +1,89 @@
+TASK: &TASK ""
+
+DIR:
+  DATA_ROOT:       &DATA_ROOT "data_self"
+  IMAGERY_DIR:      "data_self/input/imagery/"
+  TEST_IMAGERY_DIR: "data_self/input/imagery_8192/"
+  TEST_TRAJ_DIR:    "data_self/input/traj_test/"
+  GRAPH_DIR:        "data_self/input/graphs/"
+  ALL_REGION_PATH:  "data_self/input/regions/all_regions.txt"
+  TEST_REGION_PATH: "data_self/input/regions/xian_regions.txt"
+  PRE_JUNC_NMS_DIR: "data_self/input/junction_nms/"
+  CHECK_POINT_DIR: "data_self/ckpt/新trans_2_方案1_占位_origi_trans norm_DICE_256_thick5"
+  LOG_DIR:         !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "logs"]
+  SAVE_SEG_DIR:    !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "segmentation"]
+  INFER_STEP_DIR:  !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "infer_step"]
+  SAVE_GRAPH_DIR:  !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "graphs"]
+  TILE_DIR:         "data_self/input/imagery/"
+  TRAJ_DIR:         "data_self/input/traj/"
+  SHORTCUT_DIR:     "data_self/input/shortcut/"
+
+TRAIN:
+  NUM_TARGETS: 4
+  PARALLEL_TILES: 2048
+  IMG_SZ: 4096
+  TRAINING_REGIONS: ['xian']
+  MAX_PATH_LENGTH: 2048
+  STEP_LENGTH: 20
+  SAVE_ITERATIONS: 2048
+  SAVE_EXAMPLES: True
+  WINDOW_SIZE: 256
+  FOLLOW_MODE: "follow_target"
+  PRINT_ITERATION: 200
+  NUM_INPUT_CHANNELS: 3
+  NUM_INPUT_TRAJECTORY_CHANNELS: 1
+  SOLVER:
+    METHOD: "Adam"
+    LEARNING_RATE: !!float 1e-4
+    WEIGHT_DECAY: !!float 2e-4
+  GPU_ID: "0"
+  BATCH_SIZE: 2
+  DATA_PARALLEL: False
+  LOAD_CHECK_POINT: False
+  START_EPOCH: 0
+  CHECK_POINT_NAME: "29.2047.pth.tar"
+  TOTAL_ITERATION: 50
+  RECT_RADIUS: 8
+  AVG_CONFIDENCE_THRESHOLD: 0.2
+  BINARIZE_MAP:
+    SEGMENTATION_THRESHOLD: 0.2
+    MAX_REGION_AREA: 200
+  TRAJ_FILTER: True
+  TRAJ_SOURCE: prepared
+  TRAJ_PREPARED_DIR: data_self/input/traj_prepared
+  TRAJ_GRID_CELL_SIZE: 256
+  TRAJ_TXT_POINT_SOURCE: raw
+  MODEL: origin
+  USE_TRAJ: True
+
+TEST:
+  CKPT: &CKPT "50.2047"
+  GPU_ID: "0"
+  CPU_WORKER: 4
+  DATA_PARALLEL: False
+  BATCH_SIZE_SEG: 1
+  BATCH_SIZE_ANCHOR: 1
+  TEST_IMG_SZ: 8192
+  CROP_SZ: 1024
+  SAMPLE_STEP: 2
+  NUM_TILES: 2
+  SKIP_EMPTY_CROP: True
+  WINDOW_SIZE: 256
+  INFER_STEP: "start"
+  SINGLE_REGION: "xian"
+  START_FROM_ROAD_PEAK: False
+  START_FROM_JUNC_PEAK: True
+  NUM_TARGETS: 4
+  STEP_LENGTH: 20
+  RECT_RADIUS: 10
+  FOLLOW_MODE: "follow_output"
+  AVG_CONFIDENCE_THRESHOLD: 0.2
+  BINARIZE_MAP:
+    ROAD_SEG_THRESHOLE: 0.3
+    JUNC_MAX_REGION_AREA: 200
+    JUNC_SEG_THRESHOLE: 0.3
+    ANCHOR_MAX_REGION_AREA: 1000
+    MIN_BAD_ROAD_AREA: 200
+  SAVE_EXAMPLES: False
+  SAVE_IDX: 0
+  PRINT_ITERATION: 500

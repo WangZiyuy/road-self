@@ -13,6 +13,17 @@ import numpy as np
 import cv2
 
 
+def _print_key_list(title, keys, max_items=80):
+    keys = list(keys)
+    if not keys:
+        return
+    print("=> {}:".format(title))
+    for key in keys[:max_items]:
+        print("   - {}".format(key))
+    if len(keys) > max_items:
+        print("   ... {} more".format(len(keys) - max_items))
+
+
 def load_pretrained(model, fname, optimizer=None, strict=True):
     """
     resume training from previous checkpoint
@@ -23,9 +34,22 @@ def load_pretrained(model, fname, optimizer=None, strict=True):
         print("=> loading checkpoint '{}'".format(fname))
 
         checkpoint = torch.load(fname)
+        state_dict = checkpoint['state_dict']
+        model_state = model.state_dict()
+        shape_mismatch_keys = []
+        for key, value in state_dict.items():
+            if key in model_state and model_state[key].shape != value.shape:
+                shape_mismatch_keys.append(
+                    "{}: checkpoint {} vs model {}".format(
+                        key, tuple(value.shape), tuple(model_state[key].shape)))
+        _print_key_list("checkpoint shape mismatch keys", shape_mismatch_keys)
         # model = torch.nn.DataParallel(model).cuda()
         model = model.cuda()
-        model.load_state_dict(checkpoint['state_dict'], strict=False)
+        incompatible = model.load_state_dict(state_dict, strict=False)
+        print("=> checkpoint missing keys: {}, unexpected keys: {}".format(
+            len(incompatible.missing_keys), len(incompatible.unexpected_keys)))
+        _print_key_list("checkpoint missing key names", incompatible.missing_keys)
+        _print_key_list("checkpoint unexpected key names", incompatible.unexpected_keys)
 
         if optimizer is not None:
             optimizer.load_state_dict(checkpoint['optimizer'])
@@ -158,8 +182,11 @@ def random_sample_given_probs(seq, probs):
 
 def split_tile_img():
     img = cv.imread("/home/wangziyu/VecRoad/data_self/input/imagery/653_0_0.png")
+    if img is None:
+        raise FileNotFoundError("hard-coded source image for split_tile_img was not found")
     # 将图片填充到大图的相应位置
     split_img = img[:4096, :4096, :]
     cv.imwrite("/home/wangziyu/VecRoad/data_self/input/tile/653_0_0.png", split_img)
 
-split_tile_img()
+if __name__ == "__main__":
+    split_tile_img()

@@ -4,3 +4,6 @@ __pycache__
 .history
 .idea
 .vscode
+
+# Local datasets and generated experiment artifacts
+data_self/

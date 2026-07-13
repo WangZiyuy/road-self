@@ -1,5 +1,6 @@
 import sys
 sys.path.append('.')
+import json
 import os
 import geopandas as gpd
 import shapely
@@ -11,8 +12,56 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 
+XIAN_BBOX_GCJ02 = {
+    "lat_min": 34.22484722131834,
+    "lon_min": 108.94460164474442,
+    "lat_max": 34.24707831919142,
+    "lon_max": 108.9677436888106,
+}
+
+
+def _repo_path(*parts):
+    return os.path.abspath(os.path.join(os.getcwd(), *parts))
+
+
+def _load_region_metadata(region_num, data_root="data_self"):
+    candidates = [
+        _repo_path(data_root, "input", "regions", f"{region_num}_metadata.json"),
+        _repo_path("data_self", "input", "regions", f"{region_num}_metadata.json"),
+        _repo_path("data", "input", "regions", f"{region_num}_metadata.json"),
+    ]
+    for path in candidates:
+        if os.path.isfile(path):
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f), path
+    return None, None
+
+
+def _metadata_bbox(meta, region_num):
+    bbox = meta.get("bbox_gcj02") or meta.get("bbox_wgs84") or meta.get("bbox")
+    if isinstance(bbox, dict):
+        return bbox
+    if isinstance(bbox, (list, tuple)) and len(bbox) == 4:
+        return {
+            "lat_min": bbox[0],
+            "lon_min": bbox[1],
+            "lat_max": bbox[2],
+            "lon_max": bbox[3],
+        }
+    if str(region_num).lower() == "xian":
+        return XIAN_BBOX_GCJ02
+    return None
+
+
+def _metadata_size(meta):
+    size = meta.get("original_size") or meta.get("image_size") or meta.get("valid_size")
+    if isinstance(size, (list, tuple)) and len(size) == 2:
+        return int(size[0]), int(size[1])
+    return None
+
+
 class GisToGraphConverter:
-    def __init__(self, region_num, trajectory):
+    def __init__(self, region_num, trajectory, data_root="data_self"):
         """
         初始化 GisToGraphConverter 类，设置转换参数。
         :param min_lat: 经度最小值，用于映射到像素坐标
@@ -22,8 +71,51 @@ class GisToGraphConverter:
         """
         self.trajectory = trajectory
         self.region_num = str(region_num)
+        self.data_root = data_root
 
     def get_trans_para(self):
+        meta, meta_path = _load_region_metadata(self.region_num, self.data_root)
+        if meta is not None:
+            bbox = _metadata_bbox(meta, self.region_num)
+            size = _metadata_size(meta)
+            if bbox is None or size is None:
+                raise ValueError(
+                    f"metadata {meta_path} must contain bbox and original_size for trajectory conversion"
+                )
+            min_lat = float(bbox["lat_min"])
+            max_lat = float(bbox["lat_max"])
+            min_lng = float(bbox["lon_min"])
+            max_lng = float(bbox["lon_max"])
+            nb_cols, nb_rows = size
+            yscale = nb_rows / (max_lat - min_lat)
+            xscale = nb_cols / (max_lng - min_lng)
+            return min_lat, max_lat, min_lng, max_lng, nb_rows, nb_cols, yscale, xscale
+
+        sta_path = _repo_path(self.data_root, "shp_files", "sta_mbrs.csv")
+        if not os.path.isfile(sta_path):
+            raise FileNotFoundError(
+                f"missing region metadata and station bounds: {sta_path}"
+            )
+        if os.path.isfile(sta_path):
+            sta_mbr_init = load_sta_data(sta_path)[self.region_num]
+            min_lat = sta_mbr_init[0]
+            max_lat = sta_mbr_init[2]
+            min_lng = sta_mbr_init[1]
+            max_lng = sta_mbr_init[3]
+            img_candidates = [
+                _repo_path(self.data_root, "input", "imagery_8192", f"{self.region_num}.png"),
+                _repo_path(self.data_root, "input", "imagery", f"{self.region_num}_0_0.png"),
+            ]
+            img_dir = next((path for path in img_candidates if os.path.isfile(path)), None)
+            if img_dir is None:
+                raise FileNotFoundError(
+                    f"cannot find imagery for trajectory conversion: {img_candidates}"
+                )
+            nb_cols, nb_rows = Image.open(img_dir).size
+            yscale = nb_rows / (max_lat - min_lat)
+            xscale = nb_cols / (max_lng - min_lng)
+            return min_lat, max_lat, min_lng, max_lng, nb_rows, nb_cols, yscale, xscale
+
         sta_mbr_init = load_sta_data('/home/wangziyu/VecRoad/data_self/shp_files/sta_mbrs.csv')[self.region_num]
         min_lat = sta_mbr_init[0]
         max_lat = sta_mbr_init[2]

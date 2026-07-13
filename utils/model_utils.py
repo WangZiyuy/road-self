@@ -21,7 +21,9 @@ from torch.nn.utils.rnn import pad_sequence
 
 
 class Path(object):
-    def __init__(self, idx, training, gc, tile_data, all_trajectories, all_pixel_trajectories, net=None, graph=None, road_seg=None, WINDOW_SIZE=256):
+    def __init__(self, idx, training, gc, tile_data, all_trajectories, all_pixel_trajectories,
+                 net=None, graph=None, road_seg=None, WINDOW_SIZE=256,
+                 traj_grid_index=None, traj_grid_cell_size=None):
         """
         graph container contains the total graph of the region, not only the search rectangle,
         so it records the road segment info of the total graph, when reset the gragh container(gc),
@@ -64,9 +66,17 @@ class Path(object):
             self.rs_exploration = graph_helper.RoadSegmentExplorationDict(
                 gc=gc, rect=tile_data['search_rect'])
 
-        self.all_trajectories = all_trajectories
-        self.all_pixel_trajectories = all_pixel_trajectories
-        self.all_pixel_trajectories_gpu = [torch.tensor(traj, device="cuda") for traj in self.all_pixel_trajectories]
+        self.all_trajectories = [] if all_trajectories is None else all_trajectories
+        self.all_pixel_trajectories = [] if all_pixel_trajectories is None else all_pixel_trajectories
+        self.traj_grid_index = traj_grid_index or {}
+        self.traj_grid_cell_size = traj_grid_cell_size
+        self.use_traj_grid_index = bool(self.traj_grid_index) and self.traj_grid_cell_size is not None
+        self.all_pixel_trajectories_gpu = []
+        if not self.use_traj_grid_index:
+            self.all_pixel_trajectories_gpu = [
+                torch.tensor(traj, device="cuda", dtype=torch.float32)
+                for traj in self.all_pixel_trajectories
+            ]
 
         self.net = net #为了传递两个半径的自定义参数
         if self.net is not None:
@@ -776,8 +786,11 @@ class Path(object):
         big_img = self.tile_data['cache'].get(
             self.tile_data['region'], search_rect)
         # {'input': img.shape==(4096,4096,3)}
-        big_traj_img = self.tile_data['cache'].get_traj(
-            self.tile_data['region'], search_rect)
+        need_traj_image = 'traj_image_hwc' in fetch_list or 'traj_image_chw' in fetch_list
+        big_traj_img = None
+        if need_traj_image:
+            big_traj_img = self.tile_data['cache'].get_traj(
+                self.tile_data['region'], search_rect)
 
         if not search_rect.contains(extension_vertex.point):
             # (top_left:(128, 128), buttom_right:(1920, 1920))
@@ -853,9 +866,12 @@ class Path(object):
                                             tile_origin.y:tile_origin.y + WINDOW_SIZE, :].astype('float32') / 255.0
         aerial_image_chw = aerial_image_hwc.swapaxes(0, 2).swapaxes(1, 2)
 
-        traj_image_hwc = big_traj_img['input'][tile_origin.x:tile_origin.x + WINDOW_SIZE,
-                                            tile_origin.y:tile_origin.y + WINDOW_SIZE, :].astype('float32') / 255.0
-        traj_image_chw = traj_image_hwc.swapaxes(0, 2).swapaxes(1, 2)
+        traj_image_hwc = None
+        traj_image_chw = None
+        if need_traj_image:
+            traj_image_hwc = big_traj_img['input'][tile_origin.x:tile_origin.x + WINDOW_SIZE,
+                                                tile_origin.y:tile_origin.y + WINDOW_SIZE, :].astype('float32') / 255.0
+            traj_image_chw = traj_image_hwc.swapaxes(0, 2).swapaxes(1, 2)
 
         # ################ traj in pieces ################
         if 'valid_trajectories' in fetch_list:
@@ -878,6 +894,11 @@ class Path(object):
                 if GPU_valid_trajectories2.size(0) > 100:
                     GPU_valid_trajectories2 = GPU_valid_trajectories2[:100, :, :]
                 # (n, win_len, 2) 当没有有效轨迹rect_trajectory_segments2为空时返回占位向量n=1
+                self.valid_trajectories = GPU_valid_trajectories2
+            else:
+                GPU_valid_trajectories2 = self.filter_trajectories_on_gpu2(rect, extension_vertex)
+                if GPU_valid_trajectories2.size(0) > 100:
+                    GPU_valid_trajectories2 = GPU_valid_trajectories2[:100, :, :]
                 self.valid_trajectories = GPU_valid_trajectories2
 
         ret_dict = {
@@ -1181,6 +1202,7 @@ class Path(object):
             converter = GisToGraphConverter(self.tile_data['region'], traj)
             pixel_trajectories = converter.convert_trajectories_to_pixels()
             all_pixel_trajectories.append(pixel_trajectories)
+        return all_pixel_trajectories
         all_pixel_trajectories = np.array(all_pixel_trajectories)
 
         return all_pixel_trajectories
@@ -1257,12 +1279,46 @@ class Path(object):
     #     # print(f"GPU filtering completed in {time.time() - start:.2f} seconds.")
     #     return circle_trajectories[max_passed_circle_idx]
 
+    def _candidate_trajectories_for_rect(self, rect, device="cuda"):
+        if not self.use_traj_grid_index:
+            return self.all_pixel_trajectories_gpu
+
+        cell_size = self.traj_grid_cell_size
+        min_cx = int(math.floor(rect.start.x / cell_size))
+        max_cx = int(math.floor(rect.end.x / cell_size))
+        min_cy = int(math.floor(rect.start.y / cell_size))
+        max_cy = int(math.floor(rect.end.y / cell_size))
+
+        candidate_ids = set()
+        for cx in range(min_cx, max_cx + 1):
+            for cy in range(min_cy, max_cy + 1):
+                ids = self.traj_grid_index.get((cx, cy))
+                if ids is not None:
+                    candidate_ids.update(int(i) for i in ids)
+
+        if len(candidate_ids) == 0:
+            return []
+
+        candidate_trajectories = []
+        for traj_id in candidate_ids:
+            if traj_id >= len(self.all_pixel_trajectories):
+                continue
+            traj = self.all_pixel_trajectories[traj_id]
+            if len(traj) > 0:
+                candidate_trajectories.append(
+                    torch.as_tensor(traj, device=device, dtype=torch.float32))
+        return candidate_trajectories
+
     def filter_trajectories_on_gpu2(self, rect, extension_vertex, device="cuda"):
         # GPU 参数
 
         window_size = 5
         num_circles = 4
         win_len = window_size * 2 + 1
+        empty_result = torch.zeros(1, win_len, 2, device=device)
+        candidate_trajectories = self._candidate_trajectories_for_rect(rect, device=device)
+        if len(candidate_trajectories) == 0:
+            return empty_result
 
         circle_radius = config.circle_radius
         neighborhood_radius = config.neighborhood_radius
@@ -1275,17 +1331,21 @@ class Path(object):
         circle_centers = torch.stack([ext_x + neighborhood_radius * torch.cos(angles), ext_y + neighborhood_radius * torch.sin(angles)], dim=1)
 
         # 掩码+索引法 完成遍历 rect 范围内的轨迹数据
-        traj_meta = [(i, len(traj)) for i, traj in enumerate(self.all_pixel_trajectories_gpu) if len(traj) > 0]
+        traj_meta = [(i, len(traj)) for i, traj in enumerate(candidate_trajectories) if len(traj) > 0]
+        if len(traj_meta) == 0:
+            return empty_result
         indices = torch.cat([torch.full((length,), fill_value=i, device=device) for i, length in traj_meta])
         # 扁平化所有轨迹点
         # all_points = torch.cat([torch.as_tensor(traj, device=device) for traj in self.all_pixel_trajectories_gpu if len(traj) > 0])
-        all_points = torch.cat([traj for traj in self.all_pixel_trajectories_gpu if len(traj) > 0])
+        all_points = torch.cat([traj for traj in candidate_trajectories if len(traj) > 0])
 
         # 向量化过滤，判断哪些轨迹点在rect范围内
         rect_mask = (all_points[:, 0] >= rect.start.x) & (all_points[:, 0] <= rect.end.x) & (all_points[:, 1] >= rect.start.y) & (all_points[:, 1] <= rect.end.y)
         # 所有在ext为中心矩形框内的轨迹点及其索引
         valid_points = all_points[rect_mask]
         valid_indices = indices[rect_mask]
+        if valid_points.size(0) == 0:
+            return empty_result
 
         rect_trajectory_segments2 = []
         for traj_idx in torch.unique(valid_indices):
@@ -1293,7 +1353,7 @@ class Path(object):
             if valid_points[mask1].size(0) >= win_len:
                 rect_trajectory_segments2.append(valid_points[mask1])
         if len(rect_trajectory_segments2) == 0:
-            return torch.zeros(1, win_len, 2, device=device)
+            return empty_result
 
         # 使用 pad_sequence 将轨迹补齐到同一长度(轨迹对齐)
         # padded_segments: [B, T, 2]，B:轨迹数量，T:最大轨迹长度
@@ -1354,8 +1414,9 @@ class Path(object):
         max_idx = torch.argmax(pass_counts).item()
 
         if circle_trajectories[max_idx].size(0) == 0:
-            return torch.zeros(1, win_len, 2, device=device)
+            return empty_result
         circle_trajectories[max_idx] -= torch.tensor([rect.start.x, rect.start.y], device=circle_trajectories[max_idx].device)
+        return circle_trajectories[max_idx]
 
         # 对每个圆心的轨迹都进行可视化
         import matplotlib.pyplot as plt

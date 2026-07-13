@@ -1,3 +1,4 @@
+import json
 import os
 import random
 import numpy as np
@@ -38,11 +39,15 @@ class OSMDataset:
         for i, subtile in enumerate(self.subtiles):
             print("In region:{}, in tile {}{}".format(subtile["region"], subtile['search_rect'].start, subtile['search_rect'].end))
 
-            # 传入整个站点的轨迹数据（因为不想写切分2048的代码了。。。）
-            self.all_trajectories = get_all_traj_pieces_from_txt(f'./data_self/input/traj_piece/{subtile["region"]}')
-            self.all_pixel_trajectories = all_traj_to_all_pixel_traj(self.all_trajectories, subtile["region"])
+            self.all_trajectories, self.all_pixel_trajectories, self.traj_grid_index, self.traj_grid_cell_size = \
+                load_region_trajectory_inputs(subtile["region"], self.cfg)
 
-            path = model_utils.Path(i, training, subtile["gc"].clone(), subtile, self.all_trajectories, self.all_pixel_trajectories, net=self.net)
+            path = model_utils.Path(
+                i, training, subtile["gc"].clone(), subtile,
+                self.all_trajectories, self.all_pixel_trajectories,
+                net=self.net,
+                traj_grid_index=self.traj_grid_index,
+                traj_grid_cell_size=self.traj_grid_cell_size)
             self.paths.append(path)
 
             # 将某个region大图的四个2048小图中的路径进行可视化
@@ -171,7 +176,9 @@ class OSMDataset:
                     self.paths[path_idx] = model_utils.Path(
                         idx=path_idx, training=self.training, gc=self.subtiles[path_idx]["gc"].clone(),
                         tile_data=self.subtiles[path_idx], all_trajectories=self.all_trajectories,
-                        all_pixel_trajectories=self.all_pixel_trajectories, net=self.net)
+                        all_pixel_trajectories=self.all_pixel_trajectories, net=self.net,
+                        traj_grid_index=getattr(self, "traj_grid_index", None),
+                        traj_grid_cell_size=getattr(self, "traj_grid_cell_size", None))
                     path = self.paths[path_idx]
                     continue
                 break
@@ -312,38 +319,180 @@ class OSMDataset:
                 AVG_CONFIDENCE_THRESHOLD=self.cfg.TRAIN.AVG_CONFIDENCE_THRESHOLD)
         return
 
-# 新加，同于读取成条轨迹数据
-def get_all_traj_pieces_from_txt(trajectory_dir):
-    """
-        读取多个轨迹数据文件，返回所有轨迹的坐标数据。
-        每个文件代表一条轨迹，每条轨迹的数据存储为 [latitude, longitude]。
-        """
-    all_trajectories = []
-
-    print("loading traj in pieces")
-    total = sum(len(files) for _, _, files in os.walk(trajectory_dir))
-    for root, dirs, files in tqdm(os.walk(trajectory_dir), total=total):
-        # 遍历当前文件夹下的所有文件
+# 新加，用于读取成条轨迹数据。原始轨迹允许变长，进入模型前会在
+# valid_trajectory_input_GPU 中 pad 成固定 batch tensor。
+def _iter_traj_files(trajectory_dir, suffixes):
+    if not os.path.isdir(trajectory_dir):
+        raise FileNotFoundError(f"trajectory directory not found: {trajectory_dir}")
+    result = []
+    for root, _, files in os.walk(trajectory_dir):
         for file_name in files:
-            file_path = os.path.join(root, file_name)
-            data = pd.read_csv(file_path, header=None, skiprows=1, names=['latitude', 'longitude'], usecols=[1, 2], dtype=np.float64)
-            coordinates = data[['latitude', 'longitude']].to_numpy()
-            all_trajectories.append(coordinates)
-    all_trajectories = np.array(all_trajectories)
-    print(f"trajectory length: {all_trajectories.shape}")
+            if file_name.lower().endswith(suffixes):
+                result.append(os.path.join(root, file_name))
+    return sorted(result)
 
+
+def _filter_traj_points(coordinates, bbox=None, min_points=2):
+    if len(coordinates) == 0:
+        return None
+    coordinates = np.asarray(coordinates, dtype=np.float32)
+    finite_mask = np.isfinite(coordinates).all(axis=1)
+    coordinates = coordinates[finite_mask]
+    if bbox is not None and len(coordinates) > 0:
+        lat_min, lon_min, lat_max, lon_max = bbox
+        bbox_mask = (
+            (coordinates[:, 0] >= lat_min) & (coordinates[:, 0] <= lat_max) &
+            (coordinates[:, 1] >= lon_min) & (coordinates[:, 1] <= lon_max)
+        )
+        coordinates = coordinates[bbox_mask]
+    if len(coordinates) < min_points:
+        return None
+    return coordinates
+
+
+def read_legacy_csv_traj(file_path, bbox=None):
+    data = pd.read_csv(
+        file_path,
+        header=None,
+        skiprows=[0],
+        usecols=[1, 2],
+        dtype=str,
+        on_bad_lines="skip",
+    )
+    data = data.apply(pd.to_numeric, errors="coerce")
+    return _filter_traj_points(data.dropna().to_numpy(), bbox=bbox)
+
+
+def read_didi_gaia_txt_traj(file_path, bbox=None, point_source="raw"):
+    usecols = [1, 2] if point_source == "raw" else [4, 5]
+    data = pd.read_csv(
+        file_path,
+        header=None,
+        skiprows=[0],
+        usecols=usecols,
+        dtype=str,
+        engine="c",
+        on_bad_lines="skip",
+    )
+    data = data.apply(pd.to_numeric, errors="coerce")
+    return _filter_traj_points(data.dropna().to_numpy(), bbox=bbox)
+
+
+def get_region_bbox_for_traj(region_num, data_root="data_self"):
+    min_lat, max_lat, min_lng, max_lng, _, _, _, _ = GisToGraphConverter(
+        region_num, [], data_root=data_root).get_trans_para()
+    return min_lat, min_lng, max_lat, max_lng
+
+
+def get_all_traj_pieces_from_txt(trajectory_dir, bbox=None, txt_point_source="raw"):
+    """
+    Read trajectory files as a list of [lat, lon] arrays.
+
+    CSV format: header + rows where columns 1/2 are lat/lon.
+    Didi/Gaia TXT format: header + rows where columns 1/2 are raw GCJ02
+    lat/lon and columns 4/5 are map-matched lat/lon.
+    """
+    print("loading traj in pieces")
+    traj_files = _iter_traj_files(trajectory_dir, (".csv", ".txt"))
+    all_trajectories = []
+    skipped = 0
+    for file_path in tqdm(traj_files, desc="load trajectory files"):
+        ext = os.path.splitext(file_path)[1].lower()
+        try:
+            if ext == ".txt":
+                coordinates = read_didi_gaia_txt_traj(
+                    file_path, bbox=bbox, point_source=txt_point_source)
+            else:
+                coordinates = read_legacy_csv_traj(file_path, bbox=bbox)
+        except Exception:
+            skipped += 1
+            continue
+        if coordinates is None:
+            skipped += 1
+            continue
+        all_trajectories.append(coordinates)
+    print(f"trajectory count: {len(all_trajectories)}, skipped files: {skipped}")
     return all_trajectories
 
-def all_traj_to_all_pixel_traj(all_trajectories, region_num):
+
+def all_traj_to_all_pixel_traj(all_trajectories, region_num, data_root="data_self"):
     """
-    将csv文件中存储的实际经纬度坐标转换为像素坐标
+    将轨迹经纬度坐标转换为像素坐标。这里保持 list，因为每条原始轨迹
+    长度不同；局部窗口轨迹会在模型输入前统一 pad。
     """
     all_pixel_trajectories = []
 
     for _, traj in enumerate(tqdm(all_trajectories, desc="trans all traj to all pixel traj")):
-        converter = GisToGraphConverter(region_num, traj)
+        converter = GisToGraphConverter(region_num, traj, data_root=data_root)
         pixel_trajectories = converter.convert_trajectories_to_pixels()
         all_pixel_trajectories.append(pixel_trajectories)
-    all_pixel_trajectories = np.array(all_pixel_trajectories)
 
     return all_pixel_trajectories
+
+
+def _default_prepared_traj_dir(region_num, data_root="data_self"):
+    return os.path.join(data_root, "input", "traj_prepared", region_num)
+
+
+def _prepared_traj_dir(region_num, cfg):
+    prepared_root = cfg.TRAIN.get("TRAJ_PREPARED_DIR", None)
+    if prepared_root:
+        if os.path.basename(os.path.normpath(prepared_root)) == region_num:
+            return prepared_root
+        return os.path.join(prepared_root, region_num)
+    return _default_prepared_traj_dir(region_num, cfg.DIR.DATA_ROOT)
+
+
+def prepared_traj_cache_exists(prepared_dir):
+    return (
+        os.path.isfile(os.path.join(prepared_dir, "pixel_trajs.npz")) and
+        os.path.isfile(os.path.join(prepared_dir, "grid_index.npz")) and
+        os.path.isfile(os.path.join(prepared_dir, "meta.json"))
+    )
+
+
+def load_prepared_traj_cache(prepared_dir):
+    pixel_npz = np.load(os.path.join(prepared_dir, "pixel_trajs.npz"), allow_pickle=False)
+    points = pixel_npz["points"].astype(np.float32, copy=False)
+    offsets = pixel_npz["offsets"].astype(np.int64, copy=False)
+    all_pixel_trajectories = [
+        points[offsets[i]:offsets[i + 1]]
+        for i in range(len(offsets) - 1)
+    ]
+
+    grid_npz = np.load(os.path.join(prepared_dir, "grid_index.npz"), allow_pickle=False)
+    cells = grid_npz["cells"].astype(np.int32, copy=False)
+    cell_offsets = grid_npz["cell_offsets"].astype(np.int64, copy=False)
+    traj_ids = grid_npz["traj_ids"].astype(np.int32, copy=False)
+    grid_index = {
+        (int(cells[i, 0]), int(cells[i, 1])): traj_ids[cell_offsets[i]:cell_offsets[i + 1]]
+        for i in range(len(cells))
+    }
+
+    with open(os.path.join(prepared_dir, "meta.json"), "r", encoding="utf-8") as f:
+        meta = json.load(f)
+    cell_size = int(meta["cell_size"])
+    return all_pixel_trajectories, grid_index, cell_size
+
+
+def load_region_trajectory_inputs(region_num, cfg):
+    traj_source = cfg.TRAIN.get("TRAJ_SOURCE", "raw")
+    prepared_dir = _prepared_traj_dir(region_num, cfg)
+    if traj_source in ("prepared", "auto") and prepared_traj_cache_exists(prepared_dir):
+        all_pixel_trajectories, grid_index, cell_size = load_prepared_traj_cache(prepared_dir)
+        print(f"loaded prepared trajectories: {prepared_dir}, count: {len(all_pixel_trajectories)}")
+        return None, all_pixel_trajectories, grid_index, cell_size
+
+    if traj_source == "prepared":
+        raise FileNotFoundError(
+            f"prepared trajectory cache not found in {prepared_dir}; run scripts/prepare_xian_traj.py first"
+        )
+
+    traj_bbox = get_region_bbox_for_traj(region_num, data_root=cfg.DIR.DATA_ROOT)
+    all_trajectories = get_all_traj_pieces_from_txt(
+        os.path.join(cfg.DIR.DATA_ROOT, "input", "traj_piece", region_num),
+        bbox=traj_bbox,
+        txt_point_source=cfg.TRAIN.get("TRAJ_TXT_POINT_SOURCE", "raw"))
+    all_pixel_trajectories = all_traj_to_all_pixel_traj(
+        all_trajectories, region_num, data_root=cfg.DIR.DATA_ROOT)
+    return all_trajectories, all_pixel_trajectories, None, None

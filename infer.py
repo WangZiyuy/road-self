@@ -158,11 +158,17 @@ def main():
         for i, region_name in enumerate(region_lst):
             tile_data = get_tile_data(
                 test_regions[region_name], img_cache, junction_nms_res, get_starting_locations=True)
-            all_trajectories = OSMDataset.get_all_traj_pieces_from_txt(f'./data_self/input/traj_piece/{tile_data["region"]}')
-            all_pixel_trajectories = OSMDataset.all_traj_to_all_pixel_traj(all_trajectories, tile_data["region"])
+            all_trajectories = None
+            all_pixel_trajectories = None
+            traj_grid_index = None
+            traj_grid_cell_size = None
+            if cfg.TRAIN.USE_TRAJ:
+                all_trajectories, all_pixel_trajectories, traj_grid_index, traj_grid_cell_size = \
+                    OSMDataset.load_region_trajectory_inputs(tile_data["region"], cfg)
 
             paths.append(model_utils.Path(i, training=False, gc=None, tile_data=tile_data, graph=None, road_seg=None,
-                                          all_trajectories=all_trajectories, all_pixel_trajectories=all_pixel_trajectories))
+                                          all_trajectories=all_trajectories, all_pixel_trajectories=all_pixel_trajectories,
+                                          traj_grid_index=traj_grid_index, traj_grid_cell_size=traj_grid_cell_size))
 
         save_graph_dir = os.path.join(cfg.DIR.SAVE_GRAPH_DIR, '{}_{}'.format(cfg.TEST.CKPT, cfg.TEST.NUM_TARGETS),
                                       'graphs_junc')
@@ -182,13 +188,18 @@ def main():
             for i, region_name in enumerate(region_lst):
                 tile_data = get_tile_data(
                     test_regions[region_name], img_cache, junction_nms_res, get_starting_locations=False)
-                all_trajectories = OSMDataset.get_all_traj_pieces_from_txt(
-                    f'./data_self/input/traj_piece/{tile_data["region"]}')
-                all_pixel_trajectories = OSMDataset.all_traj_to_all_pixel_traj(all_trajectories, tile_data["region"])
+                all_trajectories = None
+                all_pixel_trajectories = None
+                traj_grid_index = None
+                traj_grid_cell_size = None
+                if cfg.TRAIN.USE_TRAJ:
+                    all_trajectories, all_pixel_trajectories, traj_grid_index, traj_grid_cell_size = \
+                        OSMDataset.load_region_trajectory_inputs(tile_data["region"], cfg)
                 path = model_utils.Path(i, training=False, gc=None, tile_data=tile_data,
                                         graph=graph_dict[region_name],
                                         road_seg=np.ascontiguousarray(road_seg_filter_dict[region_name].swapaxes(0, 1)),
-                                        all_trajectories=all_trajectories, all_pixel_trajectories=all_pixel_trajectories)
+                                        all_trajectories=all_trajectories, all_pixel_trajectories=all_pixel_trajectories,
+                                        traj_grid_index=traj_grid_index, traj_grid_cell_size=traj_grid_cell_size)
                 paths.append(path)
         else:
             for i, region_name in enumerate(region_lst):
@@ -224,175 +235,194 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                  max_iteration=99999999, verbose=True):
     print("infer anchor start")
     net.eval()
-    if len(paths) >= batch_size:
-        pass
-    else:
+    if len(paths) < batch_size:
         batch_size = len(paths)
     print("batch_size:" + str(batch_size))
     output_flag_list = [False for _ in range(len(paths))]
     graph_dict = dict()
 
     iteration = 0
+    pbar = tqdm(total=None, desc="graph exploration", unit="iter")
 
-    for iteration in range(max_iteration):
-        path_indices = []
-        batch_extension_vertices = []
-        batch_is_key_point = np.empty(batch_size)
-        batch_inputs = np.empty(
-            (batch_size, 3, cfg.TEST.WINDOW_SIZE, cfg.TEST.WINDOW_SIZE))
-        batch_walked_path_small = np.empty(
-            (batch_size, 1, cfg.TEST.WINDOW_SIZE // 4, cfg.TEST.WINDOW_SIZE // 4))
-        batch_walked_path = np.empty(
-            (batch_size, 1, cfg.TEST.WINDOW_SIZE, cfg.TEST.WINDOW_SIZE))
-        batch_valid_trajectory_inputs = []
+    try:
+        for iteration in range(max_iteration):
+            path_indices = []
+            batch_extension_vertices = []
+            batch_is_key_point = np.empty(batch_size)
+            batch_inputs = np.empty(
+                (batch_size, 3, cfg.TEST.WINDOW_SIZE, cfg.TEST.WINDOW_SIZE))
+            batch_walked_path = np.empty(
+                (batch_size, 1, cfg.TEST.WINDOW_SIZE, cfg.TEST.WINDOW_SIZE))
+            batch_valid_trajectory_inputs = []
 
-        for path_idx in range(len(paths)):
-            if output_flag_list[path_idx]:
-                continue
+            for path_idx in range(len(paths)):
+                if output_flag_list[path_idx]:
+                    continue
 
-            extension_vertex, is_key_point = paths[path_idx].pop(
-                follow_order=True)
-            if extension_vertex is None:
-                output_flag_list[path_idx] = True
-                paths[path_idx].graph.save(os.path.join(
-                    save_graph_dir,
-                    '{}.graph'.format(region_lst[path_idx])))
-                print("    save graph {}".format(region_lst[path_idx]))
-                graph_dict[region_lst[path_idx]] = paths[path_idx].graph
-                continue
-            i = len(path_indices)
-            path_indices.append(path_idx)
-            batch_extension_vertices.append(extension_vertex)
-            batch_is_key_point[i] = is_key_point
-            fetch_list = ['aerial_image_chw', 'walked_path', 'valid_trajectories']
-            if cfg.TEST.SAVE_EXAMPLES:
-                fetch_list += ['aerial_image_hwc']
-            data_dict = paths[path_idx].make_path_input(
-                extension_vertex=extension_vertex,
-                fetch_list=fetch_list,
-                traj_filter=cfg.TRAIN.TRAJ_FILTER,
-                is_key_point=is_key_point,
-                WINDOW_SIZE=cfg.TEST.WINDOW_SIZE)
-            data_dict = EasyDict(data_dict)
-            batch_inputs[i] = data_dict.aerial_image_chw
-            # batch_traj_inputs[i] = data_dict.traj_image_chw
-            # batch_walked_path[i] = data_dict.walked_path_small
-            batch_walked_path[i] = data_dict.walked_path
-            batch_valid_trajectory_inputs.append(data_dict.valid_trajectories)
-            if len(path_indices) >= batch_size:
+                extension_vertex, is_key_point = paths[path_idx].pop(
+                    follow_order=True)
+                if extension_vertex is None:
+                    output_flag_list[path_idx] = True
+                    paths[path_idx].graph.save(os.path.join(
+                        save_graph_dir,
+                        '{}.graph'.format(region_lst[path_idx])))
+                    tqdm.write("    save graph {}".format(region_lst[path_idx]))
+                    graph_dict[region_lst[path_idx]] = paths[path_idx].graph
+                    continue
+
+                i = len(path_indices)
+                path_indices.append(path_idx)
+                batch_extension_vertices.append(extension_vertex)
+                batch_is_key_point[i] = is_key_point
+
+                fetch_list = ['aerial_image_chw', 'walked_path']
+                if cfg.TRAIN.USE_TRAJ:
+                    fetch_list.append('valid_trajectories')
+                if cfg.TEST.SAVE_EXAMPLES:
+                    fetch_list += ['aerial_image_hwc']
+
+                data_dict = paths[path_idx].make_path_input(
+                    extension_vertex=extension_vertex,
+                    fetch_list=fetch_list,
+                    traj_filter=cfg.TRAIN.TRAJ_FILTER,
+                    is_key_point=is_key_point,
+                    WINDOW_SIZE=cfg.TEST.WINDOW_SIZE)
+                data_dict = EasyDict(data_dict)
+                batch_inputs[i] = data_dict.aerial_image_chw
+                batch_walked_path[i] = data_dict.walked_path
+                if cfg.TRAIN.USE_TRAJ:
+                    batch_valid_trajectory_inputs.append(data_dict.valid_trajectories)
+                if len(path_indices) >= batch_size:
+                    break
+
+            if len(path_indices) == 0:
+                pbar.set_postfix({
+                    "active": 0,
+                    "done": "{}/{}".format(sum(output_flag_list), len(paths)),
+                    "vertices": sum(len(path.graph.vertices) for path in paths),
+                    "edges": sum(len(path.graph.edges) for path in paths),
+                })
                 break
 
-        if len(path_indices) == 0:
-            break
-        length_path_indices = len(path_indices)
-        batch_is_key_point = batch_is_key_point[:length_path_indices]
-        batch_inputs = batch_inputs[:length_path_indices]
-        batch_walked_path = batch_walked_path[:length_path_indices]
-        batch_valid_trajectory_inputs = batch_valid_trajectory_inputs[:length_path_indices]
+            length_path_indices = len(path_indices)
+            batch_is_key_point = batch_is_key_point[:length_path_indices]
+            batch_inputs = batch_inputs[:length_path_indices]
+            batch_walked_path = batch_walked_path[:length_path_indices]
+            batch_valid_trajectory_inputs = batch_valid_trajectory_inputs[:length_path_indices]
 
-        batch_inputs_cuda = numpy2tensor2cuda(batch_inputs)
-        batch_walked_path_cuda = numpy2tensor2cuda(batch_walked_path)
-        # batch_valid_trajectory_inputs_cuda_temp = model_utils.valid_trajectory_input(batch_valid_trajectory_inputs)
-        batch_valid_trajectory_inputs_cuda = model_utils.valid_trajectory_input_GPU(batch_valid_trajectory_inputs)
-        batch_normalized_traj, batch_valid_mask = model_utils.normalize_trajectory_batch(batch_valid_trajectory_inputs_cuda)
+            batch_inputs_cuda = numpy2tensor2cuda(batch_inputs)
+            batch_walked_path_cuda = numpy2tensor2cuda(batch_walked_path)
+            batch_normalized_traj, batch_valid_mask = None, None
+            if cfg.TRAIN.USE_TRAJ:
+                batch_valid_trajectory_inputs_cuda = model_utils.valid_trajectory_input_GPU(batch_valid_trajectory_inputs)
+                batch_normalized_traj, batch_valid_mask = model_utils.normalize_trajectory_batch(batch_valid_trajectory_inputs_cuda)
 
-        # network infer
-        # batch_output_cuda_dict = net(
-        #     batch_inputs_cuda, batch_valid_trajectory_inputs_cuda, batch_walked_path_cuda, NUM_TARGETS=cfg.TEST.NUM_TARGETS)
-        try:
             batch_output_cuda_dict = net(
-                aerial_image=batch_inputs_cuda, traj_image=None, aerial_traj_image=None, neighborhood_trajectory_norm=batch_normalized_traj, valid_mask=batch_valid_mask, walked_path=batch_walked_path_cuda, NUM_TARGETS=cfg.TEST.NUM_TARGETS, model=cfg.TRAIN.MODEL, use_traj=cfg.TRAIN.USE_TRAJ)
-        except Exception as e:
-            print(f"Error in forward pass: {e}")
-            import traceback
-            traceback.print_exc()
-            raise
-        batch_output_road_cuda = batch_output_cuda_dict['road']
-        batch_output_junc_cuda = batch_output_cuda_dict['junc']
-        batch_output_anchor_maps_cuda = batch_output_cuda_dict['anchor']
+                aerial_image=batch_inputs_cuda,
+                traj_image=None,
+                aerial_traj_image=None,
+                neighborhood_trajectory_norm=batch_normalized_traj,
+                valid_mask=batch_valid_mask,
+                walked_path=batch_walked_path_cuda,
+                NUM_TARGETS=cfg.TEST.NUM_TARGETS,
+                model=cfg.TRAIN.MODEL,
+                use_traj=cfg.TRAIN.USE_TRAJ)
+            batch_output_road_cuda = batch_output_cuda_dict['road']
+            batch_output_junc_cuda = batch_output_cuda_dict['junc']
+            batch_output_anchor_maps_cuda = batch_output_cuda_dict['anchor']
 
-        batch_output_road_cuda = upsample(batch_output_road_cuda, 4)
-        batch_output_road = torch.sigmoid(
-            batch_output_road_cuda).detach().cpu().numpy()
+            if batch_output_road_cuda.shape[-1] != cfg.TEST.WINDOW_SIZE:
+                scale = cfg.TEST.WINDOW_SIZE / batch_output_road_cuda.shape[-1]
+                batch_output_road_cuda = upsample(batch_output_road_cuda, scale)
+            batch_output_road = torch.sigmoid(
+                batch_output_road_cuda).detach().cpu().numpy()
 
-        batch_output_anchor_maps = torch.sigmoid(
-            batch_output_anchor_maps_cuda).detach().cpu().numpy()
+            batch_output_anchor_maps = torch.sigmoid(
+                batch_output_anchor_maps_cuda).detach().cpu().numpy()
 
-        if cfg.TEST.SAVE_EXAMPLES and cfg.TEST.START_FROM_JUNC_PEAK:
-            batch_output_junc = torch.sigmoid(
-                batch_output_junc_cuda).detach().cpu().numpy()
+            if cfg.TEST.SAVE_EXAMPLES and cfg.TEST.START_FROM_JUNC_PEAK:
+                batch_output_junc = torch.sigmoid(
+                    batch_output_junc_cuda).detach().cpu().numpy()
 
-        batch_output_points = model_utils.map_to_coordinate(
-            batch_output_maps=batch_output_anchor_maps.copy(),
-            batch_is_key_point=batch_is_key_point,
-            batch_extension_vertices=batch_extension_vertices,
-            ROAD_SEG_THRESHOLE=cfg.TEST.BINARIZE_MAP.ROAD_SEG_THRESHOLE,
-            STEP_LENGTH=cfg.TEST.STEP_LENGTH,
-            JUNC_MAX_REGION_AREA=cfg.TEST.BINARIZE_MAP.JUNC_MAX_REGION_AREA)
+            batch_output_points = model_utils.map_to_coordinate(
+                batch_output_maps=batch_output_anchor_maps.copy(),
+                batch_is_key_point=batch_is_key_point,
+                batch_extension_vertices=batch_extension_vertices,
+                ROAD_SEG_THRESHOLE=cfg.TEST.BINARIZE_MAP.ROAD_SEG_THRESHOLE,
+                STEP_LENGTH=cfg.TEST.STEP_LENGTH,
+                JUNC_MAX_REGION_AREA=cfg.TEST.BINARIZE_MAP.JUNC_MAX_REGION_AREA)
 
-        print(f"Iter {iteration}, path {path_idx}, predicted anchor count: {len(batch_output_points[i])}")
+            if verbose and iteration % cfg.TEST.PRINT_ITERATION == 0:
+                tqdm.write('  iter:{} len(paths):{}'.format(
+                    iteration, len(path_indices)))
 
-        if verbose and iteration % cfg.TEST.PRINT_ITERATION == 0:
-            print('  iter:{} len(paths):{}'.format(
-                iteration, len(path_indices)))
+            save_idx = cfg.TEST.SAVE_IDX
+            if cfg.TEST.SAVE_EXAMPLES and save_idx in path_indices:
+                for i in range(len(path_indices)):
+                    region_name = region_lst[path_indices[i]]
+                    os.makedirs(os.path.join(cfg.DIR.INFER_STEP_DIR,
+                                             region_name), exist_ok=True)
+                    fname = os.path.join(cfg.DIR.INFER_STEP_DIR,
+                                         region_name, '{}_'.format(iteration))
+                    pred_gt_pair_list = [
+                        ("anchor", batch_output_anchor_maps[save_idx], None)]
+                    pred_gt_pair_list.append(
+                        ("road", batch_output_road[save_idx, 0], None))
+                    pred_gt_pair_list.append(
+                        ("junc", batch_output_junc[save_idx, 0], None))
+                    paths[path_indices[save_idx]].visualize_output(
+                        fname_prefix=fname,
+                        extension_vertex=batch_extension_vertices[save_idx],
+                        aerial_image=data_dict.aerial_image_hwc, target_poses=None,
+                        pred_gt_pair_list=pred_gt_pair_list)
 
-        save_idx = cfg.TEST.SAVE_IDX
-        if cfg.TEST.SAVE_EXAMPLES and save_idx in path_indices:
             for i in range(len(path_indices)):
-                region_name = region_lst[path_indices[i]]
-                os.makedirs(os.path.join(cfg.DIR.INFER_STEP_DIR,
-                                         region_name), exist_ok=True)
-                fname = os.path.join(cfg.DIR.INFER_STEP_DIR,
-                                     region_name, '{}_'.format(iteration))
-                pred_gt_pair_list = [
-                    ("anchor", batch_output_anchor_maps[save_idx], None)]
-                pred_gt_pair_list.append(
-                    ("road", batch_output_road[save_idx, 0], None))
-                pred_gt_pair_list.append(
-                    ("junc", batch_output_junc[save_idx, 0], None))
-                paths[path_indices[save_idx]].visualize_output(
-                    fname_prefix=fname,
-                    extension_vertex=batch_extension_vertices[save_idx],
-                    aerial_image=data_dict.aerial_image_hwc, target_poses=None,
-                    pred_gt_pair_list=pred_gt_pair_list)
+                path_idx = path_indices[i]
+                if len(batch_output_points[i]) > 0:
+                    if hasattr(batch_extension_vertices[i], 'from_road_seg'):
+                        batch_extension_vertices[i] = paths[path_idx].graph.add_vertex(
+                            batch_extension_vertices[i].point)
+                    paths[path_idx].push(
+                        extension_vertex=batch_extension_vertices[i],
+                        is_key_point=batch_is_key_point[i],
+                        follow_mode=cfg.TEST.FOLLOW_MODE,
+                        target_poses=None,
+                        output_points=batch_output_points[i],
+                        RECT_RADIUS=cfg.TEST.RECT_RADIUS,
+                        road_segmentation=batch_output_road[i, 0],
+                        NUM_TARGETS=cfg.TEST.NUM_TARGETS,
+                        WINDOW_SIZE=cfg.TEST.WINDOW_SIZE,
+                        STEP_LENGTH=cfg.TEST.STEP_LENGTH,
+                        AVG_CONFIDENCE_THRESHOLD=cfg.TEST.AVG_CONFIDENCE_THRESHOLD)
 
-        for i in range(len(path_indices)):
-            path_idx = path_indices[i]
-            if len(batch_output_points[i]) > 0:
-                # extension_vertex has not been added into graph
-                if hasattr(batch_extension_vertices[i], 'from_road_seg'):
-                    batch_extension_vertices[i] = paths[path_idx].graph.add_vertex(
-                        batch_extension_vertices[i].point)
-                paths[path_idx].push(
-                    extension_vertex=batch_extension_vertices[i],
-                    is_key_point=batch_is_key_point[i],
-                    follow_mode=cfg.TEST.FOLLOW_MODE,
-                    target_poses=None,
-                    output_points=batch_output_points[i],
-                    RECT_RADIUS=cfg.TEST.RECT_RADIUS,
-                    road_segmentation=batch_output_road[i, 0],
-                    NUM_TARGETS=cfg.TEST.NUM_TARGETS,
-                    WINDOW_SIZE=cfg.TEST.WINDOW_SIZE,
-                    STEP_LENGTH=cfg.TEST.STEP_LENGTH,
-                    AVG_CONFIDENCE_THRESHOLD=cfg.TEST.AVG_CONFIDENCE_THRESHOLD)
+            pbar.set_postfix({
+                "active": len(path_indices),
+                "done": "{}/{}".format(sum(output_flag_list), len(paths)),
+                "vertices": sum(len(path.graph.vertices) for path in paths),
+                "edges": sum(len(path.graph.edges) for path in paths),
+            })
+            pbar.update(1)
+    finally:
+        pbar.close()
 
     return iteration, graph_dict
 
 
 def get_tile_data(region, cache, junction_nms_res=None, get_starting_locations=True):
     print('  region: {}'.format(region.name))
+    num_tiles = cfg.TEST.get("NUM_TILES", 1)
     TILE_START = geom.Point(
         region.radius_x, region.radius_y).scale(cfg.TRAIN.IMG_SZ)
     # TILE_END = TILE_START.add(geom.Point(2, 2).scale(cfg.TRAIN.IMG_SZ))
-    TILE_END = TILE_START.add(geom.Point(1, 1).scale(cfg.TRAIN.IMG_SZ))
+    TILE_END = TILE_START.add(geom.Point(num_tiles, num_tiles).scale(cfg.TRAIN.IMG_SZ))
     search_rect = geom.Rectangle(TILE_START, TILE_END)
     starting_locations = []
 
     if get_starting_locations:
         pnts = list()
         if cfg.TEST.INFER_STEP == "given_junc_nms":
-            for x in range(region.radius_x, region.radius_x + 2):
-                for y in range(region.radius_y, region.radius_y + 2):
+            for x in range(region.radius_x, region.radius_x + num_tiles):
+                for y in range(region.radius_y, region.radius_y + num_tiles):
                     fname = '{}_{}_{}.png'.format(region.name, x, y)
                     junc_nms_map = cv.imread(os.path.join(
                         cfg.DIR.PRE_JUNC_NMS_DIR, fname), 0)
@@ -476,12 +506,14 @@ def prepare_net():
 
     if os.path.isfile(file_name):
         net = load_pretrained(net, file_name)
+    else:
+        raise FileNotFoundError("checkpoint not found: {}".format(file_name))
     if cfg.TEST.DATA_PARALLEL:
         net = torch.nn.DataParallel(net)
     return net
 
 
-def generate_sample_lst(IMG_SZ, CROP_SZ, SAMPLE_STEP=1):
+def generate_sample_lst(IMG_SZ, CROP_SZ, SAMPLE_STEP=2):
     CROP_SAMPLE_LST = []
     rows = list(range(0, IMG_SZ - CROP_SZ + 1, CROP_SZ // SAMPLE_STEP))
     cols = list(range(0, IMG_SZ - CROP_SZ + 1, CROP_SZ // SAMPLE_STEP))
@@ -495,7 +527,7 @@ def infer_segmentation(net, region_names):
     start_time = time.time()
     trans = transforms.ToTensor()
     CROP_SAMPLE_LST = generate_sample_lst(
-        cfg.TEST.TEST_IMG_SZ, cfg.TEST.CROP_SZ)
+        cfg.TEST.TEST_IMG_SZ, cfg.TEST.CROP_SZ, cfg.TEST.get("SAMPLE_STEP", 2))
     cuda_device_num = torch.cuda.device_count()
     road_map_dict = dict()
     junc_map_dict = dict()
@@ -507,11 +539,15 @@ def infer_segmentation(net, region_names):
         img_map = img_map.swapaxes(0, 1)
         img_map = trans(img_map)
         img_map = torch.unsqueeze(img_map, 0) # (b,c,w,h)
-        traj_map = np.array(Image.open(os.path.join(
-            cfg.DIR.TEST_TRAJ_DIR, region_name + ".png")))
-        traj_map = traj_map.swapaxes(0, 1)
-        traj_map = trans(traj_map)
-        traj_map = torch.unsqueeze(traj_map, 0)
+        traj_map = None
+        if cfg.TRAIN.MODEL == 'DSFNet':
+            traj_path = os.path.join(cfg.DIR.TEST_TRAJ_DIR, region_name + ".png")
+            if not os.path.isfile(traj_path):
+                raise FileNotFoundError("trajectory test image not found: {}".format(traj_path))
+            traj_map = np.array(Image.open(traj_path))
+            traj_map = traj_map.swapaxes(0, 1)
+            traj_map = trans(traj_map)
+            traj_map = torch.unsqueeze(traj_map, 0)
 
         container = {}
         container['road'] = MapContainer(os.path.join(cfg.DIR.SAVE_SEG_DIR, cfg.TEST.CKPT, "road"),
@@ -521,6 +557,7 @@ def infer_segmentation(net, region_names):
 
         # TODO 这里为了符合模型训练时256的输入，要把切片改为256
         pnt_index = 0
+        skipped_empty_crops = 0
         pbar = tqdm(total=len(CROP_SAMPLE_LST))
         while pnt_index < len(CROP_SAMPLE_LST):
             input_var, input_traj_var = None, None
@@ -531,15 +568,33 @@ def infer_segmentation(net, region_names):
                 pnt_lst = CROP_SAMPLE_LST[:-cuda_device_num]
             batch_input = []
             batch_traj_input = []
+            batch_pnt_lst = []
+            blank_pnt_lst = []
 
             for pnt in pnt_lst:
                 crop_img = img_map[:, :, pnt[0]:pnt[0] + cfg.TEST.CROP_SZ, pnt[1]:pnt[1] + cfg.TEST.CROP_SZ]
-                batch_input.append(crop_img)
+                if cfg.TEST.get("SKIP_EMPTY_CROP", False) and crop_img.sum().item() == 0:
+                    blank_pnt_lst.append(pnt)
+                else:
+                    batch_input.append(crop_img)
+                    batch_pnt_lst.append(pnt)
+
+            if len(blank_pnt_lst) > 0:
+                blank_maps = np.zeros((len(blank_pnt_lst), 1, cfg.TEST.CROP_SZ, cfg.TEST.CROP_SZ), dtype=np.float32)
+                container['road'].add_batch_cpu(blank_pnt_lst, blank_maps, cfg.TEST.CROP_SZ)
+                container['junc'].add_batch_cpu(blank_pnt_lst, blank_maps, cfg.TEST.CROP_SZ)
+                skipped_empty_crops += len(blank_pnt_lst)
+
+            if len(batch_input) == 0:
+                pnt_index += len(pnt_lst)
+                pbar.update(len(pnt_lst))
+                continue
+
             batch_input = torch.cat(batch_input, dim=0)
             input_var = torch.autograd.Variable(batch_input).cuda()
 
             if cfg.TRAIN.MODEL == 'DSFNet':
-                for pnt in pnt_lst:
+                for pnt in batch_pnt_lst:
                     crop_traj = traj_map[:, :, pnt[0]:pnt[0] + cfg.TEST.CROP_SZ, pnt[1]:pnt[1] + cfg.TEST.CROP_SZ]
                     batch_traj_input.append(crop_traj)
                 batch_traj_input = torch.cat(batch_traj_input, dim=0)
@@ -549,12 +604,14 @@ def infer_segmentation(net, region_names):
             # TODO 这里推理的过程需不需要加上轨迹数据
             road, junc = res['road'], res['junc']
 
-            container['road'].add_batch_gpu(pnt_lst, road, cfg.TEST.CROP_SZ)
-            container['junc'].add_batch_gpu(pnt_lst, junc, cfg.TEST.CROP_SZ)
+            container['road'].add_batch_gpu(batch_pnt_lst, road, cfg.TEST.CROP_SZ)
+            container['junc'].add_batch_gpu(batch_pnt_lst, junc, cfg.TEST.CROP_SZ)
 
             pnt_index += len(pnt_lst)
             pbar.update(len(pnt_lst))
         pbar.close()
+        if skipped_empty_crops > 0:
+            print("  skipped {} all-zero crops".format(skipped_empty_crops))
         for item in container.values():
             item.close()
             item.save_map()
@@ -604,12 +661,12 @@ def junction_nms(region_name, junc_map):
         #           radius=7, color=(0, 0, 255), thickness=-1)
         junc_pnts.append(center)
     cv.imwrite(os.path.join(cfg.DIR.SAVE_SEG_DIR, cfg.TEST.CKPT,
-                            "junc_nms", region_name + ".png"), res_map * 255.)
+                            "junc_nms", region_name + ".png"), res_map)
     cv.imwrite(os.path.join(cfg.DIR.SAVE_SEG_DIR, cfg.TEST.CKPT,
                             "junc_nms_vis", region_name + ".png"), vis_map)
     # cv.imwrite(os.path.join(cfg.DIR.SAVE_SEG_DIR, cfg.TEST.CKPT,
     #                         "junc_nms_vis", region_name + "add.png"), fused_img)
-
+    print("  region: {}, junction starts: {}".format(region_name, len(junc_pnts)))
     return junc_pnts
 
 

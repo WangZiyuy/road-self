@@ -137,7 +137,7 @@ class Transformer(nn.Module):
         # 输入的线性映射
         self.embedding = nn.Linear(input_dim, embed_dim)
         # Transformer 编码器层
-        encoder_layer = nn.TransformerEncoderLayer(d_model=embed_dim, nhead=num_heads)
+        encoder_layer = nn.TransformerEncoderLayer(d_model=embed_dim, nhead=num_heads, batch_first=True)
         self.transformer1 = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
         # 最后的输出层
         self.fc = nn.Linear(embed_dim, output_dim)
@@ -215,9 +215,9 @@ class RPNet(nn.Module):
         self.conv_4_side = ConvReLU(1024, 128, 3, 1, bn=True)
         self.conv_5_side = ConvReLU(2048, 128, 3, 1, bn=True)
         self.conv_fuse = ConvReLU(512, 128, 3, 1, bn=True)
-        self.avgpool4 = nn.AvgPool2d(4, 4).cuda()
+        self.avgpool4 = nn.AvgPool2d(4, 4)
 
-        # self.transformer = Transformer(2, 32, num_heads=4, num_layers=1, output_dim=64)
+        self.transformer = Transformer(2, 32, num_heads=4, num_layers=1, output_dim=64)
         self.traj_to_img_fc = TrajProjector(in_dim=self.F_in, out_dim=self.C_img, hidden=128)
         self.cross_attention = CrossAttentionLayer(dim_q=self.C_img, num_heads=self.num_heads_traj, dim_kv=self.C_img, dropout=0.0)
 
@@ -237,7 +237,7 @@ class RPNet(nn.Module):
             128 + 64 + 64 + 32 * (self.num_targets-1) + 1,  # 353
             32, [128, 128, 128, 128])
         self.fuse_module_traj = Hourglass(
-            128 + 64 + 64 + 32 * (self.num_targets-1) + 1,  # 353
+            128 + 64 + 64 + 64 + 32 * (self.num_targets-1) + 1,  # 417
             32, [128, 128, 128, 128])
 
 
@@ -418,7 +418,8 @@ class RPNet(nn.Module):
             (stage_fuse.shape[0],
              32 * (self.num_targets-1),
              stage_fuse.shape[2],
-             stage_fuse.shape[3])).cuda()
+             stage_fuse.shape[3]),
+            device=stage_fuse.device)
 
         # valid_traj通过transformer提取特征
         # 假设 neighborhood_trajectory 形状是 [batch_size, num_clusters, seq_len, input_dim]
@@ -438,58 +439,41 @@ class RPNet(nn.Module):
         #     B = aerial_image.size(0)
         #     valid_traj_feature = self.missing_traj_feature.expand(B, -1, -1, -1)
 
-        # ===== 轨迹分支：Cross-Attention 融合（替换原先 unsqueeze/upsample/concat） =====
         if have_neighborhood_trajectory and use_traj:
-            # 轨迹展平到序列维度： (B, S, F_in)
             neighborhood_trajectory = neighborhood_trajectory_norm.view(
-                neighborhood_trajectory_norm.size(0),  # B
-                -1,  # S
-                neighborhood_trajectory_norm.size(3)  # F_in
-            )
-
-            # 轨迹特征投影到图像通道维度： (B, S, C_img)
-            traj_kv = self.traj_to_img_fc(neighborhood_trajectory)
-
-            # key_padding_mask：True=ignore（屏蔽无效轨迹点）
-            # valid_mask: True=有效；~valid_mask: True=需要忽略
-            key_padding_mask = (~valid_mask).view(neighborhood_trajectory_norm.size(0), -1)  # (B, S)
-
-            # 准备 Query（图像）：(B, HW, C_img)
-            B, C_img, H, W = stage_fuse.shape
-            # q = stage_fuse.view(B, C_img, H * W).transpose(1, 2)  # (B, HW, C_img)
-            q_down = F.interpolate(stage_fuse, size=(64, 64), mode='bilinear', align_corners=False)  # (B,C,64,64)
-            # 展平为 Query
-            q_small = q_down.flatten(2).transpose(1, 2).contiguous()  # (B,4096,C)
-
-            # Cross-Attention：输出 (B, HW, C_img)
-            # ca_out = self.cross_attention(q, k, v, key_padding_mask=key_padding_mask)
-            with torch.cuda.amp.autocast(enabled=False):
-                ca_small = self.cross_attention(
-                    q_small.float(), traj_kv.float(), traj_kv.float(),
-                    key_padding_mask=key_padding_mask
-                ).to(q_small.dtype)  # (B,4096,C)
-
-            # 还原空间 (B, C_img, H, W)
-            # fused_feature = ca_out.transpose(1, 2).view(B, C_img, H, W)
-            ca_small = ca_small.transpose(1, 2).view(B, C_img, 64, 64)
-            fused_feature = F.interpolate(ca_small, size=(H, W), mode='bilinear', align_corners=False)
-
-            # 与其他辅助通道拼接（不再拼接“伪空间”轨迹图）
-            stage_fuse = torch.cat([fused_feature, road_fts, junc_fts, walked_path, next_points_placeholder], dim=1)
-
-            feature_maps['traj_Cross-Attention_feature'] = fused_feature
-            feature_maps['stage_fuse_traj'] = stage_fuse
-
+                neighborhood_trajectory_norm.size(0), -1,
+                neighborhood_trajectory_norm.size(3))
+            padding_mask = (~valid_mask).view(neighborhood_trajectory_norm.size(0), -1)
+            valid_traj_feature = self.transformer(
+                neighborhood_trajectory,
+                src_key_padding_mask=padding_mask)
+            valid_traj_feature = valid_traj_feature.unsqueeze(2).unsqueeze(3)
+            valid_traj_feature = self.upsample1(valid_traj_feature)
+            valid_traj_feature = self.upsample2(valid_traj_feature)
+            valid_traj_feature = F.interpolate(
+                valid_traj_feature,
+                size=(stage_fuse.shape[2], stage_fuse.shape[3]),
+                mode='bilinear',
+                align_corners=False)
+            feature_maps['valid_traj_feature'] = valid_traj_feature
+            stage_fuse = torch.cat(
+                [stage_fuse, road_fts, junc_fts, walked_path, valid_traj_feature, next_points_placeholder],
+                dim=1)
         elif not have_neighborhood_trajectory and use_traj:
-            # 无轨迹：退化为仅图像侧 + 占位（若你需要）
             B = aerial_image.size(0)
-            fused_feature = self.missing_traj_feature.expand(B, -1, -1, -1)
-            stage_fuse = torch.cat([fused_feature, road_fts, junc_fts, walked_path, next_points_placeholder], dim=1)
-            print("Warning: No valid trajectory data in the batch. Using trimmed features.")
+            valid_traj_feature = self.missing_traj_feature.expand(B, -1, -1, -1)
+            valid_traj_feature = F.interpolate(
+                valid_traj_feature,
+                size=(stage_fuse.shape[2], stage_fuse.shape[3]),
+                mode='bilinear',
+                align_corners=False)
+            feature_maps['valid_traj_feature'] = valid_traj_feature
+            stage_fuse = torch.cat(
+                [stage_fuse, road_fts, junc_fts, walked_path, valid_traj_feature, next_points_placeholder],
+                dim=1)
+            print("Warning: No valid trajectory data in the batch. Using trajectory placeholder.")
         else:
-            # 不用轨迹：原样
             stage_fuse = torch.cat([stage_fuse, road_fts, junc_fts, walked_path, next_points_placeholder], dim=1)
-        # ===== 轨迹分支替换结束 =====
 
 
         # 在第二维度拼接融合信息、道路最终特征、路口最终特征、路径信息
