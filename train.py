@@ -16,6 +16,12 @@ from torch.utils.tensorboard import SummaryWriter
 from model.losses import BCEDiceLoss, BCE_Loss
 from configs.config import config
 from utils.additional_methods import visualize_batch_data_grid, assert_finite
+from utils.trajectory_mode import (
+    TRAJ_MODE_NONE,
+    prepare_trajectory_sequence_batch,
+    resolve_trajectory_mode,
+    validate_trajectory_model_compatibility,
+)
 
 import torch
 import cv2
@@ -51,6 +57,9 @@ def main():
     cfg = yaml.load(config_file, Loader=yaml.UnsafeLoader)
     config_file.close()
     cfg = EasyDict(cfg)
+    trajectory_mode = resolve_trajectory_mode(cfg)
+    validate_trajectory_model_compatibility(cfg, trajectory_mode)
+    use_trajectory = trajectory_mode != TRAJ_MODE_NONE
 
     #os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  # see issue #152
     os.environ["CUDA_VISIBLE_DEVICES"] = cfg.TRAIN.GPU_ID
@@ -62,6 +71,7 @@ def main():
     os.makedirs("visualization", exist_ok=True)
 
     logger = get_logger(logger_name="logtrain", log_dir=cfg.DIR.LOG_DIR)
+    logger.info("trajectory mode: %s", trajectory_mode)
     summary_writer = SummaryWriter(log_dir=os.path.join(cfg.DIR.LOG_DIR))
 
     losses = AverageMeter()
@@ -156,7 +166,7 @@ def main():
             os.makedirs(f"visualization/{outer_it}_{path_it}/", exist_ok=True)
 
             # batch内容可视化
-            if path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
+            if use_trajectory and path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
                 visualize_batch_data_grid(
                     data_dict=data_dict,
                     batch_index=1,
@@ -193,10 +203,17 @@ def main():
             batch_road_segmentation_thick3_cuda = numpy2tensor2cuda(batch_road_segmentation_thick3_dilated)
             batch_junction_segmentation_thick3_cuda = numpy2tensor2cuda(batch_junction_segmentation_thick3_dilated)
 
-            batch_traj_inputs_cuda = numpy2tensor2cuda(data_dict.batch_traj_inputs)
-            batch_aerial_traj_cuda = numpy2tensor2cuda(data_dict.batch_aerial_traj)
-            batch_valid_trajectory_inputs_cuda = model_utils.valid_trajectory_input_GPU(data_dict.batch_valid_trajectory_inputs)
-            batch_normalized_traj, batch_valid_mask = model_utils.normalize_trajectory_batch(batch_valid_trajectory_inputs_cuda)
+            batch_traj_inputs_cuda = None
+            batch_aerial_traj_cuda = None
+            if use_trajectory:
+                batch_traj_inputs_cuda = numpy2tensor2cuda(data_dict.batch_traj_inputs)
+                batch_aerial_traj_cuda = numpy2tensor2cuda(data_dict.batch_aerial_traj)
+            batch_normalized_traj, batch_valid_mask = prepare_trajectory_sequence_batch(
+                trajectory_mode,
+                data_dict.batch_valid_trajectory_inputs if use_trajectory else None,
+                model_utils.valid_trajectory_input_GPU,
+                model_utils.normalize_trajectory_batch,
+            )
 
             optimizer.zero_grad()
 
@@ -205,7 +222,17 @@ def main():
                 Net Processing
                 """
                 # 遥感图像 + 轨迹过滤模块
-                batch_output_cuda_dict = net(batch_inputs_cuda, batch_traj_inputs_cuda, batch_aerial_traj_cuda, batch_normalized_traj, batch_valid_mask, batch_walked_path_cuda, NUM_TARGETS=None, test=False, model=cfg.TRAIN.MODEL, use_traj=cfg.TRAIN.USE_TRAJ)
+                batch_output_cuda_dict = net(
+                    batch_inputs_cuda,
+                    batch_traj_inputs_cuda,
+                    batch_aerial_traj_cuda,
+                    batch_normalized_traj,
+                    batch_valid_mask,
+                    batch_walked_path_cuda,
+                    NUM_TARGETS=None,
+                    test=False,
+                    model=cfg.TRAIN.MODEL,
+                    use_traj=use_trajectory)
 
                 # # 为了比较轨迹的影响，也运行一次不使用轨迹的版本
                 # if data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
@@ -231,7 +258,7 @@ def main():
                 batch_output_traj_road_cuda = batch_output_cuda_dict['traj_road'] # 'junc' torch.Size([20, 1, 64, 64])
 
                 # 输出结果内容可视化
-                if path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
+                if use_trajectory and path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
                     # 可视化网络输出
                     visualize_batch_data_grid(
                         data_dict=batch_output_cuda_dict,

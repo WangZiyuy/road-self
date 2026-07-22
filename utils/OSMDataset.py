@@ -8,16 +8,27 @@ import utils.model_utils as model_utils
 from utils.tileloader import Tiles
 from easydict import EasyDict
 from utils.gis_to_graph import GisToGraphConverter
+from utils.trajectory_mode import (
+    TRAJ_MODE_NONE,
+    load_region_trajectory_inputs_for_mode,
+    resolve_trajectory_mode,
+    trajectory_fetch_fields,
+)
 import time
 
 class OSMDataset:
 
     def __init__(self, cfg, net=None, training=True, seg_input=None):
         self.cfg = cfg
+        self.trajectory_mode = resolve_trajectory_mode(cfg)
+        self.use_trajectory = self.trajectory_mode != TRAJ_MODE_NONE
         self.batch_size = cfg.TRAIN.BATCH_SIZE
         self.window_size = cfg.TRAIN.WINDOW_SIZE
         self.input_channels = cfg.TRAIN.NUM_INPUT_CHANNELS
-        self.input_traj_channels = cfg.TRAIN.NUM_INPUT_TRAJECTORY_CHANNELS
+        self.input_traj_channels = (
+            cfg.TRAIN.get("NUM_INPUT_TRAJECTORY_CHANNELS", 1)
+            if self.use_trajectory else 0
+        )
         self.seg_input = seg_input
         self.num_targets = cfg.TRAIN.NUM_TARGETS
         self.paths = []
@@ -26,7 +37,8 @@ class OSMDataset:
                            region_path=cfg.DIR.ALL_REGION_PATH,
                            graph_dir=cfg.DIR.GRAPH_DIR,
                            tile_dir=cfg.DIR.TILE_DIR,
-                           traj_dir=cfg.DIR.TRAJ_DIR, )
+                           traj_dir=(cfg.DIR.get("TRAJ_DIR", None)
+                                     if self.use_trajectory else None), )
         self.save_idx = 0
         self.training = training
         self.net = net # 用于传递给path从而传递给model_utils文件中的轨迹过滤方法传递两个半径自定义参数
@@ -40,7 +52,12 @@ class OSMDataset:
             print("In region:{}, in tile {}{}".format(subtile["region"], subtile['search_rect'].start, subtile['search_rect'].end))
 
             self.all_trajectories, self.all_pixel_trajectories, self.traj_grid_index, self.traj_grid_cell_size = \
-                load_region_trajectory_inputs(subtile["region"], self.cfg)
+                load_region_trajectory_inputs_for_mode(
+                    self.trajectory_mode,
+                    subtile["region"],
+                    self.cfg,
+                    load_region_trajectory_inputs,
+                )
 
             path = model_utils.Path(
                 i, training, subtile["gc"].clone(), subtile,
@@ -102,7 +119,12 @@ class OSMDataset:
                     if extension_vertex is None or len(path.graph.vertices) >= self.cfg.TRAIN.MAX_PATH_LENGTH:
                         self.paths[path_idx] = model_utils.Path(
                             idx=path_idx, training=self.training, gc=self.subtiles[path_idx]["gc"].clone(),
-                            tile_data=self.subtiles[path_idx])
+                            tile_data=self.subtiles[path_idx],
+                            all_trajectories=path.all_trajectories,
+                            all_pixel_trajectories=path.all_pixel_trajectories,
+                            net=self.net,
+                            traj_grid_index=path.traj_grid_index,
+                            traj_grid_cell_size=path.traj_grid_cell_size)
                         path = self.paths[path_idx]
                         continue
                     break
@@ -144,11 +166,18 @@ class OSMDataset:
 
         batch_extension_vertices = []
         batch_inputs = np.zeros((self.batch_size, self.input_channels, self.window_size, self.window_size))
-        batch_traj_inputs = np.zeros((self.batch_size, self.input_traj_channels, self.window_size, self.window_size))
-        batch_aerial_traj = np.zeros((self.batch_size, self.input_channels + self.input_traj_channels, self.window_size, self.window_size))
+        batch_traj_inputs = None
+        batch_aerial_traj = None
+        if self.use_trajectory:
+            batch_traj_inputs = np.zeros(
+                (self.batch_size, self.input_traj_channels,
+                 self.window_size, self.window_size))
+            batch_aerial_traj = np.zeros(
+                (self.batch_size, self.input_channels + self.input_traj_channels,
+                 self.window_size, self.window_size))
         batch_target_maps = np.zeros((self.batch_size, self.num_targets, self.window_size, self.window_size))
         batch_is_key_point = np.zeros(self.batch_size)
-        batch_end_index = np.zeros(self.batch_size, dtype=np.int)
+        batch_end_index = np.zeros(self.batch_size, dtype=np.int64)
         batch_target_poses = []
         default_shape = (self.batch_size, 1, self.window_size, self.window_size)
         batch_walked_path_small = np.zeros((self.batch_size, 1, self.window_size // 4, self.window_size // 4))
@@ -185,19 +214,18 @@ class OSMDataset:
 
             fetch_list = ['aerial_image_chw',
                           'aerial_image_hwc',
-                          'traj_image_chw',
-                          'traj_image_hwc',
                           'walked_path_small',
                           'walked_path',
                           'road_seg_small',
                           'road_seg_thick3',
                           'junc_seg_small',
-                          'junc_seg_thick3',
-                          'valid_trajectories',]
+                          'junc_seg_thick3']
+            fetch_list.extend(trajectory_fetch_fields(
+                self.trajectory_mode, include_raster=True))
 
             data_dict = path.make_path_input(extension_vertex=extension_vertex,
                                              fetch_list=fetch_list,
-                                             traj_filter=self.cfg.TRAIN.TRAJ_FILTER,
+                                             traj_filter=self.cfg.TRAIN.get("TRAJ_FILTER", False),
                                              is_key_point=is_key_point,
                                              WINDOW_SIZE=self.window_size,
                                              )
@@ -212,13 +240,15 @@ class OSMDataset:
                 WINDOW_SIZE=self.window_size)  # edge_pos list
 
             batch_aerial_images_hwc.append(data_dict.aerial_image_hwc)
-            batch_traj_images_hwc.append(data_dict.traj_image_hwc)
             batch_extension_vertices.append(extension_vertex)
 
             # 输入确定
             batch_inputs[i] = data_dict.aerial_image_chw
-            batch_traj_inputs[i] = data_dict.traj_image_chw
-            batch_aerial_traj[i] = np.concatenate((batch_inputs[i], batch_traj_inputs[i]), axis=0)
+            if self.use_trajectory:
+                batch_traj_images_hwc.append(data_dict.traj_image_hwc)
+                batch_traj_inputs[i] = data_dict.traj_image_chw
+                batch_aerial_traj[i] = np.concatenate(
+                    (batch_inputs[i], batch_traj_inputs[i]), axis=0)
             batch_walked_path_small[i] = data_dict.walked_path_small
             batch_walked_path[i] = data_dict.walked_path
             batch_road_segmentation[i] = data_dict.road_seg_small
@@ -233,14 +263,13 @@ class OSMDataset:
                                                     is_key_point)
             batch_target_maps[i] = target_maps
             # batch_valid_trajectory_inputs.append(model_utils.valid_trajectory_input(data_dict.valid_trajectories))
-            batch_valid_trajectory_inputs.append(data_dict.valid_trajectories)
+            if self.use_trajectory:
+                batch_valid_trajectory_inputs.append(data_dict.valid_trajectories)
 
         data = EasyDict({
             'path_indices': path_indices,
             'batch_extension_vertices': batch_extension_vertices,
             'batch_inputs': batch_inputs,
-            'batch_traj_inputs': batch_traj_inputs,
-            'batch_aerial_traj': batch_aerial_traj,
             'batch_target_maps': batch_target_maps,
             'batch_is_key_point': batch_is_key_point,
             'batch_end_index': batch_end_index,
@@ -252,9 +281,14 @@ class OSMDataset:
             'batch_junction_segmentation': batch_junction_segmentation,
             'batch_junction_segmentation_thick3': batch_junction_segmentation_thick3,
             'batch_aerial_images_hwc': batch_aerial_images_hwc,
-            'batch_traj_images_hwc': batch_traj_images_hwc,
-            'batch_valid_trajectory_inputs': batch_valid_trajectory_inputs
         })
+        if self.use_trajectory:
+            data.update({
+                'batch_traj_inputs': batch_traj_inputs,
+                'batch_aerial_traj': batch_aerial_traj,
+                'batch_traj_images_hwc': batch_traj_images_hwc,
+                'batch_valid_trajectory_inputs': batch_valid_trajectory_inputs,
+            })
         return data
 
     def push_and_vis_batch(self, res_dict, outer_it, path_it):

@@ -200,7 +200,7 @@ class TrajProjector(nn.Module):
 
 class RPNet(nn.Module):
 
-    def __init__(self, num_targets=4):
+    def __init__(self, num_targets=4, backbone_pretrained=True):
         super(RPNet, self).__init__()
 
         self.num_targets = num_targets
@@ -266,7 +266,10 @@ class RPNet(nn.Module):
 
         self.init_weights()
         ## first init_weights for added parts, then init res2net
-        res2net = res2net50_v1b_26w_4s(pretrained=True)
+        # ``False`` is used only by offline stage-0 validation to avoid a
+        # network download. The production default and checkpoint structure
+        # remain unchanged.
+        res2net = res2net50_v1b_26w_4s(pretrained=backbone_pretrained)
 
         self.stage_1 = nn.Sequential(
             res2net.conv1,
@@ -558,8 +561,11 @@ class RPNet(nn.Module):
         }
 
 
-def build_model(num_targets=4):
-    return RPNet(num_targets=num_targets)
+def build_model(num_targets=4, backbone_pretrained=True):
+    return RPNet(
+        num_targets=num_targets,
+        backbone_pretrained=backbone_pretrained,
+    )
 
 
 if __name__ == '__main__':

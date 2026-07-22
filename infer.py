@@ -21,6 +21,14 @@ from utils.utils import load_pretrained, numpy2tensor2cuda, MapContainer
 import numpy as np
 import torch
 from utils.additional_methods import analyze_checkpoint
+from utils.trajectory_mode import (
+    TRAJ_MODE_NONE,
+    load_region_trajectory_inputs_for_mode,
+    prepare_trajectory_sequence_batch,
+    resolve_trajectory_mode,
+    trajectory_fetch_fields,
+    validate_trajectory_model_compatibility,
+)
 
 
 parser = argparse.ArgumentParser(description="VecRoad Pytorch Test")
@@ -38,6 +46,9 @@ config_file = open(args.config, "r")
 cfg = yaml.load(config_file, Loader=yaml.UnsafeLoader)
 config_file.close()
 cfg = EasyDict(cfg)
+TRAJECTORY_MODE = resolve_trajectory_mode(cfg)
+validate_trajectory_model_compatibility(cfg, TRAJECTORY_MODE)
+USE_TRAJECTORY = TRAJECTORY_MODE != TRAJ_MODE_NONE
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = cfg.TEST.GPU_ID
@@ -149,7 +160,7 @@ def main():
         tile_size=cfg.TRAIN.IMG_SZ,
         window_size=cfg.TEST.WINDOW_SIZE,
         limit=cfg.TRAIN.PARALLEL_TILES,
-        traj_dir=cfg.DIR.TRAJ_DIR,)
+        traj_dir=(cfg.DIR.get("TRAJ_DIR", None) if USE_TRAJECTORY else None),)
     paths = []
     region_lst = list(test_regions.keys())
 
@@ -162,9 +173,13 @@ def main():
             all_pixel_trajectories = None
             traj_grid_index = None
             traj_grid_cell_size = None
-            if cfg.TRAIN.USE_TRAJ:
-                all_trajectories, all_pixel_trajectories, traj_grid_index, traj_grid_cell_size = \
-                    OSMDataset.load_region_trajectory_inputs(tile_data["region"], cfg)
+            all_trajectories, all_pixel_trajectories, traj_grid_index, traj_grid_cell_size = \
+                load_region_trajectory_inputs_for_mode(
+                    TRAJECTORY_MODE,
+                    tile_data["region"],
+                    cfg,
+                    OSMDataset.load_region_trajectory_inputs,
+                )
 
             paths.append(model_utils.Path(i, training=False, gc=None, tile_data=tile_data, graph=None, road_seg=None,
                                           all_trajectories=all_trajectories, all_pixel_trajectories=all_pixel_trajectories,
@@ -192,9 +207,13 @@ def main():
                 all_pixel_trajectories = None
                 traj_grid_index = None
                 traj_grid_cell_size = None
-                if cfg.TRAIN.USE_TRAJ:
-                    all_trajectories, all_pixel_trajectories, traj_grid_index, traj_grid_cell_size = \
-                        OSMDataset.load_region_trajectory_inputs(tile_data["region"], cfg)
+                all_trajectories, all_pixel_trajectories, traj_grid_index, traj_grid_cell_size = \
+                    load_region_trajectory_inputs_for_mode(
+                        TRAJECTORY_MODE,
+                        tile_data["region"],
+                        cfg,
+                        OSMDataset.load_region_trajectory_inputs,
+                    )
                 path = model_utils.Path(i, training=False, gc=None, tile_data=tile_data,
                                         graph=graph_dict[region_name],
                                         road_seg=np.ascontiguousarray(road_seg_filter_dict[region_name].swapaxes(0, 1)),
@@ -276,21 +295,21 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                 batch_is_key_point[i] = is_key_point
 
                 fetch_list = ['aerial_image_chw', 'walked_path']
-                if cfg.TRAIN.USE_TRAJ:
-                    fetch_list.append('valid_trajectories')
+                fetch_list.extend(trajectory_fetch_fields(
+                    TRAJECTORY_MODE, include_raster=False))
                 if cfg.TEST.SAVE_EXAMPLES:
                     fetch_list += ['aerial_image_hwc']
 
                 data_dict = paths[path_idx].make_path_input(
                     extension_vertex=extension_vertex,
                     fetch_list=fetch_list,
-                    traj_filter=cfg.TRAIN.TRAJ_FILTER,
+                    traj_filter=cfg.TRAIN.get("TRAJ_FILTER", False),
                     is_key_point=is_key_point,
                     WINDOW_SIZE=cfg.TEST.WINDOW_SIZE)
                 data_dict = EasyDict(data_dict)
                 batch_inputs[i] = data_dict.aerial_image_chw
                 batch_walked_path[i] = data_dict.walked_path
-                if cfg.TRAIN.USE_TRAJ:
+                if USE_TRAJECTORY:
                     batch_valid_trajectory_inputs.append(data_dict.valid_trajectories)
                 if len(path_indices) >= batch_size:
                     break
@@ -312,10 +331,12 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
 
             batch_inputs_cuda = numpy2tensor2cuda(batch_inputs)
             batch_walked_path_cuda = numpy2tensor2cuda(batch_walked_path)
-            batch_normalized_traj, batch_valid_mask = None, None
-            if cfg.TRAIN.USE_TRAJ:
-                batch_valid_trajectory_inputs_cuda = model_utils.valid_trajectory_input_GPU(batch_valid_trajectory_inputs)
-                batch_normalized_traj, batch_valid_mask = model_utils.normalize_trajectory_batch(batch_valid_trajectory_inputs_cuda)
+            batch_normalized_traj, batch_valid_mask = prepare_trajectory_sequence_batch(
+                TRAJECTORY_MODE,
+                batch_valid_trajectory_inputs if USE_TRAJECTORY else None,
+                model_utils.valid_trajectory_input_GPU,
+                model_utils.normalize_trajectory_batch,
+            )
 
             batch_output_cuda_dict = net(
                 aerial_image=batch_inputs_cuda,
@@ -326,7 +347,7 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                 walked_path=batch_walked_path_cuda,
                 NUM_TARGETS=cfg.TEST.NUM_TARGETS,
                 model=cfg.TRAIN.MODEL,
-                use_traj=cfg.TRAIN.USE_TRAJ)
+                use_traj=USE_TRAJECTORY)
             batch_output_road_cuda = batch_output_cuda_dict['road']
             batch_output_junc_cuda = batch_output_cuda_dict['junc']
             batch_output_anchor_maps_cuda = batch_output_cuda_dict['anchor']
@@ -540,7 +561,7 @@ def infer_segmentation(net, region_names):
         img_map = trans(img_map)
         img_map = torch.unsqueeze(img_map, 0) # (b,c,w,h)
         traj_map = None
-        if cfg.TRAIN.MODEL == 'DSFNet':
+        if USE_TRAJECTORY and cfg.TRAIN.MODEL == 'DSFNet':
             traj_path = os.path.join(cfg.DIR.TEST_TRAJ_DIR, region_name + ".png")
             if not os.path.isfile(traj_path):
                 raise FileNotFoundError("trajectory test image not found: {}".format(traj_path))
@@ -593,14 +614,14 @@ def infer_segmentation(net, region_names):
             batch_input = torch.cat(batch_input, dim=0)
             input_var = torch.autograd.Variable(batch_input).cuda()
 
-            if cfg.TRAIN.MODEL == 'DSFNet':
+            if USE_TRAJECTORY and cfg.TRAIN.MODEL == 'DSFNet':
                 for pnt in batch_pnt_lst:
                     crop_traj = traj_map[:, :, pnt[0]:pnt[0] + cfg.TEST.CROP_SZ, pnt[1]:pnt[1] + cfg.TEST.CROP_SZ]
                     batch_traj_input.append(crop_traj)
                 batch_traj_input = torch.cat(batch_traj_input, dim=0)
                 input_traj_var = torch.autograd.Variable(batch_traj_input).cuda()
 
-            res = net(aerial_image=input_var, traj_image=input_traj_var, aerial_traj_image=None, walked_path=None, neighborhood_trajectory_norm=None, valid_mask=None, test=True, model=cfg.TRAIN.MODEL, use_traj=cfg.TRAIN.USE_TRAJ)
+            res = net(aerial_image=input_var, traj_image=input_traj_var, aerial_traj_image=None, walked_path=None, neighborhood_trajectory_norm=None, valid_mask=None, test=True, model=cfg.TRAIN.MODEL, use_traj=USE_TRAJECTORY)
             # TODO 这里推理的过程需不需要加上轨迹数据
             road, junc = res['road'], res['junc']
 
