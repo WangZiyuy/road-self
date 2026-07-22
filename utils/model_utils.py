@@ -84,6 +84,7 @@ class Path(object):
             self.net = net.module if hasattr(net, 'module') else net
 
         self.valid_trajectories = []
+        self.circles = []
         # self._build_rtree_for_trajectories()
 
     def remove_graph_from_road_seg(self):
@@ -946,8 +947,11 @@ class Path(object):
             origin = extension_vertex.point.sub(
                 geom.Point(WINDOW_SIZE // 2, WINDOW_SIZE // 2))
 
-            # 绘制附近轨迹
-            for trajectory in self.valid_trajectories:
+            # Legacy trajectory overlays are optional. Image-only paths never
+            # request trajectory filtering, so both collections remain empty.
+            valid_trajectories = self.valid_trajectories
+            circles = getattr(self, 'circles', [])
+            for trajectory in valid_trajectories:
                 for i in range(len(trajectory) - 1):
                     start = geom.Point(trajectory[i][0],trajectory[i][1]).sub(origin)  # 转为窗口坐标
                     end = geom.Point(trajectory[i+1][0], trajectory[i+1][1]).sub(origin)  # 转为窗口坐标
@@ -955,13 +959,16 @@ class Path(object):
                     #          (end.x, end.y), color=(1., 1., 1.), thickness=1)
                     cv.circle(aerial_image, (start.x, start.y),color=(1., 1., 1.), radius=1)
                     # print('valid_trajectories:', start)
-            # 绘制过滤圆
-            cv.circle(aerial_image, (WINDOW_SIZE // 2, WINDOW_SIZE // 2), 50, (1., 0., 0.), 1)
-            for i, circle in enumerate(self.circles):
-                circle_center = circle['center'].sub(origin)
-                circle_radius = circle['radius']
-                cv.circle(aerial_image, (circle_center.x, circle_center.y), circle_radius, (1., 0., 0.), 1)
-                # print('circle:', circle_center)
+            # The radius-50 marker belongs to the legacy trajectory filter and
+            # must not appear in image-only visualizations.
+            if len(valid_trajectories) > 0 or len(circles) > 0:
+                cv.circle(aerial_image, (WINDOW_SIZE // 2, WINDOW_SIZE // 2), 50, (1., 0., 0.), 1)
+            if len(circles) > 0:
+                for i, circle in enumerate(circles):
+                    circle_center = circle['center'].sub(origin)
+                    circle_radius = circle['radius']
+                    cv.circle(aerial_image, (circle_center.x, circle_center.y), circle_radius, (1., 0., 0.), 1)
+                    # print('circle:', circle_center)
 
             # draw road segments, green 这里可视化的应该是真值
             # 绘制区域

@@ -1,4 +1,4 @@
-"""Validate the stage-0 image-only VecRoad baseline.
+"""Validate the stage-0/0.5 road_self image-only baseline.
 
 The forward comparison deliberately uses one model instance in ``eval`` mode.
 The legacy call supplies trajectory-shaped tensors while setting
@@ -14,6 +14,7 @@ import json
 import os
 import sys
 import warnings
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -36,6 +37,7 @@ from utils.trajectory_mode import (  # noqa: E402
     trajectory_fetch_fields,
     validate_trajectory_model_compatibility,
 )
+from utils.checkpoint_utils import load_checkpoint_payload  # noqa: E402
 
 
 OUTPUT_KEYS = ("road", "junc", "anchor", "anchor_lowrs")
@@ -69,6 +71,12 @@ def _parse_args() -> argparse.Namespace:
         "--stage0-graph",
         type=Path,
         help="Optional closed-loop graph produced with TRAJ.MODE=none.",
+    )
+    parser.add_argument(
+        "--coordinate-tolerance",
+        type=float,
+        default=1e-6,
+        help="Coordinate quantization tolerance for canonical graph comparison.",
     )
     parser.add_argument(
         "--json-output",
@@ -229,12 +237,45 @@ def validate_forward_equivalence(
 
     model = RPNet(num_targets=4, backbone_pretrained=False).to(device)
     checkpoint_label = "synthetic_initialization"
+    checkpoint_metadata: dict[str, Any] | None = None
+    state_dict_key_count = len(model.state_dict())
     if checkpoint is not None:
-        if not checkpoint.is_file():
-            raise FileNotFoundError(checkpoint)
-        payload = torch.load(checkpoint, map_location=device)
-        model.load_state_dict(_extract_state_dict(payload), strict=True)
+        checkpoint = checkpoint.resolve(strict=False)
+        payload = load_checkpoint_payload(checkpoint, map_location=device)
+        state_dict = _extract_state_dict(payload)
+        model_state = model.state_dict()
+        missing_keys = sorted(set(model_state) - set(state_dict))
+        unexpected_keys = sorted(set(state_dict) - set(model_state))
+        shape_mismatches = sorted(
+            key
+            for key in set(model_state).intersection(state_dict)
+            if tuple(model_state[key].shape) != tuple(state_dict[key].shape)
+        )
+        if missing_keys or unexpected_keys or shape_mismatches:
+            raise RuntimeError(
+                "checkpoint is incompatible: missing={}, unexpected={}, "
+                "shape_mismatches={}".format(
+                    missing_keys[:20], unexpected_keys[:20], shape_mismatches[:20]
+                )
+            )
+        model.load_state_dict(state_dict, strict=True)
         checkpoint_label = os.fspath(checkpoint)
+        state_dict_key_count = len(state_dict)
+        metadata_keys = (
+            "format_version",
+            "outer_it",
+            "path_it",
+            "trajectory_mode",
+            "config_path",
+            "random_seed",
+            "model_name",
+            "num_targets",
+            "step_length",
+            "window_size",
+        )
+        checkpoint_metadata = {
+            key: payload.get(key) for key in metadata_keys if key in payload
+        }
     model.eval()
 
     aerial = torch.randn(batch_size, 3, input_size, input_size, device=device)
@@ -305,14 +346,15 @@ def validate_forward_equivalence(
         "device": str(device),
         "seed": seed,
         "checkpoint": checkpoint_label,
+        "checkpoint_metadata": checkpoint_metadata,
+        "state_dict_key_count": state_dict_key_count,
         "tolerance": tolerance,
         "outputs": outputs,
         "passed": True,
     }
 
 
-def _graph_signature(path: Path) -> dict[str, Any]:
-    graph = graph_helper.read_graph(os.fspath(path), merge_duplicates=False)
+def id_based_graph_signature(graph: graph_helper.Graph) -> dict[str, Any]:
     vertices = sorted(
         (int(vertex.id), float(vertex.point.x), float(vertex.point.y))
         for vertex in graph.vertices.values()
@@ -324,8 +366,64 @@ def _graph_signature(path: Path) -> dict[str, Any]:
     return {"vertices": vertices, "edges": edges}
 
 
+def _quantized_coordinate(point: Any, tolerance: float) -> tuple[int, int]:
+    return (
+        int(round(float(point.x) / tolerance)),
+        int(round(float(point.y) / tolerance)),
+    )
+
+
+def canonical_graph_signature(
+    graph: graph_helper.Graph, *, coordinate_tolerance: float = 1e-6
+) -> dict[str, Any]:
+    """Build an ID/order-independent geometry and topology signature."""
+    if coordinate_tolerance <= 0:
+        raise ValueError("coordinate_tolerance must be positive")
+    vertex_coordinates = sorted(
+        _quantized_coordinate(vertex.point, coordinate_tolerance)
+        for vertex in graph.vertices.values()
+    )
+    directed_edges = []
+    undirected_edges = set()
+    for edge in graph.edges.values():
+        src = _quantized_coordinate(edge.src(graph).point, coordinate_tolerance)
+        dst = _quantized_coordinate(edge.dst(graph).point, coordinate_tolerance)
+        directed_edges.append((src, dst))
+        undirected_edges.add(tuple(sorted((src, dst))))
+    directed_edges.sort()
+    normalized_undirected_edges = sorted(undirected_edges)
+    return {
+        "coordinate_tolerance": coordinate_tolerance,
+        "vertex_coordinates": vertex_coordinates,
+        "vertex_coordinate_multiplicity": sorted(
+            (coordinate, count)
+            for coordinate, count in Counter(vertex_coordinates).items()
+        ),
+        "directed_edges": directed_edges,
+        "undirected_edges": normalized_undirected_edges,
+        "vertex_count": len(vertex_coordinates),
+        "directed_edge_count": len(directed_edges),
+        "undirected_edge_count": len(normalized_undirected_edges),
+    }
+
+
+def graph_signatures(
+    path: Path, *, coordinate_tolerance: float
+) -> dict[str, Any]:
+    graph = graph_helper.read_graph(os.fspath(path), merge_duplicates=False)
+    return {
+        "canonical": canonical_graph_signature(
+            graph, coordinate_tolerance=coordinate_tolerance
+        ),
+        "id_based": id_based_graph_signature(graph),
+    }
+
+
 def validate_closed_loop_graphs(
-    legacy_graph: Path | None, stage0_graph: Path | None
+    legacy_graph: Path | None,
+    stage0_graph: Path | None,
+    *,
+    coordinate_tolerance: float,
 ) -> dict[str, Any]:
     if legacy_graph is None and stage0_graph is None:
         return {
@@ -336,18 +434,29 @@ def validate_closed_loop_graphs(
         raise ValueError("--legacy-graph and --stage0-graph must be supplied together")
     if not legacy_graph.is_file() or not stage0_graph.is_file():
         raise FileNotFoundError("one or both closed-loop graph files do not exist")
-    legacy = _graph_signature(legacy_graph)
-    stage0 = _graph_signature(stage0_graph)
-    vertices_equal = legacy["vertices"] == stage0["vertices"]
-    edges_equal = legacy["edges"] == stage0["edges"]
+    legacy = graph_signatures(
+        legacy_graph, coordinate_tolerance=coordinate_tolerance
+    )
+    stage0 = graph_signatures(
+        stage0_graph, coordinate_tolerance=coordinate_tolerance
+    )
+    canonical_equal = legacy["canonical"] == stage0["canonical"]
+    id_vertices_equal = legacy["id_based"]["vertices"] == stage0["id_based"]["vertices"]
+    id_edges_equal = legacy["id_based"]["edges"] == stage0["id_based"]["edges"]
     return {
-        "status": "passed" if vertices_equal and edges_equal else "failed",
-        "legacy_vertices": len(legacy["vertices"]),
-        "stage0_vertices": len(stage0["vertices"]),
-        "legacy_edges": len(legacy["edges"]),
-        "stage0_edges": len(stage0["edges"]),
-        "vertices_equal": vertices_equal,
-        "edges_equal": edges_equal,
+        "status": "passed" if canonical_equal else "failed",
+        "coordinate_tolerance": coordinate_tolerance,
+        "canonical_equal": canonical_equal,
+        "legacy_counts": {
+            key: legacy["canonical"][key]
+            for key in ("vertex_count", "directed_edge_count", "undirected_edge_count")
+        },
+        "stage0_counts": {
+            key: stage0["canonical"][key]
+            for key in ("vertex_count", "directed_edge_count", "undirected_edge_count")
+        },
+        "id_based_vertices_equal": id_vertices_equal,
+        "id_based_edges_equal": id_edges_equal,
     }
 
 
@@ -372,7 +481,9 @@ def main() -> int:
             checkpoint=args.checkpoint,
         )
     report["closed_loop"] = validate_closed_loop_graphs(
-        args.legacy_graph, args.stage0_graph
+        args.legacy_graph,
+        args.stage0_graph,
+        coordinate_tolerance=args.coordinate_tolerance,
     )
     report["passed"] = all(
         section.get("passed", section.get("status") in {"passed", "not_run"})

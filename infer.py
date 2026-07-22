@@ -29,9 +29,13 @@ from utils.trajectory_mode import (
     trajectory_fetch_fields,
     validate_trajectory_model_compatibility,
 )
+from utils.checkpoint_utils import (
+    load_checkpoint_into_model,
+    resolve_inference_checkpoint_path,
+)
 
 
-parser = argparse.ArgumentParser(description="VecRoad Pytorch Test")
+parser = argparse.ArgumentParser(description="road_self PyTorch inference")
 parser.add_argument(
     "--config",
     default="configs/default_self.yml",
@@ -518,17 +522,24 @@ def post_process_graph(graph_dict):
 
 def prepare_net():
     print('initializing model')
-    net = RPNet(cfg.TRAIN.NUM_TARGETS)
+    net = RPNet(
+        cfg.TRAIN.NUM_TARGETS,
+        backbone_pretrained=cfg.TRAIN.get("BACKBONE_PRETRAINED", True),
+    )
     net = net.cuda()
-    file_name = os.path.join(cfg.DIR.CHECK_POINT_DIR,
-                             '{}.pth.tar'.format(cfg.TEST.CKPT))
+    file_name = resolve_inference_checkpoint_path(cfg, require_exists=True)
 
     # analyze_checkpoint(file_name)
-
-    if os.path.isfile(file_name):
-        net = load_pretrained(net, file_name)
+    if cfg.TEST.get("CKPT_FILE", None):
+        load_checkpoint_into_model(
+            net,
+            file_name,
+            map_location="cpu",
+            strict=True,
+        )
     else:
-        raise FileNotFoundError("checkpoint not found: {}".format(file_name))
+        # Preserve the permissive loader for historical TEST.CKPT experiments.
+        net = load_pretrained(net, os.fspath(file_name))
     if cfg.TEST.DATA_PARALLEL:
         net = torch.nn.DataParallel(net)
     return net

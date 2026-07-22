@@ -1,5 +1,6 @@
 import argparse
 import os
+import random
 import time
 import numpy as np
 import torch
@@ -12,7 +13,10 @@ import model.model as model
 # from utils import crash_on_ipy
 from utils.utils import AverageMeter, load_pretrained, numpy2tensor2cuda, get_logger, dilate_label_batch
 from utils.OSMDataset import OSMDataset
-from torch.utils.tensorboard import SummaryWriter
+try:
+    from torch.utils.tensorboard import SummaryWriter
+except ImportError:
+    SummaryWriter = None
 from model.losses import BCEDiceLoss, BCE_Loss
 from configs.config import config
 from utils.additional_methods import visualize_batch_data_grid, assert_finite
@@ -22,6 +26,14 @@ from utils.trajectory_mode import (
     resolve_trajectory_mode,
     validate_trajectory_model_compatibility,
 )
+from utils.checkpoint_utils import (
+    build_checkpoint_payload,
+    has_training_checkpoint_config,
+    resolve_training_checkpoint_paths,
+    save_training_checkpoint,
+    should_save_training_checkpoint,
+)
+from utils.training_utils import resolve_path_iterations, training_global_step
 
 import torch
 import cv2
@@ -41,8 +53,16 @@ def epoch_to_learning_rate(epoch):
     else:
         return 5e-5
 
+
+class _NullSummaryWriter:
+    def add_scalar(self, *_args, **_kwargs):
+        return None
+
+    def close(self):
+        return None
+
 def main():
-    parser = argparse.ArgumentParser(description="VecRoad Pytorch Train")
+    parser = argparse.ArgumentParser(description="road_self PyTorch training")
     parser.add_argument(
         "--config",
         default="configs/default_self.yml",
@@ -60,6 +80,15 @@ def main():
     trajectory_mode = resolve_trajectory_mode(cfg)
     validate_trajectory_model_compatibility(cfg, trajectory_mode)
     use_trajectory = trajectory_mode != TRAJ_MODE_NONE
+    path_iterations = resolve_path_iterations(cfg)
+    random_seed = cfg.TRAIN.get("SEED", cfg.get("SEED", None))
+    if random_seed is not None:
+        random_seed = int(random_seed)
+        random.seed(random_seed)
+        np.random.seed(random_seed)
+        torch.manual_seed(random_seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(random_seed)
 
     #os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  # see issue #152
     os.environ["CUDA_VISIBLE_DEVICES"] = cfg.TRAIN.GPU_ID
@@ -68,11 +97,21 @@ def main():
     os.makedirs(cfg.DIR.LOG_DIR, exist_ok=True)
     os.makedirs(cfg.DIR.CHECK_POINT_DIR, exist_ok=True)
     os.makedirs(cfg.DIR.SHORTCUT_DIR, exist_ok=True)
-    os.makedirs("visualization", exist_ok=True)
+    if cfg.TRAIN.SAVE_EXAMPLES or use_trajectory:
+        os.makedirs("visualization", exist_ok=True)
 
     logger = get_logger(logger_name="logtrain", log_dir=cfg.DIR.LOG_DIR)
     logger.info("trajectory mode: %s", trajectory_mode)
-    summary_writer = SummaryWriter(log_dir=os.path.join(cfg.DIR.LOG_DIR))
+    logger.info("path iterations per outer iteration: %d", path_iterations)
+    tensorboard_enabled = cfg.TRAIN.get("TENSORBOARD", True)
+    if tensorboard_enabled:
+        if SummaryWriter is None:
+            raise ImportError(
+                "TensorBoard is required when TRAIN.TENSORBOARD=True"
+            )
+        summary_writer = SummaryWriter(log_dir=os.path.join(cfg.DIR.LOG_DIR))
+    else:
+        summary_writer = _NullSummaryWriter()
 
     losses = AverageMeter()
     anchor_losses = AverageMeter()
@@ -81,7 +120,10 @@ def main():
     time_meter = AverageMeter()
 
     # device = torch.device("cuda:%s" % cfg.TRAIN.GPU_ID if torch.cuda.is_available() else "cpu")
-    net = model.RPNet(num_targets=cfg.TRAIN.NUM_TARGETS)
+    net = model.RPNet(
+        num_targets=cfg.TRAIN.NUM_TARGETS,
+        backbone_pretrained=cfg.TRAIN.get("BACKBONE_PRETRAINED", True),
+    )
 
     if cfg.TRAIN.DATA_PARALLEL:
         print('Training in DataParallel')
@@ -140,8 +182,8 @@ def main():
         #    FOLLOW_MODE = "follow_output"
 
         net.train()
-        # 内循环，进行路径循环，2048次，不是很理解
-        for path_it in range(2048):
+        # The path-iteration count is independent of MAX_PATH_LENGTH.
+        for path_it in range(path_iterations):
 
             stage_time = time.time()
 
@@ -163,7 +205,8 @@ def main():
             # batch_valid_trajectory_inputs_cuda:(2, 5, 11, 2) batch size 、轨迹条数、轨迹点数量、xy
             # 这里面的步长的20，首先是batch size是20；其次下次移动的固定步长是20
 
-            os.makedirs(f"visualization/{outer_it}_{path_it}/", exist_ok=True)
+            if cfg.TRAIN.SAVE_EXAMPLES or use_trajectory:
+                os.makedirs(f"visualization/{outer_it}_{path_it}/", exist_ok=True)
 
             # batch内容可视化
             if use_trajectory and path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
@@ -311,16 +354,17 @@ def main():
 
                 # traj_road_loss  = criteria(batch_output_traj_road_cuda, batch_road_segmentation_cuda).cuda()
 
-                # 确保 outer_it(外层循环此处应该是50次) 和 path_it（内层循环此处应该是2048） 在整个训练过程中唯一标识每一步
                 loss = anchor_loss + 10 * road_loss + 10 * junc_loss
 
                 if path_it % cfg.TRAIN.PRINT_ITERATION == 0:
                     # Log anchor loss to TensorBoard
-                    summary_writer.add_scalar('anchor_loss', anchor_loss, outer_it * 2048 + path_it)
-                    summary_writer.add_scalar('anchor_mid_loss', anchor_mid_loss, outer_it * 2048 + path_it)
-                    summary_writer.add_scalar('road_loss', road_loss, outer_it * 2048 + path_it)
-                    summary_writer.add_scalar('junc_loss', junc_loss, outer_it * 2048 + path_it)
-                    summary_writer.add_scalar('total_loss', loss, outer_it * 2048 + path_it)
+                    global_step = training_global_step(
+                        outer_it, path_it, path_iterations)
+                    summary_writer.add_scalar('anchor_loss', anchor_loss, global_step)
+                    summary_writer.add_scalar('anchor_mid_loss', anchor_mid_loss, global_step)
+                    summary_writer.add_scalar('road_loss', road_loss, global_step)
+                    summary_writer.add_scalar('junc_loss', junc_loss, global_step)
+                    summary_writer.add_scalar('total_loss', loss, global_step)
 
                 # optimizer.zero_grad()
                 loss.backward()
@@ -344,7 +388,7 @@ def main():
             time_meter.update(time.time() - stage_time)
 
             if path_it % cfg.TRAIN.PRINT_ITERATION == 0:
-                msg = "iter:[{0}]-[{1}/2048] " \
+                msg = "iter:[{0}]-[{1}/{path_iterations}] " \
                       "Time: {time_meter.val:.3f} ({time_meter.avg:.3f}) " \
                       "Anchor: {anchor_loss.val:.3f} ({anchor_loss.avg:.3f}) " \
                       "Road: {road_loss_val:.3f} ({road_loss_avg:.3f}) " \
@@ -352,6 +396,7 @@ def main():
                       "Total: {total_loss.val:.3f} ({total_loss.avg:.3f})" \
                     .format(
                     outer_it, path_it,
+                    path_iterations=path_iterations,
                     time_meter=time_meter,
                     anchor_loss=anchor_losses,
                     road_loss_val=road_losses.val * 10,
@@ -366,13 +411,14 @@ def main():
 
             # 所以在这里进行重置损失是为了存储每次迭代的结果（大循环 50那个）
             if (path_it + 1) % cfg.TRAIN.SAVE_ITERATIONS == 0:
-                msg = "iter:[{0}]-[{1}/2048] " \
+                msg = "iter:[{0}]-[{1}/{path_iterations}] " \
                         "Time: {time_meter.sum:.3f} " \
                         "Anchor: {anchor_loss.avg:.3f} " \
                         "Road: {road_loss:.3f} " \
                         "Junc: {junc_loss:.3f} " \
                         "Total: {total_loss.avg:.3f}" \
-                    .format(outer_it, path_it, time_meter=time_meter, anchor_loss=anchor_losses,
+                    .format(outer_it, path_it, path_iterations=path_iterations,
+                            time_meter=time_meter, anchor_loss=anchor_losses,
                             road_loss=road_losses.avg * 10, junc_loss=junc_losses.avg * 10, total_loss=losses)
                 logger.info(msg)
 
@@ -381,7 +427,8 @@ def main():
                 anchor_losses.reset()
                 road_losses.reset()
                 junc_losses.reset()
-                if outer_it >= 10 and outer_it % 10 == 0:
+                if (not has_training_checkpoint_config(cfg)
+                        and outer_it >= 10 and outer_it % 10 == 0):
                     train_name = '新有轨迹_anchor*0.1ALLbce_256_thick5'
                     os.makedirs(os.path.join(cfg.DIR.CHECK_POINT_DIR, train_name), exist_ok=True)
                     save_file = os.path.join(cfg.DIR.CHECK_POINT_DIR, train_name, "{}.{}.pth.tar".format(outer_it, path_it))
@@ -391,6 +438,29 @@ def main():
                         "state_dict": net.state_dict(),
                         "optimizer": optimizer.state_dict()
                     }, save_file)
+
+            if should_save_training_checkpoint(
+                    cfg,
+                    outer_it=outer_it,
+                    path_it=path_it,
+                    path_iterations=path_iterations):
+                checkpoint_paths = resolve_training_checkpoint_paths(
+                    cfg, outer_it=outer_it, path_it=path_it)
+                checkpoint_payload = build_checkpoint_payload(
+                    model=net,
+                    optimizer=optimizer,
+                    cfg=cfg,
+                    outer_it=outer_it,
+                    path_it=path_it,
+                    config_path=args.config,
+                    random_seed=random_seed,
+                )
+                save_training_checkpoint(checkpoint_payload, checkpoint_paths)
+                logger.info(
+                    "saved checkpoint: versioned=%s latest=%s",
+                    checkpoint_paths.versioned,
+                    checkpoint_paths.latest,
+                )
 
             print('Time taken for ne ITERATIONS = {} sec \n'.format(time.time() - stage_time))
 
