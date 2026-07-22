@@ -276,6 +276,14 @@ def validate_forward_equivalence(
         checkpoint_metadata = {
             key: payload.get(key) for key in metadata_keys if key in payload
         }
+        optimizer_state = payload.get("optimizer")
+        if isinstance(optimizer_state, dict):
+            checkpoint_metadata["optimizer_state_entries"] = len(
+                optimizer_state.get("state", {})
+            )
+            checkpoint_metadata["optimizer_param_groups"] = len(
+                optimizer_state.get("param_groups", [])
+            )
     model.eval()
 
     aerial = torch.randn(batch_size, 3, input_size, input_size, device=device)

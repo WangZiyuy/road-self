@@ -9,8 +9,8 @@ official VecRoad repository: the baseline freezes the current `road_self`
 image branch and verifies that the new configuration/call path is equivalent
 to this fork's legacy `USE_TRAJ=False` call path.
 
-Stage 0.5 is based on repository revision
-`f858504f8fe6f91bf93b076710934b8364af6b51` (the committed Stage 0 baseline).
+The formal Xian run described below used repository revision `31183e8` plus
+the documented Xian data-path configuration.
 It does not change `Path.pop`, `Path.push`, `map_to_coordinate`,
 `TargetPosesContainer`, target-map generation, `NUM_TARGETS`, `STEP_LENGTH`,
 the recursive anchor head, anchor feedback, loss weights, graph serialization,
@@ -154,6 +154,27 @@ Coordinates are quantized by `--coordinate-tolerance` (default `1e-6`). The
 old ID-based signature is retained as diagnostic output, while the canonical
 geometry/topology signature determines equivalence.
 
+### 4.6 Bounded real-data closed-loop validation
+
+`scripts/validate_stage0_closed_loop.py` keeps two independent `Path` states
+on one fixed real aerial tile and start point. The legacy-disabled model call
+supplies trajectory-shaped tensors with `use_traj=False`; the Stage-0 call
+supplies `None`. Neither path reads a trajectory file. At every iteration the
+script compares all four core logits, `map_to_coordinate` output, and graph
+counts after `Path.push`, then saves both graphs for canonical comparison.
+
+The first formal check exposed that the new baseline configs had copied the
+modified `default_self.yml` inference threshold `0.01`. At this threshold the
+anchor response around a junction merged into regions larger than
+`JUNC_MAX_REGION_AREA`, so no coordinate survived. Official VecRoad's
+`configs/default.yml`, this repository's `configs/default.yml`, and
+`configs/xian_self.yml` use `ROAD_SEG_THRESHOLE: 0.3`. The two new image-only
+baseline configs now use `0.3`; historical configs and `legacy_current` remain
+unchanged. No model weight, loss, `map_to_coordinate` implementation, or graph
+state transition was changed. The checkpoint's embedded training snapshot
+still records the pre-correction TEST value; this does not affect its trained
+weights because the field is inference-only.
+
 ## 5. Model and loss contract
 
 Image-only inputs are an aerial image `[B,3,H,W]`, walked path `[B,1,H,W]`,
@@ -197,6 +218,19 @@ python scripts/validate_stage0_baseline.py \
   --device auto --input-size 64 --batch-size 1 \
   --seed 20260722 --tolerance 1e-6 \
   --checkpoint data_self/baseline_image_only/ckpt/image_only.latest.pth.tar
+```
+
+Run the bounded real-data closed-loop comparison:
+
+```bash
+python scripts/validate_stage0_closed_loop.py \
+  --config configs/baseline_image_only.yml \
+  --checkpoint data_self/baseline_image_only/ckpt/image_only.latest.pth.tar \
+  --region xian --start-x 1704 --start-y 794 \
+  --start-state key_point --max-iterations 20 \
+  --seed 20260722 --device cuda --tolerance 1e-6 \
+  --coordinate-tolerance 1e-6 \
+  --output-dir data_self/baseline_image_only/closed_loop/formal_latest_threshold03
 ```
 
 Compare independently generated legacy/new closed-loop graph files:
@@ -294,9 +328,11 @@ Server checks used Python `3.8.18`, PyTorch `2.4.1+cu121`, and an RTX 4090.
   maximum and mean differences were `0.0`.
 - Tiny-model checkpoint unit test: model and Adam optimizer state restored;
   output maximum difference was `0.0`.
-- Server two-batch integration smoke: completed two forward/loss/backward/
-  optimizer steps and `push_and_vis_batch`; losses remained finite; both
-  checkpoint files were written; elapsed lifecycle time was about 32.1 seconds.
+- Server two-batch integration smoke with the supplied Xian graph and aerial
+  imagery: all four 2048x2048 training subtiles were accepted; two
+  forward/loss/backward/optimizer steps and `push_and_vis_batch` completed;
+  losses remained finite; both checkpoint files were written; elapsed
+  lifecycle time was about 35.8 seconds.
 - The nonexistent trajectory probe path was not created.
 - `infer.prepare_net()` directly loaded the generated latest checkpoint.
 - The checkpoint contained 1,191 model keys and metadata
@@ -307,35 +343,69 @@ Server checks used Python `3.8.18`, PyTorch `2.4.1+cu121`, and an RTX 4090.
   at tolerance `1e-6`, and all outputs were finite.
 - Canonical graph tests proved equality across different vertex/edge IDs and
   insertion order, and detected a changed edge.
+- A formal image-only Xian training run used `TRAJ.MODE=none`, seed `20260722`,
+  batch size 2, a 4096x4096 training tile, and an RTX 4090. It ran for about
+  3 hours 51 minutes. Seven complete outer iterations (14,336 optimizer
+  steps) were saved; training was intentionally stopped during outer 8 at
+  path iteration 757. The incomplete outer iteration was not checkpointed.
+- The frozen formal checkpoint is
+  `data_self/baseline_image_only/ckpt/image_only.outer_007.path_2048.pth.tar`;
+  `image_only.latest.pth.tar` resolves to the same completed state. It contains
+  1,191 model keys, 365 optimizer-state entries, one optimizer parameter group,
+  and metadata `outer_it=7`, `path_it=2047`, `trajectory_mode=none`,
+  `model_name=origin`, `NUM_TARGETS=4`, `STEP_LENGTH=20`, `WINDOW_SIZE=256`,
+  and seed `20260722`. The frozen versioned file has SHA-256
+  `dce838697a03fc5dfa9a27f35a920faddfcd9c2c2d4fbf0603926ed90b8f5c3b`.
+- Checkpoint-based CUDA comparison of legacy `use_traj=False` and
+  `TRAJ.MODE=none` passed for `road`, `junc`, `anchor`, and `anchor_lowrs`.
+  Every maximum and mean absolute difference was `0.0` at tolerance `1e-6`;
+  every tensor was finite.
+- The bounded Xian closed loop used fixed start `(1704, 794)`, requested 20
+  iterations, and completed all 20. Every per-step core-output difference was
+  `0.0`; `map_to_coordinate` and post-`Path.push` graph counts matched at every
+  step. The two final graphs each contain 72 vertices, 142 directed edges, and
+  71 undirected edges. Both canonical and ID-based signatures are equal.
+- The closed-loop trajectory probe path was neither accessed nor created.
+- The combined machine-readable report is
+  `data_self/baseline_image_only/run/final_stage0_validation.json`; the detailed
+  closed-loop trace is
+  `data_self/baseline_image_only/closed_loop/formal_latest_threshold03/report.json`.
 
-The server installation contained aerial imagery but did not contain the
-configured source training file `data_self/input/graphs/xian.graph`. The
-successful integration smoke therefore used the committed deterministic graph
-fixture plus the installed aerial image. It validates the real data/model/
-optimizer/checkpoint code path, not model accuracy.
+The supplied Xian graph contains 762 vertices and 1,730 directed edges (865
+bidirectional road segments), with no invalid references, duplicate directed
+edges, self-edges, isolated vertices, or missing reverse edges. Its coordinates
+match the metadata's 4300x5000 source-image extent. The current training loader
+uses only the first 4096x4096 tile; consequently 168 vertices and 388 directed
+edges outside that tile are not sampled by the current baseline training path.
+This does not block the smoke lifecycle, but full-AOI coverage should be
+resolved before treating a future full-AOI run as a published baseline.
 
 ## 9. Not executed and not claimed
 
-- A formal image-only training run was not executed because the installed
-  source GT training graph was unavailable.
-- A meaningful finite-step closed-loop legacy/new comparison was not executed
-  because no formally trained image-only checkpoint and independently
-  generated graph pair were available. The canonical comparison interface and
-  exact command are present.
+- Full unbounded `infer.py` exploration over all predicted Xian starting
+  points was not run. The executed result is a fixed-start, 20-step closed-loop
+  equivalence check, not a complete extracted city graph.
 - APLS, TOPO, Junction-F1, and pixel metrics were not run. No value for these
   metrics is claimed.
+- The formal run covers one 4096x4096 crop and one random seed. It is not a
+  full-AOI or multi-seed paper result.
 - A trajectory-trained checkpoint is not treated as image-only performance.
   Such a compatible checkpoint may only be used to test equivalence of the two
   calls while trajectory use is disabled.
 
 ## 10. Remaining Stage 0 baseline work
 
-The engineering lifecycle is covered. The remaining baseline work is
-experimental rather than architectural: provide the intended source GT graph,
-run a formal image-only training job, generate two independent bounded
-closed-loop outputs from an identical checkpoint/start state, and record the
-four evaluation metrics. These results are required before claiming a
-published image-only baseline score.
+The Stage 0/0.5 engineering lifecycle is covered: real training, latest and
+versioned checkpoint save/load, optimizer metadata, no-trajectory gating,
+checkpoint forward equivalence, and a non-empty bounded closed-loop graph pair
+all pass. The checkpoint can therefore be frozen as the current engineering
+reference for later no-trajectory fallback tests.
+
+Before claiming a published image-only baseline score, the remaining
+experiment work is to resolve full 4300x5000 AOI coverage, run full inference,
+record APLS/TOPO/Junction-F1/pixel metrics, and repeat the selected experiment
+with multiple seeds. These are performance-completeness tasks, not blockers
+for the Stage 0 code-path contract.
 
 Legacy fixed circles, hard filtering, trajectory Transformer behavior, and
 trajectory cache structure remain intentionally unchanged and do not execute

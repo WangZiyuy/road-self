@@ -369,7 +369,10 @@ def _iter_traj_files(trajectory_dir, suffixes):
 def _filter_traj_points(coordinates, bbox=None, min_points=2):
     if len(coordinates) == 0:
         return None
-    coordinates = np.asarray(coordinates, dtype=np.float32)
+    # Keep geographic coordinates in float64 until after the lon/lat-to-pixel
+    # transform.  At longitude ~109, float32 quantization can move a point by
+    # more than one source-image pixel before conversion.
+    coordinates = np.asarray(coordinates, dtype=np.float64)
     finite_mask = np.isfinite(coordinates).all(axis=1)
     coordinates = coordinates[finite_mask]
     if bbox is not None and len(coordinates) > 0:

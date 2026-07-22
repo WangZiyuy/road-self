@@ -31,6 +31,10 @@ class TrajectoryModeTest(unittest.TestCase):
         self.assertEqual(cfg["TRAIN"]["NUM_TARGETS"], 4)
         self.assertEqual(cfg["TRAIN"]["STEP_LENGTH"], 20)
         self.assertEqual(cfg["TRAIN"]["WINDOW_SIZE"], 256)
+        self.assertEqual(
+            cfg["TEST"]["BINARIZE_MAP"]["ROAD_SEG_THRESHOLE"],
+            0.3,
+        )
         self.assertNotIn("TRAJ_DIR", cfg["DIR"])
         self.assertNotIn("TEST_TRAJ_DIR", cfg["DIR"])
 

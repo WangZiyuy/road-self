@@ -6,10 +6,10 @@ TRAJ:
 DIR:
   DATA_ROOT:       &DATA_ROOT "data_self"
   IMAGERY_DIR:      "data_self/input/imagery/"
-  TEST_IMAGERY_DIR: "data_self/input/imagery_test/"
+  TEST_IMAGERY_DIR: "data_self/input/imagery_8192/"
   GRAPH_DIR:        "data_self/input/graphs/"
   ALL_REGION_PATH:  "data_self/input/regions/all_regions.txt"
-  TEST_REGION_PATH: "data_self/input/regions/test_regions.txt"
+  TEST_REGION_PATH: "data_self/input/regions/xian_regions.txt"
   PRE_JUNC_NMS_DIR: "data_self/input/junction_nms/"
 
   CHECK_POINT_DIR: !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "ckpt"]
@@ -18,13 +18,13 @@ DIR:
   INFER_STEP_DIR:  !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "infer_step"]
   SAVE_GRAPH_DIR:  !!python/object/apply:os.path.join [*DATA_ROOT, *TASK, "graphs"]
 
-  TILE_DIR:         "data_self/input/tile/"
+  TILE_DIR:         "data_self/input/imagery/"
   SHORTCUT_DIR:     "data_self/input/shortcut/"
 
 TRAIN:
   NUM_TARGETS: 4
   PARALLEL_TILES: 2048
-  IMG_SZ: 2048
+  IMG_SZ: 4096
   TRAINING_REGIONS: ['xian']
 
   MAX_PATH_LENGTH: 2048
@@ -68,11 +68,11 @@ TEST:
   BATCH_SIZE_SEG: 2
   BATCH_SIZE_ANCHOR: 15
 
-  TEST_IMG_SZ: 4096
+  TEST_IMG_SZ: 8192
   CROP_SZ: 1024
   WINDOW_SIZE: 256
   INFER_STEP: "start"
-  SINGLE_REGION: "20"
+  SINGLE_REGION: "xian"
   START_FROM_ROAD_PEAK: True
   START_FROM_JUNC_PEAK: True
 
@@ -82,7 +82,7 @@ TEST:
   FOLLOW_MODE: "follow_output"
   AVG_CONFIDENCE_THRESHOLD: 0.1
   BINARIZE_MAP:
-    ROAD_SEG_THRESHOLE: 0.01
+    ROAD_SEG_THRESHOLE: 0.3
     JUNC_MAX_REGION_AREA: 200
     JUNC_SEG_THRESHOLE: 0.1
     ANCHOR_MAX_REGION_AREA: 1000
