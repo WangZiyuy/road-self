@@ -47,7 +47,7 @@ TRAIN:
   DATA_PARALLEL: False
   LOAD_CHECK_POINT: False
   START_EPOCH: 0
-  CHECK_POINT_NAME: "image_only_smoke.latest.pth.tar"
+  CHECK_POINT_NAME: "image_only_original_smoke.latest.pth.tar"
   TOTAL_ITERATION: 1
   SEED: 20260722
   RECT_RADIUS: 8
@@ -57,13 +57,13 @@ TRAIN:
     MAX_REGION_AREA: 200
   MODEL: origin
   CHECKPOINT:
-    PREFIX: "image_only_smoke"
+    PREFIX: "image_only_original_smoke"
     SAVE_LATEST: True
     SAVE_EVERY_OUTER: 1
 
 TEST:
-  CKPT: "image_only_smoke.latest"
-  CKPT_FILE: "image_only_smoke.latest.pth.tar"
+  CKPT: "image_only_original_smoke.latest"
+  CKPT_FILE: "image_only_original_smoke.latest.pth.tar"
   GPU_ID: "0"
   CPU_WORKER: 1
   DATA_PARALLEL: False
@@ -71,6 +71,7 @@ TEST:
   BATCH_SIZE_ANCHOR: 1
 
   TEST_IMG_SZ: 8192
+  NUM_TILES: 2
   CROP_SZ: 1024
   WINDOW_SIZE: 256
   INFER_STEP: "start"

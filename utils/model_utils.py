@@ -851,7 +851,7 @@ class Path(object):
                             start = start.sub(seg_origin)
                             end = end.sub(seg_origin)
                             cv.line(road_seg_small, (start.y // 4, start.x // 4), (end.y // 4, end.x // 4), color=1, thickness=1)
-                            cv.line(road_seg_thick3, (start.y, start.x), (end.y, end.x), color=1, thickness=5)
+                            cv.line(road_seg_thick3, (start.y, start.x), (end.y, end.x), color=1, thickness=3)
                 if not safe_rect.contains(extension_vertex.point):
                     clip_rect = search_rect.clip_rect(seg_rect)
                     start, end = clip_rect.start.sub(

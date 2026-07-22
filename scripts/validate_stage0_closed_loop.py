@@ -342,7 +342,7 @@ def _run(args: argparse.Namespace, cfg: EasyDict) -> dict[str, Any]:
             ):
                 raise AssertionError("Path.pop returned different extension states")
 
-            fetch_list = ["aerial_image_chw", "walked_path"]
+            fetch_list = ["aerial_image_chw", "walked_path_small"]
             legacy_input = legacy_path.make_path_input(
                 extension_vertex=legacy_extension,
                 fetch_list=fetch_list,
@@ -360,7 +360,8 @@ def _run(args: argparse.Namespace, cfg: EasyDict) -> dict[str, Any]:
             if not np.array_equal(
                 legacy_input["aerial_image_chw"], stage0_input["aerial_image_chw"]
             ) or not np.array_equal(
-                legacy_input["walked_path"], stage0_input["walked_path"]
+                legacy_input["walked_path_small"],
+                stage0_input["walked_path_small"]
             ):
                 raise AssertionError("the two local image/graph-state inputs diverged")
 
@@ -368,13 +369,13 @@ def _run(args: argparse.Namespace, cfg: EasyDict) -> dict[str, Any]:
                 legacy_input["aerial_image_chw"]
             ).unsqueeze(0).float().to(device)
             legacy_walked = torch.from_numpy(
-                legacy_input["walked_path"]
+                legacy_input["walked_path_small"]
             ).unsqueeze(0).float().to(device)
             stage0_aerial = torch.from_numpy(
                 stage0_input["aerial_image_chw"]
             ).unsqueeze(0).float().to(device)
             stage0_walked = torch.from_numpy(
-                stage0_input["walked_path"]
+                stage0_input["walked_path_small"]
             ).unsqueeze(0).float().to(device)
 
             legacy_output = _model_outputs_cpu(

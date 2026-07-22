@@ -32,7 +32,7 @@ class TrainingConfigurationTest(unittest.TestCase):
         self.assertFalse(cfg["TRAIN"]["SAVE_EXAMPLES"])
         self.assertEqual(
             cfg["TEST"]["CKPT_FILE"],
-            "image_only_smoke.latest.pth.tar",
+            "image_only_original_smoke.latest.pth.tar",
         )
 
     def test_global_step_uses_configured_path_iterations(self):

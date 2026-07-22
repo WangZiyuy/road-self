@@ -162,13 +162,16 @@ class ImageOnlyVisualizationTest(unittest.TestCase):
                 (1, 4, 32, 32), dtype=np.float32
             ),
             "batch_target_maps": np.zeros((1, 4, 32, 32), dtype=np.float32),
-            "batch_output_road": np.zeros((1, 1, 32, 32), dtype=np.float32),
+            "batch_output_road": np.zeros((1, 1, 8, 8), dtype=np.float32),
+            "batch_road_segmentation": np.zeros(
+                (1, 1, 8, 8), dtype=np.float32
+            ),
             "batch_road_segmentation_thick3": np.zeros(
                 (1, 1, 32, 32), dtype=np.float32
             ),
-            "batch_output_junc": np.zeros((1, 1, 32, 32), dtype=np.float32),
-            "batch_junction_segmentation_thick3": np.zeros(
-                (1, 1, 32, 32), dtype=np.float32
+            "batch_output_junc": np.zeros((1, 1, 8, 8), dtype=np.float32),
+            "batch_junction_segmentation": np.zeros(
+                (1, 1, 8, 8), dtype=np.float32
             ),
             "batch_is_key_point": np.zeros(1, dtype=np.float32),
         })

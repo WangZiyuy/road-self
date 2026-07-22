@@ -287,7 +287,8 @@ def validate_forward_equivalence(
     model.eval()
 
     aerial = torch.randn(batch_size, 3, input_size, input_size, device=device)
-    walked = torch.randn(batch_size, 1, input_size, input_size, device=device)
+    walked = torch.randn(
+        batch_size, 1, input_size // 4, input_size // 4, device=device)
     dummy_traj_image = torch.randn(
         batch_size, 1, input_size, input_size, device=device
     )

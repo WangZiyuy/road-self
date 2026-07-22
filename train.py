@@ -11,15 +11,13 @@ import utils.model_utils as model_utils
 
 import model.model as model
 # from utils import crash_on_ipy
-from utils.utils import AverageMeter, load_pretrained, numpy2tensor2cuda, get_logger, dilate_label_batch
+from utils.utils import AverageMeter, load_pretrained, numpy2tensor2cuda, get_logger
 from utils.OSMDataset import OSMDataset
 try:
     from torch.utils.tensorboard import SummaryWriter
 except ImportError:
     SummaryWriter = None
-from model.losses import BCEDiceLoss, BCE_Loss
-from configs.config import config
-from utils.additional_methods import visualize_batch_data_grid, assert_finite
+from utils.additional_methods import visualize_batch_data_grid
 from utils.trajectory_mode import (
     TRAJ_MODE_NONE,
     prepare_trajectory_sequence_batch,
@@ -35,7 +33,6 @@ from utils.checkpoint_utils import (
 )
 from utils.training_utils import resolve_path_iterations, training_global_step
 
-import torch
 import cv2
 
 torch.set_num_threads(1)
@@ -123,6 +120,7 @@ def main():
     net = model.RPNet(
         num_targets=cfg.TRAIN.NUM_TARGETS,
         backbone_pretrained=cfg.TRAIN.get("BACKBONE_PRETRAINED", True),
+        enable_trajectory_modules=use_trajectory,
     )
 
     if cfg.TRAIN.DATA_PARALLEL:
@@ -135,7 +133,6 @@ def main():
 
     criteria = lambda a, b: F.binary_cross_entropy_with_logits(a, b, reduction='sum')
     # 将road loss修改为BCEDice
-    criterion_road = BCEDiceLoss()
 
     # if cfg.TRAIN.SOLVER.METHOD == "Adam":
     #     optimizer = torch.optim.Adam(
@@ -219,11 +216,9 @@ def main():
                         "batch_road_segmentation",
                         "batch_road_segmentation_thick3",
                         "batch_junction_segmentation",
-                        "batch_junction_segmentation_thick3",
                         "batch_aerial_images_hwc",
                         "batch_traj_images_hwc",
                         "batch_walked_path_small",
-                        "batch_walked_path",
                         "batch_valid_trajectory_inputs",
                     ],
                     title="Batch Input Visualization",
@@ -233,18 +228,11 @@ def main():
             # 遥感图像替换轨迹图像以及叠加图像
             batch_inputs_cuda = numpy2tensor2cuda(data_dict.batch_inputs)
             batch_walked_path_small_cuda = numpy2tensor2cuda(data_dict.batch_walked_path_small)
-            batch_walked_path_cuda = numpy2tensor2cuda(data_dict.batch_walked_path)
             batch_target_maps_cuda = numpy2tensor2cuda(data_dict.batch_target_maps)
-
-            batch_road_segmentation_dilated = dilate_label_batch(data_dict.batch_road_segmentation, kernel_size=3, iterations=1)
-            batch_junction_segmentation_dilated = dilate_label_batch(data_dict.batch_junction_segmentation, kernel_size=3, iterations=1)
-            batch_road_segmentation_cuda = numpy2tensor2cuda(batch_road_segmentation_dilated)
-            batch_junction_segmentation_cuda = numpy2tensor2cuda(batch_junction_segmentation_dilated)
-
-            batch_road_segmentation_thick3_dilated = dilate_label_batch(data_dict.batch_road_segmentation_thick3, kernel_size=3, iterations=1)
-            batch_junction_segmentation_thick3_dilated = dilate_label_batch(data_dict.batch_junction_segmentation_thick3, kernel_size=3, iterations=1)
-            batch_road_segmentation_thick3_cuda = numpy2tensor2cuda(batch_road_segmentation_thick3_dilated)
-            batch_junction_segmentation_thick3_cuda = numpy2tensor2cuda(batch_junction_segmentation_thick3_dilated)
+            batch_road_segmentation_cuda = numpy2tensor2cuda(
+                data_dict.batch_road_segmentation)
+            batch_junction_segmentation_cuda = numpy2tensor2cuda(
+                data_dict.batch_junction_segmentation)
 
             batch_traj_inputs_cuda = None
             batch_aerial_traj_cuda = None
@@ -271,7 +259,7 @@ def main():
                     batch_aerial_traj_cuda,
                     batch_normalized_traj,
                     batch_valid_mask,
-                    batch_walked_path_cuda,
+                    batch_walked_path_small_cuda,
                     NUM_TARGETS=None,
                     test=False,
                     model=cfg.TRAIN.MODEL,
@@ -298,7 +286,6 @@ def main():
                 batch_output_junc_cuda = batch_output_cuda_dict['junc'] # 'junc' torch.Size([20, 1, 64, 64])
                 batch_output_anchor_maps_cuda = batch_output_cuda_dict['anchor'] # 'anchor' torch.Size([20, 4, 256, 256])
                 batch_output_anchor_step_maps_cuda = batch_output_cuda_dict['anchor_lowrs'] # 'anchor_lowrs' torch.Size([20, 4, 256, 256])
-                batch_output_traj_road_cuda = batch_output_cuda_dict['traj_road'] # 'junc' torch.Size([20, 1, 64, 64])
 
                 # 输出结果内容可视化
                 if use_trajectory and path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
@@ -344,17 +331,14 @@ def main():
 
                 anchor_loss += anchor_mid_loss
 
-                # road_loss = junc_loss = 0
-                # for item in batch_output_road_cuda:
-                road_loss = criteria(batch_output_road_cuda, batch_road_segmentation_thick3_cuda).cuda()
-                # road_loss = criterion_road(batch_road_segmentation_thick3_cuda, batch_output_road_cuda).cuda()
-                # for item in batch_output_junc_cuda:
-                junc_loss = criteria(batch_output_junc_cuda, batch_junction_segmentation_thick3_cuda).cuda()
-                # junc_loss = criterion_road(batch_junction_segmentation_thick3_cuda, batch_output_junc_cuda).cuda()
+                road_loss = criteria(
+                    batch_output_road_cuda,
+                    batch_road_segmentation_cuda).cuda()
+                junc_loss = criteria(
+                    batch_output_junc_cuda,
+                    batch_junction_segmentation_cuda).cuda()
 
-                # traj_road_loss  = criteria(batch_output_traj_road_cuda, batch_road_segmentation_cuda).cuda()
-
-                loss = anchor_loss + 10 * road_loss + 10 * junc_loss
+                loss = anchor_loss + road_loss + junc_loss
 
                 if path_it % cfg.TRAIN.PRINT_ITERATION == 0:
                     # Log anchor loss to TensorBoard
@@ -399,10 +383,10 @@ def main():
                     path_iterations=path_iterations,
                     time_meter=time_meter,
                     anchor_loss=anchor_losses,
-                    road_loss_val=road_losses.val * 10,
-                    road_loss_avg=road_losses.avg * 10,
-                    junc_loss_val=junc_losses.val * 10,
-                    junc_loss_avg=junc_losses.avg * 10,
+                    road_loss_val=road_losses.val,
+                    road_loss_avg=road_losses.avg,
+                    junc_loss_val=junc_losses.val,
+                    junc_loss_avg=junc_losses.avg,
                     total_loss=losses
                 )
                 logger.info(msg)
@@ -419,7 +403,7 @@ def main():
                         "Total: {total_loss.avg:.3f}" \
                     .format(outer_it, path_it, path_iterations=path_iterations,
                             time_meter=time_meter, anchor_loss=anchor_losses,
-                            road_loss=road_losses.avg * 10, junc_loss=junc_losses.avg * 10, total_loss=losses)
+                            road_loss=road_losses.avg, junc_loss=junc_losses.avg, total_loss=losses)
                 logger.info(msg)
 
                 time_meter.reset()

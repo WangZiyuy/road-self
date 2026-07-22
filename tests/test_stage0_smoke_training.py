@@ -141,10 +141,12 @@ class _TinyRoadModel(nn.Module):
         self.head = nn.Conv2d(4, 6, kernel_size=1)
 
     def forward(self, aerial, walked):
-        features = self.head(torch.cat([aerial, walked], dim=1))
+        walked_full = F.interpolate(
+            walked, size=aerial.shape[-2:], mode="nearest")
+        features = self.head(torch.cat([aerial, walked_full], dim=1))
         return {
-            "road": features[:, 0:1],
-            "junc": features[:, 1:2],
+            "road": F.avg_pool2d(features[:, 0:1], 4),
+            "junc": F.avg_pool2d(features[:, 1:2], 4),
             "anchor": features[:, 2:6],
             "anchor_lowrs": features[:, 2:6] * 0.5,
         }
@@ -211,13 +213,13 @@ class Stage0SmokeTrainingTest(unittest.TestCase):
 
             self.assertNotIn("batch_valid_trajectory_inputs", batch)
             aerial = torch.from_numpy(batch.batch_inputs).float()
-            walked = torch.from_numpy(batch.batch_walked_path).float()
+            walked = torch.from_numpy(batch.batch_walked_path_small).float()
             target_maps = torch.from_numpy(batch.batch_target_maps).float()
             road_target = torch.from_numpy(
-                batch.batch_road_segmentation_thick3
+                batch.batch_road_segmentation
             ).float()
             junc_target = torch.from_numpy(
-                batch.batch_junction_segmentation_thick3
+                batch.batch_junction_segmentation
             ).float()
 
             torch.manual_seed(20260722)
@@ -239,7 +241,7 @@ class Stage0SmokeTrainingTest(unittest.TestCase):
             junc_loss = F.binary_cross_entropy_with_logits(
                 output["junc"], junc_target, reduction="sum"
             )
-            loss = anchor_loss + 10 * road_loss + 10 * junc_loss
+            loss = anchor_loss + road_loss + junc_loss
             self.assertTrue(torch.isfinite(loss))
             loss.backward()
             optimizer.step()

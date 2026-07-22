@@ -55,13 +55,13 @@ TRAIN:
     MAX_REGION_AREA: 200
   MODEL: origin
   CHECKPOINT:
-    PREFIX: "image_only"
+    PREFIX: "image_only_original"
     SAVE_LATEST: True
     SAVE_EVERY_OUTER: 1
 
 TEST:
-  CKPT: "image_only.latest"
-  CKPT_FILE: "image_only.latest.pth.tar"
+  CKPT: "image_only_original.latest"
+  CKPT_FILE: "image_only_original.latest.pth.tar"
   GPU_ID: "0"
   CPU_WORKER: 5
   DATA_PARALLEL: False
@@ -69,6 +69,7 @@ TEST:
   BATCH_SIZE_ANCHOR: 15
 
   TEST_IMG_SZ: 8192
+  NUM_TILES: 2
   CROP_SZ: 1024
   WINDOW_SIZE: 256
   INFER_STEP: "start"

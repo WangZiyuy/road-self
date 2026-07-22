@@ -53,6 +53,11 @@ def main():
     parser = argparse.ArgumentParser(description="Compare current RPNet structure with a checkpoint.")
     parser.add_argument("--checkpoint", required=True, help="Path to .pth.tar checkpoint.")
     parser.add_argument("--num-targets", type=int, default=4)
+    parser.add_argument(
+        "--trajectory-modules",
+        action="store_true",
+        help="Include legacy_current-only modules in the model surface.",
+    )
     parser.add_argument("--limit", type=int, default=200)
     args = parser.parse_args()
 
@@ -60,7 +65,11 @@ def main():
     state_dict = checkpoint.get("state_dict", checkpoint)
     state_dict = strip_module_prefix(state_dict)
 
-    model = RPNet(num_targets=args.num_targets)
+    model = RPNet(
+        num_targets=args.num_targets,
+        backbone_pretrained=False,
+        enable_trajectory_modules=args.trajectory_modules,
+    )
     model_state = model.state_dict()
 
     checkpoint_keys = set(state_dict.keys())

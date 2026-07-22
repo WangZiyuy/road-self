@@ -181,11 +181,9 @@ class OSMDataset:
         batch_target_poses = []
         default_shape = (self.batch_size, 1, self.window_size, self.window_size)
         batch_walked_path_small = np.zeros((self.batch_size, 1, self.window_size // 4, self.window_size // 4))
-        batch_walked_path = np.zeros((self.batch_size, 1, self.window_size, self.window_size))
         batch_road_segmentation = np.zeros((self.batch_size, 1, self.window_size // 4, self.window_size // 4))
         batch_road_segmentation_thick3 = np.zeros(default_shape)
         batch_junction_segmentation = np.zeros((self.batch_size, 1, self.window_size // 4, self.window_size // 4))
-        batch_junction_segmentation_thick3 = np.zeros(default_shape)
         batch_aerial_images_hwc = []
         batch_traj_images_hwc = []
         batch_valid_trajectory_inputs = []
@@ -215,11 +213,9 @@ class OSMDataset:
             fetch_list = ['aerial_image_chw',
                           'aerial_image_hwc',
                           'walked_path_small',
-                          'walked_path',
                           'road_seg_small',
                           'road_seg_thick3',
-                          'junc_seg_small',
-                          'junc_seg_thick3']
+                          'junc_seg_small']
             fetch_list.extend(trajectory_fetch_fields(
                 self.trajectory_mode, include_raster=True))
 
@@ -250,11 +246,9 @@ class OSMDataset:
                 batch_aerial_traj[i] = np.concatenate(
                     (batch_inputs[i], batch_traj_inputs[i]), axis=0)
             batch_walked_path_small[i] = data_dict.walked_path_small
-            batch_walked_path[i] = data_dict.walked_path
             batch_road_segmentation[i] = data_dict.road_seg_small
             batch_road_segmentation_thick3[i] = data_dict.road_seg_thick3
             batch_junction_segmentation[i] = data_dict.junc_seg_small
-            batch_junction_segmentation_thick3[i] = data_dict.junc_seg_thick3
             batch_target_poses.append(target_poses)
             batch_is_key_point[i] = is_key_point
             batch_end_index[i] = 1 if is_key_point else target_poses.get_supervision_end_index()
@@ -275,11 +269,9 @@ class OSMDataset:
             'batch_end_index': batch_end_index,
             'batch_target_poses': batch_target_poses,
             'batch_walked_path_small': batch_walked_path_small,
-            'batch_walked_path': batch_walked_path,
             'batch_road_segmentation': batch_road_segmentation,
             'batch_road_segmentation_thick3': batch_road_segmentation_thick3,
             'batch_junction_segmentation': batch_junction_segmentation,
-            'batch_junction_segmentation_thick3': batch_junction_segmentation_thick3,
             'batch_aerial_images_hwc': batch_aerial_images_hwc,
         })
         if self.use_trajectory:
@@ -322,8 +314,8 @@ class OSMDataset:
                 aerial_image=res_dict.batch_aerial_images_hwc[x], target_poses=res_dict.batch_target_poses[x],
                 pred_gt_pair_list=[
                     ("anchor", res_dict.batch_output_anchor_maps[x], res_dict.batch_target_maps[x]),
-                    ("road", res_dict.batch_output_road[x, 0], res_dict.batch_road_segmentation_thick3[x, 0]),
-                    ("junc", res_dict.batch_output_junc[x, 0], res_dict.batch_junction_segmentation_thick3[x, 0])
+                    ("road", res_dict.batch_output_road[x, 0], res_dict.batch_road_segmentation[x, 0]),
+                    ("junc", res_dict.batch_output_junc[x, 0], res_dict.batch_junction_segmentation[x, 0])
                 ])
 
         for i in range(len(res_dict.path_indices)):

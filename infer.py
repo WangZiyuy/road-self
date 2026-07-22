@@ -274,8 +274,11 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
             batch_is_key_point = np.empty(batch_size)
             batch_inputs = np.empty(
                 (batch_size, 3, cfg.TEST.WINDOW_SIZE, cfg.TEST.WINDOW_SIZE))
-            batch_walked_path = np.empty(
-                (batch_size, 1, cfg.TEST.WINDOW_SIZE, cfg.TEST.WINDOW_SIZE))
+            batch_walked_path = np.empty((
+                batch_size,
+                1,
+                cfg.TEST.WINDOW_SIZE // 4,
+                cfg.TEST.WINDOW_SIZE // 4))
             batch_valid_trajectory_inputs = []
 
             for path_idx in range(len(paths)):
@@ -298,7 +301,7 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                 batch_extension_vertices.append(extension_vertex)
                 batch_is_key_point[i] = is_key_point
 
-                fetch_list = ['aerial_image_chw', 'walked_path']
+                fetch_list = ['aerial_image_chw', 'walked_path_small']
                 fetch_list.extend(trajectory_fetch_fields(
                     TRAJECTORY_MODE, include_raster=False))
                 if cfg.TEST.SAVE_EXAMPLES:
@@ -312,7 +315,7 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                     WINDOW_SIZE=cfg.TEST.WINDOW_SIZE)
                 data_dict = EasyDict(data_dict)
                 batch_inputs[i] = data_dict.aerial_image_chw
-                batch_walked_path[i] = data_dict.walked_path
+                batch_walked_path[i] = data_dict.walked_path_small
                 if USE_TRAJECTORY:
                     batch_valid_trajectory_inputs.append(data_dict.valid_trajectories)
                 if len(path_indices) >= batch_size:
@@ -334,7 +337,7 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
             batch_valid_trajectory_inputs = batch_valid_trajectory_inputs[:length_path_indices]
 
             batch_inputs_cuda = numpy2tensor2cuda(batch_inputs)
-            batch_walked_path_cuda = numpy2tensor2cuda(batch_walked_path)
+            batch_walked_path_small_cuda = numpy2tensor2cuda(batch_walked_path)
             batch_normalized_traj, batch_valid_mask = prepare_trajectory_sequence_batch(
                 TRAJECTORY_MODE,
                 batch_valid_trajectory_inputs if USE_TRAJECTORY else None,
@@ -348,7 +351,7 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                 aerial_traj_image=None,
                 neighborhood_trajectory_norm=batch_normalized_traj,
                 valid_mask=batch_valid_mask,
-                walked_path=batch_walked_path_cuda,
+                walked_path=batch_walked_path_small_cuda,
                 NUM_TARGETS=cfg.TEST.NUM_TARGETS,
                 model=cfg.TRAIN.MODEL,
                 use_traj=USE_TRAJECTORY)
@@ -525,6 +528,7 @@ def prepare_net():
     net = RPNet(
         cfg.TRAIN.NUM_TARGETS,
         backbone_pretrained=cfg.TRAIN.get("BACKBONE_PRETRAINED", True),
+        enable_trajectory_modules=USE_TRAJECTORY,
     )
     net = net.cuda()
     file_name = resolve_inference_checkpoint_path(cfg, require_exists=True)

@@ -117,7 +117,10 @@ TEST:
   BINARIZE_MAP:
     # 测试下来，好像junc的多少和ANCHOR_MAX_REGION_AREA关系不大，JUNC_SEG_THRESHOLE设置为0.01会明显增加
     # 道路区域和ROAD_SEG_THRESHOLE关系不大（0.1和0.01），
-    ROAD_SEG_THRESHOLE: 0.01
+    # This legacy field is also used to binarize anchor heatmaps in
+    # infer_anchor. 0.01 merges nearby responses into components larger than
+    # JUNC_MAX_REGION_AREA and can suppress nearly every next-node proposal.
+    ROAD_SEG_THRESHOLE: 0.3
     # a hyper-parameter to discard road segmentation lower than ROAD_SEG_THRESHOLE
     JUNC_MAX_REGION_AREA: 200
     # a hyper-parameter to detect junction starting points when doing junction segmentation nms

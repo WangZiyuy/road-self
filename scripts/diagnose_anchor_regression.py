@@ -163,7 +163,7 @@ def forward_original_vecroad(
 def forward_current_road_self(
     net: RPNet,
     aerial_image: torch.Tensor,
-    walked_path: torch.Tensor,
+    walked_path_small: torch.Tensor,
     num_targets: int,
 ) -> Dict[str, torch.Tensor]:
     output = net(
@@ -172,7 +172,7 @@ def forward_current_road_self(
         aerial_traj_image=None,
         neighborhood_trajectory_norm=None,
         valid_mask=None,
-        walked_path=walked_path,
+        walked_path=walked_path_small,
         NUM_TARGETS=num_targets,
         test=False,
         model="origin",
@@ -372,7 +372,7 @@ def _run_case(
             )
         elif architecture == "current_road_self":
             output = forward_current_road_self(
-                net, aerial, walked, int(cfg.TEST.NUM_TARGETS)
+                net, aerial, walked_small, int(cfg.TEST.NUM_TARGETS)
             )
         else:
             raise ValueError("unknown architecture: {}".format(architecture))

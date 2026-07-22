@@ -26,6 +26,9 @@ except ImportError:  # Keep the stage-0 tests runnable in the minimal local env.
 
 import utils.OSMDataset as dataset_module
 from model.model import RPNet
+from scripts.validate_original_vecroad_alignment import (
+    official_reference_forward,
+)
 
 
 class _FakePoint:
@@ -193,10 +196,10 @@ class ImageOnlyModelPathTest(unittest.TestCase):
         torch.manual_seed(20260722)
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         model = RPNet(num_targets=4, backbone_pretrained=False).to(device).eval()
-        aerial = torch.randn(1, 3, 32, 32, device=device)
-        walked = torch.randn(1, 1, 32, 32, device=device)
-        dummy_traj_image = torch.randn(1, 1, 32, 32, device=device)
-        dummy_aerial_traj = torch.randn(1, 4, 32, 32, device=device)
+        aerial = torch.randn(1, 3, 64, 64, device=device)
+        walked = torch.randn(1, 1, 16, 16, device=device)
+        dummy_traj_image = torch.randn(1, 1, 64, 64, device=device)
+        dummy_aerial_traj = torch.randn(1, 4, 64, 64, device=device)
         dummy_tracks = torch.randn(1, 2, 3, 2, device=device)
         dummy_mask = torch.ones(1, 2, 3, dtype=torch.bool, device=device)
 
@@ -225,12 +228,15 @@ class ImageOnlyModelPathTest(unittest.TestCase):
                 model="origin",
                 use_traj=False,
             )
+            official = official_reference_forward(
+                model, aerial, walked, num_targets=4
+            )
 
         expected_shapes = {
-            "road": (1, 1, 32, 32),
-            "junc": (1, 1, 32, 32),
-            "anchor": (1, 4, 32, 32),
-            "anchor_lowrs": (1, 4, 32, 32),
+            "road": (1, 1, 16, 16),
+            "junc": (1, 1, 16, 16),
+            "anchor": (1, 4, 64, 64),
+            "anchor_lowrs": (1, 4, 64, 64),
         }
         for key, expected_shape in expected_shapes.items():
             self.assertIn(key, stage0)
@@ -239,10 +245,56 @@ class ImageOnlyModelPathTest(unittest.TestCase):
             self.assertLessEqual(
                 float((legacy[key] - stage0[key]).abs().max().cpu()), 1e-6
             )
+            self.assertLessEqual(
+                float((official[key] - stage0[key]).abs().max().cpu()), 1e-6
+            )
 
-        del model, legacy, stage0
+        del model, legacy, stage0, official
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
+
+    def test_image_only_parameter_surface_excludes_legacy_trajectory_modules(self):
+        model = RPNet(num_targets=4, backbone_pretrained=False)
+        keys = tuple(model.state_dict())
+        self.assertEqual(len(keys), 648)
+        forbidden_prefixes = (
+            "transformer.",
+            "fuse_module_traj.",
+            "upsample1.",
+            "DSF.",
+            "stage_1_traj.",
+            "missing_traj_feature",
+        )
+        self.assertFalse(any(
+            key.startswith(forbidden_prefixes) for key in keys
+        ))
+
+        trajectory_model = RPNet(
+            num_targets=4,
+            backbone_pretrained=False,
+            enable_trajectory_modules=True,
+        )
+        trajectory_keys = tuple(trajectory_model.state_dict())
+        self.assertTrue(any(
+            key.startswith("transformer.") for key in trajectory_keys
+        ))
+        self.assertTrue(any(
+            key.startswith("fuse_module_traj.") for key in trajectory_keys
+        ))
+        trajectory_model.eval()
+        with torch.no_grad():
+            output = trajectory_model(
+                torch.randn(1, 3, 64, 64),
+                None,
+                None,
+                torch.randn(1, 2, 3, 2),
+                torch.ones(1, 2, 3, dtype=torch.bool),
+                torch.zeros(1, 1, 16, 16),
+                model="origin",
+                use_traj=True,
+            )
+        self.assertEqual(tuple(output["anchor"].shape), (1, 4, 64, 64))
+        self.assertEqual(tuple(output["road"].shape), (1, 1, 16, 16))
 
 
 if __name__ == "__main__":
