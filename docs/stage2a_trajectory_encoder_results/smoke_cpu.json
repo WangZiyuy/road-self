@@ -1,0 +1,228 @@
+{
+  "budgets": [
+    {
+      "batch_build_ms": 110.86130002513528,
+      "cuda_peak_allocated_bytes": null,
+      "forward_time_ms": {
+        "max": 10.760699980892241,
+        "mean": 10.232033343830457,
+        "median": 10.594799998216331,
+        "min": 9.340600052382797,
+        "repeats": 3
+      },
+      "fragment_tokens_finite": true,
+      "fragment_tokens_shape": [
+        3,
+        32,
+        128
+      ],
+      "input_shape_b_n_t": [
+        3,
+        32,
+        9
+      ],
+      "input_tensor_bytes": 22728,
+      "kept_fragment_count_per_sample": [
+        32,
+        32,
+        32
+      ],
+      "max_fragments": 32,
+      "output_tensor_bytes": 491520,
+      "padding_fragment_tokens_zero": true,
+      "padding_point_tokens_zero": true,
+      "point_tokens_finite": true,
+      "point_tokens_shape": [
+        3,
+        32,
+        9,
+        128
+      ],
+      "process_rss_after_bytes": 517386240,
+      "process_rss_before_bytes": 515805184,
+      "process_rss_delta_bytes": 1581056,
+      "total_fragment_count_per_sample": [
+        131,
+        47,
+        1118
+      ],
+      "truncated_fragment_count_per_sample": [
+        99,
+        15,
+        1086
+      ],
+      "valid_fragment_count": 96,
+      "valid_point_count": 589
+    },
+    {
+      "batch_build_ms": 125.75920001836494,
+      "cuda_peak_allocated_bytes": null,
+      "forward_time_ms": {
+        "max": 14.936299994587898,
+        "mean": 13.77520002036666,
+        "median": 13.571000017691404,
+        "min": 12.818300048820674,
+        "repeats": 3
+      },
+      "fragment_tokens_finite": true,
+      "fragment_tokens_shape": [
+        3,
+        64,
+        128
+      ],
+      "input_shape_b_n_t": [
+        3,
+        64,
+        9
+      ],
+      "input_tensor_bytes": 45384,
+      "kept_fragment_count_per_sample": [
+        64,
+        47,
+        64
+      ],
+      "max_fragments": 64,
+      "output_tensor_bytes": 983040,
+      "padding_fragment_tokens_zero": true,
+      "padding_point_tokens_zero": true,
+      "point_tokens_finite": true,
+      "point_tokens_shape": [
+        3,
+        64,
+        9,
+        128
+      ],
+      "process_rss_after_bytes": 529321984,
+      "process_rss_before_bytes": 527085568,
+      "process_rss_delta_bytes": 2236416,
+      "total_fragment_count_per_sample": [
+        131,
+        47,
+        1118
+      ],
+      "truncated_fragment_count_per_sample": [
+        67,
+        0,
+        1054
+      ],
+      "valid_fragment_count": 175,
+      "valid_point_count": 1073
+    },
+    {
+      "batch_build_ms": 151.69229998718947,
+      "cuda_peak_allocated_bytes": null,
+      "forward_time_ms": {
+        "max": 24.88649997394532,
+        "mean": 22.796266673443217,
+        "median": 23.171400011051446,
+        "min": 20.33090003533289,
+        "repeats": 3
+      },
+      "fragment_tokens_finite": true,
+      "fragment_tokens_shape": [
+        3,
+        128,
+        128
+      ],
+      "input_shape_b_n_t": [
+        3,
+        128,
+        9
+      ],
+      "input_tensor_bytes": 90696,
+      "kept_fragment_count_per_sample": [
+        128,
+        47,
+        128
+      ],
+      "max_fragments": 128,
+      "output_tensor_bytes": 1966080,
+      "padding_fragment_tokens_zero": true,
+      "padding_point_tokens_zero": true,
+      "point_tokens_finite": true,
+      "point_tokens_shape": [
+        3,
+        128,
+        9,
+        128
+      ],
+      "process_rss_after_bytes": 552734720,
+      "process_rss_before_bytes": 541966336,
+      "process_rss_delta_bytes": 10768384,
+      "total_fragment_count_per_sample": [
+        131,
+        47,
+        1118
+      ],
+      "truncated_fragment_count_per_sample": [
+        3,
+        0,
+        990
+      ],
+      "valid_fragment_count": 303,
+      "valid_point_count": 1905
+    }
+  ],
+  "cache_dir": "data_self/input/traj_structured/xian/v1",
+  "cases": [
+    {
+      "center_xy": [
+        2018.0,
+        4366.0
+      ],
+      "degree": 2,
+      "fragment_count": 131,
+      "node_type": "ordinary",
+      "point_count": 682,
+      "query_ms": 330.0656999927014,
+      "selection_probe_count": 1,
+      "track_count": 117,
+      "vertex_id": 332
+    },
+    {
+      "center_xy": [
+        2675.0,
+        3254.0
+      ],
+      "degree": 3,
+      "fragment_count": 47,
+      "node_type": "t_junction",
+      "point_count": 260,
+      "query_ms": 76.95329998387024,
+      "selection_probe_count": 1,
+      "track_count": 41,
+      "vertex_id": 414
+    },
+    {
+      "center_xy": [
+        2316.0,
+        1343.0
+      ],
+      "degree": 4,
+      "fragment_count": 1118,
+      "node_type": "multi_branch",
+      "point_count": 7432,
+      "query_ms": 588.5094000259414,
+      "selection_probe_count": 1,
+      "track_count": 958,
+      "vertex_id": 371
+    }
+  ],
+  "context_points": 2,
+  "device": "cpu",
+  "encoder": {
+    "dropout": 0.1,
+    "hidden_dim": 128,
+    "num_heads": 4,
+    "num_layers": 2,
+    "parameter_count": 398208
+  },
+  "graph_path": "data_self/input/graphs/xian.graph",
+  "grid_index_basis": "trajectory_sample_points_and_segments_supercover_cells",
+  "max_spatial_gap_pixels": 256.0,
+  "max_time_gap_seconds": 60.0,
+  "purpose": "smoke_only_not_formal_performance",
+  "seed": 20260724,
+  "torch_version": "2.8.0+cu126",
+  "window_size": 256.0
+}
