@@ -30,6 +30,10 @@ from utils.structured_trajectory_store import (
     SCHEMA_VERSION,
     open_structured_trajectory_store,
 )
+from utils.trajectory_fragments import (
+    SEGMENT_GRID_INDEX_BASIS,
+    trajectory_grid_cells,
+)
 
 
 @dataclass(frozen=True)
@@ -560,9 +564,10 @@ def build_structured_trajectory_cache(
             points_xy[start:end] = pixel_points
             timestamps_ns_file[start:end] = timestamps_ns
 
-            occupied_cells = np.unique(
-                np.floor(pixel_points / cell_size).astype(np.int32),
-                axis=0,
+            occupied_cells = trajectory_grid_cells(
+                pixel_points,
+                cell_size,
+                include_segments=True,
             )
             for cell_x, cell_y in occupied_cells:
                 cell_to_track_ids[(int(cell_x), int(cell_y))].append(
@@ -621,7 +626,7 @@ def build_structured_trajectory_cache(
             "cell_size": int(cell_size),
             "grid_cell_count": int(cells.shape[0]),
             "grid_membership_count": int(grid_track_ids.shape[0]),
-            "grid_index_basis": "trajectory_sample_point_cells",
+            "grid_index_basis": SEGMENT_GRID_INDEX_BASIS,
             "track_order": source_order,
             "coordinate_order": ["x", "y"],
             "timestamp_unit": "nanoseconds_since_unix_epoch",
@@ -640,6 +645,14 @@ def build_structured_trajectory_cache(
                 "grid_track_ids": _array_description(grid_track_ids),
             },
         }
+        if "canvas_size" in metadata:
+            canvas_size = metadata["canvas_size"]
+            if isinstance(canvas_size, (list, tuple)):
+                meta["canvas_size"] = [
+                    int(value) for value in canvas_size
+                ]
+            else:
+                meta["canvas_size"] = int(canvas_size)
         _write_json(temporary_dir / "meta.json", meta)
 
         temporary_store = open_structured_trajectory_store(

@@ -1,4 +1,4 @@
-"""Memory-mapped reader for the Stage 1A structured trajectory cache."""
+"""Memory-mapped Stage 1A store with Stage 1B local-fragment retrieval."""
 
 from __future__ import annotations
 
@@ -9,6 +9,14 @@ from pathlib import Path
 from typing import Any, Dict, List, Mapping
 
 import numpy as np
+
+from utils.trajectory_fragments import (
+    POINT_GRID_INDEX_BASIS,
+    SEGMENT_GRID_INDEX_BASIS,
+    TrajectoryFragment,
+    query_trajectory_fragments as _query_trajectory_fragments,
+    trajectory_grid_cells,
+)
 
 
 SCHEMA_VERSION = "1.0"
@@ -190,7 +198,7 @@ class StructuredTrajectoryStore:
             ymin: float,
             xmax: float,
             ymax: float) -> np.ndarray:
-        """Return sorted track IDs whose indexed point cells overlap a rectangle."""
+        """Return sorted track IDs whose indexed grid cells overlap a rectangle."""
 
         bounds = (xmin, ymin, xmax, ymax)
         if not all(math.isfinite(float(value)) for value in bounds):
@@ -218,6 +226,24 @@ class StructuredTrajectoryStore:
             return np.empty((0,), dtype=np.int32)
         return np.unique(np.concatenate(candidate_parts)).astype(
             np.int32, copy=False)
+
+    def query_trajectory_fragments(
+            self,
+            center_xy,
+            window_size=256,
+            context_points=2,
+            max_time_gap_seconds=None,
+            max_spatial_gap_pixels=None) -> List[TrajectoryFragment]:
+        """Return exact continuous trajectory visits to a local window."""
+
+        return _query_trajectory_fragments(
+            store=self,
+            center_xy=center_xy,
+            window_size=window_size,
+            context_points=context_points,
+            max_time_gap_seconds=max_time_gap_seconds,
+            max_spatial_gap_pixels=max_spatial_gap_pixels,
+        )
 
     def validate(self) -> Dict[str, Any]:
         """Fully validate array, track, metadata, and grid-index consistency."""
@@ -361,14 +387,23 @@ class StructuredTrajectoryStore:
             raise ValueError(
                 "meta grid_membership_count does not match grid index")
 
+        grid_basis = self.meta.get(
+            "grid_index_basis", POINT_GRID_INDEX_BASIS)
+        if grid_basis not in {
+            POINT_GRID_INDEX_BASIS,
+            SEGMENT_GRID_INDEX_BASIS,
+        }:
+            raise ValueError(
+                "unsupported grid_index_basis {!r}".format(grid_basis))
+        include_segments = grid_basis == SEGMENT_GRID_INDEX_BASIS
         expected_grid_memberships = 0
         for track_index in range(trajectory_count):
             start = int(offsets[track_index])
             end = int(offsets[track_index + 1])
-            occupied_cells = np.unique(
-                np.floor(self.points_xy[start:end] / self.cell_size).astype(
-                    np.int32),
-                axis=0,
+            occupied_cells = trajectory_grid_cells(
+                self.points_xy[start:end],
+                self.cell_size,
+                include_segments=include_segments,
             )
             expected_grid_memberships += len(occupied_cells)
             for cell_x, cell_y in occupied_cells:
@@ -401,6 +436,7 @@ class StructuredTrajectoryStore:
             "point_count": point_count,
             "grid_cell_count": int(self.grid_cells.shape[0]),
             "grid_membership_count": int(self.grid_track_ids.shape[0]),
+            "grid_index_basis": grid_basis,
             "memory_mapped": {
                 "points_xy": isinstance(self.points_xy, np.memmap),
                 "timestamps_ns": isinstance(self.timestamps_ns, np.memmap),

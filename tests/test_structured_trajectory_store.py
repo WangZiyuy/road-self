@@ -15,6 +15,7 @@ from utils.structured_trajectory_store import (
     REQUIRED_CACHE_FILES,
     open_structured_trajectory_store,
 )
+from utils.trajectory_fragments import SEGMENT_GRID_INDEX_BASIS
 
 
 def _write_json(path, value):
@@ -129,6 +130,8 @@ class StructuredTrajectoryStoreTest(unittest.TestCase):
         validation = store.validate()
 
         self.assertTrue(validation["passed"])
+        self.assertEqual(
+            validation["grid_index_basis"], SEGMENT_GRID_INDEX_BASIS)
         self.assertEqual(meta["trajectory_count"], 2)
         self.assertEqual(meta["point_count"], 5)
         np.testing.assert_array_equal(
