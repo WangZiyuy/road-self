@@ -196,7 +196,7 @@ python scripts/validate_stage0_closed_loop.py \
 Formal training and inference use:
 
 ```bash
-python train.py --config configs/baseline_image_only.yml
+python train.py --config configs/baseline_image_only.yml --gpu-id <physical_gpu>
 python infer.py --config configs/baseline_image_only.yml
 ```
 

@@ -67,6 +67,12 @@ def main():
         help="path to config file",
         type=str,
     )
+    parser.add_argument(
+        "--gpu-id",
+        default=None,
+        help="physical CUDA device id; overrides TRAIN.GPU_ID",
+        type=str,
+    )
     args = parser.parse_args()
 
     assert os.path.isfile(args.config)
@@ -74,6 +80,11 @@ def main():
     cfg = yaml.load(config_file, Loader=yaml.UnsafeLoader)
     config_file.close()
     cfg = EasyDict(cfg)
+    selected_gpu_id = str(
+        args.gpu_id if args.gpu_id is not None else cfg.TRAIN.GPU_ID)
+    cfg.TRAIN.GPU_ID = selected_gpu_id
+    # This must happen before the first torch.cuda capability/seed call.
+    os.environ["CUDA_VISIBLE_DEVICES"] = selected_gpu_id
     trajectory_mode = resolve_trajectory_mode(cfg)
     validate_trajectory_model_compatibility(cfg, trajectory_mode)
     use_trajectory = trajectory_mode != TRAJ_MODE_NONE
@@ -88,8 +99,6 @@ def main():
             torch.cuda.manual_seed_all(random_seed)
 
     #os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  # see issue #152
-    os.environ["CUDA_VISIBLE_DEVICES"] = cfg.TRAIN.GPU_ID
-
     os.makedirs(cfg.DIR.DATA_ROOT, exist_ok=True)
     os.makedirs(cfg.DIR.LOG_DIR, exist_ok=True)
     os.makedirs(cfg.DIR.CHECK_POINT_DIR, exist_ok=True)
@@ -99,6 +108,7 @@ def main():
 
     logger = get_logger(logger_name="logtrain", log_dir=cfg.DIR.LOG_DIR)
     logger.info("trajectory mode: %s", trajectory_mode)
+    logger.info("physical CUDA device: %s", selected_gpu_id)
     logger.info("path iterations per outer iteration: %d", path_iterations)
     tensorboard_enabled = cfg.TRAIN.get("TENSORBOARD", True)
     if tensorboard_enabled:

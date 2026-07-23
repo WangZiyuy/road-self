@@ -170,8 +170,16 @@ def main() -> int:
         run_env = os.environ.copy()
         if args.gpu_id is not None:
             run_env["CUDA_VISIBLE_DEVICES"] = str(args.gpu_id)
+        training_command = [
+            args.python,
+            "train.py",
+            "--config",
+            os.fspath(derived_config_path),
+        ]
+        if args.gpu_id is not None:
+            training_command.extend(["--gpu-id", str(args.gpu_id)])
         subprocess.run(
-            [args.python, "train.py", "--config", os.fspath(derived_config_path)],
+            training_command,
             cwd=REPO_ROOT,
             check=True,
             env=run_env,

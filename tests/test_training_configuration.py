@@ -58,6 +58,11 @@ class TrainingConfigurationTest(unittest.TestCase):
         self.assertNotIn("range(2048)", train_source)
         self.assertNotIn("/2048]", train_source)
         self.assertNotIn("outer_it * 2048", train_source)
+        self.assertIn('"--gpu-id"', train_source)
+        self.assertLess(
+            train_source.index('os.environ["CUDA_VISIBLE_DEVICES"]'),
+            train_source.index("torch.cuda.is_available()"),
+        )
 
 
 if __name__ == "__main__":
