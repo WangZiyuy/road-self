@@ -250,6 +250,74 @@ Detailed server report:
 
 `data_self/baseline_image_only/closed_loop/original_official_100/report.json`
 
+### Outer-5 full inference validation
+
+The formal run was intentionally stopped after the complete outer iteration 5
+checkpoint at the user's request. This was an engineering validation run, not
+a claim that training had converged or that the checkpoint was suitable for a
+published performance comparison.
+
+The immutable checkpoint used for inference was:
+
+```text
+data_self/baseline_image_only_original/ckpt/
+image_only_original.outer_005.path_2048.pth.tar
+```
+
+Its metadata reports `outer_it=5`, `path_it=2047`,
+`trajectory_mode=none`, 648 model keys, and 363 optimizer-state entries.
+Strict checkpoint loading and the legacy-disabled versus `TRAJ.MODE=none`
+forward comparison passed for all four outputs with maximum absolute
+difference `0.0`.
+
+Full Xian inference used
+`configs/baseline_image_only_infer_official.yml`. The graph-growth parameters
+match the official VecRoad defaults (`START_FROM_ROAD_PEAK=False`,
+`RECT_RADIUS=10`, `AVG_CONFIDENCE_THRESHOLD=0.2`,
+`ROAD_SEG_THRESHOLE=0.3`, `JUNC_SEG_THRESHOLE=0.3`, and
+`MIN_BAD_ROAD_AREA=200`). It ran on the complete 8192x8192 image with
+`CROP_SZ=2048`.
+
+Observed lifecycle:
+
+- segmentation completed in about 24.35 seconds;
+- road probability range was approximately `2.59e-11` to `0.99752`;
+- junction NMS produced 303 starting points;
+- graph exploration ended naturally after 3,138 iterations;
+- no OOM, traceback, `except_*.graph`, NaN, or Inf was observed;
+- the saved raw graph has 7,497 vertices and 15,086 directed edges;
+- the post-processed graph has 7,424 vertices and 15,006 directed edges;
+- neither saved graph contains duplicate-coordinate vertices, self-loops, or
+  isolated vertices.
+
+The post-processed graph is therefore non-empty and substantially developed;
+the historical near-empty-anchor failure did not reproduce. Compared with the
+existing official-checkpoint Xian output (4,759 vertices and 9,556 directed
+edges after post-processing), the outer-5 graph is about 56% denser. This
+indicates a possible early-checkpoint over-generation tendency rather than
+node starvation.
+
+Thirteen vertices lie just outside the nominal image boundary, with a minimum
+coordinate of `-6`. The existing official output also contains six such
+vertices, with a minimum coordinate of `-1`, so this is an inherited boundary
+overshoot in graph growth rather than a trajectory-mode failure. It remains a
+diagnostic item for future evaluation.
+
+As a non-publishable sanity check, thickness-5 graph masks were compared with
+the rasterized Xian training graph using a 6-pixel tolerance. The outer-5 graph
+gave precision `0.7595`, recall `0.8281`, and F1 `0.7923`. This is only a
+same-AOI engineering check: it is not the repository's formal pixel metric,
+does not establish generalization, and must not be reported as a test-set
+score.
+
+Server artifacts:
+
+```text
+data_self/baseline_image_only_original_validation_official/run/infer.stdout
+data_self/baseline_image_only_original_validation_official/segmentation/
+data_self/baseline_image_only_original_validation_official/graphs/
+```
+
 ## 10. Evaluation commands and unclaimed results
 
 After full inference, existing evaluation entry points remain:
