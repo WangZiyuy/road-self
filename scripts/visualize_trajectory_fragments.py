@@ -152,6 +152,8 @@ def visualize_fragments(
     background_image: Optional[Path] = None,
     max_time_gap_seconds: Optional[float] = None,
     max_spatial_gap_pixels: Optional[float] = None,
+    reference_segments_xy: Optional[Sequence[np.ndarray]] = None,
+    max_fragments: Optional[int] = None,
 ) -> Dict[str, Any]:
     store = open_structured_trajectory_store(str(cache_dir))
     fragments = store.query_trajectory_fragments(
@@ -161,6 +163,23 @@ def visualize_fragments(
         max_time_gap_seconds=max_time_gap_seconds,
         max_spatial_gap_pixels=max_spatial_gap_pixels,
     )
+    total_fragment_count = len(fragments)
+    if max_fragments is not None:
+        from utils.trajectory_batch import build_trajectory_batch
+
+        selection = build_trajectory_batch(
+            [fragments],
+            center_xy=[center_xy],
+            window_size=window_size,
+            max_fragments=max_fragments,
+        )
+        selected_indices = selection[
+            "source_fragment_indices"
+        ][0][selection["fragment_mask"][0]].tolist()
+        fragments = [
+            fragments[int(fragment_index)]
+            for fragment_index in selected_indices
+        ]
     center_x, center_y = map(float, center_xy)
     half_window = float(window_size) / 2.0
     display_margin = max(32.0, window_size * 0.25)
@@ -185,6 +204,31 @@ def visualize_fragments(
             origin="upper",
         )
 
+    reference_segments = (
+        [] if reference_segments_xy is None else reference_segments_xy
+    )
+    reference_segment_count = 0
+    for segment in reference_segments:
+        segment_array = np.asarray(segment, dtype=np.float64)
+        if segment_array.shape != (2, 2):
+            raise ValueError(
+                "each reference segment must have shape [2, 2]")
+        axis.plot(
+            segment_array[:, 0],
+            segment_array[:, 1],
+            color="cyan",
+            linewidth=3.0,
+            linestyle="--",
+            alpha=0.95,
+            zorder=3,
+            label=(
+                "incident GT edge"
+                if reference_segment_count == 0
+                else None
+            ),
+        )
+        reference_segment_count += 1
+
     track_ids = sorted({fragment.track_index for fragment in fragments})
     color_map = plt.get_cmap("tab20")
     color_by_track = {
@@ -206,6 +250,7 @@ def visualize_fragments(
             linewidth=2.0,
             alpha=0.9,
             label=label,
+            zorder=4,
         )
         axis.scatter(
             points[0, 0],
@@ -257,8 +302,13 @@ def visualize_fragments(
     axis.set_xlabel("global pixel x")
     axis.set_ylabel("global pixel y")
     axis.set_title(
-        "{} tracks / {} fragments around ({:.1f}, {:.1f})".format(
-            len(track_ids), len(fragments), center_x, center_y)
+        "{} tracks / {} of {} fragments around ({:.1f}, {:.1f})".format(
+            len(track_ids),
+            len(fragments),
+            total_fragment_count,
+            center_x,
+            center_y,
+        )
     )
     if len(track_ids) <= 20:
         axis.legend(loc="upper right", fontsize=8)
@@ -274,9 +324,15 @@ def visualize_fragments(
         "context_points": int(context_points),
         "trajectory_count": len(track_ids),
         "fragment_count": len(fragments),
+        "total_fragment_count": total_fragment_count,
+        "kept_fragment_count": len(fragments),
+        "truncated_fragment_count": (
+            total_fragment_count - len(fragments)),
+        "max_fragments": max_fragments,
         "track_indices_preview": track_ids[:50],
         "track_indices_truncated": len(track_ids) > 50,
         "background_alignment": alignment,
+        "reference_segment_count": reference_segment_count,
         "output_path": str(output_path.resolve()),
     }
 
@@ -291,6 +347,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--context-points", type=int, default=2)
     parser.add_argument("--max-time-gap-seconds", type=float, default=None)
     parser.add_argument("--max-spatial-gap-pixels", type=float, default=None)
+    parser.add_argument("--max-fragments", type=int, default=None)
     parser.add_argument("--background-image", type=Path, default=None)
     parser.add_argument("--output", type=Path, required=True)
     return parser.parse_args()
@@ -307,6 +364,7 @@ def main() -> None:
         background_image=args.background_image,
         max_time_gap_seconds=args.max_time_gap_seconds,
         max_spatial_gap_pixels=args.max_spatial_gap_pixels,
+        max_fragments=args.max_fragments,
     )
     print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))
 

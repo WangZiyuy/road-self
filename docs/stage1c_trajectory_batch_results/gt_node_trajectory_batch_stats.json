@@ -1,0 +1,1269 @@
+{
+  "analyzed_node_count": {
+    "multi_branch": 56,
+    "ordinary": 369,
+    "t_junction": 214
+  },
+  "background_alignment": {
+    "background_size": [
+      8192,
+      8192
+    ],
+    "coordinate_offset_xy": [
+      0,
+      0
+    ],
+    "coordinate_scale_xy": [
+      1.0,
+      1.0
+    ],
+    "original_size": [
+      4300,
+      5000
+    ],
+    "padding_pixel": [
+      0,
+      0,
+      0
+    ],
+    "status": "aligned_top_left_padding"
+  },
+  "budgets": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "by_node_type": {
+    "multi_branch": {
+      "batch_build_ms_at_largest_budget": {
+        "count": 56,
+        "max": 322.39709998248145,
+        "mean": 117.48380178635541,
+        "median": 111.03910001111217,
+        "min": 0.1666999887675047,
+        "p90": 200.21529999212362,
+        "p95": 233.2723249855917
+      },
+      "candidate_index_query_ms": {
+        "count": 56,
+        "max": 0.643499952275306,
+        "mean": 0.16844285502364592,
+        "median": 0.1516499905847013,
+        "min": 0.08399999933317304,
+        "p90": 0.23674999829381704,
+        "p95": 0.27624997892417014
+      },
+      "candidate_track_count_per_node": {
+        "count": 56,
+        "max": 2478.0,
+        "mean": 1356.3214285714287,
+        "median": 1368.0,
+        "min": 17.0,
+        "p90": 2118.0,
+        "p95": 2478.0
+      },
+      "fragment_count_per_node": {
+        "count": 56,
+        "max": 2813.0,
+        "mean": 1263.357142857143,
+        "median": 1219.0,
+        "min": 0.0,
+        "p90": 2217.5,
+        "p95": 2766.25
+      },
+      "fragment_counts_within_distance": {
+        "10": {
+          "count": 56,
+          "max": 328.0,
+          "mean": 170.75,
+          "median": 177.5,
+          "min": 0.0,
+          "p90": 306.5,
+          "p95": 321.25
+        },
+        "20": {
+          "count": 56,
+          "max": 665.0,
+          "mean": 319.4107142857143,
+          "median": 358.5,
+          "min": 0.0,
+          "p90": 575.0,
+          "p95": 598.25
+        },
+        "40": {
+          "count": 56,
+          "max": 1173.0,
+          "mean": 570.3571428571429,
+          "median": 620.0,
+          "min": 0.0,
+          "p90": 1042.5,
+          "p95": 1102.0
+        },
+        "80": {
+          "count": 56,
+          "max": 1985.0,
+          "mean": 939.7857142857143,
+          "median": 978.0,
+          "min": 0.0,
+          "p90": 1681.0,
+          "p95": 1879.25
+        }
+      },
+      "fragment_query_ms": {
+        "count": 56,
+        "max": 1368.2505000033416,
+        "mean": 501.8973535687629,
+        "median": 527.3586500261445,
+        "min": 10.072299977764487,
+        "p90": 820.9349000244401,
+        "p95": 949.3917249928927
+      },
+      "node_count": 56,
+      "point_count_per_fragment": {
+        "count": 70748,
+        "max": 14.0,
+        "mean": 5.727497597105218,
+        "median": 6.0,
+        "min": 1.0,
+        "p90": 8.0,
+        "p95": 8.0
+      },
+      "point_count_per_node": {
+        "count": 56,
+        "max": 14336.0,
+        "mean": 7235.875,
+        "median": 7421.5,
+        "min": 0.0,
+        "p90": 13374.5,
+        "p95": 13743.75
+      },
+      "segment_only_fragment_count_per_node": {
+        "count": 56,
+        "max": 84.0,
+        "mean": 15.017857142857142,
+        "median": 11.0,
+        "min": 0.0,
+        "p90": 32.5,
+        "p95": 36.25
+      },
+      "track_count_per_node": {
+        "count": 56,
+        "max": 2161.0,
+        "mean": 1066.0892857142858,
+        "median": 1107.5,
+        "min": 0.0,
+        "p90": 1881.5,
+        "p95": 2143.25
+      },
+      "truncation": {
+        "128": {
+          "fragment_truncation_rate": 0.9043647876971788,
+          "kept_fragment_count": 6766,
+          "max_fragments": 128,
+          "node_truncation_rate": 0.9107142857142857,
+          "truncated_fragment_count": 63982,
+          "truncated_node_count": 51
+        },
+        "256": {
+          "fragment_truncation_rate": 0.8154294114321253,
+          "kept_fragment_count": 13058,
+          "max_fragments": 256,
+          "node_truncation_rate": 0.8571428571428571,
+          "truncated_fragment_count": 57690,
+          "truncated_node_count": 48
+        },
+        "32": {
+          "fragment_truncation_rate": 0.9752784531011477,
+          "kept_fragment_count": 1749,
+          "max_fragments": 32,
+          "node_truncation_rate": 0.9642857142857143,
+          "truncated_fragment_count": 68999,
+          "truncated_node_count": 54
+        },
+        "64": {
+          "fragment_truncation_rate": 0.9512212359359982,
+          "kept_fragment_count": 3451,
+          "max_fragments": 64,
+          "node_truncation_rate": 0.9464285714285714,
+          "truncated_fragment_count": 67297,
+          "truncated_node_count": 53
+        }
+      }
+    },
+    "ordinary": {
+      "batch_build_ms_at_largest_budget": {
+        "count": 369,
+        "max": 228.13160001533106,
+        "mean": 61.148082386944594,
+        "median": 52.09150002337992,
+        "min": 0.12470001820474863,
+        "p90": 129.50146002694964,
+        "p95": 146.62421999964857
+      },
+      "candidate_index_query_ms": {
+        "count": 369,
+        "max": 0.4349999944679439,
+        "mean": 0.12378021869631761,
+        "median": 0.11129997437819839,
+        "min": 0.042000028770416975,
+        "p90": 0.19241999834775925,
+        "p95": 0.2224600058980285
+      },
+      "candidate_track_count_per_node": {
+        "count": 369,
+        "max": 3200.0,
+        "mean": 1485.029810298103,
+        "median": 1411.0,
+        "min": 17.0,
+        "p90": 2565.0,
+        "p95": 3154.0
+      },
+      "fragment_count_per_node": {
+        "count": 369,
+        "max": 3055.0,
+        "mean": 975.420054200542,
+        "median": 876.0,
+        "min": 0.0,
+        "p90": 2239.3999999999996,
+        "p95": 2466.2
+      },
+      "fragment_counts_within_distance": {
+        "10": {
+          "count": 369,
+          "max": 413.0,
+          "mean": 75.47425474254743,
+          "median": 59.0,
+          "min": 0.0,
+          "p90": 177.0,
+          "p95": 216.39999999999986
+        },
+        "20": {
+          "count": 369,
+          "max": 706.0,
+          "mean": 147.8590785907859,
+          "median": 129.0,
+          "min": 0.0,
+          "p90": 337.79999999999995,
+          "p95": 420.3999999999995
+        },
+        "40": {
+          "count": 369,
+          "max": 1267.0,
+          "mean": 284.37669376693765,
+          "median": 254.0,
+          "min": 0.0,
+          "p90": 680.4,
+          "p95": 773.3999999999999
+        },
+        "80": {
+          "count": 369,
+          "max": 2060.0,
+          "mean": 556.8157181571815,
+          "median": 467.0,
+          "min": 0.0,
+          "p90": 1274.8,
+          "p95": 1451.799999999999
+        }
+      },
+      "fragment_query_ms": {
+        "count": 369,
+        "max": 918.1525000021793,
+        "mean": 350.8889685631957,
+        "median": 354.2561999638565,
+        "min": 5.611000000499189,
+        "p90": 630.837220000103,
+        "p95": 687.4089399818331
+      },
+      "node_count": 369,
+      "point_count_per_fragment": {
+        "count": 359930,
+        "max": 14.0,
+        "mean": 6.194023837968494,
+        "median": 7.0,
+        "min": 1.0,
+        "p90": 8.0,
+        "p95": 8.0
+      },
+      "point_count_per_node": {
+        "count": 369,
+        "max": 19605.0,
+        "mean": 6041.775067750677,
+        "median": 4658.0,
+        "min": 0.0,
+        "p90": 14239.199999999997,
+        "p95": 16186.999999999996
+      },
+      "segment_only_fragment_count_per_node": {
+        "count": 369,
+        "max": 180.0,
+        "mean": 30.506775067750677,
+        "median": 21.0,
+        "min": 0.0,
+        "p90": 73.0,
+        "p95": 93.19999999999993
+      },
+      "track_count_per_node": {
+        "count": 369,
+        "max": 2431.0,
+        "mean": 867.7262872628726,
+        "median": 774.0,
+        "min": 0.0,
+        "p90": 1870.8,
+        "p95": 2034.6
+      },
+      "truncation": {
+        "128": {
+          "fragment_truncation_rate": 0.8816853277026089,
+          "kept_fragment_count": 42585,
+          "max_fragments": 128,
+          "node_truncation_rate": 0.8157181571815718,
+          "truncated_fragment_count": 317345,
+          "truncated_node_count": 301
+        },
+        "256": {
+          "fragment_truncation_rate": 0.7819770510932681,
+          "kept_fragment_count": 78473,
+          "max_fragments": 256,
+          "node_truncation_rate": 0.7073170731707317,
+          "truncated_fragment_count": 281457,
+          "truncated_node_count": 261
+        },
+        "32": {
+          "fragment_truncation_rate": 0.9684577556747145,
+          "kept_fragment_count": 11353,
+          "max_fragments": 32,
+          "node_truncation_rate": 0.948509485094851,
+          "truncated_fragment_count": 348577,
+          "truncated_node_count": 350
+        },
+        "64": {
+          "fragment_truncation_rate": 0.9382768871725058,
+          "kept_fragment_count": 22216,
+          "max_fragments": 64,
+          "node_truncation_rate": 0.8970189701897019,
+          "truncated_fragment_count": 337714,
+          "truncated_node_count": 331
+        }
+      }
+    },
+    "t_junction": {
+      "batch_build_ms_at_largest_budget": {
+        "count": 214,
+        "max": 396.81150001706555,
+        "mean": 84.20986728742719,
+        "median": 69.39024999155663,
+        "min": 0.21790002938359976,
+        "p90": 183.75685000792146,
+        "p95": 205.4477499943459
+      },
+      "candidate_index_query_ms": {
+        "count": 214,
+        "max": 0.8082999847829342,
+        "mean": 0.1540733645474277,
+        "median": 0.1464500091969967,
+        "min": 0.052099989261478186,
+        "p90": 0.2175499685108662,
+        "p95": 0.2577649633167311
+      },
+      "candidate_track_count_per_node": {
+        "count": 214,
+        "max": 3200.0,
+        "mean": 1255.9579439252336,
+        "median": 1180.5,
+        "min": 17.0,
+        "p90": 2228.0,
+        "p95": 2487.0
+      },
+      "fragment_count_per_node": {
+        "count": 214,
+        "max": 3062.0,
+        "mean": 866.1542056074767,
+        "median": 689.5,
+        "min": 0.0,
+        "p90": 1961.5,
+        "p95": 2197.45
+      },
+      "fragment_counts_within_distance": {
+        "10": {
+          "count": 214,
+          "max": 349.0,
+          "mean": 103.92056074766356,
+          "median": 92.5,
+          "min": 0.0,
+          "p90": 228.0,
+          "p95": 280.7
+        },
+        "20": {
+          "count": 214,
+          "max": 631.0,
+          "mean": 193.07009345794393,
+          "median": 174.5,
+          "min": 0.0,
+          "p90": 459.1,
+          "p95": 512.7
+        },
+        "40": {
+          "count": 214,
+          "max": 1165.0,
+          "mean": 338.50467289719626,
+          "median": 277.5,
+          "min": 0.0,
+          "p90": 799.4000000000001,
+          "p95": 839.0999999999999
+        },
+        "80": {
+          "count": 214,
+          "max": 1965.0,
+          "mean": 578.4626168224299,
+          "median": 477.5,
+          "min": 0.0,
+          "p90": 1369.8000000000002,
+          "p95": 1533.1
+        }
+      },
+      "fragment_query_ms": {
+        "count": 214,
+        "max": 1828.825299977325,
+        "mean": 453.3427219623569,
+        "median": 412.4496000004001,
+        "min": 8.12499999301508,
+        "p90": 853.3041499671529,
+        "p95": 958.0604200164089
+      },
+      "node_count": 214,
+      "point_count_per_fragment": {
+        "count": 185357,
+        "max": 14.0,
+        "mean": 6.183942338298527,
+        "median": 7.0,
+        "min": 1.0,
+        "p90": 8.0,
+        "p95": 8.0
+      },
+      "point_count_per_node": {
+        "count": 214,
+        "max": 20015.0,
+        "mean": 5356.247663551402,
+        "median": 4194.5,
+        "min": 0.0,
+        "p90": 11987.500000000002,
+        "p95": 14798.799999999994
+      },
+      "segment_only_fragment_count_per_node": {
+        "count": 214,
+        "max": 161.0,
+        "mean": 20.177570093457945,
+        "median": 11.0,
+        "min": 0.0,
+        "p90": 52.400000000000034,
+        "p95": 61.349999999999994
+      },
+      "track_count_per_node": {
+        "count": 214,
+        "max": 2428.0,
+        "mean": 773.4252336448598,
+        "median": 628.0,
+        "min": 0.0,
+        "p90": 1753.4,
+        "p95": 1885.2999999999997
+      },
+      "truncation": {
+        "128": {
+          "fragment_truncation_rate": 0.8673208996692868,
+          "kept_fragment_count": 24593,
+          "max_fragments": 128,
+          "node_truncation_rate": 0.8177570093457944,
+          "truncated_fragment_count": 160764,
+          "truncated_node_count": 175
+        },
+        "256": {
+          "fragment_truncation_rate": 0.7556499080153434,
+          "kept_fragment_count": 45292,
+          "max_fragments": 256,
+          "node_truncation_rate": 0.705607476635514,
+          "truncated_fragment_count": 140065,
+          "truncated_node_count": 151
+        },
+        "32": {
+          "fragment_truncation_rate": 0.9642473712889181,
+          "kept_fragment_count": 6627,
+          "max_fragments": 32,
+          "node_truncation_rate": 0.9392523364485982,
+          "truncated_fragment_count": 178730,
+          "truncated_node_count": 201
+        },
+        "64": {
+          "fragment_truncation_rate": 0.9307120853272334,
+          "kept_fragment_count": 12843,
+          "max_fragments": 64,
+          "node_truncation_rate": 0.8878504672897196,
+          "truncated_fragment_count": 172514,
+          "truncated_node_count": 190
+        }
+      }
+    }
+  },
+  "cache_dir": "data_self/input/traj_structured/xian/v1",
+  "context_points": 2,
+  "graph_directed_edge_count": 1730,
+  "graph_path": "data_self/input/graphs/xian.graph",
+  "graph_vertex_count": 762,
+  "grid_index_basis": "trajectory_sample_points_and_segments_supercover_cells",
+  "max_spatial_gap_pixels": 256.0,
+  "max_time_gap_seconds": 60.0,
+  "node_population": {
+    "multi_branch": 56,
+    "ordinary": 369,
+    "t_junction": 214
+  },
+  "output_dir": "data_self/output/stage1c_gt_nodes",
+  "overall": {
+    "batch_build_ms_at_largest_budget": {
+      "count": 639,
+      "max": 396.81150001706555,
+      "mean": 73.8085241006696,
+      "median": 63.04509995970875,
+      "min": 0.12470001820474863,
+      "p90": 159.59716002689677,
+      "p95": 187.35430000815546
+    },
+    "candidate_index_query_ms": {
+      "count": 639,
+      "max": 0.8082999847829342,
+      "mean": 0.13783943754838013,
+      "median": 0.12250000145286322,
+      "min": 0.042000028770416975,
+      "p90": 0.2073600073345006,
+      "p95": 0.24146997602656486
+    },
+    "candidate_track_count_per_node": {
+      "count": 639,
+      "max": 3200.0,
+      "mean": 1397.0344287949922,
+      "median": 1326.0,
+      "min": 17.0,
+      "p90": 2479.8,
+      "p95": 2587.0
+    },
+    "fragment_count_per_node": {
+      "count": 639,
+      "max": 3062.0,
+      "mean": 964.0610328638497,
+      "median": 831.0,
+      "min": 0.0,
+      "p90": 2176.6000000000004,
+      "p95": 2402.7000000000007
+    },
+    "fragment_counts_within_distance": {
+      "10": {
+        "count": 639,
+        "max": 413.0,
+        "mean": 93.35054773082942,
+        "median": 82.0,
+        "min": 0.0,
+        "p90": 225.0,
+        "p95": 267.20000000000005
+      },
+      "20": {
+        "count": 639,
+        "max": 706.0,
+        "mean": 178.03442879499218,
+        "median": 159.0,
+        "min": 0.0,
+        "p90": 426.0,
+        "p95": 499.5000000000001
+      },
+      "40": {
+        "count": 639,
+        "max": 1267.0,
+        "mean": 327.566510172144,
+        "median": 289.0,
+        "min": 0.0,
+        "p90": 781.0,
+        "p95": 845.3000000000001
+      },
+      "80": {
+        "count": 639,
+        "max": 2060.0,
+        "mean": 597.6275430359938,
+        "median": 506.0,
+        "min": 0.0,
+        "p90": 1375.0000000000002,
+        "p95": 1584.5
+      }
+    },
+    "fragment_query_ms": {
+      "count": 639,
+      "max": 1828.825299977325,
+      "mean": 398.43446588359046,
+      "median": 374.42460004240274,
+      "min": 5.611000000499189,
+      "p90": 706.7634000093678,
+      "p95": 842.1747900138145
+    },
+    "node_count": 639,
+    "point_count_per_fragment": {
+      "count": 616035,
+      "max": 14.0,
+      "mean": 6.137412647008692,
+      "median": 7.0,
+      "min": 1.0,
+      "p90": 8.0,
+      "p95": 8.0
+    },
+    "point_count_per_node": {
+      "count": 639,
+      "max": 20015.0,
+      "mean": 5916.840375586855,
+      "median": 4793.0,
+      "min": 0.0,
+      "p90": 13345.800000000003,
+      "p95": 15837.400000000001
+    },
+    "segment_only_fragment_count_per_node": {
+      "count": 639,
+      "max": 180.0,
+      "mean": 25.690140845070424,
+      "median": 16.0,
+      "min": 0.0,
+      "p90": 63.0,
+      "p95": 84.0
+    },
+    "track_count_per_node": {
+      "count": 639,
+      "max": 2431.0,
+      "mean": 853.528951486698,
+      "median": 740.0,
+      "min": 0.0,
+      "p90": 1855.6000000000001,
+      "p95": 2001.2
+    },
+    "truncation": {
+      "128": {
+        "fragment_truncation_rate": 0.879967858969052,
+        "kept_fragment_count": 73944,
+        "max_fragments": 128,
+        "node_truncation_rate": 0.8247261345852895,
+        "truncated_fragment_count": 542091,
+        "truncated_node_count": 527
+      },
+      "256": {
+        "fragment_truncation_rate": 0.7778973597279375,
+        "kept_fragment_count": 136823,
+        "max_fragments": 256,
+        "node_truncation_rate": 0.7198748043818466,
+        "truncated_fragment_count": 479212,
+        "truncated_node_count": 460
+      },
+      "32": {
+        "fragment_truncation_rate": 0.967974222243866,
+        "kept_fragment_count": 19729,
+        "max_fragments": 32,
+        "node_truncation_rate": 0.94679186228482,
+        "truncated_fragment_count": 596306,
+        "truncated_node_count": 605
+      },
+      "64": {
+        "fragment_truncation_rate": 0.9374873180906929,
+        "kept_fragment_count": 38510,
+        "max_fragments": 64,
+        "node_truncation_rate": 0.8982785602503912,
+        "truncated_fragment_count": 577525,
+        "truncated_node_count": 574
+      }
+    }
+  },
+  "point_count": 305484,
+  "query_uses_full_trajectory_scan": false,
+  "report_path": "docs/stage1c_trajectory_batch_results/gt_node_trajectory_batch_stats.json",
+  "seed": 20260723,
+  "segment_aware_index_active": true,
+  "trajectory_count": 14267,
+  "visualization_max_fragments": 64,
+  "visualizations": [
+    {
+      "background_alignment": {
+        "background_size": [
+          8192,
+          8192
+        ],
+        "coordinate_offset_xy": [
+          0,
+          0
+        ],
+        "coordinate_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "original_size": [
+          4300,
+          5000
+        ],
+        "padding_pixel": [
+          0,
+          0,
+          0
+        ],
+        "status": "aligned_top_left_padding"
+      },
+      "cache_dir": "data_self/input/traj_structured/xian/v1",
+      "center_xy": [
+        3898.0,
+        3908.0
+      ],
+      "context_points": 2,
+      "degree": 2,
+      "fragment_count": 64,
+      "kept_fragment_count": 64,
+      "max_fragments": 64,
+      "node_type": "ordinary",
+      "output_path": "docs/stage1c_trajectory_batch_results/ordinary_vertex_0659_fragments_1009.png",
+      "reference_segment_count": 2,
+      "total_fragment_count": 1009,
+      "track_indices_preview": [
+        788,
+        873,
+        958,
+        1011,
+        1062,
+        1105,
+        1473,
+        1565,
+        1923,
+        2092,
+        2354,
+        2435,
+        2492,
+        2524,
+        2791,
+        2842,
+        2845,
+        3171,
+        3397,
+        3399,
+        3455,
+        3461,
+        3655,
+        3802,
+        3835,
+        4321,
+        5631,
+        5832,
+        6258,
+        6259,
+        6595,
+        6892,
+        7012,
+        7055,
+        7190,
+        7575,
+        8152,
+        8192,
+        8237,
+        8316,
+        8599,
+        8803,
+        9248,
+        9443,
+        9514,
+        9542,
+        10183,
+        10634,
+        10709,
+        10770
+      ],
+      "track_indices_truncated": true,
+      "trajectory_count": 64,
+      "truncated_fragment_count": 945,
+      "vertex_id": 659,
+      "window_size": 256.0
+    },
+    {
+      "background_alignment": {
+        "background_size": [
+          8192,
+          8192
+        ],
+        "coordinate_offset_xy": [
+          0,
+          0
+        ],
+        "coordinate_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "original_size": [
+          4300,
+          5000
+        ],
+        "padding_pixel": [
+          0,
+          0,
+          0
+        ],
+        "status": "aligned_top_left_padding"
+      },
+      "cache_dir": "data_self/input/traj_structured/xian/v1",
+      "center_xy": [
+        371.0,
+        3663.0
+      ],
+      "context_points": 2,
+      "degree": 2,
+      "fragment_count": 64,
+      "kept_fragment_count": 64,
+      "max_fragments": 64,
+      "node_type": "ordinary",
+      "output_path": "docs/stage1c_trajectory_batch_results/ordinary_vertex_0068_fragments_2257.png",
+      "reference_segment_count": 2,
+      "total_fragment_count": 2257,
+      "track_indices_preview": [
+        1553,
+        1561,
+        2340,
+        2470,
+        2907,
+        3021,
+        3043,
+        3939,
+        4289,
+        4618,
+        4686,
+        4730,
+        4742,
+        4823,
+        4882,
+        4975,
+        5072,
+        5927,
+        6268,
+        6270,
+        6312,
+        7105,
+        7112,
+        7487,
+        7591,
+        7600,
+        7638,
+        7711,
+        7846,
+        8115,
+        8467,
+        8997,
+        9009,
+        9171,
+        9277,
+        9475,
+        9574,
+        9593,
+        9713,
+        9919,
+        9938,
+        9949,
+        10136,
+        10289,
+        10398,
+        10947,
+        11080,
+        11209,
+        11224,
+        11287
+      ],
+      "track_indices_truncated": true,
+      "trajectory_count": 60,
+      "truncated_fragment_count": 2193,
+      "vertex_id": 68,
+      "window_size": 256.0
+    },
+    {
+      "background_alignment": {
+        "background_size": [
+          8192,
+          8192
+        ],
+        "coordinate_offset_xy": [
+          0,
+          0
+        ],
+        "coordinate_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "original_size": [
+          4300,
+          5000
+        ],
+        "padding_pixel": [
+          0,
+          0,
+          0
+        ],
+        "status": "aligned_top_left_padding"
+      },
+      "cache_dir": "data_self/input/traj_structured/xian/v1",
+      "center_xy": [
+        1903.0,
+        2591.0
+      ],
+      "context_points": 2,
+      "degree": 3,
+      "fragment_count": 64,
+      "kept_fragment_count": 64,
+      "max_fragments": 64,
+      "node_type": "t_junction",
+      "output_path": "docs/stage1c_trajectory_batch_results/t_junction_vertex_0319_fragments_0691.png",
+      "reference_segment_count": 3,
+      "total_fragment_count": 691,
+      "track_indices_preview": [
+        856,
+        1807,
+        2011,
+        2354,
+        2491,
+        2524,
+        2642,
+        2762,
+        3233,
+        3382,
+        3693,
+        4021,
+        4097,
+        4101,
+        4125,
+        4696,
+        5036,
+        5052,
+        5643,
+        6034,
+        6134,
+        6160,
+        6162,
+        6254,
+        6859,
+        7010,
+        7166,
+        7402,
+        7411,
+        7789,
+        7937,
+        8222,
+        9517,
+        9573,
+        9585,
+        9623,
+        9859,
+        9974,
+        10511,
+        10576,
+        10616,
+        10679,
+        10777,
+        10793,
+        10795,
+        10955,
+        11033,
+        11361,
+        11505,
+        11523
+      ],
+      "track_indices_truncated": true,
+      "trajectory_count": 63,
+      "truncated_fragment_count": 627,
+      "vertex_id": 319,
+      "window_size": 256.0
+    },
+    {
+      "background_alignment": {
+        "background_size": [
+          8192,
+          8192
+        ],
+        "coordinate_offset_xy": [
+          0,
+          0
+        ],
+        "coordinate_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "original_size": [
+          4300,
+          5000
+        ],
+        "padding_pixel": [
+          0,
+          0,
+          0
+        ],
+        "status": "aligned_top_left_padding"
+      },
+      "cache_dir": "data_self/input/traj_structured/xian/v1",
+      "center_xy": [
+        427.0,
+        4851.0
+      ],
+      "context_points": 2,
+      "degree": 3,
+      "fragment_count": 64,
+      "kept_fragment_count": 64,
+      "max_fragments": 64,
+      "node_type": "t_junction",
+      "output_path": "docs/stage1c_trajectory_batch_results/t_junction_vertex_0098_fragments_1963.png",
+      "reference_segment_count": 3,
+      "total_fragment_count": 1963,
+      "track_indices_preview": [
+        568,
+        714,
+        1300,
+        1869,
+        1896,
+        2098,
+        2218,
+        2598,
+        2738,
+        3087,
+        3120,
+        3259,
+        3460,
+        3939,
+        4738,
+        4895,
+        4968,
+        5127,
+        5240,
+        5262,
+        5438,
+        5443,
+        6059,
+        6588,
+        6881,
+        7897,
+        7901,
+        8539,
+        8625,
+        9099,
+        9201,
+        9950,
+        9961,
+        10483,
+        10488,
+        10605,
+        10668,
+        10720,
+        10761,
+        10854,
+        10961,
+        10965,
+        11013,
+        11031,
+        11045,
+        11132,
+        11327,
+        11389,
+        11453,
+        11460
+      ],
+      "track_indices_truncated": true,
+      "trajectory_count": 64,
+      "truncated_fragment_count": 1899,
+      "vertex_id": 98,
+      "window_size": 256.0
+    },
+    {
+      "background_alignment": {
+        "background_size": [
+          8192,
+          8192
+        ],
+        "coordinate_offset_xy": [
+          0,
+          0
+        ],
+        "coordinate_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "original_size": [
+          4300,
+          5000
+        ],
+        "padding_pixel": [
+          0,
+          0,
+          0
+        ],
+        "status": "aligned_top_left_padding"
+      },
+      "cache_dir": "data_self/input/traj_structured/xian/v1",
+      "center_xy": [
+        1712.0,
+        436.0
+      ],
+      "context_points": 2,
+      "degree": 4,
+      "fragment_count": 64,
+      "kept_fragment_count": 64,
+      "max_fragments": 64,
+      "node_type": "multi_branch",
+      "output_path": "docs/stage1c_trajectory_batch_results/multi_branch_vertex_0300_fragments_1220.png",
+      "reference_segment_count": 4,
+      "total_fragment_count": 1220,
+      "track_indices_preview": [
+        451,
+        1167,
+        1303,
+        1497,
+        1591,
+        1946,
+        2132,
+        2404,
+        2668,
+        2832,
+        2852,
+        2927,
+        3062,
+        3106,
+        3571,
+        3868,
+        4199,
+        4262,
+        4284,
+        4672,
+        4856,
+        5048,
+        5069,
+        5398,
+        5419,
+        5680,
+        5835,
+        5853,
+        6399,
+        6600,
+        7099,
+        7245,
+        7388,
+        7402,
+        7856,
+        8050,
+        8236,
+        8268,
+        8888,
+        9089,
+        9111,
+        9354,
+        9441,
+        9883,
+        9891,
+        10365,
+        10589,
+        10656,
+        10691,
+        10748
+      ],
+      "track_indices_truncated": true,
+      "trajectory_count": 63,
+      "truncated_fragment_count": 1156,
+      "vertex_id": 300,
+      "window_size": 256.0
+    },
+    {
+      "background_alignment": {
+        "background_size": [
+          8192,
+          8192
+        ],
+        "coordinate_offset_xy": [
+          0,
+          0
+        ],
+        "coordinate_scale_xy": [
+          1.0,
+          1.0
+        ],
+        "original_size": [
+          4300,
+          5000
+        ],
+        "padding_pixel": [
+          0,
+          0,
+          0
+        ],
+        "status": "aligned_top_left_padding"
+      },
+      "cache_dir": "data_self/input/traj_structured/xian/v1",
+      "center_xy": [
+        3529.0,
+        1341.0
+      ],
+      "context_points": 2,
+      "degree": 4,
+      "fragment_count": 64,
+      "kept_fragment_count": 64,
+      "max_fragments": 64,
+      "node_type": "multi_branch",
+      "output_path": "docs/stage1c_trajectory_batch_results/multi_branch_vertex_0578_fragments_2223.png",
+      "reference_segment_count": 4,
+      "total_fragment_count": 2223,
+      "track_indices_preview": [
+        380,
+        493,
+        605,
+        717,
+        876,
+        1202,
+        1439,
+        1803,
+        1911,
+        2106,
+        2211,
+        2417,
+        2469,
+        2574,
+        3136,
+        3500,
+        3707,
+        4140,
+        4455,
+        5096,
+        5266,
+        5638,
+        5765,
+        5830,
+        5968,
+        5981,
+        6075,
+        6272,
+        6369,
+        7042,
+        7099,
+        7176,
+        7538,
+        7979,
+        8971,
+        8998,
+        9031,
+        9959,
+        10001,
+        10161,
+        10373,
+        10642,
+        10765,
+        10846,
+        10955,
+        11064,
+        11184,
+        11203,
+        11413,
+        11440
+      ],
+      "track_indices_truncated": true,
+      "trajectory_count": 64,
+      "truncated_fragment_count": 2159,
+      "vertex_id": 578,
+      "window_size": 256.0
+    }
+  ],
+  "window_size": 256.0
+}
