@@ -131,8 +131,8 @@ TEST:
 
 Training writes, for example:
 
-- `data_self/baseline_image_only/ckpt/image_only_original.outer_001.path_2048.pth.tar`;
-- `data_self/baseline_image_only/ckpt/image_only_original.latest.pth.tar`.
+- `data_self/baseline_image_only_original/ckpt/image_only_original.outer_001.path_2048.pth.tar`;
+- `data_self/baseline_image_only_original/ckpt/image_only_original.latest.pth.tar`.
 
 `infer.py` resolves the same latest path and loads `TEST.CKPT_FILE` strictly.
 Legacy `TEST.CKPT: vecroad2` still resolves to
@@ -201,6 +201,10 @@ python infer.py --config configs/baseline_image_only.yml
 ```
 
 The second command requires the formal latest checkpoint created by the first.
+The formal run is isolated under `data_self/baseline_image_only_original` so
+that TensorBoard and checkpoints cannot be mixed with the archived
+full-resolution Stage 0 experiment. `TRAIN.DETECT_ANOMALY` defaults to `False`
+for the formal run and can be enabled explicitly for debugging.
 
 ## 9. Executed results on 2026-07-23
 

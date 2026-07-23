@@ -248,7 +248,8 @@ def main():
 
             optimizer.zero_grad()
 
-            with torch.autograd.set_detect_anomaly(True):
+            with torch.autograd.set_detect_anomaly(
+                    cfg.TRAIN.get("DETECT_ANOMALY", False)):
                 """
                 Net Processing
                 """

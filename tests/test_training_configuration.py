@@ -11,6 +11,18 @@ from utils.training_utils import (
 
 
 class TrainingConfigurationTest(unittest.TestCase):
+    def test_formal_image_only_run_is_isolated_and_fast_by_default(self):
+        config_path = (
+            Path(__file__).resolve().parents[1]
+            / "configs"
+            / "baseline_image_only.yml"
+        )
+        with config_path.open("r", encoding="utf-8") as config_file:
+            cfg = yaml.load(config_file, Loader=yaml.UnsafeLoader)
+        self.assertEqual(cfg["TASK"], "baseline_image_only_original")
+        self.assertFalse(cfg["TRAIN"]["DETECT_ANOMALY"])
+        self.assertEqual(cfg["TRAIN"]["PRINT_ITERATION"], 10)
+
     def test_missing_path_iterations_preserves_legacy_default(self):
         self.assertEqual(
             resolve_path_iterations({"TRAIN": {}}),

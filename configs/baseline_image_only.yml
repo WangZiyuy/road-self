@@ -1,4 +1,4 @@
-TASK: &TASK "baseline_image_only"
+TASK: &TASK "baseline_image_only_original"
 
 TRAJ:
   MODE: "none"
@@ -34,7 +34,8 @@ TRAIN:
   SAVE_EXAMPLES: False
   WINDOW_SIZE: 256
   FOLLOW_MODE: "follow_target"
-  PRINT_ITERATION: 1
+  PRINT_ITERATION: 10
+  DETECT_ANOMALY: False
   NUM_INPUT_CHANNELS: 3
   SOLVER:
     METHOD: "Adam"
