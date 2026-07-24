@@ -27,6 +27,7 @@ class MultiModalBranchQueryDecoder(nn.Module):
         num_heads: int = 4,
         image_pool_size: int = 16,
         dropout: float = 0.1,
+        query_self_attention_layers: int = 0,
     ) -> None:
         super().__init__()
         if image_channels <= 0 or trajectory_dim <= 0 or hidden_dim <= 0:
@@ -43,13 +44,25 @@ class MultiModalBranchQueryDecoder(nn.Module):
                 "hidden_dim must be divisible by four for 2-D encoding")
         if dropout < 0.0 or dropout >= 1.0:
             raise ValueError("dropout must be in [0, 1)")
+        if query_self_attention_layers not in (0, 1):
+            raise ValueError(
+                "query_self_attention_layers must be zero or one")
 
         self.hidden_dim = int(hidden_dim)
         self.trajectory_dim = int(trajectory_dim)
         self.num_queries = int(num_queries)
         self.image_pool_size = int(image_pool_size)
+        self.query_self_attention_layers = int(
+            query_self_attention_layers)
         self.image_projection = nn.Conv2d(
             image_channels, hidden_dim, kernel_size=1)
+        self.walked_path_projection = nn.Sequential(
+            nn.Conv2d(
+                1, hidden_dim, kernel_size=3, padding=1, bias=False),
+            nn.GELU(),
+            nn.Conv2d(
+                hidden_dim, hidden_dim, kernel_size=1, bias=False),
+        )
         self.trajectory_projection = (
             nn.Identity()
             if trajectory_dim == hidden_dim
@@ -88,6 +101,24 @@ class MultiModalBranchQueryDecoder(nn.Module):
             nn.GELU(),
             nn.Linear(hidden_dim, 2),
         )
+        # Construct optional parameters last so enabling the experiment does
+        # not perturb the random initialization of any legacy decoder layer.
+        if self.query_self_attention_layers == 1:
+            self.query_self_attention = nn.MultiheadAttention(
+                embed_dim=hidden_dim,
+                num_heads=num_heads,
+                dropout=dropout,
+                batch_first=True,
+            )
+            self.query_self_attention_norm = nn.LayerNorm(hidden_dim)
+            self.query_self_attention_ffn = nn.Sequential(
+                nn.Linear(hidden_dim, hidden_dim * 4),
+                nn.GELU(),
+                nn.Dropout(dropout),
+                nn.Linear(hidden_dim * 4, hidden_dim),
+            )
+            self.query_self_attention_ffn_norm = nn.LayerNorm(
+                hidden_dim)
 
     @staticmethod
     def _two_dimensional_position_encoding(
@@ -166,7 +197,10 @@ class MultiModalBranchQueryDecoder(nn.Module):
         state_token: torch.Tensor,
         fragment_tokens: Optional[torch.Tensor] = None,
         fragment_mask: Optional[torch.Tensor] = None,
+        walked_path: Optional[torch.Tensor] = None,
+        image_available: Optional[torch.Tensor] = None,
         return_attention: bool = False,
+        return_debug_states: bool = False,
     ) -> Dict[str, torch.Tensor]:
         if stage_fuse.ndim != 4:
             raise ValueError("stage_fuse must have shape [B, C, H, W]")
@@ -199,12 +233,43 @@ class MultiModalBranchQueryDecoder(nn.Module):
                 fragment_tokens.device != stage_fuse.device
                 or fragment_mask.device != stage_fuse.device):
             raise ValueError("all decoder inputs must share one device")
+        if walked_path is None:
+            walked_path = stage_fuse.new_zeros(
+                (batch_size, 1, stage_fuse.shape[2], stage_fuse.shape[3]))
+        if (
+                walked_path.ndim != 4
+                or walked_path.shape[0] != batch_size
+                or walked_path.shape[1] != 1):
+            raise ValueError(
+                "walked_path must have shape [B, 1, Hf, Wf]")
+        if walked_path.device != stage_fuse.device:
+            raise ValueError(
+                "walked_path and image features must share one device")
+        if image_available is None:
+            image_available = torch.ones(
+                batch_size,
+                dtype=torch.bool,
+                device=stage_fuse.device,
+            )
+        if tuple(image_available.shape) != (batch_size,):
+            raise ValueError("image_available must have shape [B]")
+        if image_available.device != stage_fuse.device:
+            raise ValueError(
+                "image_available and image features must share one device")
+        image_available = image_available.to(dtype=torch.bool)
 
         pooled_image = F.adaptive_avg_pool2d(
             stage_fuse,
             (self.image_pool_size, self.image_pool_size),
         )
         image_tokens = self.image_projection(pooled_image)
+        walked_features = self.walked_path_projection(
+            walked_path.to(dtype=stage_fuse.dtype))
+        walked_features = F.adaptive_avg_pool2d(
+            walked_features,
+            (self.image_pool_size, self.image_pool_size),
+        )
+        image_tokens = image_tokens + walked_features
         image_tokens = image_tokens.flatten(2).transpose(1, 2)
         position = self._two_dimensional_position_encoding(
             self.image_pool_size,
@@ -216,8 +281,24 @@ class MultiModalBranchQueryDecoder(nn.Module):
         image_tokens = self.image_norm(
             image_tokens + position.unsqueeze(0))
 
-        queries = self.branch_queries.expand(batch_size, -1, -1)
-        queries = self.query_norm(queries + state_token.unsqueeze(1))
+        learned_queries = self.branch_queries.expand(
+            batch_size, -1, -1)
+        queries = learned_queries
+        if self.query_self_attention_layers == 1:
+            self_attention_output, _ = self.query_self_attention(
+                queries,
+                queries,
+                queries,
+                need_weights=False,
+            )
+            queries = self.query_self_attention_norm(
+                queries + self_attention_output)
+            queries = self.query_self_attention_ffn_norm(
+                queries + self.query_self_attention_ffn(queries))
+        pre_graph_queries = queries
+        graph_conditioned_queries = self.query_norm(
+            queries + state_token.unsqueeze(1))
+        queries = graph_conditioned_queries
         image_context, image_attention = self.image_cross_attention(
             queries,
             image_tokens,
@@ -225,6 +306,10 @@ class MultiModalBranchQueryDecoder(nn.Module):
             need_weights=True,
             average_attn_weights=True,
         )
+        image_context = image_context * image_available[:, None, None].to(
+            dtype=image_context.dtype)
+        image_attention = image_attention * image_available[
+            :, None, None].to(dtype=image_attention.dtype)
 
         fragment_tokens = self.trajectory_projection(fragment_tokens)
         fragment_mask = fragment_mask.to(dtype=torch.bool)
@@ -265,4 +350,20 @@ class MultiModalBranchQueryDecoder(nn.Module):
             # probability or a trajectory-reliability target.
             outputs["image_attention_weights"] = image_attention
             outputs["trajectory_attention_weights"] = trajectory_attention
+        if return_debug_states:
+            # These tensors are exposed only for collapse diagnosis.  They
+            # remain attached so callers may also inspect gradient flow.
+            outputs.update({
+                "debug_learned_query_embedding": learned_queries,
+                "debug_graph_conditioned_queries":
+                    graph_conditioned_queries,
+                "debug_pre_graph_queries": pre_graph_queries,
+                "debug_pre_cross_attention_queries": queries,
+                "debug_image_cross_attention_output": image_context,
+                "debug_trajectory_cross_attention_output":
+                    trajectory_context,
+                "debug_final_fused_queries": branch_tokens,
+                "debug_graph_state_contribution":
+                    expanded_state,
+            })
         return outputs

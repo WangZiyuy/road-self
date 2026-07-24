@@ -1,0 +1,629 @@
+{
+  "GT_branch_count": 494,
+  "branch_ap": 0.08969008932051405,
+  "branch_ap_by_modality": {
+    "full": 0.08969008932051405,
+    "no_trajectory": 0.10219387957495135,
+    "trajectory_graph": 0.040792866862417176
+  },
+  "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_branch_aux/checkpoints/stage3c_aux.best.pth.tar",
+  "checkpoint_epoch": 16,
+  "checkpoint_state_dict_key_counts": {
+    "branch_decoder": 31,
+    "graph_state_encoder": 12,
+    "trajectory_encoder": 31
+  },
+  "cost_component_statistics": {
+    "actual_matches": {
+      "direction": {
+        "count": 494,
+        "mean": 0.33383292442391277,
+        "median": 0.009992986917495728,
+        "p10": 6.96837902069092e-05,
+        "p90": 1.0854958176612854
+      },
+      "endpoint": {
+        "count": 494,
+        "mean": 0.1487574751992231,
+        "median": 0.1275765597820282,
+        "p10": 0.10899837911128998,
+        "p90": 0.20552712231874465
+      },
+      "existence": {
+        "count": 494,
+        "mean": -0.23112471122671718,
+        "median": -0.14689838886260986,
+        "p10": -0.40051398873329164,
+        "p90": -0.13173760026693343
+      }
+    },
+    "all_candidate_to_gt": {
+      "direction": {
+        "count": 2964,
+        "mean": 0.34685629584126465,
+        "median": 0.01010105013847351,
+        "p10": 0.00018898844718933107,
+        "p90": 1.1622842550277717
+      },
+      "endpoint": {
+        "count": 2964,
+        "mean": 0.15086883502555495,
+        "median": 0.1295880600810051,
+        "p10": 0.11008715629577637,
+        "p90": 0.20778593569993975
+      },
+      "existence": {
+        "count": 2964,
+        "mean": -0.2308086857410819,
+        "median": -0.14668091386556625,
+        "p10": -0.40051449835300446,
+        "p90": -0.13078871369361877
+      }
+    }
+  },
+  "diagnostic_threshold": 0.1,
+  "duplicates": {
+    "actual_matched": {
+      "duplicate_pair_count": 145,
+      "duplicate_pair_ratio": 1.0,
+      "nodes_with_duplicates": 71,
+      "nodes_with_duplicates_ratio": 0.138671875,
+      "nodes_with_multiple_predictions": 71,
+      "pair_count": 145
+    },
+    "geometry_reference_matched": {
+      "duplicate_pair_count": 145,
+      "duplicate_pair_ratio": 1.0,
+      "nodes_with_duplicates": 71,
+      "nodes_with_duplicates_ratio": 0.138671875,
+      "nodes_with_multiple_predictions": 71,
+      "pair_count": 145
+    },
+    "oracle_k": {
+      "duplicate_pair_count": 145,
+      "duplicate_pair_ratio": 1.0,
+      "nodes_with_duplicates": 71,
+      "nodes_with_duplicates_ratio": 0.138671875,
+      "nodes_with_multiple_predictions": 71,
+      "pair_count": 145
+    },
+    "thresholded": {
+      "duplicate_pair_count": 6570,
+      "duplicate_pair_ratio": 1.0,
+      "nodes_with_duplicates": 438,
+      "nodes_with_duplicates_ratio": 0.85546875,
+      "nodes_with_multiple_predictions": 438,
+      "pair_count": 6570
+    }
+  },
+  "ece": 0.03929266460628848,
+  "ece_geometry_reference": 0.03929266460628848,
+  "elapsed_seconds": 3.663914069067687,
+  "exact_count_accuracy": 0.1328125,
+  "extra_branch_rate": 0.8789954337899544,
+  "geometry_reference_matched_duplicate_ratio": 1.0,
+  "geometry_reference_matched_probability": {
+    "count": 494,
+    "mean": 0.23112471122671718,
+    "median": 0.14689838886260986,
+    "p10": 0.13173760026693343,
+    "p90": 0.40051398873329164
+  },
+  "geometry_reference_unmatched_probability": {
+    "count": 2578,
+    "mean": 0.1670002913527166,
+    "median": 0.13925467431545258,
+    "p10": 0.011755398847162724,
+    "p90": 0.39469658136367797
+  },
+  "image_checkpoint": "/home/wangziyu/VecRoad-master/data/ckpt/vecroad.pth.tar",
+  "matched_duplicate_ratio": 1.0,
+  "matched_logit": {
+    "count": 494,
+    "mean": -1.3167751903837992,
+    "median": -1.759137511253357,
+    "p10": -1.8856819987297058,
+    "p90": -0.403323894739151
+  },
+  "matched_prob_mean": 0.23112471122671718,
+  "matched_prob_median": 0.14689838886260986,
+  "matched_probability": {
+    "count": 494,
+    "mean": 0.23112471122671718,
+    "median": 0.14689838886260986,
+    "p10": 0.13173760026693343,
+    "p90": 0.40051398873329164
+  },
+  "metrics_by_GT_count": {
+    "count_0": {
+      "branch_ap": 0.0,
+      "duplicates": {
+        "actual_matched": {
+          "duplicate_pair_count": 0,
+          "duplicate_pair_ratio": 0.0,
+          "nodes_with_duplicates": 0,
+          "nodes_with_duplicates_ratio": 0.0,
+          "nodes_with_multiple_predictions": 0,
+          "pair_count": 0
+        },
+        "geometry_reference_matched": {
+          "duplicate_pair_count": 0,
+          "duplicate_pair_ratio": 0.0,
+          "nodes_with_duplicates": 0,
+          "nodes_with_duplicates_ratio": 0.0,
+          "nodes_with_multiple_predictions": 0,
+          "pair_count": 0
+        },
+        "oracle_k": {
+          "duplicate_pair_count": 0,
+          "duplicate_pair_ratio": 0.0,
+          "nodes_with_duplicates": 0,
+          "nodes_with_duplicates_ratio": 0.0,
+          "nodes_with_multiple_predictions": 0,
+          "pair_count": 0
+        },
+        "thresholded": {
+          "duplicate_pair_count": 840,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 56,
+          "nodes_with_duplicates_ratio": 0.45161290322580644,
+          "nodes_with_multiple_predictions": 56,
+          "pair_count": 840
+        }
+      },
+      "gt_branch_count": 0,
+      "oracle_k": {
+        "direction_error": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p10": null,
+          "p90": null
+        },
+        "distinct_gt_coverage": 0.0,
+        "duplicates": {
+          "duplicate_pair_count": 0,
+          "duplicate_pair_ratio": 0.0,
+          "nodes_with_duplicates": 0,
+          "nodes_with_duplicates_ratio": 0.0,
+          "nodes_with_multiple_predictions": 0,
+          "pair_count": 0
+        },
+        "endpoint_error": {
+          "count": 0,
+          "mean": null,
+          "median": null,
+          "p10": null,
+          "p90": null
+        },
+        "gt_branch_count": 0,
+        "recall": 0.0,
+        "true_positive": 0
+      },
+      "sample_count": 124
+    },
+    "count_1": {
+      "branch_ap": 0.15131974954101873,
+      "duplicates": {
+        "actual_matched": {
+          "duplicate_pair_count": 0,
+          "duplicate_pair_ratio": 0.0,
+          "nodes_with_duplicates": 0,
+          "nodes_with_duplicates_ratio": 0.0,
+          "nodes_with_multiple_predictions": 0,
+          "pair_count": 0
+        },
+        "geometry_reference_matched": {
+          "duplicate_pair_count": 0,
+          "duplicate_pair_ratio": 0.0,
+          "nodes_with_duplicates": 0,
+          "nodes_with_duplicates_ratio": 0.0,
+          "nodes_with_multiple_predictions": 0,
+          "pair_count": 0
+        },
+        "oracle_k": {
+          "duplicate_pair_count": 0,
+          "duplicate_pair_ratio": 0.0,
+          "nodes_with_duplicates": 0,
+          "nodes_with_duplicates_ratio": 0.0,
+          "nodes_with_multiple_predictions": 0,
+          "pair_count": 0
+        },
+        "thresholded": {
+          "duplicate_pair_count": 4665,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 311,
+          "nodes_with_duplicates_ratio": 0.9810725552050473,
+          "nodes_with_multiple_predictions": 311,
+          "pair_count": 4665
+        }
+      },
+      "gt_branch_count": 317,
+      "oracle_k": {
+        "direction_error": {
+          "count": 317,
+          "mean": 10.285715536576436,
+          "median": 4.754784891400226,
+          "p10": 1.0717285109150028,
+          "p90": 11.359469511691808
+        },
+        "distinct_gt_coverage": 0.8517350157728707,
+        "duplicates": {
+          "duplicate_pair_count": 0,
+          "duplicate_pair_ratio": 0.0,
+          "nodes_with_duplicates": 0,
+          "nodes_with_duplicates_ratio": 0.0,
+          "nodes_with_multiple_predictions": 0,
+          "pair_count": 0
+        },
+        "endpoint_error": {
+          "count": 317,
+          "mean": 14.828407729901375,
+          "median": 13.620130086475404,
+          "p10": 11.964893011439917,
+          "p90": 20.10733489539316
+        },
+        "gt_branch_count": 317,
+        "recall": 0.8517350157728707,
+        "true_positive": 270
+      },
+      "sample_count": 317
+    },
+    "count_2": {
+      "branch_ap": 0.04016693084022225,
+      "duplicates": {
+        "actual_matched": {
+          "duplicate_pair_count": 39,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 39,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 39,
+          "pair_count": 39
+        },
+        "geometry_reference_matched": {
+          "duplicate_pair_count": 39,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 39,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 39,
+          "pair_count": 39
+        },
+        "oracle_k": {
+          "duplicate_pair_count": 39,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 39,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 39,
+          "pair_count": 39
+        },
+        "thresholded": {
+          "duplicate_pair_count": 585,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 39,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 39,
+          "pair_count": 585
+        }
+      },
+      "gt_branch_count": 78,
+      "oracle_k": {
+        "direction_error": {
+          "count": 78,
+          "mean": 67.40931538241126,
+          "median": 80.04293693999296,
+          "p10": 5.921818500274563,
+          "p90": 119.31478831577684
+        },
+        "distinct_gt_coverage": 0.2948717948717949,
+        "duplicates": {
+          "duplicate_pair_count": 39,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 39,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 39,
+          "pair_count": 39
+        },
+        "endpoint_error": {
+          "count": 78,
+          "mean": 17.91121784936554,
+          "median": 19.6478730497564,
+          "p10": 7.748874147869591,
+          "p90": 24.844033022403302
+        },
+        "gt_branch_count": 78,
+        "recall": 0.2948717948717949,
+        "true_positive": 23
+      },
+      "sample_count": 39
+    },
+    "count_ge_2": {
+      "branch_ap": 0.04115293931286629,
+      "duplicates": {
+        "actual_matched": {
+          "duplicate_pair_count": 145,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 71,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 71,
+          "pair_count": 145
+        },
+        "geometry_reference_matched": {
+          "duplicate_pair_count": 145,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 71,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 71,
+          "pair_count": 145
+        },
+        "oracle_k": {
+          "duplicate_pair_count": 145,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 71,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 71,
+          "pair_count": 145
+        },
+        "thresholded": {
+          "duplicate_pair_count": 1065,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 71,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 71,
+          "pair_count": 1065
+        }
+      },
+      "gt_branch_count": 177,
+      "oracle_k": {
+        "direction_error": {
+          "count": 177,
+          "mean": 77.00689046506182,
+          "median": 83.89265790202663,
+          "p10": 5.804821036543457,
+          "p90": 151.14011103431184
+        },
+        "distinct_gt_coverage": 0.2598870056497175,
+        "duplicates": {
+          "duplicate_pair_count": 145,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 71,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 71,
+          "pair_count": 145
+        },
+        "endpoint_error": {
+          "count": 177,
+          "mean": 18.57998886401052,
+          "median": 19.601997487394346,
+          "p10": 11.791808989098604,
+          "p90": 24.160688012187077
+        },
+        "gt_branch_count": 177,
+        "recall": 0.2598870056497175,
+        "true_positive": 46
+      },
+      "sample_count": 71
+    },
+    "count_ge_3": {
+      "branch_ap": 0.0453363422541702,
+      "duplicates": {
+        "actual_matched": {
+          "duplicate_pair_count": 106,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 32,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 32,
+          "pair_count": 106
+        },
+        "geometry_reference_matched": {
+          "duplicate_pair_count": 106,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 32,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 32,
+          "pair_count": 106
+        },
+        "oracle_k": {
+          "duplicate_pair_count": 106,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 32,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 32,
+          "pair_count": 106
+        },
+        "thresholded": {
+          "duplicate_pair_count": 480,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 32,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 32,
+          "pair_count": 480
+        }
+      },
+      "gt_branch_count": 99,
+      "oracle_k": {
+        "direction_error": {
+          "count": 99,
+          "mean": 84.56861628775617,
+          "median": 86.54842217477686,
+          "p10": 5.7202220621028586,
+          "p90": 170.44999107455695
+        },
+        "distinct_gt_coverage": 0.23232323232323232,
+        "duplicates": {
+          "duplicate_pair_count": 106,
+          "duplicate_pair_ratio": 1.0,
+          "nodes_with_duplicates": 32,
+          "nodes_with_duplicates_ratio": 1.0,
+          "nodes_with_multiple_predictions": 32,
+          "pair_count": 106
+        },
+        "endpoint_error": {
+          "count": 99,
+          "mean": 19.106899360397474,
+          "median": 19.435440172905924,
+          "p10": 14.460664577906641,
+          "p90": 23.695075918997272
+        },
+        "gt_branch_count": 99,
+        "recall": 0.23232323232323232,
+        "true_positive": 23
+      },
+      "sample_count": 32
+    }
+  },
+  "missed_branch_rate": 0.3562753036437247,
+  "offset_saturation_statistics": {
+    "absolute_tanh_output_gt_0_95_ratio": 0.0,
+    "all_offset_norm": {
+      "count": 3072,
+      "mean": 0.19710778701786089,
+      "median": 0.24941041320562363,
+      "p10": 0.03563731387257576,
+      "p90": 0.30913282334804537
+    },
+    "direction_inf_count": 0,
+    "direction_nan_count": 0,
+    "finite_direction_slot_ratio": 1.0,
+    "matched_absolute_tanh_output_gt_0_95_ratio": 0.0,
+    "matched_offset_norm": {
+      "count": 494,
+      "mean": 0.17985075559874295,
+      "median": 0.24687790870666504,
+      "p10": 0.033670061454176906,
+      "p90": 0.307760614156723
+    },
+    "near_zero_offset_ratio": 0.0,
+    "unmatched_absolute_tanh_output_gt_0_95_ratio": 0.0,
+    "unmatched_offset_norm": {
+      "count": 2578,
+      "mean": 0.20041460374441022,
+      "median": 0.24990695714950562,
+      "p10": 0.03642310947179794,
+      "p90": 0.30947923064231875
+    }
+  },
+  "oracle_k": {
+    "direction_error": {
+      "count": 494,
+      "mean": 34.19188550083131,
+      "median": 8.159303947510562,
+      "p10": 1.3590138093596473,
+      "p90": 96.98170423890842
+    },
+    "distinct_gt_coverage": 0.6396761133603239,
+    "duplicates": {
+      "duplicate_pair_count": 145,
+      "duplicate_pair_ratio": 1.0,
+      "nodes_with_duplicates": 71,
+      "nodes_with_duplicates_ratio": 0.138671875,
+      "nodes_with_multiple_predictions": 71,
+      "pair_count": 145
+    },
+    "endpoint_error": {
+      "count": 494,
+      "mean": 16.172597731393925,
+      "median": 14.450224032438646,
+      "p10": 11.90444595457423,
+      "p90": 22.371873864813598
+    },
+    "gt_branch_count": 494,
+    "recall": 0.6396761133603239,
+    "true_positive": 316
+  },
+  "oracle_k_duplicate_ratio": 1.0,
+  "per_query_average_probability": {
+    "0": {
+      "count": 512,
+      "mean": 0.17828038805964752,
+      "median": 0.141591414809227,
+      "p10": 0.042630717158317566,
+      "p90": 0.3964111655950546
+    },
+    "1": {
+      "count": 512,
+      "mean": 0.17744429048298116,
+      "median": 0.14043739438056946,
+      "p10": 0.04229630567133427,
+      "p90": 0.39581042230129243
+    },
+    "2": {
+      "count": 512,
+      "mean": 0.17818274720866611,
+      "median": 0.1411483883857727,
+      "p10": 0.042545422166585925,
+      "p90": 0.3975075125694275
+    },
+    "3": {
+      "count": 512,
+      "mean": 0.1763512213251488,
+      "median": 0.1392356976866722,
+      "p10": 0.04199574887752533,
+      "p90": 0.39487516283988955
+    },
+    "4": {
+      "count": 512,
+      "mean": 0.1771268191487252,
+      "median": 0.13982649892568588,
+      "p10": 0.04235833995044232,
+      "p90": 0.39630198776721953
+    },
+    "5": {
+      "count": 512,
+      "mean": 0.17648632762893612,
+      "median": 0.13932090997695923,
+      "p10": 0.04236044213175774,
+      "p90": 0.3951887577772141
+    }
+  },
+  "per_query_match_frequency": {
+    "0": 42,
+    "1": 66,
+    "2": 153,
+    "3": 41,
+    "4": 160,
+    "5": 32
+  },
+  "predicted_branch_count": 2628,
+  "probability_gt_0_1_given_matched": 0.9878542510121457,
+  "probability_gt_0_1_given_unmatched": 0.8301008533747091,
+  "probability_rank_of_matched": {
+    "count": 494,
+    "mean": 3.2267206477732793,
+    "median": 4.0,
+    "p10": 1.0,
+    "p90": 5.0
+  },
+  "query_count": 6,
+  "rpnet_checkpoint_metadata": {
+    "model_name": null,
+    "num_targets": null,
+    "outer_it": null,
+    "path_it": null,
+    "step_length": null,
+    "trajectory_mode": null,
+    "window_size": null
+  },
+  "sample_count": 512,
+  "schema_version": "stage3c-diagnostics-v1",
+  "slot_ap": 0.23330740089989116,
+  "slot_ap_geometry_reference": 0.23330740089989116,
+  "slot_auroc": 0.6612805960117217,
+  "slot_auroc_geometry_reference": 0.6612805960117217,
+  "thresholded_duplicate_ratio": 1.0,
+  "unmatched_logit": {
+    "count": 2578,
+    "mean": -1.982332576872583,
+    "median": -1.8214942812919617,
+    "p10": -4.431617593765258,
+    "p90": -0.42761259078979486
+  },
+  "unmatched_prob_mean": 0.1670002913527166,
+  "unmatched_prob_median": 0.13925467431545258,
+  "unmatched_probability": {
+    "count": 2578,
+    "mean": 0.1670002913527166,
+    "median": 0.13925467431545258,
+    "p10": 0.011755398847162724,
+    "p90": 0.39469658136367797
+  }
+}

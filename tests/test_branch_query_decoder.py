@@ -160,6 +160,65 @@ class MultiModalBranchQueryDecoderTest(unittest.TestCase):
             torch.testing.assert_close(
                 original[key], padded[key], rtol=1e-5, atol=1e-6)
 
+    def test_none_and_zero_walked_path_are_equivalent(self):
+        inputs = self._inputs()
+        zero_walked_path = torch.zeros(2, 1, 9, 11)
+        with torch.no_grad():
+            none_output = self.decoder(
+                *inputs, walked_path=None)
+            zero_output = self.decoder(
+                *inputs, walked_path=zero_walked_path)
+        for key in (
+                "branch_exist_logits",
+                "branch_offsets_norm",
+                "branch_directions"):
+            torch.testing.assert_close(
+                none_output[key],
+                zero_output[key],
+                rtol=0.0,
+                atol=0.0,
+            )
+
+    def test_nonzero_walked_path_changes_prediction(self):
+        inputs = self._inputs()
+        zero_walked_path = torch.zeros(2, 1, 9, 11)
+        nonzero_walked_path = zero_walked_path.clone()
+        nonzero_walked_path[:, :, 2:7, 5] = 1.0
+        with torch.no_grad():
+            zero_output = self.decoder(
+                *inputs, walked_path=zero_walked_path)
+            nonzero_output = self.decoder(
+                *inputs, walked_path=nonzero_walked_path)
+        difference = (
+            zero_output["branch_exist_logits"]
+            - nonzero_output["branch_exist_logits"]
+        ).abs().max()
+        self.assertGreater(float(difference), 1e-7)
+
+    def test_modality_ablation_outputs_are_finite(self):
+        inputs = self._inputs()
+        walked_path = torch.randn(2, 1, 9, 11)
+        with torch.no_grad():
+            full = self.decoder(
+                *inputs, walked_path=walked_path)
+            no_trajectory = self.decoder(
+                inputs[0],
+                inputs[1],
+                torch.zeros(2, 0, 32),
+                torch.zeros(2, 0, dtype=torch.bool),
+                walked_path=walked_path,
+            )
+            trajectory_graph = self.decoder(
+                *inputs,
+                walked_path=walked_path,
+                image_available=torch.zeros(2, dtype=torch.bool),
+            )
+        for output in (full, no_trajectory, trajectory_graph):
+            self.assertTrue(all(
+                torch.isfinite(value).all()
+                for value in output.values()
+            ))
+
     def test_image_graph_and_trajectory_receive_finite_gradients(self):
         graph_encoder = GraphStateEncoder(hidden_dim=32).eval()
         graph_state = _batched_graph_state(batch_size=2, edge_count=2)
@@ -210,6 +269,85 @@ class MultiModalBranchQueryDecoderTest(unittest.TestCase):
         self.assertTrue(all(
             torch.isfinite(value).all()
             for value in outputs.values()
+        ))
+
+    def test_debug_query_stages_have_expected_shape(self):
+        with torch.no_grad():
+            outputs = self.decoder(
+                *self._inputs(), return_debug_states=True)
+        for key in (
+                "debug_learned_query_embedding",
+                "debug_pre_graph_queries",
+                "debug_graph_conditioned_queries",
+                "debug_pre_cross_attention_queries",
+                "debug_image_cross_attention_output",
+                "debug_trajectory_cross_attention_output",
+                "debug_final_fused_queries",
+                "debug_graph_state_contribution"):
+            self.assertEqual(tuple(outputs[key].shape), (2, 6, 32))
+            self.assertTrue(torch.isfinite(outputs[key]).all())
+
+    def test_zero_self_attention_checkpoint_is_strict_compatible(self):
+        state_dict = self.decoder.state_dict()
+        restored = MultiModalBranchQueryDecoder(
+            image_channels=16,
+            trajectory_dim=32,
+            hidden_dim=32,
+            num_queries=6,
+            num_heads=4,
+            image_pool_size=4,
+            dropout=0.0,
+            query_self_attention_layers=0,
+        )
+        restored.load_state_dict(state_dict, strict=True)
+        self.assertFalse(any(
+            key.startswith("query_self_attention")
+            for key in restored.state_dict()
+        ))
+
+    def test_one_self_attention_layer_is_optional_and_finite(self):
+        torch.manual_seed(20260724)
+        decoder = MultiModalBranchQueryDecoder(
+            image_channels=16,
+            trajectory_dim=32,
+            hidden_dim=32,
+            num_queries=6,
+            num_heads=4,
+            image_pool_size=4,
+            dropout=0.0,
+            query_self_attention_layers=1,
+        ).eval()
+        with torch.no_grad():
+            outputs = decoder(
+                *self._inputs(), return_debug_states=True)
+        self.assertTrue(torch.isfinite(
+            outputs["branch_exist_logits"]).all())
+        self.assertTrue(any(
+            key.startswith("query_self_attention.")
+            for key in decoder.state_dict()
+        ))
+
+    def test_enabling_self_attention_preserves_shared_initialization(self):
+        arguments = {
+            "image_channels": 16,
+            "trajectory_dim": 32,
+            "hidden_dim": 32,
+            "num_queries": 6,
+            "num_heads": 4,
+            "image_pool_size": 4,
+            "dropout": 0.0,
+        }
+        torch.manual_seed(20260724)
+        legacy = MultiModalBranchQueryDecoder(
+            **arguments, query_self_attention_layers=0)
+        torch.manual_seed(20260724)
+        self_attention = MultiModalBranchQueryDecoder(
+            **arguments, query_self_attention_layers=1)
+        legacy_state = legacy.state_dict()
+        self_attention_state = self_attention.state_dict()
+        self.assertTrue(all(
+            torch.equal(value, self_attention_state[key])
+            for key, value in legacy_state.items()
         ))
 
 

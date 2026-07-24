@@ -1,0 +1,12 @@
+BASE_CONFIG: "stage3c_branch_aux.yml"
+
+STAGE3C:
+  OUTPUT_DIR: "data_self/stage3c_branch_aux_e4_self_attn"
+  MATCHING:
+    EXISTENCE_COST_WEIGHT: 1.0
+  LOSS:
+    EXIST_NO_OBJECT_COEF: 0.2
+  MODEL:
+    QUERY_SELF_ATTENTION_LAYERS: 1
+  EVALUATION:
+    MODEL_SELECTION_METRIC: "branch_ap"

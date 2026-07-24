@@ -1,0 +1,8 @@
+BASE_CONFIG: "stage3c_branch_aux.yml"
+
+STAGE3C:
+  OUTPUT_DIR: "data_self/stage3c_diagnostics/e0_epoch16"
+  DIAGNOSTICS:
+    CHECKPOINT: "data_self/stage3c_branch_aux/checkpoints/stage3c_aux.best.pth.tar"
+    EXISTENCE_THRESHOLD: 0.10
+    CALIBRATION_BINS: 15

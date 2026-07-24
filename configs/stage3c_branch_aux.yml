@@ -1,0 +1,109 @@
+TASK: "stage3c_branch_aux"
+
+TRAJ:
+  MODE: "none"
+
+DIR:
+  DATA_ROOT: "data_self"
+  IMAGERY_DIR: "data_self/input/imagery/"
+  GRAPH_DIR: "data_self/input/graphs/"
+  ALL_REGION_PATH: "data_self/input/regions/all_regions.txt"
+  TILE_DIR: "data_self/input/imagery/"
+  SHORTCUT_DIR: "data_self/input/shortcut/"
+
+TRAIN:
+  NUM_TARGETS: 4
+  PARALLEL_TILES: 2048
+  IMG_SZ: 4096
+  TRAINING_REGIONS: ["xian"]
+  MAX_PATH_LENGTH: 2048
+  STEP_LENGTH: 20
+  WINDOW_SIZE: 256
+  RECT_RADIUS: 8
+  AVG_CONFIDENCE_THRESHOLD: 0.2
+  MODEL: "origin"
+
+STAGE3C:
+  # Formal Stage 3C runs must load this checkpoint strictly. The training
+  # script never falls back to a randomly initialized RPNet.
+  IMAGE_CHECKPOINT: "/home/wangziyu/VecRoad-master/data/ckpt/vecroad.pth.tar"
+  DATASET_DIR: "data_self/stage3c_branch_dataset"
+  OUTPUT_DIR: "data_self/stage3c_branch_aux"
+  SEED: 20260724
+  DEVICE: "cuda"
+
+  DATASET:
+    TRAIN_SAMPLES: 2048
+    VAL_SAMPLES: 512
+    SHARD_SIZE: 128
+    VAL_SUBTILE_INDICES: [3]
+    MAX_EXPLORED_EDGES: 8
+    MAX_BRANCHES: 6
+    MAX_FRAGMENTS: 64
+    MAX_POINTS_PER_FRAGMENT: 16
+    CONTEXT_POINTS: 2
+    MAX_TIME_GAP_SECONDS: 60.0
+    MAX_SPATIAL_GAP_PIXELS: 256.0
+
+  MODEL:
+    HIDDEN_DIM: 128
+    NUM_HEADS: 4
+    TRAJECTORY_LAYERS: 2
+    NUM_QUERIES: 6
+    IMAGE_POOL_SIZE: 16
+    DROPOUT: 0.1
+    # Zero creates no extra parameters and preserves strict compatibility
+    # with the existing Stage 3C auxiliary checkpoints.
+    QUERY_SELF_ATTENTION_LAYERS: 0
+
+  MATCHING:
+    ENDPOINT_COST_WEIGHT: 1.0
+    DIRECTION_COST_WEIGHT: 1.0
+    # Zero is the original geometry-only Hungarian assignment.
+    EXISTENCE_COST_WEIGHT: 0.0
+    DEBUG_COST_STATISTICS: False
+
+  LOSS:
+    EXISTENCE_WEIGHT: 1.0
+    ENDPOINT_WEIGHT: 1.0
+    DIRECTION_WEIGHT: 1.0
+    # One reproduces the original unweighted slot BCE exactly.
+    EXIST_NO_OBJECT_COEF: 1.0
+
+  OPTIMIZER:
+    LEARNING_RATE: 0.0001
+    WEIGHT_DECAY: 0.0002
+
+  TRAINING:
+    EPOCHS: 30
+    BATCH_SIZE: 32
+    VAL_BATCH_SIZE: 64
+    TRAJECTORY_MODALITY_DROPOUT: 0.25
+    GRADIENT_CLIP_NORM: 5.0
+    NUM_WORKERS: 0
+    SAVE_EVERY_EPOCHS: 1
+    PRECOMPUTE_RPNET_FEATURES: True
+    FEATURE_CACHE_BATCH_SIZE: 64
+
+  SANITY:
+    SAMPLE_COUNT: 32
+    MAX_EPOCHS: 400
+    EVAL_EVERY_EPOCHS: 10
+    LEARNING_RATE: 0.001
+    DISABLE_MODEL_DROPOUT: True
+    MIN_TOTAL_LOSS_REDUCTION: 0.50
+    MIN_ENDPOINT_ERROR_REDUCTION: 0.40
+    MIN_DIRECTION_ERROR_REDUCTION: 0.25
+
+  EVALUATION:
+    EXISTENCE_THRESHOLD: 0.5
+    # Diagnostic calibration sweep on the validation split. Fixed 0.5
+    # metrics remain the primary uncalibrated result.
+    THRESHOLD_SWEEP: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50]
+    ENDPOINT_MATCH_THRESHOLD_PIXELS: 20.0
+    DIRECTION_MATCH_THRESHOLD_DEGREES: 45.0
+    DUPLICATE_ENDPOINT_THRESHOLD_PIXELS: 12.0
+    DUPLICATE_DIRECTION_THRESHOLD_DEGREES: 25.0
+    # Keep the historical checkpoint-selection behavior in the base config.
+    # E1-E4 explicitly select threshold-free branch AP.
+    MODEL_SELECTION_METRIC: "f1"

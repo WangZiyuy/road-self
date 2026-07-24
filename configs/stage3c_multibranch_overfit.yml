@@ -1,0 +1,13 @@
+BASE_CONFIG: "stage3c_e3_matching_plus_no_object.yml"
+
+STAGE3C:
+  OUTPUT_DIR: "data_self/stage3c_multibranch_overfit"
+  TRAINING:
+    TRAJECTORY_MODALITY_DROPOUT: 0.0
+  SANITY:
+    SAMPLE_COUNT: 32
+    GT_BRANCH_COUNT_MIN: 2
+    GT_BRANCH_COUNT_MAX: 4
+    MAX_EPOCHS: 600
+    EVAL_EVERY_EPOCHS: 10
+    DISABLE_MODEL_DROPOUT: True
