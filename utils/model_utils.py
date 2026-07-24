@@ -10,6 +10,8 @@ import rtree
 import sys
 import time
 import cv2 as cv
+from dataclasses import dataclass
+from typing import Optional
 from skimage import measure
 from tqdm import tqdm
 from sklearn.neighbors import NearestNeighbors
@@ -18,6 +20,21 @@ from utils.gis_to_graph import GisToGraphConverter
 from configs.config import config
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pad_sequence
+
+
+@dataclass(frozen=True)
+class SearchVertexState:
+    """One queued graph-exploration visit.
+
+    Parent and incoming-edge information belongs to a queued visit rather
+    than to the graph vertex itself: the same vertex may legitimately be
+    revisited from different directions.
+    """
+
+    vertex: graph_helper.Vertex
+    is_key_point: bool
+    parent_vertex_id: Optional[int] = None
+    incoming_edge_id: Optional[int] = None
 
 
 class Path(object):
@@ -125,6 +142,7 @@ class Path(object):
         edges[1].prob = prob
         self._add_edge_to_rtree(edges[0])
         self._add_edge_to_rtree(edges[1])
+        return edges
 
     def _build_rtree_for_trajectories(self):
         """
@@ -144,9 +162,16 @@ class Path(object):
                     self.trajectories_rtree.insert(id, (float(point[0]), float(point[1]), float(point[0]), float(point[1])))
                     self.trajectories_map[id] = (traj_idx, point_idx)
 
-    def prepend_search_vertex(self, vertex, is_key_point):
+    def prepend_search_vertex(
+            self, vertex, is_key_point, parent_vertex_id=None,
+            incoming_edge_id=None):
         if self.tile_data['search_rect'].contains(vertex.point):
-            self.search_vertices.append((vertex, is_key_point))
+            self.search_vertices.append(SearchVertexState(
+                vertex=vertex,
+                is_key_point=bool(is_key_point),
+                parent_vertex_id=parent_vertex_id,
+                incoming_edge_id=incoming_edge_id,
+            ))
             return True
         else:
             return False
@@ -260,10 +285,6 @@ class Path(object):
                 self.anchor_point_rtree.insert(
                     next_vertex.id, (next_point.x, next_point.y, next_point.x, next_point.y))
                 next_vertex.point = next_point
-            # key_point_flag
-            if prepend_flag is True or end_flag is True:
-                self.prepend_search_vertex(
-                    next_vertex, is_key_point=key_point_flag)
             if end_flag:
                 key_pnts = get_points_from_rtree(point_rtree=self.key_point_rtree,
                                                  index2point=self.indexed_key_points, center_point=next_vertex.point, RECT_RADIUS=0)
@@ -283,8 +304,17 @@ class Path(object):
                     self.mark_rs_explored(rs=rs)
                 else:
                     self.mark_rs_explored_part(rs=rs, edge_pos=tp)
-            # add bidirectional edge
-            self._add_bidirectional_edge(curr_vertex, next_vertex)
+            # Add the edge before queueing so the visit state can retain the
+            # exact directed edge used to enter next_vertex.
+            added_edges = self._add_bidirectional_edge(
+                curr_vertex, next_vertex)
+            if prepend_flag is True or end_flag is True:
+                self.prepend_search_vertex(
+                    next_vertex,
+                    is_key_point=key_point_flag,
+                    parent_vertex_id=curr_vertex.id,
+                    incoming_edge_id=added_edges[0].id,
+                )
             if self.road_seg is not None:
                 src = curr_vertex.point.sub(self.road_seg_origin)
                 dst = next_vertex.point.sub(self.road_seg_origin)
@@ -371,7 +401,8 @@ class Path(object):
                 # recurrent set curr_vertex
                 curr_vertex = next_vertex
 
-    def pop(self, follow_order=True, probs=[0.15, 0.8, 0.05], WINDOW_SIZE=256):
+    def pop_state(self, follow_order=True, probs=[0.15, 0.8, 0.05],
+                  WINDOW_SIZE=256):
         """
 
         :param follow_order:
@@ -381,18 +412,26 @@ class Path(object):
                 "pop_random_starting_point": 0.05
             }
         :param WINDOW_SIZE:
-        :return:
+        :return: SearchVertexState or None
         """
 
         def _pop_search_vertices():
             if len(self.search_vertices) > 0:
                 if follow_order:
-                    _vertex, _is_key_point = self.search_vertices.pop()
+                    queued_state = self.search_vertices.pop()
                 else:
-                    _vertex, _is_key_point = self.search_vertices.pop(
+                    queued_state = self.search_vertices.pop(
                         random.randint(0, len(self.search_vertices)-1))
-                return _vertex, _is_key_point
-            return None, None
+                if isinstance(queued_state, SearchVertexState):
+                    return queued_state
+                # Accept historical two-tuples so older in-memory callers and
+                # validation utilities remain compatible.
+                _vertex, _is_key_point = queued_state
+                return SearchVertexState(
+                    vertex=_vertex,
+                    is_key_point=bool(_is_key_point),
+                )
+            return None
 
         def _pop_not_explored_starting_points():
             if len(self.not_explored_starting_points) > 0:
@@ -403,7 +442,7 @@ class Path(object):
                     _vertex = self.graph.add_vertex(start_loc[0]['point'])
                     _vertex.edge_pos = start_loc[0]['edge_pos']
                     _is_key_point = start_loc[0]['key_point']
-                    return _vertex, True
+                    return SearchVertexState(_vertex, True)
                 elif self.is_training:  # starting point at the middle of the road
                     split_point = start_loc[0]['point']
                     edge_pos = start_loc[0]['edge_pos']
@@ -455,8 +494,8 @@ class Path(object):
                         rs_exp.marked_length = rs.marked_length
                     _vertex = self.graph.add_vertex(start_loc[0]['point'])
                     _vertex.edge_pos = start_loc[0]['edge_pos']
-                    return _vertex, True
-            return None, None
+                    return SearchVertexState(_vertex, True)
+            return None
 
         def _pop_road_seg_peak():
             if self.road_seg.max() > 0:
@@ -469,8 +508,8 @@ class Path(object):
                 _vertex.edge_pos = None
                 _vertex.from_road_seg = True
                 _is_key_point = False
-                return _vertex, _is_key_point
-            return None, None
+                return SearchVertexState(_vertex, _is_key_point)
+            return None
 
         def _pop_random_patch(max_iter=5):
             random_rect = get_random_rect_padding(
@@ -478,38 +517,50 @@ class Path(object):
             small_rect = random_rect.add_tol(-WINDOW_SIZE//3)
             if len(self.gc.edge_index.search(small_rect)) > 0:
                 if max_iter == 0:
-                    return None, None
+                    return None
                 return _pop_random_patch(max_iter-1)
             else:
                 _vertex = graph_helper.Vertex(-1, random_rect.start.add(
                     geom.Point(WINDOW_SIZE//2, WINDOW_SIZE//2)))
                 _vertex.edge_pos = None
-                return _vertex, False
+                return SearchVertexState(_vertex, False)
 
-        vertex, is_key_point = None, None
+        state = None
         if follow_order:
             if len(self.search_vertices) > 0:
-                vertex, is_key_point = _pop_search_vertices()
+                state = _pop_search_vertices()
             elif len(self.not_explored_starting_points) > 0:
-                vertex, is_key_point = _pop_not_explored_starting_points()
+                state = _pop_not_explored_starting_points()
             elif self.road_seg is not None:
-                vertex, is_key_point = _pop_road_seg_peak()
-            return vertex, is_key_point
+                state = _pop_road_seg_peak()
+            return state
         else:
             choice = random_sample_given_probs(
                 ["pop_unexplored_starting_point", "pop_search_vertices", "pop_random_starting_point"], probs=probs)
             if choice == "pop_unexplored_starting_point" and len(self.not_explored_starting_points) > 0:
-                vertex, is_key_point = _pop_not_explored_starting_points()
+                state = _pop_not_explored_starting_points()
             elif choice == "pop_search_vertices" and len(self.search_vertices) > 0:
-                vertex, is_key_point = _pop_search_vertices()
+                state = _pop_search_vertices()
             elif choice == "pop_random_starting_point":
-                vertex, is_key_point = _pop_random_patch(max_iter=5)
-            if vertex is None and (len(self.not_explored_starting_points) > 0 or len(self.search_vertices) > 0):
+                state = _pop_random_patch(max_iter=5)
+            if state is None and (len(self.not_explored_starting_points) > 0 or len(self.search_vertices) > 0):
                 if len(self.search_vertices) > 0:
-                    vertex, is_key_point = _pop_search_vertices()
-                if vertex is None:
-                    vertex, is_key_point = _pop_not_explored_starting_points()
-            return vertex, is_key_point
+                    state = _pop_search_vertices()
+                if state is None:
+                    state = _pop_not_explored_starting_points()
+            return state
+
+    def pop(self, follow_order=True, probs=[0.15, 0.8, 0.05],
+            WINDOW_SIZE=256):
+        """Backward-compatible two-value exploration pop."""
+        state = self.pop_state(
+            follow_order=follow_order,
+            probs=probs,
+            WINDOW_SIZE=WINDOW_SIZE,
+        )
+        if state is None:
+            return None, None
+        return state.vertex, state.is_key_point
 
     def _follow_graph_one_step(self, mode, curr_pnt, curr_rs, next_point, next_pos, road_segmentation,
                                origin_pnt, explored_points=list(),
