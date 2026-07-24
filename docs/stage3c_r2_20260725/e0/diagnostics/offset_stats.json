@@ -1,0 +1,30 @@
+{
+  "absolute_tanh_output_gt_0_95_ratio": 0.0,
+  "all_offset_norm": {
+    "count": 3072,
+    "mean": 0.20883338296198417,
+    "median": 0.2320787012577057,
+    "p10": 0.005943521158769727,
+    "p90": 0.38081506490707395
+  },
+  "direction_inf_count": 0,
+  "direction_nan_count": 0,
+  "finite_direction_slot_ratio": 1.0,
+  "matched_absolute_tanh_output_gt_0_95_ratio": 0.0,
+  "matched_offset_norm": {
+    "count": 494,
+    "mean": 0.18529500444028488,
+    "median": 0.2271507829427719,
+    "p10": 0.004754450311884284,
+    "p90": 0.37739287316799164
+  },
+  "near_zero_offset_ratio": 0.0,
+  "unmatched_absolute_tanh_output_gt_0_95_ratio": 0.0,
+  "unmatched_offset_norm": {
+    "count": 2578,
+    "mean": 0.21334384028926093,
+    "median": 0.23338904231786728,
+    "p10": 0.006358136888593435,
+    "p90": 0.38112645149230956
+  }
+}

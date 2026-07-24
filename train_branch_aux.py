@@ -682,6 +682,132 @@ def _evaluate_sanity_gate(
     return all(check["passed"] for check in checks.values()), checks
 
 
+def _evaluate_optional_sanity_gate(
+    sanity_cfg: EasyDict,
+    evaluation: Mapping[str, Any],
+) -> Tuple[bool, bool, Dict[str, Dict[str, Any]]]:
+    """Evaluate only the optional multi-branch overfit criteria.
+
+    The first boolean states whether any optional criterion is configured.
+    With no optional criteria, every evaluated epoch is eligible for best
+    checkpoint selection so historical sanity configurations keep running.
+    """
+
+    specifications = (
+        (
+            "MIN_BRANCH_AP",
+            "branch_ap",
+            float(evaluation["branch_ap"]),
+            ">=",
+        ),
+        (
+            "MIN_EXACT_COUNT_ACCURACY",
+            "exact_count_accuracy",
+            float(evaluation["thresholded_metrics"][
+                "exact_branch_count_accuracy"]),
+            ">=",
+        ),
+        (
+            "MIN_ORACLE_K_DISTINCT_GT_COVERAGE",
+            "oracle_k_distinct_gt_coverage",
+            float(evaluation["oracle_k"][
+                "distinct_gt_coverage"]),
+            ">=",
+        ),
+        (
+            "MAX_ORACLE_K_DUPLICATE_PAIR_RATIO",
+            "oracle_k_duplicate_pair_ratio",
+            float(evaluation["oracle_k"]["duplicates"][
+                "duplicate_pair_ratio"]),
+            "<=",
+        ),
+    )
+    checks = {}
+    for config_key, name, value, comparison in specifications:
+        if config_key not in sanity_cfg:
+            continue
+        threshold = float(sanity_cfg[config_key])
+        checks[name] = {
+            "value": value,
+            "threshold": threshold,
+            "comparison": comparison,
+            "passed": bool(
+                value >= threshold
+                if comparison == ">="
+                else value <= threshold
+            ),
+        }
+    configured = bool(checks)
+    return configured, all(
+        check["passed"] for check in checks.values()), checks
+
+
+def _sanity_checkpoint_selection_key(
+    evaluation: Mapping[str, Any],
+) -> Tuple[float, float, float, float]:
+    """Return the ordered Stage 3C-R2 sanity checkpoint score."""
+
+    return (
+        float(evaluation["branch_ap"]),
+        float(evaluation["oracle_k"]["distinct_gt_coverage"]),
+        -float(evaluation["oracle_k"]["duplicates"][
+            "duplicate_pair_ratio"]),
+        -float(evaluation["loss"]["total"]),
+    )
+
+
+def _sanity_candidate_is_better(
+    *,
+    candidate: Mapping[str, Any],
+    candidate_gate_passed: bool,
+    incumbent: Optional[Mapping[str, Any]],
+    incumbent_gate_passed: bool,
+    optional_gate_configured: bool,
+) -> bool:
+    """Compare sanity evaluations without depending on training state."""
+
+    if incumbent is None:
+        return True
+    if (
+            optional_gate_configured
+            and candidate_gate_passed != incumbent_gate_passed):
+        return candidate_gate_passed
+    return (
+        _sanity_checkpoint_selection_key(candidate)
+        > _sanity_checkpoint_selection_key(incumbent)
+    )
+
+
+def _build_sanity_checkpoint_payload(
+    *,
+    modules: Sequence[torch.nn.Module],
+    optimizer: torch.optim.Optimizer,
+    epoch: int,
+    image_checkpoint: Path,
+    cfg: EasyDict,
+    evaluation: Mapping[str, Any],
+    optional_gate_configured: bool,
+    optional_gate_passed: bool,
+) -> Dict[str, Any]:
+    return build_stage3c_checkpoint_payload(
+        trajectory_encoder=modules[0],
+        graph_state_encoder=modules[1],
+        branch_decoder=modules[2],
+        optimizer=optimizer,
+        epoch=epoch,
+        image_checkpoint=str(image_checkpoint),
+        config_snapshot=_plain(cfg),
+        metrics={
+            "sanity_evaluation": _plain(evaluation),
+            "optional_gate_configured": bool(
+                optional_gate_configured),
+            "optional_gate_passed": bool(optional_gate_passed),
+            "selection_key": list(
+                _sanity_checkpoint_selection_key(evaluation)),
+        },
+    )
+
+
 def run_overfit_sanity(
     *,
     rpnet: torch.nn.Module,
@@ -749,6 +875,16 @@ def run_overfit_sanity(
     eval_every = int(sanity_cfg.EVAL_EVERY_EPOCHS)
     disable_model_dropout = bool(
         sanity_cfg.get("DISABLE_MODEL_DROPOUT", True))
+    output_dir.mkdir(parents=True, exist_ok=True)
+    best_checkpoint_path = (
+        output_dir / "sanity_overfit.best.pth.tar")
+    final_checkpoint_path = (
+        output_dir / "sanity_overfit.final.pth.tar")
+    legacy_checkpoint_path = (
+        output_dir / "sanity_overfit.pth.tar")
+    best_evaluation = None
+    best_gate_passed = False
+    optional_gate_configured = False
     started_at = time.perf_counter()
     for epoch in range(1, max_epochs + 1):
         # This is a capacity/debugging check, not regularized training.
@@ -782,6 +918,38 @@ def run_overfit_sanity(
                 cfg=cfg,
             )
             curve.append({"epoch": epoch, **evaluation})
+            (
+                candidate_gate_configured,
+                candidate_gate_passed,
+                _,
+            ) = _evaluate_optional_sanity_gate(
+                sanity_cfg, evaluation)
+            optional_gate_configured = candidate_gate_configured
+            if _sanity_candidate_is_better(
+                    candidate=evaluation,
+                    candidate_gate_passed=candidate_gate_passed,
+                    incumbent=best_evaluation,
+                    incumbent_gate_passed=best_gate_passed,
+                    optional_gate_configured=optional_gate_configured):
+                best_evaluation = curve[-1]
+                best_gate_passed = candidate_gate_passed
+                best_payload = _build_sanity_checkpoint_payload(
+                    modules=modules,
+                    optimizer=optimizer,
+                    epoch=epoch,
+                    image_checkpoint=image_checkpoint,
+                    cfg=cfg,
+                    evaluation=evaluation,
+                    optional_gate_configured=(
+                        optional_gate_configured),
+                    optional_gate_passed=candidate_gate_passed,
+                )
+                save_stage3c_checkpoint(
+                    best_checkpoint_path, best_payload)
+                # Preserve the old filename as a strict-compatible alias to
+                # the selected best model.
+                save_stage3c_checkpoint(
+                    legacy_checkpoint_path, best_payload)
             print(
                 "sanity epoch {}/{} loss={:.6f} endpoint_px={} "
                 "direction_deg={}".format(
@@ -797,23 +965,46 @@ def run_overfit_sanity(
             )
 
     final = curve[-1]
+    if best_evaluation is None:
+        raise RuntimeError(
+            "sanity loop produced no checkpoint evaluation")
+    best = best_evaluation
     total_reduction = _relative_reduction(
         initial["loss"]["total"],
-        final["loss"]["total"],
+        best["loss"]["total"],
     )
     endpoint_reduction = _relative_reduction(
         initial["oracle_geometry"]["endpoint_error_mean_pixels"],
-        final["oracle_geometry"]["endpoint_error_mean_pixels"],
+        best["oracle_geometry"]["endpoint_error_mean_pixels"],
     )
     direction_reduction = _relative_reduction(
         initial["oracle_geometry"]["direction_error_mean_degrees"],
-        final["oracle_geometry"]["direction_error_mean_degrees"],
+        best["oracle_geometry"]["direction_error_mean_degrees"],
     )
     passed, gate_checks = _evaluate_sanity_gate(
         sanity_cfg=sanity_cfg,
         total_reduction=total_reduction,
         endpoint_reduction=endpoint_reduction,
         direction_reduction=direction_reduction,
+        final=best,
+    )
+    final_total_reduction = _relative_reduction(
+        initial["loss"]["total"],
+        final["loss"]["total"],
+    )
+    final_endpoint_reduction = _relative_reduction(
+        initial["oracle_geometry"]["endpoint_error_mean_pixels"],
+        final["oracle_geometry"]["endpoint_error_mean_pixels"],
+    )
+    final_direction_reduction = _relative_reduction(
+        initial["oracle_geometry"]["direction_error_mean_degrees"],
+        final["oracle_geometry"]["direction_error_mean_degrees"],
+    )
+    final_passed, final_gate_checks = _evaluate_sanity_gate(
+        sanity_cfg=sanity_cfg,
+        total_reduction=final_total_reduction,
+        endpoint_reduction=final_endpoint_reduction,
+        direction_reduction=final_direction_reduction,
         final=final,
     )
     report = {
@@ -824,6 +1015,8 @@ def run_overfit_sanity(
         "gt_branch_count_range": [minimum_count, maximum_count],
         "passed": bool(passed),
         "gate_checks": gate_checks,
+        "final_passed": bool(final_passed),
+        "final_gate_checks": final_gate_checks,
         "thresholds": {
             "minimum_total_loss_reduction": float(
                 sanity_cfg.MIN_TOTAL_LOSS_REDUCTION),
@@ -837,30 +1030,54 @@ def run_overfit_sanity(
             "endpoint_error": endpoint_reduction,
             "direction_error": direction_reduction,
         },
+        "final_reductions": {
+            "total_loss": final_total_reduction,
+            "endpoint_error": final_endpoint_reduction,
+            "direction_error": final_direction_reduction,
+        },
         "initial": initial,
+        "best": best,
         "final": final,
+        "best_epoch": int(best["epoch"]),
+        "final_epoch": int(final["epoch"]),
+        "best_optional_gate_satisfied": bool(
+            best_gate_passed),
+        "optional_gate_configured": bool(
+            optional_gate_configured),
+        "late_regression": bool(
+            int(best["epoch"]) != int(final["epoch"])),
+        "best_selection_key": list(
+            _sanity_checkpoint_selection_key(best)),
+        "best_checkpoint": str(
+            best_checkpoint_path.resolve()),
+        "final_checkpoint": str(
+            final_checkpoint_path.resolve()),
+        "legacy_checkpoint_alias": str(
+            legacy_checkpoint_path.resolve()),
         "curve": curve,
         "elapsed_seconds": float(time.perf_counter() - started_at),
     }
-    output_dir.mkdir(parents=True, exist_ok=True)
     with (output_dir / "sanity_overfit.json").open(
             "w", encoding="utf-8") as output_file:
         json.dump(report, output_file, indent=2, sort_keys=True)
         output_file.write("\n")
     _save_sanity_curve_plot(
         curve, output_dir / "sanity_overfit_curve.png")
-    payload = build_stage3c_checkpoint_payload(
-        trajectory_encoder=modules[0],
-        graph_state_encoder=modules[1],
-        branch_decoder=modules[2],
+    final_optional_configured, final_optional_passed, _ = (
+        _evaluate_optional_sanity_gate(sanity_cfg, final)
+    )
+    final_payload = _build_sanity_checkpoint_payload(
+        modules=modules,
         optimizer=optimizer,
         epoch=max_epochs,
-        image_checkpoint=str(image_checkpoint),
-        config_snapshot=_plain(cfg),
-        metrics=report,
+        image_checkpoint=image_checkpoint,
+        cfg=cfg,
+        evaluation=final,
+        optional_gate_configured=final_optional_configured,
+        optional_gate_passed=final_optional_passed,
     )
     save_stage3c_checkpoint(
-        output_dir / "sanity_overfit.pth.tar", payload)
+        final_checkpoint_path, final_payload)
     return report
 
 

@@ -207,17 +207,15 @@ def _representation_summary(path: Path) -> Dict[str, object]:
     }
 
 
-def _variant_summary(
+def _checkpoint_summary(
     *,
-    sanity: Mapping[str, Any],
     diagnostics: Mapping[str, Any],
     representation: Mapping[str, Any],
     checkpoint: Path,
 ) -> Dict[str, Any]:
     return {
         "checkpoint": str(checkpoint.resolve()),
-        "sanity_gate_passed": bool(sanity["passed"]),
-        "sanity_gate_checks": sanity["gate_checks"],
+        "epoch": int(diagnostics["checkpoint_epoch"]),
         "branch_ap": float(diagnostics["branch_ap"]),
         "slot_ap": float(diagnostics["slot_ap"]),
         "matched_probability": diagnostics["matched_probability"],
@@ -241,9 +239,34 @@ def _variant_summary(
         "per_query_match_frequency":
             diagnostics["per_query_match_frequency"],
         "query_representation": representation,
+    }
+
+
+def _variant_summary(
+    *,
+    sanity: Mapping[str, Any],
+    best: Mapping[str, Any],
+    final: Mapping[str, Any],
+) -> Dict[str, Any]:
+    # Keep the historical top-level fields as aliases to the selected best
+    # checkpoint while exposing both snapshots explicitly for R2.
+    result = dict(best)
+    result.update({
+        "sanity_gate_passed": bool(sanity["passed"]),
+        "sanity_gate_checks": sanity["gate_checks"],
+        "best": dict(best),
+        "final": dict(final),
+        "best_epoch": int(sanity["best_epoch"]),
+        "final_epoch": int(sanity["final_epoch"]),
+        "final_sanity_gate_passed": bool(
+            sanity["final_passed"]),
+        "final_sanity_gate_checks":
+            sanity["final_gate_checks"],
+        "late_regression": bool(sanity["late_regression"]),
         "curve_gate_history": _curve_gate_history(sanity),
         "elapsed_seconds": float(sanity["elapsed_seconds"]),
-    }
+    })
+    return result
 
 
 def _curve_gate_history(
@@ -285,10 +308,14 @@ def _curve_gate_history(
             qualifying[-1] if qualifying else None),
         "final_epoch": int(sanity["curve"][-1]["epoch"]),
         "final_regressed_after_qualifying": bool(
-            qualifying
-            and not sanity["passed"]
-            and qualifying[-1]
-            < int(sanity["curve"][-1]["epoch"])
+            sanity.get(
+                "late_regression",
+                bool(
+                    qualifying
+                    and qualifying[-1]
+                    < int(sanity["curve"][-1]["epoch"])
+                ),
+            )
         ),
     }
 
@@ -357,6 +384,7 @@ def _render_readme(comparison: Mapping[str, Any]) -> str:
     variants = comparison["variants"]
     decision = comparison["decision"]
     rows = []
+    lifecycle_rows = []
     for name in VARIANT_NAMES:
         result = variants[name]
         representation = result["query_representation"]
@@ -383,6 +411,28 @@ def _render_readme(comparison: Mapping[str, Any]) -> str:
                 passed=result["sanity_gate_passed"],
             )
         )
+        lifecycle_rows.append(
+            "| {name} | {best_epoch} | {final_epoch} | "
+            "{best_ap:.4f} | {final_ap:.4f} | "
+            "{best_coverage:.4f} | {final_coverage:.4f} | "
+            "{best_duplicate:.4f} | {final_duplicate:.4f} | "
+            "{regressed} |".format(
+                name=name,
+                best_epoch=result["best_epoch"],
+                final_epoch=result["final_epoch"],
+                best_ap=result["best"]["branch_ap"],
+                final_ap=result["final"]["branch_ap"],
+                best_coverage=result["best"][
+                    "oracle_k_distinct_gt_coverage"],
+                final_coverage=result["final"][
+                    "oracle_k_distinct_gt_coverage"],
+                best_duplicate=result["best"][
+                    "oracle_k_duplicate_pair_ratio"],
+                final_duplicate=result["final"][
+                    "oracle_k_duplicate_pair_ratio"],
+                regressed=result["late_regression"],
+            )
+        )
     answer = lambda value: "Yes" if value else "No"
     return "\n".join((
         "# Stage 3C-R1 query identity comparison",
@@ -395,6 +445,14 @@ def _render_readme(comparison: Mapping[str, Any]) -> str:
         "Oracle duplicate | Graph cosine | Final cosine | Gate |",
         "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|",
         *rows,
+        "",
+        "## Best/final checkpoint lifecycle",
+        "",
+        "| Variant | Best epoch | Final epoch | Best AP | Final AP | "
+        "Best coverage | Final coverage | Best duplicate | "
+        "Final duplicate | Late regression |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---|",
+        *lifecycle_rows,
         "",
         "## Decisions",
         "",
@@ -529,26 +587,35 @@ def main() -> None:
         if list(sanity["selected_dataset_indices"]) != selected_indices:
             raise RuntimeError(
                 "{} selected a different sample set".format(name))
-        checkpoint = variant_output / "sanity_overfit.pth.tar"
-        diagnostics_dir = variant_output / "diagnostics"
-        diagnostics = run_diagnostics(
-            cfg=cfg,
-            checkpoint=checkpoint,
-            image_checkpoint=image_checkpoint,
-            dataset_dir=dataset_dir,
-            output_dir=diagnostics_dir,
-            device=device,
-            batch_size=len(selected_indices),
-            split="train",
-            dataset_indices=selected_indices,
-        )
-        representation = _representation_summary(
-            diagnostics_dir / "query_similarity.json")
+        summaries = {}
+        for checkpoint_name in ("best", "final"):
+            checkpoint = variant_output / (
+                "sanity_overfit.{}.pth.tar".format(
+                    checkpoint_name))
+            diagnostics_dir = variant_output / (
+                "diagnostics_{}".format(checkpoint_name))
+            diagnostics = run_diagnostics(
+                cfg=cfg,
+                checkpoint=checkpoint,
+                image_checkpoint=image_checkpoint,
+                dataset_dir=dataset_dir,
+                output_dir=diagnostics_dir,
+                device=device,
+                batch_size=len(selected_indices),
+                split="train",
+                dataset_indices=selected_indices,
+            )
+            representation = _representation_summary(
+                diagnostics_dir / "query_similarity.json")
+            summaries[checkpoint_name] = _checkpoint_summary(
+                diagnostics=diagnostics,
+                representation=representation,
+                checkpoint=checkpoint,
+            )
         variant_results[name] = _variant_summary(
             sanity=sanity,
-            diagnostics=diagnostics,
-            representation=representation,
-            checkpoint=checkpoint,
+            best=summaries["best"],
+            final=summaries["final"],
         )
         print(
             "{} AP={:.4f} coverage={:.4f} duplicate={:.4f} "
@@ -565,9 +632,9 @@ def main() -> None:
         )
 
     comparison = {
-        "schema_version": "stage3c-r1-v1",
+        "schema_version": "stage3c-r1-v2",
         "source_commit": (
-            "0c784c68c9604b68bf0dd437612df8e254fdaec5"),
+            "a5f5c96a82279cbc7dea8b846da361175e178199"),
         "sample_count": len(selected_indices),
         "selected_train_dataset_indices": selected_indices,
         "selected_data_sha256": data_fingerprint,

@@ -190,6 +190,8 @@ def _subset_metrics(
     target_directions: np.ndarray,
     target_mask: np.ndarray,
     cfg,
+    threshold: float = 0.5,
+    actual_labels: np.ndarray = None,
 ) -> Dict[str, object]:
     if indices.size == 0:
         return {"sample_count": 0}
@@ -225,12 +227,58 @@ def _subset_metrics(
         direction_threshold_degrees=float(
             evaluation.DIRECTION_MATCH_THRESHOLD_DEGREES),
     )
-    return {
+    threshold_evaluator = _metric_accumulator(
+        cfg, existence_threshold=threshold)
+    threshold_evaluator.update(
+        {
+            "branch_exist_logits": torch.from_numpy(
+                np.log(
+                    np.clip(
+                        probabilities[indices],
+                        1e-7,
+                        1.0 - 1e-7,
+                    )
+                    / np.clip(
+                        1.0 - probabilities[indices],
+                        1e-7,
+                        1.0,
+                    )
+                )
+            ),
+            "branch_offsets_norm": torch.from_numpy(
+                offsets[indices]),
+            "branch_directions": torch.from_numpy(
+                directions[indices]),
+        },
+        {
+            "branch_offsets_norm": torch.from_numpy(
+                target_offsets[indices]),
+            "branch_directions": torch.from_numpy(
+                target_directions[indices]),
+            "branch_mask": torch.from_numpy(
+                target_mask[indices]),
+        },
+    )
+    threshold_metrics = threshold_evaluator.compute()
+    result = {
         "sample_count": int(indices.size),
         "gt_branch_count": int(target_mask[indices].sum()),
         "branch_ap": float(branch_pr["average_precision"]),
         "oracle_k": oracle,
+        "thresholded_metrics": threshold_metrics,
     }
+    if actual_labels is not None:
+        labels = actual_labels[indices]
+        subset_probabilities = probabilities[indices]
+        result.update({
+            "slot_ap": binary_average_precision(
+                subset_probabilities, labels),
+            "matched_probability": _stats(
+                subset_probabilities[labels]),
+            "unmatched_probability": _stats(
+                subset_probabilities[~labels]),
+        })
+    return result
 
 
 def _query_similarity_summary(debug_chunks) -> Dict[str, object]:
@@ -241,6 +289,167 @@ def _query_similarity_summary(debug_chunks) -> Dict[str, object]:
             result[modality][stage] = query_pairwise_statistics(
                 np.concatenate(chunks, axis=0))
     return result
+
+
+def _modality_diagnostic_summary(
+    *,
+    values: Mapping[str, np.ndarray],
+    actual_labels: np.ndarray,
+    actual_selected: Sequence[np.ndarray],
+    target_offsets: np.ndarray,
+    target_directions: np.ndarray,
+    target_mask: np.ndarray,
+    gt_counts: np.ndarray,
+    cfg,
+    threshold: float,
+) -> Dict[str, object]:
+    """Compute the same validation metrics independently per modality."""
+
+    probabilities = values["probability"]
+    logits = values["logit"]
+    offsets = values["offsets"]
+    directions = values["directions"]
+    evaluation = cfg.STAGE3C.EVALUATION
+    branch_pr = branch_precision_recall_curve(
+        probabilities,
+        offsets,
+        directions,
+        target_offsets,
+        target_directions,
+        target_mask,
+        window_size=float(cfg.TRAIN.WINDOW_SIZE),
+        endpoint_threshold_pixels=float(
+            evaluation.ENDPOINT_MATCH_THRESHOLD_PIXELS),
+        direction_threshold_degrees=float(
+            evaluation.DIRECTION_MATCH_THRESHOLD_DEGREES),
+    )
+    oracle = oracle_k_metrics(
+        probabilities,
+        offsets,
+        directions,
+        target_offsets,
+        target_directions,
+        target_mask,
+        window_size=float(cfg.TRAIN.WINDOW_SIZE),
+        endpoint_threshold_pixels=float(
+            evaluation.ENDPOINT_MATCH_THRESHOLD_PIXELS),
+        direction_threshold_degrees=float(
+            evaluation.DIRECTION_MATCH_THRESHOLD_DEGREES),
+        duplicate_endpoint_threshold_pixels=float(
+            evaluation.DUPLICATE_ENDPOINT_THRESHOLD_PIXELS),
+        duplicate_direction_threshold_degrees=float(
+            evaluation.DUPLICATE_DIRECTION_THRESHOLD_DEGREES),
+    )
+    oracle_selected = oracle.pop("selected_query_indices")
+    threshold_selected = [
+        np.flatnonzero(probabilities[index] >= threshold)
+        for index in range(probabilities.shape[0])
+    ]
+    duplicate_arguments = {
+        "window_size": float(cfg.TRAIN.WINDOW_SIZE),
+        "endpoint_threshold_pixels": float(
+            evaluation.DUPLICATE_ENDPOINT_THRESHOLD_PIXELS),
+        "direction_threshold_degrees": float(
+            evaluation.DUPLICATE_DIRECTION_THRESHOLD_DEGREES),
+    }
+    duplicates = {
+        "thresholded": duplicate_statistics(
+            offsets, directions, threshold_selected,
+            **duplicate_arguments),
+        "oracle_k": duplicate_statistics(
+            offsets, directions, oracle_selected,
+            **duplicate_arguments),
+        "actual_matched": duplicate_statistics(
+            offsets, directions, actual_selected,
+            **duplicate_arguments),
+    }
+    threshold_evaluator = _metric_accumulator(
+        cfg, existence_threshold=threshold)
+    threshold_evaluator.update(
+        {
+            "branch_exist_logits": torch.from_numpy(logits),
+            "branch_offsets_norm": torch.from_numpy(offsets),
+            "branch_directions": torch.from_numpy(directions),
+        },
+        {
+            "branch_offsets_norm": torch.from_numpy(target_offsets),
+            "branch_directions": torch.from_numpy(target_directions),
+            "branch_mask": torch.from_numpy(target_mask),
+        },
+    )
+    threshold_metrics = threshold_evaluator.compute()
+    groups = {
+        "count_0": np.flatnonzero(gt_counts == 0),
+        "count_1": np.flatnonzero(gt_counts == 1),
+        "count_2": np.flatnonzero(gt_counts == 2),
+        "count_ge_3": np.flatnonzero(gt_counts >= 3),
+    }
+    metrics_by_count = {}
+    for name, indices in groups.items():
+        group = _subset_metrics(
+            indices,
+            probabilities=probabilities,
+            offsets=offsets,
+            directions=directions,
+            target_offsets=target_offsets,
+            target_directions=target_directions,
+            target_mask=target_mask,
+            cfg=cfg,
+            threshold=threshold,
+            actual_labels=actual_labels,
+        )
+        if indices.size:
+            group["duplicates"] = {
+                "thresholded": duplicate_statistics(
+                    offsets[indices],
+                    directions[indices],
+                    [threshold_selected[int(index)]
+                     for index in indices],
+                    **duplicate_arguments),
+                "oracle_k": duplicate_statistics(
+                    offsets[indices],
+                    directions[indices],
+                    [oracle_selected[int(index)]
+                     for index in indices],
+                    **duplicate_arguments),
+                "actual_matched": duplicate_statistics(
+                    offsets[indices],
+                    directions[indices],
+                    [actual_selected[int(index)]
+                     for index in indices],
+                    **duplicate_arguments),
+            }
+        metrics_by_count[name] = group
+    matched = probabilities[actual_labels]
+    unmatched = probabilities[~actual_labels]
+    return {
+        "branch_ap": float(branch_pr["average_precision"]),
+        "slot_ap": binary_average_precision(
+            probabilities, actual_labels),
+        "matched_probability": _stats(matched),
+        "unmatched_probability": _stats(unmatched),
+        "probability_separation_mean": (
+            float(np.mean(matched) - np.mean(unmatched))
+            if matched.size and unmatched.size
+            else None
+        ),
+        "exact_count_accuracy": threshold_metrics[
+            "exact_branch_count_accuracy"],
+        "missed_branch_rate": threshold_metrics[
+            "missed_branch_rate"],
+        "extra_branch_rate": threshold_metrics[
+            "extra_branch_rate"],
+        "predicted_branch_count": threshold_metrics[
+            "predicted_branch_count"],
+        "gt_branch_count": threshold_metrics["gt_branch_count"],
+        "oracle_k": oracle,
+        "oracle_k_duplicate_ratio": duplicates[
+            "oracle_k"]["duplicate_pair_ratio"],
+        "actual_matched_duplicate_ratio": duplicates[
+            "actual_matched"]["duplicate_pair_ratio"],
+        "duplicates": duplicates,
+        "metrics_by_gt_count": metrics_by_count,
+    }
 
 
 def run_diagnostics(
@@ -314,10 +523,14 @@ def run_diagnostics(
         modality: defaultdict(list) for modality in MODALITIES
     }
     target_chunks = defaultdict(list)
-    actual_label_chunks = []
+    actual_label_chunks_by_modality = {
+        modality: [] for modality in MODALITIES
+    }
     reference_label_chunks = []
     sample_id_chunks = []
-    actual_selected: List[np.ndarray] = []
+    actual_selected_by_modality = {
+        modality: [] for modality in MODALITIES
+    }
     reference_selected: List[np.ndarray] = []
     match_frequencies = np.zeros(
         int(cfg.STAGE3C.MODEL.NUM_QUERIES), dtype=np.int64)
@@ -384,6 +597,18 @@ def run_diagnostics(
                 for key in DEBUG_STATE_KEYS:
                     debug_chunks[modality][key].append(
                         _numpy(predictions[key]))
+                modality_matches = criterion(
+                    predictions, targets)["matches"]
+                actual_label_chunks_by_modality[modality].append(
+                    _matches_to_mask(
+                        modality_matches,
+                        batch_count,
+                        int(predictions[
+                            "branch_exist_logits"].shape[1]),
+                    )
+                )
+                actual_selected_by_modality[modality].extend(
+                    _selected_from_matches(modality_matches))
 
             predictions = predictions_by_modality[MODALITY_FULL]
             losses = criterion(predictions, targets)
@@ -395,14 +620,9 @@ def run_diagnostics(
                 direction_cost_weight=criterion.direction_cost_weight,
                 existence_cost_weight=0.0,
             )
-            actual_label_chunks.append(_matches_to_mask(
-                actual_matches, batch_count,
-                int(predictions["branch_exist_logits"].shape[1])))
             reference_label_chunks.append(_matches_to_mask(
                 reference_matches, batch_count,
                 int(predictions["branch_exist_logits"].shape[1])))
-            actual_selected.extend(
-                _selected_from_matches(actual_matches))
             reference_selected.extend(
                 _selected_from_matches(reference_matches))
 
@@ -466,7 +686,13 @@ def run_diagnostics(
     target_mask = _concatenate(target_chunks["mask"]).astype(bool)
     gt_counts = _concatenate(target_chunks["count"]).astype(np.int64)
     sample_ids = _concatenate(sample_id_chunks).astype(np.int64)
-    actual_labels = _concatenate(actual_label_chunks).astype(bool)
+    actual_labels_by_modality = {
+        modality: _concatenate(chunks).astype(bool)
+        for modality, chunks
+        in actual_label_chunks_by_modality.items()
+    }
+    actual_labels = actual_labels_by_modality[MODALITY_FULL]
+    actual_selected = actual_selected_by_modality[MODALITY_FULL]
     reference_labels = _concatenate(
         reference_label_chunks).astype(bool)
     full = {
@@ -484,11 +710,13 @@ def run_diagnostics(
     calibration_reference = calibration_curve(
         probabilities, reference_labels, bin_count=calibration_bins)
     branch_pr_by_modality = {}
+    modality_values = {}
     for modality in MODALITIES:
         values = {
             key: _concatenate(chunks)
             for key, chunks in modality_chunks[modality].items()
         }
+        modality_values[modality] = values
         branch_pr_by_modality[modality] = (
             branch_precision_recall_curve(
                 values["probability"],
@@ -572,6 +800,23 @@ def run_diagnostics(
     reference_matched_probabilities = probabilities[reference_labels]
     reference_unmatched_probabilities = probabilities[~reference_labels]
     query_similarity = _query_similarity_summary(debug_chunks)
+    modality_summaries = {
+        modality: _modality_diagnostic_summary(
+            values=modality_values[modality],
+            actual_labels=actual_labels_by_modality[modality],
+            actual_selected=actual_selected_by_modality[modality],
+            target_offsets=target_offsets,
+            target_directions=target_directions,
+            target_mask=target_mask,
+            gt_counts=gt_counts,
+            cfg=cfg,
+            threshold=threshold,
+        )
+        for modality in MODALITIES
+    }
+    for modality in MODALITIES:
+        modality_summaries[modality]["query_similarity"] = (
+            query_similarity[modality])
     offset_norm = np.linalg.norm(offsets, axis=-1)
     direction_finite = np.isfinite(directions).all(axis=-1)
     offset_stats = {
@@ -706,6 +951,7 @@ def run_diagnostics(
             modality: float(values["average_precision"])
             for modality, values in branch_pr_by_modality.items()
         },
+        "metrics_by_modality": modality_summaries,
         "slot_ap": binary_average_precision(
             probabilities, actual_labels),
         "slot_ap_geometry_reference": binary_average_precision(

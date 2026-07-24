@@ -1,6 +1,8 @@
+import tempfile
 import unittest
 from pathlib import Path
 
+import torch
 from easydict import EasyDict
 
 from scripts.run_stage3c_r1 import (
@@ -8,9 +10,13 @@ from scripts.run_stage3c_r1 import (
     build_r1_decision,
 )
 from train_branch_aux import (
+    _build_sanity_checkpoint_payload,
+    _evaluate_optional_sanity_gate,
     _evaluate_sanity_gate,
     _load_config,
+    _sanity_candidate_is_better,
 )
+from utils.stage3c_checkpoint import save_stage3c_checkpoint
 
 
 def _final_metrics(
@@ -19,9 +25,11 @@ def _final_metrics(
     exact=0.9,
     coverage=0.95,
     duplicate=0.1,
+    loss=0.2,
 ):
     return {
         "branch_ap": branch_ap,
+        "loss": {"total": loss},
         "thresholded_metrics": {
             "exact_branch_count_accuracy": exact,
         },
@@ -62,6 +70,100 @@ def _decision_variant(
 
 
 class Stage3CR1Test(unittest.TestCase):
+    def test_base_sanity_without_optional_gate_remains_eligible(self):
+        configured, passed, checks = (
+            _evaluate_optional_sanity_gate(
+                EasyDict({}),
+                _final_metrics(branch_ap=0.1),
+            )
+        )
+        self.assertFalse(configured)
+        self.assertTrue(passed)
+        self.assertEqual(checks, {})
+
+    def test_better_intermediate_sanity_epoch_beats_final_epoch(self):
+        intermediate = _final_metrics(
+            branch_ap=0.95,
+            coverage=0.96,
+            duplicate=0.05,
+            loss=0.1,
+        )
+        final = _final_metrics(
+            branch_ap=0.85,
+            coverage=0.92,
+            duplicate=0.08,
+            loss=0.2,
+        )
+        self.assertTrue(_sanity_candidate_is_better(
+            candidate=intermediate,
+            candidate_gate_passed=True,
+            incumbent=final,
+            incumbent_gate_passed=True,
+            optional_gate_configured=True,
+        ))
+        self.assertFalse(_sanity_candidate_is_better(
+            candidate=final,
+            candidate_gate_passed=True,
+            incumbent=intermediate,
+            incumbent_gate_passed=True,
+            optional_gate_configured=True,
+        ))
+
+    def test_sanity_best_and_final_checkpoints_are_distinct_snapshots(self):
+        modules = tuple(
+            torch.nn.Linear(1, 1, bias=False) for _ in range(3))
+        optimizer = torch.optim.Adam(
+            [parameter for module in modules
+             for parameter in module.parameters()],
+            lr=1e-3,
+        )
+        cfg = EasyDict({"STAGE3C": {"name": "unit"}})
+        with tempfile.TemporaryDirectory(
+                dir=Path.cwd()) as temporary:
+            root = Path(temporary)
+            best_path = root / "sanity_overfit.best.pth.tar"
+            final_path = root / "sanity_overfit.final.pth.tar"
+            for module in modules:
+                module.weight.data.fill_(1.0)
+            best_payload = _build_sanity_checkpoint_payload(
+                modules=modules,
+                optimizer=optimizer,
+                epoch=10,
+                image_checkpoint=Path("image.pth.tar"),
+                cfg=cfg,
+                evaluation=_final_metrics(branch_ap=0.95),
+                optional_gate_configured=True,
+                optional_gate_passed=True,
+            )
+            save_stage3c_checkpoint(best_path, best_payload)
+            for module in modules:
+                module.weight.data.fill_(2.0)
+            final_payload = _build_sanity_checkpoint_payload(
+                modules=modules,
+                optimizer=optimizer,
+                epoch=20,
+                image_checkpoint=Path("image.pth.tar"),
+                cfg=cfg,
+                evaluation=_final_metrics(branch_ap=0.80),
+                optional_gate_configured=True,
+                optional_gate_passed=True,
+            )
+            save_stage3c_checkpoint(final_path, final_payload)
+
+            best = torch.load(best_path, map_location="cpu")
+            final = torch.load(final_path, map_location="cpu")
+            self.assertNotEqual(best_path, final_path)
+            self.assertEqual(best["epoch"], 10)
+            self.assertEqual(final["epoch"], 20)
+            torch.testing.assert_close(
+                best["trajectory_encoder"]["weight"],
+                torch.ones(1, 1),
+            )
+            torch.testing.assert_close(
+                final["trajectory_encoder"]["weight"],
+                torch.full((1, 1), 2.0),
+            )
+
     def test_base_sanity_gate_preserves_legacy_reduction_behavior(self):
         sanity = EasyDict({
             "MIN_TOTAL_LOSS_REDUCTION": 0.5,

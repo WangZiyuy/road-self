@@ -1,0 +1,1634 @@
+{
+  "branch_predictions_feed_path_push": false,
+  "config_paths": {
+    "M0": "/home/wangziyu/VecRoad_self/configs/stage3c_r1_m0.yml",
+    "M3": "/home/wangziyu/VecRoad_self/configs/stage3c_r1_m3.yml",
+    "M4": "/home/wangziyu/VecRoad_self/configs/stage3c_r1_m4.yml"
+  },
+  "dataset_dir": "/home/wangziyu/VecRoad_self/data_self/stage3c_branch_dataset",
+  "decision": {
+    "decision_rule": "recommend full E1-E4 only when M4 passes all optional sanity gates, graph/final cosine are below 0.95, distinct coverage is at least 0.90, and oracle-K duplicate ratio is at most 0.20",
+    "m3_graph_conditioning_remains_homogeneous": true,
+    "m3_probability_separation_improved_over_m0": true,
+    "m3_still_has_query_collapse": false,
+    "m4_covers_distinct_gt_branches": true,
+    "m4_ever_met_multibranch_metric_gate": true,
+    "m4_restores_query_identity": true,
+    "recommend_full_e1_e4_training": true
+  },
+  "elapsed_seconds": 100.75370700587519,
+  "fresh_auxiliary_initialization": true,
+  "image_checkpoint": "/home/wangziyu/VecRoad-master/data/ckpt/vecroad.pth.tar",
+  "optimizer_resume_used": false,
+  "sample_count": 32,
+  "schema_version": "stage3c-r1-v2",
+  "seed": 20260724,
+  "selected_data_sha256": "78b63c65ddbc65743677b9cdec1d1bdb43001a8f12d4873b0228d128d4766d81",
+  "selected_train_dataset_indices": [
+    0,
+    1,
+    2,
+    6,
+    13,
+    21,
+    24,
+    29,
+    33,
+    34,
+    35,
+    36,
+    37,
+    42,
+    44,
+    47,
+    70,
+    71,
+    75,
+    76,
+    79,
+    81,
+    83,
+    89,
+    91,
+    94,
+    103,
+    106,
+    110,
+    111,
+    112,
+    115
+  ],
+  "source_commit": "a5f5c96a82279cbc7dea8b846da361175e178199",
+  "trajectory_modality_dropout": 0.0,
+  "variants": {
+    "M0": {
+      "actual_matched_duplicate_pair_ratio": 0.013513513513513514,
+      "best": {
+        "actual_matched_duplicate_pair_ratio": 0.013513513513513514,
+        "branch_ap": 0.9972310517871199,
+        "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m0/sanity_overfit.best.pth.tar",
+        "epoch": 550,
+        "exact_count_accuracy": 0.96875,
+        "matched_probability": {
+          "count": 83,
+          "mean": 0.9759003139403929,
+          "median": 0.9926711320877075,
+          "p10": 0.9433880090713501,
+          "p90": 0.9967176914215088
+        },
+        "oracle_k_distinct_gt_coverage": 0.9759036144578314,
+        "oracle_k_duplicate_pair_ratio": 0.013513513513513514,
+        "oracle_k_recall": 0.9759036144578314,
+        "per_query_match_frequency": {
+          "0": 0,
+          "1": 15,
+          "2": 20,
+          "3": 0,
+          "4": 19,
+          "5": 29
+        },
+        "probability_separation_mean": 0.9522527211208663,
+        "probability_separation_median": 0.9903889303095639,
+        "query_representation": {
+          "final_fused_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 11.355249206911191,
+              "median": 11.468754663756112,
+              "p10": 11.052299603942418,
+              "p90": 11.815798193683596
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.1940674910842868,
+              "median": 0.0004125935651329288,
+              "p10": -0.20026492370097704,
+              "p90": 0.9801184118590552
+            }
+          },
+          "graph_conditioned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 10.804882550286555,
+              "median": 10.81774516361607,
+              "p10": 10.71381102919017,
+              "p90": 10.895509751042512
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.9845069991319312,
+              "median": 0.990352525347254,
+              "p10": 0.9643816683498257,
+              "p90": 0.9969651780550661
+            }
+          },
+          "image_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 13.372789981740473,
+              "median": 12.657758409805487,
+              "p10": 8.26658142681504,
+              "p90": 19.779273677537294
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.35196181831767903,
+              "median": 0.4541499674161727,
+              "p10": -0.48138979036033425,
+              "p90": 0.9826031020130078
+            }
+          },
+          "learned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 0.9854990175581883,
+              "median": 0.9940357951431124,
+              "p10": 0.41437757839586153,
+              "p90": 1.6821740921883188
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.14638850161730385,
+              "median": -0.35421554079817735,
+              "p10": -0.8743432373863285,
+              "p90": 0.6671042108302097
+            }
+          },
+          "pre_graph_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 0.9854990175581883,
+              "median": 0.9940357951431124,
+              "p10": 0.41437757839586153,
+              "p90": 1.6821740921883188
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.14638850161730385,
+              "median": -0.35421554079817735,
+              "p10": -0.8743432373863285,
+              "p90": 0.6671042108302097
+            }
+          },
+          "trajectory_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 5.438734431450681,
+              "median": 5.043411766621185,
+              "p10": 2.8285089701098727,
+              "p90": 8.63166481191136
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.5218008881697552,
+              "median": 0.810248480682739,
+              "p10": -0.5160545621107291,
+              "p90": 0.9974266402020474
+            }
+          }
+        },
+        "slot_ap": 0.9994157378838625,
+        "unmatched_probability": {
+          "count": 109,
+          "mean": 0.023647592819526518,
+          "median": 0.0022822017781436443,
+          "p10": 0.001982460543513298,
+          "p90": 0.020849927142262466
+        }
+      },
+      "best_epoch": 550,
+      "branch_ap": 0.9972310517871199,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m0/sanity_overfit.best.pth.tar",
+      "curve_gate_history": {
+        "final_epoch": 600,
+        "final_regressed_after_qualifying": true,
+        "first_qualifying_epoch": 530,
+        "last_qualifying_epoch": 570,
+        "qualifying_epoch_count": 5,
+        "qualifying_epochs": [
+          530,
+          540,
+          550,
+          560,
+          570
+        ]
+      },
+      "elapsed_seconds": 25.162069387966767,
+      "epoch": 550,
+      "exact_count_accuracy": 0.96875,
+      "final": {
+        "actual_matched_duplicate_pair_ratio": 0.0,
+        "branch_ap": 0.2787175243650084,
+        "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m0/sanity_overfit.final.pth.tar",
+        "epoch": 600,
+        "exact_count_accuracy": 0.46875,
+        "matched_probability": {
+          "count": 83,
+          "mean": 0.6479130962482059,
+          "median": 0.807320773601532,
+          "p10": 0.03410641700029373,
+          "p90": 0.9509910702705383
+        },
+        "oracle_k_distinct_gt_coverage": 0.39759036144578314,
+        "oracle_k_duplicate_pair_ratio": 0.0,
+        "oracle_k_recall": 0.39759036144578314,
+        "per_query_match_frequency": {
+          "0": 9,
+          "1": 26,
+          "2": 7,
+          "3": 2,
+          "4": 16,
+          "5": 23
+        },
+        "probability_separation_mean": 0.41726000099259153,
+        "probability_separation_median": 0.7707450054585934,
+        "query_representation": {
+          "final_fused_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 11.053213494682064,
+              "median": 11.015275729192606,
+              "p10": 10.728549216079923,
+              "p90": 11.341631645115784
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.3489009778014129,
+              "median": 0.13836408671301237,
+              "p10": -0.058153249347057644,
+              "p90": 0.9868780219311728
+            }
+          },
+          "graph_conditioned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 10.796312605233112,
+              "median": 10.800496459243012,
+              "p10": 10.714446903845234,
+              "p90": 10.909192642796281
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.983840190469785,
+              "median": 0.989097904943977,
+              "p10": 0.9630244417029329,
+              "p90": 0.996886878633149
+            }
+          },
+          "image_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 12.590148843959314,
+              "median": 10.841369693151604,
+              "p10": 6.861792678726269,
+              "p90": 19.791354569521605
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.2616901048927006,
+              "median": 0.2218258857432798,
+              "p10": -0.566190969962744,
+              "p90": 0.9703039058305131
+            }
+          },
+          "learned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 1.014881208307586,
+              "median": 1.0162325312895917,
+              "p10": 0.45873834149198345,
+              "p90": 1.6883025695472789
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.1552069400735564,
+              "median": -0.4500956703696323,
+              "p10": -0.8457537663405023,
+              "p90": 0.7169337023756643
+            }
+          },
+          "pre_graph_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 1.014881208307586,
+              "median": 1.0162325312895917,
+              "p10": 0.45873834149198345,
+              "p90": 1.6883025695472789
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.1552069400735564,
+              "median": -0.4500956703696323,
+              "p10": -0.8457537663405023,
+              "p90": 0.7169337023756643
+            }
+          },
+          "trajectory_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 7.628458235900152,
+              "median": 6.259095340826271,
+              "p10": 4.242001810286682,
+              "p90": 12.675523055376969
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.6943636218339766,
+              "median": 0.9073950323051021,
+              "p10": -0.029987976159976858,
+              "p90": 0.999816887505067
+            }
+          }
+        },
+        "slot_ap": 0.8320556123690697,
+        "unmatched_probability": {
+          "count": 109,
+          "mean": 0.23065309525561442,
+          "median": 0.036575768142938614,
+          "p10": 0.021662861481308936,
+          "p90": 0.7158529758453369
+        }
+      },
+      "final_epoch": 600,
+      "final_sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.8,
+          "value": 0.2787175243650084
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.8224858755164716
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.4,
+          "value": 0.39808542467820707
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.8,
+          "value": 0.46875
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.39759036144578314
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.0
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.6359296995295971
+        }
+      },
+      "final_sanity_gate_passed": false,
+      "late_regression": true,
+      "matched_probability": {
+        "count": 83,
+        "mean": 0.9759003139403929,
+        "median": 0.9926711320877075,
+        "p10": 0.9433880090713501,
+        "p90": 0.9967176914215088
+      },
+      "oracle_k_distinct_gt_coverage": 0.9759036144578314,
+      "oracle_k_duplicate_pair_ratio": 0.013513513513513514,
+      "oracle_k_recall": 0.9759036144578314,
+      "per_query_match_frequency": {
+        "0": 0,
+        "1": 15,
+        "2": 20,
+        "3": 0,
+        "4": 19,
+        "5": 29
+      },
+      "probability_separation_mean": 0.9522527211208663,
+      "probability_separation_median": 0.9903889303095639,
+      "query_representation": {
+        "final_fused_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 11.355249206911191,
+            "median": 11.468754663756112,
+            "p10": 11.052299603942418,
+            "p90": 11.815798193683596
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.1940674910842868,
+            "median": 0.0004125935651329288,
+            "p10": -0.20026492370097704,
+            "p90": 0.9801184118590552
+          }
+        },
+        "graph_conditioned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 10.804882550286555,
+            "median": 10.81774516361607,
+            "p10": 10.71381102919017,
+            "p90": 10.895509751042512
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.9845069991319312,
+            "median": 0.990352525347254,
+            "p10": 0.9643816683498257,
+            "p90": 0.9969651780550661
+          }
+        },
+        "image_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 13.372789981740473,
+            "median": 12.657758409805487,
+            "p10": 8.26658142681504,
+            "p90": 19.779273677537294
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.35196181831767903,
+            "median": 0.4541499674161727,
+            "p10": -0.48138979036033425,
+            "p90": 0.9826031020130078
+          }
+        },
+        "learned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 0.9854990175581883,
+            "median": 0.9940357951431124,
+            "p10": 0.41437757839586153,
+            "p90": 1.6821740921883188
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.14638850161730385,
+            "median": -0.35421554079817735,
+            "p10": -0.8743432373863285,
+            "p90": 0.6671042108302097
+          }
+        },
+        "pre_graph_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 0.9854990175581883,
+            "median": 0.9940357951431124,
+            "p10": 0.41437757839586153,
+            "p90": 1.6821740921883188
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.14638850161730385,
+            "median": -0.35421554079817735,
+            "p10": -0.8743432373863285,
+            "p90": 0.6671042108302097
+          }
+        },
+        "trajectory_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 5.438734431450681,
+            "median": 5.043411766621185,
+            "p10": 2.8285089701098727,
+            "p90": 8.63166481191136
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.5218008881697552,
+            "median": 0.810248480682739,
+            "p10": -0.5160545621107291,
+            "p90": 0.9974266402020474
+          }
+        }
+      },
+      "sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 0.9972310517871199
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.9545736446961733
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.4,
+          "value": 0.8049283343573024
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 0.96875
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 0.9759036144578314
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.013513513513513514
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.9806425907648014
+        }
+      },
+      "sanity_gate_passed": true,
+      "slot_ap": 0.9994157378838625,
+      "unmatched_probability": {
+        "count": 109,
+        "mean": 0.023647592819526518,
+        "median": 0.0022822017781436443,
+        "p10": 0.001982460543513298,
+        "p90": 0.020849927142262466
+      }
+    },
+    "M3": {
+      "actual_matched_duplicate_pair_ratio": 0.0,
+      "best": {
+        "actual_matched_duplicate_pair_ratio": 0.0,
+        "branch_ap": 1.0,
+        "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m3/sanity_overfit.best.pth.tar",
+        "epoch": 430,
+        "exact_count_accuracy": 1.0,
+        "matched_probability": {
+          "count": 83,
+          "mean": 0.9993342900850687,
+          "median": 0.999518632888794,
+          "p10": 0.9985612392425537,
+          "p90": 0.9998343467712403
+        },
+        "oracle_k_distinct_gt_coverage": 1.0,
+        "oracle_k_duplicate_pair_ratio": 0.0,
+        "oracle_k_recall": 1.0,
+        "per_query_match_frequency": {
+          "0": 23,
+          "1": 0,
+          "2": 19,
+          "3": 0,
+          "4": 20,
+          "5": 21
+        },
+        "probability_separation_mean": 0.9954239154645836,
+        "probability_separation_median": 0.9981332110473886,
+        "query_representation": {
+          "final_fused_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 11.292582615134625,
+              "median": 11.236194337691764,
+              "p10": 11.002025663402396,
+              "p90": 11.60597999448623
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.14235939006740717,
+              "median": -0.08103109052236912,
+              "p10": -0.3317092071736744,
+              "p90": 0.9810355422128441
+            }
+          },
+          "graph_conditioned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 10.750954207438147,
+              "median": 10.734077883479884,
+              "p10": 10.72250467352912,
+              "p90": 10.788963273829575
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.9841071949422582,
+              "median": 0.98881273424055,
+              "p10": 0.9575152957493088,
+              "p90": 0.9962941162454232
+            }
+          },
+          "image_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 4.308827542122649,
+              "median": 3.6962753430006496,
+              "p10": 3.2226706695413223,
+              "p90": 6.64222771749762
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.9814277733753966,
+              "median": 0.9969466976509448,
+              "p10": 0.9584316823452663,
+              "p90": 0.9996315594931541
+            }
+          },
+          "learned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 0.9916850718116285,
+              "median": 1.0380692563547407,
+              "p10": 0.48027860416663176,
+              "p90": 1.533130817848018
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.15158469295615215,
+              "median": -0.3732028914867671,
+              "p10": -0.8997088422450245,
+              "p90": 0.7957715420179698
+            }
+          },
+          "pre_graph_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 0.9916850718116285,
+              "median": 1.0380692563547407,
+              "p10": 0.48027860416663176,
+              "p90": 1.533130817848018
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.15158469295615215,
+              "median": -0.3732028914867671,
+              "p10": -0.8997088422450245,
+              "p90": 0.7957715420179698
+            }
+          },
+          "trajectory_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 8.998705782911683,
+              "median": 8.473431993274687,
+              "p10": 4.929410354022039,
+              "p90": 13.54351156229541
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.20700814869587467,
+              "median": 0.37561615115640834,
+              "p10": -0.8076450149399113,
+              "p90": 0.9795329668590859
+            }
+          }
+        },
+        "slot_ap": 1.0,
+        "unmatched_probability": {
+          "count": 109,
+          "mean": 0.0039103746204850595,
+          "median": 0.001385421841405332,
+          "p10": 0.0007682999945245683,
+          "p90": 0.008603278361260892
+        }
+      },
+      "best_epoch": 430,
+      "branch_ap": 1.0,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m3/sanity_overfit.best.pth.tar",
+      "curve_gate_history": {
+        "final_epoch": 600,
+        "final_regressed_after_qualifying": true,
+        "first_qualifying_epoch": 380,
+        "last_qualifying_epoch": 600,
+        "qualifying_epoch_count": 23,
+        "qualifying_epochs": [
+          380,
+          390,
+          400,
+          410,
+          420,
+          430,
+          440,
+          450,
+          460,
+          470,
+          480,
+          490,
+          500,
+          510,
+          520,
+          530,
+          540,
+          550,
+          560,
+          570,
+          580,
+          590,
+          600
+        ]
+      },
+      "elapsed_seconds": 25.914074179017916,
+      "epoch": 430,
+      "exact_count_accuracy": 1.0,
+      "final": {
+        "actual_matched_duplicate_pair_ratio": 0.02702702702702703,
+        "branch_ap": 1.0,
+        "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m3/sanity_overfit.final.pth.tar",
+        "epoch": 600,
+        "exact_count_accuracy": 1.0,
+        "matched_probability": {
+          "count": 83,
+          "mean": 0.9997324670653746,
+          "median": 0.9998078942298889,
+          "p10": 0.9994739890098572,
+          "p90": 0.9999359130859375
+        },
+        "oracle_k_distinct_gt_coverage": 1.0,
+        "oracle_k_duplicate_pair_ratio": 0.02702702702702703,
+        "oracle_k_recall": 1.0,
+        "per_query_match_frequency": {
+          "0": 23,
+          "1": 0,
+          "2": 19,
+          "3": 0,
+          "4": 20,
+          "5": 21
+        },
+        "probability_separation_mean": 0.9983297682853213,
+        "probability_separation_median": 0.9993212082772516,
+        "query_representation": {
+          "final_fused_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 11.214728727070066,
+              "median": 11.157839849457227,
+              "p10": 10.890465426998665,
+              "p90": 11.551979892616961
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.11718485139182833,
+              "median": -0.1247875025644596,
+              "p10": -0.39226749167397335,
+              "p90": 0.976033003934635
+            }
+          },
+          "graph_conditioned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 10.725527149009087,
+              "median": 10.714879936082816,
+              "p10": 10.70412607035549,
+              "p90": 10.750927014228331
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.9843825256714446,
+              "median": 0.988935190206106,
+              "p10": 0.9581168204409357,
+              "p90": 0.996493142031781
+            }
+          },
+          "image_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 4.019809976608506,
+              "median": 3.516358051167514,
+              "p10": 3.016863393429059,
+              "p90": 5.948717589663028
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.9895274293987678,
+              "median": 0.9985959841551597,
+              "p10": 0.9736246495883565,
+              "p90": 0.9998292864580781
+            }
+          },
+          "learned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 0.9837823149138268,
+              "median": 1.0324910308257476,
+              "p10": 0.4699789774100472,
+              "p90": 1.5253456637261331
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.1511664352600769,
+              "median": -0.3684850750775128,
+              "p10": -0.9005881108036065,
+              "p90": 0.7945500601293634
+            }
+          },
+          "pre_graph_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 0.9837823149138268,
+              "median": 1.0324910308257476,
+              "p10": 0.4699789774100472,
+              "p90": 1.5253456637261331
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.1511664352600769,
+              "median": -0.3684850750775128,
+              "p10": -0.9005881108036065,
+              "p90": 0.7945500601293634
+            }
+          },
+          "trajectory_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 8.513629215625604,
+              "median": 7.934555098798366,
+              "p10": 4.573314863672656,
+              "p90": 12.854699799605415
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.1966963169916691,
+              "median": 0.3753798043209665,
+              "p10": -0.8200617484741635,
+              "p90": 0.9827080058845289
+            }
+          }
+        },
+        "slot_ap": 1.0,
+        "unmatched_probability": {
+          "count": 109,
+          "mean": 0.0014026987800532696,
+          "median": 0.0004866859526373446,
+          "p10": 0.0003819030651357025,
+          "p90": 0.0034442330710589895
+        }
+      },
+      "final_epoch": 600,
+      "final_sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 1.0
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.997642669179046
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.4,
+          "value": 0.9302196169033434
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 1.0
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 1.0
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.02702702702702703
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.999561720429511
+        }
+      },
+      "final_sanity_gate_passed": true,
+      "late_regression": true,
+      "matched_probability": {
+        "count": 83,
+        "mean": 0.9993342900850687,
+        "median": 0.999518632888794,
+        "p10": 0.9985612392425537,
+        "p90": 0.9998343467712403
+      },
+      "oracle_k_distinct_gt_coverage": 1.0,
+      "oracle_k_duplicate_pair_ratio": 0.0,
+      "oracle_k_recall": 1.0,
+      "per_query_match_frequency": {
+        "0": 23,
+        "1": 0,
+        "2": 19,
+        "3": 0,
+        "4": 20,
+        "5": 21
+      },
+      "probability_separation_mean": 0.9954239154645836,
+      "probability_separation_median": 0.9981332110473886,
+      "query_representation": {
+        "final_fused_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 11.292582615134625,
+            "median": 11.236194337691764,
+            "p10": 11.002025663402396,
+            "p90": 11.60597999448623
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.14235939006740717,
+            "median": -0.08103109052236912,
+            "p10": -0.3317092071736744,
+            "p90": 0.9810355422128441
+          }
+        },
+        "graph_conditioned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 10.750954207438147,
+            "median": 10.734077883479884,
+            "p10": 10.72250467352912,
+            "p90": 10.788963273829575
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.9841071949422582,
+            "median": 0.98881273424055,
+            "p10": 0.9575152957493088,
+            "p90": 0.9962941162454232
+          }
+        },
+        "image_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 4.308827542122649,
+            "median": 3.6962753430006496,
+            "p10": 3.2226706695413223,
+            "p90": 6.64222771749762
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.9814277733753966,
+            "median": 0.9969466976509448,
+            "p10": 0.9584316823452663,
+            "p90": 0.9996315594931541
+          }
+        },
+        "learned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 0.9916850718116285,
+            "median": 1.0380692563547407,
+            "p10": 0.48027860416663176,
+            "p90": 1.533130817848018
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.15158469295615215,
+            "median": -0.3732028914867671,
+            "p10": -0.8997088422450245,
+            "p90": 0.7957715420179698
+          }
+        },
+        "pre_graph_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 0.9916850718116285,
+            "median": 1.0380692563547407,
+            "p10": 0.48027860416663176,
+            "p90": 1.533130817848018
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.15158469295615215,
+            "median": -0.3732028914867671,
+            "p10": -0.8997088422450245,
+            "p90": 0.7957715420179698
+          }
+        },
+        "trajectory_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 8.998705782911683,
+            "median": 8.473431993274687,
+            "p10": 4.929410354022039,
+            "p90": 13.54351156229541
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.20700814869587467,
+            "median": 0.37561615115640834,
+            "p10": -0.8076450149399113,
+            "p90": 0.9795329668590859
+          }
+        }
+      },
+      "sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 1.0
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.9889089957430924
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.4,
+          "value": 0.8953435391139395
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 1.0
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 1.0
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.0
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.9987813817339217
+        }
+      },
+      "sanity_gate_passed": true,
+      "slot_ap": 1.0,
+      "unmatched_probability": {
+        "count": 109,
+        "mean": 0.0039103746204850595,
+        "median": 0.001385421841405332,
+        "p10": 0.0007682999945245683,
+        "p90": 0.008603278361260892
+      }
+    },
+    "M4": {
+      "actual_matched_duplicate_pair_ratio": 0.0,
+      "best": {
+        "actual_matched_duplicate_pair_ratio": 0.0,
+        "branch_ap": 1.0,
+        "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m4/sanity_overfit.best.pth.tar",
+        "epoch": 210,
+        "exact_count_accuracy": 0.96875,
+        "matched_probability": {
+          "count": 83,
+          "mean": 0.9960573926029435,
+          "median": 0.9982397556304932,
+          "p10": 0.9916339755058289,
+          "p90": 0.9989612102508545
+        },
+        "oracle_k_distinct_gt_coverage": 1.0,
+        "oracle_k_duplicate_pair_ratio": 0.0,
+        "oracle_k_recall": 1.0,
+        "per_query_match_frequency": {
+          "0": 23,
+          "1": 17,
+          "2": 17,
+          "3": 26,
+          "4": 0,
+          "5": 0
+        },
+        "probability_separation_mean": 0.9795113247886221,
+        "probability_separation_median": 0.9972142917104065,
+        "query_representation": {
+          "final_fused_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 11.359017522325834,
+              "median": 11.401819879751057,
+              "p10": 11.179821969203314,
+              "p90": 11.534467791233526
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.17158373710371505,
+              "median": -0.07243785620095336,
+              "p10": -0.39129105113493867,
+              "p90": 0.8948774152326309
+            }
+          },
+          "graph_conditioned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 11.183968228095639,
+              "median": 11.184079009198594,
+              "p10": 11.138111074918632,
+              "p90": 11.215835127687349
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.35263155558129394,
+              "median": 0.3663310569298784,
+              "p10": 0.08343693485816764,
+              "p90": 0.6313488779825437
+            }
+          },
+          "image_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 5.253904684736775,
+              "median": 4.830280390138877,
+              "p10": 3.4005542288236796,
+              "p90": 8.240010161279681
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.21600761391083476,
+              "median": 0.43580089619397255,
+              "p10": -0.6938762656038495,
+              "p90": 0.9602162102363863
+            }
+          },
+          "learned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 0.25358835509188576,
+              "median": 0.25295171139327177,
+              "p10": 0.23701484390540117,
+              "p90": 0.2675717397249294
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.07168727918145641,
+              "median": -0.1026810185338202,
+              "p10": -0.21614019955736033,
+              "p90": 0.041876944352257875
+            }
+          },
+          "pre_graph_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 11.104656769701762,
+              "median": 11.10474397478075,
+              "p10": 11.034308875875462,
+              "p90": 11.159089134026917
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.10666735886634454,
+              "median": -0.13704828142595651,
+              "p10": -0.4288578718551317,
+              "p90": 0.15536956922006712
+            }
+          },
+          "trajectory_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 7.539298424264392,
+              "median": 7.735691619639669,
+              "p10": 3.940168921997732,
+              "p90": 10.951906734303108
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.5796011421195258,
+              "median": 0.803785464279194,
+              "p10": -0.3113265698816137,
+              "p90": 0.9828943616947875
+            }
+          }
+        },
+        "slot_ap": 1.0,
+        "unmatched_probability": {
+          "count": 109,
+          "mean": 0.016546067814321316,
+          "median": 0.0010254639200866222,
+          "p10": 0.0007720923167653382,
+          "p90": 0.018745761737227442
+        }
+      },
+      "best_epoch": 210,
+      "branch_ap": 1.0,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m4/sanity_overfit.best.pth.tar",
+      "curve_gate_history": {
+        "final_epoch": 600,
+        "final_regressed_after_qualifying": true,
+        "first_qualifying_epoch": 180,
+        "last_qualifying_epoch": 520,
+        "qualifying_epoch_count": 35,
+        "qualifying_epochs": [
+          180,
+          190,
+          200,
+          210,
+          220,
+          230,
+          240,
+          250,
+          260,
+          270,
+          280,
+          290,
+          300,
+          310,
+          320,
+          330,
+          340,
+          350,
+          360,
+          370,
+          380,
+          390,
+          400,
+          410,
+          420,
+          430,
+          440,
+          450,
+          460,
+          470,
+          480,
+          490,
+          500,
+          510,
+          520
+        ]
+      },
+      "elapsed_seconds": 26.910765745909885,
+      "epoch": 210,
+      "exact_count_accuracy": 0.96875,
+      "final": {
+        "actual_matched_duplicate_pair_ratio": 0.013513513513513514,
+        "branch_ap": 0.41687574806066136,
+        "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m4/sanity_overfit.final.pth.tar",
+        "epoch": 600,
+        "exact_count_accuracy": 0.8125,
+        "matched_probability": {
+          "count": 83,
+          "mean": 0.977032508476671,
+          "median": 0.9894663691520691,
+          "p10": 0.94428790807724,
+          "p90": 0.9976250767707825
+        },
+        "oracle_k_distinct_gt_coverage": 0.5903614457831325,
+        "oracle_k_duplicate_pair_ratio": 0.013513513513513514,
+        "oracle_k_recall": 0.5903614457831325,
+        "per_query_match_frequency": {
+          "0": 29,
+          "1": 9,
+          "2": 18,
+          "3": 27,
+          "4": 0,
+          "5": 0
+        },
+        "probability_separation_mean": 0.9129193669905744,
+        "probability_separation_median": 0.9872667959425598,
+        "query_representation": {
+          "final_fused_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 10.919677809987453,
+              "median": 10.920007385586661,
+              "p10": 10.758561445930845,
+              "p90": 11.095948768103511
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.23679637014004082,
+              "median": 0.1388919402830996,
+              "p10": -0.22903429966640323,
+              "p90": 0.8320819907797008
+            }
+          },
+          "graph_conditioned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 10.699952688171384,
+              "median": 10.732061643381869,
+              "p10": 10.595385827202119,
+              "p90": 10.790109958574575
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.33271288535920746,
+              "median": 0.33957116801889303,
+              "p10": -0.004385928358994327,
+              "p90": 0.6707646006011928
+            }
+          },
+          "image_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 6.287585012505866,
+              "median": 5.845281952824314,
+              "p10": 3.562370266260237,
+              "p90": 9.385412518696572
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.2513314364618247,
+              "median": 0.4293702796464322,
+              "p10": -0.6589187141597951,
+              "p90": 0.9974483225236719
+            }
+          },
+          "learned_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 0.2835515066098148,
+              "median": 0.2854574251457783,
+              "p10": 0.2631115866143464,
+              "p90": 0.29640455765630314
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.10378054323235428,
+              "median": -0.13418622196709215,
+              "p10": -0.3214398145200371,
+              "p90": 0.13286810529537524
+            }
+          },
+          "pre_graph_query": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 10.440200332322023,
+              "median": 10.443113118661781,
+              "p10": 10.285025674657165,
+              "p90": 10.56448480049748
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": -0.12095403786300295,
+              "median": -0.20216827439155577,
+              "p10": -0.48837175060567023,
+              "p90": 0.23871560405072137
+            }
+          },
+          "trajectory_context": {
+            "hidden_norm": {
+              "count": 192,
+              "mean": 4.52686835460861,
+              "median": 4.58750118202253,
+              "p10": 2.5812461362170263,
+              "p90": 6.517018631701188
+            },
+            "pairwise_cosine": {
+              "count": 480,
+              "mean": 0.6187401279197621,
+              "median": 0.7588832454896817,
+              "p10": 0.02823457546546747,
+              "p90": 0.9784347399656536
+            }
+          }
+        },
+        "slot_ap": 0.97830958372577,
+        "unmatched_probability": {
+          "count": 109,
+          "mean": 0.06411314148609655,
+          "median": 0.0021995732095092535,
+          "p10": 0.0006715867901220917,
+          "p90": 0.08312338292598734
+        }
+      },
+      "final_epoch": 600,
+      "final_sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.8,
+          "value": 0.41687574806066136
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.9167221890279509
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.4,
+          "value": 0.3840225779998947
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 0.8125
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.5903614457831325
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.013513513513513514
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.9417229863576085
+        }
+      },
+      "final_sanity_gate_passed": false,
+      "late_regression": true,
+      "matched_probability": {
+        "count": 83,
+        "mean": 0.9960573926029435,
+        "median": 0.9982397556304932,
+        "p10": 0.9916339755058289,
+        "p90": 0.9989612102508545
+      },
+      "oracle_k_distinct_gt_coverage": 1.0,
+      "oracle_k_duplicate_pair_ratio": 0.0,
+      "oracle_k_recall": 1.0,
+      "per_query_match_frequency": {
+        "0": 23,
+        "1": 17,
+        "2": 17,
+        "3": 26,
+        "4": 0,
+        "5": 0
+      },
+      "probability_separation_mean": 0.9795113247886221,
+      "probability_separation_median": 0.9972142917104065,
+      "query_representation": {
+        "final_fused_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 11.359017522325834,
+            "median": 11.401819879751057,
+            "p10": 11.179821969203314,
+            "p90": 11.534467791233526
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.17158373710371505,
+            "median": -0.07243785620095336,
+            "p10": -0.39129105113493867,
+            "p90": 0.8948774152326309
+          }
+        },
+        "graph_conditioned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 11.183968228095639,
+            "median": 11.184079009198594,
+            "p10": 11.138111074918632,
+            "p90": 11.215835127687349
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.35263155558129394,
+            "median": 0.3663310569298784,
+            "p10": 0.08343693485816764,
+            "p90": 0.6313488779825437
+          }
+        },
+        "image_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 5.253904684736775,
+            "median": 4.830280390138877,
+            "p10": 3.4005542288236796,
+            "p90": 8.240010161279681
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.21600761391083476,
+            "median": 0.43580089619397255,
+            "p10": -0.6938762656038495,
+            "p90": 0.9602162102363863
+          }
+        },
+        "learned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 0.25358835509188576,
+            "median": 0.25295171139327177,
+            "p10": 0.23701484390540117,
+            "p90": 0.2675717397249294
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.07168727918145641,
+            "median": -0.1026810185338202,
+            "p10": -0.21614019955736033,
+            "p90": 0.041876944352257875
+          }
+        },
+        "pre_graph_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 11.104656769701762,
+            "median": 11.10474397478075,
+            "p10": 11.034308875875462,
+            "p90": 11.159089134026917
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.10666735886634454,
+            "median": -0.13704828142595651,
+            "p10": -0.4288578718551317,
+            "p90": 0.15536956922006712
+          }
+        },
+        "trajectory_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 7.539298424264392,
+            "median": 7.735691619639669,
+            "p10": 3.940168921997732,
+            "p90": 10.951906734303108
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.5796011421195258,
+            "median": 0.803785464279194,
+            "p10": -0.3113265698816137,
+            "p90": 0.9828943616947875
+          }
+        }
+      },
+      "sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 1.0
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.9732870514151507
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.4,
+          "value": 0.8815411892305856
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 0.96875
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 1.0
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.0
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.9913197914783002
+        }
+      },
+      "sanity_gate_passed": true,
+      "slot_ap": 1.0,
+      "unmatched_probability": {
+        "count": 109,
+        "mean": 0.016546067814321316,
+        "median": 0.0010254639200866222,
+        "p10": 0.0007720923167653382,
+        "p90": 0.018745761737227442
+      }
+    }
+  }
+}
