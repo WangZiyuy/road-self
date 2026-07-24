@@ -602,6 +602,86 @@ def _relative_reduction(
     return float(1.0 - final / initial)
 
 
+def _evaluate_sanity_gate(
+    *,
+    sanity_cfg: EasyDict,
+    total_reduction: Optional[float],
+    endpoint_reduction: Optional[float],
+    direction_reduction: Optional[float],
+    final: Mapping[str, Any],
+) -> Tuple[bool, Dict[str, Dict[str, Any]]]:
+    """Evaluate legacy reductions plus optional multi-branch criteria."""
+
+    checks = {
+        "total_loss_reduction": {
+            "value": total_reduction,
+            "threshold": float(
+                sanity_cfg.MIN_TOTAL_LOSS_REDUCTION),
+            "comparison": ">=",
+        },
+        "endpoint_error_reduction": {
+            "value": endpoint_reduction,
+            "threshold": float(
+                sanity_cfg.MIN_ENDPOINT_ERROR_REDUCTION),
+            "comparison": ">=",
+        },
+        "direction_error_reduction": {
+            "value": direction_reduction,
+            "threshold": float(
+                sanity_cfg.MIN_DIRECTION_ERROR_REDUCTION),
+            "comparison": ">=",
+        },
+    }
+    optional_checks = (
+        (
+            "MIN_BRANCH_AP",
+            "branch_ap",
+            final["branch_ap"],
+            ">=",
+        ),
+        (
+            "MIN_EXACT_COUNT_ACCURACY",
+            "exact_count_accuracy",
+            final["thresholded_metrics"][
+                "exact_branch_count_accuracy"],
+            ">=",
+        ),
+        (
+            "MIN_ORACLE_K_DISTINCT_GT_COVERAGE",
+            "oracle_k_distinct_gt_coverage",
+            final["oracle_k"]["distinct_gt_coverage"],
+            ">=",
+        ),
+        (
+            "MAX_ORACLE_K_DUPLICATE_PAIR_RATIO",
+            "oracle_k_duplicate_pair_ratio",
+            final["oracle_k"]["duplicates"][
+                "duplicate_pair_ratio"],
+            "<=",
+        ),
+    )
+    for config_key, name, value, comparison in optional_checks:
+        if config_key not in sanity_cfg:
+            continue
+        checks[name] = {
+            "value": float(value),
+            "threshold": float(sanity_cfg[config_key]),
+            "comparison": comparison,
+        }
+    for check in checks.values():
+        value = check["value"]
+        threshold = check["threshold"]
+        check["passed"] = bool(
+            value is not None
+            and (
+                value >= threshold
+                if check["comparison"] == ">="
+                else value <= threshold
+            )
+        )
+    return all(check["passed"] for check in checks.values()), checks
+
+
 def run_overfit_sanity(
     *,
     rpnet: torch.nn.Module,
@@ -729,16 +809,12 @@ def run_overfit_sanity(
         initial["oracle_geometry"]["direction_error_mean_degrees"],
         final["oracle_geometry"]["direction_error_mean_degrees"],
     )
-    passed = (
-        total_reduction is not None
-        and endpoint_reduction is not None
-        and direction_reduction is not None
-        and total_reduction
-        >= float(sanity_cfg.MIN_TOTAL_LOSS_REDUCTION)
-        and endpoint_reduction
-        >= float(sanity_cfg.MIN_ENDPOINT_ERROR_REDUCTION)
-        and direction_reduction
-        >= float(sanity_cfg.MIN_DIRECTION_ERROR_REDUCTION)
+    passed, gate_checks = _evaluate_sanity_gate(
+        sanity_cfg=sanity_cfg,
+        total_reduction=total_reduction,
+        endpoint_reduction=endpoint_reduction,
+        direction_reduction=direction_reduction,
+        final=final,
     )
     report = {
         "sample_count": sample_count,
@@ -747,6 +823,7 @@ def run_overfit_sanity(
         "selected_dataset_indices": eligible_indices,
         "gt_branch_count_range": [minimum_count, maximum_count],
         "passed": bool(passed),
+        "gate_checks": gate_checks,
         "thresholds": {
             "minimum_total_loss_reduction": float(
                 sanity_cfg.MIN_TOTAL_LOSS_REDUCTION),

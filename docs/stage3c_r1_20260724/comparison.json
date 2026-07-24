@@ -1,0 +1,689 @@
+{
+  "branch_predictions_feed_path_push": false,
+  "config_paths": {
+    "M0": "/home/wangziyu/VecRoad_self/configs/stage3c_r1_m0.yml",
+    "M3": "/home/wangziyu/VecRoad_self/configs/stage3c_r1_m3.yml",
+    "M4": "/home/wangziyu/VecRoad_self/configs/stage3c_r1_m4.yml"
+  },
+  "dataset_dir": "/home/wangziyu/VecRoad_self/data_self/stage3c_branch_dataset",
+  "decision": {
+    "decision_rule": "recommend full E1-E4 only when M4 passes all optional sanity gates, graph/final cosine are below 0.95, distinct coverage is at least 0.90, and oracle-K duplicate ratio is at most 0.20",
+    "m3_graph_conditioning_remains_homogeneous": true,
+    "m3_probability_separation_improved_over_m0": true,
+    "m3_still_has_query_collapse": false,
+    "m4_covers_distinct_gt_branches": false,
+    "m4_ever_met_multibranch_metric_gate": true,
+    "m4_restores_query_identity": true,
+    "recommend_full_e1_e4_training": false
+  },
+  "elapsed_seconds": 80.34125424805097,
+  "fresh_auxiliary_initialization": true,
+  "image_checkpoint": "/home/wangziyu/VecRoad-master/data/ckpt/vecroad.pth.tar",
+  "optimizer_resume_used": false,
+  "sample_count": 32,
+  "schema_version": "stage3c-r1-v1",
+  "seed": 20260724,
+  "selected_data_sha256": "78b63c65ddbc65743677b9cdec1d1bdb43001a8f12d4873b0228d128d4766d81",
+  "selected_train_dataset_indices": [
+    0,
+    1,
+    2,
+    6,
+    13,
+    21,
+    24,
+    29,
+    33,
+    34,
+    35,
+    36,
+    37,
+    42,
+    44,
+    47,
+    70,
+    71,
+    75,
+    76,
+    79,
+    81,
+    83,
+    89,
+    91,
+    94,
+    103,
+    106,
+    110,
+    111,
+    112,
+    115
+  ],
+  "source_commit": "0c784c68c9604b68bf0dd437612df8e254fdaec5",
+  "trajectory_modality_dropout": 0.0,
+  "variants": {
+    "M0": {
+      "actual_matched_duplicate_pair_ratio": 0.0,
+      "branch_ap": 0.2787175243650084,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m0/sanity_overfit.pth.tar",
+      "curve_gate_history": {
+        "final_epoch": 600,
+        "final_regressed_after_qualifying": true,
+        "first_qualifying_epoch": 530,
+        "last_qualifying_epoch": 570,
+        "qualifying_epoch_count": 5,
+        "qualifying_epochs": [
+          530,
+          540,
+          550,
+          560,
+          570
+        ]
+      },
+      "elapsed_seconds": 22.23751195007935,
+      "exact_count_accuracy": 0.46875,
+      "matched_probability": {
+        "count": 83,
+        "mean": 0.6479130962482059,
+        "median": 0.807320773601532,
+        "p10": 0.03410641700029373,
+        "p90": 0.9509910702705383
+      },
+      "oracle_k_distinct_gt_coverage": 0.39759036144578314,
+      "oracle_k_duplicate_pair_ratio": 0.0,
+      "oracle_k_recall": 0.39759036144578314,
+      "per_query_match_frequency": {
+        "0": 9,
+        "1": 26,
+        "2": 7,
+        "3": 2,
+        "4": 16,
+        "5": 23
+      },
+      "probability_separation_mean": 0.41726000099259153,
+      "probability_separation_median": 0.7707450054585934,
+      "query_representation": {
+        "final_fused_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 11.053213494682064,
+            "median": 11.015275729192606,
+            "p10": 10.728549216079923,
+            "p90": 11.341631645115784
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.3489009778014129,
+            "median": 0.13836408671301237,
+            "p10": -0.058153249347057644,
+            "p90": 0.9868780219311728
+          }
+        },
+        "graph_conditioned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 10.796312605233112,
+            "median": 10.800496459243012,
+            "p10": 10.714446903845234,
+            "p90": 10.909192642796281
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.983840190469785,
+            "median": 0.989097904943977,
+            "p10": 0.9630244417029329,
+            "p90": 0.996886878633149
+          }
+        },
+        "image_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 12.590148843959314,
+            "median": 10.841369693151604,
+            "p10": 6.861792678726269,
+            "p90": 19.791354569521605
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.2616901048927006,
+            "median": 0.2218258857432798,
+            "p10": -0.566190969962744,
+            "p90": 0.9703039058305131
+          }
+        },
+        "learned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 1.014881208307586,
+            "median": 1.0162325312895917,
+            "p10": 0.45873834149198345,
+            "p90": 1.6883025695472789
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.1552069400735564,
+            "median": -0.4500956703696323,
+            "p10": -0.8457537663405023,
+            "p90": 0.7169337023756643
+          }
+        },
+        "pre_graph_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 1.014881208307586,
+            "median": 1.0162325312895917,
+            "p10": 0.45873834149198345,
+            "p90": 1.6883025695472789
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.1552069400735564,
+            "median": -0.4500956703696323,
+            "p10": -0.8457537663405023,
+            "p90": 0.7169337023756643
+          }
+        },
+        "trajectory_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 7.628458235900152,
+            "median": 6.259095340826271,
+            "p10": 4.242001810286682,
+            "p90": 12.675523055376969
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.6943636218339766,
+            "median": 0.9073950323051021,
+            "p10": -0.029987976159976858,
+            "p90": 0.999816887505067
+          }
+        }
+      },
+      "sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.8,
+          "value": 0.2787175243650084
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.8224858755164716
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.4,
+          "value": 0.39808542467820707
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.8,
+          "value": 0.46875
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.39759036144578314
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.0
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.6359296995295971
+        }
+      },
+      "sanity_gate_passed": false,
+      "slot_ap": 0.8320556123690697,
+      "unmatched_probability": {
+        "count": 109,
+        "mean": 0.23065309525561442,
+        "median": 0.036575768142938614,
+        "p10": 0.021662861481308936,
+        "p90": 0.7158529758453369
+      }
+    },
+    "M3": {
+      "actual_matched_duplicate_pair_ratio": 0.02702702702702703,
+      "branch_ap": 1.0,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m3/sanity_overfit.pth.tar",
+      "curve_gate_history": {
+        "final_epoch": 600,
+        "final_regressed_after_qualifying": false,
+        "first_qualifying_epoch": 380,
+        "last_qualifying_epoch": 600,
+        "qualifying_epoch_count": 23,
+        "qualifying_epochs": [
+          380,
+          390,
+          400,
+          410,
+          420,
+          430,
+          440,
+          450,
+          460,
+          470,
+          480,
+          490,
+          500,
+          510,
+          520,
+          530,
+          540,
+          550,
+          560,
+          570,
+          580,
+          590,
+          600
+        ]
+      },
+      "elapsed_seconds": 22.146935199853033,
+      "exact_count_accuracy": 1.0,
+      "matched_probability": {
+        "count": 83,
+        "mean": 0.9997324670653746,
+        "median": 0.9998078942298889,
+        "p10": 0.9994739890098572,
+        "p90": 0.9999359130859375
+      },
+      "oracle_k_distinct_gt_coverage": 1.0,
+      "oracle_k_duplicate_pair_ratio": 0.02702702702702703,
+      "oracle_k_recall": 1.0,
+      "per_query_match_frequency": {
+        "0": 23,
+        "1": 0,
+        "2": 19,
+        "3": 0,
+        "4": 20,
+        "5": 21
+      },
+      "probability_separation_mean": 0.9983297682853213,
+      "probability_separation_median": 0.9993212082772516,
+      "query_representation": {
+        "final_fused_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 11.214728727070066,
+            "median": 11.157839849457227,
+            "p10": 10.890465426998665,
+            "p90": 11.551979892616961
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.11718485139182833,
+            "median": -0.1247875025644596,
+            "p10": -0.39226749167397335,
+            "p90": 0.976033003934635
+          }
+        },
+        "graph_conditioned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 10.725527149009087,
+            "median": 10.714879936082816,
+            "p10": 10.70412607035549,
+            "p90": 10.750927014228331
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.9843825256714446,
+            "median": 0.988935190206106,
+            "p10": 0.9581168204409357,
+            "p90": 0.996493142031781
+          }
+        },
+        "image_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 4.019809976608506,
+            "median": 3.516358051167514,
+            "p10": 3.016863393429059,
+            "p90": 5.948717589663028
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.9895274293987678,
+            "median": 0.9985959841551597,
+            "p10": 0.9736246495883565,
+            "p90": 0.9998292864580781
+          }
+        },
+        "learned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 0.9837823149138268,
+            "median": 1.0324910308257476,
+            "p10": 0.4699789774100472,
+            "p90": 1.5253456637261331
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.1511664352600769,
+            "median": -0.3684850750775128,
+            "p10": -0.9005881108036065,
+            "p90": 0.7945500601293634
+          }
+        },
+        "pre_graph_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 0.9837823149138268,
+            "median": 1.0324910308257476,
+            "p10": 0.4699789774100472,
+            "p90": 1.5253456637261331
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.1511664352600769,
+            "median": -0.3684850750775128,
+            "p10": -0.9005881108036065,
+            "p90": 0.7945500601293634
+          }
+        },
+        "trajectory_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 8.513629215625604,
+            "median": 7.934555098798366,
+            "p10": 4.573314863672656,
+            "p90": 12.854699799605415
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.1966963169916691,
+            "median": 0.3753798043209665,
+            "p10": -0.8200617484741635,
+            "p90": 0.9827080058845289
+          }
+        }
+      },
+      "sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 1.0
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.997642669179046
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.4,
+          "value": 0.9302196169033434
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 1.0
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.9,
+          "value": 1.0
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.02702702702702703
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.999561720429511
+        }
+      },
+      "sanity_gate_passed": true,
+      "slot_ap": 1.0,
+      "unmatched_probability": {
+        "count": 109,
+        "mean": 0.0014026987800532696,
+        "median": 0.0004866859526373446,
+        "p10": 0.0003819030651357025,
+        "p90": 0.0034442330710589895
+      }
+    },
+    "M4": {
+      "actual_matched_duplicate_pair_ratio": 0.013513513513513514,
+      "branch_ap": 0.41687574806066136,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3c_r1/m4/sanity_overfit.pth.tar",
+      "curve_gate_history": {
+        "final_epoch": 600,
+        "final_regressed_after_qualifying": true,
+        "first_qualifying_epoch": 180,
+        "last_qualifying_epoch": 520,
+        "qualifying_epoch_count": 35,
+        "qualifying_epochs": [
+          180,
+          190,
+          200,
+          210,
+          220,
+          230,
+          240,
+          250,
+          260,
+          270,
+          280,
+          290,
+          300,
+          310,
+          320,
+          330,
+          340,
+          350,
+          360,
+          370,
+          380,
+          390,
+          400,
+          410,
+          420,
+          430,
+          440,
+          450,
+          460,
+          470,
+          480,
+          490,
+          500,
+          510,
+          520
+        ]
+      },
+      "elapsed_seconds": 23.155587346991524,
+      "exact_count_accuracy": 0.8125,
+      "matched_probability": {
+        "count": 83,
+        "mean": 0.977032508476671,
+        "median": 0.9894663691520691,
+        "p10": 0.94428790807724,
+        "p90": 0.9976250767707825
+      },
+      "oracle_k_distinct_gt_coverage": 0.5903614457831325,
+      "oracle_k_duplicate_pair_ratio": 0.013513513513513514,
+      "oracle_k_recall": 0.5903614457831325,
+      "per_query_match_frequency": {
+        "0": 29,
+        "1": 9,
+        "2": 18,
+        "3": 27,
+        "4": 0,
+        "5": 0
+      },
+      "probability_separation_mean": 0.9129193669905744,
+      "probability_separation_median": 0.9872667959425598,
+      "query_representation": {
+        "final_fused_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 10.919677809987453,
+            "median": 10.920007385586661,
+            "p10": 10.758561445930845,
+            "p90": 11.095948768103511
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.23679637014004082,
+            "median": 0.1388919402830996,
+            "p10": -0.22903429966640323,
+            "p90": 0.8320819907797008
+          }
+        },
+        "graph_conditioned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 10.699952688171384,
+            "median": 10.732061643381869,
+            "p10": 10.595385827202119,
+            "p90": 10.790109958574575
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.33271288535920746,
+            "median": 0.33957116801889303,
+            "p10": -0.004385928358994327,
+            "p90": 0.6707646006011928
+          }
+        },
+        "image_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 6.287585012505866,
+            "median": 5.845281952824314,
+            "p10": 3.562370266260237,
+            "p90": 9.385412518696572
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.2513314364618247,
+            "median": 0.4293702796464322,
+            "p10": -0.6589187141597951,
+            "p90": 0.9974483225236719
+          }
+        },
+        "learned_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 0.2835515066098148,
+            "median": 0.2854574251457783,
+            "p10": 0.2631115866143464,
+            "p90": 0.29640455765630314
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.10378054323235428,
+            "median": -0.13418622196709215,
+            "p10": -0.3214398145200371,
+            "p90": 0.13286810529537524
+          }
+        },
+        "pre_graph_query": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 10.440200332322023,
+            "median": 10.443113118661781,
+            "p10": 10.285025674657165,
+            "p90": 10.56448480049748
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": -0.12095403786300295,
+            "median": -0.20216827439155577,
+            "p10": -0.48837175060567023,
+            "p90": 0.23871560405072137
+          }
+        },
+        "trajectory_context": {
+          "hidden_norm": {
+            "count": 192,
+            "mean": 4.52686835460861,
+            "median": 4.58750118202253,
+            "p10": 2.5812461362170263,
+            "p90": 6.517018631701188
+          },
+          "pairwise_cosine": {
+            "count": 480,
+            "mean": 0.6187401279197621,
+            "median": 0.7588832454896817,
+            "p10": 0.02823457546546747,
+            "p90": 0.9784347399656536
+          }
+        }
+      },
+      "sanity_gate_checks": {
+        "branch_ap": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.8,
+          "value": 0.41687574806066136
+        },
+        "direction_error_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.25,
+          "value": 0.9167221890279509
+        },
+        "endpoint_error_reduction": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.4,
+          "value": 0.3840225779998947
+        },
+        "exact_count_accuracy": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.8,
+          "value": 0.8125
+        },
+        "oracle_k_distinct_gt_coverage": {
+          "comparison": ">=",
+          "passed": false,
+          "threshold": 0.9,
+          "value": 0.5903614457831325
+        },
+        "oracle_k_duplicate_pair_ratio": {
+          "comparison": "<=",
+          "passed": true,
+          "threshold": 0.2,
+          "value": 0.013513513513513514
+        },
+        "total_loss_reduction": {
+          "comparison": ">=",
+          "passed": true,
+          "threshold": 0.5,
+          "value": 0.9417229863576085
+        }
+      },
+      "sanity_gate_passed": false,
+      "slot_ap": 0.97830958372577,
+      "unmatched_probability": {
+        "count": 109,
+        "mean": 0.06411314148609655,
+        "median": 0.0021995732095092535,
+        "p10": 0.0006715867901220917,
+        "p90": 0.08312338292598734
+      }
+    }
+  }
+}

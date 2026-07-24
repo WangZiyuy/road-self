@@ -92,6 +92,8 @@ def _parse_args():
     parser.add_argument("--device")
     parser.add_argument("--batch-size", type=int)
     parser.add_argument("--max-samples", type=int)
+    parser.add_argument(
+        "--split", choices=("train", "val"), default="val")
     return parser.parse_args()
 
 
@@ -251,15 +253,34 @@ def run_diagnostics(
     device: torch.device,
     batch_size: int,
     max_samples: int = None,
+    split: str = "val",
+    dataset_indices: Sequence[int] = None,
 ) -> Dict[str, object]:
     _set_seed(int(cfg.STAGE3C.SEED))
-    dataset = Stage3CBranchDataset(
-        dataset_dir, "val", preload=True)
-    if max_samples is not None:
+    base_dataset = Stage3CBranchDataset(
+        dataset_dir, split, preload=True)
+    if dataset_indices is not None and max_samples is not None:
+        raise ValueError(
+            "dataset_indices and max_samples are mutually exclusive")
+    if dataset_indices is not None:
+        normalized_indices = [int(index) for index in dataset_indices]
+        if len(set(normalized_indices)) != len(normalized_indices):
+            raise ValueError("dataset_indices must be unique")
+        if any(
+                index < 0 or index >= len(base_dataset)
+                for index in normalized_indices):
+            raise IndexError("dataset index is outside the split")
+        dataset = torch.utils.data.Subset(
+            base_dataset, normalized_indices)
+    elif max_samples is not None:
         if max_samples <= 0:
             raise ValueError("max_samples must be positive")
         dataset = torch.utils.data.Subset(
-            dataset, list(range(min(max_samples, len(dataset)))))
+            base_dataset,
+            list(range(min(max_samples, len(base_dataset)))),
+        )
+    else:
+        dataset = base_dataset
     loader = DataLoader(
         dataset,
         batch_size=batch_size,
@@ -283,7 +304,9 @@ def run_diagnostics(
     criterion = _build_branch_criterion(cfg)
     diagnostics_cfg = cfg.STAGE3C.get("DIAGNOSTICS", {})
     threshold = float(diagnostics_cfg.get(
-        "EXISTENCE_THRESHOLD", 0.10))
+        "EXISTENCE_THRESHOLD",
+        cfg.STAGE3C.EVALUATION.EXISTENCE_THRESHOLD,
+    ))
     calibration_bins = int(diagnostics_cfg.get(
         "CALIBRATION_BINS", 15))
 
@@ -668,6 +691,12 @@ def run_diagnostics(
             )
         },
         "sample_count": int(probabilities.shape[0]),
+        "dataset_split": split,
+        "dataset_indices": (
+            [int(index) for index in dataset_indices]
+            if dataset_indices is not None
+            else None
+        ),
         "query_count": int(probabilities.shape[1]),
         "diagnostic_threshold": threshold,
         "branch_ap": float(
@@ -840,6 +869,7 @@ def main() -> None:
         device=device,
         batch_size=batch_size,
         max_samples=args.max_samples,
+        split=args.split,
     )
     print(json.dumps(_json_ready({
         "summary": str((output_dir / "summary.json").resolve()),
