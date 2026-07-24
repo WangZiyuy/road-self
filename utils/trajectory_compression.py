@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import math
+import time
 from dataclasses import dataclass
-from typing import List, Optional, Sequence, Tuple, Union
+from typing import Dict, List, Optional, Sequence, Tuple, Union
 
 import numpy as np
 
@@ -14,7 +15,11 @@ from utils.trajectory_fragments import (
 )
 
 
-VALID_COMPRESSION_STRATEGIES = ("nearest", "near_diverse")
+VALID_COMPRESSION_STRATEGIES = (
+    "nearest",
+    "near_diverse",
+    "bounded_near_diverse",
+)
 GEOMETRY_DESCRIPTOR_NAMES = (
     "nearest_x_norm",
     "nearest_y_norm",
@@ -30,51 +35,92 @@ GEOMETRY_DESCRIPTOR_WEIGHTS = np.asarray(
     [1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 0.5, 0.75, 0.25],
     dtype=np.float32,
 )
+FAST_GEOMETRY_DESCRIPTOR_NAMES = (
+    "closest_x_norm",
+    "closest_y_norm",
+    "axis_cos_2theta",
+    "axis_sin_2theta",
+)
+COMPRESSION_TIMING_PHASES = (
+    "distance",
+    "shortlist",
+    "descriptor",
+    "selection",
+    "support_assignment",
+    "total",
+)
 
 
 @dataclass(frozen=True)
 class CompressionResult:
-    """Selected real fragments and their high-recall support assignments."""
+    """Selected real fragments, metadata, and optional support assignments."""
 
     selected_fragments: Tuple[TrajectoryFragment, ...]
     source_fragment_indices: np.ndarray
-    support_count: np.ndarray
+    support_count: Optional[np.ndarray]
+    support_count_valid: bool
     total_fragment_count: int
     kept_fragment_count: int
     truncated_fragment_count: int
     selection_strategy: str
     selected_geometry_descriptors: np.ndarray
+    selected_minimum_distances: np.ndarray
     center_xy: Tuple[float, float]
     window_size_xy: Tuple[float, float]
     max_fragments: Optional[int]
     near_fraction: float
+    prepool_multiplier: int
+    prepool_count: int
+    descriptor_evaluation_count: int
+    compression_timing_ms: Dict[str, float]
 
     def __post_init__(self) -> None:
         selected_fragments = tuple(self.selected_fragments)
         source_indices = np.asarray(
             self.source_fragment_indices, dtype=np.int64).copy()
-        support_count = np.asarray(
-            self.support_count, dtype=np.int64).copy()
+        support_count = (
+            None
+            if self.support_count is None
+            else np.asarray(
+                self.support_count, dtype=np.int64).copy()
+        )
         descriptors = np.asarray(
             self.selected_geometry_descriptors, dtype=np.float32).copy()
+        minimum_distances = np.asarray(
+            self.selected_minimum_distances, dtype=np.float64).copy()
         kept_count = len(selected_fragments)
         if source_indices.shape != (kept_count,):
             raise ValueError(
                 "source_fragment_indices must match selected fragments")
-        if support_count.shape != (kept_count,):
+        if self.support_count_valid:
+            if support_count is None:
+                raise ValueError(
+                    "valid support_count cannot be None")
+            if support_count.shape != (kept_count,):
+                raise ValueError(
+                    "support_count must match selected fragments")
+            if np.any(support_count < 0):
+                raise ValueError("support_count must be non-negative")
+            if int(support_count.sum()) != int(
+                self.total_fragment_count
+            ):
+                raise ValueError(
+                    "support_count must sum to total_fragment_count")
+        elif support_count is not None:
             raise ValueError(
-                "support_count must match selected fragments")
+                "invalid support_count must be None")
         if descriptors.shape != (
             kept_count,
             len(GEOMETRY_DESCRIPTOR_NAMES),
         ):
             raise ValueError(
                 "selected_geometry_descriptors has an invalid shape")
-        if np.any(support_count < 0):
-            raise ValueError("support_count must be non-negative")
-        if int(support_count.sum()) != int(self.total_fragment_count):
+        if minimum_distances.shape != (kept_count,):
             raise ValueError(
-                "support_count must sum to total_fragment_count")
+                "selected_minimum_distances must match selected fragments")
+        if not np.isfinite(minimum_distances).all():
+            raise ValueError(
+                "selected_minimum_distances must be finite")
         if int(self.kept_fragment_count) != kept_count:
             raise ValueError(
                 "kept_fragment_count does not match selected fragments")
@@ -83,14 +129,40 @@ class CompressionResult:
             != int(self.total_fragment_count) - kept_count
         ):
             raise ValueError("truncated_fragment_count is inconsistent")
+        if int(self.prepool_multiplier) <= 0:
+            raise ValueError("prepool_multiplier must be positive")
+        if not 0 <= int(self.prepool_count) <= int(
+            self.total_fragment_count
+        ):
+            raise ValueError("prepool_count is inconsistent")
+        if not 0 <= int(self.descriptor_evaluation_count) <= int(
+            self.total_fragment_count
+        ):
+            raise ValueError(
+                "descriptor_evaluation_count is inconsistent")
+        timing = {
+            phase: float(self.compression_timing_ms.get(phase, 0.0))
+            for phase in COMPRESSION_TIMING_PHASES
+        }
+        if any(
+            not math.isfinite(value) or value < 0.0
+            for value in timing.values()
+        ):
+            raise ValueError(
+                "compression timing values must be finite and non-negative")
         source_indices.setflags(write=False)
-        support_count.setflags(write=False)
+        if support_count is not None:
+            support_count.setflags(write=False)
         descriptors.setflags(write=False)
+        minimum_distances.setflags(write=False)
         object.__setattr__(self, "selected_fragments", selected_fragments)
         object.__setattr__(self, "source_fragment_indices", source_indices)
         object.__setattr__(self, "support_count", support_count)
         object.__setattr__(
             self, "selected_geometry_descriptors", descriptors)
+        object.__setattr__(
+            self, "selected_minimum_distances", minimum_distances)
+        object.__setattr__(self, "compression_timing_ms", timing)
 
 
 def _parse_center(center_xy: Sequence[float]) -> np.ndarray:
@@ -321,7 +393,76 @@ def build_trajectory_geometry_descriptors(
     return descriptors
 
 
+def trajectory_fragment_fast_descriptor(
+    fragment: TrajectoryFragment,
+    center_xy: Sequence[float],
+    window_size: Union[float, Sequence[float]],
+) -> np.ndarray:
+    """Return the bounded strategy's four-dimensional local descriptor."""
+
+    center = _parse_center(center_xy)
+    size_xy = _parse_window_size(window_size)
+    return _trajectory_fragment_fast_descriptor_parsed(
+        fragment, center, size_xy)
+
+
+def _trajectory_fragment_fast_descriptor_parsed(
+    fragment: TrajectoryFragment,
+    center: np.ndarray,
+    size_xy: np.ndarray,
+) -> np.ndarray:
+    relative_points = _validate_fragment(fragment) - center
+    closest_position, _minimum_distance, axis = _nearest_position_axis(
+        relative_points)
+    half_size = size_xy / 2.0
+    return np.asarray(
+        [
+            closest_position[0] / half_size[0],
+            closest_position[1] / half_size[1],
+            axis[0],
+            axis[1],
+        ],
+        dtype=np.float32,
+    )
+
+
+def build_fast_trajectory_geometry_descriptors(
+    fragments: Sequence[TrajectoryFragment],
+    center_xy: Sequence[float],
+    window_size: Union[float, Sequence[float]],
+) -> np.ndarray:
+    """Build four-dimensional descriptors for an explicit shortlist only."""
+
+    descriptors = np.empty(
+        (len(fragments), len(FAST_GEOMETRY_DESCRIPTOR_NAMES)),
+        dtype=np.float32,
+    )
+    center = _parse_center(center_xy)
+    size_xy = _parse_window_size(window_size)
+    for fragment_index, fragment in enumerate(fragments):
+        descriptors[fragment_index] = (
+            _trajectory_fragment_fast_descriptor_parsed(
+                fragment,
+                center,
+                size_xy,
+            )
+        )
+    return descriptors
+
+
 def _fragment_identity_key(
+    fragment: TrajectoryFragment,
+) -> Tuple:
+    return (
+        int(fragment.track_index),
+        int(fragment.start_point_index),
+        int(fragment.end_point_index),
+        str(fragment.source_traj_id),
+        str(fragment.source_file),
+    )
+
+
+def _bounded_identity_key(
     fragment: TrajectoryFragment,
 ) -> Tuple:
     return (
@@ -348,6 +489,148 @@ def _nearest_indices(
             fragment_index,
         ),
     )[:kept_count]
+
+
+def _bounded_shortlist_indices(
+    fragments: Sequence[TrajectoryFragment],
+    minimum_distances: np.ndarray,
+    prepool_count: int,
+) -> List[int]:
+    """Select a deterministic nearest prepool with linear-time partitioning."""
+
+    total_count = len(fragments)
+    if prepool_count >= total_count:
+        candidate_indices = np.arange(total_count, dtype=np.int64)
+    else:
+        partition_indices = np.argpartition(
+            minimum_distances, prepool_count - 1)[:prepool_count]
+        threshold = float(np.max(
+            minimum_distances[partition_indices]))
+        closer = np.flatnonzero(minimum_distances < threshold)
+        tied = np.flatnonzero(minimum_distances == threshold)
+        needed = prepool_count - int(closer.size)
+        tied_sorted = sorted(
+            (int(index) for index in tied),
+            key=lambda index: _bounded_identity_key(fragments[index]),
+        )
+        candidate_indices = np.concatenate(
+            [
+                closer.astype(np.int64, copy=False),
+                np.asarray(tied_sorted[:needed], dtype=np.int64),
+            ]
+        )
+    return sorted(
+        (int(index) for index in candidate_indices),
+        key=lambda index: (
+            float(minimum_distances[index]),
+            _bounded_identity_key(fragments[index]),
+        ),
+    )
+
+
+def _bounded_near_diverse_indices(
+    fragments: Sequence[TrajectoryFragment],
+    minimum_distances: np.ndarray,
+    shortlist_indices: Sequence[int],
+    shortlist_descriptors: np.ndarray,
+    kept_count: int,
+    near_fraction: float,
+) -> List[int]:
+    """Select near evidence first, then max-min valid-axis representatives."""
+
+    if kept_count == 0:
+        return []
+    shortlist_count = len(shortlist_indices)
+    if shortlist_descriptors.shape != (
+        shortlist_count,
+        len(FAST_GEOMETRY_DESCRIPTOR_NAMES),
+    ):
+        raise ValueError("shortlist_descriptors has an invalid shape")
+    shortlist_indices_array = np.asarray(
+        shortlist_indices, dtype=np.int64)
+    descriptor_values = shortlist_descriptors.astype(
+        np.float64, copy=False)
+    near_count = min(
+        kept_count,
+        int(math.ceil(kept_count * near_fraction)),
+    )
+    selected_positions = list(range(near_count))
+    selected_position_set = set(selected_positions)
+
+    axis_norm = np.linalg.norm(
+        descriptor_values[:, 2:4], axis=1)
+    valid_axis = axis_norm > 0.5
+    valid_remaining = [
+        position
+        for position in range(shortlist_count)
+        if position not in selected_position_set
+        and bool(valid_axis[position])
+    ]
+    valid_selected = [
+        position
+        for position in selected_positions
+        if bool(valid_axis[position])
+    ]
+
+    minimum_squared_distance = np.full(
+        (shortlist_count,), np.inf, dtype=np.float64)
+    if valid_selected:
+        selected_descriptors = shortlist_descriptors[
+            np.asarray(valid_selected, dtype=np.int64)
+        ].astype(np.float64)
+        differences = (
+            descriptor_values[:, None, :]
+            - selected_descriptors[None, :, :]
+        )
+        minimum_squared_distance = np.min(
+            np.sum(differences * differences, axis=2), axis=1)
+
+    while (
+        len(selected_positions) < kept_count
+        and valid_remaining
+    ):
+        if not valid_selected:
+            next_position = valid_remaining[0]
+        else:
+            candidate_positions = np.asarray(
+                valid_remaining, dtype=np.int64)
+            candidate_scores = minimum_squared_distance[
+                candidate_positions]
+            maximum_score = float(np.max(candidate_scores))
+            tied_positions = candidate_positions[
+                candidate_scores == maximum_score]
+            next_position = min(
+                (int(position) for position in tied_positions),
+                key=lambda position: _bounded_identity_key(
+                    fragments[int(shortlist_indices_array[position])]
+                ),
+            )
+        selected_positions.append(next_position)
+        selected_position_set.add(next_position)
+        valid_selected.append(next_position)
+        valid_remaining.remove(next_position)
+        difference = (
+            descriptor_values
+            - descriptor_values[next_position][None, :]
+        )
+        squared_distance = np.sum(
+            difference * difference, axis=1)
+        minimum_squared_distance = np.minimum(
+            minimum_squared_distance, squared_distance)
+
+    if len(selected_positions) < kept_count:
+        for position in range(shortlist_count):
+            if position in selected_position_set:
+                continue
+            selected_positions.append(position)
+            selected_position_set.add(position)
+            if len(selected_positions) == kept_count:
+                break
+
+    return [
+        int(shortlist_indices_array[position])
+        for position in selected_positions
+    ]
 
 
 def _near_diverse_indices(
@@ -462,12 +745,14 @@ def compress_trajectory_fragments(
     window_size: Union[float, Sequence[float]],
     max_fragments: Optional[int],
     strategy: str = "near_diverse",
-    near_fraction: float = 0.25,
+    near_fraction: Optional[float] = None,
+    prepool_multiplier: int = 8,
     geometry_descriptors: Optional[np.ndarray] = None,
     minimum_distances: Optional[np.ndarray] = None,
 ) -> CompressionResult:
     """Compress full Stage 1B candidates without using image or GT evidence."""
 
+    total_start = time.perf_counter()
     if not isinstance(fragments, (list, tuple)):
         raise TypeError("fragments must be a list or tuple")
     center = _parse_center(center_xy)
@@ -476,9 +761,22 @@ def compress_trajectory_fragments(
         raise ValueError(
             "unknown compression strategy {!r}; expected {}".format(
                 strategy, ", ".join(VALID_COMPRESSION_STRATEGIES)))
+    if near_fraction is None:
+        near_fraction = (
+            0.5
+            if strategy == "bounded_near_diverse"
+            else 0.25
+        )
     near_fraction = float(near_fraction)
     if not math.isfinite(near_fraction) or not 0.0 <= near_fraction <= 1.0:
         raise ValueError("near_fraction must be in [0, 1]")
+    if isinstance(prepool_multiplier, bool) or not isinstance(
+        prepool_multiplier, (int, np.integer)
+    ):
+        raise TypeError("prepool_multiplier must be an integer")
+    prepool_multiplier = int(prepool_multiplier)
+    if prepool_multiplier <= 0:
+        raise ValueError("prepool_multiplier must be positive")
     if max_fragments is not None:
         if isinstance(max_fragments, bool) or not isinstance(
             max_fragments, (int, np.integer)
@@ -493,21 +791,11 @@ def compress_trajectory_fragments(
         raise ValueError(
             "max_fragments must retain at least one representative "
             "when candidates are non-empty")
-    if geometry_descriptors is None:
-        descriptors = build_trajectory_geometry_descriptors(
-            fragments, center, size_xy)
-    else:
-        descriptors = np.asarray(
-            geometry_descriptors, dtype=np.float32)
-        if descriptors.shape != (
-            total_count,
-            len(GEOMETRY_DESCRIPTOR_NAMES),
-        ):
-            raise ValueError(
-                "geometry_descriptors has an invalid shape")
-        if not np.isfinite(descriptors).all():
-            raise ValueError(
-                "geometry_descriptors must contain finite values")
+
+    timing_ms = {
+        phase: 0.0 for phase in COMPRESSION_TIMING_PHASES
+    }
+    distance_start = time.perf_counter()
     if minimum_distances is None:
         distance_values = np.asarray(
             [
@@ -524,45 +812,168 @@ def compress_trajectory_fragments(
         if not np.isfinite(distance_values).all():
             raise ValueError(
                 "minimum_distances must contain finite values")
+    timing_ms["distance"] = (
+        time.perf_counter() - distance_start) * 1000.0
 
     kept_count = (
         total_count
         if max_fragments is None
         else min(total_count, max_fragments)
     )
-    if kept_count == 0:
-        selected_indices: List[int] = []
-    elif max_fragments is None:
-        selected_indices = list(range(total_count))
-    elif strategy == "nearest":
-        selected_indices = _nearest_indices(
-            fragments, distance_values, kept_count)
-    else:
-        selected_indices = _near_diverse_indices(
+    if strategy == "bounded_near_diverse":
+        if geometry_descriptors is not None:
+            raise ValueError(
+                "bounded_near_diverse does not consume full "
+                "geometry_descriptors")
+        shortlist_start = time.perf_counter()
+        prepool_count = min(
+            total_count,
+            prepool_multiplier * kept_count,
+        )
+        shortlist_indices = (
+            []
+            if prepool_count == 0
+            else _bounded_shortlist_indices(
+                fragments,
+                distance_values,
+                prepool_count,
+            )
+        )
+        timing_ms["shortlist"] = (
+            time.perf_counter() - shortlist_start) * 1000.0
+
+        descriptor_start = time.perf_counter()
+        shortlist_fragments = [
+            fragments[index] for index in shortlist_indices
+        ]
+        fast_descriptors = (
+            build_fast_trajectory_geometry_descriptors(
+                shortlist_fragments,
+                center,
+                size_xy,
+            )
+        )
+        timing_ms["descriptor"] = (
+            time.perf_counter() - descriptor_start) * 1000.0
+
+        selection_start = time.perf_counter()
+        selected_indices = _bounded_near_diverse_indices(
             fragments,
-            descriptors,
             distance_values,
+            shortlist_indices,
+            fast_descriptors,
             kept_count,
             near_fraction,
         )
-    support_count = _support_counts(
-        descriptors, selected_indices)
+        timing_ms["selection"] = (
+            time.perf_counter() - selection_start) * 1000.0
+        shortlist_position_by_source = {
+            source_index: position
+            for position, source_index in enumerate(shortlist_indices)
+        }
+        selected_fast_descriptors = np.asarray(
+            [
+                fast_descriptors[
+                    shortlist_position_by_source[source_index]]
+                for source_index in selected_indices
+            ],
+            dtype=np.float32,
+        ).reshape(
+            kept_count,
+            len(FAST_GEOMETRY_DESCRIPTOR_NAMES),
+        )
+        selected_descriptors = np.zeros(
+            (kept_count, len(GEOMETRY_DESCRIPTOR_NAMES)),
+            dtype=np.float32,
+        )
+        if kept_count:
+            selected_descriptors[:, 0:2] = (
+                selected_fast_descriptors[:, 0:2])
+            selected_descriptors[:, 4:6] = (
+                selected_fast_descriptors[:, 2:4])
+            half_diagonal = float(np.linalg.norm(size_xy / 2.0))
+            selected_descriptors[:, 7] = (
+                distance_values[
+                    np.asarray(selected_indices, dtype=np.int64)]
+                / half_diagonal
+            ).astype(np.float32)
+        support_count = None
+        support_count_valid = False
+        descriptor_evaluation_count = prepool_count
+    else:
+        descriptor_start = time.perf_counter()
+        if geometry_descriptors is None:
+            descriptors = build_trajectory_geometry_descriptors(
+                fragments, center, size_xy)
+        else:
+            descriptors = np.asarray(
+                geometry_descriptors, dtype=np.float32)
+            if descriptors.shape != (
+                total_count,
+                len(GEOMETRY_DESCRIPTOR_NAMES),
+            ):
+                raise ValueError(
+                    "geometry_descriptors has an invalid shape")
+            if not np.isfinite(descriptors).all():
+                raise ValueError(
+                    "geometry_descriptors must contain finite values")
+        timing_ms["descriptor"] = (
+            time.perf_counter() - descriptor_start) * 1000.0
+
+        selection_start = time.perf_counter()
+        if kept_count == 0:
+            selected_indices = []
+        elif max_fragments is None:
+            selected_indices = list(range(total_count))
+        elif strategy == "nearest":
+            selected_indices = _nearest_indices(
+                fragments, distance_values, kept_count)
+        else:
+            selected_indices = _near_diverse_indices(
+                fragments,
+                descriptors,
+                distance_values,
+                kept_count,
+                near_fraction,
+            )
+        timing_ms["selection"] = (
+            time.perf_counter() - selection_start) * 1000.0
+
+        support_start = time.perf_counter()
+        support_count = _support_counts(
+            descriptors, selected_indices)
+        timing_ms["support_assignment"] = (
+            time.perf_counter() - support_start) * 1000.0
+        support_count_valid = True
+        prepool_count = total_count
+        descriptor_evaluation_count = total_count
+        selected_descriptors = descriptors[
+            np.asarray(selected_indices, dtype=np.int64)
+        ]
+
     selected_indices_array = np.asarray(
         selected_indices, dtype=np.int64)
+    timing_ms["total"] = (
+        time.perf_counter() - total_start) * 1000.0
     return CompressionResult(
         selected_fragments=tuple(
             fragments[index] for index in selected_indices),
         source_fragment_indices=selected_indices_array,
         support_count=support_count,
+        support_count_valid=support_count_valid,
         total_fragment_count=total_count,
         kept_fragment_count=kept_count,
         truncated_fragment_count=total_count - kept_count,
         selection_strategy=strategy,
-        selected_geometry_descriptors=descriptors[
-            selected_indices_array
-        ],
+        selected_geometry_descriptors=selected_descriptors,
+        selected_minimum_distances=distance_values[
+            selected_indices_array],
         center_xy=(float(center[0]), float(center[1])),
         window_size_xy=(float(size_xy[0]), float(size_xy[1])),
         max_fragments=max_fragments,
         near_fraction=near_fraction,
+        prepool_multiplier=prepool_multiplier,
+        prepool_count=prepool_count,
+        descriptor_evaluation_count=descriptor_evaluation_count,
+        compression_timing_ms=timing_ms,
     )

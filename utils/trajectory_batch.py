@@ -85,17 +85,24 @@ def _prepare_sample_fragments(
         ):
             raise ValueError(
                 "CompressionResult window does not match batch window")
+        support_values = (
+            sample.support_count
+            if sample.support_count_valid
+            else np.ones(
+                (sample.kept_fragment_count,), dtype=np.int64)
+        )
         prepared = [
             (
                 int(source_index),
                 fragment,
                 fragment_minimum_distance(fragment, center_xy),
                 int(support_count),
+                bool(sample.support_count_valid),
             )
             for source_index, fragment, support_count in zip(
                 sample.source_fragment_indices,
                 sample.selected_fragments,
-                sample.support_count,
+                support_values,
             )
         ]
         return (
@@ -117,6 +124,7 @@ def _prepare_sample_fragments(
                 fragment,
                 fragment_minimum_distance(fragment, center_xy),
                 1,
+                True,
             )
             for source_index, fragment in enumerate(sample)
         ]
@@ -154,6 +162,8 @@ def build_trajectory_batch(
     observations when their masks are true. A ``CompressionResult`` is used
     exactly as supplied, including representative support counts and original
     source indices; ``max_fragments`` is not applied to it a second time.
+    Bounded compression keeps the same tensor schema by filling support values
+    with one while marking ``fragment_support_count_valid`` false.
     """
 
     if not isinstance(fragment_lists, (list, tuple)):
@@ -185,7 +195,7 @@ def build_trajectory_batch(
         total_counts[batch_index] = total_count
         kept_counts[batch_index] = kept_count
         max_kept_fragments = max(max_kept_fragments, len(selected))
-        for _, fragment, _, _ in selected:
+        for _, fragment, _, _, _ in selected:
             max_points = max(max_points, len(fragment))
 
     batch_shape = (
@@ -214,6 +224,8 @@ def build_trajectory_batch(
         (batch_size, max_kept_fragments), np.inf, dtype=np.float32)
     fragment_support_count = np.zeros(
         (batch_size, max_kept_fragments), dtype=np.int64)
+    fragment_support_count_valid = np.zeros(
+        (batch_size, max_kept_fragments), dtype=np.bool_)
 
     for batch_index, selected in enumerate(selected_per_sample):
         center = centers[batch_index]
@@ -222,6 +234,7 @@ def build_trajectory_batch(
             fragment,
             minimum_distance,
             support_count,
+            support_count_valid,
         ) in enumerate(selected):
             points = np.asarray(
                 fragment.points_global_xy, dtype=np.float64)
@@ -280,6 +293,9 @@ def build_trajectory_batch(
             fragment_support_count[
                 batch_index, fragment_index
             ] = support_count
+            fragment_support_count_valid[
+                batch_index, fragment_index
+            ] = support_count_valid
 
     truncated_counts = total_counts - kept_counts
     return {
@@ -299,6 +315,8 @@ def build_trajectory_batch(
             fragment_min_distance),
         "fragment_support_count": torch.from_numpy(
             fragment_support_count),
+        "fragment_support_count_valid": torch.from_numpy(
+            fragment_support_count_valid),
         "total_fragment_count": torch.from_numpy(total_counts),
         "kept_fragment_count": torch.from_numpy(kept_counts),
         "truncated_fragment_count": torch.from_numpy(

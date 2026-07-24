@@ -1,13 +1,17 @@
 import math
 import unittest
+from unittest import mock
 
 import numpy as np
 import torch
 
+import utils.trajectory_compression as compression_module
 from utils.trajectory_batch import build_trajectory_batch
 from utils.trajectory_compression import (
+    FAST_GEOMETRY_DESCRIPTOR_NAMES,
     GEOMETRY_DESCRIPTOR_NAMES,
     compress_trajectory_fragments,
+    trajectory_fragment_fast_descriptor,
     trajectory_fragment_geometry_descriptor,
 )
 from utils.trajectory_fragments import TrajectoryFragment
@@ -298,6 +302,243 @@ class TrajectoryCompressionTests(unittest.TestCase):
             batch["source_fragment_indices"][0].numpy(),
             result.source_fragment_indices,
         )
+
+    def test_bounded_result_count_does_not_exceed_budget(self):
+        fragments = [
+            _fragment(index, 0, [[-40, index], [40, index]])
+            for index in range(20)
+        ]
+        result = compress_trajectory_fragments(
+            fragments,
+            center_xy=[0, 0],
+            window_size=100,
+            max_fragments=7,
+            strategy="bounded_near_diverse",
+        )
+        self.assertEqual(result.kept_fragment_count, 7)
+        self.assertLessEqual(len(result.selected_fragments), 7)
+        self.assertEqual(result.near_fraction, 0.5)
+
+    def test_bounded_is_repeatable_and_input_order_invariant(self):
+        fragments = [
+            _fragment(
+                index,
+                index * 3,
+                [[-40, float(index - 5)], [40, float(index - 5)]],
+            )
+            for index in range(10)
+        ]
+        fragments.extend([
+            _fragment(100, 0, [[12, -40], [12, 40]]),
+            _fragment(101, 0, [[-30, -30], [30, 30]]),
+        ])
+        kwargs = dict(
+            center_xy=[0, 0],
+            window_size=100,
+            max_fragments=6,
+            strategy="bounded_near_diverse",
+            prepool_multiplier=2,
+            near_fraction=0.5,
+        )
+        first = compress_trajectory_fragments(fragments, **kwargs)
+        repeated = compress_trajectory_fragments(fragments, **kwargs)
+        order = [11, 5, 2, 8, 0, 10, 1, 7, 3, 9, 4, 6]
+        shuffled = compress_trajectory_fragments(
+            [fragments[index] for index in order], **kwargs)
+        np.testing.assert_array_equal(
+            first.source_fragment_indices,
+            repeated.source_fragment_indices,
+        )
+        self.assertEqual(_identities(first), _identities(shuffled))
+
+    def test_legacy_default_near_fraction_remains_unchanged(self):
+        fragments = [
+            _fragment(index, 0, [[-30, index], [30, index]])
+            for index in range(8)
+        ]
+        result = compress_trajectory_fragments(
+            fragments,
+            center_xy=[0, 0],
+            window_size=100,
+            max_fragments=4,
+            strategy="near_diverse",
+        )
+        self.assertEqual(result.near_fraction, 0.25)
+
+    def test_bounded_always_keeps_nearest_fraction(self):
+        fragments = [
+            _fragment(index, 0, [[float(index), 0]])
+            for index in range(1, 13)
+        ]
+        result = compress_trajectory_fragments(
+            fragments,
+            center_xy=[0, 0],
+            window_size=100,
+            max_fragments=6,
+            strategy="bounded_near_diverse",
+            prepool_multiplier=2,
+            near_fraction=0.5,
+        )
+        selected_tracks = {
+            fragment.track_index
+            for fragment in result.selected_fragments
+        }
+        self.assertTrue({1, 2, 3}.issubset(selected_tracks))
+
+    def test_bounded_descriptors_are_only_built_for_prepool(self):
+        fragments = [
+            _fragment(index, 0, [[-30, index], [30, index]])
+            for index in range(100)
+        ]
+        evaluation_counts = []
+        original_builder = (
+            compression_module
+            .build_fast_trajectory_geometry_descriptors
+        )
+
+        def counted_builder(shortlist, center_xy, window_size):
+            evaluation_counts.append(len(shortlist))
+            return original_builder(shortlist, center_xy, window_size)
+
+        with mock.patch.object(
+            compression_module,
+            "build_fast_trajectory_geometry_descriptors",
+            side_effect=counted_builder,
+        ):
+            result = compress_trajectory_fragments(
+                fragments,
+                center_xy=[0, 0],
+                window_size=100,
+                max_fragments=5,
+                strategy="bounded_near_diverse",
+                prepool_multiplier=3,
+            )
+        self.assertEqual(evaluation_counts, [15])
+        self.assertEqual(result.prepool_count, 15)
+        self.assertEqual(result.descriptor_evaluation_count, 15)
+        self.assertLessEqual(
+            result.descriptor_evaluation_count,
+            min(len(fragments), 3 * 5),
+        )
+
+    def test_bounded_does_not_call_full_support_assignment(self):
+        fragments = [
+            _fragment(index, 0, [[-30, index], [30, index]])
+            for index in range(20)
+        ]
+        with mock.patch.object(
+            compression_module,
+            "_support_counts",
+            side_effect=AssertionError(
+                "bounded strategy must not assign full support"),
+        ):
+            result = compress_trajectory_fragments(
+                fragments,
+                center_xy=[0, 0],
+                window_size=100,
+                max_fragments=6,
+                strategy="bounded_near_diverse",
+            )
+        self.assertIsNone(result.support_count)
+        self.assertFalse(result.support_count_valid)
+        self.assertEqual(
+            result.compression_timing_ms["support_assignment"], 0.0)
+
+    def test_invalid_axis_only_enters_near_or_distance_fallback(self):
+        fragments = [
+            _fragment(0, 0, [[0, 0]]),
+            _fragment(1, 0, [[2, -40], [2, 40]]),
+            _fragment(2, 0, [[-40, 3], [40, 3]]),
+            _fragment(3, 0, [[-40, -4], [40, 4]]),
+            _fragment(100, 0, [[20, 20]]),
+            _fragment(101, 0, [[-25, 25], [-25, 25]]),
+            _fragment(102, 0, [[30, -30]]),
+        ]
+        result = compress_trajectory_fragments(
+            fragments,
+            center_xy=[0, 0],
+            window_size=100,
+            max_fragments=4,
+            strategy="bounded_near_diverse",
+            prepool_multiplier=2,
+            near_fraction=0.25,
+        )
+        selected_tracks = {
+            fragment.track_index
+            for fragment in result.selected_fragments
+        }
+        self.assertEqual(selected_tracks, {0, 1, 2, 3})
+
+    def test_bounded_retains_sparse_branch_from_dense_trunk(self):
+        trunk = [
+            _fragment(
+                index,
+                0,
+                [[-45, float(offset)], [45, float(offset)]],
+            )
+            for index, offset in enumerate(np.linspace(0.0, 3.0, 20))
+        ]
+        branch = _fragment(1000, 0, [[12, -45], [12, 45]])
+        result = compress_trajectory_fragments(
+            trunk + [branch],
+            center_xy=[0, 0],
+            window_size=100,
+            max_fragments=4,
+            strategy="bounded_near_diverse",
+            prepool_multiplier=8,
+            near_fraction=0.5,
+        )
+        self.assertIn(1000, {
+            fragment.track_index
+            for fragment in result.selected_fragments
+        })
+
+    def test_fast_descriptor_maps_reverse_travel_to_same_axis(self):
+        forward = _fragment(1, 0, [[-40, -20], [40, 20]])
+        reverse = _fragment(2, 0, [[40, 20], [-40, -20]])
+        forward_descriptor = trajectory_fragment_fast_descriptor(
+            forward, [0, 0], 100)
+        reverse_descriptor = trajectory_fragment_fast_descriptor(
+            reverse, [0, 0], 100)
+        self.assertEqual(
+            forward_descriptor.shape,
+            (len(FAST_GEOMETRY_DESCRIPTOR_NAMES),),
+        )
+        np.testing.assert_allclose(
+            forward_descriptor[2:4],
+            reverse_descriptor[2:4],
+            atol=1e-7,
+        )
+
+    def test_bounded_result_enters_batch_with_invalid_support_mask(self):
+        fragments = [
+            _fragment(index, 0, [[-40, index], [40, index]])
+            for index in range(10)
+        ]
+        result = compress_trajectory_fragments(
+            fragments,
+            center_xy=[0, 0],
+            window_size=100,
+            max_fragments=4,
+            strategy="bounded_near_diverse",
+        )
+        batch = build_trajectory_batch(
+            [result],
+            center_xy=[0, 0],
+            window_size=100,
+        )
+        self.assertEqual(
+            batch["fragment_support_count"].tolist(),
+            [[1, 1, 1, 1]],
+        )
+        self.assertEqual(
+            batch["fragment_support_count_valid"].tolist(),
+            [[False, False, False, False]],
+        )
+        self.assertEqual(
+            batch["compression_total_count"].tolist(), [10])
+        self.assertEqual(
+            batch["compression_kept_count"].tolist(), [4])
 
 
 if __name__ == "__main__":

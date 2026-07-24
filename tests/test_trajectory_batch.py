@@ -183,6 +183,10 @@ class TrajectoryBatchTests(unittest.TestCase):
             [[1, 1]],
         )
         self.assertEqual(
+            batch["fragment_support_count_valid"].tolist(),
+            [[True, True]],
+        )
+        self.assertEqual(
             batch["source_fragment_indices"].tolist(),
             [[0, 1]],
         )

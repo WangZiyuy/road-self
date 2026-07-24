@@ -38,15 +38,19 @@ from utils.structured_trajectory_store import (
     open_structured_trajectory_store,
 )
 from utils.trajectory_compression import (
+    COMPRESSION_TIMING_PHASES,
     CompressionResult,
-    build_trajectory_geometry_descriptors,
     compress_trajectory_fragments,
     fragment_minimum_distance,
 )
 from utils.trajectory_fragments import SEGMENT_GRID_INDEX_BASIS
 
 
-STRATEGIES = ("nearest", "near_diverse")
+STRATEGIES = (
+    "nearest",
+    "near_diverse",
+    "bounded_near_diverse",
+)
 
 
 def _positive_int(value: str) -> int:
@@ -111,9 +115,10 @@ def _pairwise_rms(points: np.ndarray) -> float:
 
 def _selection_metrics(
     result: CompressionResult,
-    compression_time_ms: float,
     covered_branch_count: int,
     branch_count: int,
+    center_xy: Sequence[float],
+    window_size: float,
 ) -> Dict[str, Any]:
     descriptors = result.selected_geometry_descriptors
     axis = descriptors[:, 4:6].astype(np.float64)
@@ -127,23 +132,66 @@ def _selection_metrics(
         axis_dispersion = 0.0
         axis_pairwise_rms = 0.0
     nearest_positions = descriptors[:, 0:2].astype(np.float64)
+    center = np.asarray(center_xy, dtype=np.float64)
+    half_window = float(window_size) / 2.0
+    segment_only_flags = []
+    for fragment in result.selected_fragments:
+        relative = (
+            np.asarray(fragment.points_global_xy, dtype=np.float64)
+            - center
+        )
+        inside = (
+            (relative[:, 0] >= -half_window)
+            & (relative[:, 0] <= half_window)
+            & (relative[:, 1] >= -half_window)
+            & (relative[:, 1] <= half_window)
+        )
+        segment_only_flags.append(not bool(inside.any()))
+    support_values = (
+        []
+        if result.support_count is None
+        else result.support_count.astype(int).tolist()
+    )
     return {
-        "compression_time_ms": float(compression_time_ms),
+        "compression_time_ms": float(
+            result.compression_timing_ms["total"]),
+        "compression_timing_ms": dict(
+            result.compression_timing_ms),
+        "prepool_count": int(result.prepool_count),
+        "descriptor_evaluation_count": int(
+            result.descriptor_evaluation_count),
         "unique_track_count": len({
             int(fragment.track_index)
             for fragment in result.selected_fragments
         }),
-        "support_count": result.support_count.astype(int).tolist(),
+        "support_count_valid": bool(result.support_count_valid),
+        "support_count": support_values,
         "support_count_max": (
             int(np.max(result.support_count))
-            if result.support_count.size
+            if result.support_count is not None
+            and result.support_count.size
             else 0
         ),
         "support_count_mean": (
             float(np.mean(result.support_count))
-            if result.support_count.size
+            if result.support_count is not None
+            and result.support_count.size
             else 0.0
         ),
+        "segment_only_count": int(sum(segment_only_flags)),
+        "segment_only_ratio": (
+            float(np.mean(segment_only_flags))
+            if segment_only_flags
+            else 0.0
+        ),
+        "invalid_axis_count": int(np.sum(~valid_axis)),
+        "invalid_axis_ratio": (
+            float(np.mean(~valid_axis))
+            if valid_axis.size
+            else 0.0
+        ),
+        "fragment_min_distance": (
+            result.selected_minimum_distances.astype(float).tolist()),
         "axis_dispersion": axis_dispersion,
         "axis_pairwise_rms": axis_pairwise_rms,
         "nearest_position_pairwise_rms_norm": _pairwise_rms(
@@ -172,10 +220,29 @@ def _summarize_results(
         int(result["branch_count"]) for result in results)
     covered_branches = sum(
         int(result["covered_branch_count"]) for result in results)
+    selected_minimum_distances = [
+        distance
+        for result in results
+        for distance in result["fragment_min_distance"]
+    ]
     return {
         "node_count": len(results),
         "compression_time_ms": _distribution([
             result["compression_time_ms"] for result in results
+        ]),
+        "compression_timing_ms": {
+            phase: _distribution([
+                result["compression_timing_ms"][phase]
+                for result in results
+            ])
+            for phase in COMPRESSION_TIMING_PHASES
+        },
+        "prepool_count": _distribution([
+            result["prepool_count"] for result in results
+        ]),
+        "descriptor_evaluation_count": _distribution([
+            result["descriptor_evaluation_count"]
+            for result in results
         ]),
         "unique_track_count": _distribution([
             result["unique_track_count"] for result in results
@@ -184,6 +251,18 @@ def _summarize_results(
         "representative_max_support_count": _distribution([
             result["support_count_max"] for result in results
         ]),
+        "support_count_valid_node_count": sum(
+            bool(result["support_count_valid"])
+            for result in results
+        ),
+        "segment_only_ratio": _distribution([
+            result["segment_only_ratio"] for result in results
+        ]),
+        "invalid_axis_ratio": _distribution([
+            result["invalid_axis_ratio"] for result in results
+        ]),
+        "fragment_min_distance": _distribution(
+            selected_minimum_distances),
         "axis_dispersion": _distribution([
             result["axis_dispersion"] for result in results
         ]),
@@ -220,6 +299,7 @@ def _plot_fragments(
     axis,
     fragments,
     support_counts: Optional[np.ndarray],
+    representative: bool,
     title: str,
     center_xy: Sequence[float],
     window_size: float,
@@ -259,7 +339,7 @@ def _plot_fragments(
             zorder=7,
         )
 
-    if support_counts is None:
+    if not representative:
         for fragment in fragments:
             points = np.asarray(
                 fragment.points_global_xy, dtype=np.float64)
@@ -270,6 +350,18 @@ def _plot_fragments(
                 linewidth=0.7,
                 alpha=0.18,
                 zorder=2,
+            )
+    elif support_counts is None:
+        for fragment in fragments:
+            points = np.asarray(
+                fragment.points_global_xy, dtype=np.float64)
+            axis.plot(
+                points[:, 0],
+                points[:, 1],
+                color="darkorange",
+                linewidth=1.8,
+                alpha=0.82,
+                zorder=4,
             )
     else:
         maximum_support = max(1, int(np.max(support_counts)))
@@ -348,6 +440,7 @@ def _visualize_comparison(
     fragments,
     nearest: CompressionResult,
     near_diverse: CompressionResult,
+    bounded_near_diverse: CompressionResult,
     center_xy: Sequence[float],
     window_size: float,
     incident_segments: Sequence[np.ndarray],
@@ -361,11 +454,12 @@ def _visualize_comparison(
             image = image_file.convert("RGB")
             background_crop, background_extent = _display_crop(
                 image, center_xy, window_size)
-    figure, axes = plt.subplots(1, 3, figsize=(19, 6.5))
+    figure, axes = plt.subplots(1, 4, figsize=(25, 6.5))
     _plot_fragments(
         axes[0],
         fragments,
         None,
+        False,
         "all candidates (n={})".format(len(fragments)),
         center_xy,
         window_size,
@@ -378,6 +472,7 @@ def _visualize_comparison(
         axes[1],
         nearest.selected_fragments,
         nearest.support_count,
+        True,
         "nearest 64",
         center_xy,
         window_size,
@@ -390,7 +485,21 @@ def _visualize_comparison(
         axes[2],
         near_diverse.selected_fragments,
         near_diverse.support_count,
+        True,
         "near_diverse 64",
+        center_xy,
+        window_size,
+        incident_segments,
+        probe_points,
+        background_crop,
+        background_extent,
+    )
+    _plot_fragments(
+        axes[3],
+        bounded_near_diverse.selected_fragments,
+        bounded_near_diverse.support_count,
+        True,
+        "bounded_near_diverse 64",
         center_xy,
         window_size,
         incident_segments,
@@ -415,6 +524,8 @@ def analyze_compression(
     max_time_gap_seconds: Optional[float],
     max_spatial_gap_pixels: Optional[float],
     near_fraction: float,
+    bounded_near_fraction: float,
+    prepool_multiplier: int,
     probe_distance: float,
     evidence_distance: float,
     max_nodes: Optional[int],
@@ -446,7 +557,6 @@ def analyze_compression(
 
     node_records: List[Dict[str, Any]] = []
     query_times_ms = []
-    descriptor_times_ms = []
     analysis_start = time.perf_counter()
     for node_index, node in enumerate(nodes):
         center_xy = node["center_xy"]
@@ -466,34 +576,24 @@ def analyze_compression(
         query_times_ms.append(
             (time.perf_counter() - query_start) * 1000.0)
 
-        descriptor_start = time.perf_counter()
-        descriptors = build_trajectory_geometry_descriptors(
-            fragments, center_xy, window_size)
-        minimum_distances = np.asarray([
-            fragment_minimum_distance(fragment, center_xy)
-            for fragment in fragments
-        ], dtype=np.float64)
-        descriptor_times_ms.append(
-            (time.perf_counter() - descriptor_start) * 1000.0)
-
         selections: Dict[str, Dict[str, Dict[str, Any]]] = {
             strategy: {} for strategy in STRATEGIES
         }
         for strategy in STRATEGIES:
             for budget in budgets:
-                compression_start = time.perf_counter()
                 result = compress_trajectory_fragments(
                     fragments=fragments,
                     center_xy=center_xy,
                     window_size=window_size,
                     max_fragments=budget,
                     strategy=strategy,
-                    near_fraction=near_fraction,
-                    geometry_descriptors=descriptors,
-                    minimum_distances=minimum_distances,
+                    near_fraction=(
+                        bounded_near_fraction
+                        if strategy == "bounded_near_diverse"
+                        else near_fraction
+                    ),
+                    prepool_multiplier=prepool_multiplier,
                 )
-                compression_time_ms = (
-                    time.perf_counter() - compression_start) * 1000.0
                 covered_count, branch_count, covered_flags = (
                     _branch_coverage(
                         result,
@@ -503,9 +603,10 @@ def analyze_compression(
                 )
                 metrics = _selection_metrics(
                     result,
-                    compression_time_ms,
                     covered_count,
                     branch_count,
+                    center_xy,
+                    window_size,
                 )
                 metrics["covered_branches"] = covered_flags
                 metrics["selected_track_indices"] = [
@@ -566,7 +667,7 @@ def analyze_compression(
             node_records,
             key=lambda record: (
                 -(
-                    record["selections"]["near_diverse"]["64"][
+                    record["selections"]["bounded_near_diverse"]["64"][
                         "covered_branch_count"
                     ]
                     - record["selections"]["nearest"]["64"][
@@ -590,13 +691,6 @@ def analyze_compression(
                 max_time_gap_seconds=max_time_gap_seconds,
                 max_spatial_gap_pixels=max_spatial_gap_pixels,
             )
-            descriptors = build_trajectory_geometry_descriptors(
-                fragments, node["center_xy"], window_size)
-            distances = np.asarray([
-                fragment_minimum_distance(
-                    fragment, node["center_xy"])
-                for fragment in fragments
-            ], dtype=np.float64)
             nearest = compress_trajectory_fragments(
                 fragments,
                 node["center_xy"],
@@ -604,8 +698,7 @@ def analyze_compression(
                 64,
                 strategy="nearest",
                 near_fraction=near_fraction,
-                geometry_descriptors=descriptors,
-                minimum_distances=distances,
+                prepool_multiplier=prepool_multiplier,
             )
             diverse = compress_trajectory_fragments(
                 fragments,
@@ -614,13 +707,24 @@ def analyze_compression(
                 64,
                 strategy="near_diverse",
                 near_fraction=near_fraction,
-                geometry_descriptors=descriptors,
-                minimum_distances=distances,
+                prepool_multiplier=prepool_multiplier,
+            )
+            bounded = compress_trajectory_fragments(
+                fragments,
+                node["center_xy"],
+                window_size,
+                64,
+                strategy="bounded_near_diverse",
+                near_fraction=bounded_near_fraction,
+                prepool_multiplier=prepool_multiplier,
             )
             output_path = (
                 output_dir
                 / "visualizations"
-                / "{}_vertex_{:04d}_all_nearest64_diverse64.png".format(
+                / (
+                    "{}_vertex_{:04d}_all_nearest64_"
+                    "diverse64_bounded64.png"
+                ).format(
                     node["node_type"], node["vertex_id"])
             )
             _visualize_comparison(
@@ -628,6 +732,7 @@ def analyze_compression(
                 fragments=fragments,
                 nearest=nearest,
                 near_diverse=diverse,
+                bounded_near_diverse=bounded,
                 center_xy=node["center_xy"],
                 window_size=window_size,
                 incident_segments=node["incident_segments"],
@@ -668,10 +773,11 @@ def analyze_compression(
         "max_time_gap_seconds": max_time_gap_seconds,
         "max_spatial_gap_pixels": max_spatial_gap_pixels,
         "near_fraction": float(near_fraction),
+        "bounded_near_fraction": float(bounded_near_fraction),
+        "prepool_multiplier": int(prepool_multiplier),
         "probe_distance": float(probe_distance),
         "evidence_distance": float(evidence_distance),
         "query_time_ms": _distribution(query_times_ms),
-        "descriptor_time_ms": _distribution(descriptor_times_ms),
         "elapsed_seconds": float(elapsed_seconds),
         "background_alignment": alignment,
         "summaries": summaries,
@@ -708,13 +814,23 @@ def _parse_args() -> argparse.Namespace:
         "--budgets",
         type=_positive_int,
         nargs="+",
-        default=[32, 64, 128, 256],
+        default=[32, 64, 128],
     )
     parser.add_argument("--window-size", type=float, default=256.0)
     parser.add_argument("--context-points", type=_nonnegative_int, default=2)
     parser.add_argument("--max-time-gap-seconds", type=float, default=None)
     parser.add_argument("--max-spatial-gap-pixels", type=float, default=None)
     parser.add_argument("--near-fraction", type=float, default=0.25)
+    parser.add_argument(
+        "--bounded-near-fraction",
+        type=float,
+        default=0.5,
+    )
+    parser.add_argument(
+        "--prepool-multiplier",
+        type=_positive_int,
+        default=8,
+    )
     parser.add_argument("--probe-distance", type=float, default=40.0)
     parser.add_argument("--evidence-distance", type=float, default=20.0)
     parser.add_argument("--max-nodes", type=_positive_int, default=None)
@@ -741,6 +857,12 @@ def main() -> None:
         or not 0.0 <= args.near_fraction <= 1.0
     ):
         raise ValueError("near_fraction must be in [0, 1]")
+    if (
+        not math.isfinite(args.bounded_near_fraction)
+        or not 0.0 <= args.bounded_near_fraction <= 1.0
+    ):
+        raise ValueError(
+            "bounded_near_fraction must be in [0, 1]")
     budgets = sorted(set(args.budgets))
     report = analyze_compression(
         cache_dir=args.cache_dir,
@@ -753,6 +875,8 @@ def main() -> None:
         max_time_gap_seconds=args.max_time_gap_seconds,
         max_spatial_gap_pixels=args.max_spatial_gap_pixels,
         near_fraction=args.near_fraction,
+        bounded_near_fraction=args.bounded_near_fraction,
+        prepool_multiplier=args.prepool_multiplier,
         probe_distance=args.probe_distance,
         evidence_distance=args.evidence_distance,
         max_nodes=args.max_nodes,
@@ -780,7 +904,6 @@ def main() -> None:
         "analyzed_node_count": report["analyzed_node_count"],
         "elapsed_seconds": report["elapsed_seconds"],
         "query_time_ms": report["query_time_ms"],
-        "descriptor_time_ms": report["descriptor_time_ms"],
         "evidence_coverage_at_k": coverage,
         "mean_compression_time_ms": compression_time_ms,
         "report_path": report["report_path"],
