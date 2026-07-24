@@ -1,0 +1,2421 @@
+{
+  "analyzed_node_count": 639,
+  "background_alignment": {
+    "background_size": [
+      8192,
+      8192
+    ],
+    "coordinate_offset_xy": [
+      0,
+      0
+    ],
+    "coordinate_scale_xy": [
+      1.0,
+      1.0
+    ],
+    "original_size": [
+      4300,
+      5000
+    ],
+    "padding_pixel": [
+      0,
+      0,
+      0
+    ],
+    "status": "aligned_top_left_padding"
+  },
+  "budgets": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "cache_basis": "trajectory_sample_points_and_segments_supercover_cells",
+  "context_points": 2,
+  "descriptor_time_ms": {
+    "count": 639,
+    "max": 830.8624000055715,
+    "mean": 176.92999468075334,
+    "median": 147.2137999953702,
+    "min": 0.006999995093792677,
+    "p90": 409.5302600064315,
+    "p95": 468.1215699878522
+  },
+  "elapsed_seconds": 359.80636699998286,
+  "evidence_distance": 20.0,
+  "gt_branch_count": 1607,
+  "max_spatial_gap_pixels": 256.0,
+  "max_time_gap_seconds": 60.0,
+  "near_fraction": 0.25,
+  "node_population": {
+    "multi_branch": 56,
+    "ordinary": 369,
+    "t_junction": 214
+  },
+  "probe_distance": 40.0,
+  "query_time_ms": {
+    "count": 639,
+    "max": 780.2052000188269,
+    "mean": 265.24606979516204,
+    "median": 255.66090003121644,
+    "min": 3.6365999840199947,
+    "p90": 478.16431998508057,
+    "p95": 548.1205800257158
+  },
+  "query_uses_full_trajectory_scan": false,
+  "segment_aware_index_active": true,
+  "stage": "2B",
+  "strategies": [
+    "nearest",
+    "near_diverse"
+  ],
+  "summaries": {
+    "near_diverse": {
+      "128": {
+        "by_node_type": {
+          "multi_branch": {
+            "all_branches_covered_node_count": 54,
+            "all_branches_covered_node_rate": 0.9642857142857143,
+            "axis_dispersion": {
+              "count": 56,
+              "max": 0.9794452227101914,
+              "mean": 0.7145422006349159,
+              "median": 0.743506761202672,
+              "min": 0.0,
+              "p90": 0.9379154273252331,
+              "p95": 0.9467263207416168
+            },
+            "axis_pairwise_rms": {
+              "count": 56,
+              "max": 1.4274239137758773,
+              "mean": 1.3108221582987964,
+              "median": 1.3755836710665905,
+              "min": 0.0,
+              "p90": 1.4178134792667407,
+              "p95": 1.4181024597931422
+            },
+            "branch_count": 227,
+            "compression_time_ms": {
+              "count": 56,
+              "max": 40.48830003011972,
+              "mean": 13.937896423158236,
+              "median": 13.121099997079,
+              "min": 0.027099973522126675,
+              "p90": 24.25409998977557,
+              "p95": 26.73892496386543
+            },
+            "covered_branch_count": 221,
+            "evidence_coverage_at_k": 0.973568281938326,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 56,
+              "max": 1.3695863204477658,
+              "mean": 0.7807472884747597,
+              "median": 0.7908994754695842,
+              "min": 0.0,
+              "p90": 0.8769363043502727,
+              "p95": 0.9275652832935002
+            },
+            "node_count": 56,
+            "representative_max_support_count": {
+              "count": 56,
+              "max": 387.0,
+              "mean": 86.82142857142857,
+              "median": 81.5,
+              "min": 0.0,
+              "p90": 174.0,
+              "p95": 207.5
+            },
+            "support_count": {
+              "count": 6766,
+              "max": 387.0,
+              "mean": 10.45639964528525,
+              "median": 5.0,
+              "min": 1.0,
+              "p90": 26.0,
+              "p95": 40.0
+            },
+            "unique_track_count": {
+              "count": 56,
+              "max": 128.0,
+              "mean": 116.875,
+              "median": 124.0,
+              "min": 0.0,
+              "p90": 127.0,
+              "p95": 127.0
+            }
+          },
+          "ordinary": {
+            "all_branches_covered_node_count": 324,
+            "all_branches_covered_node_rate": 0.8780487804878049,
+            "axis_dispersion": {
+              "count": 369,
+              "max": 0.987505124408676,
+              "mean": 0.5762008375172027,
+              "median": 0.5879492208666781,
+              "min": 0.0,
+              "p90": 0.9038257669488291,
+              "p95": 0.938533364773146
+            },
+            "axis_pairwise_rms": {
+              "count": 369,
+              "max": 1.5250034281447964,
+              "mean": 1.214204489083873,
+              "median": 1.2958544327715142,
+              "min": 0.0,
+              "p90": 1.4138433095707992,
+              "p95": 1.4177115846669373
+            },
+            "branch_count": 738,
+            "compression_time_ms": {
+              "count": 369,
+              "max": 42.33659995952621,
+              "mean": 10.838459349498606,
+              "median": 10.239799972623587,
+              "min": 0.026500027161091566,
+              "p90": 23.28990001697093,
+              "p95": 26.00405996199696
+            },
+            "covered_branch_count": 663,
+            "evidence_coverage_at_k": 0.8983739837398373,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 369,
+              "max": 1.2953799171887992,
+              "mean": 0.8175724482422008,
+              "median": 0.8510475007690921,
+              "min": 0.0,
+              "p90": 0.9662863169672049,
+              "p95": 1.0255378495468384
+            },
+            "node_count": 369,
+            "representative_max_support_count": {
+              "count": 369,
+              "max": 797.0,
+              "mean": 160.92140921409214,
+              "median": 98.0,
+              "min": 0.0,
+              "p90": 421.99999999999994,
+              "p95": 527.7999999999993
+            },
+            "support_count": {
+              "count": 42585,
+              "max": 797.0,
+              "mean": 8.452037102266056,
+              "median": 2.0,
+              "min": 1.0,
+              "p90": 18.0,
+              "p95": 30.0
+            },
+            "unique_track_count": {
+              "count": 369,
+              "max": 128.0,
+              "mean": 110.34688346883469,
+              "median": 123.0,
+              "min": 0.0,
+              "p90": 126.0,
+              "p95": 127.0
+            }
+          },
+          "t_junction": {
+            "all_branches_covered_node_count": 199,
+            "all_branches_covered_node_rate": 0.9299065420560748,
+            "axis_dispersion": {
+              "count": 214,
+              "max": 0.9579887052406043,
+              "mean": 0.5692959938262946,
+              "median": 0.5893239733604889,
+              "min": 0.0,
+              "p90": 0.8617549837265075,
+              "p95": 0.8962701210728602
+            },
+            "axis_pairwise_rms": {
+              "count": 214,
+              "max": 1.4568307899413713,
+              "mean": 1.221015680456465,
+              "median": 1.2949367887013652,
+              "min": 0.0,
+              "p90": 1.4086293605886842,
+              "p95": 1.4129027936579452
+            },
+            "branch_count": 642,
+            "compression_time_ms": {
+              "count": 214,
+              "max": 36.99100000085309,
+              "mean": 9.7162350481833,
+              "median": 8.167150022927672,
+              "min": 0.026900030206888914,
+              "p90": 21.548830013489358,
+              "p95": 24.460670026019216
+            },
+            "covered_branch_count": 611,
+            "evidence_coverage_at_k": 0.9517133956386293,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 214,
+              "max": 1.2513323166231805,
+              "mean": 0.8059096259138402,
+              "median": 0.8161428963474959,
+              "min": 0.0,
+              "p90": 0.9592173525466066,
+              "p95": 1.022884987528821
+            },
+            "node_count": 214,
+            "representative_max_support_count": {
+              "count": 214,
+              "max": 568.0,
+              "mean": 100.61214953271028,
+              "median": 52.5,
+              "min": 0.0,
+              "p90": 271.80000000000007,
+              "p95": 332.7
+            },
+            "support_count": {
+              "count": 24593,
+              "max": 568.0,
+              "mean": 7.536982068068149,
+              "median": 2.0,
+              "min": 1.0,
+              "p90": 17.0,
+              "p95": 29.0
+            },
+            "unique_track_count": {
+              "count": 214,
+              "max": 128.0,
+              "mean": 109.82710280373831,
+              "median": 123.0,
+              "min": 0.0,
+              "p90": 126.70000000000002,
+              "p95": 127.0
+            }
+          }
+        },
+        "overall": {
+          "all_branches_covered_node_count": 577,
+          "all_branches_covered_node_rate": 0.9029733959311425,
+          "axis_dispersion": {
+            "count": 639,
+            "max": 0.987505124408676,
+            "mean": 0.5860122299815809,
+            "median": 0.6012871277897827,
+            "min": 0.0,
+            "p90": 0.8998101473706417,
+            "p95": 0.933829147394357
+          },
+          "axis_pairwise_rms": {
+            "count": 639,
+            "max": 1.5250034281447964,
+            "mean": 1.2249528215248284,
+            "median": 1.3032791757934958,
+            "min": 0.0,
+            "p90": 1.4135227284553056,
+            "p95": 1.4175879484092668
+          },
+          "branch_count": 1607,
+          "compression_time_ms": {
+            "count": 639,
+            "max": 42.33659995952621,
+            "mean": 10.734253521084621,
+            "median": 9.652299981098622,
+            "min": 0.026500027161091566,
+            "p90": 22.944520006421957,
+            "p95": 25.605950027238578
+          },
+          "covered_branch_count": 1495,
+          "evidence_coverage_at_k": 0.9303049159925326,
+          "nearest_position_pairwise_rms_norm": {
+            "count": 639,
+            "max": 1.3695863204477658,
+            "mean": 0.810439345072802,
+            "median": 0.8344366585777829,
+            "min": 0.0,
+            "p90": 0.9598462344260549,
+            "p95": 1.0237839433580862
+          },
+          "node_count": 639,
+          "representative_max_support_count": {
+            "count": 639,
+            "max": 797.0,
+            "mean": 134.2300469483568,
+            "median": 73.0,
+            "min": 0.0,
+            "p90": 366.8000000000002,
+            "p95": 450.0
+          },
+          "support_count": {
+            "count": 73944,
+            "max": 797.0,
+            "mean": 8.331101914962675,
+            "median": 2.0,
+            "min": 1.0,
+            "p90": 18.0,
+            "p95": 31.0
+          },
+          "unique_track_count": {
+            "count": 639,
+            "max": 128.0,
+            "mean": 110.74491392801252,
+            "median": 123.0,
+            "min": 0.0,
+            "p90": 126.0,
+            "p95": 127.0
+          }
+        }
+      },
+      "256": {
+        "by_node_type": {
+          "multi_branch": {
+            "all_branches_covered_node_count": 54,
+            "all_branches_covered_node_rate": 0.9642857142857143,
+            "axis_dispersion": {
+              "count": 56,
+              "max": 0.9772990564380838,
+              "mean": 0.6667861526435609,
+              "median": 0.7211806077075325,
+              "min": 0.0,
+              "p90": 0.936483587835422,
+              "p95": 0.9532064820560919
+            },
+            "axis_pairwise_rms": {
+              "count": 56,
+              "max": 1.4274239137758773,
+              "mean": 1.270378432881864,
+              "median": 1.3614671219106196,
+              "min": 0.0,
+              "p90": 1.4152470665923644,
+              "p95": 1.415722729212386
+            },
+            "branch_count": 227,
+            "compression_time_ms": {
+              "count": 56,
+              "max": 68.3269000146538,
+              "mean": 24.974541075477777,
+              "median": 23.93499997560866,
+              "min": 0.02700003096833825,
+              "p90": 45.981650007888675,
+              "p95": 51.483649978763424
+            },
+            "covered_branch_count": 221,
+            "evidence_coverage_at_k": 0.973568281938326,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 56,
+              "max": 1.2607551838004638,
+              "mean": 0.740818553786813,
+              "median": 0.749719920346965,
+              "min": 0.0,
+              "p90": 0.8679433310563927,
+              "p95": 0.9272942402542275
+            },
+            "node_count": 56,
+            "representative_max_support_count": {
+              "count": 56,
+              "max": 181.0,
+              "mean": 59.410714285714285,
+              "median": 57.5,
+              "min": 0.0,
+              "p90": 132.0,
+              "p95": 166.5
+            },
+            "support_count": {
+              "count": 13058,
+              "max": 181.0,
+              "mean": 5.417981314136927,
+              "median": 2.0,
+              "min": 1.0,
+              "p90": 13.0,
+              "p95": 20.0
+            },
+            "unique_track_count": {
+              "count": 56,
+              "max": 253.0,
+              "mean": 221.625,
+              "median": 243.0,
+              "min": 0.0,
+              "p90": 248.0,
+              "p95": 249.0
+            }
+          },
+          "ordinary": {
+            "all_branches_covered_node_count": 324,
+            "all_branches_covered_node_rate": 0.8780487804878049,
+            "axis_dispersion": {
+              "count": 369,
+              "max": 0.9856625707180016,
+              "mean": 0.5017487537421687,
+              "median": 0.4718520965106697,
+              "min": 0.0,
+              "p90": 0.8937474094326467,
+              "p95": 0.9263416857767814
+            },
+            "axis_pairwise_rms": {
+              "count": 369,
+              "max": 1.5250034281447964,
+              "mean": 1.141135369438438,
+              "median": 1.2033211769276297,
+              "min": 0.0,
+              "p90": 1.409688467952462,
+              "p95": 1.4140164393156534
+            },
+            "branch_count": 738,
+            "compression_time_ms": {
+              "count": 369,
+              "max": 78.84319999720901,
+              "mean": 19.042508402330736,
+              "median": 19.29480000399053,
+              "min": 0.026500027161091566,
+              "p90": 42.793639993760735,
+              "p95": 48.33380000200122
+            },
+            "covered_branch_count": 663,
+            "evidence_coverage_at_k": 0.8983739837398373,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 369,
+              "max": 1.2229776380550144,
+              "mean": 0.7910741289634079,
+              "median": 0.8241380898480248,
+              "min": 0.0,
+              "p90": 0.9666533121258785,
+              "p95": 1.0284726242945592
+            },
+            "node_count": 369,
+            "representative_max_support_count": {
+              "count": 369,
+              "max": 629.0,
+              "mean": 105.4579945799458,
+              "median": 55.0,
+              "min": 0.0,
+              "p90": 281.59999999999997,
+              "p95": 342.19999999999993
+            },
+            "support_count": {
+              "count": 78473,
+              "max": 629.0,
+              "mean": 4.586673123239841,
+              "median": 1.0,
+              "min": 1.0,
+              "p90": 8.0,
+              "p95": 15.0
+            },
+            "unique_track_count": {
+              "count": 369,
+              "max": 256.0,
+              "mean": 200.46883468834687,
+              "median": 240.0,
+              "min": 0.0,
+              "p90": 249.0,
+              "p95": 251.59999999999997
+            }
+          },
+          "t_junction": {
+            "all_branches_covered_node_count": 199,
+            "all_branches_covered_node_rate": 0.9299065420560748,
+            "axis_dispersion": {
+              "count": 214,
+              "max": 0.9624928494743855,
+              "mean": 0.5011987473579775,
+              "median": 0.509141711472606,
+              "min": 0.0,
+              "p90": 0.8452146289378566,
+              "p95": 0.8710926685146283
+            },
+            "axis_pairwise_rms": {
+              "count": 214,
+              "max": 1.4568307899413713,
+              "mean": 1.1499675475426223,
+              "median": 1.2361000370138822,
+              "min": 0.0,
+              "p90": 1.4018675023090754,
+              "p95": 1.4094246570727786
+            },
+            "branch_count": 642,
+            "compression_time_ms": {
+              "count": 214,
+              "max": 78.9628999773413,
+              "mean": 17.033232243788195,
+              "median": 15.164749987889081,
+              "min": 0.02729997504502535,
+              "p90": 39.96621999540367,
+              "p95": 43.01676000759471
+            },
+            "covered_branch_count": 611,
+            "evidence_coverage_at_k": 0.9517133956386293,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 214,
+              "max": 1.1882204441260604,
+              "mean": 0.7769443516579917,
+              "median": 0.7923139605135439,
+              "min": 0.0,
+              "p90": 0.9637973547316625,
+              "p95": 1.02561842696073
+            },
+            "node_count": 214,
+            "representative_max_support_count": {
+              "count": 214,
+              "max": 611.0,
+              "mean": 71.52803738317758,
+              "median": 28.0,
+              "min": 0.0,
+              "p90": 183.70000000000002,
+              "p95": 270.44999999999993
+            },
+            "support_count": {
+              "count": 45292,
+              "max": 611.0,
+              "mean": 4.0924887397332865,
+              "median": 1.0,
+              "min": 1.0,
+              "p90": 9.0,
+              "p95": 14.0
+            },
+            "unique_track_count": {
+              "count": 214,
+              "max": 256.0,
+              "mean": 199.49532710280374,
+              "median": 240.0,
+              "min": 0.0,
+              "p90": 249.0,
+              "p95": 251.0
+            }
+          }
+        },
+        "overall": {
+          "all_branches_covered_node_count": 577,
+          "all_branches_covered_node_rate": 0.9029733959311425,
+          "axis_dispersion": {
+            "count": 639,
+            "max": 0.9856625707180016,
+            "mean": 0.5160279289726242,
+            "median": 0.4973100753634071,
+            "min": 0.0,
+            "p90": 0.8893031321237252,
+            "p95": 0.922835624735513
+          },
+          "axis_pairwise_rms": {
+            "count": 639,
+            "max": 1.5250034281447964,
+            "mean": 1.1554197163353508,
+            "median": 1.2256680897060737,
+            "min": 0.0,
+            "p90": 1.409688467952462,
+            "p95": 1.4133417756818925
+          },
+          "branch_count": 1607,
+          "compression_time_ms": {
+            "count": 639,
+            "max": 78.9628999773413,
+            "mean": 18.889470423877103,
+            "median": 17.486399970948696,
+            "min": 0.026500027161091566,
+            "p90": 41.9508200022392,
+            "p95": 48.105860012583435
+          },
+          "covered_branch_count": 1495,
+          "evidence_coverage_at_k": 0.9303049159925326,
+          "nearest_position_pairwise_rms_norm": {
+            "count": 639,
+            "max": 1.2607551838004638,
+            "mean": 0.7819378464074637,
+            "median": 0.8101780318504666,
+            "min": 0.0,
+            "p90": 0.9613898750375062,
+            "p95": 1.0268383362745668
+          },
+          "node_count": 639,
+          "representative_max_support_count": {
+            "count": 639,
+            "max": 629.0,
+            "mean": 90.05946791862284,
+            "median": 42.0,
+            "min": 0.0,
+            "p90": 253.0,
+            "p95": 326.0
+          },
+          "support_count": {
+            "count": 136823,
+            "max": 629.0,
+            "mean": 4.502422838265496,
+            "median": 1.0,
+            "min": 1.0,
+            "p90": 9.0,
+            "p95": 15.0
+          },
+          "unique_track_count": {
+            "count": 639,
+            "max": 256.0,
+            "mean": 201.99687010954617,
+            "median": 240.0,
+            "min": 0.0,
+            "p90": 249.0,
+            "p95": 251.0
+          }
+        }
+      },
+      "32": {
+        "by_node_type": {
+          "multi_branch": {
+            "all_branches_covered_node_count": 53,
+            "all_branches_covered_node_rate": 0.9464285714285714,
+            "axis_dispersion": {
+              "count": 56,
+              "max": 0.996644497119696,
+              "mean": 0.794612876379888,
+              "median": 0.8334471830899564,
+              "min": 0.0,
+              "p90": 0.9317644411626312,
+              "p95": 0.967673083899492
+            },
+            "axis_pairwise_rms": {
+              "count": 56,
+              "max": 1.4375824819966747,
+              "mean": 1.3749770696462515,
+              "median": 1.4181236139910296,
+              "min": 0.0,
+              "p90": 1.4343592073801927,
+              "p95": 1.4367997795323575
+            },
+            "branch_count": 227,
+            "compression_time_ms": {
+              "count": 56,
+              "max": 12.840600044000894,
+              "mean": 4.350055357333206,
+              "median": 3.982399997767061,
+              "min": 0.028399983420968056,
+              "p90": 7.40060000680387,
+              "p95": 8.34997501806356
+            },
+            "covered_branch_count": 220,
+            "evidence_coverage_at_k": 0.9691629955947136,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 56,
+              "max": 1.4191528910286317,
+              "mean": 0.8238836006207896,
+              "median": 0.8311966926240362,
+              "min": 0.0,
+              "p90": 0.9497964259103431,
+              "p95": 0.9851882001624827
+            },
+            "node_count": 56,
+            "representative_max_support_count": {
+              "count": 56,
+              "max": 611.0,
+              "mean": 224.35714285714286,
+              "median": 249.5,
+              "min": 0.0,
+              "p90": 357.5,
+              "p95": 405.5
+            },
+            "support_count": {
+              "count": 1749,
+              "max": 611.0,
+              "mean": 40.4505431675243,
+              "median": 19.0,
+              "min": 1.0,
+              "p90": 105.0,
+              "p95": 156.5999999999999
+            },
+            "unique_track_count": {
+              "count": 56,
+              "max": 32.0,
+              "mean": 30.767857142857142,
+              "median": 32.0,
+              "min": 0.0,
+              "p90": 32.0,
+              "p95": 32.0
+            }
+          },
+          "ordinary": {
+            "all_branches_covered_node_count": 323,
+            "all_branches_covered_node_rate": 0.8753387533875339,
+            "axis_dispersion": {
+              "count": 369,
+              "max": 0.9914376368374915,
+              "mean": 0.7082876405195755,
+              "median": 0.7432360205942172,
+              "min": 0.0,
+              "p90": 0.9105439969549284,
+              "p95": 0.9458995931528307
+            },
+            "axis_pairwise_rms": {
+              "count": 369,
+              "max": 1.5250034281447964,
+              "mean": 1.3256750248259461,
+              "median": 1.3911496410054895,
+              "min": 0.0,
+              "p90": 1.433019171785714,
+              "p95": 1.4362294613772628
+            },
+            "branch_count": 738,
+            "compression_time_ms": {
+              "count": 369,
+              "max": 77.03169999876991,
+              "mean": 3.640040649267716,
+              "median": 3.2020999933592975,
+              "min": 0.026899971999228,
+              "p90": 7.017560023814439,
+              "p95": 7.925860001705582
+            },
+            "covered_branch_count": 662,
+            "evidence_coverage_at_k": 0.8970189701897019,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 369,
+              "max": 1.3345819014045075,
+              "mean": 0.8781815780724566,
+              "median": 0.9050701960559475,
+              "min": 0.0,
+              "p90": 1.022480212563513,
+              "p95": 1.0565787459135154
+            },
+            "node_count": 369,
+            "representative_max_support_count": {
+              "count": 369,
+              "max": 1133.0,
+              "mean": 224.1409214092141,
+              "median": 193.0,
+              "min": 0.0,
+              "p90": 494.2,
+              "p95": 577.1999999999994
+            },
+            "support_count": {
+              "count": 11353,
+              "max": 1133.0,
+              "mean": 31.70351448956223,
+              "median": 7.0,
+              "min": 1.0,
+              "p90": 82.0,
+              "p95": 144.0
+            },
+            "unique_track_count": {
+              "count": 369,
+              "max": 32.0,
+              "mean": 30.15447154471545,
+              "median": 32.0,
+              "min": 0.0,
+              "p90": 32.0,
+              "p95": 32.0
+            }
+          },
+          "t_junction": {
+            "all_branches_covered_node_count": 196,
+            "all_branches_covered_node_rate": 0.9158878504672897,
+            "axis_dispersion": {
+              "count": 214,
+              "max": 0.9772649278292814,
+              "mean": 0.69923114196102,
+              "median": 0.7186779284102115,
+              "min": 0.0,
+              "p90": 0.8937567965226896,
+              "p95": 0.9315708793430376
+            },
+            "axis_pairwise_rms": {
+              "count": 214,
+              "max": 1.4568307899413713,
+              "mean": 1.3324146236825618,
+              "median": 1.3810991740209393,
+              "min": 0.0,
+              "p90": 1.4310468307501414,
+              "p95": 1.4353382666379686
+            },
+            "branch_count": 642,
+            "compression_time_ms": {
+              "count": 214,
+              "max": 11.002200015354902,
+              "mean": 3.082694860325395,
+              "median": 2.768749982351437,
+              "min": 0.027799978852272034,
+              "p90": 6.08975999057293,
+              "p95": 6.892054990748873
+            },
+            "covered_branch_count": 608,
+            "evidence_coverage_at_k": 0.9470404984423676,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 214,
+              "max": 1.290392936024109,
+              "mean": 0.8672888052982753,
+              "median": 0.8786519592684077,
+              "min": 0.0,
+              "p90": 1.013091070921774,
+              "p95": 1.0326800007058936
+            },
+            "node_count": 214,
+            "representative_max_support_count": {
+              "count": 214,
+              "max": 935.0,
+              "mean": 179.1214953271028,
+              "median": 146.5,
+              "min": 0.0,
+              "p90": 402.70000000000005,
+              "p95": 490.79999999999984
+            },
+            "support_count": {
+              "count": 6627,
+              "max": 935.0,
+              "mean": 27.96997132940999,
+              "median": 8.0,
+              "min": 1.0,
+              "p90": 76.0,
+              "p95": 122.0
+            },
+            "unique_track_count": {
+              "count": 214,
+              "max": 32.0,
+              "mean": 30.345794392523363,
+              "median": 32.0,
+              "min": 0.0,
+              "p90": 32.0,
+              "p95": 32.0
+            }
+          }
+        },
+        "overall": {
+          "all_branches_covered_node_count": 572,
+          "all_branches_covered_node_rate": 0.8951486697965572,
+          "axis_dispersion": {
+            "count": 639,
+            "max": 0.996644497119696,
+            "mean": 0.7128199136285688,
+            "median": 0.7503637332225269,
+            "min": 0.0,
+            "p90": 0.9103379643076117,
+            "p95": 0.9420866309050993
+          },
+          "axis_pairwise_rms": {
+            "count": 639,
+            "max": 1.5250034281447964,
+            "mean": 1.3322527848654653,
+            "median": 1.392717456078771,
+            "min": 0.0,
+            "p90": 1.4331389635114813,
+            "p95": 1.4361220451105443
+          },
+          "branch_count": 1607,
+          "compression_time_ms": {
+            "count": 639,
+            "max": 77.03169999876991,
+            "mean": 3.515610015180096,
+            "median": 3.154100035317242,
+            "min": 0.026899971999228,
+            "p90": 6.779159978032114,
+            "p95": 7.805640005972236
+          },
+          "covered_branch_count": 1490,
+          "evidence_coverage_at_k": 0.9271935283136279,
+          "nearest_position_pairwise_rms_norm": {
+            "count": 639,
+            "max": 1.4191528910286317,
+            "mean": 0.8697750990255579,
+            "median": 0.8909006558061705,
+            "min": 0.0,
+            "p90": 1.0165046427631137,
+            "p95": 1.0476080169813422
+          },
+          "node_count": 639,
+          "representative_max_support_count": {
+            "count": 639,
+            "max": 1133.0,
+            "mean": 209.0829420970266,
+            "median": 175.0,
+            "min": 0.0,
+            "p90": 469.20000000000005,
+            "p95": 537.5000000000001
+          },
+          "support_count": {
+            "count": 19729,
+            "max": 1133.0,
+            "mean": 31.22484667241117,
+            "median": 8.0,
+            "min": 1.0,
+            "p90": 82.0,
+            "p95": 140.0
+          },
+          "unique_track_count": {
+            "count": 639,
+            "max": 32.0,
+            "mean": 30.272300469483568,
+            "median": 32.0,
+            "min": 0.0,
+            "p90": 32.0,
+            "p95": 32.0
+          }
+        }
+      },
+      "64": {
+        "by_node_type": {
+          "multi_branch": {
+            "all_branches_covered_node_count": 54,
+            "all_branches_covered_node_rate": 0.9642857142857143,
+            "axis_dispersion": {
+              "count": 56,
+              "max": 0.976872314656631,
+              "mean": 0.7587072937613646,
+              "median": 0.7678199151818701,
+              "min": 0.0,
+              "p90": 0.9607835353087758,
+              "p95": 0.9709468554067496
+            },
+            "axis_pairwise_rms": {
+              "count": 56,
+              "max": 1.4274239137758773,
+              "mean": 1.345159267254584,
+              "median": 1.386993807177749,
+              "min": 0.0,
+              "p90": 1.4252963130202088,
+              "p95": 1.4254684481794007
+            },
+            "branch_count": 227,
+            "compression_time_ms": {
+              "count": 56,
+              "max": 21.06219995766878,
+              "mean": 7.753719645344453,
+              "median": 7.0975499984342605,
+              "min": 0.027500034775584936,
+              "p90": 14.535950002027676,
+              "p95": 15.005524997832254
+            },
+            "covered_branch_count": 221,
+            "evidence_coverage_at_k": 0.973568281938326,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 56,
+              "max": 1.434134851438872,
+              "mean": 0.8266988565441891,
+              "median": 0.8314924318987158,
+              "min": 0.0,
+              "p90": 0.9229759593233806,
+              "p95": 0.9321098023632829
+            },
+            "node_count": 56,
+            "representative_max_support_count": {
+              "count": 56,
+              "max": 385.0,
+              "mean": 126.41071428571429,
+              "median": 137.5,
+              "min": 0.0,
+              "p90": 232.5,
+              "p95": 290.25
+            },
+            "support_count": {
+              "count": 3451,
+              "max": 385.0,
+              "mean": 20.500724427702114,
+              "median": 9.0,
+              "min": 1.0,
+              "p90": 53.0,
+              "p95": 81.0
+            },
+            "unique_track_count": {
+              "count": 56,
+              "max": 64.0,
+              "mean": 60.232142857142854,
+              "median": 63.0,
+              "min": 0.0,
+              "p90": 64.0,
+              "p95": 64.0
+            }
+          },
+          "ordinary": {
+            "all_branches_covered_node_count": 324,
+            "all_branches_covered_node_rate": 0.8780487804878049,
+            "axis_dispersion": {
+              "count": 369,
+              "max": 0.985400097207237,
+              "mean": 0.6471382618933292,
+              "median": 0.6651295096162877,
+              "min": 0.0,
+              "p90": 0.9144097584519947,
+              "p95": 0.9382010715854524
+            },
+            "axis_pairwise_rms": {
+              "count": 369,
+              "max": 1.5250034281447964,
+              "mean": 1.2754044307009187,
+              "median": 1.3450643778321252,
+              "min": 0.0,
+              "p90": 1.4214859575098866,
+              "p95": 1.4240715599165277
+            },
+            "branch_count": 738,
+            "compression_time_ms": {
+              "count": 369,
+              "max": 23.28339999075979,
+              "mean": 6.086996475393634,
+              "median": 5.261900019831955,
+              "min": 0.02759997732937336,
+              "p90": 13.034979975782335,
+              "p95": 14.705899998079982
+            },
+            "covered_branch_count": 663,
+            "evidence_coverage_at_k": 0.8983739837398373,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 369,
+              "max": 1.3624869060188207,
+              "mean": 0.8574016282667917,
+              "median": 0.896087291506615,
+              "min": 0.0,
+              "p90": 0.9904137610443025,
+              "p95": 1.0272368554414921
+            },
+            "node_count": 369,
+            "representative_max_support_count": {
+              "count": 369,
+              "max": 795.0,
+              "mean": 190.92953929539294,
+              "median": 147.0,
+              "min": 0.0,
+              "p90": 467.19999999999993,
+              "p95": 535.1999999999999
+            },
+            "support_count": {
+              "count": 22216,
+              "max": 795.0,
+              "mean": 16.20138638818869,
+              "median": 4.0,
+              "min": 1.0,
+              "p90": 38.0,
+              "p95": 65.0
+            },
+            "unique_track_count": {
+              "count": 369,
+              "max": 64.0,
+              "mean": 58.363143631436316,
+              "median": 63.0,
+              "min": 0.0,
+              "p90": 64.0,
+              "p95": 64.0
+            }
+          },
+          "t_junction": {
+            "all_branches_covered_node_count": 199,
+            "all_branches_covered_node_rate": 0.9299065420560748,
+            "axis_dispersion": {
+              "count": 214,
+              "max": 0.9649657139235205,
+              "mean": 0.6387584796858451,
+              "median": 0.6647877433265239,
+              "min": 0.0,
+              "p90": 0.8883764747401239,
+              "p95": 0.9188427251246573
+            },
+            "axis_pairwise_rms": {
+              "count": 214,
+              "max": 1.4568307899413713,
+              "mean": 1.281720772191205,
+              "median": 1.3444641424849029,
+              "min": 0.0,
+              "p90": 1.417499543239043,
+              "p95": 1.422018542218547
+            },
+            "branch_count": 642,
+            "compression_time_ms": {
+              "count": 214,
+              "max": 21.96029998594895,
+              "mean": 5.50907523405007,
+              "median": 4.650350019801408,
+              "min": 0.0274000340141356,
+              "p90": 12.333199993008753,
+              "p95": 13.652544989599846
+            },
+            "covered_branch_count": 611,
+            "evidence_coverage_at_k": 0.9517133956386293,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 214,
+              "max": 1.3060852366725992,
+              "mean": 0.8488455578520286,
+              "median": 0.8655991645268026,
+              "min": 0.0,
+              "p90": 0.9732661142082268,
+              "p95": 1.0240515984934646
+            },
+            "node_count": 214,
+            "representative_max_support_count": {
+              "count": 214,
+              "max": 673.0,
+              "mean": 124.29906542056075,
+              "median": 85.0,
+              "min": 0.0,
+              "p90": 318.40000000000003,
+              "p95": 383.7499999999999
+            },
+            "support_count": {
+              "count": 12843,
+              "max": 673.0,
+              "mean": 14.432531340029588,
+              "median": 4.0,
+              "min": 1.0,
+              "p90": 37.0,
+              "p95": 59.0
+            },
+            "unique_track_count": {
+              "count": 214,
+              "max": 64.0,
+              "mean": 58.19626168224299,
+              "median": 62.0,
+              "min": 0.0,
+              "p90": 64.0,
+              "p95": 64.0
+            }
+          }
+        },
+        "overall": {
+          "all_branches_covered_node_count": 577,
+          "all_branches_covered_node_rate": 0.9029733959311425,
+          "axis_dispersion": {
+            "count": 639,
+            "max": 0.985400097207237,
+            "mean": 0.6541094549953768,
+            "median": 0.6732389405097725,
+            "min": 0.0,
+            "p90": 0.9134824173703324,
+            "p95": 0.9441385953935948
+          },
+          "axis_pairwise_rms": {
+            "count": 639,
+            "max": 1.5250034281447964,
+            "mean": 1.2836328625098803,
+            "median": 1.3484672932247743,
+            "min": 0.0,
+            "p90": 1.4211193303444238,
+            "p95": 1.4244315571640667
+          },
+          "branch_count": 1607,
+          "compression_time_ms": {
+            "count": 639,
+            "max": 23.28339999075979,
+            "mean": 6.039518152811041,
+            "median": 5.046100006438792,
+            "min": 0.0274000340141356,
+            "p90": 12.974060000851752,
+            "p95": 14.747839979827406
+          },
+          "covered_branch_count": 1495,
+          "evidence_coverage_at_k": 0.9303049159925326,
+          "nearest_position_pairwise_rms_norm": {
+            "count": 639,
+            "max": 1.434134851438872,
+            "mean": 0.851845518274264,
+            "median": 0.879616812588052,
+            "min": 0.0,
+            "p90": 0.9812629845229912,
+            "p95": 1.025623986026562
+          },
+          "node_count": 639,
+          "representative_max_support_count": {
+            "count": 639,
+            "max": 795.0,
+            "mean": 162.96087636932708,
+            "median": 118.0,
+            "min": 0.0,
+            "p90": 428.0,
+            "p95": 497.0
+          },
+          "support_count": {
+            "count": 38510,
+            "max": 795.0,
+            "mean": 15.996754089846792,
+            "median": 4.0,
+            "min": 1.0,
+            "p90": 39.0,
+            "p95": 65.0
+          },
+          "unique_track_count": {
+            "count": 639,
+            "max": 64.0,
+            "mean": 58.47104851330204,
+            "median": 63.0,
+            "min": 0.0,
+            "p90": 64.0,
+            "p95": 64.0
+          }
+        }
+      }
+    },
+    "nearest": {
+      "128": {
+        "by_node_type": {
+          "multi_branch": {
+            "all_branches_covered_node_count": 53,
+            "all_branches_covered_node_rate": 0.9464285714285714,
+            "axis_dispersion": {
+              "count": 56,
+              "max": 0.9377731941261672,
+              "mean": 0.4518686899888242,
+              "median": 0.4650376138914592,
+              "min": 0.0,
+              "p90": 0.8087886903986888,
+              "p95": 0.8208071096924605
+            },
+            "axis_pairwise_rms": {
+              "count": 56,
+              "max": 1.4274239137758773,
+              "mean": 1.060322259664362,
+              "median": 1.2001674138691654,
+              "min": 0.0,
+              "p90": 1.393720145061396,
+              "p95": 1.4007217744031368
+            },
+            "branch_count": 227,
+            "compression_time_ms": {
+              "count": 56,
+              "max": 21.963900013361126,
+              "mean": 7.076816071016116,
+              "median": 5.9948999842163175,
+              "min": 0.03479997394606471,
+              "p90": 15.058550023240969,
+              "p95": 17.06445001764223
+            },
+            "covered_branch_count": 219,
+            "evidence_coverage_at_k": 0.9647577092511013,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 56,
+              "max": 1.0662321544107858,
+              "mean": 0.1499992546516455,
+              "median": 0.043123718878491674,
+              "min": 0.0,
+              "p90": 0.5507384064934624,
+              "p95": 0.876314151538846
+            },
+            "node_count": 56,
+            "representative_max_support_count": {
+              "count": 56,
+              "max": 249.0,
+              "mean": 96.46428571428571,
+              "median": 84.0,
+              "min": 0.0,
+              "p90": 189.5,
+              "p95": 203.25
+            },
+            "support_count": {
+              "count": 6766,
+              "max": 249.0,
+              "mean": 10.45639964528525,
+              "median": 4.0,
+              "min": 1.0,
+              "p90": 28.0,
+              "p95": 42.0
+            },
+            "unique_track_count": {
+              "count": 56,
+              "max": 128.0,
+              "mean": 117.44642857142857,
+              "median": 125.0,
+              "min": 0.0,
+              "p90": 128.0,
+              "p95": 128.0
+            }
+          },
+          "ordinary": {
+            "all_branches_covered_node_count": 324,
+            "all_branches_covered_node_rate": 0.8780487804878049,
+            "axis_dispersion": {
+              "count": 369,
+              "max": 0.9856625707180016,
+              "mean": 0.3279002047254421,
+              "median": 0.2199713895205968,
+              "min": 0.0,
+              "p90": 0.7534036678300696,
+              "p95": 0.8195397891353293
+            },
+            "axis_pairwise_rms": {
+              "count": 369,
+              "max": 1.5250034281447964,
+              "mean": 0.90169011427446,
+              "median": 0.8885846744391181,
+              "min": 0.0,
+              "p90": 1.3786806255937996,
+              "p95": 1.3986766141732936
+            },
+            "branch_count": 738,
+            "compression_time_ms": {
+              "count": 369,
+              "max": 20.876900001894683,
+              "mean": 5.230955013230464,
+              "median": 4.483599972445518,
+              "min": 0.029699993319809437,
+              "p90": 12.510840024333447,
+              "p95": 13.957420014776282
+            },
+            "covered_branch_count": 663,
+            "evidence_coverage_at_k": 0.8983739837398373,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 369,
+              "max": 1.2229776380550141,
+              "mean": 0.29978387832045034,
+              "median": 0.11313903156205828,
+              "min": 0.0,
+              "p90": 0.8972155156101643,
+              "p95": 1.011113692915506
+            },
+            "node_count": 369,
+            "representative_max_support_count": {
+              "count": 369,
+              "max": 743.0,
+              "mean": 148.34688346883468,
+              "median": 98.0,
+              "min": 0.0,
+              "p90": 386.0,
+              "p95": 465.3999999999997
+            },
+            "support_count": {
+              "count": 42585,
+              "max": 743.0,
+              "mean": 8.452037102266056,
+              "median": 1.0,
+              "min": 1.0,
+              "p90": 18.0,
+              "p95": 35.0
+            },
+            "unique_track_count": {
+              "count": 369,
+              "max": 128.0,
+              "mean": 110.34688346883469,
+              "median": 123.0,
+              "min": 0.0,
+              "p90": 127.0,
+              "p95": 128.0
+            }
+          },
+          "t_junction": {
+            "all_branches_covered_node_count": 187,
+            "all_branches_covered_node_rate": 0.8738317757009346,
+            "axis_dispersion": {
+              "count": 214,
+              "max": 0.8910948567738086,
+              "mean": 0.2768116440526913,
+              "median": 0.1520190741644804,
+              "min": 0.0,
+              "p90": 0.6940158510542349,
+              "p95": 0.8217661909367712
+            },
+            "axis_pairwise_rms": {
+              "count": 214,
+              "max": 1.4568307899413713,
+              "mean": 0.8192563479127604,
+              "median": 0.7625398920218293,
+              "min": 0.0,
+              "p90": 1.3675266537655908,
+              "p95": 1.4006141080467194
+            },
+            "branch_count": 642,
+            "compression_time_ms": {
+              "count": 214,
+              "max": 25.401099992450327,
+              "mean": 4.6644172885250645,
+              "median": 3.58764998964034,
+              "min": 0.029999995604157448,
+              "p90": 11.72441999660805,
+              "p95": 12.876675021834671
+            },
+            "covered_branch_count": 599,
+            "evidence_coverage_at_k": 0.9330218068535826,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 214,
+              "max": 1.1824921699035524,
+              "mean": 0.28372461310158315,
+              "median": 0.07294796269658167,
+              "min": 0.0,
+              "p90": 0.914776635514924,
+              "p95": 0.9909913704387873
+            },
+            "node_count": 214,
+            "representative_max_support_count": {
+              "count": 214,
+              "max": 690.0,
+              "mean": 100.23831775700934,
+              "median": 68.0,
+              "min": 0.0,
+              "p90": 227.70000000000002,
+              "p95": 313.7
+            },
+            "support_count": {
+              "count": 24593,
+              "max": 690.0,
+              "mean": 7.536982068068149,
+              "median": 1.0,
+              "min": 1.0,
+              "p90": 18.0,
+              "p95": 32.0
+            },
+            "unique_track_count": {
+              "count": 214,
+              "max": 128.0,
+              "mean": 110.4392523364486,
+              "median": 124.0,
+              "min": 0.0,
+              "p90": 128.0,
+              "p95": 128.0
+            }
+          }
+        },
+        "overall": {
+          "all_branches_covered_node_count": 564,
+          "all_branches_covered_node_rate": 0.8826291079812206,
+          "axis_dispersion": {
+            "count": 639,
+            "max": 0.9856625707180016,
+            "mean": 0.3216549515028767,
+            "median": 0.21373172078527158,
+            "min": 0.0,
+            "p90": 0.7473864261035019,
+            "p95": 0.8202359305240865
+          },
+          "axis_pairwise_rms": {
+            "count": 639,
+            "max": 1.5250034281447964,
+            "mean": 0.8879852224754473,
+            "median": 0.8772552063470643,
+            "min": 0.0,
+            "p90": 1.3795078008721962,
+            "p95": 1.399981582650964
+          },
+          "branch_count": 1607,
+          "compression_time_ms": {
+            "count": 639,
+            "max": 25.401099992450327,
+            "mean": 5.202988105795473,
+            "median": 4.32629999704659,
+            "min": 0.029699993319809437,
+            "p90": 12.444060016423466,
+            "p95": 14.243890001671389
+          },
+          "covered_branch_count": 1481,
+          "evidence_coverage_at_k": 0.9215930304915992,
+          "nearest_position_pairwise_rms_norm": {
+            "count": 639,
+            "max": 1.2229776380550141,
+            "mean": 0.2812789930586496,
+            "median": 0.08841737826095457,
+            "min": 0.0,
+            "p90": 0.8995927132936192,
+            "p95": 0.9923290328817744
+          },
+          "node_count": 639,
+          "representative_max_support_count": {
+            "count": 639,
+            "max": 743.0,
+            "mean": 127.6885758998435,
+            "median": 80.0,
+            "min": 0.0,
+            "p90": 333.20000000000005,
+            "p95": 422.30000000000007
+          },
+          "support_count": {
+            "count": 73944,
+            "max": 743.0,
+            "mean": 8.331101914962675,
+            "median": 2.0,
+            "min": 1.0,
+            "p90": 19.0,
+            "p95": 35.0
+          },
+          "unique_track_count": {
+            "count": 639,
+            "max": 128.0,
+            "mean": 111.0,
+            "median": 124.0,
+            "min": 0.0,
+            "p90": 128.0,
+            "p95": 128.0
+          }
+        }
+      },
+      "256": {
+        "by_node_type": {
+          "multi_branch": {
+            "all_branches_covered_node_count": 53,
+            "all_branches_covered_node_rate": 0.9464285714285714,
+            "axis_dispersion": {
+              "count": 56,
+              "max": 0.8876001434621064,
+              "mean": 0.4728893113530686,
+              "median": 0.5188975075640776,
+              "min": 0.0,
+              "p90": 0.7982982189451602,
+              "p95": 0.8259286252273565
+            },
+            "axis_pairwise_rms": {
+              "count": 56,
+              "max": 1.4274239137758773,
+              "mean": 1.077314467687882,
+              "median": 1.2422735023173763,
+              "min": 0.0,
+              "p90": 1.3878091995775912,
+              "p95": 1.3990106573994778
+            },
+            "branch_count": 227,
+            "compression_time_ms": {
+              "count": 56,
+              "max": 38.258699991274625,
+              "mean": 11.721885714255873,
+              "median": 10.2978500071913,
+              "min": 0.030199997127056122,
+              "p90": 23.885150003479794,
+              "p95": 26.534375007031485
+            },
+            "covered_branch_count": 219,
+            "evidence_coverage_at_k": 0.9647577092511013,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 56,
+              "max": 1.260755183800464,
+              "mean": 0.21564758886565194,
+              "median": 0.09311128152299752,
+              "min": 0.0,
+              "p90": 0.6692326991972389,
+              "p95": 0.9272942402542275
+            },
+            "node_count": 56,
+            "representative_max_support_count": {
+              "count": 56,
+              "max": 218.0,
+              "mean": 73.82142857142857,
+              "median": 71.0,
+              "min": 0.0,
+              "p90": 152.0,
+              "p95": 167.0
+            },
+            "support_count": {
+              "count": 13058,
+              "max": 218.0,
+              "mean": 5.417981314136927,
+              "median": 1.0,
+              "min": 1.0,
+              "p90": 13.0,
+              "p95": 23.0
+            },
+            "unique_track_count": {
+              "count": 56,
+              "max": 256.0,
+              "mean": 225.25,
+              "median": 248.0,
+              "min": 0.0,
+              "p90": 253.0,
+              "p95": 254.0
+            }
+          },
+          "ordinary": {
+            "all_branches_covered_node_count": 324,
+            "all_branches_covered_node_rate": 0.8780487804878049,
+            "axis_dispersion": {
+              "count": 369,
+              "max": 0.9856625707180016,
+              "mean": 0.33015074495859353,
+              "median": 0.21657833341783106,
+              "min": 0.0,
+              "p90": 0.7573345987484716,
+              "p95": 0.8204878861446089
+            },
+            "axis_pairwise_rms": {
+              "count": 369,
+              "max": 1.5250034281447964,
+              "mean": 0.9074734609682702,
+              "median": 0.8806556355101351,
+              "min": 0.0,
+              "p90": 1.3758215850459345,
+              "p95": 1.4000281833563477
+            },
+            "branch_count": 738,
+            "compression_time_ms": {
+              "count": 369,
+              "max": 40.65730003640056,
+              "mean": 8.707871003742746,
+              "median": 6.67460000840947,
+              "min": 0.02770003629848361,
+              "p90": 21.8771000043489,
+              "p95": 25.071899988688525
+            },
+            "covered_branch_count": 663,
+            "evidence_coverage_at_k": 0.8983739837398373,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 369,
+              "max": 1.2229776380550141,
+              "mean": 0.3817554550985978,
+              "median": 0.2156750242331558,
+              "min": 0.0,
+              "p90": 0.9538604065061265,
+              "p95": 1.0255378495468384
+            },
+            "node_count": 369,
+            "representative_max_support_count": {
+              "count": 369,
+              "max": 656.0,
+              "mean": 119.28455284552845,
+              "median": 63.0,
+              "min": 0.0,
+              "p90": 323.0,
+              "p95": 411.7999999999997
+            },
+            "support_count": {
+              "count": 78473,
+              "max": 656.0,
+              "mean": 4.586673123239841,
+              "median": 1.0,
+              "min": 1.0,
+              "p90": 8.0,
+              "p95": 17.0
+            },
+            "unique_track_count": {
+              "count": 369,
+              "max": 256.0,
+              "mean": 202.39837398373984,
+              "median": 243.0,
+              "min": 0.0,
+              "p90": 254.0,
+              "p95": 255.0
+            }
+          },
+          "t_junction": {
+            "all_branches_covered_node_count": 197,
+            "all_branches_covered_node_rate": 0.9205607476635514,
+            "axis_dispersion": {
+              "count": 214,
+              "max": 0.8968795245373293,
+              "mean": 0.3019153801794381,
+              "median": 0.16755966358633922,
+              "min": 0.0,
+              "p90": 0.760096144019029,
+              "p95": 0.8344025426753092
+            },
+            "axis_pairwise_rms": {
+              "count": 214,
+              "max": 1.4568307899413713,
+              "mean": 0.8575113321098157,
+              "median": 0.78848550573963,
+              "min": 0.0,
+              "p90": 1.3839231220383674,
+              "p95": 1.3998990666494835
+            },
+            "branch_count": 642,
+            "compression_time_ms": {
+              "count": 214,
+              "max": 40.54090002318844,
+              "mean": 7.53222523495407,
+              "median": 5.051049985922873,
+              "min": 0.027999980375170708,
+              "p90": 20.143050013575703,
+              "p95": 22.382955034845505
+            },
+            "covered_branch_count": 609,
+            "evidence_coverage_at_k": 0.9485981308411215,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 214,
+              "max": 1.1824921699035524,
+              "mean": 0.36922244063721543,
+              "median": 0.18303523976085012,
+              "min": 0.0,
+              "p90": 0.9592173525466066,
+              "p95": 1.0172424760397825
+            },
+            "node_count": 214,
+            "representative_max_support_count": {
+              "count": 214,
+              "max": 485.0,
+              "mean": 78.10280373831776,
+              "median": 39.5,
+              "min": 0.0,
+              "p90": 197.80000000000007,
+              "p95": 280.35
+            },
+            "support_count": {
+              "count": 45292,
+              "max": 485.0,
+              "mean": 4.0924887397332865,
+              "median": 1.0,
+              "min": 1.0,
+              "p90": 8.0,
+              "p95": 16.0
+            },
+            "unique_track_count": {
+              "count": 214,
+              "max": 256.0,
+              "mean": 202.70093457943926,
+              "median": 246.0,
+              "min": 0.0,
+              "p90": 254.70000000000002,
+              "p95": 255.0
+            }
+          }
+        },
+        "overall": {
+          "all_branches_covered_node_count": 574,
+          "all_branches_covered_node_rate": 0.8982785602503912,
+          "axis_dispersion": {
+            "count": 639,
+            "max": 0.9856625707180016,
+            "mean": 0.33320394003739057,
+            "median": 0.22188957906428974,
+            "min": 0.0,
+            "p90": 0.7684302198402121,
+            "p95": 0.8246805220318594
+          },
+          "axis_pairwise_rms": {
+            "count": 639,
+            "max": 1.5250034281447964,
+            "mean": 0.9056255748972046,
+            "median": 0.890088411087904,
+            "min": 0.0,
+            "p90": 1.383631403240465,
+            "p95": 1.4001526756360598
+          },
+          "branch_count": 1607,
+          "compression_time_ms": {
+            "count": 639,
+            "max": 40.65730003640056,
+            "mean": 8.578288263942994,
+            "median": 6.435100047383457,
+            "min": 0.02770003629848361,
+            "p90": 21.64564001141116,
+            "p95": 24.982410023221746
+          },
+          "covered_branch_count": 1491,
+          "evidence_coverage_at_k": 0.9278158058494088,
+          "nearest_position_pairwise_rms_norm": {
+            "count": 639,
+            "max": 1.260755183800464,
+            "mean": 0.36300098623509114,
+            "median": 0.1843198102096082,
+            "min": 0.0,
+            "p90": 0.9529677173790665,
+            "p95": 1.0239758067870965
+          },
+          "node_count": 639,
+          "representative_max_support_count": {
+            "count": 639,
+            "max": 656.0,
+            "mean": 101.50860719874804,
+            "median": 55.0,
+            "min": 0.0,
+            "p90": 281.4000000000001,
+            "p95": 364.1
+          },
+          "support_count": {
+            "count": 136823,
+            "max": 656.0,
+            "mean": 4.502422838265496,
+            "median": 1.0,
+            "min": 1.0,
+            "p90": 9.0,
+            "p95": 17.0
+          },
+          "unique_track_count": {
+            "count": 639,
+            "max": 256.0,
+            "mean": 204.50234741784038,
+            "median": 244.0,
+            "min": 0.0,
+            "p90": 254.0,
+            "p95": 255.0
+          }
+        }
+      },
+      "32": {
+        "by_node_type": {
+          "multi_branch": {
+            "all_branches_covered_node_count": 45,
+            "all_branches_covered_node_rate": 0.8035714285714286,
+            "axis_dispersion": {
+              "count": 56,
+              "max": 0.9343922297401686,
+              "mean": 0.4481624435866448,
+              "median": 0.4738634532421759,
+              "min": 0.0,
+              "p90": 0.8200482566123652,
+              "p95": 0.850090068820732
+            },
+            "axis_pairwise_rms": {
+              "count": 56,
+              "max": 1.4337467170556362,
+              "mean": 1.0508723530793929,
+              "median": 1.2218897225210406,
+              "min": 0.0,
+              "p90": 1.4161378712153865,
+              "p95": 1.4254389190762127
+            },
+            "branch_count": 227,
+            "compression_time_ms": {
+              "count": 56,
+              "max": 7.23170000128448,
+              "mean": 2.4215892803372947,
+              "median": 2.2669000027235597,
+              "min": 0.08899997919797897,
+              "p90": 4.235599975800142,
+              "p95": 5.230650014709681
+            },
+            "covered_branch_count": 208,
+            "evidence_coverage_at_k": 0.9162995594713657,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 56,
+              "max": 1.0398498240766116,
+              "mean": 0.07540166121894606,
+              "median": 0.010742300292917497,
+              "min": 0.0,
+              "p90": 0.09456045703819688,
+              "p95": 0.5234977653818836
+            },
+            "node_count": 56,
+            "representative_max_support_count": {
+              "count": 56,
+              "max": 467.0,
+              "mean": 166.83928571428572,
+              "median": 131.0,
+              "min": 0.0,
+              "p90": 314.0,
+              "p95": 356.75
+            },
+            "support_count": {
+              "count": 1749,
+              "max": 467.0,
+              "mean": 40.4505431675243,
+              "median": 23.0,
+              "min": 1.0,
+              "p90": 96.0,
+              "p95": 134.19999999999982
+            },
+            "unique_track_count": {
+              "count": 56,
+              "max": 32.0,
+              "mean": 30.607142857142858,
+              "median": 32.0,
+              "min": 0.0,
+              "p90": 32.0,
+              "p95": 32.0
+            }
+          },
+          "ordinary": {
+            "all_branches_covered_node_count": 318,
+            "all_branches_covered_node_rate": 0.8617886178861789,
+            "axis_dispersion": {
+              "count": 369,
+              "max": 0.9805709567518576,
+              "mean": 0.319692071522937,
+              "median": 0.2350663599412145,
+              "min": 0.0,
+              "p90": 0.7564775877944943,
+              "p95": 0.8236462817202993
+            },
+            "axis_pairwise_rms": {
+              "count": 369,
+              "max": 1.5250034281447964,
+              "mean": 0.8841651707343238,
+              "median": 0.9336407550455321,
+              "min": 0.0,
+              "p90": 1.3949670742025166,
+              "p95": 1.4163627059540997
+            },
+            "branch_count": 738,
+            "compression_time_ms": {
+              "count": 369,
+              "max": 88.66279997164384,
+              "mean": 2.0975360432627097,
+              "median": 1.7480000387877226,
+              "min": 0.06089999806135893,
+              "p90": 3.793100023176521,
+              "p95": 4.270260001067072
+            },
+            "covered_branch_count": 657,
+            "evidence_coverage_at_k": 0.8902439024390244,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 369,
+              "max": 1.2229776380550141,
+              "mean": 0.15209364956706803,
+              "median": 0.03178350241767839,
+              "min": 0.0,
+              "p90": 0.42945828753225357,
+              "p95": 0.778965193705091
+            },
+            "node_count": 369,
+            "representative_max_support_count": {
+              "count": 369,
+              "max": 781.0,
+              "mean": 196.86449864498644,
+              "median": 143.0,
+              "min": 0.0,
+              "p90": 505.19999999999993,
+              "p95": 579.7999999999997
+            },
+            "support_count": {
+              "count": 11353,
+              "max": 781.0,
+              "mean": 31.70351448956223,
+              "median": 10.0,
+              "min": 1.0,
+              "p90": 82.0,
+              "p95": 130.0
+            },
+            "unique_track_count": {
+              "count": 369,
+              "max": 32.0,
+              "mean": 29.742547425474253,
+              "median": 31.0,
+              "min": 0.0,
+              "p90": 32.0,
+              "p95": 32.0
+            }
+          },
+          "t_junction": {
+            "all_branches_covered_node_count": 156,
+            "all_branches_covered_node_rate": 0.7289719626168224,
+            "axis_dispersion": {
+              "count": 214,
+              "max": 0.9205249899858233,
+              "mean": 0.28340317299241397,
+              "median": 0.17465450831873702,
+              "min": 0.0,
+              "p90": 0.7399622266929988,
+              "p95": 0.8131045836936772
+            },
+            "axis_pairwise_rms": {
+              "count": 214,
+              "max": 1.4568307899413713,
+              "mean": 0.8057610019602064,
+              "median": 0.8169195799457807,
+              "min": 0.0,
+              "p90": 1.3894782531122685,
+              "p95": 1.4122443558453652
+            },
+            "branch_count": 642,
+            "compression_time_ms": {
+              "count": 214,
+              "max": 6.575100007466972,
+              "mean": 1.6974476650226686,
+              "median": 1.450300042051822,
+              "min": 0.0686999992467463,
+              "p90": 3.4408900246489793,
+              "p95": 3.9552249945700164
+            },
+            "covered_branch_count": 566,
+            "evidence_coverage_at_k": 0.881619937694704,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 214,
+              "max": 1.1824921699035524,
+              "mean": 0.148435832892778,
+              "median": 0.01907607744277856,
+              "min": 0.0,
+              "p90": 0.5038692878349946,
+              "p95": 0.7743709260277799
+            },
+            "node_count": 214,
+            "representative_max_support_count": {
+              "count": 214,
+              "max": 890.0,
+              "mean": 154.5981308411215,
+              "median": 117.0,
+              "min": 0.0,
+              "p90": 345.1,
+              "p95": 453.49999999999994
+            },
+            "support_count": {
+              "count": 6627,
+              "max": 890.0,
+              "mean": 27.96997132940999,
+              "median": 11.0,
+              "min": 1.0,
+              "p90": 73.0,
+              "p95": 110.0
+            },
+            "unique_track_count": {
+              "count": 214,
+              "max": 32.0,
+              "mean": 30.009345794392523,
+              "median": 31.0,
+              "min": 0.0,
+              "p90": 32.0,
+              "p95": 32.0
+            }
+          }
+        },
+        "overall": {
+          "all_branches_covered_node_count": 519,
+          "all_branches_covered_node_rate": 0.812206572769953,
+          "axis_dispersion": {
+            "count": 639,
+            "max": 0.9805709567518576,
+            "mean": 0.31879773122565325,
+            "median": 0.21722116763339427,
+            "min": 0.0,
+            "p90": 0.758620238450405,
+            "p95": 0.826820191773872
+          },
+          "axis_pairwise_rms": {
+            "count": 639,
+            "max": 1.5250034281447964,
+            "mean": 0.8725174557009321,
+            "median": 0.8941470405136798,
+            "min": 0.0,
+            "p90": 1.3949670742025166,
+            "p95": 1.417061313471255
+          },
+          "branch_count": 1607,
+          "compression_time_ms": {
+            "count": 639,
+            "max": 88.66279997164384,
+            "mean": 1.9919461658492639,
+            "median": 1.6616999637335539,
+            "min": 0.06089999806135893,
+            "p90": 3.7222799961455166,
+            "p95": 4.274069983512164
+          },
+          "covered_branch_count": 1431,
+          "evidence_coverage_at_k": 0.8904791537025514,
+          "nearest_position_pairwise_rms_norm": {
+            "count": 639,
+            "max": 1.2229776380550141,
+            "mean": 0.14414760243750166,
+            "median": 0.024389101353093027,
+            "min": 0.0,
+            "p90": 0.4506252906864362,
+            "p95": 0.773896097270277
+          },
+          "node_count": 639,
+          "representative_max_support_count": {
+            "count": 639,
+            "max": 890.0,
+            "mean": 180.07824726134587,
+            "median": 133.0,
+            "min": 0.0,
+            "p90": 430.2000000000003,
+            "p95": 524.4000000000001
+          },
+          "support_count": {
+            "count": 19729,
+            "max": 890.0,
+            "mean": 31.22484667241117,
+            "median": 11.0,
+            "min": 1.0,
+            "p90": 80.0,
+            "p95": 124.0
+          },
+          "unique_track_count": {
+            "count": 639,
+            "max": 32.0,
+            "mean": 29.907668231611893,
+            "median": 32.0,
+            "min": 0.0,
+            "p90": 32.0,
+            "p95": 32.0
+          }
+        }
+      },
+      "64": {
+        "by_node_type": {
+          "multi_branch": {
+            "all_branches_covered_node_count": 50,
+            "all_branches_covered_node_rate": 0.8928571428571429,
+            "axis_dispersion": {
+              "count": 56,
+              "max": 0.8843905988864564,
+              "mean": 0.4486476483632442,
+              "median": 0.45286002655511925,
+              "min": 0.0,
+              "p90": 0.7917971775572512,
+              "p95": 0.8112052880407807
+            },
+            "axis_pairwise_rms": {
+              "count": 56,
+              "max": 1.4274239137758773,
+              "mean": 1.057713742973889,
+              "median": 1.1930708762225526,
+              "min": 0.0,
+              "p90": 1.3940884980710986,
+              "p95": 1.4034521959146007
+            },
+            "branch_count": 227,
+            "compression_time_ms": {
+              "count": 56,
+              "max": 15.708799997810274,
+              "mean": 4.251757142940603,
+              "median": 4.0031000098679215,
+              "min": 0.06940000457689166,
+              "p90": 8.020600012969226,
+              "p95": 8.943475026171654
+            },
+            "covered_branch_count": 214,
+            "evidence_coverage_at_k": 0.9427312775330396,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 56,
+              "max": 1.0294158747098083,
+              "mean": 0.10341343175044806,
+              "median": 0.02155367315018051,
+              "min": 0.0,
+              "p90": 0.2520642199852469,
+              "p95": 0.7882669835283418
+            },
+            "node_count": 56,
+            "representative_max_support_count": {
+              "count": 56,
+              "max": 316.0,
+              "mean": 123.89285714285714,
+              "median": 114.0,
+              "min": 0.0,
+              "p90": 245.5,
+              "p95": 261.5
+            },
+            "support_count": {
+              "count": 3451,
+              "max": 316.0,
+              "mean": 20.500724427702114,
+              "median": 10.0,
+              "min": 1.0,
+              "p90": 51.0,
+              "p95": 75.0
+            },
+            "unique_track_count": {
+              "count": 56,
+              "max": 64.0,
+              "mean": 60.142857142857146,
+              "median": 63.0,
+              "min": 0.0,
+              "p90": 64.0,
+              "p95": 64.0
+            }
+          },
+          "ordinary": {
+            "all_branches_covered_node_count": 324,
+            "all_branches_covered_node_rate": 0.8780487804878049,
+            "axis_dispersion": {
+              "count": 369,
+              "max": 0.9943721283424729,
+              "mean": 0.32504259782401135,
+              "median": 0.22853062600410146,
+              "min": 0.0,
+              "p90": 0.7511753808046074,
+              "p95": 0.8071129692326886
+            },
+            "axis_pairwise_rms": {
+              "count": 369,
+              "max": 1.5250034281447964,
+              "mean": 0.8927601126780879,
+              "median": 0.906929944486678,
+              "min": 0.0,
+              "p90": 1.3825593132063687,
+              "p95": 1.4025762039783984
+            },
+            "branch_count": 738,
+            "compression_time_ms": {
+              "count": 369,
+              "max": 13.634099974296987,
+              "mean": 3.190820323218791,
+              "median": 2.723700017668307,
+              "min": 0.03389996709302068,
+              "p90": 7.377519982401282,
+              "p95": 8.76680000219494
+            },
+            "covered_branch_count": 663,
+            "evidence_coverage_at_k": 0.8983739837398373,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 369,
+              "max": 1.2229776380550141,
+              "mean": 0.2195706554539843,
+              "median": 0.05749186811783184,
+              "min": 0.0,
+              "p90": 0.6702687051556413,
+              "p95": 0.9190838552678333
+            },
+            "node_count": 369,
+            "representative_max_support_count": {
+              "count": 369,
+              "max": 725.0,
+              "mean": 163.6341463414634,
+              "median": 111.0,
+              "min": 0.0,
+              "p90": 413.4,
+              "p95": 484.3999999999997
+            },
+            "support_count": {
+              "count": 22216,
+              "max": 725.0,
+              "mean": 16.20138638818869,
+              "median": 4.0,
+              "min": 1.0,
+              "p90": 39.0,
+              "p95": 69.0
+            },
+            "unique_track_count": {
+              "count": 369,
+              "max": 64.0,
+              "mean": 57.9159891598916,
+              "median": 62.0,
+              "min": 0.0,
+              "p90": 64.0,
+              "p95": 64.0
+            }
+          },
+          "t_junction": {
+            "all_branches_covered_node_count": 171,
+            "all_branches_covered_node_rate": 0.7990654205607477,
+            "axis_dispersion": {
+              "count": 214,
+              "max": 0.891093430000683,
+              "mean": 0.27690954708555365,
+              "median": 0.14865135734450446,
+              "min": 0.0,
+              "p90": 0.7377287515035241,
+              "p95": 0.8286710232437341
+            },
+            "axis_pairwise_rms": {
+              "count": 214,
+              "max": 1.4568307899413713,
+              "mean": 0.8039418371559488,
+              "median": 0.7549445533946061,
+              "min": 0.0,
+              "p90": 1.383521347238306,
+              "p95": 1.4061316172349183
+            },
+            "branch_count": 642,
+            "compression_time_ms": {
+              "count": 214,
+              "max": 11.868499976117164,
+              "mean": 2.78844579561422,
+              "median": 2.215950022218749,
+              "min": 0.034800032153725624,
+              "p90": 6.882709974888713,
+              "p95": 7.812929991632699
+            },
+            "covered_branch_count": 583,
+            "evidence_coverage_at_k": 0.9080996884735203,
+            "nearest_position_pairwise_rms_norm": {
+              "count": 214,
+              "max": 1.1824921699035524,
+              "mean": 0.21163959518605294,
+              "median": 0.036697463894755006,
+              "min": 0.0,
+              "p90": 0.7414428268472059,
+              "p95": 0.946130522531507
+            },
+            "node_count": 214,
+            "representative_max_support_count": {
+              "count": 214,
+              "max": 621.0,
+              "mean": 120.32710280373831,
+              "median": 81.0,
+              "min": 0.0,
+              "p90": 303.00000000000017,
+              "p95": 370.7
+            },
+            "support_count": {
+              "count": 12843,
+              "max": 621.0,
+              "mean": 14.432531340029588,
+              "median": 4.0,
+              "min": 1.0,
+              "p90": 36.0,
+              "p95": 62.0
+            },
+            "unique_track_count": {
+              "count": 214,
+              "max": 64.0,
+              "mean": 57.929906542056074,
+              "median": 63.0,
+              "min": 0.0,
+              "p90": 64.0,
+              "p95": 64.0
+            }
+          }
+        },
+        "overall": {
+          "all_branches_covered_node_count": 545,
+          "all_branches_covered_node_rate": 0.8528951486697965,
+          "axis_dispersion": {
+            "count": 639,
+            "max": 0.9943721283424729,
+            "mean": 0.3197552894862447,
+            "median": 0.21849928663242013,
+            "min": 0.0,
+            "p90": 0.7595537879906601,
+            "p95": 0.8201154877387422
+          },
+          "axis_pairwise_rms": {
+            "count": 639,
+            "max": 1.5250034281447964,
+            "mean": 0.8774710552991006,
+            "median": 0.8893090709641257,
+            "min": 0.0,
+            "p90": 1.385005623470898,
+            "p95": 1.4045532271094152
+          },
+          "branch_count": 1607,
+          "compression_time_ms": {
+            "count": 639,
+            "max": 15.708799997810274,
+            "mean": 3.149043035264242,
+            "median": 2.539200009778142,
+            "min": 0.03389996709302068,
+            "p90": 7.340459991246463,
+            "p95": 8.635629998752849
+          },
+          "covered_branch_count": 1460,
+          "evidence_coverage_at_k": 0.9085252022401992,
+          "nearest_position_pairwise_rms_norm": {
+            "count": 639,
+            "max": 1.2229776380550141,
+            "mean": 0.20673489422591645,
+            "median": 0.04559399209649018,
+            "min": 0.0,
+            "p90": 0.6963658472761971,
+            "p95": 0.9264067086415467
+          },
+          "node_count": 639,
+          "representative_max_support_count": {
+            "count": 639,
+            "max": 725.0,
+            "mean": 145.64788732394365,
+            "median": 103.0,
+            "min": 0.0,
+            "p90": 355.0,
+            "p95": 447.60000000000014
+          },
+          "support_count": {
+            "count": 38510,
+            "max": 725.0,
+            "mean": 15.996754089846792,
+            "median": 4.0,
+            "min": 1.0,
+            "p90": 40.0,
+            "p95": 67.0
+          },
+          "unique_track_count": {
+            "count": 639,
+            "max": 64.0,
+            "mean": 58.11580594679186,
+            "median": 63.0,
+            "min": 0.0,
+            "p90": 64.0,
+            "p95": 64.0
+          }
+        }
+      }
+    }
+  },
+  "visualizations": [
+    {
+      "file": "multi_branch_vertex_0307_all_nearest64_diverse64.png",
+      "fragment_count": 1216,
+      "node_type": "multi_branch",
+      "vertex_id": 307
+    },
+    {
+      "file": "multi_branch_vertex_0489_all_nearest64_diverse64.png",
+      "fragment_count": 575,
+      "node_type": "multi_branch",
+      "vertex_id": 489
+    },
+    {
+      "file": "multi_branch_vertex_0666_all_nearest64_diverse64.png",
+      "fragment_count": 433,
+      "node_type": "multi_branch",
+      "vertex_id": 666
+    },
+    {
+      "file": "t_junction_vertex_0116_all_nearest64_diverse64.png",
+      "fragment_count": 2173,
+      "node_type": "t_junction",
+      "vertex_id": 116
+    },
+    {
+      "file": "t_junction_vertex_0092_all_nearest64_diverse64.png",
+      "fragment_count": 2093,
+      "node_type": "t_junction",
+      "vertex_id": 92
+    },
+    {
+      "file": "multi_branch_vertex_0118_all_nearest64_diverse64.png",
+      "fragment_count": 2089,
+      "node_type": "multi_branch",
+      "vertex_id": 118
+    }
+  ],
+  "window_size": 256.0
+}
