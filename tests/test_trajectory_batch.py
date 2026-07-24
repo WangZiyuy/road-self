@@ -179,11 +179,21 @@ class TrajectoryBatchTests(unittest.TestCase):
         )
         self.assertEqual(batch["track_indices"].tolist(), [[22, 11]])
         self.assertEqual(
+            batch["fragment_support_count"].tolist(),
+            [[1, 1]],
+        )
+        self.assertEqual(
             batch["source_fragment_indices"].tolist(),
             [[0, 1]],
         )
         self.assertEqual(batch["total_fragment_count"].tolist(), [2])
         self.assertEqual(batch["truncated_fragment_count"].tolist(), [0])
+        self.assertEqual(
+            batch["compression_total_count"].tolist(), [2])
+        self.assertEqual(
+            batch["compression_kept_count"].tolist(), [2])
+        self.assertEqual(
+            batch["compression_truncated_count"].tolist(), [0])
         torch.testing.assert_close(
             batch["traj_xy_norm"][0, 1, :2],
             torch.tensor([[0.1, 0.0], [0.2, 0.0]]),
