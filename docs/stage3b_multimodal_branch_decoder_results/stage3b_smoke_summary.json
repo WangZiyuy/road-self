@@ -1,0 +1,93 @@
+{
+  "all_outputs_finite": true,
+  "branch_predictions_feed_path_push": false,
+  "stage": "3B",
+  "purpose": "auxiliary_interface_smoke_only",
+  "cases": [
+    {
+      "branch_count": 1,
+      "node_type": "ordinary",
+      "trajectory_fragment_count": 1949,
+      "trajectory_fragment_kept_count": 64
+    },
+    {
+      "branch_count": 3,
+      "node_type": "t_junction",
+      "trajectory_fragment_count": 1908,
+      "trajectory_fragment_kept_count": 64
+    },
+    {
+      "branch_count": 3,
+      "node_type": "multi_branch",
+      "trajectory_fragment_count": 1981,
+      "trajectory_fragment_kept_count": 64
+    }
+  ],
+  "device": "cpu",
+  "gradients": {
+    "all_auxiliary_parameters_have_gradients": true,
+    "all_existing_gradients_finite": true,
+    "rpnet_has_gradients": false
+  },
+  "losses": {
+    "direction": 0.9983137249946594,
+    "endpoint": 0.01310692634433508,
+    "existence": 0.7630923390388489,
+    "matched_count": 7,
+    "total": 1.7745130062103271
+  },
+  "no_trajectory_smoke_finite": true,
+  "num_targets_unchanged": 4,
+  "rpnet": {
+    "checkpoint_path": null,
+    "frozen": true,
+    "source": "random_rpnet_interface_smoke"
+  },
+  "shapes": {
+    "branch_directions": [
+      3,
+      6,
+      2
+    ],
+    "branch_exist_logits": [
+      3,
+      6
+    ],
+    "branch_offsets_norm": [
+      3,
+      6,
+      2
+    ],
+    "fragment_tokens": [
+      3,
+      64,
+      128
+    ],
+    "stage_fuse": [
+      3,
+      128,
+      64,
+      64
+    ],
+    "state_token": [
+      3,
+      128
+    ]
+  },
+  "test_result": {
+    "passed": 108,
+    "status": "passed"
+  },
+  "timing_ms": {
+    "auxiliary_backward": 170.65670003648847,
+    "auxiliary_forward": 1215.3770000441,
+    "rpnet_forward": 4141.97240001522
+  },
+  "trajectory_compression": {
+    "max_fragments": 64,
+    "near_fraction": 0.5,
+    "prepool_multiplier": 8,
+    "strategy": "bounded_near_diverse",
+    "support_count_used": false
+  }
+}
