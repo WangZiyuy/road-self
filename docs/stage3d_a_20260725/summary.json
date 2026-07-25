@@ -1,0 +1,130 @@
+{
+  "branch_ap_by_modality": {
+    "full": 0.9005141087707441,
+    "graph_only": 0.8383393114013454,
+    "no_trajectory": 0.895513100763515,
+    "trajectory_graph": 0.8492869425310665
+  },
+  "constraints": {
+    "e4_modules_strict_and_frozen": true,
+    "only_support_head_trained": true,
+    "rpnet_strict_and_frozen": true,
+    "support_changes_branch_output": false,
+    "support_feeds_anchor": false,
+    "support_feeds_path_push": false,
+    "support_replaces_trajectory_attention": false
+  },
+  "decisions": {
+    "branch_top_k_sets_separate": true,
+    "label_gate_passed": true,
+    "sanity_overfit_passed": true,
+    "stage3d_a_passed": true,
+    "validation_head_beats_attention": true
+  },
+  "e4_checkpoint": "data_self/stage3c_r2/e4/checkpoints/stage3c_aux.best.pth.tar",
+  "e4_stability": {
+    "full_branch_ap": {
+      "mean": 0.9069680312856815,
+      "std": 0.006492473695196177,
+      "values": [
+        0.9005141087707441,
+        0.9158508289227327,
+        0.9045391561635675
+      ]
+    },
+    "full_minus_no_trajectory_branch_ap": {
+      "mean": 0.004159275866665165,
+      "std": 0.0009538533178863348,
+      "values": [
+        0.005001008007229135,
+        0.0028255190686833354,
+        0.004651300524083024
+      ]
+    },
+    "no_trajectory_branch_ap": {
+      "mean": 0.9028087554190162,
+      "std": 0.007441689254875793,
+      "values": [
+        0.895513100763515,
+        0.9130253098540494,
+        0.8998878556394845
+      ]
+    },
+    "oracle_k_distinct_gt_coverage": {
+      "mean": 0.8609986504723347,
+      "std": 0.007453010133054835,
+      "values": [
+        0.8522267206477733,
+        0.8704453441295547,
+        0.8603238866396761
+      ]
+    },
+    "oracle_k_duplicate_ratio": {
+      "mean": 0.004597701149425287,
+      "std": 0.006502131321255609,
+      "values": [
+        0.0,
+        0.0,
+        0.013793103448275862
+      ]
+    }
+  },
+  "full_minus_no_trajectory": 0.005001008007229135,
+  "label": {
+    "bounded_64_oracle_support_recall": 0.944552151996898,
+    "multibranch_support_available_rate": 0.9499467518636848,
+    "segment_only_positive_ratio": 0.0,
+    "support_available_rate": 0.944552151996898
+  },
+  "sanity": {
+    "attention_support_ap": 0.6084158547010169,
+    "best_epoch": 400,
+    "best_support_ap": 0.9347215922680792,
+    "initial_support_ap": 0.560340230542892,
+    "raw_loss_reduction": 0.37818435531883565,
+    "reducible_loss_reduction": 0.5661674560944628,
+    "soft_target_entropy_floor": 0.2292714481768401
+  },
+  "schema_version": "stage3d-a-report-v1",
+  "support_checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3d_a/checkpoints/stage3d_support.best.pth.tar",
+  "test_count": 158,
+  "training_curve": "docs/stage3d_a_20260725/support_training_curves.png",
+  "trajectory_graph_minus_graph_only": 0.01094763112972108,
+  "validation": {
+    "attention_support_ap": 0.39095772284084784,
+    "attention_support_auroc": 0.4659659192339308,
+    "branch_count": 473,
+    "elapsed_seconds": 0.3749576359987259,
+    "fragment_pair_count": 27882,
+    "loss": 0.47121285550367387,
+    "positive_fragment_pair_count": 12407,
+    "positive_fragments_per_branch": {
+      "count": 473,
+      "mean": 26.23044397463002,
+      "median": 31.0,
+      "p10": 4.0,
+      "p90": 46.0
+    },
+    "recall_at": {
+      "1": 0.05349066015876235,
+      "16": 0.510808569842367,
+      "4": 0.1733655236214769,
+      "8": 0.30569739485371944
+    },
+    "segment_only_positive_ratio": 0.0,
+    "supervised_pair_count": 27882,
+    "support_ap": 0.7819411875487483,
+    "support_auroc": 0.8357668615077762,
+    "top_k_fragment_jaccard": {
+      "k": 8,
+      "mean": 0.27775403833797996,
+      "median": 0.06666666666666667,
+      "pair_count": 137
+    }
+  },
+  "visualizations": [
+    "docs/stage3d_a_20260725/visualizations/multi_branch_00.png",
+    "docs/stage3d_a_20260725/visualizations/ordinary_00.png",
+    "docs/stage3d_a_20260725/visualizations/t_junction_00.png"
+  ]
+}

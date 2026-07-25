@@ -1,0 +1,42 @@
+BASE_CONFIG: "stage3c_e4_matching_no_object_self_attn.yml"
+
+STAGE3D:
+  E4_CHECKPOINT: "data_self/stage3c_r2/e4/checkpoints/stage3c_aux.best.pth.tar"
+  OUTPUT_DIR: "data_self/stage3d_a"
+
+  SUPPORT_TARGET:
+    DISTANCE_SIGMA_PIXELS: 12.0
+    AXIS_GAMMA: 2.0
+    POSITIVE_THRESHOLD: 0.10
+    EPSILON: 0.000001
+    MIN_MULTIBRANCH_AVAILABLE_RATE: 0.80
+
+  MODEL:
+    PROJECTION_DIM: 128
+
+  SANITY:
+    SAMPLE_COUNT: 32
+    MAX_EPOCHS: 400
+    EVAL_EVERY_EPOCHS: 10
+    LEARNING_RATE: 0.001
+    # Soft-label BCE has a non-zero target-entropy floor.  Measure the
+    # fraction of reducible loss removed instead of reduction toward zero.
+    MIN_REDUCIBLE_LOSS_REDUCTION: 0.50
+    MIN_SUPPORT_AP: 0.80
+
+  TRAINING:
+    EPOCHS: 40
+    BATCH_SIZE: 64
+    VAL_BATCH_SIZE: 128
+    CACHE_BATCH_SIZE: 16
+    LEARNING_RATE: 0.001
+    WEIGHT_DECAY: 0.0002
+    NUM_WORKERS: 0
+
+  EVALUATION:
+    RECALL_KS: [1, 4, 8, 16]
+    TOP_K_JACCARD: 8
+    VISUALIZATION_CASES_PER_TYPE: 1
+
+  STABILITY:
+    SEEDS: [20260724, 20260725, 20260726]

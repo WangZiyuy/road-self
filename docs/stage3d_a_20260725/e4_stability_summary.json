@@ -1,0 +1,102 @@
+{
+  "aggregate": {
+    "full_branch_ap": {
+      "mean": 0.9069680312856815,
+      "std": 0.006492473695196177,
+      "values": [
+        0.9005141087707441,
+        0.9158508289227327,
+        0.9045391561635675
+      ]
+    },
+    "full_minus_no_trajectory_branch_ap": {
+      "mean": 0.004159275866665165,
+      "std": 0.0009538533178863348,
+      "values": [
+        0.005001008007229135,
+        0.0028255190686833354,
+        0.004651300524083024
+      ]
+    },
+    "no_trajectory_branch_ap": {
+      "mean": 0.9028087554190162,
+      "std": 0.007441689254875793,
+      "values": [
+        0.895513100763515,
+        0.9130253098540494,
+        0.8998878556394845
+      ]
+    },
+    "oracle_k_distinct_gt_coverage": {
+      "mean": 0.8609986504723347,
+      "std": 0.007453010133054835,
+      "values": [
+        0.8522267206477733,
+        0.8704453441295547,
+        0.8603238866396761
+      ]
+    },
+    "oracle_k_duplicate_ratio": {
+      "mean": 0.004597701149425287,
+      "std": 0.006502131321255609,
+      "values": [
+        0.0,
+        0.0,
+        0.013793103448275862
+      ]
+    }
+  },
+  "branch_predictions_feed_path_push": false,
+  "elapsed_seconds": 765.6167591151316,
+  "fresh_initialization_per_seed": true,
+  "max_fragments": 64,
+  "optimizer_resume_used": false,
+  "results": [
+    {
+      "best_epoch": 30,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3d_a/e4_stability/seed_20260724/checkpoints/stage3c_aux.best.pth.tar",
+      "full_branch_ap": 0.9005141087707441,
+      "full_minus_no_trajectory_branch_ap": 0.005001008007229135,
+      "graph_only_branch_ap": 0.8383393114013454,
+      "no_trajectory_branch_ap": 0.895513100763515,
+      "oracle_k_distinct_gt_coverage": 0.8522267206477733,
+      "oracle_k_duplicate_ratio": 0.0,
+      "seed": 20260724,
+      "trajectory_graph_branch_ap": 0.8492869425310665
+    },
+    {
+      "best_epoch": 30,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3d_a/e4_stability/seed_20260725/checkpoints/stage3c_aux.best.pth.tar",
+      "full_branch_ap": 0.9158508289227327,
+      "full_minus_no_trajectory_branch_ap": 0.0028255190686833354,
+      "graph_only_branch_ap": 0.8332777414501318,
+      "no_trajectory_branch_ap": 0.9130253098540494,
+      "oracle_k_distinct_gt_coverage": 0.8704453441295547,
+      "oracle_k_duplicate_ratio": 0.0,
+      "seed": 20260725,
+      "trajectory_graph_branch_ap": 0.8444602232864726
+    },
+    {
+      "best_epoch": 30,
+      "checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3d_a/e4_stability/seed_20260726/checkpoints/stage3c_aux.best.pth.tar",
+      "full_branch_ap": 0.9045391561635675,
+      "full_minus_no_trajectory_branch_ap": 0.004651300524083024,
+      "graph_only_branch_ap": 0.8376853201405663,
+      "no_trajectory_branch_ap": 0.8998878556394845,
+      "oracle_k_distinct_gt_coverage": 0.8603238866396761,
+      "oracle_k_duplicate_ratio": 0.013793103448275862,
+      "seed": 20260726,
+      "trajectory_graph_branch_ap": 0.8471842909098799
+    }
+  ],
+  "rpnet_strict_and_frozen": true,
+  "same_train_validation_split": true,
+  "schema_version": "stage3d-a-e4-stability-v1",
+  "seeds": [
+    20260724,
+    20260725,
+    20260726
+  ],
+  "support_head_used": false,
+  "trajectory_dropout": 0.25
+}

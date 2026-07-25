@@ -31,6 +31,7 @@ from model.branch_set_loss import (  # noqa: E402
 )
 from train_branch_aux import (  # noqa: E402
     MODALITY_FULL,
+    MODALITY_GRAPH_ONLY,
     MODALITY_NO_TRAJECTORY,
     MODALITY_TRAJECTORY_GRAPH,
     _build_auxiliary_modules,
@@ -61,6 +62,7 @@ from utils.stage3c_checkpoint import load_stage3c_checkpoint  # noqa: E402
 
 
 MODALITIES = (
+    MODALITY_GRAPH_ONLY,
     MODALITY_FULL,
     MODALITY_NO_TRAJECTORY,
     MODALITY_TRAJECTORY_GRAPH,

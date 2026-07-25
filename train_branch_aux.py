@@ -51,7 +51,9 @@ from utils.trajectory_mode import TRAJ_MODE_NONE, resolve_trajectory_mode
 MODALITY_FULL = "full"
 MODALITY_NO_TRAJECTORY = "no_trajectory"
 MODALITY_TRAJECTORY_GRAPH = "trajectory_graph"
+MODALITY_GRAPH_ONLY = "graph_only"
 VALID_MODALITIES = (
+    MODALITY_GRAPH_ONLY,
     MODALITY_FULL,
     MODALITY_NO_TRAJECTORY,
     MODALITY_TRAJECTORY_GRAPH,
@@ -320,7 +322,8 @@ def _forward_auxiliary(
     trajectory_batch = dict(batch["trajectory_batch"])
     fragment_mask = trajectory_batch["fragment_mask"].to(
         dtype=torch.bool)
-    if modality == MODALITY_NO_TRAJECTORY:
+    if modality in (
+            MODALITY_NO_TRAJECTORY, MODALITY_GRAPH_ONLY):
         fragment_mask = torch.zeros_like(fragment_mask)
     elif trajectory_dropout > 0.0:
         if not 0.0 <= trajectory_dropout <= 1.0:
@@ -337,18 +340,22 @@ def _forward_auxiliary(
     trajectory_output = trajectory_encoder(trajectory_batch)
     state_token = graph_state_encoder(batch["graph_state"])
     image_available = None
-    if modality == MODALITY_TRAJECTORY_GRAPH:
+    if modality in (
+            MODALITY_TRAJECTORY_GRAPH, MODALITY_GRAPH_ONLY):
         image_available = torch.zeros(
             stage_fuse.shape[0],
             dtype=torch.bool,
             device=stage_fuse.device,
         )
+    walked_path = batch["walked_path"]
+    if modality == MODALITY_GRAPH_ONLY:
+        walked_path = torch.zeros_like(walked_path)
     return branch_decoder(
         stage_fuse=stage_fuse,
         state_token=state_token,
         fragment_tokens=trajectory_output["fragment_tokens"],
         fragment_mask=trajectory_output["fragment_mask"],
-        walked_path=batch["walked_path"],
+        walked_path=walked_path,
         image_available=image_available,
         return_attention=return_attention,
         return_debug_states=return_debug_states,
