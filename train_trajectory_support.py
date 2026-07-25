@@ -55,6 +55,9 @@ from utils.trajectory_support_metrics import (  # noqa: E402
     TrajectorySupportMetricAccumulator,
     support_label_diagnostics,
 )
+from utils.trajectory_support_features import (  # noqa: E402
+    build_pre_trajectory_branch_tokens,
+)
 from utils.trajectory_support_targets import (  # noqa: E402
     build_trajectory_support_targets,
 )
@@ -192,6 +195,10 @@ def run_label_diagnostics(
         "support_available_branch_count": available_branches,
         "support_available_rate": (
             float(available_branches) / max(total_branches, 1)),
+        "bounded_64_branch_support_hit_rate": (
+            float(available_branches) / max(total_branches, 1)),
+        # Compatibility alias for the already published Stage 3D-A report.
+        # This is a branch-level hit rate, not candidate-level recall.
         "bounded_64_oracle_support_recall": (
             float(available_branches) / max(total_branches, 1)),
         "by_gt_branch_count": combined_groups,
@@ -300,6 +307,7 @@ def build_frozen_support_cache(
                 fragment_mask=trajectory_output["fragment_mask"],
                 walked_path=batch["walked_path"],
                 return_attention=True,
+                return_debug_states=True,
             )
             branch_losses = criterion(
                 branch_output, batch["branch_targets"])
@@ -323,6 +331,18 @@ def build_frozen_support_cache(
                     batch_index, query_indices] = target_indices
             values = {
                 "branch_tokens": branch_output["branch_tokens"],
+                "graph_conditioned_queries": branch_output[
+                    "debug_graph_conditioned_queries"],
+                "image_cross_attention_context": branch_output[
+                    "debug_image_cross_attention_output"],
+                "pre_trajectory_branch_tokens": (
+                    build_pre_trajectory_branch_tokens(
+                        branch_output[
+                            "debug_graph_conditioned_queries"],
+                        branch_output[
+                            "debug_image_cross_attention_output"],
+                    )
+                ),
                 "fragment_tokens": trajectory_output["fragment_tokens"],
                 "fragment_mask": trajectory_output["fragment_mask"],
                 "trajectory_attention_weights": branch_output[

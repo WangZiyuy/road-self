@@ -18,10 +18,12 @@ def build_stage3d_support_checkpoint_payload(
     e4_checkpoint_sha256: str,
     config_snapshot: Mapping[str, Any],
     metrics: Optional[Mapping[str, Any]] = None,
+    stage: str = "3D-A",
+    metadata: Optional[Mapping[str, Any]] = None,
 ) -> Dict[str, Any]:
-    return {
+    payload = {
         "format_version": 1,
-        "stage": "3D-A",
+        "stage": str(stage),
         "epoch": int(epoch),
         "e4_checkpoint": str(e4_checkpoint),
         "e4_checkpoint_sha256": str(e4_checkpoint_sha256),
@@ -32,6 +34,9 @@ def build_stage3d_support_checkpoint_payload(
         "changes_branch_predictions": False,
         "feeds_path_push": False,
     }
+    if metadata is not None:
+        payload["metadata"] = dict(metadata)
+    return payload
 
 
 def save_stage3d_support_checkpoint(

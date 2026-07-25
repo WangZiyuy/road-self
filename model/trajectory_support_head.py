@@ -20,20 +20,36 @@ class TrajectorySupportHead(nn.Module):
         self,
         hidden_dim: int = 128,
         projection_dim: Optional[int] = None,
+        branch_input_dim: Optional[int] = None,
+        fragment_input_dim: Optional[int] = None,
     ) -> None:
         super().__init__()
         if hidden_dim <= 0:
             raise ValueError("hidden_dim must be positive")
+        branch_input_dim = (
+            hidden_dim
+            if branch_input_dim is None
+            else int(branch_input_dim)
+        )
+        fragment_input_dim = (
+            hidden_dim
+            if fragment_input_dim is None
+            else int(fragment_input_dim)
+        )
+        if branch_input_dim <= 0 or fragment_input_dim <= 0:
+            raise ValueError("support-head input dimensions must be positive")
         projection_dim = (
             hidden_dim if projection_dim is None else int(projection_dim))
         if projection_dim <= 0:
             raise ValueError("projection_dim must be positive")
         self.hidden_dim = int(hidden_dim)
+        self.branch_input_dim = branch_input_dim
+        self.fragment_input_dim = fragment_input_dim
         self.projection_dim = projection_dim
         self.branch_projection = nn.Linear(
-            hidden_dim, projection_dim)
+            branch_input_dim, projection_dim)
         self.fragment_projection = nn.Linear(
-            hidden_dim, projection_dim)
+            fragment_input_dim, projection_dim)
 
     def forward(
         self,
@@ -47,10 +63,12 @@ class TrajectorySupportHead(nn.Module):
             raise ValueError("fragment_tokens must have shape [B, N, D]")
         if branch_tokens.shape[0] != fragment_tokens.shape[0]:
             raise ValueError("branch and fragment batch sizes differ")
-        if (
-                branch_tokens.shape[-1] != self.hidden_dim
-                or fragment_tokens.shape[-1] != self.hidden_dim):
-            raise ValueError("token dimensions do not match hidden_dim")
+        if branch_tokens.shape[-1] != self.branch_input_dim:
+            raise ValueError(
+                "branch token dimension does not match branch_input_dim")
+        if fragment_tokens.shape[-1] != self.fragment_input_dim:
+            raise ValueError(
+                "fragment token dimension does not match fragment_input_dim")
         if tuple(fragment_mask.shape) != tuple(
                 fragment_tokens.shape[:2]):
             raise ValueError("fragment_mask must have shape [B, N]")

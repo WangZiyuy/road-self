@@ -150,7 +150,8 @@ class TrajectorySupportHeadTests(unittest.TestCase):
         ])
         logits = head(branch, fragment, mask)
         self.assertEqual(tuple(logits.shape), (2, 3, 4))
-        self.assertEqual(float(logits[:, :, 3].abs().sum()), 0.0)
+        self.assertEqual(
+            float(logits[:, :, 3].abs().sum().detach()), 0.0)
         logits.square().mean().backward()
         self.assertTrue(torch.isfinite(branch.grad).all())
         self.assertTrue(torch.isfinite(fragment.grad).all())

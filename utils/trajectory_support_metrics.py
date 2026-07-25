@@ -238,6 +238,11 @@ def support_label_diagnostics(
         "support_available_branch_count": available,
         "support_available_rate": (
             float(available) / branch_total if branch_total else 0.0),
+        "bounded_64_branch_support_hit_rate": (
+            float(available) / branch_total if branch_total else 0.0),
+        # Retained for Stage 3D-A report compatibility.  This value only
+        # states whether each branch has at least one positive fragment after
+        # bounded-64 compression; it is not full-candidate recall.
         "bounded_64_oracle_support_recall": (
             float(available) / branch_total if branch_total else 0.0),
         "positive_fragments_per_gt_branch":
