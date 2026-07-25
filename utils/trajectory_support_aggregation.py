@@ -55,6 +55,7 @@ def support_weighted_trajectory_context(
     *,
     epsilon: float = 1e-6,
     output_projection: Optional[torch.nn.Module] = None,
+    top_k: Optional[int] = None,
 ) -> Dict[str, torch.Tensor]:
     """Pool fragment values independently for every branch query.
 
@@ -74,6 +75,8 @@ def support_weighted_trajectory_context(
         raise ValueError("fragment_mask must have shape [B, N]")
     if epsilon <= 0.0:
         raise ValueError("epsilon must be positive")
+    if top_k is not None and int(top_k) <= 0:
+        raise ValueError("top_k must be positive when supplied")
     if (
             support_logits.device != fragment_values.device
             or fragment_values.device != fragment_mask.device):
@@ -81,7 +84,26 @@ def support_weighted_trajectory_context(
 
     valid = fragment_mask.to(dtype=torch.bool)
     probabilities = torch.sigmoid(support_logits)
-    weights = probabilities * valid.unsqueeze(1).to(
+    selection_mask = valid.unsqueeze(1).expand_as(
+        support_logits)
+    if top_k is not None:
+        selection_mask = torch.zeros_like(
+            support_logits, dtype=torch.bool)
+        limit = min(int(top_k), support_logits.shape[-1])
+        if limit:
+            ranked_logits = support_logits.masked_fill(
+                ~valid.unsqueeze(1), float("-inf"))
+            selected_indices = torch.topk(
+                ranked_logits,
+                k=limit,
+                dim=-1,
+                largest=True,
+                sorted=True,
+            ).indices
+            selection_mask.scatter_(-1, selected_indices, True)
+            selection_mask = (
+                selection_mask & valid.unsqueeze(1))
+    weights = probabilities * selection_mask.to(
         dtype=probabilities.dtype)
     denominator = weights.sum(dim=-1, keepdim=True)
     context = torch.matmul(weights, fragment_values)
@@ -94,6 +116,7 @@ def support_weighted_trajectory_context(
         "context": context,
         "support_probabilities": probabilities,
         "masked_weights": weights,
+        "selection_mask": selection_mask,
         "weight_sum": denominator.squeeze(-1),
     }
 

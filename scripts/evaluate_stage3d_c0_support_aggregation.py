@@ -17,7 +17,6 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence
 
 import numpy as np
 import torch
-import torch.nn.functional as F
 from easydict import EasyDict
 from torch.utils.data import DataLoader
 
@@ -38,6 +37,7 @@ from train_branch_aux import (  # noqa: E402
     _stage_fuse_for_batch,
 )
 from utils.branch_diagnostics import (  # noqa: E402
+    binary_average_precision,
     distribution_statistics,
     oracle_k_metrics,
     query_pairwise_statistics,
@@ -72,6 +72,10 @@ VARIANT_ORIGINAL = "original_attention"
 VARIANT_SUPPORT = "support_aggregation"
 VARIANT_NO_TRAJECTORY = "no_trajectory"
 VARIANT_RANDOM = "random_aggregation"
+
+
+def _topk_variant_name(top_k: int) -> str:
+    return "support_topk_{}".format(int(top_k))
 
 
 def _plain(value: Any) -> Any:
@@ -160,25 +164,41 @@ class BranchVariantAccumulator:
         self.thresholded = _metric_accumulator(cfg)
         self.ap = _ap_accumulator(cfg)
         self.prediction_chunks: Dict[str, List[np.ndarray]] = {
+            "logits": [],
             "scores": [],
             "offsets": [],
             "directions": [],
+            "slot_labels": [],
         }
         self.target_chunks: Dict[str, List[np.ndarray]] = {
             "offsets": [],
             "directions": [],
             "mask": [],
+            "counts": [],
         }
 
     def update(
         self,
         predictions: Mapping[str, torch.Tensor],
         targets: Mapping[str, torch.Tensor],
+        matches: Sequence,
     ) -> None:
         prediction_dict = dict(predictions)
         target_dict = dict(targets)
         self.thresholded.update(prediction_dict, target_dict)
         self.ap.update(prediction_dict, target_dict)
+        slot_labels = torch.zeros_like(
+            predictions["branch_exist_logits"],
+            dtype=torch.bool,
+        )
+        if len(matches) != slot_labels.shape[0]:
+            raise ValueError(
+                "matches must contain one assignment per sample")
+        for batch_index, (
+                prediction_indices, _) in enumerate(matches):
+            slot_labels[batch_index, prediction_indices] = True
+        self.prediction_chunks["logits"].append(
+            predictions["branch_exist_logits"].detach().cpu().numpy())
         self.prediction_chunks["scores"].append(torch.sigmoid(
             predictions["branch_exist_logits"]
         ).detach().cpu().numpy())
@@ -186,12 +206,82 @@ class BranchVariantAccumulator:
             predictions["branch_offsets_norm"].detach().cpu().numpy())
         self.prediction_chunks["directions"].append(
             predictions["branch_directions"].detach().cpu().numpy())
+        self.prediction_chunks["slot_labels"].append(
+            slot_labels.detach().cpu().numpy())
         self.target_chunks["offsets"].append(
             targets["branch_offsets_norm"].detach().cpu().numpy())
         self.target_chunks["directions"].append(
             targets["branch_directions"].detach().cpu().numpy())
         self.target_chunks["mask"].append(
             targets["branch_mask"].detach().cpu().numpy())
+        self.target_chunks["counts"].append(
+            targets["branch_mask"].sum(dim=1).detach().cpu().numpy())
+
+    def _subset_metrics(
+        self,
+        arrays: Mapping[str, np.ndarray],
+        target_arrays: Mapping[str, np.ndarray],
+        indices: np.ndarray,
+    ) -> Dict[str, Any]:
+        if indices.size == 0:
+            return {
+                "sample_count": 0,
+                "gt_branch_count": 0,
+                "branch_ap": 0.0,
+                "slot_ap": 0.0,
+            }
+        predictions = {
+            "branch_exist_logits": torch.from_numpy(
+                arrays["logits"][indices]),
+            "branch_offsets_norm": torch.from_numpy(
+                arrays["offsets"][indices]),
+            "branch_directions": torch.from_numpy(
+                arrays["directions"][indices]),
+        }
+        targets = {
+            "branch_offsets_norm": torch.from_numpy(
+                target_arrays["offsets"][indices]),
+            "branch_directions": torch.from_numpy(
+                target_arrays["directions"][indices]),
+            "branch_mask": torch.from_numpy(
+                target_arrays["mask"][indices]),
+        }
+        thresholded_accumulator = _metric_accumulator(self.cfg)
+        ap_accumulator = _ap_accumulator(self.cfg)
+        thresholded_accumulator.update(predictions, targets)
+        ap_accumulator.update(predictions, targets)
+        evaluation = self.cfg.STAGE3C.EVALUATION
+        oracle = oracle_k_metrics(
+            arrays["scores"][indices],
+            arrays["offsets"][indices],
+            arrays["directions"][indices],
+            target_arrays["offsets"][indices],
+            target_arrays["directions"][indices],
+            target_arrays["mask"][indices],
+            window_size=float(self.cfg.TRAIN.WINDOW_SIZE),
+            endpoint_threshold_pixels=float(
+                evaluation.ENDPOINT_MATCH_THRESHOLD_PIXELS),
+            direction_threshold_degrees=float(
+                evaluation.DIRECTION_MATCH_THRESHOLD_DEGREES),
+            duplicate_endpoint_threshold_pixels=float(
+                evaluation.DUPLICATE_ENDPOINT_THRESHOLD_PIXELS),
+            duplicate_direction_threshold_degrees=float(
+                evaluation.DUPLICATE_DIRECTION_THRESHOLD_DEGREES),
+        )
+        oracle.pop("selected_query_indices")
+        return {
+            "sample_count": int(indices.size),
+            "gt_branch_count": int(
+                target_arrays["mask"][indices].sum()),
+            "branch_ap": float(
+                ap_accumulator.compute()["average_precision"]),
+            "slot_ap": float(binary_average_precision(
+                arrays["scores"][indices],
+                arrays["slot_labels"][indices],
+            )),
+            "thresholded": thresholded_accumulator.compute(),
+            "oracle_k": oracle,
+        }
 
     def compute(self) -> Dict[str, Any]:
         thresholded = self.thresholded.compute()
@@ -217,10 +307,33 @@ class BranchVariantAccumulator:
                 evaluation.DUPLICATE_DIRECTION_THRESHOLD_DEGREES),
         )
         oracle.pop("selected_query_indices")
+        arrays = {
+            key: np.concatenate(chunks, axis=0)
+            for key, chunks in self.prediction_chunks.items()
+        }
+        target_arrays = {
+            key: np.concatenate(chunks, axis=0)
+            for key, chunks in self.target_chunks.items()
+        }
+        categories = {
+            "ordinary": np.flatnonzero(
+                target_arrays["counts"] == 1),
+            "t_junction": np.flatnonzero(
+                target_arrays["counts"] == 2),
+            "multi_branch": np.flatnonzero(
+                target_arrays["counts"] >= 3),
+        }
         return {
             "branch_ap": float(ap["average_precision"]),
+            "slot_ap": float(binary_average_precision(
+                arrays["scores"], arrays["slot_labels"])),
             "thresholded": thresholded,
             "oracle_k": oracle,
+            "by_category": {
+                name: self._subset_metrics(
+                    arrays, target_arrays, indices)
+                for name, indices in categories.items()
+            },
         }
 
 
@@ -252,6 +365,7 @@ def _random_summary(
 ) -> Dict[str, Any]:
     paths = {
         "branch_ap": lambda value: value["branch_ap"],
+        "slot_ap": lambda value: value["slot_ap"],
         "exact_branch_count_accuracy": lambda value: value[
             "thresholded"]["exact_branch_count_accuracy"],
         "endpoint_error_mean_pixels": lambda value: value[
@@ -269,6 +383,34 @@ def _random_summary(
             for value in results.values()
         ])
         for key, getter in paths.items()
+    }
+
+
+def _context_similarity_metrics(
+    original_contexts: np.ndarray,
+    support_contexts: np.ndarray,
+) -> Dict[str, Any]:
+    if original_contexts.shape != support_contexts.shape:
+        raise ValueError(
+            "original and support contexts must share one shape")
+    original_norm = np.linalg.norm(original_contexts, axis=-1)
+    support_norm = np.linalg.norm(support_contexts, axis=-1)
+    valid = (original_norm > 1e-8) & (support_norm > 1e-8)
+    cosine = np.zeros_like(original_norm, dtype=np.float64)
+    cosine[valid] = (
+        np.sum(
+            original_contexts * support_contexts,
+            axis=-1,
+        )[valid]
+        / (original_norm[valid] * support_norm[valid])
+    )
+    return {
+        "original_inter_query": query_pairwise_statistics(
+            original_contexts),
+        "support_inter_query": query_pairwise_statistics(
+            support_contexts),
+        "aligned_original_support": distribution_statistics(
+            cosine[valid].tolist()),
     }
 
 
@@ -531,6 +673,8 @@ def _write_readme(output_dir: Path, report: Mapping[str, Any]) -> None:
     support_selection = report["trajectory_selection"]
     context = report["context_similarity"]
     decision = report["decision"]
+    best_support = variants[decision["best_support_variant"]]
+    original = variants[VARIANT_ORIGINAL]
     lines = [
         "# road_self Stage 3D-C0",
         "",
@@ -539,22 +683,30 @@ def _write_readme(output_dir: Path, report: Mapping[str, Any]) -> None:
         "",
         "## Branch comparison",
         "",
-        "| variant | branch AP | endpoint mean px | direction mean deg | "
-        "exact count | oracle duplicate | distinct coverage |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+        "| variant | branch AP | slot AP | endpoint mean px | "
+        "direction mean deg | exact count | oracle duplicate | "
+        "distinct coverage |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    topk_names = [
+        _topk_variant_name(top_k)
+        for top_k in report["aggregation_top_ks"]
     ]
     for name in (
             VARIANT_ORIGINAL,
             VARIANT_NO_TRAJECTORY,
-            VARIANT_SUPPORT):
+            VARIANT_SUPPORT,
+            *topk_names):
         value = variants[name]
         thresholded = value["thresholded"]
         oracle = value["oracle_k"]
         lines.append(
-            "| {name} | {ap:.4f} | {endpoint:.2f} | {direction:.2f} | "
-            "{count:.4f} | {duplicate:.4f} | {coverage:.4f} |".format(
+            "| {name} | {ap:.4f} | {slot:.4f} | {endpoint:.2f} | "
+            "{direction:.2f} | {count:.4f} | {duplicate:.4f} | "
+            "{coverage:.4f} |".format(
                 name=name,
                 ap=value["branch_ap"],
+                slot=value["slot_ap"],
                 endpoint=thresholded["endpoint_error_mean_pixels"],
                 direction=thresholded["direction_error_mean_degrees"],
                 count=thresholded["exact_branch_count_accuracy"],
@@ -563,10 +715,11 @@ def _write_readme(output_dir: Path, report: Mapping[str, Any]) -> None:
             )
         )
     lines.append(
-        "| random_aggregation (mean) | {ap:.4f} | {endpoint:.2f} | "
-        "{direction:.2f} | {count:.4f} | {duplicate:.4f} | "
-        "{coverage:.4f} |".format(
+        "| random_aggregation (mean) | {ap:.4f} | {slot:.4f} | "
+        "{endpoint:.2f} | {direction:.2f} | {count:.4f} | "
+        "{duplicate:.4f} | {coverage:.4f} |".format(
             ap=random_mean["branch_ap"]["mean"],
+            slot=random_mean["slot_ap"]["mean"],
             endpoint=random_mean[
                 "endpoint_error_mean_pixels"]["mean"],
             direction=random_mean[
@@ -583,6 +736,38 @@ def _write_readme(output_dir: Path, report: Mapping[str, Any]) -> None:
         "",
         "`full` is an explicit alias of frozen E4 `original_attention`.",
         "",
+        "## Branch AP by road category",
+        "",
+        "| category | no trajectory | original | full support | "
+        + " | ".join(topk_names) + " |",
+        "| --- | " + " | ".join(
+            ["---:"] * (3 + len(topk_names))) + " |",
+    ])
+    for category in (
+            "ordinary", "t_junction", "multi_branch"):
+        category_values = [
+            variants[VARIANT_NO_TRAJECTORY][
+                "by_category"][category]["branch_ap"],
+            variants[VARIANT_ORIGINAL][
+                "by_category"][category]["branch_ap"],
+            variants[VARIANT_SUPPORT][
+                "by_category"][category]["branch_ap"],
+            *[
+                variants[name]["by_category"][
+                    category]["branch_ap"]
+                for name in topk_names
+            ],
+        ]
+        lines.append(
+            "| {} | {} |".format(
+                category,
+                " | ".join(
+                    "{:.4f}".format(value)
+                    for value in category_values),
+            )
+        )
+    lines.extend([
+        "",
         "## Trajectory selection",
         "",
         "- support AP: **{:.4f}**".format(
@@ -595,6 +780,15 @@ def _write_readme(output_dir: Path, report: Mapping[str, Any]) -> None:
         ),
         "- query top-8 Jaccard median: **{}**".format(
             support_selection["predicted_top_k_jaccard"]["median"]),
+        "- query overlap by top-k: {}".format(
+            ", ".join(
+                "k={} median={}".format(
+                    top_k,
+                    support_selection[
+                        "query_topk_fragment_overlap"
+                    ][str(top_k)]["median"],
+                )
+                for top_k in report["aggregation_top_ks"])),
         "",
         "## Context similarity",
         "",
@@ -604,17 +798,47 @@ def _write_readme(output_dir: Path, report: Mapping[str, Any]) -> None:
             context["support_inter_query"]["pairwise_cosine"]["mean"]),
         "- aligned original/support cosine mean: **{}**".format(
             context["aligned_original_support"]["mean"]),
+        "- by category aligned cosine: {}".format(
+            ", ".join(
+                "{}={}".format(
+                    category,
+                    value["aligned_original_support"]["mean"],
+                )
+                for category, value in
+                context["by_category"].items())),
         "",
         "## Decision",
         "",
         "- support - original branch AP: **{:+.4f}**".format(
             decision["support_minus_original_branch_ap"]),
+        "- best support aggregation: **{}**".format(
+            decision["best_support_variant"]),
+        "- full-support - original branch AP: **{:+.4f}**".format(
+            decision["full_support_minus_original_branch_ap"]),
         "- support - random mean branch AP: **{:+.4f}** "
         "({:.2f} random-baseline std)".format(
             decision["support_minus_random_mean_branch_ap"],
             decision["support_vs_random_standard_deviations"]),
         "- full - no-trajectory branch AP: **{:+.4f}**".format(
             decision["full_minus_no_trajectory_branch_ap"]),
+        "- best-support slot AP change: **{:+.4f}**".format(
+            best_support["slot_ap"] - original["slot_ap"]),
+        "- best-support oracle distinct-coverage change: "
+        "**{:+.4f}**".format(
+            best_support["oracle_k"]["distinct_gt_coverage"]
+            - original["oracle_k"]["distinct_gt_coverage"]),
+        "- best-support oracle duplicate ratio: **{:.4f}**".format(
+            best_support["oracle_k"]["duplicates"][
+                "duplicate_pair_ratio"]),
+        "- best-support category AP changes: {}".format(
+            ", ".join(
+                "{}={:+.4f}".format(
+                    category,
+                    best_support["by_category"][category]["branch_ap"]
+                    - original["by_category"][category]["branch_ap"],
+                )
+                for category in (
+                    "ordinary", "t_junction", "multi_branch"))),
         "- enter next-stage training: **{}**".format(
             "yes" if decision[
                 "can_enter_next_stage_training"] else "no"),
@@ -725,10 +949,23 @@ def main() -> None:
     criterion = _build_branch_criterion(cfg)
     trajectory_encoder, graph_state_encoder, branch_decoder = modules
 
+    aggregation_top_ks = tuple(sorted(set(
+        int(value)
+        for value in cfg.STAGE3D_C0.EVALUATION.AGGREGATION_TOP_KS
+    )))
+    if not aggregation_top_ks or any(
+            value <= 0 for value in aggregation_top_ks):
+        raise ValueError(
+            "AGGREGATION_TOP_KS must contain positive integers")
     variants = {
         VARIANT_ORIGINAL: BranchVariantAccumulator(cfg),
         VARIANT_SUPPORT: BranchVariantAccumulator(cfg),
         VARIANT_NO_TRAJECTORY: BranchVariantAccumulator(cfg),
+        **{
+            _topk_variant_name(top_k):
+                BranchVariantAccumulator(cfg)
+            for top_k in aggregation_top_ks
+        },
     }
     random_seeds = [
         int(value)
@@ -740,18 +977,21 @@ def main() -> None:
         random_seed: BranchVariantAccumulator(cfg)
         for random_seed in random_seeds
     }
-    support_ranking = TrajectorySupportRankingAccumulator(
-        ranking_ks=tuple(
-            int(value)
-            for value in cfg.STAGE3D_C0.EVALUATION.RANKING_KS),
-        jaccard_k=int(
-            cfg.STAGE3D_C0.EVALUATION.TOP_K_JACCARD),
-    )
+    ranking_ks = tuple(
+        int(value)
+        for value in cfg.STAGE3D_C0.EVALUATION.RANKING_KS)
+    support_rankings = {
+        top_k: TrajectorySupportRankingAccumulator(
+            ranking_ks=ranking_ks,
+            jaccard_k=top_k,
+        )
+        for top_k in aggregation_top_ks
+    }
     context_chunks = {
         "original": [],
         "support": [],
+        "gt_counts": [],
     }
-    aligned_context_cosines: List[float] = []
     visual_cases: Dict[str, List[Dict[str, Any]]] = {
         "ordinary": [],
         "t_junction": [],
@@ -858,12 +1098,45 @@ def main() -> None:
                 graph_state_contribution=original[
                     "debug_graph_state_contribution"],
             )
+            targets = batch["branch_targets"]
+            original_matches = criterion(
+                original, targets)["matches"]
+            support_matches = criterion(
+                support_predictions, targets)["matches"]
+            no_trajectory_matches = criterion(
+                no_trajectory, targets)["matches"]
             variants[VARIANT_ORIGINAL].update(
-                original, batch["branch_targets"])
+                original, targets, original_matches)
             variants[VARIANT_SUPPORT].update(
-                support_predictions, batch["branch_targets"])
+                support_predictions, targets, support_matches)
             variants[VARIANT_NO_TRAJECTORY].update(
-                no_trajectory, batch["branch_targets"])
+                no_trajectory, targets, no_trajectory_matches)
+
+            for top_k in aggregation_top_ks:
+                topk_context = support_weighted_trajectory_context(
+                    support_logits,
+                    fragment_values,
+                    trajectory_output["fragment_mask"],
+                    epsilon=float(
+                        cfg.STAGE3D_C0.EVALUATION.SUPPORT_EPSILON),
+                    output_projection=branch_decoder.
+                        trajectory_cross_attention.out_proj,
+                    top_k=top_k,
+                )["context"]
+                topk_predictions = recompute_branch_predictions(
+                    branch_decoder,
+                    graph_conditioned_queries=original[
+                        "debug_graph_conditioned_queries"],
+                    image_context=original[
+                        "debug_image_cross_attention_output"],
+                    trajectory_context=topk_context,
+                    graph_state_contribution=original[
+                        "debug_graph_state_contribution"],
+                )
+                topk_matches = criterion(
+                    topk_predictions, targets)["matches"]
+                variants[_topk_variant_name(top_k)].update(
+                    topk_predictions, targets, topk_matches)
 
             sample_ids = batch["metadata"]["dataset_index"].to(
                 dtype=torch.long)
@@ -893,28 +1166,30 @@ def main() -> None:
                     graph_state_contribution=original[
                         "debug_graph_state_contribution"],
                 )
+                random_matches = criterion(
+                    random_predictions, targets)["matches"]
                 accumulator.update(
-                    random_predictions, batch["branch_targets"])
+                    random_predictions, targets, random_matches)
 
-            losses = criterion(original, batch["branch_targets"])
-            matches = losses["matches"]
+            matches = original_matches
             support_targets = build_trajectory_support_targets(
                 batch["trajectory_batch"],
-                batch["branch_targets"],
+                targets,
                 **_target_parameters(cfg),
             )
-            support_ranking.update(
-                scores=support_pool["support_probabilities"],
-                support_targets=support_targets["support_targets"],
-                support_positive_mask=support_targets[
-                    "support_positive_mask"],
-                support_valid=support_targets["support_valid"],
-                branch_mask=batch["branch_targets"]["branch_mask"],
-                fragment_mask=trajectory_output["fragment_mask"],
-                matches=matches,
-                branch_count=batch["branch_targets"]["branch_count"],
-                sample_ids=sample_ids,
-            )
+            for support_ranking in support_rankings.values():
+                support_ranking.update(
+                    scores=support_pool["support_probabilities"],
+                    support_targets=support_targets["support_targets"],
+                    support_positive_mask=support_targets[
+                        "support_positive_mask"],
+                    support_valid=support_targets["support_valid"],
+                    branch_mask=targets["branch_mask"],
+                    fragment_mask=trajectory_output["fragment_mask"],
+                    matches=matches,
+                    branch_count=targets["branch_count"],
+                    sample_ids=sample_ids,
+                )
             original_context = original[
                 "debug_trajectory_cross_attention_output"]
             support_context = support_pool["context"]
@@ -922,22 +1197,8 @@ def main() -> None:
                 original_context.detach().cpu().numpy())
             context_chunks["support"].append(
                 support_context.detach().cpu().numpy())
-            both_nonzero = (
-                torch.linalg.vector_norm(
-                    original_context, dim=-1) > 1e-8
-            ) & (
-                torch.linalg.vector_norm(
-                    support_context, dim=-1) > 1e-8
-            )
-            if bool(both_nonzero.any()):
-                aligned = F.cosine_similarity(
-                    original_context,
-                    support_context,
-                    dim=-1,
-                    eps=1e-8,
-                )
-                aligned_context_cosines.extend(
-                    aligned[both_nonzero].detach().cpu().tolist())
+            context_chunks["gt_counts"].append(
+                targets["branch_count"].detach().cpu().numpy())
             for batch_index in range(stage_fuse.shape[0]):
                 _capture_visualization_case(
                     visual_cases,
@@ -974,24 +1235,56 @@ def main() -> None:
         int(key): value
         for key, value in random_results.items()
     })
-    trajectory_selection = support_ranking.compute()
+    support_ranking_results = {
+        str(top_k): accumulator.compute()
+        for top_k, accumulator in support_rankings.items()
+    }
+    primary_jaccard_k = int(
+        cfg.STAGE3D_C0.EVALUATION.TOP_K_JACCARD)
+    if str(primary_jaccard_k) not in support_ranking_results:
+        raise ValueError(
+            "TOP_K_JACCARD must be included in AGGREGATION_TOP_KS")
+    trajectory_selection = support_ranking_results[
+        str(primary_jaccard_k)]
+    trajectory_selection["query_topk_fragment_overlap"] = {
+        str(top_k): result["predicted_top_k_jaccard"]
+        for top_k, result in support_ranking_results.items()
+    }
     original_contexts = np.concatenate(
         context_chunks["original"], axis=0)
     support_contexts = np.concatenate(
         context_chunks["support"], axis=0)
-    context_similarity = {
-        "original_inter_query": query_pairwise_statistics(
-            original_contexts),
-        "support_inter_query": query_pairwise_statistics(
-            support_contexts),
-        "aligned_original_support": distribution_statistics(
-            aligned_context_cosines),
+    gt_counts = np.concatenate(
+        context_chunks["gt_counts"], axis=0)
+    context_similarity = _context_similarity_metrics(
+        original_contexts, support_contexts)
+    context_similarity["by_category"] = {
+        name: _context_similarity_metrics(
+            original_contexts[indices],
+            support_contexts[indices],
+        )
+        for name, indices in {
+            "ordinary": np.flatnonzero(gt_counts == 1),
+            "t_junction": np.flatnonzero(gt_counts == 2),
+            "multi_branch": np.flatnonzero(gt_counts >= 3),
+        }.items()
     }
+    support_candidate_names = [
+        VARIANT_SUPPORT,
+        *[
+            _topk_variant_name(top_k)
+            for top_k in aggregation_top_ks
+        ],
+    ]
+    best_support_variant = max(
+        support_candidate_names,
+        key=lambda name: branch_results[name]["branch_ap"],
+    )
     decision = assess_stage3d_c0(
         original_branch_ap=branch_results[
             VARIANT_ORIGINAL]["branch_ap"],
         support_branch_ap=branch_results[
-            VARIANT_SUPPORT]["branch_ap"],
+            best_support_variant]["branch_ap"],
         no_trajectory_branch_ap=branch_results[
             VARIANT_NO_TRAJECTORY]["branch_ap"],
         support_selection_ap=float(
@@ -1002,6 +1295,14 @@ def main() -> None:
         random_branch_ap_std=float(
             random_stability["branch_ap"]["std"]),
     )
+    decision.update({
+        "best_support_variant": best_support_variant,
+        "best_support_branch_ap": float(
+            branch_results[best_support_variant]["branch_ap"]),
+        "full_support_minus_original_branch_ap": float(
+            branch_results[VARIANT_SUPPORT]["branch_ap"]
+            - branch_results[VARIANT_ORIGINAL]["branch_ap"]),
+    })
     visualizations = render_visualizations(
         visual_cases,
         output_dir=output_dir / "visualizations",
@@ -1018,6 +1319,7 @@ def main() -> None:
         "config": str(args.config.resolve(strict=False)),
         "dataset_dir": str(dataset_dir.resolve(strict=False)),
         "validation_sample_count": len(val_dataset),
+        "aggregation_top_ks": list(aggregation_top_ks),
         "checkpoints": {
             "image": str(image_checkpoint),
             "e4": str(e4_checkpoint),

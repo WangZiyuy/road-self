@@ -5,7 +5,9 @@ import torch.nn.functional as F
 from easydict import EasyDict
 
 from model.branch_query_decoder import MultiModalBranchQueryDecoder
+from model.branch_set_loss import BranchSetCriterion
 from scripts.evaluate_stage3d_c0_support_aggregation import (
+    BranchVariantAccumulator,
     assess_stage3d_c0,
 )
 from utils.trajectory_support_aggregation import (
@@ -206,6 +208,52 @@ class FrozenSupportAggregationTests(unittest.TestCase):
         ))
         self.assertTrue(torch.isfinite(result["context"]).all())
 
+    def test_topk_support_pooling_selects_only_highest_valid_fragments(self):
+        probabilities = torch.tensor([[
+            [0.10, 0.90, 0.80, 0.99],
+        ]])
+        logits = torch.logit(probabilities)
+        values = torch.tensor([[
+            [1.0, 0.0],
+            [9.0, 0.0],
+            [5.0, 0.0],
+            [100.0, 0.0],
+        ]])
+        mask = torch.tensor([[True, True, True, False]])
+        result = support_weighted_trajectory_context(
+            logits, values, mask, top_k=2)
+        expected = torch.tensor(
+            [(0.90 * 9.0 + 0.80 * 5.0) / 1.70, 0.0])
+        torch.testing.assert_close(result["context"][0, 0], expected)
+        self.assertEqual(
+            result["selection_mask"][0, 0].tolist(),
+            [False, True, True, False],
+        )
+
+    def test_topk_at_or_above_valid_count_equals_full_pooling(self):
+        logits = torch.randn(2, 3, 5)
+        values = torch.randn(2, 5, 7)
+        mask = torch.tensor([
+            [True, True, True, False, False],
+            [False, False, False, False, False],
+        ])
+        full = support_weighted_trajectory_context(
+            logits, values, mask)
+        topk = support_weighted_trajectory_context(
+            logits, values, mask, top_k=4)
+        torch.testing.assert_close(
+            topk["context"], full["context"])
+        self.assertTrue(torch.isfinite(topk["context"]).all())
+
+    def test_nonpositive_topk_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "top_k"):
+            support_weighted_trajectory_context(
+                torch.zeros(1, 1, 1),
+                torch.zeros(1, 1, 2),
+                torch.ones(1, 1, dtype=torch.bool),
+                top_k=0,
+            )
+
     def test_random_permutation_is_deterministic_and_batch_invariant(self):
         values = torch.arange(
             2 * 5 * 3, dtype=torch.float32).reshape(2, 5, 3)
@@ -289,6 +337,61 @@ class Stage3DC0DecisionTests(unittest.TestCase):
         self.assertFalse(result["can_enter_next_stage_training"])
         self.assertIn("fusion", result["diagnosis"])
         self.assertIn("circular", result["diagnosis"])
+
+
+class Stage3DC0GroupedMetricsTests(unittest.TestCase):
+
+    def test_slot_ap_and_road_categories_are_reported(self):
+        cfg = EasyDict({
+            "TRAIN": {"WINDOW_SIZE": 256},
+            "STAGE3C": {
+                "EVALUATION": {
+                    "EXISTENCE_THRESHOLD": 0.5,
+                    "ENDPOINT_MATCH_THRESHOLD_PIXELS": 20.0,
+                    "DIRECTION_MATCH_THRESHOLD_DEGREES": 45.0,
+                    "DUPLICATE_ENDPOINT_THRESHOLD_PIXELS": 12.0,
+                    "DUPLICATE_DIRECTION_THRESHOLD_DEGREES": 25.0,
+                },
+            },
+        })
+        target_offsets = torch.tensor([
+            [[0.2, 0.0], [0.0, 0.0], [0.0, 0.0]],
+            [[0.2, 0.0], [0.0, 0.2], [0.0, 0.0]],
+            [[0.2, 0.0], [0.0, 0.2], [-0.2, 0.0]],
+        ])
+        target_mask = torch.tensor([
+            [True, False, False],
+            [True, True, False],
+            [True, True, True],
+        ])
+        target_directions = F.normalize(
+            target_offsets, dim=-1, eps=1e-6)
+        predictions = {
+            "branch_exist_logits": torch.tensor([
+                [5.0, -5.0, -5.0],
+                [5.0, 5.0, -5.0],
+                [5.0, 5.0, 5.0],
+            ]),
+            "branch_offsets_norm": target_offsets.clone(),
+            "branch_directions": target_directions.clone(),
+        }
+        targets = {
+            "branch_offsets_norm": target_offsets,
+            "branch_directions": target_directions,
+            "branch_mask": target_mask,
+        }
+        matches = BranchSetCriterion()(
+            predictions, targets)["matches"]
+        accumulator = BranchVariantAccumulator(cfg)
+        accumulator.update(predictions, targets, matches)
+        result = accumulator.compute()
+        self.assertAlmostEqual(result["slot_ap"], 1.0)
+        self.assertEqual(
+            result["by_category"]["ordinary"]["sample_count"], 1)
+        self.assertEqual(
+            result["by_category"]["t_junction"]["sample_count"], 1)
+        self.assertEqual(
+            result["by_category"]["multi_branch"]["sample_count"], 1)
 
 
 if __name__ == "__main__":
