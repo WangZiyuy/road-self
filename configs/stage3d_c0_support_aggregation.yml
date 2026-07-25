@@ -1,0 +1,24 @@
+BASE_CONFIG: "stage3d_a_support.yml"
+
+STAGE3D_C0:
+  OUTPUT_DIR: "data_self/stage3d_c0"
+  SUPPORT_CHECKPOINT: "data_self/stage3d_a/checkpoints/stage3d_support.best.pth.tar"
+
+  EVALUATION:
+    BATCH_SIZE: 16
+    SUPPORT_EPSILON: 0.000001
+    RANKING_KS: [1, 4, 8, 16]
+    TOP_K_JACCARD: 8
+    VISUALIZATION_TOP_K: 8
+    VISUALIZATION_CASES_PER_TYPE: 1
+    RANDOM_SEEDS: [20260724, 20260725, 20260726, 20260727, 20260728]
+    NUM_WORKERS: 0
+    NUMERICAL_EQUIVALENCE_TOLERANCE: 0.000001
+
+  DECISION:
+    # Treat sub-0.001 AP changes as numerical/validation noise rather than a
+    # usable gain over the frozen E4 attention baseline.
+    MIN_SUPPORT_OVER_ORIGINAL_BRANCH_AP: 0.001
+    # "Meaningful" is made explicit instead of hidden in evaluator code.
+    MIN_FULL_OVER_NO_TRAJECTORY_BRANCH_AP: 0.01
+    MIN_HIGH_SUPPORT_SELECTION_AP: 0.72
