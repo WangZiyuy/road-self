@@ -1,0 +1,11 @@
+BASE_CONFIG: "stage3d_c1_b_support.yml"
+
+# This configuration is intentionally not run until the C1-a comparison gate
+# passes. Set the selected C1-a checkpoint before launching C1-b.
+STAGE3D_C1:
+  OUTPUT_DIR: "data_self/stage3d_c1/c1_b_finetune"
+  INITIAL_C1_CHECKPOINT: "data_self/stage3d_c1/b_support/checkpoints/stage3d_c1.best.pth.tar"
+  TRAINING:
+    STAGE: "c1_b"
+    EPOCHS: 15
+    LEARNING_RATE: 0.00005

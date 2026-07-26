@@ -1,0 +1,10 @@
+BASE_CONFIG: "stage3d_c1_c_topk8.yml"
+
+# Launch only after the C1-a gate selects the top-8 support variant.
+STAGE3D_C1:
+  OUTPUT_DIR: "data_self/stage3d_c1/c1_b_topk8"
+  INITIAL_C1_CHECKPOINT: "data_self/stage3d_c1/c_topk8/checkpoints/stage3d_c1.best.pth.tar"
+  TRAINING:
+    STAGE: "c1_b"
+    EPOCHS: 15
+    LEARNING_RATE: 0.00005

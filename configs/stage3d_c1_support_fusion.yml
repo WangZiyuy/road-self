@@ -1,0 +1,45 @@
+BASE_CONFIG: "stage3d_b0_pretrajectory_support.yml"
+
+# Stage 3D-C1 keeps the historical E4 trajectory cross-attention unless an
+# experiment explicitly selects support aggregation.
+TRAJ_FUSION_MODE: "original_attention"
+
+STAGE3D_C1:
+  OUTPUT_DIR: "data_self/stage3d_c1/a_original"
+
+  # This checkpoint is the non-circular Stage 3D-B0 support head: its branch
+  # input contains graph-conditioned queries and image context, but no
+  # trajectory context or final branch token.
+  INITIAL_SUPPORT_CHECKPOINT: "data_self/stage3d_b0/seed_20260724/checkpoints/pre_trajectory_support.best.pth.tar"
+  INITIAL_C1_CHECKPOINT: ""
+
+  MODEL:
+    BRANCH_INPUT_DIM: 256
+    PROJECTION_DIM: 128
+
+  FUSION:
+    SUPPORT_TOP_K: null
+    RANDOM_FRAGMENT_AGGREGATION: False
+    EPSILON: 0.000001
+
+  TRAINING:
+    STAGE: "c1_a"
+    EPOCHS: 30
+    BATCH_SIZE: 64
+    VAL_BATCH_SIZE: 128
+    LEARNING_RATE: 0.0001
+    WEIGHT_DECAY: 0.0002
+    SUPPORT_LOSS_WEIGHT: 0.25
+    TRAJECTORY_MODALITY_DROPOUT: 0.25
+    GRADIENT_CLIP_NORM: 5.0
+    NUM_WORKERS: 0
+    PRECOMPUTE_RPNET_FEATURES: True
+    FEATURE_CACHE_BATCH_SIZE: 64
+
+  EVALUATION:
+    RANKING_KS: [1, 4, 8, 16]
+    JACCARD_K: 8
+
+  ACCEPTANCE:
+    MIN_BRANCH_AP_GAIN_OVER_ORIGINAL: 0.001
+    MIN_FULL_MINUS_NO_TRAJECTORY_BRANCH_AP: 0.0

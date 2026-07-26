@@ -335,6 +335,8 @@ def build_frozen_support_cache(
                     "debug_graph_conditioned_queries"],
                 "image_cross_attention_context": branch_output[
                     "debug_image_cross_attention_output"],
+                "graph_state_contribution": branch_output[
+                    "debug_graph_state_contribution"],
                 "pre_trajectory_branch_tokens": (
                     build_pre_trajectory_branch_tokens(
                         branch_output[
@@ -360,6 +362,8 @@ def build_frozen_support_cache(
                 "branch_mask": batch["branch_targets"]["branch_mask"],
                 "branch_offsets_norm": batch[
                     "branch_targets"]["branch_offsets_norm"],
+                "branch_directions": batch[
+                    "branch_targets"]["branch_directions"],
                 "traj_xy_norm": batch["trajectory_batch"]["traj_xy_norm"],
                 "point_mask": batch["trajectory_batch"]["point_mask"],
             }

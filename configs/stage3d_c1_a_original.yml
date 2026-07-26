@@ -1,0 +1,6 @@
+BASE_CONFIG: "stage3d_c1_support_fusion.yml"
+
+TRAJ_FUSION_MODE: "original_attention"
+
+STAGE3D_C1:
+  OUTPUT_DIR: "data_self/stage3d_c1/a_original"

@@ -1,0 +1,8 @@
+BASE_CONFIG: "stage3d_c1_support_fusion.yml"
+
+TRAJ_FUSION_MODE: "support_aggregation"
+
+STAGE3D_C1:
+  OUTPUT_DIR: "data_self/stage3d_c1/e_random"
+  FUSION:
+    RANDOM_FRAGMENT_AGGREGATION: True
