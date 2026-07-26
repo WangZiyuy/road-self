@@ -15,7 +15,7 @@ STAGE3E0_CHECKPOINT_SCHEMA = "stage3e0-evidence-v1"
 def build_stage3e0_checkpoint_payload(
     *,
     evidence_encoder: torch.nn.Module,
-    optimizer: torch.optim.Optimizer,
+    optimizer: Optional[torch.optim.Optimizer],
     epoch: int,
     trajectory_mode: str,
     e4_checkpoint: str,
@@ -32,7 +32,8 @@ def build_stage3e0_checkpoint_payload(
         "e4_checkpoint_sha256": str(e4_checkpoint_sha256),
         "trajectory_evidence_encoder":
             evidence_encoder.state_dict(),
-        "optimizer": optimizer.state_dict(),
+        "optimizer": (
+            None if optimizer is None else optimizer.state_dict()),
         "config_snapshot": dict(config),
         "metrics": dict(metrics or {}),
         "metadata": {
@@ -94,5 +95,8 @@ def load_stage3e0_checkpoint(
     evidence_encoder.load_state_dict(
         payload["trajectory_evidence_encoder"], strict=True)
     if optimizer is not None:
+        if payload["optimizer"] is None:
+            raise ValueError(
+                "Stage 3E-0 checkpoint has no optimizer state")
         optimizer.load_state_dict(payload["optimizer"])
     return payload

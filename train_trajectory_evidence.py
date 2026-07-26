@@ -27,6 +27,7 @@ from model.trajectory_evidence_encoder import (  # noqa: E402
     TRAJECTORY_MODE_ORIGINAL_FRAGMENT,
     TrajectoryEvidenceEncoder,
     build_trajectory_decoder_inputs,
+    resolve_evidence_aggregation_mode,
     resolve_trajectory_evidence_mode,
     trajectory_context_from_tokens,
 )
@@ -95,6 +96,25 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _tensor_sha256(value: torch.Tensor) -> str:
+    array = value.detach().cpu().contiguous().numpy()
+    return hashlib.sha256(memoryview(array)).hexdigest()
+
+
+def _shared_evidence_state_sha256(
+    evidence_encoder: TrajectoryEvidenceEncoder,
+) -> str:
+    digest = hashlib.sha256()
+    for name, value in sorted(
+            evidence_encoder.state_dict().items()):
+        if name == "trajectory_queries":
+            continue
+        digest.update(name.encode("utf-8"))
+        digest.update(memoryview(
+            value.detach().cpu().contiguous().numpy()))
+    return digest.hexdigest()
+
+
 class FrozenEvidenceDataset(Dataset):
     """In-memory tensors produced only by frozen Stage 3C modules."""
 
@@ -148,6 +168,7 @@ def _build_evidence_encoder(
         num_evidence_tokens=int(model_cfg.NUM_EVIDENCE_TOKENS),
         num_heads=int(model_cfg.NUM_HEADS),
         dropout=float(model_cfg.DROPOUT),
+        aggregation_mode=resolve_evidence_aggregation_mode(cfg),
     ).to(device=device)
 
 
@@ -241,6 +262,12 @@ def build_frozen_evidence_cache(
             key: list(value.shape)
             for key, value in tensors.items()
         },
+        "fragment_tokens_sha256": _tensor_sha256(
+            tensors["fragment_tokens"]),
+        "fragment_mask_sha256": _tensor_sha256(
+            tensors["fragment_mask"]),
+        "sample_ids_sha256": _tensor_sha256(
+            tensors["sample_ids"]),
         "rpnet_frozen": True,
         "trajectory_fragment_encoder_frozen": True,
         "graph_state_encoder_frozen": True,
@@ -618,7 +645,7 @@ def _train_one_epoch(
 def _checkpoint_payload(
     *,
     evidence_encoder: TrajectoryEvidenceEncoder,
-    optimizer: torch.optim.Optimizer,
+    optimizer: Optional[torch.optim.Optimizer],
     epoch: int,
     cfg: EasyDict,
     e4_checkpoint: Path,
@@ -809,18 +836,35 @@ def run_training(
             "Stage 3E-0 training requires trajectory_evidence mode")
     evidence_encoder.train().requires_grad_(True)
     branch_decoder.eval().requires_grad_(False)
-    optimizer = torch.optim.AdamW(
-        evidence_encoder.parameters(),
-        lr=float(cfg.STAGE3E0.TRAINING.LEARNING_RATE),
-        weight_decay=float(
-            cfg.STAGE3E0.TRAINING.WEIGHT_DECAY),
+    trainable_parameters = [
+        parameter
+        for parameter in evidence_encoder.parameters()
+        if parameter.requires_grad
+    ]
+    trainable_parameter_count = sum(
+        parameter.numel() for parameter in trainable_parameters)
+    optimizer = (
+        None
+        if not trainable_parameters
+        else torch.optim.AdamW(
+            trainable_parameters,
+            lr=float(cfg.STAGE3E0.TRAINING.LEARNING_RATE),
+            weight_decay=float(
+                cfg.STAGE3E0.TRAINING.WEIGHT_DECAY),
+        )
     )
-    train_loader = DataLoader(
-        train_cache,
-        batch_size=int(cfg.STAGE3E0.TRAINING.BATCH_SIZE),
-        shuffle=True,
-        num_workers=int(cfg.STAGE3E0.TRAINING.NUM_WORKERS),
-        pin_memory=device.type == "cuda",
+    train_loader = (
+        None
+        if optimizer is None
+        else DataLoader(
+            train_cache,
+            batch_size=int(cfg.STAGE3E0.TRAINING.BATCH_SIZE),
+            shuffle=True,
+            num_workers=int(cfg.STAGE3E0.TRAINING.NUM_WORKERS),
+            pin_memory=device.type == "cuda",
+            generator=torch.Generator().manual_seed(
+                int(cfg.STAGE3C.SEED)),
+        )
     )
     output_dir.mkdir(parents=True, exist_ok=True)
     checkpoint_dir = output_dir / "checkpoints"
@@ -828,22 +872,14 @@ def run_training(
     with curve_path.open("w", encoding="utf-8"):
         pass
     curve = []
+    initial_shared_state_sha256 = (
+        _shared_evidence_state_sha256(evidence_encoder))
     best_ap = -1.0
     best_epoch = 0
     started_at = time.perf_counter()
     if device.type == "cuda":
         torch.cuda.reset_peak_memory_stats(device)
-    for epoch in range(
-            1, int(cfg.STAGE3E0.TRAINING.EPOCHS) + 1):
-        train_loss = _train_one_epoch(
-            evidence_encoder=evidence_encoder,
-            branch_decoder=branch_decoder,
-            criterion=criterion,
-            optimizer=optimizer,
-            loader=train_loader,
-            cfg=cfg,
-            device=device,
-        )
+    if optimizer is None:
         validation, _ = evaluate_evidence(
             evidence_encoder=evidence_encoder,
             branch_decoder=branch_decoder,
@@ -856,8 +892,9 @@ def run_training(
         branch_ap = float(validation["variants"][
             VARIANT_TRAJECTORY_EVIDENCE]["branch_ap"])
         record = {
-            "epoch": epoch,
-            "train_loss": train_loss,
+            "epoch": 0,
+            "train_loss": None,
+            "parameter_free_evidence_module": True,
             "validation": validation,
         }
         curve.append(record)
@@ -867,7 +904,7 @@ def run_training(
         payload = _checkpoint_payload(
             evidence_encoder=evidence_encoder,
             optimizer=optimizer,
-            epoch=epoch,
+            epoch=0,
             cfg=cfg,
             e4_checkpoint=e4_checkpoint,
             e4_sha256=e4_sha256,
@@ -877,25 +914,85 @@ def run_training(
             checkpoint_dir / "stage3e0.latest.pth.tar",
             payload,
         )
-        if branch_ap > best_ap:
-            best_ap = branch_ap
-            best_epoch = epoch
-            save_stage3e0_checkpoint(
-                checkpoint_dir / "stage3e0.best.pth.tar",
-                payload,
-            )
+        best_ap = branch_ap
+        best_epoch = 0
+        save_stage3e0_checkpoint(
+            checkpoint_dir / "stage3e0.best.pth.tar",
+            payload,
+        )
         print(
-            "Stage3E0 epoch {}/{} loss={:.6f} branch_ap={:.6f} "
+            "Stage3E0 parameter-free evidence branch_ap={:.6f} "
             "delta_no_traj={:+.6f}".format(
-                epoch,
-                int(cfg.STAGE3E0.TRAINING.EPOCHS),
-                train_loss["total"],
                 branch_ap,
                 validation[
                     "trajectory_evidence_minus_no_trajectory_branch_ap"],
             ),
             flush=True,
         )
+    else:
+        for epoch in range(
+                1, int(cfg.STAGE3E0.TRAINING.EPOCHS) + 1):
+            train_loss = _train_one_epoch(
+                evidence_encoder=evidence_encoder,
+                branch_decoder=branch_decoder,
+                criterion=criterion,
+                optimizer=optimizer,
+                loader=train_loader,
+                cfg=cfg,
+                device=device,
+            )
+            validation, _ = evaluate_evidence(
+                evidence_encoder=evidence_encoder,
+                branch_decoder=branch_decoder,
+                criterion=criterion,
+                cache=val_cache,
+                cfg=cfg,
+                device=device,
+                collect_diagnostics=False,
+            )
+            branch_ap = float(validation["variants"][
+                VARIANT_TRAJECTORY_EVIDENCE]["branch_ap"])
+            record = {
+                "epoch": epoch,
+                "train_loss": train_loss,
+                "validation": validation,
+            }
+            curve.append(record)
+            with curve_path.open("a", encoding="utf-8") as output_file:
+                output_file.write(
+                    json.dumps(_plain(record), sort_keys=True) + "\n")
+            payload = _checkpoint_payload(
+                evidence_encoder=evidence_encoder,
+                optimizer=optimizer,
+                epoch=epoch,
+                cfg=cfg,
+                e4_checkpoint=e4_checkpoint,
+                e4_sha256=e4_sha256,
+                metrics=validation,
+            )
+            save_stage3e0_checkpoint(
+                checkpoint_dir / "stage3e0.latest.pth.tar",
+                payload,
+            )
+            if branch_ap > best_ap:
+                best_ap = branch_ap
+                best_epoch = epoch
+                save_stage3e0_checkpoint(
+                    checkpoint_dir / "stage3e0.best.pth.tar",
+                    payload,
+                )
+            print(
+                "Stage3E0 epoch {}/{} loss={:.6f} branch_ap={:.6f} "
+                "delta_no_traj={:+.6f}".format(
+                    epoch,
+                    int(cfg.STAGE3E0.TRAINING.EPOCHS),
+                    train_loss["total"],
+                    branch_ap,
+                    validation[
+                        "trajectory_evidence_minus_no_trajectory_branch_ap"],
+                ),
+                flush=True,
+            )
 
     best_path = checkpoint_dir / "stage3e0.best.pth.tar"
     load_stage3e0_checkpoint(
@@ -923,11 +1020,23 @@ def run_training(
     report = {
         "schema_version": "stage3e0-training-v1",
         "trajectory_mode": TRAJECTORY_MODE_EVIDENCE,
+        "evidence_aggregation_mode":
+            resolve_evidence_aggregation_mode(cfg),
+        "num_evidence_tokens": int(
+            cfg.STAGE3E0.MODEL.NUM_EVIDENCE_TOKENS),
+        "trainable_parameter_count": int(
+            trainable_parameter_count),
+        "parameter_free_evidence_module": optimizer is None,
+        "seed": int(cfg.STAGE3C.SEED),
+        "e4_checkpoint": str(e4_checkpoint.resolve()),
+        "e4_checkpoint_sha256": e4_sha256,
         "best_epoch": best_epoch,
         "best_checkpoint": str(best_path.resolve()),
         "best_validation": best_validation,
         "curve": curve,
         "cache": dict(cache_report),
+        "initial_shared_evidence_state_sha256":
+            initial_shared_state_sha256,
         "artifacts": artifacts,
         "elapsed_seconds": float(
             time.perf_counter() - started_at),
@@ -935,7 +1044,8 @@ def run_training(
             int(torch.cuda.max_memory_allocated(device))
             if device.type == "cuda" else 0),
         "trainable": {
-            "trajectory_evidence_encoder": True,
+            "trajectory_evidence_encoder": optimizer is not None,
+            "trajectory_evidence_module_active": True,
             "rpnet": False,
             "graph_state_encoder": False,
             "trajectory_fragment_encoder": False,
@@ -1077,6 +1187,8 @@ def main() -> None:
         report = {
             "schema_version": "stage3e0-evaluation-v1",
             "trajectory_mode": trajectory_mode,
+            "evidence_aggregation_mode":
+                resolve_evidence_aggregation_mode(cfg),
             "evaluation": evaluation,
             "cache": cache_report,
             "artifacts": artifacts,
@@ -1085,6 +1197,8 @@ def main() -> None:
         _write_json(output_dir / "evaluation.json", report)
     print(json.dumps({
         "trajectory_mode": trajectory_mode,
+        "evidence_aggregation_mode":
+            resolve_evidence_aggregation_mode(cfg),
         "output_dir": str(output_dir.resolve()),
         "completed": True,
     }, indent=2, sort_keys=True))

@@ -7,6 +7,7 @@ STAGE3E0:
   OUTPUT_DIR: "data_self/stage3e0/trajectory_evidence"
 
   MODEL:
+    AGGREGATION_MODE: "latent_attention"
     NUM_EVIDENCE_TOKENS: 4
     NUM_HEADS: 4
     DROPOUT: 0.1

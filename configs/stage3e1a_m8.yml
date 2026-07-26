@@ -1,0 +1,6 @@
+BASE_CONFIG: "stage3e0_trajectory_evidence.yml"
+
+STAGE3E0:
+  OUTPUT_DIR: "data_self/stage3e1a/m8"
+  MODEL:
+    NUM_EVIDENCE_TOKENS: 8

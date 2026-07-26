@@ -323,6 +323,16 @@ class BranchVariantAccumulator:
             "multi_branch": np.flatnonzero(
                 target_arrays["counts"] >= 3),
         }
+        count_groups = {
+            "count_0": np.flatnonzero(
+                target_arrays["counts"] == 0),
+            "count_1": np.flatnonzero(
+                target_arrays["counts"] == 1),
+            "count_2": np.flatnonzero(
+                target_arrays["counts"] == 2),
+            "count_ge3": np.flatnonzero(
+                target_arrays["counts"] >= 3),
+        }
         return {
             "branch_ap": float(ap["average_precision"]),
             "slot_ap": float(binary_average_precision(
@@ -333,6 +343,11 @@ class BranchVariantAccumulator:
                 name: self._subset_metrics(
                     arrays, target_arrays, indices)
                 for name, indices in categories.items()
+            },
+            "by_gt_count": {
+                name: self._subset_metrics(
+                    arrays, target_arrays, indices)
+                for name, indices in count_groups.items()
             },
         }
 

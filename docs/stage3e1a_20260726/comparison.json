@@ -1,0 +1,180 @@
+{
+  "controls": {
+    "e4_checkpoint_sha256": {
+      "identical": true,
+      "value": "1cddc4abab8f6da01b2d033476da0a5bbbcd129d19f9f337e081ce09aa1f2853"
+    },
+    "initial_shared_evidence_state_sha256": {
+      "identical": true,
+      "value": "284cc406a72bed1d2e3c0c8ce759b70c461359af4e49bdc908c91870415d3b4e"
+    },
+    "seed": {
+      "identical": true,
+      "value": 20260724
+    },
+    "train_fragment_mask_sha256": {
+      "identical": true,
+      "value": "60841e06c100b9d6f22fc0b5721fd179394ee76415f7af9526e041987a2cb456"
+    },
+    "train_fragment_tokens_sha256": {
+      "identical": true,
+      "value": "1f790e3ad66769a702f7c4fee2116ae8853925583827abb340df70f49cc11e01"
+    },
+    "train_sample_ids_sha256": {
+      "identical": true,
+      "value": "5ccf19f4f2c0424bb9636387a42e899d136172cb5e410c08d271cedf5925f25d"
+    },
+    "val_fragment_mask_sha256": {
+      "identical": true,
+      "value": "de0cd2ddbe67376d7357d73328428319b2aec55f03c51998997678d69c74ff7e"
+    },
+    "val_fragment_tokens_sha256": {
+      "identical": true,
+      "value": "9de15098e8ddbb893519287e896f5665271c82dd1d50f2584d35aaf1db17b1ff"
+    },
+    "val_sample_ids_sha256": {
+      "identical": true,
+      "value": "5738153ec97595b1c1e4dc027f7b7fb4534f19ed2ce9f9ee712e6d34a384cde7"
+    }
+  },
+  "controls_identical": true,
+  "decision": {
+    "collapse_cosine_threshold": 0.99,
+    "conclusion": "M=1 and M=4 are AP-equivalent within tolerance; the current pathway behaves like global trajectory evidence.",
+    "eight_capacity_gain": false,
+    "equivalence_tolerance": 0.001,
+    "m4_collapsed": true,
+    "m4_minus_m1_branch_ap": 0.0005674674932503176,
+    "m8_collapsed": true,
+    "m8_minus_m1_branch_ap": 0.0007509155256983924,
+    "m8_minus_m4_branch_ap": 0.00018344803244807473,
+    "multi_token_gain_with_collapse": false,
+    "one_approximately_four": true
+  },
+  "results": {
+    "m1": {
+      "artifacts": {
+        "fragment_attention_npz": "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m1/diagnostics/fragment_attention.npz",
+        "visualizations": [
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m1/diagnostics/visualizations/ordinary_sample_0002.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m1/diagnostics/visualizations/ordinary_sample_0004.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m1/diagnostics/visualizations/t_junction_sample_0007.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m1/diagnostics/visualizations/t_junction_sample_0029.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m1/diagnostics/visualizations/multi_branch_sample_0000.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m1/diagnostics/visualizations/multi_branch_sample_0001.png"
+        ]
+      },
+      "best_checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m1/checkpoints/stage3e0.best.pth.tar",
+      "best_epoch": 30,
+      "branch_ap": 0.9138492084801799,
+      "direction_error_mean_degrees": 6.145823519259631,
+      "e4_checkpoint_sha256": "1cddc4abab8f6da01b2d033476da0a5bbbcd129d19f9f337e081ce09aa1f2853",
+      "elapsed_seconds": 117.42651454592124,
+      "endpoint_error_mean_pixels": 5.175152080150628,
+      "evidence_minus_no_trajectory_branch_ap": 0.01833610771666494,
+      "evidence_token_cosine_mean": null,
+      "exact_branch_count_accuracy": 0.716796875,
+      "fragment_attention_cosine_mean": null,
+      "fragment_attention_entropy_mean": 0.9589711451130588,
+      "fragment_attention_top8_jaccard_mean": null,
+      "initial_shared_evidence_state_sha256": "284cc406a72bed1d2e3c0c8ce759b70c461359af4e49bdc908c91870415d3b4e",
+      "multi_branch_ap": 0.846086563671457,
+      "no_trajectory_branch_ap": 0.895513100763515,
+      "num_evidence_tokens": 1,
+      "ordinary_branch_ap": 0.9856246700832098,
+      "peak_cuda_memory_bytes": 189492224,
+      "seed": 20260724,
+      "slot_ap": 0.924349762276657,
+      "t_junction_branch_ap": 0.7118260127315154,
+      "train_fragment_mask_sha256": "60841e06c100b9d6f22fc0b5721fd179394ee76415f7af9526e041987a2cb456",
+      "train_fragment_tokens_sha256": "1f790e3ad66769a702f7c4fee2116ae8853925583827abb340df70f49cc11e01",
+      "train_sample_ids_sha256": "5ccf19f4f2c0424bb9636387a42e899d136172cb5e410c08d271cedf5925f25d",
+      "val_fragment_mask_sha256": "de0cd2ddbe67376d7357d73328428319b2aec55f03c51998997678d69c74ff7e",
+      "val_fragment_tokens_sha256": "9de15098e8ddbb893519287e896f5665271c82dd1d50f2584d35aaf1db17b1ff",
+      "val_sample_ids_sha256": "5738153ec97595b1c1e4dc027f7b7fb4534f19ed2ce9f9ee712e6d34a384cde7"
+    },
+    "m4": {
+      "artifacts": {
+        "fragment_attention_npz": "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m4/diagnostics/fragment_attention.npz",
+        "visualizations": [
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m4/diagnostics/visualizations/ordinary_sample_0002.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m4/diagnostics/visualizations/ordinary_sample_0004.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m4/diagnostics/visualizations/t_junction_sample_0007.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m4/diagnostics/visualizations/t_junction_sample_0029.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m4/diagnostics/visualizations/multi_branch_sample_0000.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m4/diagnostics/visualizations/multi_branch_sample_0001.png"
+        ]
+      },
+      "best_checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m4/checkpoints/stage3e0.best.pth.tar",
+      "best_epoch": 30,
+      "branch_ap": 0.9144166759734302,
+      "direction_error_mean_degrees": 5.968123067474487,
+      "e4_checkpoint_sha256": "1cddc4abab8f6da01b2d033476da0a5bbbcd129d19f9f337e081ce09aa1f2853",
+      "elapsed_seconds": 124.59099350497127,
+      "endpoint_error_mean_pixels": 5.116594622451432,
+      "evidence_minus_no_trajectory_branch_ap": 0.018903575209915258,
+      "evidence_token_cosine_mean": 0.9992351846109765,
+      "exact_branch_count_accuracy": 0.71484375,
+      "fragment_attention_cosine_mean": 0.9999062183584707,
+      "fragment_attention_entropy_mean": 0.9673916484530546,
+      "fragment_attention_top8_jaccard_mean": 0.9824074074074075,
+      "initial_shared_evidence_state_sha256": "284cc406a72bed1d2e3c0c8ce759b70c461359af4e49bdc908c91870415d3b4e",
+      "multi_branch_ap": 0.8512566688851753,
+      "no_trajectory_branch_ap": 0.895513100763515,
+      "num_evidence_tokens": 4,
+      "ordinary_branch_ap": 0.9856271942630598,
+      "peak_cuda_memory_bytes": 189802496,
+      "seed": 20260724,
+      "slot_ap": 0.925062939617845,
+      "t_junction_branch_ap": 0.7111916414158496,
+      "train_fragment_mask_sha256": "60841e06c100b9d6f22fc0b5721fd179394ee76415f7af9526e041987a2cb456",
+      "train_fragment_tokens_sha256": "1f790e3ad66769a702f7c4fee2116ae8853925583827abb340df70f49cc11e01",
+      "train_sample_ids_sha256": "5ccf19f4f2c0424bb9636387a42e899d136172cb5e410c08d271cedf5925f25d",
+      "val_fragment_mask_sha256": "de0cd2ddbe67376d7357d73328428319b2aec55f03c51998997678d69c74ff7e",
+      "val_fragment_tokens_sha256": "9de15098e8ddbb893519287e896f5665271c82dd1d50f2584d35aaf1db17b1ff",
+      "val_sample_ids_sha256": "5738153ec97595b1c1e4dc027f7b7fb4534f19ed2ce9f9ee712e6d34a384cde7"
+    },
+    "m8": {
+      "artifacts": {
+        "fragment_attention_npz": "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m8/diagnostics/fragment_attention.npz",
+        "visualizations": [
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m8/diagnostics/visualizations/ordinary_sample_0002.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m8/diagnostics/visualizations/ordinary_sample_0004.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m8/diagnostics/visualizations/t_junction_sample_0007.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m8/diagnostics/visualizations/t_junction_sample_0029.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m8/diagnostics/visualizations/multi_branch_sample_0000.png",
+          "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m8/diagnostics/visualizations/multi_branch_sample_0001.png"
+        ]
+      },
+      "best_checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3e1a/m8/checkpoints/stage3e0.best.pth.tar",
+      "best_epoch": 30,
+      "branch_ap": 0.9146001240058783,
+      "direction_error_mean_degrees": 5.955323258958453,
+      "e4_checkpoint_sha256": "1cddc4abab8f6da01b2d033476da0a5bbbcd129d19f9f337e081ce09aa1f2853",
+      "elapsed_seconds": 141.19514010101557,
+      "endpoint_error_mean_pixels": 5.1556417925777485,
+      "evidence_minus_no_trajectory_branch_ap": 0.019087023242363332,
+      "evidence_token_cosine_mean": 0.9991842062694819,
+      "exact_branch_count_accuracy": 0.716796875,
+      "fragment_attention_cosine_mean": 0.999917923522714,
+      "fragment_attention_entropy_mean": 0.9679337056646491,
+      "fragment_attention_top8_jaccard_mean": 0.9876860119047619,
+      "initial_shared_evidence_state_sha256": "284cc406a72bed1d2e3c0c8ce759b70c461359af4e49bdc908c91870415d3b4e",
+      "multi_branch_ap": 0.8463245629031595,
+      "no_trajectory_branch_ap": 0.895513100763515,
+      "num_evidence_tokens": 8,
+      "ordinary_branch_ap": 0.985571810147019,
+      "peak_cuda_memory_bytes": 190216704,
+      "seed": 20260724,
+      "slot_ap": 0.9251834980564939,
+      "t_junction_branch_ap": 0.7147015256858517,
+      "train_fragment_mask_sha256": "60841e06c100b9d6f22fc0b5721fd179394ee76415f7af9526e041987a2cb456",
+      "train_fragment_tokens_sha256": "1f790e3ad66769a702f7c4fee2116ae8853925583827abb340df70f49cc11e01",
+      "train_sample_ids_sha256": "5ccf19f4f2c0424bb9636387a42e899d136172cb5e410c08d271cedf5925f25d",
+      "val_fragment_mask_sha256": "de0cd2ddbe67376d7357d73328428319b2aec55f03c51998997678d69c74ff7e",
+      "val_fragment_tokens_sha256": "9de15098e8ddbb893519287e896f5665271c82dd1d50f2584d35aaf1db17b1ff",
+      "val_sample_ids_sha256": "5738153ec97595b1c1e4dc027f7b7fb4534f19ed2ce9f9ee712e6d34a384cde7"
+    }
+  },
+  "schema_version": "stage3e1a-comparison-v1"
+}

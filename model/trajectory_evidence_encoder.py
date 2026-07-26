@@ -10,6 +10,12 @@ import torch.nn as nn
 
 TRAJECTORY_MODE_ORIGINAL_FRAGMENT = "original_fragment"
 TRAJECTORY_MODE_EVIDENCE = "trajectory_evidence"
+EVIDENCE_AGGREGATION_LATENT_ATTENTION = "latent_attention"
+EVIDENCE_AGGREGATION_MASKED_MEAN = "masked_mean"
+VALID_EVIDENCE_AGGREGATION_MODES = {
+    EVIDENCE_AGGREGATION_LATENT_ATTENTION,
+    EVIDENCE_AGGREGATION_MASKED_MEAN,
+}
 VALID_TRAJECTORY_EVIDENCE_MODES = {
     TRAJECTORY_MODE_ORIGINAL_FRAGMENT,
     TRAJECTORY_MODE_EVIDENCE,
@@ -31,6 +37,24 @@ def resolve_trajectory_evidence_mode(cfg) -> str:
     return mode
 
 
+def resolve_evidence_aggregation_mode(cfg) -> str:
+    """Resolve the evidence aggregator without changing Stage 3E-0 defaults."""
+
+    model_cfg = getattr(
+        getattr(cfg, "STAGE3E0", None), "MODEL", None)
+    mode = str(getattr(
+        model_cfg,
+        "AGGREGATION_MODE",
+        EVIDENCE_AGGREGATION_LATENT_ATTENTION,
+    )).strip().lower()
+    if mode not in VALID_EVIDENCE_AGGREGATION_MODES:
+        raise ValueError(
+            "unknown evidence AGGREGATION_MODE {!r}; expected one of "
+            "{}".format(
+                mode, sorted(VALID_EVIDENCE_AGGREGATION_MODES)))
+    return mode
+
+
 class TrajectoryEvidenceEncoder(nn.Module):
     """Summarize a fragment set with branch-independent latent queries.
 
@@ -46,6 +70,7 @@ class TrajectoryEvidenceEncoder(nn.Module):
         num_evidence_tokens: int = 4,
         num_heads: int = 4,
         dropout: float = 0.1,
+        aggregation_mode: str = EVIDENCE_AGGREGATION_LATENT_ATTENTION,
     ) -> None:
         super().__init__()
         if hidden_dim <= 0:
@@ -57,12 +82,35 @@ class TrajectoryEvidenceEncoder(nn.Module):
                 "hidden_dim must be divisible by positive num_heads")
         if dropout < 0.0 or dropout >= 1.0:
             raise ValueError("dropout must be in [0, 1)")
+        aggregation_mode = str(aggregation_mode).strip().lower()
+        if aggregation_mode not in VALID_EVIDENCE_AGGREGATION_MODES:
+            raise ValueError(
+                "unknown aggregation_mode {!r}; expected one of {}".format(
+                    aggregation_mode,
+                    sorted(VALID_EVIDENCE_AGGREGATION_MODES),
+                )
+            )
+        if (
+                aggregation_mode == EVIDENCE_AGGREGATION_MASKED_MEAN
+                and num_evidence_tokens != 1):
+            raise ValueError(
+                "masked_mean requires num_evidence_tokens=1")
 
         self.hidden_dim = int(hidden_dim)
         self.num_evidence_tokens = int(num_evidence_tokens)
-        self.trajectory_queries = nn.Parameter(torch.empty(
-            1, self.num_evidence_tokens, self.hidden_dim))
-        nn.init.normal_(self.trajectory_queries, mean=0.0, std=0.02)
+        self.aggregation_mode = aggregation_mode
+        if aggregation_mode == EVIDENCE_AGGREGATION_MASKED_MEAN:
+            # This is deliberately parameter-free: adding a projection or
+            # affine adapter would no longer be a strict masked-mean baseline.
+            self.fragment_norm = None
+            self.cross_attention = None
+            self.output_norm = None
+            self.trajectory_queries = None
+            return
+
+        # Initialize all shared layers before the size-dependent query tensor.
+        # With a fixed seed this keeps their initialization identical across
+        # M=1/4/8 capacity ablations.
         self.fragment_norm = nn.LayerNorm(self.hidden_dim)
         self.cross_attention = nn.MultiheadAttention(
             embed_dim=self.hidden_dim,
@@ -71,6 +119,9 @@ class TrajectoryEvidenceEncoder(nn.Module):
             batch_first=True,
         )
         self.output_norm = nn.LayerNorm(self.hidden_dim)
+        self.trajectory_queries = nn.Parameter(torch.empty(
+            1, self.num_evidence_tokens, self.hidden_dim))
+        nn.init.normal_(self.trajectory_queries, mean=0.0, std=0.02)
 
     def forward(
         self,
@@ -109,6 +160,26 @@ class TrajectoryEvidenceEncoder(nn.Module):
             self.num_evidence_tokens,
             fragment_count,
         ))
+        if self.aggregation_mode == EVIDENCE_AGGREGATION_MASKED_MEAN:
+            counts = mask.sum(dim=1, keepdim=True)
+            valid_samples = counts.squeeze(1) > 0
+            weights = mask.to(dtype=fragment_tokens.dtype)
+            weights = weights / counts.clamp_min(1).to(
+                dtype=fragment_tokens.dtype)
+            evidence_tokens[:, 0] = torch.sum(
+                weights.unsqueeze(-1) * fragment_tokens,
+                dim=1,
+            )
+            evidence_mask[:, 0] = valid_samples
+            attention[:, 0] = weights
+            outputs = {
+                "trajectory_evidence_tokens": evidence_tokens,
+                "trajectory_evidence_mask": evidence_mask,
+            }
+            if return_attention:
+                outputs["fragment_attention_weights"] = attention
+            return outputs
+
         if fragment_count > 0:
             valid_samples = mask.any(dim=1)
             valid_indices = torch.nonzero(

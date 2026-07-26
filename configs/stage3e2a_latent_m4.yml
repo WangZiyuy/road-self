@@ -1,0 +1,7 @@
+BASE_CONFIG: "stage3e0_trajectory_evidence.yml"
+
+STAGE3E0:
+  OUTPUT_DIR: "data_self/stage3e2a/latent_m4"
+  MODEL:
+    AGGREGATION_MODE: "latent_attention"
+    NUM_EVIDENCE_TOKENS: 4

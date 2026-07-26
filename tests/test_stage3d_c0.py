@@ -355,11 +355,13 @@ class Stage3DC0GroupedMetricsTests(unittest.TestCase):
             },
         })
         target_offsets = torch.tensor([
+            [[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]],
             [[0.2, 0.0], [0.0, 0.0], [0.0, 0.0]],
             [[0.2, 0.0], [0.0, 0.2], [0.0, 0.0]],
             [[0.2, 0.0], [0.0, 0.2], [-0.2, 0.0]],
         ])
         target_mask = torch.tensor([
+            [False, False, False],
             [True, False, False],
             [True, True, False],
             [True, True, True],
@@ -368,6 +370,7 @@ class Stage3DC0GroupedMetricsTests(unittest.TestCase):
             target_offsets, dim=-1, eps=1e-6)
         predictions = {
             "branch_exist_logits": torch.tensor([
+                [-5.0, -5.0, -5.0],
                 [5.0, -5.0, -5.0],
                 [5.0, 5.0, -5.0],
                 [5.0, 5.0, 5.0],
@@ -392,6 +395,14 @@ class Stage3DC0GroupedMetricsTests(unittest.TestCase):
             result["by_category"]["t_junction"]["sample_count"], 1)
         self.assertEqual(
             result["by_category"]["multi_branch"]["sample_count"], 1)
+        self.assertEqual(
+            result["by_gt_count"]["count_0"]["sample_count"], 1)
+        self.assertEqual(
+            result["by_gt_count"]["count_1"]["sample_count"], 1)
+        self.assertEqual(
+            result["by_gt_count"]["count_2"]["sample_count"], 1)
+        self.assertEqual(
+            result["by_gt_count"]["count_ge3"]["sample_count"], 1)
 
 
 if __name__ == "__main__":
