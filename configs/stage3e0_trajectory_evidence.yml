@@ -1,0 +1,26 @@
+BASE_CONFIG: "stage3c_e4_matching_no_object_self_attn.yml"
+
+TRAJECTORY_MODE: "trajectory_evidence"
+
+STAGE3E0:
+  E4_CHECKPOINT: "data_self/stage3c_r2/e4/checkpoints/stage3c_aux.best.pth.tar"
+  OUTPUT_DIR: "data_self/stage3e0/trajectory_evidence"
+
+  MODEL:
+    NUM_EVIDENCE_TOKENS: 4
+    NUM_HEADS: 4
+    DROPOUT: 0.1
+
+  TRAINING:
+    EPOCHS: 30
+    BATCH_SIZE: 64
+    VAL_BATCH_SIZE: 128
+    CACHE_BATCH_SIZE: 64
+    LEARNING_RATE: 0.001
+    WEIGHT_DECAY: 0.0002
+    GRADIENT_CLIP_NORM: 5.0
+    NUM_WORKERS: 0
+
+  DIAGNOSTICS:
+    VISUALIZATION_EXAMPLES_PER_CATEGORY: 2
+    VISUALIZATION_TOP_FRAGMENTS: 8

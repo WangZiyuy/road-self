@@ -1,0 +1,8 @@
+BASE_CONFIG: "stage3e0_trajectory_evidence.yml"
+
+# Evaluation-only compatibility baseline. Missing TRAJECTORY_MODE also resolves
+# to original_fragment, so legacy callers do not create new parameters.
+TRAJECTORY_MODE: "original_fragment"
+
+STAGE3E0:
+  OUTPUT_DIR: "data_self/stage3e0/original_fragment"
