@@ -1,0 +1,248 @@
+test_base_config_preserves_legacy_training_behavior (test_branch_diagnostics.BranchDiagnosticsTest) ... ok
+test_binary_ap_auroc_and_calibration (test_branch_diagnostics.BranchDiagnosticsTest) ... ok
+test_branch_ap_reuses_geometry_true_positive_thresholds (test_branch_diagnostics.BranchDiagnosticsTest) ... ok
+test_duplicate_and_query_similarity_statistics (test_branch_diagnostics.BranchDiagnosticsTest) ... ok
+test_oracle_k_exposes_real_top_k_duplicates (test_branch_diagnostics.BranchDiagnosticsTest) ... ok
+test_stage3c_config_inheritance_is_deep_and_deterministic (test_branch_diagnostics.BranchDiagnosticsTest) ... ok
+test_debug_query_stages_have_expected_shape (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_empty_graph_state_can_run (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_enabling_self_attention_preserves_shared_initialization (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_fragment_permutation_does_not_change_prediction (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_image_graph_and_trajectory_receive_finite_gradients (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_implicit_empty_trajectory_supports_projection (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_modality_ablation_outputs_are_finite (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_no_trajectory_sample_is_finite (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_none_and_zero_walked_path_are_equivalent (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_nonzero_walked_path_changes_prediction (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_one_self_attention_layer_is_optional_and_finite (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_output_shapes (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_padding_fragment_does_not_change_prediction (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_zero_self_attention_checkpoint_is_strict_compatible (test_branch_query_decoder.MultiModalBranchQueryDecoderTest) ... ok
+test_batched_cost_transfer_preserves_per_sample_matching (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_existence_cost_breaks_equal_geometry_tie (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_gt_order_does_not_change_loss (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_no_gt_has_only_existence_supervision (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_no_object_coef_one_reproduces_unweighted_bce (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_no_object_coef_only_downweights_negative_slots (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_unmatched_queries_are_no_branch (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_zero_existence_cost_exactly_reproduces_default_matcher (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_zero_one_and_multiple_branches_backward (test_branch_set_loss.BranchSetCriterionTest) ... ok
+test_all_empty_batch_has_false_mask_and_no_nan (test_branch_targets.BranchTargetBatchTest) ... ok
+test_variable_and_empty_branch_sets_are_padded_explicitly (test_branch_targets.BranchTargetBatchTest) ... ok
+test_close_duplicate_endpoints_merge_by_distance_not_angle (test_branch_targets.ImmediateBranchTargetTest) ... ok
+test_diagonal_direction_is_not_quantized (test_branch_targets.ImmediateBranchTargetTest) ... ok
+test_only_first_target_slot_is_an_immediate_branch (test_branch_targets.ImmediateBranchTargetTest) ... ok
+test_t_junction_and_multibranch_targets_are_preserved (test_branch_targets.ImmediateBranchTargetTest) ... ok
+test_signature_detects_a_different_edge (test_canonical_graph_signature.CanonicalGraphSignatureTest) ... ok
+test_signature_ignores_vertex_edge_ids_and_insertion_order (test_canonical_graph_signature.CanonicalGraphSignatureTest) ... ok
+test_signature_supports_coordinate_tolerance (test_canonical_graph_signature.CanonicalGraphSignatureTest) ... ok
+test_exact_absolute_inference_file_is_not_rebased (test_checkpoint_lifecycle.CheckpointPathTest) ... ok
+test_exact_relative_inference_file_takes_priority (test_checkpoint_lifecycle.CheckpointPathTest) ... ok
+test_legacy_test_ckpt_fallback (test_checkpoint_lifecycle.CheckpointPathTest) ... ok
+test_missing_checkpoint_error_contains_resolved_path (test_checkpoint_lifecycle.CheckpointPathTest) ... ok
+test_new_old_conflict_warns_and_new_path_wins (test_checkpoint_lifecycle.CheckpointPathTest) ... ok
+test_training_paths_are_versioned_and_have_latest (test_checkpoint_lifecycle.CheckpointPathTest) ... ok
+test_model_optimizer_metadata_and_forward_round_trip (test_checkpoint_lifecycle.CheckpointRoundTripTest) ... /home/wangziyu/VecRoad_self/utils/checkpoint_utils.py:211: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  payload = torch.load(checkpoint_path, map_location=map_location)
+ok
+test_incoming_and_explored_edge_directions_are_continuous (test_graph_state.GraphStateTensorTest) ... ok
+test_neighbor_order_does_not_depend_on_edge_insertion (test_graph_state.GraphStateTensorTest) ... ok
+test_legacy_pop_return_is_unchanged (test_graph_state.SearchVertexStateTest) ... ok
+test_push_records_parent_and_incoming_edge (test_graph_state.SearchVertexStateTest) ... ok
+test_same_vertex_can_have_distinct_parent_states (test_graph_state.SearchVertexStateTest) ... ok
+test_start_state_has_no_incoming_direction (test_graph_state.SearchVertexStateTest) ... ok
+test_continuous_inputs_receive_finite_gradients (test_graph_state_encoder.GraphStateEncoderTest) ... ok
+test_explored_edge_order_does_not_change_token (test_graph_state_encoder.GraphStateEncoderTest) ... ok
+test_shape_and_empty_edges_are_finite (test_graph_state_encoder.GraphStateEncoderTest) ... ok
+test_dataset_init_does_not_load_trajectories (test_image_only_path.ImageOnlyDataPathTest) ... ok
+test_get_batch_omits_all_trajectory_fields (test_image_only_path.ImageOnlyDataPathTest) ... ok
+test_image_only_parameter_surface_excludes_legacy_trajectory_modules (test_image_only_path.ImageOnlyModelPathTest) ... /home/wangziyu/miniconda3/envs/pytorch/lib/python3.8/site-packages/torch/nn/modules/transformer.py:409: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at ../aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(output, src_key_padding_mask.logical_not(), mask_check=False)
+ok
+test_output_keys_shapes_and_numerical_equivalence (test_image_only_path.ImageOnlyModelPathTest) ... ok
+test_legacy_visualization_fields_are_still_consumed (test_image_only_visualization.ImageOnlyVisualizationTest) ... ok
+test_path_initializes_empty_legacy_visualization_state (test_image_only_visualization.ImageOnlyVisualizationTest) ... ok
+test_push_and_vis_batch_with_save_examples_uses_real_visualizer (test_image_only_visualization.ImageOnlyVisualizationTest) ... ok
+test_visualize_empty_trajectory_state_draws_no_filter_circle (test_image_only_visualization.ImageOnlyVisualizationTest) ... ok
+test_visualize_is_safe_without_historical_circles_attribute (test_image_only_visualization.ImageOnlyVisualizationTest) ... ok
+test_default_self_uses_anchor_safe_threshold (test_inference_threshold.InferenceThresholdRegressionTest) ... ok
+test_low_threshold_can_merge_and_discard_anchor_component (test_inference_threshold.InferenceThresholdRegressionTest) ... ok
+test_image_only_batch_train_push_save_reload_forward (test_stage0_smoke_training.Stage0SmokeTrainingTest) ... ok
+test_object_dtype_is_rejected (test_stage3c_branch_dataset.Stage3CBranchDatasetTest) ... ok
+test_pickle_free_shard_round_trip (test_stage3c_branch_dataset.Stage3CBranchDatasetTest) ... ok
+test_base_sanity_gate_preserves_legacy_reduction_behavior (test_stage3c_r1.Stage3CR1Test) ... ok
+test_base_sanity_without_optional_gate_remains_eligible (test_stage3c_r1.Stage3CR1Test) ... ok
+test_better_intermediate_sanity_epoch_beats_final_epoch (test_stage3c_r1.Stage3CR1Test) ... ok
+test_decision_requires_m4_identity_coverage_and_gate (test_stage3c_r1.Stage3CR1Test) ... ok
+test_m0_m3_m4_configs_have_exact_controlled_differences (test_stage3c_r1.Stage3CR1Test) ... ok
+test_m3_early_homogeneity_is_not_functional_collapse_alone (test_stage3c_r1.Stage3CR1Test) ... ok
+test_optional_multibranch_gate_checks_all_four_metrics (test_stage3c_r1.Stage3CR1Test) ... ok
+test_sanity_best_and_final_checkpoints_are_distinct_snapshots (test_stage3c_r1.Stage3CR1Test) ... /home/wangziyu/VecRoad_self/tests/test_stage3c_r1.py:153: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  best = torch.load(best_path, map_location="cpu")
+/home/wangziyu/VecRoad_self/tests/test_stage3c_r1.py:154: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  final = torch.load(final_path, map_location="cpu")
+ok
+test_decisions_use_validation_deltas_and_collapse_metrics (test_stage3c_r2.Stage3CR2Test) ... ok
+test_e0_e4_configs_are_a_controlled_matrix (test_stage3c_r2.Stage3CR2Test) ... ok
+test_modality_summary_reports_required_metrics_by_gt_count (test_stage3c_r2.Stage3CR2Test) ... ok
+test_support_supervision_readiness_does_not_claim_traj_gain (test_stage3c_r2.Stage3CR2Test) ... ok
+test_duplicate_queries_are_reported (test_stage3c_training_components.Stage3CMetricsTest) ... ok
+test_perfect_prediction_metrics (test_stage3c_training_components.Stage3CMetricsTest) ... ok
+test_auxiliary_checkpoint_round_trip (test_stage3c_training_components.Stage3CTrainingComponentTest) ... /home/wangziyu/VecRoad_self/utils/stage3c_checkpoint.py:62: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  payload = torch.load(str(path), map_location=map_location)
+ok
+test_e4_small_batch_forward_backward_is_finite (test_stage3c_training_components.Stage3CTrainingComponentTest) ... ok
+test_empty_trajectory_sample_is_trainable (test_stage3c_training_components.Stage3CTrainingComponentTest) ... ok
+test_frozen_rpnet_feature_cache_is_float32_and_index_stable (test_stage3c_training_components.Stage3CTrainingComponentTest) ... ok
+test_pre_branch_is_exact_graph_image_concatenation (test_stage3d_b0.PreTrajectorySupportInputTests) ... ok
+test_pre_states_do_not_depend_on_trajectory_fragments (test_stage3d_b0.PreTrajectorySupportInputTests) ... ok
+test_support_head_accepts_256_dim_branch_and_old_strict_state (test_stage3d_b0.PreTrajectorySupportInputTests) ... ok
+test_checkpoint_marks_pretrajectory_non_circular_contract (test_stage3d_b0.Stage3DB0LifecycleTests) ... /home/wangziyu/VecRoad_self/utils/stage3d_checkpoint.py:66: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  payload = torch.load(str(resolved), map_location=map_location)
+ok
+test_three_seed_aggregation_and_acceptance_gate (test_stage3d_b0.Stage3DB0LifecycleTests) ... ok
+test_branch_hit_rate_has_correct_non_recall_name (test_stage3d_b0.SupportRankingMetricTests) ... ok
+test_extended_ranking_metrics_and_invalid_diagnostics (test_stage3d_b0.SupportRankingMetricTests) ... ok
+test_segment_only_component_examples_are_reported (test_stage3d_b0.SupportRankingMetricTests) ... ok
+test_decoder_fragment_values_match_attention_representation (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_freeze_modules_sets_eval_and_no_grad (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_nonpositive_topk_is_rejected (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_original_context_recompute_is_exact (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_random_permutation_is_deterministic_and_batch_invariant (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_support_pooling_masks_padding_and_handles_empty_samples (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_topk_at_or_above_valid_count_equals_full_pooling (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_topk_support_pooling_selects_only_highest_valid_fragments (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_zero_context_recompute_matches_no_trajectory_decoder (test_stage3d_c0.FrozenSupportAggregationTests) ... ok
+test_high_support_ap_without_branch_gain_reports_fusion_problem (test_stage3d_c0.Stage3DC0DecisionTests) ... ok
+test_positive_offline_result_can_enter_training_experiment (test_stage3d_c0.Stage3DC0DecisionTests) ... ok
+test_slot_ap_and_road_categories_are_reported (test_stage3d_c0.Stage3DC0GroupedMetricsTests) ... ok
+test_comparison_gate_selects_best_nonrandom_c1a (test_stage3d_c1.Stage3DC1ComparisonTests) ... ok
+test_aggregation_projection_starts_from_e4_values (test_stage3d_c1.Stage3DC1FusionTests) ... ok
+test_branch_gradient_reaches_new_fusion_only (test_stage3d_c1.Stage3DC1FusionTests) ... ok
+test_default_mode_is_strict_original_attention (test_stage3d_c1.Stage3DC1FusionTests) ... ok
+test_frozen_c1a_cache_path_matches_dynamic_frozen_path (test_stage3d_c1.Stage3DC1FusionTests) ... ok
+test_original_mode_exactly_reuses_e4_forward (test_stage3d_c1.Stage3DC1FusionTests) ... ok
+test_pre_trajectory_branch_identity_is_non_circular (test_stage3d_c1.Stage3DC1FusionTests) ... ok
+test_support_forward_is_finite_with_empty_trajectory_sample (test_stage3d_c1.Stage3DC1FusionTests) ... ok
+test_topk_and_random_aggregation_are_explicit_and_deterministic (test_stage3d_c1.Stage3DC1FusionTests) ... ok
+test_c1a_and_c1b_trainability_boundaries (test_stage3d_c1.Stage3DC1TrainabilityAndCheckpointTests) ... ok
+test_checkpoint_round_trip_is_strict_and_sha_guarded (test_stage3d_c1.Stage3DC1TrainabilityAndCheckpointTests) ... /home/wangziyu/VecRoad_self/utils/stage3d_c1_checkpoint.py:85: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  payload = torch.load(str(resolved), map_location=map_location)
+ok
+test_m1_diagnostics_include_mass_entropy_and_empty_zero (test_stage3e3.Stage3E3RegressionTests) ... ok
+test_no_trajectory_is_exact_image_graph_prediction (test_stage3e3.Stage3E3RegressionTests) ... ok
+test_only_evidence_encoder_updates_and_frozen_sha_is_stable (test_stage3e3.Stage3E3RegressionTests) ... ok
+test_seed_configs_change_only_seed_and_output (test_stage3e3.Stage3E3RegressionTests) ... ok
+test_thinning_is_deterministic_batch_order_invariant_and_safe (test_stage3e3.Stage3E3RobustnessTransformTests) ... ok
+test_thinning_keeps_one_real_fragment_and_never_padding (test_stage3e3.Stage3E3RobustnessTransformTests) ... ok
+test_variant_cache_does_not_change_fragment_token_values (test_stage3e3.Stage3E3RobustnessTransformTests) ... ok
+test_wrong_mapping_is_global_and_batch_order_invariant (test_stage3e3.Stage3E3RobustnessTransformTests) ... ok
+test_wrong_sample_replaces_only_named_trajectory_fields (test_stage3e3.Stage3E3RobustnessTransformTests) ... ok
+test_summary_applies_acceptance_gate (test_stage3e3.Stage3E3SummaryTests) ... ok
+test_build_offsets_identity_order_time_coordinates_and_grid (test_structured_trajectory_store.StructuredTrajectoryStoreTest) ... ok
+test_nonempty_output_requires_explicit_overwrite (test_structured_trajectory_store.StructuredTrajectoryStoreTest) ... ok
+test_reopen_and_repeated_build_are_content_stable (test_structured_trajectory_store.StructuredTrajectoryStoreTest) ... ok
+test_formal_image_only_run_is_isolated_and_fast_by_default (test_training_configuration.TrainingConfigurationTest) ... ok
+test_global_step_uses_configured_path_iterations (test_training_configuration.TrainingConfigurationTest) ... ok
+test_missing_path_iterations_preserves_legacy_default (test_training_configuration.TrainingConfigurationTest) ... ok
+test_smoke_config_uses_two_path_iterations (test_training_configuration.TrainingConfigurationTest) ... ok
+test_train_loop_has_no_functional_hardcoded_2048 (test_training_configuration.TrainingConfigurationTest) ... ok
+test_empty_and_zero_budget_batches_are_explicit (test_trajectory_batch.TrajectoryBatchTests) ... ok
+test_max_fragments_uses_geometry_and_deterministic_ties (test_trajectory_batch.TrajectoryBatchTests) ... ok
+test_polyline_distance_includes_segment_interior (test_trajectory_batch.TrajectoryBatchTests) ... ok
+test_unbounded_mode_preserves_input_order_and_identity (test_trajectory_batch.TrajectoryBatchTests) ... ok
+test_variable_fragments_points_masks_coordinates_and_time (test_trajectory_batch.TrajectoryBatchTests) ... ok
+test_angle_description_is_continuous_not_bucketed (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_bounded_always_keeps_nearest_fraction (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_bounded_descriptors_are_only_built_for_prepool (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_bounded_does_not_call_full_support_assignment (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_bounded_is_repeatable_and_input_order_invariant (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_bounded_result_count_does_not_exceed_budget (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_bounded_result_enters_batch_with_invalid_support_mask (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_bounded_retains_sparse_branch_from_dense_trunk (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_compression_result_is_not_selected_a_second_time_in_batch (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_duplicate_anomaly_geometry_is_not_selected_repeatedly (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_fast_descriptor_maps_reverse_travel_to_same_axis (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_invalid_axis_only_enters_near_or_distance_fallback (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_legacy_default_near_fraction_remains_unchanged (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_near_diverse_is_bounded_deterministic_and_order_invariant (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_near_diverse_ties_use_identity_not_input_position (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_nearest_is_exactly_the_batch_builder_baseline (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_rare_branch_survives_when_nearest_is_main_road_dominated (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_reverse_directions_have_the_same_road_axis_descriptor (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_support_count_covers_every_source_candidate (test_trajectory_compression.TrajectoryCompressionTests) ... ok
+test_empty_sample_is_zero_finite_and_batch_independent (test_trajectory_encoder.TrajectoryFragmentEncoderTest) ... ok
+test_extra_padding_length_does_not_change_valid_encoding (test_trajectory_encoder.TrajectoryFragmentEncoderTest) ... ok
+test_fragment_permutation_only_permutes_outputs (test_trajectory_encoder.TrajectoryFragmentEncoderTest) ... ok
+test_point_order_and_direction_change_encoding (test_trajectory_encoder.TrajectoryFragmentEncoderTest) ... ok
+test_real_zero_coordinate_is_a_valid_point (test_trajectory_encoder.TrajectoryFragmentEncoderTest) ... ok
+test_shapes_masks_padding_zero_and_finite (test_trajectory_encoder.TrajectoryFragmentEncoderTest) ... ok
+test_track_index_has_no_learned_semantic_effect (test_trajectory_encoder.TrajectoryFragmentEncoderTest) ... ok
+test_comparison_verifies_controls_and_global_pooling_case (test_trajectory_evidence_encoder.Stage3E1AAblationTests) ... ok
+test_m1_m4_m8_configs_only_change_count_and_output (test_trajectory_evidence_encoder.Stage3E1AAblationTests) ... ok
+test_capacity_comparison_detects_global_mean_equivalence (test_trajectory_evidence_encoder.Stage3E2ACapacityTests) ... ok
+test_capacity_configs_only_change_aggregator_count_and_output (test_trajectory_evidence_encoder.Stage3E2ACapacityTests) ... ok
+test_checkpoint_round_trip_and_sha_guard (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... /home/wangziyu/VecRoad_self/utils/stage3e0_checkpoint.py:75: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  payload = torch.load(str(resolved), map_location=map_location)
+ok
+test_diagnostics_expose_latent_and_attention_collapse (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_empty_sample_is_zero_and_finite (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_evidence_aggregation_resolver_is_legacy_safe (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_evidence_mode_requires_encoder (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_fragment_reordering_only_reorders_attention (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_gradient_reaches_only_evidence_encoder (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_masked_mean_is_exact_parameter_free_and_padding_safe (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_masked_mean_rejects_multiple_output_tokens (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_original_ablation_reproduces_decoder_forward (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_original_fragment_mode_is_an_exact_passthrough (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_output_shape_mask_and_attention (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_parameter_free_mean_checkpoint_round_trip (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_resolver_defaults_to_original_and_rejects_unknown (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_shared_initialization_is_identical_across_token_counts (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_zero_fragment_dimension_is_supported (test_trajectory_evidence_encoder.TrajectoryEvidenceEncoderTests) ... ok
+test_context_points_are_added_without_changing_track_identity (test_trajectory_fragment_query.TrajectoryFragmentQueryTest) ... ok
+test_empty_window_returns_an_empty_list (test_trajectory_fragment_query.TrajectoryFragmentQueryTest) ... ok
+test_point_visit_preserves_order_timestamps_and_relative_coordinates (test_trajectory_fragment_query.TrajectoryFragmentQueryTest) ... ok
+test_result_order_is_deterministic (test_trajectory_fragment_query.TrajectoryFragmentQueryTest) ... ok
+test_same_track_entering_twice_returns_two_ordered_fragments (test_trajectory_fragment_query.TrajectoryFragmentQueryTest) ... ok
+test_segment_crossing_window_is_recalled_with_both_endpoints_outside (test_trajectory_fragment_query.TrajectoryFragmentQueryTest) ... ok
+test_spatial_gap_splits_an_apparent_crossing (test_trajectory_fragment_query.TrajectoryFragmentQueryTest) ... ok
+test_time_gap_splits_an_apparent_crossing (test_trajectory_fragment_query.TrajectoryFragmentQueryTest) ... ok
+test_exact_original_size_is_aligned_without_transform (test_trajectory_fragment_visualization.TrajectoryFragmentBackgroundAlignmentTest) ... ok
+test_nonuniform_larger_image_is_rejected_instead_of_guessed (test_trajectory_fragment_visualization.TrajectoryFragmentBackgroundAlignmentTest) ... ok
+test_uniform_right_bottom_canvas_is_top_left_padding (test_trajectory_fragment_visualization.TrajectoryFragmentBackgroundAlignmentTest) ... ok
+test_baseline_config_is_image_only_and_preserves_vecroad_constants (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_explicit_modes (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_legacy_mode_preserves_loader_and_preprocessing (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_legacy_use_traj_mapping (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_new_mode_wins_and_warns_on_conflict (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_none_mode_does_not_call_region_loader (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_none_mode_does_not_pad_or_normalize (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_none_mode_has_no_fetch_fields (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_none_mode_rejects_a_trajectory_dependent_model (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_unknown_and_reserved_modes_fail (test_trajectory_mode.TrajectoryModeTest) ... ok
+test_graph_only_masks_image_walked_path_and_trajectory (test_trajectory_support.GraphOnlyAblationTests) ... ok
+test_checkpoint_round_trip_is_strict (test_trajectory_support.TrajectorySupportHeadTests) ... /home/wangziyu/VecRoad_self/utils/stage3d_checkpoint.py:66: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  payload = torch.load(str(resolved), map_location=map_location)
+ok
+test_empty_supervision_is_differentiable (test_trajectory_support.TrajectorySupportHeadTests) ... ok
+test_loss_uses_only_matched_valid_branches_and_fragments (test_trajectory_support.TrajectorySupportHeadTests) ... ok
+test_shape_padding_mask_and_finite_gradients (test_trajectory_support.TrajectorySupportHeadTests) ... ok
+test_label_diagnostics_reports_multibranch_availability (test_trajectory_support.TrajectorySupportMetricTests) ... ok
+test_soft_label_sanity_uses_reducible_loss_not_zero (test_trajectory_support.TrajectorySupportMetricTests) ... ok
+test_support_metrics_compare_head_and_attention (test_trajectory_support.TrajectorySupportMetricTests) ... ok
+test_crossing_segment_has_zero_distance_but_wrong_axis (test_trajectory_support.TrajectorySupportTargetTests) ... ok
+test_distance_axis_coverage_and_reverse_direction (test_trajectory_support.TrajectorySupportTargetTests) ... ok
+test_no_effective_fragment_marks_branch_invalid (test_trajectory_support.TrajectorySupportTargetTests) ... ok
+test_zero_threshold_does_not_turn_padding_into_support (test_trajectory_support.TrajectorySupportTargetTests) ... ok
+
+----------------------------------------------------------------------
+Ran 219 tests in 60.844s
+
+OK
+extracted 1 subtiles from 1 tiles (missing 3)
+loading initial paths
+In region:unit-region, in tile Point(0, 0)Point(0, 0)
+extracted 1 subtiles from 1 tiles (missing 3)
+loading initial paths
+In region:smoke-region, in tile Point(0, 0)Point(0, 0)

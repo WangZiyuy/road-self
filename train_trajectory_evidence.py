@@ -101,6 +101,19 @@ def _tensor_sha256(value: torch.Tensor) -> str:
     return hashlib.sha256(memoryview(array)).hexdigest()
 
 
+def _module_state_sha256(module: torch.nn.Module) -> str:
+    """Hash a module state without depending on checkpoint serialization."""
+
+    digest = hashlib.sha256()
+    for name, value in sorted(module.state_dict().items()):
+        digest.update(name.encode("utf-8"))
+        digest.update(str(value.dtype).encode("ascii"))
+        digest.update(str(tuple(value.shape)).encode("ascii"))
+        digest.update(memoryview(
+            value.detach().cpu().contiguous().numpy()))
+    return digest.hexdigest()
+
+
 def _shared_evidence_state_sha256(
     evidence_encoder: TrajectoryEvidenceEncoder,
 ) -> str:
@@ -113,6 +126,56 @@ def _shared_evidence_state_sha256(
         digest.update(memoryview(
             value.detach().cpu().contiguous().numpy()))
     return digest.hexdigest()
+
+
+def _validate_stage3e3_preflight(
+    cfg: EasyDict,
+    *,
+    e4_sha256: str,
+    cache_report: Mapping[str, Any],
+) -> Optional[Dict[str, Any]]:
+    """Enforce optional Stage 3E-3 immutable-input controls."""
+
+    stage3e3 = getattr(cfg, "STAGE3E3", None)
+    preflight = getattr(stage3e3, "PREFLIGHT", None)
+    expected = getattr(preflight, "EXPECTED_SHA256", None)
+    if expected is None:
+        return None
+    checks = {
+        "e4_checkpoint": (
+            str(e4_sha256), str(expected.E4_CHECKPOINT)),
+        "train_fragment_tokens": (
+            str(cache_report["train"]["fragment_tokens_sha256"]),
+            str(expected.TRAIN_FRAGMENT_TOKENS)),
+        "val_fragment_tokens": (
+            str(cache_report["val"]["fragment_tokens_sha256"]),
+            str(expected.VAL_FRAGMENT_TOKENS)),
+        "train_fragment_mask": (
+            str(cache_report["train"]["fragment_mask_sha256"]),
+            str(expected.TRAIN_FRAGMENT_MASK)),
+        "val_fragment_mask": (
+            str(cache_report["val"]["fragment_mask_sha256"]),
+            str(expected.VAL_FRAGMENT_MASK)),
+        "train_sample_ids": (
+            str(cache_report["train"]["sample_ids_sha256"]),
+            str(expected.TRAIN_SAMPLE_IDS)),
+        "val_sample_ids": (
+            str(cache_report["val"]["sample_ids_sha256"]),
+            str(expected.VAL_SAMPLE_IDS)),
+    }
+    mismatches = {
+        name: {"actual": actual, "expected": wanted}
+        for name, (actual, wanted) in checks.items()
+        if actual != wanted
+    }
+    if mismatches:
+        raise RuntimeError(
+            "Stage 3E-3 preflight SHA mismatch: {}".format(
+                json.dumps(mismatches, sort_keys=True)))
+    return {
+        name: {"actual": actual, "expected": wanted, "matched": True}
+        for name, (actual, wanted) in checks.items()
+    }
 
 
 class FrozenEvidenceDataset(Dataset):
@@ -235,6 +298,12 @@ def build_frozen_evidence_cache(
                     "trajectory_batch"]["traj_xy_norm"],
                 "point_mask": batch[
                     "trajectory_batch"]["point_mask"],
+                "track_indices": batch[
+                    "trajectory_batch"]["track_indices"],
+                "start_point_indices": batch[
+                    "trajectory_batch"]["start_point_indices"],
+                "end_point_indices": batch[
+                    "trajectory_batch"]["end_point_indices"],
             }
             for key, value in values.items():
                 chunks.setdefault(key, []).append(
@@ -392,7 +461,10 @@ def _evidence_diagnostics(
     attention_cosine_values = []
     attention_top8_jaccard = []
     entropy_values = []
+    entropy_natural_values = []
+    effective_fragment_counts = []
     maximum_attention = []
+    cumulative_attention = {1: [], 4: [], 8: [], 16: []}
     latent_count = tokens.shape[1]
     for sample_index in range(tokens.shape[0]):
         valid_latents = evidence_mask[sample_index].astype(bool)
@@ -437,9 +509,17 @@ def _evidence_diagnostics(
             for row in selected:
                 entropy = float(-np.sum(
                     row * np.log(np.maximum(row, 1e-12))))
+                entropy_natural_values.append(entropy)
+                effective_fragment_counts.append(math.exp(entropy))
                 entropy_values.append(
                     entropy / denominator
                     if fragment_count > 1 else 0.0)
+                descending = np.sort(row, kind="stable")[::-1]
+                for top_k in cumulative_attention:
+                    cumulative_attention[top_k].append(float(
+                        descending[:min(top_k, fragment_count)].sum()))
+    empty_samples = ~fragment_mask.astype(bool).any(axis=1)
+    empty_tokens = tokens[empty_samples]
     return {
         "num_evidence_tokens": int(latent_count),
         "pairwise_cosine_similarity": _distribution(cosine_values),
@@ -450,8 +530,24 @@ def _evidence_diagnostics(
         "hidden_norm": _distribution(token_norms),
         "normalized_fragment_attention_entropy":
             _distribution(entropy_values),
+        "fragment_attention_entropy_natural":
+            _distribution(entropy_natural_values),
+        "effective_fragment_count":
+            _distribution(effective_fragment_counts),
         "maximum_fragment_attention":
             _distribution(maximum_attention),
+        "top1_cumulative_attention_mass":
+            _distribution(cumulative_attention[1]),
+        "top4_cumulative_attention_mass":
+            _distribution(cumulative_attention[4]),
+        "top8_cumulative_attention_mass":
+            _distribution(cumulative_attention[8]),
+        "top16_cumulative_attention_mass":
+            _distribution(cumulative_attention[16]),
+        "empty_trajectory_sample_count": int(empty_samples.sum()),
+        "empty_trajectory_context_is_zero": bool(
+            not empty_tokens.size
+            or np.array_equal(empty_tokens, np.zeros_like(empty_tokens))),
         "all_finite": bool(
             np.isfinite(tokens).all()
             and np.isfinite(attention).all()),
@@ -829,6 +925,7 @@ def run_training(
     e4_checkpoint: Path,
     e4_sha256: str,
     cache_report: Mapping[str, Any],
+    frozen_modules: Optional[Mapping[str, torch.nn.Module]] = None,
 ) -> Dict[str, Any]:
     if resolve_trajectory_evidence_mode(
             cfg) != TRAJECTORY_MODE_EVIDENCE:
@@ -874,6 +971,10 @@ def run_training(
     curve = []
     initial_shared_state_sha256 = (
         _shared_evidence_state_sha256(evidence_encoder))
+    frozen_hashes_before = {
+        name: _module_state_sha256(module)
+        for name, module in (frozen_modules or {}).items()
+    }
     best_ap = -1.0
     best_epoch = 0
     started_at = time.perf_counter()
@@ -1017,6 +1118,17 @@ def run_training(
         cfg=cfg,
         output_dir=output_dir,
     )
+    frozen_hashes_after = {
+        name: _module_state_sha256(module)
+        for name, module in (frozen_modules or {}).items()
+    }
+    frozen_unchanged = all(
+        frozen_hashes_after.get(name) == digest
+        for name, digest in frozen_hashes_before.items()
+    )
+    if not frozen_unchanged:
+        raise RuntimeError("a frozen Stage 3E backbone changed during training")
+    best_checkpoint_sha256 = _sha256(best_path)
     report = {
         "schema_version": "stage3e0-training-v1",
         "trajectory_mode": TRAJECTORY_MODE_EVIDENCE,
@@ -1032,6 +1144,7 @@ def run_training(
         "e4_checkpoint_sha256": e4_sha256,
         "best_epoch": best_epoch,
         "best_checkpoint": str(best_path.resolve()),
+        "best_checkpoint_sha256": best_checkpoint_sha256,
         "best_validation": best_validation,
         "curve": curve,
         "cache": dict(cache_report),
@@ -1051,6 +1164,9 @@ def run_training(
             "trajectory_fragment_encoder": False,
             "branch_decoder": False,
         },
+        "frozen_module_sha256_before": frozen_hashes_before,
+        "frozen_module_sha256_after": frozen_hashes_after,
+        "frozen_modules_unchanged": frozen_unchanged,
         "branch_predictions_feed_path_push": False,
     }
     _write_json(output_dir / "training_summary.json", report)
@@ -1107,6 +1223,12 @@ def main() -> None:
         map_location=device,
     )
     _freeze_modules((rpnet,) + tuple(modules))
+    frozen_modules = {
+        "rpnet": rpnet,
+        "trajectory_fragment_encoder": modules[0],
+        "graph_state_encoder": modules[1],
+        "branch_decoder": modules[2],
+    }
     evidence_encoder = _build_evidence_encoder(cfg, device)
     if args.checkpoint is not None:
         load_stage3e0_checkpoint(
@@ -1145,6 +1267,13 @@ def main() -> None:
             device=device,
         )
         cache_report["train"] = train_cache_report
+        preflight_checks = _validate_stage3e3_preflight(
+            cfg,
+            e4_sha256=e4_sha256,
+            cache_report=cache_report,
+        )
+        if preflight_checks is not None:
+            cache_report["stage3e3_preflight"] = preflight_checks
     criterion = _build_branch_criterion(cfg)
     if args.mode == "train":
         report = run_training(
@@ -1160,6 +1289,7 @@ def main() -> None:
             e4_checkpoint=e4_checkpoint,
             e4_sha256=e4_sha256,
             cache_report=cache_report,
+            frozen_modules=frozen_modules,
         )
     else:
         selected_encoder = (

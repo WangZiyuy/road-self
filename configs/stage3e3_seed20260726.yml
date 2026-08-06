@@ -1,0 +1,7 @@
+BASE_CONFIG: "stage3e3_seed20260724.yml"
+
+STAGE3C:
+  SEED: 20260726
+
+STAGE3E0:
+  OUTPUT_DIR: "data_self/stage3e3/seed20260726"

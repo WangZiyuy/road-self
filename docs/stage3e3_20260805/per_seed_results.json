@@ -1,0 +1,137 @@
+{
+  "20260724": {
+    "best_checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3e3/seed20260724/checkpoints/stage3e0.best.pth.tar",
+    "best_checkpoint_sha256": "d7f00a12a10c8e80687945f0f68596883bdd4b038893d828bba297601b451ff6",
+    "best_epoch": 30,
+    "branch_ap": {
+      "full_trajectory": 0.9138492084801799,
+      "image_graph": 0.895513100763515,
+      "no_trajectory": 0.895513100763515,
+      "original_fragment": 0.9005141087707441,
+      "retain_25": 0.9122370045894131,
+      "retain_50": 0.9118066065238731,
+      "retain_75": 0.9139228382204783,
+      "wrong_sample_trajectory": 0.8931305989178084
+    },
+    "cache_sha256": {
+      "train": {
+        "fragment_mask_sha256": "60841e06c100b9d6f22fc0b5721fd179394ee76415f7af9526e041987a2cb456",
+        "fragment_tokens_sha256": "1f790e3ad66769a702f7c4fee2116ae8853925583827abb340df70f49cc11e01",
+        "sample_ids_sha256": "5ccf19f4f2c0424bb9636387a42e899d136172cb5e410c08d271cedf5925f25d"
+      },
+      "val": {
+        "fragment_mask_sha256": "de0cd2ddbe67376d7357d73328428319b2aec55f03c51998997678d69c74ff7e",
+        "fragment_tokens_sha256": "9de15098e8ddbb893519287e896f5665271c82dd1d50f2584d35aaf1db17b1ff",
+        "sample_ids_sha256": "5738153ec97595b1c1e4dc027f7b7fb4534f19ed2ce9f9ee712e6d34a384cde7"
+      }
+    },
+    "category_full_minus_image_graph_branch_ap": {
+      "multi_branch": 0.06655228477876207,
+      "ordinary": -0.0015632464253103606,
+      "t_junction": 0.08728710202523648
+    },
+    "e4_checkpoint_sha256": "1cddc4abab8f6da01b2d033476da0a5bbbcd129d19f9f337e081ce09aa1f2853",
+    "elapsed_seconds": 369.5542259057984,
+    "frozen_modules_unchanged": true,
+    "full_minus_image_graph_branch_ap": 0.01833610771666494,
+    "full_minus_original_fragment_branch_ap": 0.013335099709435805,
+    "no_trajectory_equivalence": {
+      "branch_directions": 0.0,
+      "branch_exist_logits": 0.0,
+      "branch_offsets_norm": 0.0,
+      "maximum": 0.0
+    },
+    "peak_cuda_memory_bytes": 189688832,
+    "seed": 20260724
+  },
+  "20260725": {
+    "best_checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3e3/seed20260725/checkpoints/stage3e0.best.pth.tar",
+    "best_checkpoint_sha256": "a552f0c89949f9c1acbb71ab3d661660a9a615881b60267e06e29f74835f5f68",
+    "best_epoch": 28,
+    "branch_ap": {
+      "full_trajectory": 0.9106013842547932,
+      "image_graph": 0.895513100763515,
+      "no_trajectory": 0.895513100763515,
+      "original_fragment": 0.9005141087707441,
+      "retain_25": 0.9111816010565429,
+      "retain_50": 0.9109247395966927,
+      "retain_75": 0.9121667474564299,
+      "wrong_sample_trajectory": 0.8892082420719885
+    },
+    "cache_sha256": {
+      "train": {
+        "fragment_mask_sha256": "60841e06c100b9d6f22fc0b5721fd179394ee76415f7af9526e041987a2cb456",
+        "fragment_tokens_sha256": "1f790e3ad66769a702f7c4fee2116ae8853925583827abb340df70f49cc11e01",
+        "sample_ids_sha256": "5ccf19f4f2c0424bb9636387a42e899d136172cb5e410c08d271cedf5925f25d"
+      },
+      "val": {
+        "fragment_mask_sha256": "de0cd2ddbe67376d7357d73328428319b2aec55f03c51998997678d69c74ff7e",
+        "fragment_tokens_sha256": "9de15098e8ddbb893519287e896f5665271c82dd1d50f2584d35aaf1db17b1ff",
+        "sample_ids_sha256": "5738153ec97595b1c1e4dc027f7b7fb4534f19ed2ce9f9ee712e6d34a384cde7"
+      }
+    },
+    "category_full_minus_image_graph_branch_ap": {
+      "multi_branch": 0.07793878074558713,
+      "ordinary": -0.002832188800633406,
+      "t_junction": 0.08079671621998596
+    },
+    "e4_checkpoint_sha256": "1cddc4abab8f6da01b2d033476da0a5bbbcd129d19f9f337e081ce09aa1f2853",
+    "elapsed_seconds": 351.7805264974013,
+    "frozen_modules_unchanged": true,
+    "full_minus_image_graph_branch_ap": 0.01508828349127822,
+    "full_minus_original_fragment_branch_ap": 0.010087275484049085,
+    "no_trajectory_equivalence": {
+      "branch_directions": 0.0,
+      "branch_exist_logits": 0.0,
+      "branch_offsets_norm": 0.0,
+      "maximum": 0.0
+    },
+    "peak_cuda_memory_bytes": 189688832,
+    "seed": 20260725
+  },
+  "20260726": {
+    "best_checkpoint": "/home/wangziyu/VecRoad_self/data_self/stage3e3/seed20260726/checkpoints/stage3e0.best.pth.tar",
+    "best_checkpoint_sha256": "ae4a8157885a89dcbfe596123dc974b2ac00d27aae7923229b227be9827b3dae",
+    "best_epoch": 30,
+    "branch_ap": {
+      "full_trajectory": 0.9154754986909417,
+      "image_graph": 0.895513100763515,
+      "no_trajectory": 0.895513100763515,
+      "original_fragment": 0.9005141087707441,
+      "retain_25": 0.9139789849513896,
+      "retain_50": 0.9139338325227222,
+      "retain_75": 0.9151745795754529,
+      "wrong_sample_trajectory": 0.895434033977465
+    },
+    "cache_sha256": {
+      "train": {
+        "fragment_mask_sha256": "60841e06c100b9d6f22fc0b5721fd179394ee76415f7af9526e041987a2cb456",
+        "fragment_tokens_sha256": "1f790e3ad66769a702f7c4fee2116ae8853925583827abb340df70f49cc11e01",
+        "sample_ids_sha256": "5ccf19f4f2c0424bb9636387a42e899d136172cb5e410c08d271cedf5925f25d"
+      },
+      "val": {
+        "fragment_mask_sha256": "de0cd2ddbe67376d7357d73328428319b2aec55f03c51998997678d69c74ff7e",
+        "fragment_tokens_sha256": "9de15098e8ddbb893519287e896f5665271c82dd1d50f2584d35aaf1db17b1ff",
+        "sample_ids_sha256": "5738153ec97595b1c1e4dc027f7b7fb4534f19ed2ce9f9ee712e6d34a384cde7"
+      }
+    },
+    "category_full_minus_image_graph_branch_ap": {
+      "multi_branch": 0.07515127962741752,
+      "ordinary": 0.0008659411199479772,
+      "t_junction": 0.09339431564126466
+    },
+    "e4_checkpoint_sha256": "1cddc4abab8f6da01b2d033476da0a5bbbcd129d19f9f337e081ce09aa1f2853",
+    "elapsed_seconds": 344.7424577861093,
+    "frozen_modules_unchanged": true,
+    "full_minus_image_graph_branch_ap": 0.01996239792742671,
+    "full_minus_original_fragment_branch_ap": 0.014961389920197576,
+    "no_trajectory_equivalence": {
+      "branch_directions": 0.0,
+      "branch_exist_logits": 0.0,
+      "branch_offsets_norm": 0.0,
+      "maximum": 0.0
+    },
+    "peak_cuda_memory_bytes": 189688832,
+    "seed": 20260726
+  }
+}
