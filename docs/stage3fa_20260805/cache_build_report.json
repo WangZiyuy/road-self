@@ -1,0 +1,1783 @@
+{
+  "array_schema": {
+    "anchor_features": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        4,
+        32,
+        256,
+        256
+      ]
+    },
+    "anchor_lowrs_features": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        4,
+        32,
+        64,
+        64
+      ]
+    },
+    "anchor_lowrs_target": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        4,
+        256,
+        256
+      ]
+    },
+    "anchor_target": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        4,
+        256,
+        256
+      ]
+    },
+    "branch_count": {
+      "dtype": "int64",
+      "shape_per_sample": []
+    },
+    "category_id": {
+      "dtype": "int64",
+      "shape_per_sample": []
+    },
+    "center_xy": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        2
+      ]
+    },
+    "dataset_index": {
+      "dtype": "int64",
+      "shape_per_sample": []
+    },
+    "evidence_attention": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        1,
+        64
+      ]
+    },
+    "evidence_attention_retain25": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        1,
+        64
+      ]
+    },
+    "is_key_point": {
+      "dtype": "bool",
+      "shape_per_sample": []
+    },
+    "next_node_mask": {
+      "dtype": "bool",
+      "shape_per_sample": [
+        6
+      ]
+    },
+    "next_node_xy": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        6,
+        2
+      ]
+    },
+    "original_anchor_logits": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        4,
+        256,
+        256
+      ]
+    },
+    "original_anchor_lowrs_logits": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        4,
+        256,
+        256
+      ]
+    },
+    "sample_id": {
+      "dtype": "int64",
+      "shape_per_sample": []
+    },
+    "subtile_index": {
+      "dtype": "int64",
+      "shape_per_sample": []
+    },
+    "supervision_end_index": {
+      "dtype": "int64",
+      "shape_per_sample": []
+    },
+    "trajectory_available": {
+      "dtype": "bool",
+      "shape_per_sample": []
+    },
+    "trajectory_evidence": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        1,
+        128
+      ]
+    },
+    "trajectory_evidence_retain25": {
+      "dtype": "float32",
+      "shape_per_sample": [
+        1,
+        128
+      ]
+    },
+    "vertex_id": {
+      "dtype": "int64",
+      "shape_per_sample": []
+    }
+  },
+  "checkpoint_paths": {
+    "e4": "/home/wangziyu/VecRoad_self/data_self/stage3c_r2/e4/checkpoints/stage3c_aux.best.pth.tar",
+    "evidence": "/home/wangziyu/VecRoad_self/data_self/stage3e3/seed20260724/checkpoints/stage3e0.best.pth.tar",
+    "image": "/home/wangziyu/VecRoad-master/data/ckpt/vecroad.pth.tar",
+    "support": "/home/wangziyu/VecRoad_self/data_self/stage3d_a/checkpoints/stage3d_support.best.pth.tar"
+  },
+  "checkpoint_sha256": {
+    "e4": "1cddc4abab8f6da01b2d033476da0a5bbbcd129d19f9f337e081ce09aa1f2853",
+    "evidence": "d7f00a12a10c8e80687945f0f68596883bdd4b038893d828bba297601b451ff6",
+    "image": "498abc76e4ea461040b2b4ce69dc3d896cb975e93aae58815fe76443f6acf7c3",
+    "support": "56d6e64456d0c6430598c6cd14cc5e7cd2bb20061c28dbeef48826c8b998014d"
+  },
+  "dynamic_cache_equivalence": {
+    "anchor_loss_max_abs_diff": 0.0,
+    "anchor_output_max_abs_diff": 0.0,
+    "passed": true,
+    "tolerance": 1e-06
+  },
+  "elapsed_seconds": 1127.806004053913,
+  "feature_dtype": {
+    "anchor_features": "float32",
+    "anchor_lowrs_features": "float32"
+  },
+  "frozen_module_sha256": {
+    "branch_decoder": "a27bc713f17bee094b32796439fae429228477266950794b4183081cdc4238f3",
+    "graph_state_encoder": "77a2ede18fb13fe5023e31974e00f4a13e87cd3bc0a70bb76e39fb78c502ec43",
+    "rpnet": "454328fd40fe2cb9a6734ba52310c0da737e9e148e3751c270b930dd8aa69c60",
+    "support_head": "d7ad2cdbb43f33a4d1080d4658d10f4225d1e4b526f63bf33bcfb71ce73077e0",
+    "trajectory_encoder": "e9cd0e6ef9732a09272e74f202c321f5838d30aad52f7826464ac0889920221c",
+    "trajectory_evidence_encoder": "0014322787d37fe592eb0af1543213513aa8c39a276f3be69234e4f10ba110cf"
+  },
+  "sample_ids_identical_to_stage3c": true,
+  "source_stage3c_dataset": "/home/wangziyu/VecRoad_self/data_self/stage3c_branch_dataset",
+  "splits": {
+    "train": {
+      "sample_count": 2048,
+      "shards": [
+        {
+          "file": "train_0000.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0001.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0002.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0003.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0004.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0005.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0006.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0007.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0008.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0009.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0010.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0011.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0012.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0013.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0014.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0015.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0016.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0017.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0018.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0019.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0020.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0021.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0022.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0023.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0024.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0025.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0026.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0027.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0028.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0029.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0030.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0031.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0032.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0033.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0034.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0035.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0036.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0037.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0038.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0039.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0040.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0041.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0042.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0043.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0044.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0045.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0046.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0047.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0048.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0049.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0050.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0051.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0052.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0053.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0054.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0055.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0056.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0057.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0058.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0059.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0060.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0061.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0062.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0063.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0064.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0065.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0066.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0067.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0068.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0069.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0070.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0071.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0072.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0073.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0074.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0075.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0076.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0077.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0078.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0079.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0080.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0081.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0082.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0083.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0084.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0085.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0086.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0087.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0088.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0089.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0090.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0091.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0092.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0093.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0094.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0095.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0096.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0097.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0098.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0099.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0100.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0101.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0102.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0103.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0104.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0105.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0106.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0107.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0108.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0109.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0110.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0111.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0112.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0113.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0114.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0115.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0116.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0117.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0118.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0119.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0120.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0121.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0122.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0123.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0124.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0125.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0126.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0127.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0128.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0129.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0130.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0131.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0132.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0133.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0134.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0135.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0136.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0137.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0138.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0139.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0140.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0141.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0142.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0143.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0144.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0145.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0146.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0147.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0148.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0149.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0150.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0151.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0152.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0153.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0154.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0155.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0156.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0157.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0158.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0159.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0160.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0161.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0162.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0163.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0164.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0165.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0166.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0167.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0168.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0169.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0170.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0171.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0172.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0173.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0174.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0175.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0176.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0177.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0178.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0179.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0180.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0181.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0182.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0183.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0184.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0185.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0186.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0187.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0188.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0189.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0190.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0191.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0192.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0193.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0194.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0195.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0196.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0197.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0198.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0199.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0200.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0201.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0202.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0203.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0204.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0205.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0206.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0207.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0208.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0209.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0210.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0211.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0212.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0213.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0214.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0215.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0216.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0217.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0218.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0219.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0220.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0221.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0222.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0223.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0224.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0225.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0226.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0227.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0228.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0229.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0230.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0231.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0232.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0233.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0234.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0235.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0236.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0237.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0238.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0239.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0240.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0241.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0242.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0243.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0244.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0245.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0246.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0247.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0248.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0249.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0250.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0251.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0252.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0253.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0254.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "train_0255.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        }
+      ]
+    },
+    "val": {
+      "sample_count": 512,
+      "shards": [
+        {
+          "file": "val_0000.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0001.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0002.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0003.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0004.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0005.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0006.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0007.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0008.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0009.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0010.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0011.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0012.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0013.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0014.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0015.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0016.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0017.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0018.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0019.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0020.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0021.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0022.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0023.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0024.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0025.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0026.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0027.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0028.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0029.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0030.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0031.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0032.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0033.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0034.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0035.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0036.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0037.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0038.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0039.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0040.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0041.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0042.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0043.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0044.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0045.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0046.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0047.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0048.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0049.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0050.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0051.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0052.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0053.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0054.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0055.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0056.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0057.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0058.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0059.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0060.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0061.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0062.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        },
+        {
+          "file": "val_0063.npz",
+          "sample_count": 8,
+          "size_bytes": 318786208
+        }
+      ]
+    }
+  },
+  "teacher_forced_replay_seed": 20260724
+}

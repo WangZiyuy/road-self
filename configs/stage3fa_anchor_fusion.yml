@@ -1,0 +1,52 @@
+BASE_CONFIG: "stage3e3_seed20260724.yml"
+
+STAGE3FA:
+  CACHE_DIR: "data_self/stage3fa_anchor_cache"
+  OUTPUT_DIR: "data_self/stage3fa/seed20260724"
+  CANONICAL_EVIDENCE_CHECKPOINT: "data_self/stage3e3/seed20260724/checkpoints/stage3e0.best.pth.tar"
+  SUPPORT_CHECKPOINT: "data_self/stage3d_a/checkpoints/stage3d_support.best.pth.tar"
+  E4_CHECKPOINT: "data_self/stage3c_r2/e4/checkpoints/stage3c_aux.best.pth.tar"
+  EXPECTED_EVIDENCE_SHA256: "d7f00a12a10c8e80687945f0f68596883bdd4b038893d828bba297601b451ff6"
+
+  CACHE:
+    SHARD_SIZE: 8
+    FORWARD_BATCH_SIZE: 2
+    ANCHOR_FEATURE_DTYPE: "float32"
+    ANCHOR_LOWRS_FEATURE_DTYPE: "float32"
+    STRICT_EQUIVALENCE_TOLERANCE: 1.0e-6
+
+  MODEL:
+    EVIDENCE_DIM: 128
+    ANCHOR_CHANNELS: 32
+    GATE_HIDDEN_DIM: 32
+
+  TRAINING:
+    EPOCHS: 12
+    BATCH_SIZE: 16
+    VAL_BATCH_SIZE: 16
+    LEARNING_RATE: 0.0002
+    WEIGHT_DECAY: 0.0002
+    GRADIENT_CLIP_NORM: 5.0
+    NUM_WORKERS: 0
+    # The Stage 3F-A cache is reused for every epoch.  The 237 server has
+    # sufficient host RAM to retain all NPZ shards after their first load.
+    RESIDENT_CACHE_SHARDS: "all"
+    SANITY_TRAIN_SAMPLES: 32
+    SANITY_VAL_SAMPLES: 32
+    SANITY_BATCH_SIZE: 4
+    SANITY_EPOCHS: 30
+    SANITY_MIN_LOSS_REDUCTION: 0.02
+
+  EVALUATION:
+    ROAD_SEG_THRESHOLD: 0.3
+    JUNCTION_MAX_REGION_AREA: 200
+    PIXEL_BINS: 15
+    TOPK_ORACLE_K: 4
+    WRONG_SAMPLE_CYCLIC_SHIFT: 1
+    COORDINATE_MATCH_THRESHOLD_PIXELS: 5.0
+
+  ACCEPTANCE:
+    STRICT_TOLERANCE: 1.0e-6
+    ORDINARY_MAX_AP_REGRESSION: 0.002
+    ORDINARY_MAX_HIT5_REGRESSION: 0.005
+    ORDINARY_MAX_ENDPOINT_ERROR_INCREASE: 0.2

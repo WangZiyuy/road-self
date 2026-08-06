@@ -1,0 +1,7 @@
+BASE_CONFIG: "stage3fa_anchor_fusion.yml"
+
+STAGE3C:
+  SEED: 20260724
+
+STAGE3FA:
+  OUTPUT_DIR: "data_self/stage3fa/seed20260724"

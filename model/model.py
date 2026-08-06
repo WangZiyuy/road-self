@@ -484,6 +484,10 @@ class RPNet(nn.Module):
                 next_step = self.fuse_module_traj(fuse_input)
             else:
                 next_step = self.fuse_module(fuse_input)
+            # Stage 3F-A caches the frozen, anchor-only feature immediately
+            # before ``next_step_final``.  Exposing it as a diagnostic feature
+            # does not register parameters or alter the original forward path.
+            feature_maps['next_step_step_{}'.format(index)] = next_step
             next_points_lowrs.append(
                 upsample(self.next_step_final(next_step), 4))
 

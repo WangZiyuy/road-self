@@ -1,0 +1,19 @@
+Stage 3F-A final local repository test run
+Date: 2026-08-06 (Asia/Shanghai)
+Environment: D:\miniconda3\envs\LLM\python.exe
+Command: python -m unittest discover -s tests -v
+Result: Ran 235 tests in 22.438s
+Status: OK
+
+The final run includes:
+- exact official VecRoad BCE-with-logits sum loss semantics;
+- rejection of reversed/unbounded anchor targets;
+- zero-initialized and no-trajectory strict equivalence;
+- cache/dynamic pre-head equivalence;
+- frozen-module and gradient-boundary checks;
+- deterministic wrong-sample mapping;
+- branch-output and Path.push isolation;
+- all existing Stage 0 through Stage 3E tests.
+
+Server-side final tests are recorded in the generated Stage 3F-A README after
+the formal evaluation.
