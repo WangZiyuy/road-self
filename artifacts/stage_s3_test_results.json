@@ -42,5 +42,5 @@
     "full-canvas stitching",
     "256x256 NUM_TARGETS=4 model step"
   ],
-  "cuda_production_preflight": "PENDING_CODE_FREEZE"
+  "cuda_production_preflight": "BLOCKED_NO_ELIGIBLE_GPU"
 }

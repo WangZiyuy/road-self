@@ -1,0 +1,86 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "BLOCKED_NO_ELIGIBLE_GPU",
+  "eligible_gpu_count": 0,
+  "required_initial_free_memory_mb": 2048,
+  "max_wait_minutes": 30.0,
+  "gpu_samples": [
+    {
+      "sampled_at": "2026-08-27T10:06:26.057684+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "driver_version": "566.24",
+          "memory_total_mb": 6141,
+          "memory_used_mb": 547,
+          "memory_free_mb": 5375,
+          "utilization_percent": 0,
+          "temperature_c": 53
+        }
+      ]
+    },
+    {
+      "sampled_at": "2026-08-27T10:06:36.170648+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "driver_version": "566.24",
+          "memory_total_mb": 6141,
+          "memory_used_mb": 547,
+          "memory_free_mb": 5375,
+          "utilization_percent": 0,
+          "temperature_c": 53
+        }
+      ]
+    },
+    {
+      "sampled_at": "2026-08-27T10:06:46.311979+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "driver_version": "566.24",
+          "memory_total_mb": 6141,
+          "memory_used_mb": 547,
+          "memory_free_mb": 5375,
+          "utilization_percent": 0,
+          "temperature_c": 53
+        }
+      ]
+    }
+  ],
+  "compute_apps": [
+    {
+      "pid": 36908,
+      "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+      "used_memory_mb": null,
+      "process_name": "BongoCat.exe"
+    }
+  ],
+  "eligibility": [
+    {
+      "index": 0,
+      "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+      "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "eligible": false,
+      "reasons": [
+        "external_compute_process"
+      ],
+      "external_compute_processes": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "sample_count": 3
+    }
+  ],
+  "no_external_process_terminated": true
+}

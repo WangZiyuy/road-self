@@ -71,3 +71,20 @@ Each worker verifies branch, HEAD, and an empty Git status at startup and at
 every metrics interval. A SHA mismatch or any code/config change marks the run
 invalid. A code fix requires stopping and restarting the complete comparable
 matrix from a new frozen commit.
+
+## Executed gate outcome
+
+The run code was frozen and pushed as
+`2e6cadab33dfe2de3a2a34f93339971f186d59f3`. The checkout remained clean.
+The production GPU gate then ran for the full declared 30-minute window and
+completed 37 rounds, each containing three inventory samples. The host exposed
+one NVIDIA GeForce RTX 4050 Laptop GPU. Every round found the same external
+compute context (`BongoCat.exe`, PID 36908), so the GPU was ineligible even
+when utilization and free memory otherwise appeared adequate.
+
+Final preflight status is `BLOCKED_NO_ELIGIBLE_GPU`. No external process was
+terminated or preempted. No Stage S3 training process was launched; peak
+parallel jobs was zero. Consequently the production model step, memory sizing,
+100-step budget probe, 8192 sweep, six-run training, and performance evaluation
+were not executed. This is an infrastructure eligibility block, not a failed
+model/data result.

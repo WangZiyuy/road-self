@@ -1,0 +1,45 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "branch": "feat/seg-raster-only",
+  "s3_base_sha": "5a137b70b2291837be46cea30a8d4905f5c96585",
+  "run_code_sha": "2e6cadab33dfe2de3a2a34f93339971f186d59f3",
+  "preflight": "BLOCKED",
+  "split_gate": "PASS",
+  "sample_parity": "PASS",
+  "gpu_discovery": {
+    "eligible_gpu_count": 0,
+    "parallel_job_peak": 0,
+    "gpu_models": [
+      "NVIDIA GeForce RTX 4050 Laptop GPU"
+    ],
+    "status": "BLOCKED"
+  },
+  "training_budget": {
+    "kind": "SCREENING",
+    "optimizer_steps": 0
+  },
+  "runs": {
+    "C0": "NOT_STARTED",
+    "C1": "NOT_STARTED",
+    "C2": "NOT_STARTED",
+    "C3": "NOT_STARTED",
+    "J0": "NOT_STARTED",
+    "J1": "NOT_STARTED"
+  },
+  "segmentation_causal_screen": "INCONCLUSIVE",
+  "indirect_anchor_screen": "INCONCLUSIVE",
+  "joint_screen": "INCONCLUSIVE",
+  "closed_loop_graph": "NOT_EXECUTED_BY_GATE",
+  "go_no_go_for_multiseed": "INCONCLUSIVE",
+  "key_evidence": [
+    "The first 100 teacher-forced batches match across all six configs.",
+    "No eligible CUDA GPU became available during the declared wait.",
+    "No training subprocess was started and no external process was disturbed."
+  ],
+  "risks": [
+    "Production CUDA preflight, memory measurement, timing probe, training, and evaluation remain unexecuted."
+  ],
+  "next_stage_proposal": [
+    "Repeat Stage S3 from the same frozen SHA when an eligible CUDA GPU is available."
+  ]
+}

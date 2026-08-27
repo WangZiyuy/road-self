@@ -1,0 +1,7 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "NOT_EXECUTED_BY_GATE",
+  "segmentation_gate_passed": false,
+  "reason": "preflight blocked before training",
+  "runs": {}
+}

@@ -39,3 +39,16 @@ This stage uses one seed. Results may be labeled only `PROMISING`,
 `INCONCLUSIVE`, `NO_EVIDENCE`, or `REGRESSION`; no statistical-significance
 claim is permitted. A separately authorized three-seed replication is proposed
 only when the C1 causal screen or J1 joint screen is `PROMISING`.
+
+## Final screening status
+
+The production preflight was blocked because no eligible GPU became available
+during the full 30-minute wait. All six runs are therefore `NOT_STARTED` and
+there are no segmentation, anchor, or graph measurements to compare.
+
+The segmentation causal screen, indirect anchor screen, and joint screen are
+all `INCONCLUSIVE`. Closed-loop graph evaluation is
+`NOT_EXECUTED_BY_GATE`. The multi-seed decision is `INCONCLUSIVE`; Stage S3
+should be resumed from the same frozen run SHA when a GPU without an external
+compute process is available. No claim about model benefit, regression, or
+statistical significance is made.

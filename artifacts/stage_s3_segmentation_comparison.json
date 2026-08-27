@@ -1,0 +1,5 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "BLOCKED",
+  "reason": "PREFLIGHT_BLOCKED; no comparative model output exists"
+}

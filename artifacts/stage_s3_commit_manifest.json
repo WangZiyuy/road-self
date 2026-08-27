@@ -1,0 +1,327 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "entries": [
+    {
+      "path": "artifacts/stage_s3_anchor_comparison.json",
+      "size_bytes": 134,
+      "sha256": "972d9f881c870fcfd32a5a1cb3fe8d2b9c7628e2f96305c3fa08d4341a423fbe",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_budget_manifest.json",
+      "size_bytes": 301,
+      "sha256": "273f279872fa7924754b4c2ed99d95870d1450e699ea76e7b2224a9fb5870986",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_conclusion.json",
+      "size_bytes": 1454,
+      "sha256": "ec5c5b56f49d5e715b48bac28014c4754442740c32a8e508a4c134b825072211",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_control_analysis.json",
+      "size_bytes": 296,
+      "sha256": "9c4b59444467871d653a2b544b30b5316ad3808b9c78eb71d9bd457a189fdd73",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_experiment_matrix.json",
+      "size_bytes": 1517,
+      "sha256": "c38f265570fe80e3e146403f302e0ae143f43dd184faf70d12a2bb331540f3ca",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_git_start.json",
+      "size_bytes": 1502,
+      "sha256": "a3da94f1e3838462b12af143691f275ceb6504b2d764a3438a483d1cde68e002",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_gpu_inventory.json",
+      "size_bytes": 2396,
+      "sha256": "95535d5fa3793fd12d9e4b809ace6c6a7195d957a344296d8ef93752da7f9c4e",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_gpu_schedule.json",
+      "size_bytes": 232,
+      "sha256": "ef41dbae7b0c1057684f462c8deb288cc8e2f83c92f4a1bb59c4656e5bd80531",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_graph_comparison.json",
+      "size_bytes": 180,
+      "sha256": "8cb71db98be23449a7d9d8e3abf9bae3873937b8d75be7850ac07a094c226e3f",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_initialization_audit.json",
+      "size_bytes": 770,
+      "sha256": "d2b322652bd52b9e667f24e6e2b31a40c6775096234e7d2f38c382d7774ad6d2",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_preflight.json",
+      "size_bytes": 95781,
+      "sha256": "5d27e603e0a73e7c40ecac90beb0d1dd5b04bfd7d3fd0b01ead4da58521aa6ef",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_sample_plan.json",
+      "size_bytes": 227117,
+      "sha256": "8588ba3fa579bacd7398036ce78df33ef8cd6fc486318090b727922192317a2d",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_segmentation_comparison.json",
+      "size_bytes": 134,
+      "sha256": "972d9f881c870fcfd32a5a1cb3fe8d2b9c7628e2f96305c3fa08d4341a423fbe",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_split_manifest.json",
+      "size_bytes": 1212,
+      "sha256": "2432a544610206695251456b4fa5c8b17c096be74f4a8a8d035ac3dd0e9bec29",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_test_results.json",
+      "size_bytes": 1430,
+      "sha256": "8cc02ed371558adf4f396c9e1e1d30334151bb112f6c1cdbd8cdab616300337c",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "artifacts/stage_s3_training_results.json",
+      "size_bytes": 4312,
+      "sha256": "5a0cd1ff5a505d3ad1e48b2875000f419cec74a90c1556085b4a46caf954f6e4",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "small parseable Stage S3 evidence artifact"
+    },
+    {
+      "path": "configs/stage_s3_C0_image_detach.yml",
+      "size_bytes": 164,
+      "sha256": "6d9cbede66f1f793af0631fc17f8ce840d0e7ac6cd8b86b35e6caa313cee6c28",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "frozen controlled experiment configuration"
+    },
+    {
+      "path": "configs/stage_s3_C1_aligned_detach.yml",
+      "size_bytes": 211,
+      "sha256": "8cad3a9fa949a4a0b02eb465800e64dd2ad50e79e6bb86c60ee775b59f4972c8",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "frozen controlled experiment configuration"
+    },
+    {
+      "path": "configs/stage_s3_C2_zero_detach.yml",
+      "size_bytes": 205,
+      "sha256": "8d5a8caf338593f7ec9e32e21fa6d2d000815c3fa0662bc92a975e3b106bda39",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "frozen controlled experiment configuration"
+    },
+    {
+      "path": "configs/stage_s3_C3_shifted_detach.yml",
+      "size_bytes": 249,
+      "sha256": "d67b74c2916fae5b16ed89e34c26778b1d3c39b867bed06f69d8e8fb947d7c6f",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "frozen controlled experiment configuration"
+    },
+    {
+      "path": "configs/stage_s3_J0_image_joint.yml",
+      "size_bytes": 134,
+      "sha256": "00d60bf743ab38be43743fb5d474749b948aea5bb805c947741a589d61c43019",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "frozen controlled experiment configuration"
+    },
+    {
+      "path": "configs/stage_s3_J1_aligned_joint.yml",
+      "size_bytes": 181,
+      "sha256": "7fab30a63f43d4077b95c99bfd49b07766dff9116412e998a787d946c4d80abc",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "frozen controlled experiment configuration"
+    },
+    {
+      "path": "configs/stage_s3_common.yml",
+      "size_bytes": 2008,
+      "sha256": "20e937b81908d8b7a6f81c5e6a9c7c949f5bd014d278deffd35462da754862e7",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "frozen controlled experiment configuration"
+    },
+    {
+      "path": "docs/audits/stage_s3_causal_comparison.md",
+      "size_bytes": 2764,
+      "sha256": "ab610eba05e1f0406110189e38aea46f9f567a70ee53ae61529aae9460c5c358",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3 audit report"
+    },
+    {
+      "path": "docs/audits/stage_s3_parallel_training.md",
+      "size_bytes": 4505,
+      "sha256": "787ffc10f542b5d167c54204618fb9cf0bfea9aef9d54c684ae5123be7aea32b",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3 audit report"
+    },
+    {
+      "path": "model/model.py",
+      "size_bytes": 27533,
+      "sha256": "2a2fbd1a64878c5e78702e7abdc0533eb17751810e1a3443d393d563bd78f1c6",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "minimal production support for the frozen Stage S3 protocol"
+    },
+    {
+      "path": "tests/test_seg_raster_data_contract.py",
+      "size_bytes": 10594,
+      "sha256": "46731850e0eaecf3b89b4261b2085dc21d3ff5600de76bfc320895741f7595b6",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3 contract and regression coverage"
+    },
+    {
+      "path": "tests/test_seg_raster_stage_s3.py",
+      "size_bytes": 8985,
+      "sha256": "bd6ffef90594cc563618f19c7d191fe0f488e1a7a23367b8dfae47b5b21b3ac3",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3 contract and regression coverage"
+    },
+    {
+      "path": "tools/seg_raster/audit_stage_s3_sample_plan.py",
+      "size_bytes": 6271,
+      "sha256": "80c857435c3d45b8ab8bf76466d112912af867f7b9384cc6df611577f8d3e3c2",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "tools/seg_raster/build_stage_s3_commit_manifest.py",
+      "size_bytes": 3169,
+      "sha256": "65c7fe4c35a2cfe35c7bed2c1e8e158fc60221faef2590d6f0030cfe6cebc05b",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "tools/seg_raster/evaluate_stage_s3_results.py",
+      "size_bytes": 8566,
+      "sha256": "678043801549ff4900934bd7e204bc09d0faa9e618bf7d57c1037fee536d0f0e",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "tools/seg_raster/finalize_stage_s3_artifacts.py",
+      "size_bytes": 6573,
+      "sha256": "a6b42c1582350c8b79567203b9c6fa6d8c37118de96462f2c0ec172b86be0fb5",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "tools/seg_raster/launch_stage_s3_parallel.py",
+      "size_bytes": 10844,
+      "sha256": "9cc4483bb2b1418b32e7a47619736f1a9d1ad1fd8ac25f78001ea0c477dcf3dd",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "tools/seg_raster/prepare_stage_s3_runtime.py",
+      "size_bytes": 9918,
+      "sha256": "f0bfc68c8283d0fee439c9d53bee95684b12a643af1311ce0629c7c2923435c6",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "tools/seg_raster/run_stage_s3_budget_probe.py",
+      "size_bytes": 5084,
+      "sha256": "0bf17f917159bb8a26507606dd00dbbd730e98b7fd28348f0ca21090265363fd",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "tools/seg_raster/run_stage_s3_preflight.py",
+      "size_bytes": 16317,
+      "sha256": "cb9b5edc972b89b4c9247b64166c90cf1091cf856f8179ce0e612f9996ae7c47",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "tools/seg_raster/train_stage_s3.py",
+      "size_bytes": 19657,
+      "sha256": "2ce1da468f6a17565dbdbd9d78e6f5401c3a8a858384ca9420a0ee4cff6d729b",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "preflight, scheduling, training, evaluation, or audit tool"
+    },
+    {
+      "path": "utils/OSMDataset.py",
+      "size_bytes": 30783,
+      "sha256": "cf1ad2d3b8e9d3396b35568b51e8bc7fe815a34d7617b06d2398bd152455f7ea",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "minimal production support for the frozen Stage S3 protocol"
+    },
+    {
+      "path": "utils/seg_raster/stage_s3.py",
+      "size_bytes": 25004,
+      "sha256": "34e33070280eab412d92699406c8e2a19b07732330c3fd37cb82089bc4f2e6fe",
+      "generated_by_stage_s3": true,
+      "intended_for_commit": true,
+      "reason": "minimal production support for the frozen Stage S3 protocol"
+    }
+  ],
+  "entry_count": 39,
+  "explicit_exclusions": {
+    "checkpoints": true,
+    "datasets": true,
+    "trajectory_rasters": true,
+    "model_weights": true,
+    "cache": true,
+    "tensorboard_events": true,
+    "large_logs": true
+  }
+}

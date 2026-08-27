@@ -1,0 +1,3073 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "BLOCKED",
+  "reason": "BLOCKED_NO_ELIGIBLE_GPU",
+  "run_code_sha": "2e6cadab33dfe2de3a2a34f93339971f186d59f3",
+  "device_required": "CUDA",
+  "gpu_samples": [
+    {
+      "sampled_at": "2026-08-27T10:06:26.057684+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "driver_version": "566.24",
+          "memory_total_mb": 6141,
+          "memory_used_mb": 547,
+          "memory_free_mb": 5375,
+          "utilization_percent": 0,
+          "temperature_c": 53
+        }
+      ]
+    },
+    {
+      "sampled_at": "2026-08-27T10:06:36.170648+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "driver_version": "566.24",
+          "memory_total_mb": 6141,
+          "memory_used_mb": 547,
+          "memory_free_mb": 5375,
+          "utilization_percent": 0,
+          "temperature_c": 53
+        }
+      ]
+    },
+    {
+      "sampled_at": "2026-08-27T10:06:46.311979+00:00",
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "driver_version": "566.24",
+          "memory_total_mb": 6141,
+          "memory_used_mb": 547,
+          "memory_free_mb": 5375,
+          "utilization_percent": 0,
+          "temperature_c": 53
+        }
+      ]
+    }
+  ],
+  "compute_apps": [
+    {
+      "pid": 36908,
+      "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+      "used_memory_mb": null,
+      "process_name": "BongoCat.exe"
+    }
+  ],
+  "eligibility": [
+    {
+      "index": 0,
+      "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+      "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "eligible": false,
+      "reasons": [
+        "external_compute_process"
+      ],
+      "external_compute_processes": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "sample_count": 3
+    }
+  ],
+  "gpu_inventory_rounds": [
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:36:26.081107+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:36:36.246171+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 48,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:36:46.411179+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 46,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:37:16.579798+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 46,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:37:26.764712+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 14,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:37:36.909161+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:38:07.073651+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 34,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:38:17.246006+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 34,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:38:27.414031+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 42,
+              "temperature_c": 60
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:38:57.577579+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:39:07.729376+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 36,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:39:17.894776+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 14,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:39:48.018932+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:39:58.172472+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 15,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:40:08.329728+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 12,
+              "temperature_c": 60
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:40:38.893035+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 20,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:40:49.109667+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 41,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:41:00.238492+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 20,
+              "temperature_c": 60
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:41:30.420268+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 12,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:41:40.584677+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:41:50.737612+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 61,
+              "temperature_c": 60
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:42:20.893404+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 15,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:42:31.041671+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 42,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:42:41.205418+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 41,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:43:11.372079+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 41,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:43:21.530086+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 41,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:43:31.692863+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 15,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:44:01.866135+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 12,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:44:12.044061+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 36,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:44:22.235092+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:44:52.393059+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 12,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:45:02.603282+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:45:12.872745+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:45:43.052090+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 60,
+              "temperature_c": 59
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:45:53.165945+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:46:03.286536+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:46:33.413482+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 57,
+              "temperature_c": 63
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:46:43.621562+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 62
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:46:53.782880+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 60
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:47:23.927901+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 57,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:47:34.062018+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:47:44.183226+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 62
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:48:14.292354+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 57,
+              "temperature_c": 59
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:48:24.423915+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 59
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:48:34.541442+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 59
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:49:04.670443+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 59
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:49:14.799350+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 59
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:49:24.913096+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 59
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:49:55.026488+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 59
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:50:05.154514+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 59
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:50:15.279089+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 59
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:50:45.395136+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:50:55.507744+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:51:05.613851+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:51:35.731100+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 57,
+              "temperature_c": 62
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:51:46.200137+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 61,
+              "temperature_c": 62
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:51:56.332171+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 63
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:52:26.470254+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 18,
+              "temperature_c": 59
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:52:36.609989+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 58,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:52:46.733657+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:53:16.908688+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 57,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:53:27.057258+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:53:37.223522+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 60
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:54:07.401143+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 61
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:54:17.588842+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 546,
+              "memory_free_mb": 5376,
+              "utilization_percent": 16,
+              "temperature_c": 60
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:54:27.752341+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 56,
+              "temperature_c": 61
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:54:57.875477+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 58
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:55:07.981753+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 57
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:55:18.091327+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 56
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:55:48.204175+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:55:58.326880+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:56:08.430284+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:56:38.542499+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 53
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:56:48.656772+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:56:58.772060+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:57:28.888254+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 53
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:57:39.019521+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 52
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:57:49.136048+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 53
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:58:19.248799+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 56
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:58:29.375187+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 55
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:58:39.507414+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 9,
+              "temperature_c": 55
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T09:59:09.649336+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:59:19.773498+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T09:59:29.908070+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:00:00.031780+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:00:10.154209+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 53
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:00:20.286276+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 52
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:00:50.413141+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 52
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:01:00.540492+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 50,
+              "temperature_c": 52
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:01:10.658386+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 52
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:01:40.790110+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:01:50.914783+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:02:01.046058+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:02:31.181326+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:02:41.322643+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:02:51.450022+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 78,
+              "temperature_c": 52
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:03:21.589848+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:03:31.702993+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:03:41.810025+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 50
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:04:11.926799+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 50
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:04:22.052046+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:04:32.159239+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 51
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:05:02.274859+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 50
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:05:12.409458+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 49
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:05:22.530774+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 50
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:05:52.639579+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 3,
+              "temperature_c": 52
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:06:02.762211+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 53
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:06:12.870930+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 54
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    },
+    {
+      "samples": [
+        {
+          "sampled_at": "2026-08-27T10:06:26.057684+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 53
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:06:36.170648+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 53
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-27T10:06:46.311979+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "driver_version": "566.24",
+              "memory_total_mb": 6141,
+              "memory_used_mb": 547,
+              "memory_free_mb": 5375,
+              "utilization_percent": 0,
+              "temperature_c": 53
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 36908,
+          "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "used_memory_mb": null,
+          "process_name": "BongoCat.exe"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+          "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 36908,
+              "gpu_uuid": "GPU-8f85a673-85e0-2fb9-c991-580198cdbc23",
+              "used_memory_mb": null,
+              "process_name": "BongoCat.exe"
+            }
+          ],
+          "sample_count": 3
+        }
+      ]
+    }
+  ],
+  "max_wait_minutes": 30.0,
+  "no_external_process_terminated": true
+}

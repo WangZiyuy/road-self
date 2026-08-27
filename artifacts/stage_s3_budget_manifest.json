@@ -1,0 +1,10 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "BLOCKED",
+  "reason": "production CUDA preflight did not obtain an eligible GPU",
+  "n_baseline_steps": 102400,
+  "kind": "SCREENING",
+  "optimizer_steps": 0,
+  "timing_probe_steps_completed": 0,
+  "frozen_before_comparative_results": true
+}

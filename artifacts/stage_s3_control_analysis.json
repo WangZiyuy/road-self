@@ -1,0 +1,9 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "INCONCLUSIVE",
+  "segmentation_causal_screen": "INCONCLUSIVE",
+  "indirect_anchor_screen": "INCONCLUSIVE",
+  "joint_screen": "INCONCLUSIVE",
+  "reason": "no eligible GPU; no runs were started",
+  "single_seed_significance_claim": false
+}

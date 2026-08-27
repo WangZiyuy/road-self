@@ -1,0 +1,8 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "BLOCKED_NO_ELIGIBLE_GPU",
+  "run_code_sha": "2e6cadab33dfe2de3a2a34f93339971f186d59f3",
+  "jobs": [],
+  "parallel_job_peak": 0,
+  "no_process_preempted_or_terminated": true
+}
