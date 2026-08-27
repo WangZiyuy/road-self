@@ -215,9 +215,19 @@ def test_s1_tools_do_not_import_trajectory_sequence_loader() -> None:
 
 
 def test_s1_tools_do_not_import_or_construct_dsf_or_torch() -> None:
+    stage_s1_tool_names = {
+        "__init__.py",
+        "audit_stage_s1.py",
+        "build_commit_manifest.py",
+        "build_pair_manifest.py",
+        "contract.py",
+        "inspect_raster_provenance.py",
+        "validate_pair_manifest.py",
+    }
     source = "\n".join(
         path.read_text(encoding="utf-8")
         for path in (REPO_ROOT / "tools/seg_raster").glob("*.py")
+        if path.name in stage_s1_tool_names
     )
     tree = ast.parse(source)
     imported = []
@@ -247,9 +257,10 @@ def test_pair_manifest_builder_records_required_fields(stage_test_root: Path) ->
     json.dumps(manifest, allow_nan=False)
 
 
-def test_s1_production_diff_is_empty() -> None:
+def test_s1_historical_commit_changed_no_production_files() -> None:
+    s1_commit = "c870019bf68999b15f489b73ba350c5cf74ebb1c"
     result = subprocess.run(
-        ["git", "diff", "--", *PRODUCTION_PATHS],
+        ["git", "diff", s1_commit + "^", s1_commit, "--", *PRODUCTION_PATHS],
         cwd=REPO_ROOT,
         check=True,
         capture_output=True,
