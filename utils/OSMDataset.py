@@ -13,6 +13,8 @@ from utils.trajectory_mode import (
     load_region_trajectory_inputs_for_mode,
     resolve_trajectory_mode,
     trajectory_fetch_fields,
+    trajectory_uses_raster,
+    trajectory_uses_sequence,
 )
 import time
 
@@ -22,6 +24,8 @@ class OSMDataset:
         self.cfg = cfg
         self.trajectory_mode = resolve_trajectory_mode(cfg)
         self.use_trajectory = self.trajectory_mode != TRAJ_MODE_NONE
+        self.use_raster = trajectory_uses_raster(self.trajectory_mode)
+        self.use_sequence = trajectory_uses_sequence(self.trajectory_mode)
         self.batch_size = cfg.TRAIN.BATCH_SIZE
         self.window_size = cfg.TRAIN.WINDOW_SIZE
         self.input_channels = cfg.TRAIN.NUM_INPUT_CHANNELS
@@ -38,7 +42,7 @@ class OSMDataset:
                            graph_dir=cfg.DIR.GRAPH_DIR,
                            tile_dir=cfg.DIR.TILE_DIR,
                            traj_dir=(cfg.DIR.get("TRAJ_DIR", None)
-                                     if self.use_trajectory else None), )
+                                     if self.use_raster else None), )
         self.save_idx = 0
         self.training = training
         self.net = net # 用于传递给path从而传递给model_utils文件中的轨迹过滤方法传递两个半径自定义参数
@@ -159,6 +163,13 @@ class OSMDataset:
         主要有输入遥感图像、道路分割结果、下一顶点位置、已有路径等
 
         """
+        # Keep compatibility with lightweight fixtures and older callers that
+        # instantiate OSMDataset without running the current constructor.
+        if not hasattr(self, "use_raster"):
+            self.use_raster = trajectory_uses_raster(self.trajectory_mode)
+        if not hasattr(self, "use_sequence"):
+            self.use_sequence = trajectory_uses_sequence(self.trajectory_mode)
+
         path_indices = random.sample(range(len(self.paths)), self.batch_size)
         # len(self.paths)=96 中取20
         # 这里有一个问题，为什么subtile的范围是2048*2048（也就是在这样的范围内取path）
@@ -168,13 +179,17 @@ class OSMDataset:
         batch_inputs = np.zeros((self.batch_size, self.input_channels, self.window_size, self.window_size))
         batch_traj_inputs = None
         batch_aerial_traj = None
-        if self.use_trajectory:
+        batch_traj_valid_masks = None
+        if self.use_raster:
             batch_traj_inputs = np.zeros(
                 (self.batch_size, self.input_traj_channels,
                  self.window_size, self.window_size))
             batch_aerial_traj = np.zeros(
                 (self.batch_size, self.input_channels + self.input_traj_channels,
-                 self.window_size, self.window_size))
+                  self.window_size, self.window_size))
+            batch_traj_valid_masks = np.zeros(
+                (self.batch_size, 1, self.window_size, self.window_size),
+                dtype=np.float32)
         batch_target_maps = np.zeros((self.batch_size, self.num_targets, self.window_size, self.window_size))
         batch_is_key_point = np.zeros(self.batch_size)
         batch_end_index = np.zeros(self.batch_size, dtype=np.int64)
@@ -240,9 +255,10 @@ class OSMDataset:
 
             # 输入确定
             batch_inputs[i] = data_dict.aerial_image_chw
-            if self.use_trajectory:
+            if self.use_raster:
                 batch_traj_images_hwc.append(data_dict.traj_image_hwc)
                 batch_traj_inputs[i] = data_dict.traj_image_chw
+                batch_traj_valid_masks[i] = data_dict.traj_valid_mask_chw
                 batch_aerial_traj[i] = np.concatenate(
                     (batch_inputs[i], batch_traj_inputs[i]), axis=0)
             batch_walked_path_small[i] = data_dict.walked_path_small
@@ -257,7 +273,7 @@ class OSMDataset:
                                                     is_key_point)
             batch_target_maps[i] = target_maps
             # batch_valid_trajectory_inputs.append(model_utils.valid_trajectory_input(data_dict.valid_trajectories))
-            if self.use_trajectory:
+            if self.use_sequence:
                 batch_valid_trajectory_inputs.append(data_dict.valid_trajectories)
 
         data = EasyDict({
@@ -274,11 +290,15 @@ class OSMDataset:
             'batch_junction_segmentation': batch_junction_segmentation,
             'batch_aerial_images_hwc': batch_aerial_images_hwc,
         })
-        if self.use_trajectory:
+        if self.use_raster:
             data.update({
                 'batch_traj_inputs': batch_traj_inputs,
+                'batch_traj_valid_masks': batch_traj_valid_masks,
                 'batch_aerial_traj': batch_aerial_traj,
                 'batch_traj_images_hwc': batch_traj_images_hwc,
+            })
+        if self.use_sequence:
+            data.update({
                 'batch_valid_trajectory_inputs': batch_valid_trajectory_inputs,
             })
         return data

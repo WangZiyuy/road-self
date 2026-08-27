@@ -20,6 +20,7 @@ from utils.gis_to_graph import GisToGraphConverter
 from configs.config import config
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pad_sequence
+from utils.seg_raster import canonicalize_raster_array
 
 
 @dataclass(frozen=True)
@@ -920,10 +921,36 @@ class Path(object):
 
         traj_image_hwc = None
         traj_image_chw = None
+        traj_valid_mask_hwc = None
+        traj_valid_mask_chw = None
         if need_traj_image:
-            traj_image_hwc = big_traj_img['input'][tile_origin.x:tile_origin.x + WINDOW_SIZE,
-                                                tile_origin.y:tile_origin.y + WINDOW_SIZE, :].astype('float32') / 255.0
+            raw_traj_image = big_traj_img['input'][
+                tile_origin.x:tile_origin.x + WINDOW_SIZE,
+                tile_origin.y:tile_origin.y + WINDOW_SIZE,
+                :]
+            # TileCache stores legacy arrays in X,Y,C order. Canonicalization
+            # is value-only here, preserving that layout until CHW conversion.
+            traj_binary_2d, _ = canonicalize_raster_array(raw_traj_image)
+            traj_image_hwc = traj_binary_2d[:, :, np.newaxis]
+
+            cache_padding = int(getattr(
+                self.tile_data['cache'], 'window_size', WINDOW_SIZE) // 2)
+            big_valid_mask = np.zeros(
+                big_traj_img['input'].shape[:2], dtype=np.float32)
+            if cache_padding == 0:
+                big_valid_mask.fill(1.0)
+            else:
+                big_valid_mask[
+                    cache_padding:-cache_padding,
+                    cache_padding:-cache_padding] = 1.0
+            traj_valid_mask_hwc = big_valid_mask[
+                tile_origin.x:tile_origin.x + WINDOW_SIZE,
+                tile_origin.y:tile_origin.y + WINDOW_SIZE,
+                np.newaxis]
+            traj_image_hwc *= traj_valid_mask_hwc
             traj_image_chw = traj_image_hwc.swapaxes(0, 2).swapaxes(1, 2)
+            traj_valid_mask_chw = (
+                traj_valid_mask_hwc.swapaxes(0, 2).swapaxes(1, 2))
 
         # ################ traj in pieces ################
         if 'valid_trajectories' in fetch_list:
@@ -958,6 +985,8 @@ class Path(object):
             'aerial_image_hwc':  aerial_image_hwc if 'aerial_image_hwc' in fetch_list else None,
             'traj_image_chw':    traj_image_chw if 'traj_image_chw' in fetch_list else None,
             'traj_image_hwc':    traj_image_hwc if 'traj_image_hwc' in fetch_list else None,
+            'traj_valid_mask_chw': traj_valid_mask_chw if 'traj_valid_mask_chw' in fetch_list else None,
+            'traj_valid_mask_hwc': traj_valid_mask_hwc if 'traj_valid_mask_hwc' in fetch_list else None,
             'walked_path_small': walked_path_small[np.newaxis, :, :] if 'walked_path_small' in fetch_list else None,
             'walked_path':       walked_path[np.newaxis, :, :] if 'walked_path' in fetch_list else None,
             'road_seg_small':    road_seg_small[np.newaxis, :, :] if 'road_seg_small' in fetch_list else None,

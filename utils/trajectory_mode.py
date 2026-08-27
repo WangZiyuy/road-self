@@ -9,7 +9,12 @@ from typing import Any
 
 TRAJ_MODE_NONE = "none"
 TRAJ_MODE_LEGACY = "legacy_current"
-VALID_TRAJ_MODES = frozenset({TRAJ_MODE_NONE, TRAJ_MODE_LEGACY})
+TRAJ_MODE_RASTER_SEG_ONLY = "raster_seg_only"
+VALID_TRAJ_MODES = frozenset({
+    TRAJ_MODE_NONE,
+    TRAJ_MODE_LEGACY,
+    TRAJ_MODE_RASTER_SEG_ONLY,
+})
 
 _MISSING = object()
 _WARNED_CONFLICTS: set[tuple[str, bool]] = set()
@@ -63,7 +68,11 @@ def resolve_trajectory_mode(cfg: Any) -> str:
         return legacy_mode
 
     mode = validate_trajectory_mode(configured_mode)
-    if legacy_value is not _MISSING and mode != legacy_mode:
+    if (
+        legacy_value is not _MISSING
+        and mode != TRAJ_MODE_RASTER_SEG_ONLY
+        and mode != legacy_mode
+    ):
         conflict = (mode, bool(legacy_value))
         if conflict not in _WARNED_CONFLICTS:
             warnings.warn(
@@ -78,6 +87,19 @@ def resolve_trajectory_mode(cfg: Any) -> str:
 
 def trajectory_enabled(cfg: Any) -> bool:
     return resolve_trajectory_mode(cfg) != TRAJ_MODE_NONE
+
+
+def trajectory_uses_sequence(mode: str) -> bool:
+    """Return whether the legacy coordinate-sequence branch is required."""
+    return validate_trajectory_mode(mode) == TRAJ_MODE_LEGACY
+
+
+def trajectory_uses_raster(mode: str) -> bool:
+    """Return whether a spatial trajectory raster must be loaded."""
+    return validate_trajectory_mode(mode) in {
+        TRAJ_MODE_LEGACY,
+        TRAJ_MODE_RASTER_SEG_ONLY,
+    }
 
 
 def validate_trajectory_model_compatibility(
@@ -97,6 +119,34 @@ def validate_trajectory_model_compatibility(
             "The DSFNet path consumes a trajectory raster and cannot be used "
             "as the image-only baseline.".format(model_name)
         )
+    if (
+        resolved_mode == TRAJ_MODE_RASTER_SEG_ONLY
+        and model_name is not _MISSING
+        and str(model_name).lower() != "origin"
+    ):
+        raise ValueError(
+            "TRAJ.MODE='raster_seg_only' requires TRAIN.MODEL='origin'; "
+            "legacy DSFNet is not a formal raster-seg-only path. Got {!r}."
+            .format(model_name)
+        )
+
+    if resolved_mode == TRAJ_MODE_RASTER_SEG_ONLY:
+        traj_cfg = _get_value(cfg, "TRAJ", None)
+        raster_cfg = _get_value(traj_cfg, "RASTER", None)
+        semantics = _get_value(raster_cfg, "INPUT_SEMANTICS", _MISSING)
+        if semantics is not _MISSING and semantics != "binary_presence":
+            raise ValueError(
+                "raster_seg_only supports only "
+                "TRAJ.RASTER.INPUT_SEMANTICS='binary_presence'; got {!r}."
+                .format(semantics)
+            )
+        sequence_cfg = _get_value(traj_cfg, "SEQUENCE", None)
+        sequence_enabled = _get_value(sequence_cfg, "ENABLED", False)
+        if bool(sequence_enabled):
+            raise ValueError(
+                "raster_seg_only cannot be combined with trajectory sequence "
+                "loading or a sequence Transformer."
+            )
 
 
 def trajectory_fetch_fields(mode: str, *, include_raster: bool) -> tuple[str, ...]:
@@ -104,9 +154,16 @@ def trajectory_fetch_fields(mode: str, *, include_raster: bool) -> tuple[str, ..
     mode = validate_trajectory_mode(mode)
     if mode == TRAJ_MODE_NONE:
         return ()
-    fields = ["valid_trajectories"]
+    fields = []
+    if trajectory_uses_sequence(mode):
+        fields.append("valid_trajectories")
     if include_raster:
-        fields[0:0] = ["traj_image_chw", "traj_image_hwc"]
+        fields[0:0] = [
+            "traj_image_chw",
+            "traj_image_hwc",
+            "traj_valid_mask_chw",
+            "traj_valid_mask_hwc",
+        ]
     return tuple(fields)
 
 
@@ -122,7 +179,7 @@ def load_region_trajectory_inputs_for_mode(
     avoids touching raw trajectory files, prepared caches, or CUDA tensors.
     """
     mode = validate_trajectory_mode(mode)
-    if mode == TRAJ_MODE_NONE:
+    if not trajectory_uses_sequence(mode):
         return None, [], None, None
     return loader(region, cfg)
 
@@ -139,7 +196,7 @@ def prepare_trajectory_sequence_batch(
     image-only training and inference never invoke padding or normalization.
     """
     mode = validate_trajectory_mode(mode)
-    if mode == TRAJ_MODE_NONE:
+    if not trajectory_uses_sequence(mode):
         return None, None
     padded = pad_to_device(batch_trajectories)
     return normalize(padded)
