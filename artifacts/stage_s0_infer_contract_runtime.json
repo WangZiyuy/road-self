@@ -1,0 +1,92 @@
+{
+  "stage": "seg_raster_stage_s0",
+  "generated_at": "2026-08-27T11:29:39.423630+08:00",
+  "device": "cuda:0",
+  "source_provenance": {
+    "snapshot_id": "BASELINE_13488c7",
+    "cwd": "${SOURCE_WORKTREE}",
+    "source_worktree": "${SOURCE_WORKTREE}",
+    "branch": "feat/seg-raster-only",
+    "HEAD": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+    "model.model.__file__": "${SOURCE_WORKTREE}/model/model.py",
+    "model.DSFNet.__file__": "${SOURCE_WORKTREE}/model/DSFNet.py",
+    "sys.path": [
+      "${SOURCE_WORKTREE}",
+      "${SOURCE_WORKTREE}/tools/audit",
+      "${PYTHON_PREFIX}/python310.zip",
+      "${PYTHON_PREFIX}/DLLs",
+      "${PYTHON_PREFIX}/Lib",
+      "${PYTHON_PREFIX}",
+      "${PYTHON_PREFIX}/Lib/site-packages",
+      "${USER_HOME}/Desktop/sam_road-main/segment-anything-main/segment-anything-main"
+    ],
+    "imported_source_sha256": {
+      "model/model.py": "c4c6579b267ab08e12227335ad10da53c26a0caf241e78613ebc3eb1cbf690e7",
+      "model/DSFNet.py": "41ec2bac8664ce04764bf1a2f9d5a07a7f539247cabaf96228360a34b1cd808c",
+      "utils/utils.py": "b9a338a6155832b7f1cf82d3783f751af35e4ff81da40af2d8c3262a63306058"
+    },
+    "monkeypatch_used": false,
+    "stub_used": false,
+    "audit_harness_used": true,
+    "production_model_modified": false,
+    "redaction": "Absolute paths are represented by logical labels."
+  },
+  "origin_test_true": {
+    "status": "PASS",
+    "road_shape": [
+      1,
+      1,
+      256,
+      256
+    ],
+    "junction_shape": [
+      1,
+      1,
+      256,
+      256
+    ]
+  },
+  "origin_stitch": {
+    "status": "PASS",
+    "value": [
+      2,
+      256,
+      256
+    ]
+  },
+  "dsf_test_true": {
+    "status": "PASS",
+    "road_shape": [
+      1,
+      1,
+      64,
+      64
+    ],
+    "junction_shape": [
+      1,
+      1,
+      64,
+      64
+    ],
+    "road_min": 0.5010837912559509,
+    "road_max": 0.5058691501617432
+  },
+  "dsf_stitch": {
+    "status": "FAIL",
+    "error_type": "ValueError",
+    "error": "operands could not be broadcast together with shapes (256,256) (64,64) (256,256) ",
+    "traceback": "Traceback (most recent call last):\n  File \"${PROCESS_CWD}\\tools\\audit\\audit_infer_contract_runtime.py\", line 79, in capture\n    value = callable_()\n  File \"${PROCESS_CWD}\\tools\\audit\\audit_infer_contract_runtime.py\", line 170, in <lambda>\n    results[\"dsf_stitch\"] = capture(lambda: dsf_container.add_batch_gpu([(0, 0)], dsf_out[\"road\"], 256))\n  File \"${PROCESS_CWD}\\utils\\utils.py\", line 155, in add_batch_gpu\n    self.add_map(pnt, maps_np[batch_i, 0, :, :], CROP_SZ)\n  File \"${PROCESS_CWD}\\utils\\utils.py\", line 149, in add_map\n    self.map[0, pnt[0]:pnt[0] + CROP_SZ, pnt[1]:pnt[1] + CROP_SZ] += map\nValueError: operands could not be broadcast together with shapes (256,256) (64,64) (256,256) \n"
+  },
+  "dsf_anchor_with_infer_arguments": {
+    "status": "FAIL",
+    "error_type": "TypeError",
+    "error": "conv2d() received an invalid combination of arguments - got (NoneType, Parameter, Parameter, tuple, tuple, tuple, int), but expected one of:\n * (Tensor input, Tensor weight, Tensor bias = None, tuple of ints stride = 1, tuple of ints padding = 0, tuple of ints dilation = 1, int groups = 1)\n      didn't match because some of the arguments have invalid types: (!NoneType!, !Parameter!, !Parameter!, !tuple of (int, int)!, !tuple of (int, int)!, !tuple of (int, int)!, !int!)\n * (Tensor input, Tensor weight, Tensor bias = None, tuple of ints stride = 1, str padding = \"valid\", tuple of ints dilation = 1, int groups = 1)\n      didn't match because some of the arguments have invalid types: (!NoneType!, !Parameter!, !Parameter!, !tuple of (int, int)!, !tuple of (int, int)!, !tuple of (int, int)!, !int!)\n",
+    "traceback": "Traceback (most recent call last):\n  File \"${PROCESS_CWD}\\tools\\audit\\audit_infer_contract_runtime.py\", line 79, in capture\n    value = callable_()\n  File \"${PROCESS_CWD}\\tools\\audit\\audit_infer_contract_runtime.py\", line 171, in <lambda>\n    results[\"dsf_anchor_with_infer_arguments\"] = capture(lambda: dsf(\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"${PROCESS_CWD}\\model\\model.py\", line 405, in forward\n    ) = self.DSF(traj_image, aerial_image)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"${PROCESS_CWD}\\model\\DSFNet.py\", line 227, in forward\n    tr_conv1_out = self.down1_traj(traj)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\container.py\", line 244, in forward\n    input = module(input)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1773, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1784, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\conv.py\", line 548, in forward\n    return self._conv_forward(input, self.weight, self.bias)\n  File \"${PYTHON_PREFIX}\\lib\\site-packages\\torch\\nn\\modules\\conv.py\", line 543, in _conv_forward\n    return F.conv2d(\nTypeError: conv2d() received an invalid combination of arguments - got (NoneType, Parameter, Parameter, tuple, tuple, tuple, int), but expected one of:\n * (Tensor input, Tensor weight, Tensor bias = None, tuple of ints stride = 1, tuple of ints padding = 0, tuple of ints dilation = 1, int groups = 1)\n      didn't match because some of the arguments have invalid types: (!NoneType!, !Parameter!, !Parameter!, !tuple of (int, int)!, !tuple of (int, int)!, !tuple of (int, int)!, !int!)\n * (Tensor input, Tensor weight, Tensor bias = None, tuple of ints stride = 1, str padding = \"valid\", tuple of ints dilation = 1, int groups = 1)\n      didn't match because some of the arguments have invalid types: (!NoneType!, !Parameter!, !Parameter!, !tuple of (int, int)!, !tuple of (int, int)!, !tuple of (int, int)!, !int!)\n\n"
+  },
+  "none_mode_dsf_compatibility": {
+    "status": "FAIL",
+    "error_type": "ValueError",
+    "error": "TRAJ.MODE='none' requires TRAIN.MODEL='origin'; got 'DSFNet'. The DSFNet path consumes a trajectory raster and cannot be used as the image-only baseline.",
+    "traceback": "Traceback (most recent call last):\n  File \"${PROCESS_CWD}\\tools\\audit\\audit_infer_contract_runtime.py\", line 79, in capture\n    value = callable_()\n  File \"${PROCESS_CWD}\\tools\\audit\\audit_infer_contract_runtime.py\", line 178, in <lambda>\n    lambda: validate_trajectory_model_compatibility(\n  File \"${PROCESS_CWD}\\utils\\trajectory_mode.py\", line 95, in validate_trajectory_model_compatibility\n    raise ValueError(\nValueError: TRAJ.MODE='none' requires TRAIN.MODEL='origin'; got 'DSFNet'. The DSFNet path consumes a trajectory raster and cannot be used as the image-only baseline.\n"
+  }
+}

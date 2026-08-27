@@ -1,0 +1,145 @@
+{
+  "stage": "seg_raster_stage_s0",
+  "generated_at": "2026-08-27T11:17:28.813725+08:00",
+  "outputs": [
+    {
+      "mode": "origin",
+      "head": "road",
+      "semantic": "logits",
+      "train_loss": "BCEWithLogits",
+      "train_sigmoid_count": 0,
+      "infer_sigmoid_count": 1
+    },
+    {
+      "mode": "origin",
+      "head": "junction",
+      "semantic": "logits",
+      "train_loss": "BCEWithLogits",
+      "train_sigmoid_count": 0,
+      "infer_sigmoid_count": 1
+    },
+    {
+      "mode": "DSFNet",
+      "head": "road",
+      "semantic": "probabilities",
+      "train_loss": "BCEWithLogits (contract violation)",
+      "train_sigmoid_count": 1,
+      "infer_sigmoid_count": 2
+    },
+    {
+      "mode": "DSFNet",
+      "head": "junction",
+      "semantic": "probabilities",
+      "train_loss": "BCEWithLogits (contract violation)",
+      "train_sigmoid_count": 1,
+      "infer_sigmoid_count": 2
+    },
+    {
+      "mode": "DSFNet",
+      "head": "traj",
+      "semantic": "probabilities",
+      "train_loss": "none",
+      "train_sigmoid_count": 1,
+      "infer_sigmoid_count": null
+    },
+    {
+      "mode": "origin/DSFNet",
+      "head": "anchor",
+      "semantic": "logits",
+      "train_loss": "BCEWithLogits",
+      "train_sigmoid_count": 0,
+      "infer_sigmoid_count": 1
+    },
+    {
+      "mode": "origin/DSFNet",
+      "head": "anchor_lowrs",
+      "semantic": "logits",
+      "train_loss": "BCEWithLogits",
+      "train_sigmoid_count": 0,
+      "infer_sigmoid_count": 1
+    }
+  ],
+  "mathematical_analysis": {
+    "classification": "MATHEMATICAL_ANALYSIS_NOT_RUNTIME",
+    "formula": "If p=sigmoid(x) is passed as a logit, the effective probability is sigmoid(p).",
+    "effective_probability_range": [
+      0.5,
+      0.7310585786300049
+    ],
+    "negative_logit_limit": 0.5,
+    "positive_logit_limit": 0.7310585786300049,
+    "impact": "Predictions cannot represent probabilities below 0.5 after the second sigmoid; BCEWithLogits gradients optimize the wrong contract."
+  },
+  "evidence": [
+    {
+      "path": "model/DSFNet.py",
+      "symbol": "nn.Sigmoid()",
+      "line": 99,
+      "snippet": "nn.Sigmoid()",
+      "status": "FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"nn.Sigmoid()\" model/DSFNet.py",
+      "return_code": 0,
+      "key_output": "99:nn.Sigmoid()"
+    },
+    {
+      "path": "train.py",
+      "symbol": "binary_cross_entropy_with_logits",
+      "line": 144,
+      "snippet": "criteria = lambda a, b: F.binary_cross_entropy_with_logits(a, b, reduction='sum')",
+      "status": "FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"binary_cross_entropy_with_logits\" train.py",
+      "return_code": 0,
+      "key_output": "144:criteria = lambda a, b: F.binary_cross_entropy_with_logits(a, b, reduction='sum')"
+    },
+    {
+      "path": "utils/utils.py",
+      "symbol": "maps_np = torch.sigmoid(maps_cuda)",
+      "line": 153,
+      "snippet": "maps_np = torch.sigmoid(maps_cuda).data.cpu().numpy()",
+      "status": "FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"maps_np = torch.sigmoid(maps_cuda)\" utils/utils.py",
+      "return_code": 0,
+      "key_output": "153:maps_np = torch.sigmoid(maps_cuda).data.cpu().numpy()"
+    },
+    {
+      "path": "utils/additional_methods.py",
+      "symbol": "sigmoid_fields",
+      "line": 184,
+      "snippet": "sigmoid_fields = [\"road\", \"junc\", \"anchor\", \"anchor_lowrs\", \"traj_road\"]",
+      "status": "FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"sigmoid_fields\" utils/additional_methods.py",
+      "return_code": 0,
+      "key_output": "184:sigmoid_fields = [\"road\", \"junc\", \"anchor\", \"anchor_lowrs\", \"traj_road\"]"
+    }
+  ],
+  "source_provenance": {
+    "snapshot_id": "CURRENT_DIRTY_SNAPSHOT",
+    "source_worktree": "${SOURCE_WORKTREE}",
+    "branch": "master",
+    "HEAD": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+    "required_source_sha256": {
+      "configs/default_self.yml": "3aea6c974043fbe830b62d3f0c0eda2ed85fd688111ad8c7cc307d4f540d7cdb",
+      "data_self/gen_dataset.py": "fa563c096e990fd003f22a4f13fdddb07b934ad7c5369639c852627e3eefa265",
+      "infer.py": "d71815b68244fb80a49b986ade2007a146382e1e53a0ad81074d00d309ad0541",
+      "model/DSFNet.py": "41ec2bac8664ce04764bf1a2f9d5a07a7f539247cabaf96228360a34b1cd808c",
+      "model/model.py": "a141ffeb0d62529771a7daedaaa15e95683350edaa539b5ac82d2c9b2a5166ee",
+      "model/model2.py": "e866bdfe502d8c6a1fa05898c54e1349eade125e550bbebbc99de4f9eb1100c6",
+      "tests/test_trajectory_mode.py": "778ae29899d289cdd5312862c4f712be2f5876bdf8d06c755618cb20d8409b98",
+      "train.py": "88e6ace32f842a04610af277eb06d1f544cd28a733fff92c3cdc5e9ebe22c016",
+      "utils/OSMDataset.py": "916d43cd18f3edb26a8564c441473837d238b8d7a986ce330bdbe14d4eff097f",
+      "utils/model_utils.py": "aec3467657ebb637e9df16eea7ce6fe55570845451a6e26b955394cab40a80c6",
+      "utils/tileloader.py": "8cac0c163f1763863a6d2d2945870853f1a5cf797ff761ae0940cabdbac4840c",
+      "utils/trajectory_mode.py": "22e6969fb1deeb367818729eb2e84e73c05f31edd1ccd66530acb232155988eb"
+    },
+    "monkeypatch_used": false,
+    "stub_used": false,
+    "audit_harness_used": true,
+    "production_files_modified": false,
+    "redaction": "Source worktree absolute path is represented by a logical label."
+  },
+  "audit_scope": "CURRENT_DIRTY_SNAPSHOT_READ_ONLY"
+}

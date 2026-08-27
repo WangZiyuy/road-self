@@ -1,0 +1,148 @@
+{
+  "stage": "seg_raster_stage_s0",
+  "generated_at": "2026-08-27T12:10:22.144023+08:00",
+  "status": "PASS",
+  "redaction_target_count": 25,
+  "total_stage_s0_json_count_including_redaction_report": 26,
+  "count_semantics": {
+    "redaction_target_count": "All stage_s0_*.json files except this redaction report.",
+    "total_stage_s0_json_count_including_redaction_report": "redaction_target_count plus stage_s0_redaction_audit.json itself."
+  },
+  "policy": {
+    "baseline_worktree": "${BASELINE_WORKTREE}",
+    "dirty_worktree": "${DIRTY_WORKTREE}",
+    "user_home": "${USER_HOME}",
+    "python_prefix": "${PYTHON_PREFIX}",
+    "origin_remote": "${ORIGIN_REMOTE_REDACTED}",
+    "unknown_absolute_path": "${ABSOLUTE_PATH_REDACTED}"
+  },
+  "files": [
+    {
+      "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_anchor_step_audit.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_anchor_step_audit_current_dirty.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_checkpoint_audit.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_commit_manifest.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_conclusion.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_git_start.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_gradient_inventory.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_gradient_inventory_current_dirty.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_infer_contract_runtime.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_infer_contract_runtime_current_dirty.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_parameter_inventory.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_parameter_inventory_current_dirty.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_raster_alignment_audit.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_repository_inventory.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_runtime_audit.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_runtime_audit_current_dirty.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_source_provenance.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_symbol_inventory.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_test_results.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_train_infer_contract.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    },
+    {
+      "artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json",
+      "replacement_count": 0,
+      "remaining_sensitive_string_count": 0
+    }
+  ],
+  "remaining_findings": [],
+  "credentials_stored": false
+}

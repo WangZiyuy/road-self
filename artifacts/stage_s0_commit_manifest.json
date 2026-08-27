@@ -1,0 +1,349 @@
+{
+  "stage": "seg_raster_stage_s0",
+  "generated_at": "2026-08-27T12:10:22.663574+08:00",
+  "base_sha": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+  "branch": "feat/seg-raster-only",
+  "manifest_self_policy": {
+    "path": "artifacts/stage_s0_commit_manifest.json",
+    "listed_in_entries": false,
+    "reason": "A file cannot contain a stable SHA-256 digest of itself; the manifest is explicitly added alongside its listed entries."
+  },
+  "entries": [
+    {
+      "path": "artifacts/stage_s0_activation_loss_contract.json",
+      "size_bytes": 5365,
+      "sha256": "84ca6e6fa5b11ca81b6cf4023a028d0d77402096d1852ef6004e5ddaacb0f2f8",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_activation_loss_contract_current_dirty.json",
+      "size_bytes": 5410,
+      "sha256": "08633f9a1a01b285999fff7d6210d46db99c3a2a7b9dbc2839d3a56c90be4562",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_anchor_step_audit.json",
+      "size_bytes": 7298,
+      "sha256": "6e23ea8f39076b42a6305b188202973d547dbcc023aaeee7ff15b70db1f6d4b7",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_anchor_step_audit_current_dirty.json",
+      "size_bytes": 7282,
+      "sha256": "8684f5287986ec95a671f0bb407081ae0c13c8078f4482dd71061dd9aa4aafdd",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_checkpoint_audit.json",
+      "size_bytes": 730601,
+      "sha256": "e173cee7476286dd9f4695fd235cbbcd0f4b6dfd9f6c19b323cbcfd7c60ad92d",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 checkpoint audit evidence JSON; no checkpoint or model-weight bytes."
+    },
+    {
+      "path": "artifacts/stage_s0_conclusion.json",
+      "size_bytes": 22420,
+      "sha256": "65004a7ce0a540c01d8b62f2fbca995c124f4c31b58af06af6ef1d7a19ae48f7",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_execution_path_matrix.json",
+      "size_bytes": 13315,
+      "sha256": "2bacd80e3aab052382623cb02772ab654c876b715dc2b3d4a5df612615bb234e",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_execution_path_matrix_current_dirty.json",
+      "size_bytes": 13360,
+      "sha256": "af24080f6fe10820a34efad4726bcdb95140dc39a23c9793320e8a0c66c30d45",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_git_start.json",
+      "size_bytes": 43316,
+      "sha256": "a915ea5a00f9a10d0ddfe6ca30912fe4d9c070c8d94fdabc443c93d14ac44b3e",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_gradient_inventory.json",
+      "size_bytes": 943759,
+      "sha256": "ab1239109aa7e0982689714da7a18b134372ccfe8c34d09c965b30bc2874e026",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_gradient_inventory_current_dirty.json",
+      "size_bytes": 943664,
+      "sha256": "407744c0c04cb001f942e62abdd977d26e2dfc2d621b34bea4a1ac94d8a8b2d6",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_infer_contract_runtime.json",
+      "size_bytes": 7662,
+      "sha256": "fb0b17c634e044150e44fe944e7d5f27ec9eda0127765085170913c250c45bf5",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_infer_contract_runtime_current_dirty.json",
+      "size_bytes": 7665,
+      "sha256": "7686f1b9658b41f981b949af9446282d925e311b6a5732edb4b822c598a0bbf9",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_parameter_inventory.json",
+      "size_bytes": 943486,
+      "sha256": "08bce3740ed54a163a46ef1aa66285b7687a2e443e01ff5f5d62104d9f01ea8f",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_parameter_inventory_current_dirty.json",
+      "size_bytes": 943391,
+      "sha256": "68632b896b257472de719cf88af168ab07ed0b281a40b1a6673f4ec7c59781c3",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_raster_alignment_audit.json",
+      "size_bytes": 50808,
+      "sha256": "ec359279909660bc62a9239e8780e0b99db46b4c4d2b272a25f011b5bcc275a0",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_redaction_audit.json",
+      "size_bytes": 4700,
+      "sha256": "d45b87c5f9b9db34b6c7169d5b0d7108caeb0ced7229a8937a988304bf6e9f43",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_repository_inventory.json",
+      "size_bytes": 618253,
+      "sha256": "c040715180ad4559eb5a41cddcba3150855a8cf2494ce8a4a9d576bedd267640",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_runtime_audit.json",
+      "size_bytes": 993852,
+      "sha256": "9629ccaa9f44704305b102a9a7e69498965eccc242ec63d9397d8a9e63ad1e0a",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_runtime_audit_current_dirty.json",
+      "size_bytes": 993757,
+      "sha256": "261b917b8e462dbfde626b4ceba049a09e1c3ee7bee050e8196b3b7d732a79ab",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_source_provenance.json",
+      "size_bytes": 50842,
+      "sha256": "811eeb45e1c1090a280ce709803a7515a47bead1e2aae7090bd69f940979f560",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_symbol_inventory.json",
+      "size_bytes": 880858,
+      "sha256": "cd0744ee6dffc43070f5affdff47e9f3bacf6e6018973d600261ff34e74ed975",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_test_results.json",
+      "size_bytes": 137826,
+      "sha256": "9c26bd6e388c4b775a95a02d06b423b87b0dfed030f022c9f8216f8ea25b09ef",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_train_infer_contract.json",
+      "size_bytes": 13871,
+      "sha256": "e8a93f2dc968fdb32e8f42f0a7bcf5250846052242886593a50d4f31f42b4b38",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s0_train_infer_contract_current_dirty.json",
+      "size_bytes": 6051,
+      "sha256": "aa7242c53ef084b6fd990de24947645b82f3c52a1d98067da4a08fd3f8732553",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 machine-readable audit evidence."
+    },
+    {
+      "path": "docs/audits/stage_s0_global_dsf_audit.md",
+      "size_bytes": 23307,
+      "sha256": "68833646640404e93af10caa9a7328164fd3edb5a3d821bbb39eb4c87518217c",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 human-readable audit report."
+    },
+    {
+      "path": "docs/audits/stage_s0_model_dataflow.md",
+      "size_bytes": 6306,
+      "sha256": "f5eb45005ccc67f98cf8d3aaab2b8739ff01ca9ccac1e9f00e5f9494f1354f32",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 human-readable audit report."
+    },
+    {
+      "path": "tests/test_stage_s0_audit.py",
+      "size_bytes": 6160,
+      "sha256": "15db9fcb590b2bce63aa65204306c86e59c9bdecd09131390672fe5e38895bb0",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 non-production audit regression test."
+    },
+    {
+      "path": "tools/audit/README.md",
+      "size_bytes": 729,
+      "sha256": "284e9dd7e51305ab82a26986f98237d8852c283d60bd8cc00f9a706ea516acf0",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/audit_dirty_snapshot_contracts.py",
+      "size_bytes": 1466,
+      "sha256": "55c010df6215c48587b6809ba0fe1e47679e075e8940d982ac56c742301ad572",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/audit_infer_contract_runtime.py",
+      "size_bytes": 7999,
+      "sha256": "18b45073b9c09d628411623d0de87b355ffccf89a997af6564dd6b2c179df293",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/audit_legacy_dsf_checkpoints.py",
+      "size_bytes": 13254,
+      "sha256": "4913874007306d0b629e22e6e9a7fcefe169092ce975d00ae087f29fa83f8960",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/audit_legacy_dsf_runtime.py",
+      "size_bytes": 19192,
+      "sha256": "83b3ccab0fcf34dd3935bd07b77742ce926f17226f264adfcf5fb34e5b3e73a4",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/audit_raster_alignment.py",
+      "size_bytes": 10597,
+      "sha256": "f48f9f59004c0d55fd0bf38b124bf025d3cd416ee12dee0a0f4741c32809c897",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/audit_source_provenance.py",
+      "size_bytes": 19832,
+      "sha256": "19b6ac26d4a6431ff6504dadd4387986738fae07b4f6185a80184ed1746df07e",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/audit_stage_s0_static.py",
+      "size_bytes": 38160,
+      "sha256": "356383266dc6da1ecc89683dc42a697d3ed62d153e4131a8c180797c6269d11c",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/build_stage_s0_commit_manifest.py",
+      "size_bytes": 6979,
+      "sha256": "48617cf5de1f809a439b8bcfca8d1a683269fdef8e1a5998b770e70d7ebf945b",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/regroup_stage_s0_parameters.py",
+      "size_bytes": 2261,
+      "sha256": "8d52e90e00b6870586fa2382039027dd145188ee195b69a54038a11bc61f13b9",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/run_stage_s0_tests.py",
+      "size_bytes": 5467,
+      "sha256": "bf14b411cae7cb7b9bc487aab956643e8e837039e073011d11d01912289e48bf",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    },
+    {
+      "path": "tools/audit/sanitize_stage_s0_artifacts.py",
+      "size_bytes": 6194,
+      "sha256": "1a3f0908fd7580754af5b677ff347986fe669dc42b0a1f2a569425f982b2b08e",
+      "generated_by_stage_s0": true,
+      "intended_for_commit": true,
+      "reason": "Stage S0 read-only audit tooling or tooling documentation."
+    }
+  ],
+  "summary": {
+    "listed_entry_count": 40,
+    "intended_for_commit_count": 40,
+    "all_listed_files_generated_by_stage_s0": true,
+    "checkpoint_or_model_weight_file_count": 0,
+    "dataset_file_count": 0,
+    "cache_file_count": 0,
+    "production_file_count": 0
+  },
+  "explicit_commit_exclusions": {
+    "checkpoints": "CONFIRMED_NOT_LISTED",
+    "datasets": "CONFIRMED_NOT_LISTED",
+    "model_weights": "CONFIRMED_NOT_LISTED",
+    "caches": "CONFIRMED_NOT_LISTED",
+    "production_model_train_infer": "CONFIRMED_NOT_LISTED"
+  }
+}

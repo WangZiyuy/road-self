@@ -1,0 +1,1296 @@
+{
+  "stage": "seg_raster_stage_s0",
+  "generated_at": "2026-08-27T11:37:05.052499+08:00",
+  "gate": "source_provenance",
+  "status": "PASS_WITH_DUAL_SNAPSHOT",
+  "snapshots": {
+    "BASELINE_13488c7": {
+      "worktree": "${BASELINE_WORKTREE}",
+      "branch": "feat/seg-raster-only",
+      "head": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+      "revision": "13488c768d147b37632ffeefe4b62cb3e94b36ec"
+    },
+    "CURRENT_DIRTY_SNAPSHOT": {
+      "worktree": "${DIRTY_WORKTREE}",
+      "branch": "master",
+      "head": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+      "critical_file_manifest_sha256": "94c369dab77692ef8af36e63923afb5e84447bb126441ac130bd4907d41db61f",
+      "description": "Live worktree bytes read without modification; identity covers the 12 required critical files only."
+    }
+  },
+  "files": [
+    {
+      "path": "model/DSFNet.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "88ae5503ee6ef854e3e2b8e02bdb3182ca2d1f70",
+      "baseline_sha256": "1c574bfe4572a98d38f7ce4695acf2cfbd8784c986fe90958f4f53b02981a46c",
+      "baseline_worktree_sha256": "41ec2bac8664ce04764bf1a2f9d5a07a7f539247cabaf96228360a34b1cd808c",
+      "dirty_sha256": "41ec2bac8664ce04764bf1a2f9d5a07a7f539247cabaf96228360a34b1cd808c",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": true,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_runtime_audit.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_runtime_audit_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_anchor_step_audit.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_anchor_step_audit_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_parameter_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_parameter_inventory_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_gradient_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_gradient_inventory_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_infer_contract_runtime.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_infer_contract_runtime_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_checkpoint_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    },
+    {
+      "path": "model/model.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "b07543359d9148e15aa68d19fadd466fd2e3e1d9",
+      "baseline_sha256": "a141ffeb0d62529771a7daedaaa15e95683350edaa539b5ac82d2c9b2a5166ee",
+      "baseline_worktree_sha256": "c4c6579b267ab08e12227335ad10da53c26a0caf241e78613ebc3eb1cbf690e7",
+      "dirty_sha256": "a141ffeb0d62529771a7daedaaa15e95683350edaa539b5ac82d2c9b2a5166ee",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": true,
+      "baseline_worktree_identical_to_dirty": false,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "IDENTICAL_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_runtime_audit.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_runtime_audit_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_anchor_step_audit.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_anchor_step_audit_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_parameter_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_parameter_inventory_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_gradient_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_gradient_inventory_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_infer_contract_runtime.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_infer_contract_runtime_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_checkpoint_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES"
+        }
+      ]
+    },
+    {
+      "path": "model/model2.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "1674fa2bef5a7601b78b32206db3604be511a32c",
+      "baseline_sha256": "e866bdfe502d8c6a1fa05898c54e1349eade125e550bbebbc99de4f9eb1100c6",
+      "baseline_worktree_sha256": "95d723f3ee3d6f9ddff0e1b4573a35a30e8bcd3ebe3f70aaad51e94261eed581",
+      "dirty_sha256": "e866bdfe502d8c6a1fa05898c54e1349eade125e550bbebbc99de4f9eb1100c6",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": true,
+      "baseline_worktree_identical_to_dirty": false,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "IDENTICAL_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        }
+      ]
+    },
+    {
+      "path": "train.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "f29cc40b5e0ad29a9a81fdb15accdf84b419846a",
+      "baseline_sha256": "5af7c7e76f18b79f6faab23355ad2fa1caf5d4fa03c490e5fb87c2644ec0a029",
+      "baseline_worktree_sha256": "da0b9a4baef021853cad9f6b5d4b598f6dc53745eba77a28d764b656bf358143",
+      "dirty_sha256": "88e6ace32f842a04610af277eb06d1f544cd28a733fff92c3cdc5e9ebe22c016",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": false,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_checkpoint_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    },
+    {
+      "path": "infer.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "c348fc48b630442f87b4ef73a4e02dd6f35c1e38",
+      "baseline_sha256": "dfa0decfeae74b891ef3a73ea944b1f5523be0a1400adc6bd5ca8f97e35774ca",
+      "baseline_worktree_sha256": "da95ce60a4b8edc40ea6900e76c7f6118336f4bb2da9f0aaa532f151484e9f53",
+      "dirty_sha256": "d71815b68244fb80a49b986ade2007a146382e1e53a0ad81074d00d309ad0541",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": false,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_raster_alignment_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_checkpoint_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    },
+    {
+      "path": "utils/trajectory_mode.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "ea1e01c3eecc8fe3cc46d9ad228ef8268e593630",
+      "baseline_sha256": "22e6969fb1deeb367818729eb2e84e73c05f31edd1ccd66530acb232155988eb",
+      "baseline_worktree_sha256": "9c9a2a965a0331abf76242e061038b251713448583aeda7399c4e0e554d34fa7",
+      "dirty_sha256": "22e6969fb1deeb367818729eb2e84e73c05f31edd1ccd66530acb232155988eb",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": true,
+      "baseline_worktree_identical_to_dirty": false,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "IDENTICAL_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_runtime_audit.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_runtime_audit_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_anchor_step_audit.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_anchor_step_audit_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_parameter_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_parameter_inventory_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_gradient_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_gradient_inventory_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_infer_contract_runtime.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES",
+          "paired_dirty_artifact": "artifacts/stage_s0_infer_contract_runtime_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_test_results.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "VALID_BY_IDENTICAL_BASELINE_GIT_BLOB_BYTES"
+        }
+      ]
+    },
+    {
+      "path": "utils/OSMDataset.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "cf76808ccf7c5b7cdaf4191c4e31812e4fecaaf4",
+      "baseline_sha256": "b5fe2523ab34872b2b4ffafd9d2442bde5ae81d17c5425b0d105b6b262835e66",
+      "baseline_worktree_sha256": "00cb952043d4389ae329bda735c648d32e8b64e70d360369c7eb46ff0c1381df",
+      "dirty_sha256": "916d43cd18f3edb26a8564c441473837d238b8d7a986ce330bdbe14d4eff097f",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": false,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_raster_alignment_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    },
+    {
+      "path": "utils/model_utils.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "4c133ad4cea96521d993347acee93d4689a694bf",
+      "baseline_sha256": "d14e52a380672c0e38b86744df2c27a9288b71b0a027af2a9af5d4a568a0e18f",
+      "baseline_worktree_sha256": "5492e87c2d7c40869148759633c106e107ee8a471e17956b9acf71ffac9a74fd",
+      "dirty_sha256": "aec3467657ebb637e9df16eea7ce6fe55570845451a6e26b955394cab40a80c6",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": false,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_raster_alignment_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    },
+    {
+      "path": "utils/tileloader.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "5a74615d217e5814ecc6ee29e8cffee6441a12fc",
+      "baseline_sha256": "2e5e97c3a3a3181d8b62cb41f484d579a2d5c0eb9b280c5f86c7a9095e4c974b",
+      "baseline_worktree_sha256": "8cac0c163f1763863a6d2d2945870853f1a5cf797ff761ae0940cabdbac4840c",
+      "dirty_sha256": "8cac0c163f1763863a6d2d2945870853f1a5cf797ff761ae0940cabdbac4840c",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": true,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_raster_alignment_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    },
+    {
+      "path": "configs/default_self.yml",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "804642e7b48f4fdc8f342c089940ee3cfb8ae48d",
+      "baseline_sha256": "ec1c3d648c5359f2dbbc3b92a67ef425e86145fdc0e714524d78013eed963966",
+      "baseline_worktree_sha256": "d95877b1ab9488be7eb915a6a96069f7089fbe2049f775237ca4c157877a2d45",
+      "dirty_sha256": "3aea6c974043fbe830b62d3f0c0eda2ed85fd688111ad8c7cc307d4f540d7cdb",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": false,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_raster_alignment_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    },
+    {
+      "path": "data_self/gen_dataset.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "0156c7adb4b144df526ac119645e9d4b68bf7ba4",
+      "baseline_sha256": "c5a66c1f798b107cb4295c04bb1791d1bb6c0155ccace636ea54ced2abc60682",
+      "baseline_worktree_sha256": "fa563c096e990fd003f22a4f13fdddb07b934ad7c5369639c852627e3eefa265",
+      "dirty_sha256": "fa563c096e990fd003f22a4f13fdddb07b934ad7c5369639c852627e3eefa265",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": true,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_raster_alignment_audit.json",
+          "executed_snapshot": "BASELINE_13488c7_AUDIT_CODE_WITH_CURRENT_DIRTY_READ_ONLY_ASSETS",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_trajectory_mode.py",
+      "baseline_exists": true,
+      "baseline_worktree_exists": true,
+      "dirty_snapshot_exists": true,
+      "baseline_git_blob_sha": "e03b47cc0a426db5e1ef46d6f917bff381cfe422",
+      "baseline_sha256": "f6f20f6dbafc3dc494ca591c1690431440d148ce8aed8f73cd8bdd44d21edd6f",
+      "baseline_worktree_sha256": "778ae29899d289cdd5312862c4f712be2f5876bdf8d06c755618cb20d8409b98",
+      "dirty_sha256": "778ae29899d289cdd5312862c4f712be2f5876bdf8d06c755618cb20d8409b98",
+      "dirty_git_status": "CLEAN_FOR_PATH",
+      "identical": false,
+      "baseline_worktree_identical_to_dirty": true,
+      "identical_after_line_ending_normalization": true,
+      "difference_class": "LINE_ENDING_BYTES_ONLY_RELATIVE_TO_BASELINE_GIT_BLOB",
+      "baseline_error": "",
+      "artifact_snapshot_usage": [
+        {
+          "artifact": "artifacts/stage_s0_repository_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_symbol_inventory.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        },
+        {
+          "artifact": "artifacts/stage_s0_execution_path_matrix.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_activation_loss_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_train_infer_contract.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "NOT_REUSED; SEPARATE_DIRTY_ARTIFACT_CREATED",
+          "paired_dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json"
+        },
+        {
+          "artifact": "artifacts/stage_s0_test_results.json",
+          "executed_snapshot": "BASELINE_13488c7",
+          "current_dirty_applicability": "BASELINE_ONLY; NOT_REUSED_FOR_DIRTY_SNAPSHOT"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "critical_file_count": 12,
+    "identical_count": 3,
+    "different_count": 9,
+    "different_files": [
+      "model/DSFNet.py",
+      "train.py",
+      "infer.py",
+      "utils/OSMDataset.py",
+      "utils/model_utils.py",
+      "utils/tileloader.py",
+      "configs/default_self.yml",
+      "data_self/gen_dataset.py",
+      "tests/test_trajectory_mode.py"
+    ],
+    "content_different_after_line_ending_normalization_count": 0,
+    "content_different_after_line_ending_normalization_files": [],
+    "baseline_worktree_to_dirty_byte_different_count": 8,
+    "baseline_worktree_to_dirty_byte_different_files": [
+      "model/model.py",
+      "model/model2.py",
+      "train.py",
+      "infer.py",
+      "utils/trajectory_mode.py",
+      "utils/OSMDataset.py",
+      "utils/model_utils.py",
+      "configs/default_self.yml"
+    ],
+    "runtime_reuse_decision": "NOT_REUSED; BOTH_SNAPSHOTS_EXECUTED",
+    "scope_warning": "This gate does not assert that every non-critical dirty file equals the baseline."
+  },
+  "dual_snapshot_evidence": {
+    "status": "PASS",
+    "static_contracts": {
+      "execution_path": {
+        "baseline_artifact": "artifacts/stage_s0_execution_path_matrix.json",
+        "dirty_artifact": "artifacts/stage_s0_execution_path_matrix_current_dirty.json",
+        "both_present": true,
+        "baseline_semantic_sha256": "7517ede1908c247727f5410d833753b034bc6b02dadec26c348d672521665c4c",
+        "dirty_semantic_sha256": "7517ede1908c247727f5410d833753b034bc6b02dadec26c348d672521665c4c",
+        "semantically_identical": true
+      },
+      "activation_loss": {
+        "baseline_artifact": "artifacts/stage_s0_activation_loss_contract.json",
+        "dirty_artifact": "artifacts/stage_s0_activation_loss_contract_current_dirty.json",
+        "both_present": true,
+        "baseline_semantic_sha256": "d71cf7c1af1eeee609aaa2fb33e961b47a2cb4ad868535588a504ba774683fc2",
+        "dirty_semantic_sha256": "d71cf7c1af1eeee609aaa2fb33e961b47a2cb4ad868535588a504ba774683fc2",
+        "semantically_identical": true
+      },
+      "train_infer_contract": {
+        "baseline_artifact": "artifacts/stage_s0_train_infer_contract.json",
+        "dirty_artifact": "artifacts/stage_s0_train_infer_contract_current_dirty.json",
+        "both_present": true,
+        "baseline_semantic_sha256": "2d5bf9d4b64700846efcfb9c01c0397a9bc465b39b70f173a03adace0310f6ac",
+        "dirty_semantic_sha256": "2d5bf9d4b64700846efcfb9c01c0397a9bc465b39b70f173a03adace0310f6ac",
+        "semantically_identical": true
+      }
+    },
+    "runtime_shapes": {
+      "both_present": true,
+      "baseline": [
+        {
+          "label": "origin_none_train",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": null
+          }
+        },
+        {
+          "label": "origin_none_eval",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": null
+          }
+        },
+        {
+          "label": "origin_legacy_train",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": null
+          }
+        },
+        {
+          "label": "DSFNet_legacy_train",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": [
+              1,
+              1,
+              64,
+              64
+            ]
+          }
+        },
+        {
+          "label": "DSFNet_legacy_eval",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": [
+              1,
+              1,
+              64,
+              64
+            ]
+          }
+        }
+      ],
+      "current_dirty": [
+        {
+          "label": "origin_none_train",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": null
+          }
+        },
+        {
+          "label": "origin_none_eval",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": null
+          }
+        },
+        {
+          "label": "origin_legacy_train",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": null
+          }
+        },
+        {
+          "label": "DSFNet_legacy_train",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": [
+              1,
+              1,
+              64,
+              64
+            ]
+          }
+        },
+        {
+          "label": "DSFNet_legacy_eval",
+          "status": "PASS",
+          "outputs": {
+            "road": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "junc": [
+              1,
+              1,
+              64,
+              64
+            ],
+            "anchor": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "anchor_lowrs": [
+              1,
+              4,
+              256,
+              256
+            ],
+            "traj_road": [
+              1,
+              1,
+              64,
+              64
+            ]
+          }
+        }
+      ],
+      "identical": true
+    },
+    "inference_contracts": {
+      "both_present": true,
+      "baseline": {
+        "origin_test_true": {
+          "status": "PASS",
+          "error_type": null,
+          "road_shape": [
+            1,
+            1,
+            256,
+            256
+          ],
+          "junction_shape": [
+            1,
+            1,
+            256,
+            256
+          ]
+        },
+        "origin_stitch": {
+          "status": "PASS",
+          "error_type": null,
+          "road_shape": null,
+          "junction_shape": null
+        },
+        "dsf_test_true": {
+          "status": "PASS",
+          "error_type": null,
+          "road_shape": [
+            1,
+            1,
+            64,
+            64
+          ],
+          "junction_shape": [
+            1,
+            1,
+            64,
+            64
+          ]
+        },
+        "dsf_stitch": {
+          "status": "FAIL",
+          "error_type": "ValueError",
+          "road_shape": null,
+          "junction_shape": null
+        },
+        "dsf_anchor_with_infer_arguments": {
+          "status": "FAIL",
+          "error_type": "TypeError",
+          "road_shape": null,
+          "junction_shape": null
+        },
+        "none_mode_dsf_compatibility": {
+          "status": "FAIL",
+          "error_type": "ValueError",
+          "road_shape": null,
+          "junction_shape": null
+        }
+      },
+      "current_dirty": {
+        "origin_test_true": {
+          "status": "PASS",
+          "error_type": null,
+          "road_shape": [
+            1,
+            1,
+            256,
+            256
+          ],
+          "junction_shape": [
+            1,
+            1,
+            256,
+            256
+          ]
+        },
+        "origin_stitch": {
+          "status": "PASS",
+          "error_type": null,
+          "road_shape": null,
+          "junction_shape": null
+        },
+        "dsf_test_true": {
+          "status": "PASS",
+          "error_type": null,
+          "road_shape": [
+            1,
+            1,
+            64,
+            64
+          ],
+          "junction_shape": [
+            1,
+            1,
+            64,
+            64
+          ]
+        },
+        "dsf_stitch": {
+          "status": "FAIL",
+          "error_type": "ValueError",
+          "road_shape": null,
+          "junction_shape": null
+        },
+        "dsf_anchor_with_infer_arguments": {
+          "status": "FAIL",
+          "error_type": "TypeError",
+          "road_shape": null,
+          "junction_shape": null
+        },
+        "none_mode_dsf_compatibility": {
+          "status": "FAIL",
+          "error_type": "ValueError",
+          "road_shape": null,
+          "junction_shape": null
+        }
+      },
+      "identical": true
+    },
+    "gradient_artifacts": {
+      "baseline": "artifacts/stage_s0_gradient_inventory.json",
+      "current_dirty": "artifacts/stage_s0_gradient_inventory_current_dirty.json",
+      "both_present": true,
+      "baseline_semantic_sha256": "8b737e8311f1252129cc58852652fcbf296c65547e8dca5fbd2ad35cae40f204",
+      "dirty_semantic_sha256": "aa67c0bd510ab7609538234a5ed3655afe138e5e49a9319bb88771dcf2fee6c2",
+      "full_per_parameter_numerics_identical": false,
+      "baseline_structural_sha256": "754c2657b61447ea4141c128213f563fab1f2e755a6445461e64729d1a046674",
+      "dirty_structural_sha256": "754c2657b61447ea4141c128213f563fab1f2e755a6445461e64729d1a046674",
+      "structurally_identical": true,
+      "interpretation": "Structural reachability/grad-null/zero counts and losses are compared separately from per-parameter floating-point gradient norms."
+    }
+  },
+  "production_file_change_confirmation": {
+    "baseline_worktree": {
+      "status_command": {
+        "command": "git status --short -- model/DSFNet.py model/model.py model/model2.py train.py infer.py utils/trajectory_mode.py utils/OSMDataset.py utils/model_utils.py utils/tileloader.py configs/default_self.yml data_self/gen_dataset.py tests/test_trajectory_mode.py",
+        "cwd": "${BASELINE_WORKTREE}",
+        "return_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "diff_command": {
+        "command": "git diff -- model/DSFNet.py model/model.py model/model2.py train.py infer.py utils/trajectory_mode.py utils/OSMDataset.py utils/model_utils.py utils/tileloader.py configs/default_self.yml data_self/gen_dataset.py tests/test_trajectory_mode.py",
+        "cwd": "${BASELINE_WORKTREE}",
+        "return_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "unchanged": true
+    },
+    "dirty_worktree": {
+      "status_command": {
+        "command": "git status --short -- model/DSFNet.py model/model.py model/model2.py train.py infer.py utils/trajectory_mode.py utils/OSMDataset.py utils/model_utils.py utils/tileloader.py configs/default_self.yml data_self/gen_dataset.py tests/test_trajectory_mode.py",
+        "cwd": "${DIRTY_WORKTREE}",
+        "return_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "diff_command": {
+        "command": "git diff -- model/DSFNet.py model/model.py model/model2.py train.py infer.py utils/trajectory_mode.py utils/OSMDataset.py utils/model_utils.py utils/tileloader.py configs/default_self.yml data_self/gen_dataset.py tests/test_trajectory_mode.py",
+        "cwd": "${DIRTY_WORKTREE}",
+        "return_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "unchanged_relative_to_HEAD": true
+    }
+  },
+  "redaction": {
+    "absolute_paths": "Replaced by ${BASELINE_WORKTREE} and ${DIRTY_WORKTREE} labels.",
+    "remotes": "Not stored in this artifact.",
+    "usernames_and_credentials": "Not stored."
+  }
+}

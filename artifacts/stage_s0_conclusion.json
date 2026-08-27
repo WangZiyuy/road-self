@@ -1,0 +1,488 @@
+{
+  "stage": "seg_raster_stage_s0",
+  "scope": "global_legacy_dsf_audit",
+  "base_sha": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+  "head_sha": "RECORDED_AFTER_SINGLE_AUDIT_COMMIT_OUTSIDE_THIS_COMMIT_ARTIFACT",
+  "head_sha_semantics": "A commit cannot embed its own stable SHA. The final HEAD SHA is captured after the single allowed audit commit and returned in the final Stage S0 report.",
+  "branch": "feat/seg-raster-only",
+  "repository_inventory_summary": {
+    "candidate_count_field": "dirty_untracked_candidate_code_count",
+    "relevant_after_review_count_field": "dirty_untracked_relevant_after_review_count",
+    "irrelevant_after_review_count_field": "dirty_untracked_irrelevant_after_review_count",
+    "candidate_count": 537,
+    "relevant_after_review_count": 63,
+    "irrelevant_after_review_count": 474,
+    "counts_reconcile": true,
+    "stage_s0_generated_files_excluded_from_audit_start_repository_count": true
+  },
+  "source_provenance_gate": {
+    "status": "PASS_WITH_DUAL_SNAPSHOT",
+    "critical_file_count": 12,
+    "all_critical_files_identical_after_line_ending_normalization": true,
+    "raw_sha_difference_cause": "LF_CRLF_ONLY",
+    "current_dirty_snapshot_identity_scope": "The 12 required critical files only.",
+    "scope_exclusion": "No equality claim is made for any other untracked file in the dirty worktree."
+  },
+  "checkpoint_scope": {
+    "required_conclusion": "在所比较的 epoch40/50 checkpoint 对中，全部 368 个 DSF tensors 和全部 74 个 DSF anchor decoder tensors 均逐元素完全相同；Transformer、fuse_module_traj 和 Res2Net 等模块存在变化。",
+    "checkpoint_source_commit_provenance": "UNKNOWN",
+    "current_model_key_alignment": {
+      "missing_expected_key_count": 16,
+      "extra_checkpoint_key_count": 28,
+      "fully_compatible": false
+    },
+    "evidence_boundary": "Exact equality is established only for the compared epoch40/50 checkpoint pair; no conclusion is made about epochs before 40 or whether the current source DSF ever trained."
+  },
+  "git_isolation": {
+    "status": "PASS",
+    "worktree": "${BASELINE_WORKTREE}",
+    "trajectory_branch_untouched": true
+  },
+  "claims": [
+    {
+      "id": "H01",
+      "claim": "仓库没有名为 DelvMap 的模型，对应历史实现是 DSFNet/Unet_multistage。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE"
+      ],
+      "evidence": [
+        {
+          "file": "artifacts/stage_s0_symbol_inventory.json",
+          "class_or_key": "DelvMap / DSFNet / Unet_multistage symbol census",
+          "line_or_snippet": "DelvMap only occurs in lib/graph.py:108 comment; model/DSFNet.py:27 defines Unet_multistage.",
+          "command": "structured rg -n search for DelvMap, DSFNet, Unet_multistage",
+          "return_code": 0,
+          "key_output": "No DelvMap class/module/config; Unet_multistage definition found."
+        }
+      ],
+      "impact": "DelvMap cannot be enabled or imported as a repository model; DSF is the only auditable raster-fusion implementation.",
+      "recommended_action": "Refer to the code as legacy DSF/Unet_multistage and do not claim an external DelvMap port exists."
+    },
+    {
+      "id": "H02",
+      "claim": "DSF 包含轨迹栅格编码器、遥感编码器、co-attention 和多个输出头。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE",
+        "RUNTIME",
+        "GRADIENT"
+      ],
+      "evidence": [
+        {
+          "file": "model/DSFNet.py",
+          "class_or_key": "Unet_multistage.forward",
+          "line_or_snippet": "222-275: trajectory/image encoders, co_att_first, road/junction/traj heads.",
+          "command": "rg -n -C 3 'class Unet_multistage|co_att_first|road_final|junc_final|traj_final' model/DSFNet.py",
+          "return_code": 0,
+          "key_output": "Two actual encoders, first co-attention, three segmentation outputs."
+        },
+        {
+          "file": "artifacts/stage_s0_gradient_inventory.json",
+          "class_or_key": "DSFNet_legacy_train groups",
+          "line_or_snippet": "trajectory encoder, image_unet, co_attention, road/junction/traj heads are forward-reached.",
+          "command": "python tools/audit/audit_legacy_dsf_runtime.py --device cuda:0",
+          "return_code": 0,
+          "key_output": "DSFNet_legacy_train PASS."
+        }
+      ],
+      "impact": "The DSF parameter surface is a large coupled multimodal U-Net, not a drop-in encoder replacement.",
+      "recommended_action": "Use the causal dataflow and gradient inventory before reusing any submodule."
+    },
+    {
+      "id": "H03",
+      "claim": "默认配置为 MODEL='origin' 且 USE_TRAJ=True。",
+      "status": "PASS",
+      "evidence_types": [
+        "CONFIG",
+        "TEST"
+      ],
+      "evidence": [
+        {
+          "file": "configs/default_self.yml",
+          "class_or_key": "TRAIN.MODEL / TRAIN.USE_TRAJ",
+          "line_or_snippet": "62: MODEL: origin; 63: USE_TRAJ: True",
+          "command": "rg -n 'MODEL|USE_TRAJ' configs/default_self.yml",
+          "return_code": 0,
+          "key_output": "origin / True; no TRAJ.MODE key."
+        }
+      ],
+      "impact": "The default resolves to legacy_current and constructs trajectory modules even though the selected segmentation model is origin.",
+      "recommended_action": "Require an explicit future raster-only mode instead of overloading USE_TRAJ."
+    },
+    {
+      "id": "H04",
+      "claim": "origin 模式实际使用 sequence→anchor，而不是 raster→segmentation。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE",
+        "RUNTIME",
+        "GRADIENT"
+      ],
+      "evidence": [
+        {
+          "file": "model/model.py",
+          "class_or_key": "RPNet.forward origin + use_traj",
+          "line_or_snippet": "376-387 selects aerial backbone; 425-461 builds Transformer feature; 483-486 calls fuse_module_traj.",
+          "command": "rg -n -C 3 'model == .origin.|valid_traj_feature|fuse_module_traj' model/model.py",
+          "return_code": 0,
+          "key_output": "DSF forward is not called in origin."
+        },
+        {
+          "file": "artifacts/stage_s0_parameter_inventory.json",
+          "class_or_key": "origin_legacy_train",
+          "line_or_snippet": "114,555,139 registered parameters not reached; Transformer/fuse_module_traj reached.",
+          "command": "python tools/audit/audit_legacy_dsf_runtime.py --device cuda:0",
+          "return_code": 0,
+          "key_output": "origin_legacy_train PASS."
+        }
+      ],
+      "impact": "Default legacy data loading wastes raster I/O and registers dormant DSF parameters while sequence directly affects anchor.",
+      "recommended_action": "Separate raster and sequence modality modes in a later stage."
+    },
+    {
+      "id": "H05",
+      "claim": "DSF road/junction/traj 输出头内置 Sigmoid。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE",
+        "RUNTIME"
+      ],
+      "evidence": [
+        {
+          "file": "model/DSFNet.py",
+          "class_or_key": "traj_conv_last / conv_road_final / conv_junc_final",
+          "line_or_snippet": "99, 109, 117: nn.Sigmoid()",
+          "command": "rg -n 'nn.Sigmoid' model/DSFNet.py",
+          "return_code": 0,
+          "key_output": "Three sigmoid heads found."
+        },
+        {
+          "file": "artifacts/stage_s0_runtime_audit.json",
+          "class_or_key": "DSFNet train/eval output statistics",
+          "line_or_snippet": "road/junction/traj values are in probability range.",
+          "command": "python tools/audit/audit_legacy_dsf_runtime.py --device cuda:0",
+          "return_code": 0,
+          "key_output": "DSF forward PASS."
+        }
+      ],
+      "impact": "DSF segmentation output semantics differ from origin logits.",
+      "recommended_action": "Any future segmentation heads should expose logits only and apply sigmoid at a single boundary."
+    },
+    {
+      "id": "H06",
+      "claim": "训练使用 BCEWithLogitsLoss 等价函数。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE"
+      ],
+      "evidence": [
+        {
+          "file": "train.py",
+          "class_or_key": "criteria",
+          "line_or_snippet": "144: F.binary_cross_entropy_with_logits(..., reduction='sum')",
+          "command": "rg -n 'binary_cross_entropy_with_logits' train.py",
+          "return_code": 0,
+          "key_output": "criteria found and used by anchor, road, and junction losses."
+        }
+      ],
+      "impact": "Applying it to DSF road/junction probabilities violates the loss contract.",
+      "recommended_action": "Do not repair by adding more post-processing; define one logits/probability contract."
+    },
+    {
+      "id": "H07",
+      "claim": "训练后处理、推理或可视化会再次执行 Sigmoid。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE",
+        "RUNTIME"
+      ],
+      "evidence": [
+        {
+          "file": "train.py; utils/utils.py; utils/additional_methods.py",
+          "class_or_key": "postprocess / MapContainer.add_batch_gpu / visualization",
+          "line_or_snippet": "train.py:374-376; utils/utils.py:153; utils/additional_methods.py:184,226-227",
+          "command": "rg -n 'torch.sigmoid|sigmoid_fields' train.py utils/utils.py utils/additional_methods.py",
+          "return_code": 0,
+          "key_output": "Additional sigmoid sites verified."
+        }
+      ],
+      "impact": "For DSF, double sigmoid changes numerical range and threshold meaning.",
+      "recommended_action": "Centralize sigmoid at metric/stitch threshold boundaries only."
+    },
+    {
+      "id": "H08",
+      "claim": "DSF segmentation 输出分辨率为输入的 1/4。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE",
+        "RUNTIME",
+        "TEST"
+      ],
+      "evidence": [
+        {
+          "file": "artifacts/stage_s0_runtime_audit.json",
+          "class_or_key": "DSFNet_legacy_train/eval shapes",
+          "line_or_snippet": "256x256 input -> road/junction/traj [1,1,64,64].",
+          "command": "python tools/audit/audit_legacy_dsf_runtime.py --device cuda:0",
+          "return_code": 0,
+          "key_output": "Train and eval both 64x64."
+        }
+      ],
+      "impact": "DSF test=True is incompatible with the full-resolution segmentation stitcher.",
+      "recommended_action": "A future model must document and test train/test resolution parity."
+    },
+    {
+      "id": "H09",
+      "claim": "anchor inference 给 DSF 传入 traj_image=None。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE",
+        "RUNTIME"
+      ],
+      "evidence": [
+        {
+          "file": "infer.py",
+          "class_or_key": "anchor iteration RPNet call",
+          "line_or_snippet": "306 include_raster=False; 350 traj_image=None",
+          "command": "rg -n -C 3 'include_raster=False|traj_image=None' infer.py",
+          "return_code": 0,
+          "key_output": "Raster is omitted from anchor fetch and forward."
+        },
+        {
+          "file": "artifacts/stage_s0_infer_contract_runtime.json",
+          "class_or_key": "dsf_anchor_with_infer_arguments",
+          "line_or_snippet": "TypeError: conv2d received NoneType at model/DSFNet.py:227.",
+          "command": "python tools/audit/audit_infer_contract_runtime.py --device cuda:0",
+          "return_code": 0,
+          "key_output": "Expected production failure reproduced."
+        }
+      ],
+      "impact": "DSF anchor inference is not end-to-end runnable.",
+      "recommended_action": "Do not treat DSF training forward as proof of inference support."
+    },
+    {
+      "id": "H10",
+      "claim": "DSF 全分辨率 anchor 的各时间步输出完全相同。",
+      "status": "PASS",
+      "evidence_types": [
+        "RUNTIME",
+        "TEST",
+        "STATIC_CODE"
+      ],
+      "evidence": [
+        {
+          "file": "artifacts/stage_s0_anchor_step_audit.json",
+          "class_or_key": "DSFNet train/eval anchor comparisons",
+          "line_or_snippet": "0_vs_1, 0_vs_2, 0_vs_3 max_abs=mean_abs=0 for anchor; anchor_lowrs differs.",
+          "command": "python tools/audit/audit_legacy_dsf_runtime.py --device cuda:0",
+          "return_code": 0,
+          "key_output": "Exact equality in train and eval."
+        },
+        {
+          "file": "model/model.py",
+          "class_or_key": "DSF anchor decoder",
+          "line_or_snippet": "503-512: decoder uses fi_ca1 and DSF skips, not next_step.",
+          "command": "rg -n -C 4 'self.up4_anchor|self.up0_anchor' model/model.py",
+          "return_code": 0,
+          "key_output": "Same decoder inputs reused each loop step."
+        }
+      ],
+      "impact": "The nominal multi-step full-resolution DSF anchor is not temporally discriminative.",
+      "recommended_action": "Do not reuse this decoder as evidence for a viable raster-to-anchor path."
+    },
+    {
+      "id": "H11",
+      "claim": "DSF 模式同时启用了轨迹序列 Transformer。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE",
+        "RUNTIME",
+        "GRADIENT"
+      ],
+      "evidence": [
+        {
+          "file": "model/model.py",
+          "class_or_key": "RPNet trajectory modules and forward",
+          "line_or_snippet": "221-229 registers Transformer/fuse_module_traj; 425-461 executes sequence branch.",
+          "command": "rg -n -C 3 'self.transformer|fuse_module_traj|valid_traj_feature' model/model.py",
+          "return_code": 0,
+          "key_output": "Sequence modules registered and executed when use_traj=True."
+        }
+      ],
+      "impact": "Legacy DSF experiments cannot isolate raster causality from sequence causality.",
+      "recommended_action": "Future raster segmentation evaluation must not load or construct the sequence path."
+    },
+    {
+      "id": "H12",
+      "claim": "traj_road 没有进入总 loss。",
+      "status": "PASS",
+      "evidence_types": [
+        "STATIC_CODE",
+        "GRADIENT"
+      ],
+      "evidence": [
+        {
+          "file": "train.py",
+          "class_or_key": "loss calculation",
+          "line_or_snippet": "328-352: total loss is anchor + road + junction; no traj_road term.",
+          "command": "rg -n -C 12 'loss = anchor_loss' train.py",
+          "return_code": 0,
+          "key_output": "traj_road is only visualized."
+        },
+        {
+          "file": "artifacts/stage_s0_gradient_inventory.json",
+          "class_or_key": "DSF trajectory decoder/head",
+          "line_or_snippet": "20,547,200 decoder and 74,689 head parameters reached, all grad=None.",
+          "command": "python tools/audit/audit_legacy_dsf_runtime.py --device cuda:0",
+          "return_code": 0,
+          "key_output": "Unsupervised branch confirmed by gradient."
+        }
+      ],
+      "impact": "The trajectory reconstruction decoder consumes compute and checkpoint space without learning from the current objective.",
+      "recommended_action": "Exclude it from any minimal future segmentation model unless separately justified."
+    },
+    {
+      "id": "H13",
+      "claim": "大量已注册参数没有有效前向或梯度。",
+      "status": "PASS",
+      "evidence_types": [
+        "RUNTIME",
+        "GRADIENT",
+        "CHECKPOINT"
+      ],
+      "evidence": [
+        {
+          "file": "artifacts/stage_s0_parameter_inventory.json; artifacts/stage_s0_gradient_inventory.json",
+          "class_or_key": "per-mode summaries",
+          "line_or_snippet": "origin legacy: 114,555,139 not reached; DSF: 36,756,638 not reached, 23,460,363 grad=None, 1,572,864 zero grad.",
+          "command": "python tools/audit/audit_legacy_dsf_runtime.py --device cuda:0",
+          "return_code": 0,
+          "key_output": "Per-parameter hooks, gradients, optimizer and checkpoint membership recorded separately."
+        }
+      ],
+      "impact": "State-dict presence materially overstates the active/trained model surface.",
+      "recommended_action": "Use reached/non-null/non-zero evidence, not registration, in future design decisions."
+    },
+    {
+      "id": "H14",
+      "claim": "在所比较的 epoch40/50 checkpoint 对中，全部 368 个 DSF tensors 和全部 74 个 DSF anchor decoder tensors 均逐元素完全相同；Transformer、fuse_module_traj 和 Res2Net 等模块存在变化。",
+      "status": "PASS",
+      "evidence_types": [
+        "CHECKPOINT"
+      ],
+      "evidence": [
+        {
+          "file": "artifacts/stage_s0_checkpoint_audit.json",
+          "class_or_key": "legacy_pair_comparison",
+          "line_or_snippet": "DSF: 368/368 tensors exactly equal; DSF anchor decoder: 74/74 tensors exactly equal; Transformer, fuse_module_traj, and Res2Net contain changed tensors.",
+          "command": "python tools/audit/audit_legacy_dsf_checkpoints.py --search-root ${BASELINE_WORKTREE} --search-root ${DIRTY_WORKTREE}",
+          "return_code": 0,
+          "key_output": "Same 1,175 keys; outer_it 40 vs 50; exact tensor equality for DSF groups."
+        }
+      ],
+      "impact": "The evidence establishes exact tensor equality for those two groups only within the compared checkpoint pair; source commit provenance is UNKNOWN and current-model key alignment is incomplete (16 missing, 28 extra).",
+      "recommended_action": "Do not extrapolate outside the compared pair and do not describe the checkpoint as fully compatible with the current model."
+    },
+    {
+      "id": "H15",
+      "claim": "Xi'an 轨迹栅格值为 0/128/255。",
+      "status": "PASS",
+      "evidence_types": [
+        "DATA_FILE"
+      ],
+      "evidence": [
+        {
+          "file": "artifacts/stage_s0_raster_alignment_audit.json",
+          "class_or_key": "xian_finding.raster",
+          "line_or_snippet": "unique_values=[0,128,255], SHA256=917930214563fa0df3da75a48830b0ca078c704dda29ef458e81bf8f8d8d99e4",
+          "command": "python tools/audit/audit_raster_alignment.py --source-repo ${DIRTY_WORKTREE}",
+          "return_code": 0,
+          "key_output": "Full value census; strict_binary_0_255=false."
+        }
+      ],
+      "impact": "The input is ternary and becomes 0/0.50196/1 after current normalization.",
+      "recommended_action": "Specify whether 128 is uncertainty, density, or background before modeling."
+    },
+    {
+      "id": "H16",
+      "claim": "Xi'an 轨迹栅格为 4300x5000，而遥感 tile 为 4096x4096。",
+      "status": "PASS",
+      "evidence_types": [
+        "DATA_FILE"
+      ],
+      "evidence": [
+        {
+          "file": "artifacts/stage_s0_raster_alignment_audit.json",
+          "class_or_key": "xian_finding",
+          "line_or_snippet": "aerial width/height 4096/4096; raster width/height 4300/5000; shape_match=false.",
+          "command": "python tools/audit/audit_raster_alignment.py --source-repo ${DIRTY_WORKTREE}",
+          "return_code": 0,
+          "key_output": "status=DATA_ALIGNMENT_BLOCKER."
+        }
+      ],
+      "impact": "Applying identical crop coordinates does not guarantee corresponding pixels.",
+      "recommended_action": "Resolve registration from source georeferencing; do not resize or center-crop by guess."
+    },
+    {
+      "id": "H17",
+      "claim": "推理所需 traj_test 目录不存在。",
+      "status": "PASS",
+      "evidence_types": [
+        "CONFIG",
+        "DATA_FILE"
+      ],
+      "evidence": [
+        {
+          "file": "configs/default_self.yml; artifacts/stage_s0_raster_alignment_audit.json",
+          "class_or_key": "DIR.TEST_TRAJ_DIR / directories.traj_test",
+          "line_or_snippet": "configured data_self/input/traj_test; read-only source existence=false.",
+          "command": "python tools/audit/audit_raster_alignment.py --source-repo ${DIRTY_WORKTREE}",
+          "return_code": 0,
+          "key_output": "train traj exists; test traj does not."
+        }
+      ],
+      "impact": "DSF segmentation inference fails before model execution for configured data.",
+      "recommended_action": "Create a validated test manifest only in a later data-contract stage."
+    }
+  ],
+  "go_no_go": {
+    "repair_legacy_dsf": "NO_GO",
+    "implement_new_raster_seg_only": "BLOCKED",
+    "reason": "Legacy DSF has incompatible activation, shape, modality, gradient, recursion, and checkpoint contracts. A clean raster-segmentation path is preferable in principle, but Xi'an raster/aerial registration, ternary value semantics, and missing test raster data must be resolved first."
+  },
+  "blockers": [
+    "DATA_ALIGNMENT_BLOCKER: xian_0_0 aerial is 4096x4096 while raster is 4300x5000.",
+    "Geographic registration cannot be proven because PNG CRS/geotransform/pixel-origin metadata is unavailable.",
+    "The configured data_self/input/traj_test directory is absent.",
+    "DSF segmentation inference returns H/4 to an H stitcher and DSF anchor inference passes traj_image=None."
+  ],
+  "next_stage_proposal": [
+    "S1 data contract: create an explicit paired manifest with checksums, identical pixel grids, value semantics, and train/test coverage; do not resize by guess.",
+    "Freeze and evaluate the origin image-only segmentation baseline before adding raster input.",
+    "After data clearance, specify a minimal logits-only raster+RGB road/junction segmentation model with no sequence loader or Transformer and tested train/infer shape parity.",
+    "Only after segmentation gains, expose a documented segmentation feature to anchor and run causal image-only/raster-feature/prediction/oracle ablations.",
+    "Keep trajectory-sequence work isolated until a separately approved integration stage."
+  ],
+  "tests": {
+    "historical_full_suite": {
+      "artifact": "artifacts/stage_s0_test_results.json",
+      "passed": 242,
+      "failed": 0
+    },
+    "finalization_audit_only": {
+      "command": "${PROJECT_PYTHON} -m pytest tests/test_stage_s0_audit.py -q",
+      "passed": 12,
+      "failed": 0,
+      "warnings": 1,
+      "warning_scope": ".pytest_cache write denied; cache is excluded from commit"
+    },
+    "runtime_gradient_checkpoint_audits_reexecuted_during_finalization": false
+  },
+  "remote_push": {
+    "attempted": "RECORDED_AFTER_COMMIT_OUTSIDE_THIS_COMMIT_ARTIFACT",
+    "status": "POST_COMMIT_OPERATION",
+    "remote_branch": "feat/seg-raster-only",
+    "error": "A post-commit push result cannot be embedded without creating or amending another commit."
+  }
+}

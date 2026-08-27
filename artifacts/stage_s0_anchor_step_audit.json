@@ -1,0 +1,269 @@
+{
+  "stage": "seg_raster_stage_s0",
+  "generated_at": "2026-08-27T11:19:06.901655+08:00",
+  "source_provenance": {
+    "snapshot_id": "BASELINE_13488c7",
+    "cwd": "${SOURCE_WORKTREE}",
+    "source_worktree": "${SOURCE_WORKTREE}",
+    "branch": "feat/seg-raster-only",
+    "HEAD": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+    "model.model.__file__": "${SOURCE_WORKTREE}/model/model.py",
+    "model.DSFNet.__file__": "${SOURCE_WORKTREE}/model/DSFNet.py",
+    "sys.path": [
+      "${SOURCE_WORKTREE}",
+      "${SOURCE_WORKTREE}/tools/audit",
+      "${PYTHON_PREFIX}/python310.zip",
+      "${PYTHON_PREFIX}/DLLs",
+      "${PYTHON_PREFIX}/Lib",
+      "${PYTHON_PREFIX}",
+      "${PYTHON_PREFIX}/Lib/site-packages",
+      "${USER_HOME}/Desktop/sam_road-main/segment-anything-main/segment-anything-main"
+    ],
+    "imported_source_sha256": {
+      "model/model.py": "c4c6579b267ab08e12227335ad10da53c26a0caf241e78613ebc3eb1cbf690e7",
+      "model/DSFNet.py": "41ec2bac8664ce04764bf1a2f9d5a07a7f539247cabaf96228360a34b1cd808c"
+    },
+    "monkeypatch_used": false,
+    "stub_used": false,
+    "audit_harness_used": true,
+    "production_model_modified": false,
+    "redaction": "Absolute paths are represented by logical labels."
+  },
+  "runs": [
+    {
+      "label": "origin_none_train",
+      "status": "PASS",
+      "model": "origin",
+      "module_mode": "train",
+      "anchor": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 7908.84765625,
+          "mean_abs": 2014.5625,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 65522.8984375,
+          "mean_abs": 31956.890625,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 639562.3125,
+          "mean_abs": 250041.9375,
+          "exactly_equal": false
+        }
+      ],
+      "anchor_lowrs": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 4753.18896484375,
+          "mean_abs": 2743.939453125,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 25230.083984375,
+          "mean_abs": 16716.7890625,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 614854.3125,
+          "mean_abs": 389369.65625,
+          "exactly_equal": false
+        }
+      ],
+      "causal_trace": "Origin full-resolution decoder consumes next_step at every recursive step."
+    },
+    {
+      "label": "origin_none_eval",
+      "status": "PASS",
+      "model": "origin",
+      "module_mode": "eval",
+      "anchor": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 2958509.5,
+          "mean_abs": 1477726.75,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 27386812.0,
+          "mean_abs": 14066565.0,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 245972144.0,
+          "mean_abs": 106587456.0,
+          "exactly_equal": false
+        }
+      ],
+      "anchor_lowrs": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 1426946.5,
+          "mean_abs": 831924.8125,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 9204384.0,
+          "mean_abs": 6804036.0,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 253643824.0,
+          "mean_abs": 163851344.0,
+          "exactly_equal": false
+        }
+      ],
+      "causal_trace": "Origin full-resolution decoder consumes next_step at every recursive step."
+    },
+    {
+      "label": "origin_legacy_train",
+      "status": "PASS",
+      "model": "origin",
+      "module_mode": "train",
+      "anchor": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 15357.572265625,
+          "mean_abs": 9549.5537109375,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 201283.546875,
+          "mean_abs": 136159.171875,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 2773687.5,
+          "mean_abs": 1781304.75,
+          "exactly_equal": false
+        }
+      ],
+      "anchor_lowrs": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 7038.75,
+          "mean_abs": 5076.154296875,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 93640.046875,
+          "mean_abs": 68509.734375,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 1504236.25,
+          "mean_abs": 1040912.4375,
+          "exactly_equal": false
+        }
+      ],
+      "causal_trace": "Origin full-resolution decoder consumes next_step at every recursive step."
+    },
+    {
+      "label": "DSFNet_legacy_train",
+      "status": "PASS",
+      "model": "DSFNet",
+      "module_mode": "train",
+      "anchor": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exactly_equal": true
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exactly_equal": true
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exactly_equal": true
+        }
+      ],
+      "anchor_lowrs": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 19.775802612304688,
+          "mean_abs": 3.0282812118530273,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 40.88983154296875,
+          "mean_abs": 15.853801727294922,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 72.73416137695312,
+          "mean_abs": 33.479862213134766,
+          "exactly_equal": false
+        }
+      ],
+      "causal_trace": "DSF full-resolution decoder does not consume next_step; next_step only produces anchor_lowrs and recursive slot feedback."
+    },
+    {
+      "label": "DSFNet_legacy_eval",
+      "status": "PASS",
+      "model": "DSFNet",
+      "module_mode": "eval",
+      "anchor": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exactly_equal": true
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exactly_equal": true
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 0.0,
+          "mean_abs": 0.0,
+          "exactly_equal": true
+        }
+      ],
+      "anchor_lowrs": [
+        {
+          "pair": "0_vs_1",
+          "max_abs": 0.4929964542388916,
+          "mean_abs": 0.1565467119216919,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_2",
+          "max_abs": 0.9398469924926758,
+          "mean_abs": 0.2730051577091217,
+          "exactly_equal": false
+        },
+        {
+          "pair": "0_vs_3",
+          "max_abs": 3.1174933910369873,
+          "mean_abs": 2.2707486152648926,
+          "exactly_equal": false
+        }
+      ],
+      "causal_trace": "DSF full-resolution decoder does not consume next_step; next_step only produces anchor_lowrs and recursive slot feedback."
+    }
+  ]
+}

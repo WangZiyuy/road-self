@@ -1,0 +1,164 @@
+{
+  "stage": "seg_raster_stage_s0",
+  "generated_at": "2026-08-27T11:17:28.818247+08:00",
+  "checks": [
+    {
+      "item": "RPNet constructor",
+      "train": "enable_trajectory_modules=use_trajectory",
+      "infer": "enable_trajectory_modules=USE_TRAJECTORY",
+      "status": "MATCH"
+    },
+    {
+      "item": "trajectory mode",
+      "train": "resolve_trajectory_mode(cfg)",
+      "infer": "resolve_trajectory_mode(cfg)",
+      "status": "MATCH"
+    },
+    {
+      "item": "segmentation raster",
+      "train": "local raster crop from TileCache",
+      "infer": "whole TEST_TRAJ_DIR region image, then crop",
+      "status": "MISMATCH"
+    },
+    {
+      "item": "anchor raster",
+      "train": "traj_image_chw supplied",
+      "infer": "traj_image=None and include_raster=False",
+      "status": "MISMATCH"
+    },
+    {
+      "item": "sequence",
+      "train": "valid_trajectories supplied",
+      "infer segmentation": "none due test early return",
+      "infer anchor": "valid_trajectories supplied",
+      "status": "ENTRY_DEPENDENT"
+    },
+    {
+      "item": "origin road/junction test shape",
+      "train": "H/4",
+      "infer": "upsampled H",
+      "status": "INTENTIONAL"
+    },
+    {
+      "item": "DSF road/junction test shape",
+      "train": "H/4",
+      "infer": "H/4 passed to H stitcher",
+      "status": "FAIL"
+    },
+    {
+      "item": "sigmoid",
+      "train origin": "loss consumes logits",
+      "train DSF": "loss consumes probabilities as logits",
+      "infer origin": "one sigmoid",
+      "infer DSF": "two sigmoids",
+      "status": "FAIL"
+    },
+    {
+      "item": "checkpoint strictness",
+      "train": "strict=True",
+      "infer explicit CKPT_FILE": "strict=True",
+      "infer historical TEST.CKPT": "permissive load_pretrained",
+      "status": "PARTIAL"
+    },
+    {
+      "item": "DataParallel",
+      "train": "optional before cuda/load",
+      "infer": "load before optional wrapping",
+      "status": "DIFFERENT_ORDER"
+    },
+    {
+      "item": "test flag output semantic",
+      "test=False": "raw training dict including H/4 segmentation",
+      "test=True origin": "upsampled logits",
+      "test=True DSF": "H/4 probabilities",
+      "status": "FAIL"
+    }
+  ],
+  "segmentation_prepass_dsf": "FAIL_SHAPE_AND_DOUBLE_SIGMOID",
+  "anchor_iteration_dsf": "FAIL_TRAJ_IMAGE_NONE",
+  "trajectory_raster_centered_on_extension_vertex_train": true,
+  "trajectory_raster_centered_on_extension_vertex_infer_anchor": false,
+  "evidence": [
+    {
+      "path": "train.py",
+      "symbol": "batch_traj_inputs_cuda",
+      "line": 247,
+      "snippet": "batch_traj_inputs_cuda = None",
+      "status": "FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"batch_traj_inputs_cuda\" train.py",
+      "return_code": 0,
+      "key_output": "247:batch_traj_inputs_cuda = None"
+    },
+    {
+      "path": "infer.py",
+      "symbol": "traj_image=None",
+      "line": 350,
+      "snippet": "traj_image=None,",
+      "status": "FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"traj_image=None\" infer.py",
+      "return_code": 0,
+      "key_output": "350:traj_image=None,"
+    },
+    {
+      "path": "infer.py",
+      "symbol": "crop_traj =",
+      "line": 634,
+      "snippet": "crop_traj = traj_map[:, :, pnt[0]:pnt[0] + cfg.TEST.CROP_SZ, pnt[1]:pnt[1] + cfg.TEST.CROP_SZ]",
+      "status": "FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"crop_traj =\" infer.py",
+      "return_code": 0,
+      "key_output": "634:crop_traj = traj_map[:, :, pnt[0]:pnt[0] + cfg.TEST.CROP_SZ, pnt[1]:pnt[1] + cfg.TEST.CROP_SZ]"
+    },
+    {
+      "path": "model/model.py",
+      "symbol": "return {'road': road_final, 'junc': junc_final}",
+      "line": 414,
+      "snippet": "return {'road': road_final, 'junc': junc_final}",
+      "status": "FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"return {'road': road_final, 'junc': junc_final}\" model/model.py",
+      "return_code": 0,
+      "key_output": "414:return {'road': road_final, 'junc': junc_final}"
+    },
+    {
+      "path": "utils/checkpoint_utils.py",
+      "symbol": "strict=True",
+      "line": null,
+      "snippet": "",
+      "status": "NOT_FOUND",
+      "evidence_type": "STATIC_CODE",
+      "command": "rg -n -F \"strict=True\" utils/checkpoint_utils.py",
+      "return_code": 1,
+      "key_output": ""
+    }
+  ],
+  "source_provenance": {
+    "snapshot_id": "CURRENT_DIRTY_SNAPSHOT",
+    "source_worktree": "${SOURCE_WORKTREE}",
+    "branch": "master",
+    "HEAD": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+    "required_source_sha256": {
+      "configs/default_self.yml": "3aea6c974043fbe830b62d3f0c0eda2ed85fd688111ad8c7cc307d4f540d7cdb",
+      "data_self/gen_dataset.py": "fa563c096e990fd003f22a4f13fdddb07b934ad7c5369639c852627e3eefa265",
+      "infer.py": "d71815b68244fb80a49b986ade2007a146382e1e53a0ad81074d00d309ad0541",
+      "model/DSFNet.py": "41ec2bac8664ce04764bf1a2f9d5a07a7f539247cabaf96228360a34b1cd808c",
+      "model/model.py": "a141ffeb0d62529771a7daedaaa15e95683350edaa539b5ac82d2c9b2a5166ee",
+      "model/model2.py": "e866bdfe502d8c6a1fa05898c54e1349eade125e550bbebbc99de4f9eb1100c6",
+      "tests/test_trajectory_mode.py": "778ae29899d289cdd5312862c4f712be2f5876bdf8d06c755618cb20d8409b98",
+      "train.py": "88e6ace32f842a04610af277eb06d1f544cd28a733fff92c3cdc5e9ebe22c016",
+      "utils/OSMDataset.py": "916d43cd18f3edb26a8564c441473837d238b8d7a986ce330bdbe14d4eff097f",
+      "utils/model_utils.py": "aec3467657ebb637e9df16eea7ce6fe55570845451a6e26b955394cab40a80c6",
+      "utils/tileloader.py": "8cac0c163f1763863a6d2d2945870853f1a5cf797ff761ae0940cabdbac4840c",
+      "utils/trajectory_mode.py": "22e6969fb1deeb367818729eb2e84e73c05f31edd1ccd66530acb232155988eb"
+    },
+    "monkeypatch_used": false,
+    "stub_used": false,
+    "audit_harness_used": true,
+    "production_files_modified": false,
+    "redaction": "Source worktree absolute path is represented by a logical label."
+  },
+  "audit_scope": "CURRENT_DIRTY_SNAPSHOT_READ_ONLY"
+}
