@@ -1,0 +1,45 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:51:46.313895+00:00",
+  "base_sha": "23285e5bc6515ca88a3121d2547aa9ab0476a7ad",
+  "s1_base_sha": "23285e5bc6515ca88a3121d2547aa9ab0476a7ad",
+  "branch": "feat/seg-raster-only",
+  "source_provenance": "BLOCKED",
+  "source_provenance_status": "BLOCKED",
+  "value_semantics": "BLOCKED",
+  "value_semantics_status": "BLOCKED_VALUE_SEMANTICS_UNKNOWN",
+  "train_pairing": "BLOCKED",
+  "validation_pairing": "BLOCKED",
+  "test_pairing": "BLOCKED",
+  "pairing_status": {
+    "train": "BLOCKED_GRID_SHAPE_AND_REGISTRATION",
+    "validation": "BLOCKED_VALIDATION_PAIR_MISSING",
+    "test": "BLOCKED_TEST_RASTER_SOURCE_MISSING"
+  },
+  "xian_registration": "BLOCKED",
+  "xian_registration_status": "BLOCKED_REGISTRATION_PROVENANCE_INSUFFICIENT",
+  "test_raster_status": "BLOCKED_TEST_RASTER_SOURCE_MISSING",
+  "deterministic_rebuild": "NOT_EXECUTED",
+  "deterministic_rebuild_status": "NOT_EXECUTED",
+  "data_contract_ready_for_model": "BLOCKED",
+  "go_no_go": "NO_GO",
+  "model_implementation_started": false,
+  "production_files_modified": false,
+  "blockers": [
+    "Legacy Xi'an raster generator and transform provenance were not found.",
+    "The meanings of raw raster values 0, 128, and 255 are unknown.",
+    "The configured train aerial/raster shapes differ and grid registration is unproven.",
+    "A source-backed validation pair and split-separation proof are absent.",
+    "The configured test trajectory-raster directory/files are absent."
+  ],
+  "next_authoritative_inputs_required": [
+    "original trajectory-raster generation code or specification",
+    "class/value mapping for 0/128/255",
+    "registration metadata or a source-backed transform",
+    "validation and test raster sources with non-leak provenance"
+  ],
+  "next_stage_proposal": [
+    "Obtain authoritative raster-generation/value-semantics/registration sources, then rerun Stage S1.",
+    "Do not begin raster_seg_only model implementation while this gate is blocked."
+  ]
+}

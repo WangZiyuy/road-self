@@ -1,0 +1,15 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:51:46.311447+00:00",
+  "status": "NOT_EXECUTED",
+  "output_path": null,
+  "output_sha256": null,
+  "real_data_written": false,
+  "reason": "BLOCKED_VALUE_SEMANTICS_UNKNOWN and BLOCKED_REGISTRATION_PROVENANCE_INSUFFICIENT",
+  "required_before_rebuild": [
+    "source-backed rasterization algorithm",
+    "source-backed meanings for raw values 0/128/255",
+    "proven coordinate transform, pixel origin, axis order, and y direction",
+    "declared train/validation/test source separation"
+  ]
+}

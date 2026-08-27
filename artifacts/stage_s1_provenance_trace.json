@@ -1,0 +1,234 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:51:46.262381+00:00",
+  "status": "BLOCKED",
+  "aerial": {
+    "status": "PASS",
+    "raw_source": {
+      "exists": true,
+      "size_bytes": 39289082,
+      "sha256": "f180c2dfb3f8b932bb74ae378b2d487ae86d422343cbead5f68bdc06dad569de",
+      "mode": "RGB",
+      "shape_hwc": [
+        5000,
+        4300,
+        3
+      ],
+      "channels": 3,
+      "dtype": "uint8",
+      "value_range": [
+        0,
+        255
+      ],
+      "unique_value_count": null,
+      "unique_value_counts": null,
+      "embedded_metadata_keys": [],
+      "source_label": "${RAW_AERIAL_SOURCE}"
+    },
+    "metadata": {
+      "path": "data_self/input/regions/xian_metadata.json",
+      "sha256": "b428d55209ce88d7faf6afb8b275a925b388fc8952951c02d8b2ed367ac4f093",
+      "region": "xian",
+      "original_size_wh": [
+        4300,
+        5000
+      ],
+      "canvas_size": 8192,
+      "tile_size": 4096,
+      "bbox_gcj02": {
+        "lat_min": 34.22484722131834,
+        "lon_min": 108.94460164474442,
+        "lat_max": 34.24707831919142,
+        "lon_max": 108.9677436888106
+      }
+    },
+    "full_canvas": {
+      "exists": true,
+      "size_bytes": 33561629,
+      "sha256": "14cdcb35da3cb1923136d76f9f2263ad86e99b522e9e98a9eebfc46c01ad3b9f",
+      "mode": "RGB",
+      "shape_hwc": [
+        8192,
+        8192,
+        3
+      ],
+      "channels": 3,
+      "dtype": "uint8",
+      "value_range": [
+        0,
+        255
+      ],
+      "unique_value_count": null,
+      "unique_value_counts": null,
+      "embedded_metadata_keys": []
+    },
+    "upper_left_tile": {
+      "exists": true,
+      "size_bytes": 25120650,
+      "sha256": "0abb67cfbc25d77cbc9dde71fdaffc441114e1c53f6d77f0e0256f2645db45b9",
+      "mode": "RGB",
+      "shape_hwc": [
+        4096,
+        4096,
+        3
+      ],
+      "channels": 3,
+      "dtype": "uint8",
+      "value_range": [
+        0,
+        255
+      ],
+      "unique_value_count": null,
+      "unique_value_counts": null,
+      "embedded_metadata_keys": []
+    },
+    "pixel_proof": {
+      "raw_shape_hwc": [
+        5000,
+        4300,
+        3
+      ],
+      "full_canvas_shape_hwc": [
+        8192,
+        8192,
+        3
+      ],
+      "tile_shape_hwc": [
+        4096,
+        4096,
+        3
+      ],
+      "tile_equals_raw_upper_left_4096": true,
+      "full_canvas_raw_extent_equals_raw": true,
+      "full_canvas_right_padding_all_zero": true,
+      "full_canvas_bottom_padding_all_zero": true
+    },
+    "recipe_source": "scripts/prepare_xian_image.py"
+  },
+  "trajectory_points": {
+    "status": "PASS_FOR_POINT_LINEAGE_ONLY",
+    "raw_source": {
+      "exists": true,
+      "size_bytes": 47026799,
+      "sha256": "92a82fd7428af7348718e86a1b7d4644d78fb9755436120edbcaa979d3a13a92",
+      "source_label": "${RAW_TRAJECTORY_SOURCE}"
+    },
+    "piece_manifest_path": "data_self/input/traj_piece/xian/manifest.json",
+    "piece_manifest_sha256": "dcc3ebd65d9a3dffabc75ec9e87cdeb1fef045c4b17083142a0c6f0afc9170cb",
+    "manifest_source_sha_matches": true,
+    "coordinate_system": "GCJ-02 longitude/latitude",
+    "pixel_formula_source": "scripts/prepare_xian_traj_piece.py and utils/gis_to_graph.py",
+    "trajectory_count": 14267,
+    "point_count": 305484,
+    "note": "Point provenance does not establish how the legacy PNG was drawn or encoded."
+  },
+  "legacy_trajectory_raster": {
+    "status": "BLOCKED_SOURCE_PROVENANCE_UNKNOWN",
+    "path": "data_self/input/traj/xian_0_0.png",
+    "facts": {
+      "exists": true,
+      "size_bytes": 1185450,
+      "sha256": "917930214563fa0df3da75a48830b0ca078c704dda29ef458e81bf8f8d8d99e4",
+      "mode": "L",
+      "shape_hwc": [
+        5000,
+        4300,
+        1
+      ],
+      "channels": 1,
+      "dtype": "uint8",
+      "value_range": [
+        0,
+        255
+      ],
+      "unique_value_count": 3,
+      "unique_value_counts": {
+        "0": 19937247,
+        "128": 385526,
+        "255": 1177227
+      },
+      "embedded_metadata_keys": []
+    },
+    "generation_script": "UNKNOWN",
+    "input_files": "UNKNOWN",
+    "intermediate_files": "UNKNOWN",
+    "parameters": "UNKNOWN",
+    "coordinate_conversion": "UNKNOWN",
+    "crop_extent": "UNKNOWN",
+    "output_size_wh": [
+      4300,
+      5000
+    ],
+    "output_value_domain": [
+      0,
+      128,
+      255
+    ],
+    "generation_command": "UNKNOWN",
+    "deterministically_reproducible": false,
+    "evidence_paths_and_lines": [
+      "utils/tileloader.py:20-33 reads and swaps image axes",
+      "utils/model_utils.py:921-926 crops and divides by 255",
+      "no checked source line writes values 0/128/255 for this PNG"
+    ],
+    "embedded_geospatial_metadata": false,
+    "generator_found_in_checked_code_or_history": false,
+    "value_assignment_source_found": false,
+    "external_candidate_rasters": [
+      {
+        "candidate_label": "external_candidate_1",
+        "exists": true,
+        "size_bytes": 11617267,
+        "sha256": "93995336ec6b6e3354fc69f5b5d875622d62a344593e67a876aeb6ccabbb804c",
+        "size_wh": [
+          14063,
+          16525
+        ],
+        "mode": "L",
+        "embedded_metadata_keys": []
+      },
+      {
+        "candidate_label": "external_candidate_2",
+        "exists": true,
+        "size_bytes": 5636545,
+        "sha256": "eb943c1b8956f15c28187dedc2a165155e0541464ab5f021889797be41439755",
+        "size_wh": [
+          14063,
+          16525
+        ],
+        "mode": "L",
+        "embedded_metadata_keys": []
+      },
+      {
+        "candidate_label": "external_candidate_3",
+        "exists": true,
+        "size_bytes": 3913346,
+        "sha256": "2bf3819f7d49764158c272bbaf32168aa529001d858129267a728ef86f1de86e",
+        "size_wh": [
+          5625,
+          6610
+        ],
+        "mode": "L",
+        "embedded_metadata_keys": []
+      }
+    ],
+    "candidate_match_status": "NO_SIZE_AND_SHA_MATCH"
+  },
+  "blocker": "No source-backed generator or transform connects the legacy trajectory raster bytes to the aerial pixel grid.",
+  "configured_test_raster_outputs": [
+    {
+      "profile": "default_self",
+      "region": "20",
+      "expected_path": "data_self/input/traj_test/20.png",
+      "status": "MISSING",
+      "generation_script": "UNKNOWN"
+    },
+    {
+      "profile": "xian_self",
+      "region": "xian",
+      "expected_path": "data_self/input/traj_test/xian.png",
+      "status": "MISSING",
+      "generation_script": "UNKNOWN"
+    }
+  ]
+}

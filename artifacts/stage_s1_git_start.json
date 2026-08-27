@@ -1,0 +1,25 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:51:46.016711+00:00",
+  "required_worktree": "CURRENT_WORKTREE",
+  "branch": "feat/seg-raster-only",
+  "head_sha": "23285e5bc6515ca88a3121d2547aa9ab0476a7ad",
+  "s1_base_sha": "23285e5bc6515ca88a3121d2547aa9ab0476a7ad",
+  "status_short_at_start": [],
+  "upstream": "origin/feat/seg-raster-only",
+  "origin_remote": "${ORIGIN_REMOTE_REDACTED}",
+  "worktrees": [
+    {
+      "worktree": "CURRENT_DIRTY_SNAPSHOT_READ_ONLY",
+      "HEAD": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+      "branch": "refs/heads/master"
+    },
+    {
+      "worktree": "CURRENT_WORKTREE",
+      "HEAD": "23285e5bc6515ca88a3121d2547aa9ab0476a7ad",
+      "branch": "refs/heads/feat/seg-raster-only"
+    }
+  ],
+  "source_provenance_gate": "PASSED_BEFORE_S1_BY_USER",
+  "dirty_source_policy": "CURRENT_DIRTY_SNAPSHOT_READ_ONLY; no writes or Git mutations"
+}

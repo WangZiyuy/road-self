@@ -1,0 +1,31 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:51:46.310442+00:00",
+  "status": "BLOCKED_VALUE_SEMANTICS_UNKNOWN",
+  "path": "data_self/input/traj/xian_0_0.png",
+  "dtype": "uint8",
+  "observed_unique_value_counts": {
+    "0": 19937247,
+    "128": 385526,
+    "255": 1177227
+  },
+  "raw_allowed_values_observed": [
+    0,
+    128,
+    255
+  ],
+  "loader_normalization_source": "utils/model_utils.py",
+  "loader_operation": "float32(value)/255.0",
+  "post_normalization_values": {
+    "0": 0.0,
+    "128": 0.5019607843137255,
+    "255": 1.0
+  },
+  "semantic_assignments": {
+    "0": "UNKNOWN",
+    "128": "UNKNOWN",
+    "255": "UNKNOWN"
+  },
+  "generator_or_assignment_code_found": false,
+  "blocker": "Observed levels and loader normalization do not prove what each level means."
+}

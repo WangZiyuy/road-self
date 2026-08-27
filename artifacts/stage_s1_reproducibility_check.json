@@ -1,0 +1,9 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:51:46.312885+00:00",
+  "status": "NOT_EXECUTED",
+  "independent_output_count": 0,
+  "byte_identical": null,
+  "reason": "No authoritative deterministic rebuild was permitted by the evidence gate.",
+  "synthetic_contract_test": "Covered by tests/test_seg_raster_data_contract.py; it is not evidence for real Xi'an data."
+}

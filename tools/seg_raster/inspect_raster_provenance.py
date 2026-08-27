@@ -1,0 +1,15 @@
+"""Compatibility entry point for the Stage S1 provenance inspection."""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from tools.seg_raster.audit_stage_s1 import main
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

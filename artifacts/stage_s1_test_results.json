@@ -1,0 +1,53 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T12:55:00+08:00",
+  "status": "PASS",
+  "runs": [
+    {
+      "name": "targeted_stage_s1_contract",
+      "command": "<PROJECT_PYTHON> -m pytest tests/test_seg_raster_data_contract.py -q",
+      "execution_environment": "workspace sandbox",
+      "exit_code": 0,
+      "passed": 18,
+      "failed": 0,
+      "warnings": 1,
+      "summary": "18 passed, 1 PytestCacheWarning; the pre-existing .pytest_cache path was not writable."
+    },
+    {
+      "name": "full_suite_initial_sandbox_run",
+      "command": "<PROJECT_PYTHON> -m pytest tests -q",
+      "execution_environment": "workspace sandbox",
+      "exit_code": 1,
+      "passed": 258,
+      "failed": 7,
+      "warnings": 11,
+      "subtests_passed": 4,
+      "failure_class": "TEMPORARY_DIRECTORY_PERMISSION_ERROR",
+      "failed_tests": [
+        "tests/test_branch_diagnostics.py::BranchDiagnosticsTest::test_stage3c_config_inheritance_is_deep_and_deterministic",
+        "tests/test_stage3c_branch_dataset.py::Stage3CBranchDatasetTest::test_object_dtype_is_rejected",
+        "tests/test_stage3c_branch_dataset.py::Stage3CBranchDatasetTest::test_pickle_free_shard_round_trip",
+        "tests/test_stage3c_r1.py::Stage3CR1Test::test_sanity_best_and_final_checkpoints_are_distinct_snapshots",
+        "tests/test_stage3c_training_components.py::Stage3CTrainingComponentTest::test_auxiliary_checkpoint_round_trip",
+        "tests/test_stage3d_b0.py::Stage3DB0LifecycleTests::test_checkpoint_marks_pretrajectory_non_circular_contract",
+        "tests/test_stage3e3.py::Stage3E3SummaryTests::test_summary_applies_acceptance_gate"
+      ],
+      "reason": "Every failure was an access-denied error while writing, traversing, or deleting a tempfile.TemporaryDirectory; no assertion failure was reported."
+    },
+    {
+      "name": "full_suite_permission_verified_rerun",
+      "command": "<PROJECT_PYTHON> -m pytest tests -q",
+      "execution_environment": "same workspace with sandbox restriction lifted for the test process",
+      "exit_code": 0,
+      "passed": 265,
+      "failed": 0,
+      "warnings": 9,
+      "subtests_passed": 4,
+      "summary": "265 passed, 9 warnings, 4 subtests passed; all seven initially failing tests passed unchanged."
+    }
+  ],
+  "stage_s1_contract_test_categories": 14,
+  "stage_s1_contract_test_cases": 18,
+  "runtime_gradient_checkpoint_audits_rerun": false,
+  "real_raster_rebuild_executed": false
+}

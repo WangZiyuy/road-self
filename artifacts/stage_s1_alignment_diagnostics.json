@@ -1,0 +1,51 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:51:46.311447+00:00",
+  "status": "BLOCKED_REGISTRATION_PROVENANCE_INSUFFICIENT",
+  "aerial_crop_chain": {
+    "status": "PASS",
+    "raw_shape_hwc": [
+      5000,
+      4300,
+      3
+    ],
+    "full_canvas_shape_hwc": [
+      8192,
+      8192,
+      3
+    ],
+    "tile_shape_hwc": [
+      4096,
+      4096,
+      3
+    ],
+    "tile_equals_raw_upper_left_4096": true,
+    "full_canvas_raw_extent_equals_raw": true,
+    "full_canvas_right_padding_all_zero": true,
+    "full_canvas_bottom_padding_all_zero": true
+  },
+  "legacy_raster_shape_hwc": [
+    5000,
+    4300,
+    1
+  ],
+  "train_aerial_tile_shape_hwc": [
+    4096,
+    4096,
+    3
+  ],
+  "legacy_raster_matches_raw_aerial_dimensions": true,
+  "legacy_raster_matches_train_tile_dimensions": false,
+  "same_shape_is_registration_proof": false,
+  "candidate_upper_left_crop": {
+    "status": "NOT_EXECUTED",
+    "reason": "The aerial crop chain is proven, but the legacy raster origin, transform, and drawing recipe are not."
+  },
+  "axis_contract": {
+    "decoded": "height,width,channels",
+    "legacy_loader_internal": "width,height,channels after swapaxes(0,1)",
+    "pixel_origin_for_image_arrays": "upper_left",
+    "y_direction_for_image_arrays": "down",
+    "cross_source_grid_registration": "UNPROVEN"
+  }
+}

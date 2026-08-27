@@ -1,0 +1,180 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:56:15.152689+00:00",
+  "s1_base_sha": "23285e5bc6515ca88a3121d2547aa9ab0476a7ad",
+  "branch": "feat/seg-raster-only",
+  "manifest_self_policy": {
+    "path": "artifacts/stage_s1_commit_manifest.json",
+    "listed_in_entries": false,
+    "reason": "A file cannot contain a stable SHA-256 digest of itself; it is explicitly added with the listed paths."
+  },
+  "entries": [
+    {
+      "path": "artifacts/stage_s1_alignment_diagnostics.json",
+      "size_bytes": 1392,
+      "sha256": "227a4945b26ab61f5496eff5314a234e4fc6b949d59694090a75fa1b2a2f37ee",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_conclusion.json",
+      "size_bytes": 2061,
+      "sha256": "767db61e68be0b833e4c3f652542eb68e819d46af21520aa273e0baef14904f7",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_git_start.json",
+      "size_bytes": 924,
+      "sha256": "1ce709e81482ec83687f85c7bde2a5ac3ba5b9dcc09f2cb6a9fdfd083a02e952",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_pair_manifest.json",
+      "size_bytes": 30504,
+      "sha256": "5d5671dd70d32de59ad36295b2d1b54d6088f1daf986b54d998e855c3844a53a",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_pair_validation.json",
+      "size_bytes": 5028,
+      "sha256": "2665a752f93075cf5469c1e1318d3900596994e96ac192adfdfa07018ea91e41",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_provenance_trace.json",
+      "size_bytes": 6678,
+      "sha256": "925801c512803896ce1c4248cd4d4d49e9b3d6a1a2c92d374a671523c4405baa",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_rebuild_manifest.json",
+      "size_bytes": 577,
+      "sha256": "6e5c4b2c512bed44a2b3629dec0fd6eb3e48c111f58f89bc15c4ee4cab1d7822",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_reproducibility_check.json",
+      "size_bytes": 400,
+      "sha256": "d73fdfbd666f488467b24b17992596ee4948bdaf204c68828ac1f93f08288242",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_test_results.json",
+      "size_bytes": 2460,
+      "sha256": "9a37c3940d6810feac89222f9e55bed1bcb689f4e212a13c6bfe293883ee5ae6",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s1_value_semantics.json",
+      "size_bytes": 835,
+      "sha256": "d0d9db765a9e2cac2aa518cf50bdaaa32d0d73bdaa1909f3075a15e8048113eb",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "docs/audits/stage_s1_data_contract.md",
+      "size_bytes": 6627,
+      "sha256": "d5dd53ee1336dd550512b86cd2de9784673d94030842c90f8f8e8f5f742d63cf",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "docs/audits/stage_s1_raster_provenance.md",
+      "size_bytes": 7176,
+      "sha256": "a16464aa6c058b15369161fa43ae77448e105a1667d05567542bdccf2dcc45db",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tests/test_seg_raster_data_contract.py",
+      "size_bytes": 9912,
+      "sha256": "06dbb7c3ee7f7ad5353ea323ebd848ccc95d85e552beb106cb5677708da3b2f1",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/__init__.py",
+      "size_bytes": 456,
+      "sha256": "2846392694f30e1f5544f2003dc5d19950f07eaf5ba9c700898e40cdcd253ac4",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/audit_stage_s1.py",
+      "size_bytes": 16277,
+      "sha256": "36e6a45f28ad516bbd2f4d7d43ad51a01a543e8d7e496d0c6603ebc3b4cc684a",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/build_commit_manifest.py",
+      "size_bytes": 3781,
+      "sha256": "4941b77ce9b592c50e82efafa07c270da1aa36429a84c0b0e58f8b332062b740",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/build_pair_manifest.py",
+      "size_bytes": 8828,
+      "sha256": "df2af07328ad5d02cdea7132b6d61336b743a735ff148297b09955c7c07741c7",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/contract.py",
+      "size_bytes": 14133,
+      "sha256": "28c86f064edd5ee14930f1184c357e8df700c5f95cbb17353b108f9f0801f3b2",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/inspect_raster_provenance.py",
+      "size_bytes": 349,
+      "sha256": "025777e753216782bf7f5b49cb87c7554d609aed1b11d5f14298c969e8fbfc7f",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/validate_pair_manifest.py",
+      "size_bytes": 1501,
+      "sha256": "f37eef2a1c98c06519c486804d83dff939630a8dc5d5111d358a29b96995716c",
+      "generated_by_stage_s1": true,
+      "intended_for_commit": true,
+      "reason": "Stage S1 audit tool, synthetic test, report, or machine-readable evidence."
+    }
+  ],
+  "exclusion_assertions": {
+    "checkpoints_in_commit": false,
+    "datasets_in_commit": false,
+    "model_weights_in_commit": false,
+    "cache_in_commit": false,
+    "production_model_train_infer_in_commit": false
+  }
+}

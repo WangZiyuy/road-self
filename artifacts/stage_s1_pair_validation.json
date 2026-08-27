@@ -1,0 +1,142 @@
+{
+  "stage": "seg_raster_stage_s1",
+  "generated_at": "2026-08-27T04:51:46.014692+00:00",
+  "manifest_path": "artifacts/stage_s1_pair_manifest.json",
+  "source_root_label": "CURRENT_DIRTY_SNAPSHOT_READ_ONLY",
+  "status": "BLOCKED",
+  "issue_count": 22,
+  "issues": [
+    {
+      "code": "GRID_SHAPE_MISMATCH",
+      "location": "$.entries[0].shape",
+      "message": "Aerial and trajectory raster spatial shapes are not identical.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "VALUE_SEMANTICS_UNKNOWN",
+      "location": "$.entries[0].value_semantics",
+      "message": "Raster classes/levels lack source-backed semantic assignments.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "PIXEL_ORIGIN_UNKNOWN",
+      "location": "$.entries[0].pixel_origin",
+      "message": "Pixel origin must be proven as upper_left for this loader contract.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "GRID_REGISTRATION_UNPROVEN",
+      "location": "$.entries[0].registration_evidence",
+      "message": "Registration needs non-empty source-backed transform evidence; equal shape is insufficient.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "MISSING_PAIR_MEMBER",
+      "location": "$.entries[1].aerial_path",
+      "message": "Required aerial raster is missing.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "SOURCE_FILE_MISSING",
+      "location": "$.entries[1].aerial_path",
+      "message": "Recorded source file does not exist below source_root.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "MISSING_PAIR_MEMBER",
+      "location": "$.entries[1].raster_path",
+      "message": "Required trajectory raster is missing.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "SOURCE_FILE_MISSING",
+      "location": "$.entries[1].raster_path",
+      "message": "Recorded source file does not exist below source_root.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "VALUE_SEMANTICS_UNKNOWN",
+      "location": "$.entries[1].value_semantics",
+      "message": "Raster classes/levels lack source-backed semantic assignments.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "PIXEL_ORIGIN_UNKNOWN",
+      "location": "$.entries[1].pixel_origin",
+      "message": "Pixel origin must be proven as upper_left for this loader contract.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "GRID_REGISTRATION_UNPROVEN",
+      "location": "$.entries[1].registration_evidence",
+      "message": "Registration needs non-empty source-backed transform evidence; equal shape is insufficient.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "MISSING_PAIR_MEMBER",
+      "location": "$.entries[2].raster_path",
+      "message": "Required trajectory raster is missing.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "SOURCE_FILE_MISSING",
+      "location": "$.entries[2].raster_path",
+      "message": "Recorded source file does not exist below source_root.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "VALUE_SEMANTICS_UNKNOWN",
+      "location": "$.entries[2].value_semantics",
+      "message": "Raster classes/levels lack source-backed semantic assignments.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "PIXEL_ORIGIN_UNKNOWN",
+      "location": "$.entries[2].pixel_origin",
+      "message": "Pixel origin must be proven as upper_left for this loader contract.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "GRID_REGISTRATION_UNPROVEN",
+      "location": "$.entries[2].registration_evidence",
+      "message": "Registration needs non-empty source-backed transform evidence; equal shape is insufficient.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "MISSING_PAIR_MEMBER",
+      "location": "$.entries[3].raster_path",
+      "message": "Required trajectory raster is missing.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "SOURCE_FILE_MISSING",
+      "location": "$.entries[3].raster_path",
+      "message": "Recorded source file does not exist below source_root.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "VALUE_SEMANTICS_UNKNOWN",
+      "location": "$.entries[3].value_semantics",
+      "message": "Raster classes/levels lack source-backed semantic assignments.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "PIXEL_ORIGIN_UNKNOWN",
+      "location": "$.entries[3].pixel_origin",
+      "message": "Pixel origin must be proven as upper_left for this loader contract.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "GRID_REGISTRATION_UNPROVEN",
+      "location": "$.entries[3].registration_evidence",
+      "message": "Registration needs non-empty source-backed transform evidence; equal shape is insufficient.",
+      "severity": "ERROR"
+    },
+    {
+      "code": "SPLIT_SEPARATION_UNPROVEN",
+      "location": "$.split_separation",
+      "message": "Train/validation/test source separation has not been proven.",
+      "severity": "ERROR"
+    }
+  ]
+}
