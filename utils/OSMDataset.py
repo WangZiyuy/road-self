@@ -35,6 +35,13 @@ class OSMDataset:
         )
         self.seg_input = seg_input
         self.num_targets = cfg.TRAIN.NUM_TARGETS
+        spatial_extent = cfg.TRAIN.get("SPATIAL_EXTENT_XYXY", None)
+        self.spatial_extent_xyxy = (
+            tuple(map(int, spatial_extent)) if spatial_extent is not None else None)
+        if self.spatial_extent_xyxy is not None:
+            x0, y0, x1, y1 = self.spatial_extent_xyxy
+            if x0 < 0 or y0 < 0 or x1 <= x0 or y1 <= y0:
+                raise ValueError("invalid TRAIN.SPATIAL_EXTENT_XYXY")
         self.paths = []
         self.tiles = Tiles(training_regions=self.cfg.TRAIN.TRAINING_REGIONS,
                            parallel_tiles=self.cfg.TRAIN.PARALLEL_TILES,
@@ -170,7 +177,22 @@ class OSMDataset:
         if not hasattr(self, "use_sequence"):
             self.use_sequence = trajectory_uses_sequence(self.trajectory_mode)
 
-        path_indices = random.sample(range(len(self.paths)), self.batch_size)
+        candidate_path_indices = list(range(len(self.paths)))
+        spatial_extent_xyxy = getattr(self, "spatial_extent_xyxy", None)
+        if spatial_extent_xyxy is not None:
+            x0, y0, x1, y1 = spatial_extent_xyxy
+            candidate_path_indices = []
+            for index, subtile in enumerate(self.subtiles):
+                rect = subtile["search_rect"]
+                overlap_width = min(rect.end.x, x1) - max(rect.start.x, x0)
+                overlap_height = min(rect.end.y, y1) - max(rect.start.y, y0)
+                if (overlap_width >= self.window_size
+                        and overlap_height >= self.window_size):
+                    candidate_path_indices.append(index)
+        if len(candidate_path_indices) < self.batch_size:
+            raise RuntimeError(
+                "frozen spatial extent has fewer eligible paths than batch size")
+        path_indices = random.sample(candidate_path_indices, self.batch_size)
         # len(self.paths)=96 中取20
         # 这里有一个问题，为什么subtile的范围是2048*2048（也就是在这样的范围内取path）
         # 但是后面的batch数据的范围都是256*256，64*64
@@ -202,6 +224,7 @@ class OSMDataset:
         batch_aerial_images_hwc = []
         batch_traj_images_hwc = []
         batch_valid_trajectory_inputs = []
+        batch_sample_metadata = []
 
         # 遍历每个路径索引(随机遍历)，从路径列表中获取相应的路径，路径列表由subtile产生,来源是tileloader的prepare_training
         for i in range(len(path_indices)):
@@ -210,6 +233,7 @@ class OSMDataset:
 
             # 使用 path.pop 方法生成一个扩展顶点。
             # 如果扩展顶点为空或路径的顶点数量超过最大长度，则重新初始化该路径并继续生成顶点
+            rejected_by_extent = 0
             while True:
                 extension_vertex, is_key_point = path.pop(follow_order=False, probs=[0.15, 0.8, 0.05],
                                                           WINDOW_SIZE=self.window_size)
@@ -223,6 +247,19 @@ class OSMDataset:
                         traj_grid_cell_size=getattr(self, "traj_grid_cell_size", None))
                     path = self.paths[path_idx]
                     continue
+                if spatial_extent_xyxy is not None:
+                    x0, y0, x1, y1 = spatial_extent_xyxy
+                    half = self.window_size // 2
+                    point = extension_vertex.point
+                    if not (
+                            x0 + half <= point.x < x1 - half
+                            and y0 + half <= point.y < y1 - half):
+                        rejected_by_extent += 1
+                        if rejected_by_extent > 10000:
+                            raise RuntimeError(
+                                "unable to sample a crop inside the frozen "
+                                "spatial extent")
+                        continue
                 break
 
             fetch_list = ['aerial_image_chw',
@@ -268,6 +305,32 @@ class OSMDataset:
             batch_target_poses.append(target_poses)
             batch_is_key_point[i] = is_key_point
             batch_end_index[i] = 1 if is_key_point else target_poses.get_supervision_end_index()
+            point = getattr(extension_vertex, "point", None)
+            if point is None:
+                extension_xy = [0, 0]
+                crop_origin_xy = [0, 0]
+            else:
+                extension_xy = [int(point.x), int(point.y)]
+                crop_origin_xy = [
+                    int(point.x - self.window_size // 2),
+                    int(point.y - self.window_size // 2)]
+            region = "unknown"
+            if path_idx < len(self.subtiles):
+                region = self.subtiles[path_idx].get("region", region)
+            try:
+                target_count = len(target_poses)
+            except TypeError:
+                target_count = self.num_targets
+            batch_sample_metadata.append({
+                "region": region,
+                "crop_origin_xy": crop_origin_xy,
+                "extension_vertex_xy": extension_xy,
+                "is_key_point": bool(is_key_point),
+                "target_count": int(target_count),
+                "end_index": int(batch_end_index[i]),
+                "augmentation": {
+                    "rot90_k": 0, "flip_x": False, "flip_y": False},
+            })
             target_maps = path.generate_target_maps(extension_vertex, target_poses, self.num_targets,
                                                     self.window_size,
                                                     is_key_point)
@@ -289,6 +352,7 @@ class OSMDataset:
             'batch_road_segmentation_thick3': batch_road_segmentation_thick3,
             'batch_junction_segmentation': batch_junction_segmentation,
             'batch_aerial_images_hwc': batch_aerial_images_hwc,
+            'batch_sample_metadata': batch_sample_metadata,
         })
         if self.use_raster:
             data.update({

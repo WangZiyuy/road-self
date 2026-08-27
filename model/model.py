@@ -501,7 +501,10 @@ class RPNet(nn.Module):
 
         anchor_road_fts = road_fts
         anchor_junc_fts = junc_fts
-        if use_raster_segmentation and not self.anchor_grad_to_seg:
+        # Stage S3 defines this causal switch independently of trajectory
+        # mode.  The default remains True, preserving the historical
+        # image-only joint-training behaviour.
+        if not self.anchor_grad_to_seg:
             anchor_road_fts = road_fts.detach()
             anchor_junc_fts = junc_fts.detach()
         feature_maps['anchor_road_fts'] = anchor_road_fts

@@ -1,0 +1,41 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "captured_before_stage_s3_changes": true,
+  "workspace": "${SEG_RASTER_WORKTREE}",
+  "workspace_match": true,
+  "working_tree_status": "CLEAN",
+  "branch": "feat/seg-raster-only",
+  "upstream": "origin/feat/seg-raster-only",
+  "s3_base_sha": "5a137b70b2291837be46cea30a8d4905f5c96585",
+  "remote": {
+    "name": "origin",
+    "credential_embedded": false
+  },
+  "recent_commits": [
+    "5a137b7 docs: add stage s2 artifacts and conclusion",
+    "2c4f39d test: add raster loader isolation and smoke coverage",
+    "79357d6 train: wire raster_seg_only mode without sequence branch",
+    "9a3d8f4 model: add isolated segmentation-only raster fusion",
+    "957fcb6 data: register canonical binary trajectory raster contract",
+    "c870019 data: define trajectory-raster registration contract",
+    "23285e5 audit: characterize legacy DSF and raster integration paths",
+    "13488c7 Implement Stage 3F-A anchor trajectory fusion",
+    "90016b5 Validate Stage 3E-3 trajectory evidence robustness",
+    "0cd9da4 Diagnose trajectory evidence capacity"
+  ],
+  "worktrees": [
+    {
+      "label": "${CURRENT_DIRTY_SNAPSHOT}",
+      "head": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+      "branch": "master",
+      "access": "READ_ONLY"
+    },
+    {
+      "label": "${SEG_RASTER_WORKTREE}",
+      "head": "5a137b70b2291837be46cea30a8d4905f5c96585",
+      "branch": "feat/seg-raster-only",
+      "access": "READ_WRITE"
+    }
+  ],
+  "prohibited_operations_observed": false
+}

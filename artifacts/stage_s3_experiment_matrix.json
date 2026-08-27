@@ -1,0 +1,56 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "seed": 20260827,
+  "runs": [
+    {
+      "key": "C0",
+      "run_id": "C0_image_detach_seed20260827",
+      "trajectory_mode": "none",
+      "raster_control": null,
+      "anchor_grad_to_seg": false
+    },
+    {
+      "key": "C1",
+      "run_id": "C1_aligned_detach_seed20260827",
+      "trajectory_mode": "raster_seg_only",
+      "raster_control": "aligned",
+      "anchor_grad_to_seg": false
+    },
+    {
+      "key": "C2",
+      "run_id": "C2_zero_detach_seed20260827",
+      "trajectory_mode": "raster_seg_only",
+      "raster_control": "zero",
+      "anchor_grad_to_seg": false
+    },
+    {
+      "key": "C3",
+      "run_id": "C3_shifted_detach_seed20260827",
+      "trajectory_mode": "raster_seg_only",
+      "raster_control": "shift_fixed",
+      "anchor_grad_to_seg": false
+    },
+    {
+      "key": "J0",
+      "run_id": "J0_image_joint_seed20260827",
+      "trajectory_mode": "none",
+      "raster_control": null,
+      "anchor_grad_to_seg": true
+    },
+    {
+      "key": "J1",
+      "run_id": "J1_aligned_joint_seed20260827",
+      "trajectory_mode": "raster_seg_only",
+      "raster_control": "aligned",
+      "anchor_grad_to_seg": true
+    }
+  ],
+  "shared_constraints": {
+    "data_parallel": false,
+    "num_targets": 4,
+    "crop_size": 256,
+    "raster_lr_multiplier": 1.0,
+    "one_physical_gpu_per_run": true
+  },
+  "matrix_sha256": "401960d793510dd61f46960b12f1b24982168a053831608eeb08e88907cf725b"
+}

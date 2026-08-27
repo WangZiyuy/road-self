@@ -1,0 +1,7 @@
+BASE_CONFIG: stage_s3_common.yml
+S3:
+  RUN_KEY: J0
+  RUN_ID: J0_image_joint_seed20260827
+TRAJ:
+  RASTER:
+    ANCHOR_GRAD_TO_SEG: true

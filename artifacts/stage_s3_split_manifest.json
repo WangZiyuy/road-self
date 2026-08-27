@@ -1,0 +1,42 @@
+{
+  "kind": "deterministic_xian_spatial_holdout",
+  "canvas_wh": [
+    4096,
+    4096
+  ],
+  "crop_size": 256,
+  "excluded_boundary_buffer": 256,
+  "train_extent": {
+    "x0": 0,
+    "y0": 0,
+    "x1": 1920,
+    "y1": 4096
+  },
+  "validation_extent": {
+    "x0": 2176,
+    "y0": 0,
+    "x1": 4096,
+    "y1": 4096
+  },
+  "overlap_check": "PASS",
+  "manifest_sha256": "7e6d5d4c7ad10e18ff49cb85cad1dafd4cf6c064628cd913ecb08341c87018da",
+  "stage": "seg_raster_stage_s3",
+  "region": "xian",
+  "graph_source": "${DATA_ROOT}/input/graphs/xian.graph",
+  "graph_sha256": "d8972239561ca9dac35218f2b578b6a809d7a4fd48938f3703378d0ffa6ff3c6",
+  "raster_coverage_distribution": {
+    "train": {
+      "eligible_grid_crop_count": 112,
+      "trajectory_coverage_min": 0.0120697021484375,
+      "trajectory_coverage_mean": 0.41630540575299946,
+      "trajectory_coverage_max": 0.930816650390625
+    },
+    "validation": {
+      "eligible_grid_crop_count": 112,
+      "trajectory_coverage_min": 0.0043487548828125,
+      "trajectory_coverage_mean": 0.33012267521449495,
+      "trajectory_coverage_max": 0.8419342041015625
+    }
+  },
+  "validation_samples_enter_training_plan": false
+}

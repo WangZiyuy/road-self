@@ -1,0 +1,8 @@
+BASE_CONFIG: stage_s3_common.yml
+S3:
+  RUN_KEY: C0
+  RUN_ID: C0_image_detach_seed20260827
+  ANCHOR_GRAD_TO_SEG: false
+TRAJ:
+  RASTER:
+    ANCHOR_GRAD_TO_SEG: false

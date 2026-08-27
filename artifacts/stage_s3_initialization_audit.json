@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "source": "deterministic_common_initialization_snapshot",
+  "path_label": "${RUN_ROOT}/runtime/common_initialization.pth.tar",
+  "file_sha256": "3ea16c7720c7c49a681103f00c8e7cf2efae49608e54306a6e8d4e2d0425d7e6",
+  "content_identity_sha256": "2d3de63223a99a0355bb92da0921e06ea37c2c869b0ffceab1f2437561a9880f",
+  "shared_key_count": 648,
+  "shared_value_mismatch": [],
+  "missing_key": [],
+  "unexpected_key": [],
+  "shape_mismatch": [],
+  "raster_only_key_count": 18,
+  "zero_initialized_residual_keys": [
+    "segmentation_raster_fusion.delta_projection.weight",
+    "segmentation_raster_fusion.delta_projection.bias"
+  ],
+  "training_source": "no trusted image-only checkpoint was available",
+  "intended_for_commit": false
+}

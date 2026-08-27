@@ -203,7 +203,12 @@ def test_real_data_weights_cache_and_production_are_excluded_from_commit(path: s
 
 def test_s1_tools_do_not_import_trajectory_sequence_loader() -> None:
     modules = set()
+    # Stage S1 provenance tools must remain independent from runtime data
+    # loading.  Later-stage production preflight/training tools intentionally
+    # consume OSMDataset and are outside this S1-only assertion.
     for path in (REPO_ROOT / "tools/seg_raster").glob("*.py"):
+        if "stage_s3" in path.stem:
+            continue
         tree = ast.parse(path.read_text(encoding="utf-8"))
         for node in ast.walk(tree):
             if isinstance(node, ast.ImportFrom) and node.module:

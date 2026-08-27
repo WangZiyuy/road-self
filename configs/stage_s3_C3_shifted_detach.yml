@@ -1,0 +1,12 @@
+BASE_CONFIG: stage_s3_common.yml
+S3:
+  RUN_KEY: C3
+  RUN_ID: C3_shifted_detach_seed20260827
+  ANCHOR_GRAD_TO_SEG: false
+TRAJ:
+  MODE: raster_seg_only
+  RASTER:
+    CONTROL: shift_fixed
+    SHIFT_X: 128
+    SHIFT_Y: 128
+    ANCHOR_GRAD_TO_SEG: false

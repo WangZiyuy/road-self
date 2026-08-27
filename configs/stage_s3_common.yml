@@ -1,0 +1,79 @@
+S3:
+  STAGE: seg_raster_stage_s3
+  SEED: 20260827
+  CODE_SHA_REQUIRED: ""
+  RUN_ROOT: data_self/stage_s3_seg_raster
+  SAMPLE_PLAN: data_self/stage_s3_seg_raster/runtime/sample_plan.json
+  INITIALIZATION: data_self/stage_s3_seg_raster/runtime/common_initialization.pth.tar
+  SPLIT_MANIFEST: artifacts/stage_s3_split_manifest.json
+  METRICS_INTERVAL: 200
+  HEARTBEAT_SECONDS: 60
+  EVALUATION_INTERVAL: 5120
+  VALIDATION_BATCHES: 8
+  FIXED_THRESHOLD: 0.3
+  BEST_METRIC: validation_segmentation_composite
+  PRECISION: fp32
+  EFFECTIVE_BATCH_SIZE: 2
+  GRADIENT_ACCUMULATION: 1
+  ANCHOR_GRAD_TO_SEG: true
+
+DIR:
+  DATA_ROOT: data_self
+  IMAGERY_DIR: data_self/input/imagery
+  TEST_IMAGERY_DIR: data_self/input/imagery_8192
+  TRAJ_DIR: data_self/input/traj
+  TEST_TRAJ_DIR: data_self/input/traj_test
+  GRAPH_DIR: data_self/input/graphs
+  TILE_DIR: data_self/input/imagery
+  SHORTCUT_DIR: data_self/stage_s3_seg_raster/runtime/shortcuts
+  ALL_REGION_PATH: data_self/input/regions/all_regions.txt
+  TEST_REGION_PATH: data_self/input/regions/xian_regions.txt
+
+TRAJ:
+  MODE: none
+  SEQUENCE:
+    ENABLED: false
+  RASTER:
+    CONTROL: null
+    INPUT_SEMANTICS: binary_presence
+    USE_VALID_MASK: true
+    VALID_EXTENT_WH: [4300, 5000]
+    ANCHOR_GRAD_TO_SEG: true
+    SHIFT_X: 128
+    SHIFT_Y: 128
+
+TRAIN:
+  SEED: 20260827
+  MODEL: origin
+  NUM_TARGETS: 4
+  NUM_INPUT_CHANNELS: 3
+  NUM_INPUT_TRAJECTORY_CHANNELS: 1
+  TRAINING_REGIONS: [xian]
+  PARALLEL_TILES: 2048
+  MAX_PATH_LENGTH: 2048
+  STEP_LENGTH: 20
+  RECT_RADIUS: 8
+  AVG_CONFIDENCE_THRESHOLD: 0.2
+  TRAJ_FILTER: false
+  SAVE_EXAMPLES: false
+  BINARIZE_MAP:
+    SEGMENTATION_THRESHOLD: 0.2
+    MAX_REGION_AREA: 200
+  WINDOW_SIZE: 256
+  FOLLOW_MODE: follow_target
+  DATA_PARALLEL: false
+  BACKBONE_PRETRAINED: false
+  BATCH_SIZE: 2
+  OPTIMIZER_STEPS: 102400
+  SOLVER:
+    METHOD: Adam
+    LEARNING_RATE: 0.0001
+    RASTER_LR_MULTIPLIER: 1.0
+    WEIGHT_DECAY: 0.0002
+
+TEST:
+  REGION: xian
+  TEST_IMG_SZ: 8192
+  CROP_SZ: 256
+  NUM_TARGETS: 4
+  FIXED_THRESHOLD: 0.3
