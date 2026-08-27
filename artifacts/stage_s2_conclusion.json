@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "generated_at": "2026-08-27T07:34:38.193567+00:00",
+  "s2_base_sha": "c870019bf68999b15f489b73ba350c5cf74ebb1c",
+  "branch": "feat/seg-raster-only",
+  "canonical_raster_status": "PASS",
+  "mode_status": "PASS",
+  "isolation_status": "PASS",
+  "smoke_train_status": "PASS",
+  "smoke_infer_status": "PASS",
+  "test_status": "PASS",
+  "acceptance": {
+    "binary_presence_only": true,
+    "train_infer_semantics_identical": true,
+    "sequence_loader_skipped": true,
+    "transformer_not_constructed": true,
+    "legacy_dsf_not_formal_path": true,
+    "image_backbone_image_only": true,
+    "raw_raster_not_direct_to_anchor": true,
+    "anchor_indirect_only_via_segmentation_features": true,
+    "anchor_grad_to_seg_false_verified": true,
+    "data_checkpoint_weight_cache_committed": false
+  },
+  "risks": [
+    "No long training run or performance claim was made in Stage S2.",
+    "A complete 8192x8192 neural sweep was not run; tile inference passed.",
+    "The trusted upstream trajectory-rendering script remains external; Stage S2 records the user authority and canonical derivative checksums.",
+    "Existing legacy checkpoints do not contain the new raster-module keys and need explicit compatible initialization or an S2-trained checkpoint."
+  ],
+  "go_no_go_for_next_stage": "GO_FOR_CONTROLLED_S2_TRAINING_EXPERIMENT",
+  "status": "PASS"
+}

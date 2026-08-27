@@ -1,0 +1,345 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "generated_at": "2026-08-27T07:34:56.999667+00:00",
+  "s2_base_sha": "c870019bf68999b15f489b73ba350c5cf74ebb1c",
+  "branch": "feat/seg-raster-only",
+  "manifest_self_policy": {
+    "path": "artifacts/stage_s2_commit_manifest.json",
+    "listed_in_entries": false,
+    "reason": "A file cannot contain a stable SHA-256 digest of itself; it is explicitly added with the listed paths."
+  },
+  "entries": [
+    {
+      "path": "artifacts/stage_s2_canonical_raster_manifest.json",
+      "size_bytes": 3370,
+      "sha256": "de42a22e0831efae55d8a61ee44dd18b02e59d952d60713caf11d20b39f0df03",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s2_conclusion.json",
+      "size_bytes": 1431,
+      "sha256": "6d3ec77f271eb8fff204b8c359427e66fc41179e6a3494401d80225e7c3c6164",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s2_git_start.json",
+      "size_bytes": 847,
+      "sha256": "ce6cdb67d1273b6b4965c7aa6a9229943d47520073646f2b5b8dc22f516a76db",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s2_isolation_audit.json",
+      "size_bytes": 1081,
+      "sha256": "b7b90b00e8ee119f3592e27eec4479f888e623522c61991615f8b30db45f9932",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s2_loader_contract.json",
+      "size_bytes": 968,
+      "sha256": "90b75b6b1ad53a1dfa1a02ed8d506a346003136b6689bdf00d159955b935d5cb",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s2_model_contract.json",
+      "size_bytes": 960,
+      "sha256": "e5050912144c94f362b363b646b0ecc8c49c8887d463b16e7466a3a1b509e4de",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s2_smoke_results.json",
+      "size_bytes": 3657,
+      "sha256": "892be44fc54cd59fbf75a26e53589e08c36fed0d58195f8031539f4895bb281a",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "artifacts/stage_s2_test_results.json",
+      "size_bytes": 336,
+      "sha256": "633977ae406ceb88ae8adf9d417c764c4b4c194316158f57d86ee1c56253a40f",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "configs/seg_raster_isolated.yml",
+      "size_bytes": 2585,
+      "sha256": "3ba5a8ee81926f8a7a809917efa0b7f3ac23baeb665469a529faa9575a67d4d2",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Required Stage S2 production/config integration."
+    },
+    {
+      "path": "configs/seg_raster_isolated_detach.yml",
+      "size_bytes": 2600,
+      "sha256": "ce6ff521a9e81a594eff3ba6617a04a4d04b3fb2b545a80568784255dca412c1",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Required Stage S2 production/config integration."
+    },
+    {
+      "path": "docs/audits/stage_s2_design_notes.md",
+      "size_bytes": 5798,
+      "sha256": "88401b0d1cff698596c3a3ac7292f5daab917e29243dfd03e4bc28e11b8fd4f5",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "docs/audits/stage_s2_isolation_contract.md",
+      "size_bytes": 2753,
+      "sha256": "49844563c7d1532546e8679bc652d2517bf8e3f1c7c2f52860662fd693aae087",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "infer.py",
+      "size_bytes": 39066,
+      "sha256": "bfbd1cb8f501b887ba2441211ef4e7b8483a6f01bbac8ae293c9cd8c65b92ae5",
+      "generated_by_stage_s2": false,
+      "preexisting_file_modified_by_stage_s2": true,
+      "intended_for_commit": true,
+      "reason": "Required Stage S2 production/config integration."
+    },
+    {
+      "path": "model/model.py",
+      "size_bytes": 27371,
+      "sha256": "f42a1044c805212bc52987e2aa6d1bf343ba2bff4a8431d573dd15d10993722a",
+      "generated_by_stage_s2": false,
+      "preexisting_file_modified_by_stage_s2": true,
+      "intended_for_commit": true,
+      "reason": "Required Stage S2 production/config integration."
+    },
+    {
+      "path": "model/seg_raster/__init__.py",
+      "size_bytes": 318,
+      "sha256": "3b5d3d6e6dcb7e220aa43098ef6ec18ef490793db0b2c3ceb9c32e42121f7159",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "model/seg_raster/contracts.py",
+      "size_bytes": 375,
+      "sha256": "8dea8284ebceeceab65fdc7d28d565951a6a3c947ca3aae7ae56274ad7d68899",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "model/seg_raster/encoder.py",
+      "size_bytes": 1642,
+      "sha256": "84c37a6be3b6a906c9283e5075e156c75667caa1dcbcffaec1cdc7dc9d27197a",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "model/seg_raster/fusion.py",
+      "size_bytes": 3632,
+      "sha256": "c627ab1b885c71115b41c8200002b75c6bfdf5e4f3acff0c27d3d61fa8e33327",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tests/test_seg_raster_data_contract.py",
+      "size_bytes": 10320,
+      "sha256": "a9683f2e85bc3026693cfe2d41dd5339f6e2bfaa3f0db5bbc8196ad959fae251",
+      "generated_by_stage_s2": false,
+      "preexisting_file_modified_by_stage_s2": true,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tests/test_seg_raster_infer.py",
+      "size_bytes": 1934,
+      "sha256": "a7ecaf951a044b015ad030dc2137f3dfa96922146a67a0214de7a30858ef4540",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tests/test_seg_raster_isolation.py",
+      "size_bytes": 4261,
+      "sha256": "e5f282c6457dcda7ab7f94390633b527595b2bbf116099e465ced9d7931c7e90",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tests/test_seg_raster_loader.py",
+      "size_bytes": 2198,
+      "sha256": "9faaaa3575542c8c4bb56db242710e9e73ad41ca4186028102cd429fa74e5075",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tests/test_seg_raster_mode.py",
+      "size_bytes": 2389,
+      "sha256": "22c0399e716d92856c871fd3656a4e9d2c6ca72410a392826e911e6733fca48a",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tests/test_seg_raster_model.py",
+      "size_bytes": 2658,
+      "sha256": "aed7e7b84ba8f20e651bc71a128ff8f20cedc4e2d13095809a8e09c37f6200e4",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/build_stage_s2_artifacts.py",
+      "size_bytes": 11523,
+      "sha256": "40eda011a5bd12f4f3773aebbdc8425b81e79ee735647376af22aca804316cc2",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/build_stage_s2_commit_manifest.py",
+      "size_bytes": 4556,
+      "sha256": "fa84355708d36366d37664051ebfccf246f79f53e1b8783efd658ce6b975e0d3",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/derive_canonical_tiles.py",
+      "size_bytes": 2194,
+      "sha256": "d81ecee509485af81f1f1dd513410d715134f1a10c55e6cc5d8aa5f948f1d9c5",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "tools/seg_raster/run_stage_s2_smoke.py",
+      "size_bytes": 8137,
+      "sha256": "bb3c2a90912cf2077d267fdb3ef844f95365054996af0787560524fff9388cb7",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "train.py",
+      "size_bytes": 22644,
+      "sha256": "a5b78a0eaf5bcfeaa19b7d57ab011fa8ab78d7877ba374e98c8786cb8b3a0674",
+      "generated_by_stage_s2": false,
+      "preexisting_file_modified_by_stage_s2": true,
+      "intended_for_commit": true,
+      "reason": "Required Stage S2 production/config integration."
+    },
+    {
+      "path": "utils/OSMDataset.py",
+      "size_bytes": 27547,
+      "sha256": "defe0ebffe167f1ccd350af9e1460fd06d079a28099349c9a842ce56de9d16d2",
+      "generated_by_stage_s2": false,
+      "preexisting_file_modified_by_stage_s2": true,
+      "intended_for_commit": true,
+      "reason": "Required Stage S2 production/config integration."
+    },
+    {
+      "path": "utils/model_utils.py",
+      "size_bytes": 94545,
+      "sha256": "63ed09965e631d2df5f8d1875f18aaca3f2ab8b5b254a1a61b5f88b3d92154b7",
+      "generated_by_stage_s2": false,
+      "preexisting_file_modified_by_stage_s2": true,
+      "intended_for_commit": true,
+      "reason": "Required Stage S2 production/config integration."
+    },
+    {
+      "path": "utils/seg_raster/__init__.py",
+      "size_bytes": 654,
+      "sha256": "a542b62d0ff851477f797d7c4e9ba359f7d6a917b222a82ae962ea668c11dc35",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "utils/seg_raster/loader.py",
+      "size_bytes": 5705,
+      "sha256": "b37c7076600ffa86e8df2a5e70fd97b61c1c5dcd37089a1c76a438b62b36bc25",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "utils/seg_raster/manifest.py",
+      "size_bytes": 1399,
+      "sha256": "41dd841f61a8972e4f1e8bd84be88cc44aee715892a9caf7878c3ecedd07dacd",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "utils/seg_raster/validation.py",
+      "size_bytes": 1418,
+      "sha256": "0558262e60f6bd553b4b221cd3019779709b1edee56fcb50cea79f712ec2234d",
+      "generated_by_stage_s2": true,
+      "preexisting_file_modified_by_stage_s2": false,
+      "intended_for_commit": true,
+      "reason": "Stage S2 model, loader, tool, test, report, or machine-readable evidence."
+    },
+    {
+      "path": "utils/trajectory_mode.py",
+      "size_bytes": 7172,
+      "sha256": "91243e157d52b78b50315d6cf9549a7f33b291964efb2b9406d8963fa71f5a62",
+      "generated_by_stage_s2": false,
+      "preexisting_file_modified_by_stage_s2": true,
+      "intended_for_commit": true,
+      "reason": "Required Stage S2 production/config integration."
+    }
+  ],
+  "exclusion_assertions": {
+    "checkpoints_in_commit": false,
+    "datasets_in_commit": false,
+    "trajectory_raster_pngs_in_commit": false,
+    "model_weights_in_commit": false,
+    "cache_in_commit": false
+  }
+}

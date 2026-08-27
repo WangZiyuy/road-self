@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "generated_at": "2026-08-27T07:34:38.193567+00:00",
+  "dataclass": "utils.seg_raster.loader.TrajectoryRasterInput",
+  "fields": {
+    "raster": {
+      "shape": "[B,1,H,W]",
+      "dtype": "float32",
+      "values": [
+        0,
+        1
+      ]
+    },
+    "valid_mask": {
+      "shape": "[B,1,H,W]",
+      "dtype": "float32/bool",
+      "values": [
+        0,
+        1
+      ]
+    },
+    "region_ids": "list[str]",
+    "metadata": "dict"
+  },
+  "canonical_conversion": "traj_binary = (traj_raw > 0).astype(float32)",
+  "training_adapter": "utils.model_utils.Path.make_path_input",
+  "inference_adapter": "infer.infer_segmentation",
+  "shared_loader": "utils.seg_raster.loader",
+  "shape_mismatch_policy": "FAIL_FAST",
+  "missing_raster_policy": "FAIL_FAST",
+  "padding_policy": "zero raster outside valid mask",
+  "legacy_ternary_float_input_allowed": false,
+  "status": "PASS"
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "generated_at": "2026-08-27T07:34:38.193567+00:00",
+  "command": "${PYTHON} -m pytest -q -p no:cacheprovider tests",
+  "passed": 282,
+  "subtests_passed": 4,
+  "failed": 0,
+  "errors": 0,
+  "duration_seconds": 48.66,
+  "cache_provider_disabled": true,
+  "status": "PASS"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "generated_at": "2026-08-27T07:34:38.193567+00:00",
+  "allowed_path": "traj_binary -> stage_fuse_seg -> road_fts/junc_fts -> anchor",
+  "forbidden_paths": [
+    "traj_binary -> anchor",
+    "traj_feature -> anchor",
+    "raster gate -> anchor",
+    "stage_fuse_seg -> anchor image-feature input"
+  ],
+  "observations": {
+    "anchor_uses_stage_fuse_img": true,
+    "anchor_uses_original_multiscale_image_features": true,
+    "anchor_hourglass_input_channels_num_targets_1": 257,
+    "raw_raster_channel_added_to_anchor": false,
+    "raster_feature_added_to_anchor": false,
+    "fixed_road_junction_features_raster_swap_anchor_exact_equal": true,
+    "detach_anchor_only_raster_gradients": "ALL_NONE",
+    "joint_anchor_only_raster_gradients": "ALL_FINITE_AND_SOME_NONZERO",
+    "none_mode_shared_state_and_output_exact_parity": true
+  },
+  "evidence_tests": [
+    "tests/test_seg_raster_isolation.py",
+    "tests/test_seg_raster_model.py",
+    "tests/test_seg_raster_mode.py"
+  ],
+  "status": "PASS"
+}

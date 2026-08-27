@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "device": "cpu",
+  "seed": 20260827,
+  "input": {
+    "aerial_path": "${READ_ONLY_XIAN_AERIAL_CANVAS}",
+    "trajectory_raster_path": "${CANONICAL_XIAN_RASTER_CANVAS}",
+    "aerial_sha256": "14cdcb35da3cb1923136d76f9f2263ad86e99b522e9e98a9eebfc46c01ad3b9f",
+    "trajectory_raster_sha256": "f67ba7a9383abc8adcbbc7033cd4cb704ddddc1b4f74bbc9de128685b00e0821",
+    "crop_origin_xy": [
+      0,
+      0
+    ],
+    "crop_size": 128,
+    "raster_values": [
+      0.0,
+      1.0
+    ]
+  },
+  "train_steps": [
+    {
+      "name": "image_only",
+      "status": "PASS",
+      "loss": 10.342556953430176,
+      "loss_finite": true,
+      "output_shapes": {
+        "road": [
+          2,
+          1,
+          32,
+          32
+        ],
+        "junc": [
+          2,
+          1,
+          32,
+          32
+        ],
+        "anchor": [
+          2,
+          1,
+          128,
+          128
+        ],
+        "anchor_lowrs": [
+          2,
+          1,
+          128,
+          128
+        ]
+      },
+      "raster_gradient": {
+        "parameter_count": 0,
+        "all_grad_non_none": true,
+        "all_grad_finite": true,
+        "any_grad_nonzero": false
+      },
+      "legacy_transformer_constructed": false,
+      "legacy_fuse_module_traj_constructed": false,
+      "legacy_dsf_constructed": false,
+      "elapsed_seconds": 9.1717
+    },
+    {
+      "name": "raster_seg_only_detach",
+      "status": "PASS",
+      "loss": 10.342556953430176,
+      "loss_finite": true,
+      "output_shapes": {
+        "road": [
+          2,
+          1,
+          32,
+          32
+        ],
+        "junc": [
+          2,
+          1,
+          32,
+          32
+        ],
+        "anchor": [
+          2,
+          1,
+          128,
+          128
+        ],
+        "anchor_lowrs": [
+          2,
+          1,
+          128,
+          128
+        ]
+      },
+      "raster_gradient": {
+        "parameter_count": 106984,
+        "all_grad_non_none": true,
+        "all_grad_finite": true,
+        "any_grad_nonzero": true
+      },
+      "legacy_transformer_constructed": false,
+      "legacy_fuse_module_traj_constructed": false,
+      "legacy_dsf_constructed": false,
+      "elapsed_seconds": 7.2325
+    },
+    {
+      "name": "raster_seg_only_joint",
+      "status": "PASS",
+      "loss": 10.342556953430176,
+      "loss_finite": true,
+      "output_shapes": {
+        "road": [
+          2,
+          1,
+          32,
+          32
+        ],
+        "junc": [
+          2,
+          1,
+          32,
+          32
+        ],
+        "anchor": [
+          2,
+          1,
+          128,
+          128
+        ],
+        "anchor_lowrs": [
+          2,
+          1,
+          128,
+          128
+        ]
+      },
+      "raster_gradient": {
+        "parameter_count": 106984,
+        "all_grad_non_none": true,
+        "all_grad_finite": true,
+        "any_grad_nonzero": true
+      },
+      "legacy_transformer_constructed": false,
+      "legacy_fuse_module_traj_constructed": false,
+      "legacy_dsf_constructed": false,
+      "elapsed_seconds": 8.1634
+    }
+  ],
+  "infer_step": {
+    "status": "PASS",
+    "uses_xian_canonical_raster": true,
+    "trajectory_sequence_required": false,
+    "road_shape": [
+      1,
+      1,
+      128,
+      128
+    ],
+    "junction_shape": [
+      1,
+      1,
+      128,
+      128
+    ],
+    "road_logits_finite": true,
+    "junction_logits_finite": true,
+    "elapsed_seconds": 0.6215
+  },
+  "status": "PASS"
+}

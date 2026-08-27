@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "generated_at": "2026-08-27T07:34:38.193567+00:00",
+  "mode": "raster_seg_only",
+  "backbone_input": "aerial RGB only",
+  "raster_encoder": {
+    "class": "model.seg_raster.encoder.TrajectoryRasterEncoder",
+    "input_shape": "[B,1,H,W]",
+    "output_shape": "[B,32,H/4,W/4]"
+  },
+  "fusion": {
+    "class": "model.seg_raster.fusion.SegmentationOnlyRasterFusion",
+    "output": "stage_fuse_seg [B,128,H/4,W/4]",
+    "residual_output_projection_initialization": "all zeros",
+    "initial_exact_image_only_parity": true,
+    "parameter_count": 106984
+  },
+  "segmentation_heads": [
+    "road",
+    "junction"
+  ],
+  "outputs_are_logits": [
+    "road",
+    "junction",
+    "anchor",
+    "anchor_lowrs"
+  ],
+  "training_loss": "BCEWithLogits",
+  "legacy_modules_constructed": {
+    "Transformer": false,
+    "fuse_module_traj": false,
+    "DSF": false
+  },
+  "status": "PASS"
+}

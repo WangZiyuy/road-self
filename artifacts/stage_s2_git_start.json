@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "generated_at": "2026-08-27T07:34:38.193567+00:00",
+  "required_worktree": "CURRENT_WORKTREE",
+  "branch": "feat/seg-raster-only",
+  "upstream": "origin/feat/seg-raster-only",
+  "s2_base_sha": "c870019bf68999b15f489b73ba350c5cf74ebb1c",
+  "head_sha_at_start": "c870019bf68999b15f489b73ba350c5cf74ebb1c",
+  "status_short_at_start": [],
+  "recent_commits_at_start": [
+    "c870019 data: define trajectory-raster registration contract",
+    "23285e5 audit: characterize legacy DSF and raster integration paths",
+    "13488c7 Merge pull request #19 from VNGSLab/refactor"
+  ],
+  "dirty_worktree_policy": "E:/Code/VecRoad_self remained a read-only CURRENT_DIRTY_SNAPSHOT; no checkout, stash, reset, clean, commit, or file write was performed.",
+  "merge_or_rebase_performed": false
+}

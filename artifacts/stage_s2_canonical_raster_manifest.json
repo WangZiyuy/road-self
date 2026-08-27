@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S2",
+  "generated_at": "2026-08-27T07:34:38.193567+00:00",
+  "authority": {
+    "status": "TRUSTED_USER_OVERRIDE_ACCEPTED",
+    "region": "xian",
+    "source_semantics": "Every non-zero pixel means an original trajectory passed; brightness represents density, not class.",
+    "logical_registered_shape_hw": [
+      5000,
+      4300
+    ],
+    "canonical_conversion": "traj_binary = (traj_raw > 0).astype(float32)",
+    "canonical_values": [
+      0.0,
+      1.0
+    ]
+  },
+  "trusted_upstream_source": {
+    "path": "${TRUSTED_XIAN_TRAJECTORY_RASTER_SOURCE}",
+    "sha256": "eb943c1b8956f15c28187dedc2a165155e0541464ab5f021889797be41439755",
+    "stored_shape_hw": [
+      16525,
+      14063
+    ],
+    "note": "The retained source is a supersampled representation of the authoritative trajectory rendering; upstream rendering is external and trusted.",
+    "intended_for_commit": false
+  },
+  "canonical_full_canvas": {
+    "path": "${CANONICAL_XIAN_RASTER_CANVAS}",
+    "size_bytes": 670832,
+    "sha256": "f67ba7a9383abc8adcbbc7033cd4cb704ddddc1b4f74bbc9de128685b00e0821",
+    "shape_hw": [
+      8192,
+      8192
+    ],
+    "dtype": "uint8",
+    "raw_unique_value_counts": {
+      "0": 59974867,
+      "255": 7133997
+    },
+    "canonical_semantics": "binary_presence",
+    "canonical_conversion": "traj_binary = (traj_raw > 0).astype(float32)",
+    "valid_extent_wh": [
+      4300,
+      5000
+    ],
+    "intended_for_commit": false
+  },
+  "canonical_train_tile": {
+    "path": "${CANONICAL_XIAN_RASTER_TILE}",
+    "size_bytes": 453597,
+    "sha256": "35884e0d3556d8c2397d4854741b0929a502fa47374993e1549e8550aeb2dd02",
+    "shape_hw": [
+      4096,
+      4096
+    ],
+    "dtype": "uint8",
+    "raw_unique_value_counts": {
+      "0": 10832865,
+      "255": 5944351
+    },
+    "canonical_semantics": "binary_presence",
+    "canonical_conversion": "traj_binary = (traj_raw > 0).astype(float32)",
+    "valid_extent_wh": null,
+    "intended_for_commit": false
+  },
+  "valid_mask": {
+    "generation": "upper-left rectangle [0:5000, 0:4300]",
+    "full_canvas_shape_hw": [
+      8192,
+      8192
+    ],
+    "valid_extent_wh": [
+      4300,
+      5000
+    ],
+    "valid_pixel_count": 21500000,
+    "padding_pixel_count": 45608864,
+    "right_padding_columns": 3892,
+    "bottom_padding_rows": 3192,
+    "stored_as_separate_git_file": false,
+    "generated_by_loader": true
+  },
+  "paired_aerial": {
+    "path": "${READ_ONLY_XIAN_AERIAL_CANVAS}",
+    "sha256": "14cdcb35da3cb1923136d76f9f2263ad86e99b522e9e98a9eebfc46c01ad3b9f",
+    "shape_hwc": [
+      8192,
+      8192,
+      3
+    ],
+    "pair_status": "PASS_USER_AUTHORITY_AND_MATCHED_CANVAS",
+    "intended_for_commit": false
+  },
+  "derivation": {
+    "full_canvas_policy": "Read the available registered 8192 canvas and generate its valid mask from the declared 4300x5000 upper-left extent.",
+    "tile_tool": "tools/seg_raster/derive_canonical_tiles.py",
+    "tile_origin_xy": [
+      0,
+      0
+    ],
+    "tile_shape_hw": [
+      4096,
+      4096
+    ],
+    "deterministic": true
+  },
+  "git_exclusion": {
+    "full_canvas_intended_for_commit": false,
+    "tile_intended_for_commit": false,
+    "dataset_files_in_commit": false
+  },
+  "status": "PASS"
+}
