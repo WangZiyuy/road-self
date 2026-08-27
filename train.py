@@ -20,8 +20,11 @@ except ImportError:
 from utils.additional_methods import visualize_batch_data_grid
 from utils.trajectory_mode import (
     TRAJ_MODE_NONE,
+    TRAJ_MODE_RASTER_SEG_ONLY,
     prepare_trajectory_sequence_batch,
     resolve_trajectory_mode,
+    trajectory_uses_raster,
+    trajectory_uses_sequence,
     validate_trajectory_model_compatibility,
 )
 from utils.checkpoint_utils import (
@@ -88,6 +91,9 @@ def main():
     trajectory_mode = resolve_trajectory_mode(cfg)
     validate_trajectory_model_compatibility(cfg, trajectory_mode)
     use_trajectory = trajectory_mode != TRAJ_MODE_NONE
+    use_raster = trajectory_uses_raster(trajectory_mode)
+    use_sequence = trajectory_uses_sequence(trajectory_mode)
+    raster_cfg = cfg.get("TRAJ", {}).get("RASTER", {})
     path_iterations = resolve_path_iterations(cfg)
     random_seed = cfg.TRAIN.get("SEED", cfg.get("SEED", None))
     if random_seed is not None:
@@ -130,7 +136,11 @@ def main():
     net = model.RPNet(
         num_targets=cfg.TRAIN.NUM_TARGETS,
         backbone_pretrained=cfg.TRAIN.get("BACKBONE_PRETRAINED", True),
-        enable_trajectory_modules=use_trajectory,
+        enable_trajectory_modules=use_sequence,
+        enable_raster_segmentation=(
+            trajectory_mode == TRAJ_MODE_RASTER_SEG_ONLY),
+        raster_use_valid_mask=raster_cfg.get("USE_VALID_MASK", True),
+        anchor_grad_to_seg=raster_cfg.get("ANCHOR_GRAD_TO_SEG", True),
     )
 
     if cfg.TRAIN.DATA_PARALLEL:
@@ -216,7 +226,7 @@ def main():
                 os.makedirs(f"visualization/{outer_it}_{path_it}/", exist_ok=True)
 
             # batch内容可视化
-            if use_trajectory and path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
+            if use_sequence and path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
                 visualize_batch_data_grid(
                     data_dict=data_dict,
                     batch_index=1,
@@ -246,12 +256,15 @@ def main():
 
             batch_traj_inputs_cuda = None
             batch_aerial_traj_cuda = None
-            if use_trajectory:
+            batch_traj_valid_mask_cuda = None
+            if use_raster:
                 batch_traj_inputs_cuda = numpy2tensor2cuda(data_dict.batch_traj_inputs)
                 batch_aerial_traj_cuda = numpy2tensor2cuda(data_dict.batch_aerial_traj)
+                batch_traj_valid_mask_cuda = numpy2tensor2cuda(
+                    data_dict.batch_traj_valid_masks)
             batch_normalized_traj, batch_valid_mask = prepare_trajectory_sequence_batch(
                 trajectory_mode,
-                data_dict.batch_valid_trajectory_inputs if use_trajectory else None,
+                data_dict.batch_valid_trajectory_inputs if use_sequence else None,
                 model_utils.valid_trajectory_input_GPU,
                 model_utils.normalize_trajectory_batch,
             )
@@ -274,7 +287,9 @@ def main():
                     NUM_TARGETS=None,
                     test=False,
                     model=cfg.TRAIN.MODEL,
-                    use_traj=use_trajectory)
+                    use_traj=use_sequence,
+                    trajectory_mode=trajectory_mode,
+                    traj_valid_mask=batch_traj_valid_mask_cuda)
 
                 # # 为了比较轨迹的影响，也运行一次不使用轨迹的版本
                 # if data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
@@ -299,7 +314,7 @@ def main():
                 batch_output_anchor_step_maps_cuda = batch_output_cuda_dict['anchor_lowrs'] # 'anchor_lowrs' torch.Size([20, 4, 256, 256])
 
                 # 输出结果内容可视化
-                if use_trajectory and path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
+                if use_sequence and path_it % cfg.TRAIN.PRINT_ITERATION == 0 and data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:
                     # 可视化网络输出
                     visualize_batch_data_grid(
                         data_dict=batch_output_cuda_dict,

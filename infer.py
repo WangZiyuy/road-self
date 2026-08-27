@@ -23,12 +23,16 @@ import torch
 from utils.additional_methods import analyze_checkpoint
 from utils.trajectory_mode import (
     TRAJ_MODE_NONE,
+    TRAJ_MODE_RASTER_SEG_ONLY,
     load_region_trajectory_inputs_for_mode,
     prepare_trajectory_sequence_batch,
     resolve_trajectory_mode,
     trajectory_fetch_fields,
+    trajectory_uses_raster,
+    trajectory_uses_sequence,
     validate_trajectory_model_compatibility,
 )
+from utils.seg_raster import load_trajectory_raster
 from utils.checkpoint_utils import (
     load_checkpoint_into_model,
     resolve_inference_checkpoint_path,
@@ -53,6 +57,10 @@ cfg = EasyDict(cfg)
 TRAJECTORY_MODE = resolve_trajectory_mode(cfg)
 validate_trajectory_model_compatibility(cfg, TRAJECTORY_MODE)
 USE_TRAJECTORY = TRAJECTORY_MODE != TRAJ_MODE_NONE
+USE_RASTER = trajectory_uses_raster(TRAJECTORY_MODE)
+USE_SEQUENCE = trajectory_uses_sequence(TRAJECTORY_MODE)
+USE_SEG_RASTER = TRAJECTORY_MODE == TRAJ_MODE_RASTER_SEG_ONLY
+RASTER_CFG = cfg.get("TRAJ", {}).get("RASTER", {})
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = cfg.TEST.GPU_ID
@@ -164,7 +172,7 @@ def main():
         tile_size=cfg.TRAIN.IMG_SZ,
         window_size=cfg.TEST.WINDOW_SIZE,
         limit=cfg.TRAIN.PARALLEL_TILES,
-        traj_dir=(cfg.DIR.get("TRAJ_DIR", None) if USE_TRAJECTORY else None),)
+        traj_dir=(cfg.DIR.get("TRAJ_DIR", None) if USE_RASTER else None),)
     paths = []
     region_lst = list(test_regions.keys())
 
@@ -280,6 +288,13 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                 cfg.TEST.WINDOW_SIZE // 4,
                 cfg.TEST.WINDOW_SIZE // 4))
             batch_valid_trajectory_inputs = []
+            batch_traj_inputs = None
+            batch_traj_valid_masks = None
+            if USE_SEG_RASTER:
+                batch_traj_inputs = np.empty((
+                    batch_size, 1, cfg.TEST.WINDOW_SIZE,
+                    cfg.TEST.WINDOW_SIZE), dtype=np.float32)
+                batch_traj_valid_masks = np.empty_like(batch_traj_inputs)
 
             for path_idx in range(len(paths)):
                 if output_flag_list[path_idx]:
@@ -302,8 +317,10 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                 batch_is_key_point[i] = is_key_point
 
                 fetch_list = ['aerial_image_chw', 'walked_path_small']
+                # Historical S0 legacy-DSF audit marker: the old anchor path
+                # used include_raster=False and supplied traj_image=None.
                 fetch_list.extend(trajectory_fetch_fields(
-                    TRAJECTORY_MODE, include_raster=False))
+                    TRAJECTORY_MODE, include_raster=USE_SEG_RASTER))
                 if cfg.TEST.SAVE_EXAMPLES:
                     fetch_list += ['aerial_image_hwc']
 
@@ -316,7 +333,10 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                 data_dict = EasyDict(data_dict)
                 batch_inputs[i] = data_dict.aerial_image_chw
                 batch_walked_path[i] = data_dict.walked_path_small
-                if USE_TRAJECTORY:
+                if USE_SEG_RASTER:
+                    batch_traj_inputs[i] = data_dict.traj_image_chw
+                    batch_traj_valid_masks[i] = data_dict.traj_valid_mask_chw
+                if USE_SEQUENCE:
                     batch_valid_trajectory_inputs.append(data_dict.valid_trajectories)
                 if len(path_indices) >= batch_size:
                     break
@@ -335,26 +355,37 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
             batch_inputs = batch_inputs[:length_path_indices]
             batch_walked_path = batch_walked_path[:length_path_indices]
             batch_valid_trajectory_inputs = batch_valid_trajectory_inputs[:length_path_indices]
+            if USE_SEG_RASTER:
+                batch_traj_inputs = batch_traj_inputs[:length_path_indices]
+                batch_traj_valid_masks = batch_traj_valid_masks[:length_path_indices]
 
             batch_inputs_cuda = numpy2tensor2cuda(batch_inputs)
             batch_walked_path_small_cuda = numpy2tensor2cuda(batch_walked_path)
+            batch_traj_inputs_cuda = None
+            batch_traj_valid_masks_cuda = None
+            if USE_SEG_RASTER:
+                batch_traj_inputs_cuda = numpy2tensor2cuda(batch_traj_inputs)
+                batch_traj_valid_masks_cuda = numpy2tensor2cuda(
+                    batch_traj_valid_masks)
             batch_normalized_traj, batch_valid_mask = prepare_trajectory_sequence_batch(
                 TRAJECTORY_MODE,
-                batch_valid_trajectory_inputs if USE_TRAJECTORY else None,
+                batch_valid_trajectory_inputs if USE_SEQUENCE else None,
                 model_utils.valid_trajectory_input_GPU,
                 model_utils.normalize_trajectory_batch,
             )
 
             batch_output_cuda_dict = net(
                 aerial_image=batch_inputs_cuda,
-                traj_image=None,
+                traj_image=batch_traj_inputs_cuda,
                 aerial_traj_image=None,
                 neighborhood_trajectory_norm=batch_normalized_traj,
                 valid_mask=batch_valid_mask,
                 walked_path=batch_walked_path_small_cuda,
                 NUM_TARGETS=cfg.TEST.NUM_TARGETS,
                 model=cfg.TRAIN.MODEL,
-                use_traj=USE_TRAJECTORY)
+                use_traj=USE_SEQUENCE,
+                trajectory_mode=TRAJECTORY_MODE,
+                traj_valid_mask=batch_traj_valid_masks_cuda)
             batch_output_road_cuda = batch_output_cuda_dict['road']
             batch_output_junc_cuda = batch_output_cuda_dict['junc']
             batch_output_anchor_maps_cuda = batch_output_cuda_dict['anchor']
@@ -528,7 +559,10 @@ def prepare_net():
     net = RPNet(
         cfg.TRAIN.NUM_TARGETS,
         backbone_pretrained=cfg.TRAIN.get("BACKBONE_PRETRAINED", True),
-        enable_trajectory_modules=USE_TRAJECTORY,
+        enable_trajectory_modules=USE_SEQUENCE,
+        enable_raster_segmentation=USE_SEG_RASTER,
+        raster_use_valid_mask=RASTER_CFG.get("USE_VALID_MASK", True),
+        anchor_grad_to_seg=RASTER_CFG.get("ANCHOR_GRAD_TO_SEG", True),
     )
     net = net.cuda()
     file_name = resolve_inference_checkpoint_path(cfg, require_exists=True)
@@ -576,7 +610,24 @@ def infer_segmentation(net, region_names):
         img_map = trans(img_map)
         img_map = torch.unsqueeze(img_map, 0) # (b,c,w,h)
         traj_map = None
-        if USE_TRAJECTORY and cfg.TRAIN.MODEL == 'DSFNet':
+        traj_valid_mask_map = None
+        if USE_SEG_RASTER:
+            traj_path = os.path.join(
+                cfg.DIR.TEST_TRAJ_DIR, region_name + ".png")
+            valid_extent = RASTER_CFG.get("VALID_EXTENT_WH", None)
+            loaded_raster = load_trajectory_raster(
+                traj_path,
+                region_id=region_name,
+                expected_hw=(cfg.TEST.TEST_IMG_SZ, cfg.TEST.TEST_IMG_SZ),
+                valid_extent_wh=(
+                    tuple(valid_extent) if valid_extent is not None else None),
+            )
+            # infer.py preserves the legacy X,Y internal convention for aerial
+            # tensors; transpose the canonical H,W tensor at this adapter only.
+            traj_map = loaded_raster.raster.transpose(2, 3).contiguous()
+            traj_valid_mask_map = (
+                loaded_raster.valid_mask.transpose(2, 3).contiguous())
+        elif USE_TRAJECTORY and cfg.TRAIN.MODEL == 'DSFNet':
             traj_path = os.path.join(cfg.DIR.TEST_TRAJ_DIR, region_name + ".png")
             if not os.path.isfile(traj_path):
                 raise FileNotFoundError("trajectory test image not found: {}".format(traj_path))
@@ -596,7 +647,7 @@ def infer_segmentation(net, region_names):
         skipped_empty_crops = 0
         pbar = tqdm(total=len(CROP_SAMPLE_LST))
         while pnt_index < len(CROP_SAMPLE_LST):
-            input_var, input_traj_var = None, None
+            input_var, input_traj_var, input_traj_mask_var = None, None, None
 
             pnt_lst = CROP_SAMPLE_LST[pnt_index:pnt_index + cfg.TEST.BATCH_SIZE_SEG]
             # bug: DataParallel, must feed something into every gpu
@@ -629,14 +680,34 @@ def infer_segmentation(net, region_names):
             batch_input = torch.cat(batch_input, dim=0)
             input_var = torch.autograd.Variable(batch_input).cuda()
 
-            if USE_TRAJECTORY and cfg.TRAIN.MODEL == 'DSFNet':
+            if USE_SEG_RASTER or (USE_TRAJECTORY and cfg.TRAIN.MODEL == 'DSFNet'):
                 for pnt in batch_pnt_lst:
                     crop_traj = traj_map[:, :, pnt[0]:pnt[0] + cfg.TEST.CROP_SZ, pnt[1]:pnt[1] + cfg.TEST.CROP_SZ]
                     batch_traj_input.append(crop_traj)
                 batch_traj_input = torch.cat(batch_traj_input, dim=0)
                 input_traj_var = torch.autograd.Variable(batch_traj_input).cuda()
+                if USE_SEG_RASTER:
+                    batch_traj_mask = []
+                    for pnt in batch_pnt_lst:
+                        batch_traj_mask.append(traj_valid_mask_map[
+                            :, :,
+                            pnt[0]:pnt[0] + cfg.TEST.CROP_SZ,
+                            pnt[1]:pnt[1] + cfg.TEST.CROP_SZ])
+                    input_traj_mask_var = torch.cat(
+                        batch_traj_mask, dim=0).cuda()
 
-            res = net(aerial_image=input_var, traj_image=input_traj_var, aerial_traj_image=None, walked_path=None, neighborhood_trajectory_norm=None, valid_mask=None, test=True, model=cfg.TRAIN.MODEL, use_traj=USE_TRAJECTORY)
+            res = net(
+                aerial_image=input_var,
+                traj_image=input_traj_var,
+                aerial_traj_image=None,
+                walked_path=None,
+                neighborhood_trajectory_norm=None,
+                valid_mask=None,
+                test=True,
+                model=cfg.TRAIN.MODEL,
+                use_traj=USE_SEQUENCE,
+                trajectory_mode=TRAJECTORY_MODE,
+                traj_valid_mask=input_traj_mask_var)
             # TODO 这里推理的过程需不需要加上轨迹数据
             road, junc = res['road'], res['junc']
 
