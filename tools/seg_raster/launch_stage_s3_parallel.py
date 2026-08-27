@@ -97,6 +97,11 @@ def _config_path(key: str) -> Path:
     return matches[0]
 
 
+def logical_run_path(run_id: str, filename: str) -> str:
+    """Return a redacted run path without formatting the placeholder."""
+    return "${RUN_ROOT}/" + run_id + "/" + filename
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-code-sha", required=True)
@@ -221,8 +226,8 @@ def main() -> int:
                 "exit_code": None,
                 "peak_allocated_memory_mb": None,
                 "peak_reserved_memory_mb": None,
-                "stdout_path": "${RUN_ROOT}/{} /stdout.log".format(spec.run_id).replace(" /", "/"),
-                "stderr_path": "${RUN_ROOT}/{} /stderr.log".format(spec.run_id).replace(" /", "/"),
+                "stdout_path": logical_run_path(spec.run_id, "stdout.log"),
+                "stderr_path": logical_run_path(spec.run_id, "stderr.log"),
             }
             jobs.append(record)
             running[gpu_index] = {

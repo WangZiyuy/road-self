@@ -7,6 +7,7 @@ import pytest
 import torch
 
 from model.model import RPNet
+from tools.seg_raster.launch_stage_s3_parallel import logical_run_path
 from utils.seg_raster.stage_s3 import (
     EXPERIMENT_MATRIX,
     FifoGpuScheduler,
@@ -139,6 +140,11 @@ def test_gpu_scheduler_queues_and_never_double_assigns() -> None:
     assert scheduler.allocate("C1") == 3
     with pytest.raises(ValueError, match="already scheduled"):
         scheduler.allocate("C1")
+
+
+def test_launcher_logical_run_path_preserves_redacted_placeholder() -> None:
+    assert logical_run_path("C0_image_detach", "stdout.log") == (
+        "${RUN_ROOT}/C0_image_detach/stdout.log")
 
 
 def test_strict_shared_checkpoint_loader_allows_only_raster_prefix() -> None:
