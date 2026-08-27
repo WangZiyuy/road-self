@@ -5,6 +5,14 @@ import torch.nn.functional as F
 
 from .DSFNet import Unet_multistage
 from .res2net import res2net50_v1b_26w_4s
+from .seg_raster import SegmentationOnlyRasterFusion
+from utils.seg_raster import canonicalize_raster_tensor
+from utils.trajectory_mode import (
+    TRAJ_MODE_LEGACY,
+    TRAJ_MODE_NONE,
+    TRAJ_MODE_RASTER_SEG_ONLY,
+    validate_trajectory_mode,
+)
 
 
 upsample = lambda x, scale: F.interpolate(
@@ -184,10 +192,19 @@ class RPNet(nn.Module):
             self,
             num_targets=4,
             backbone_pretrained=True,
-            enable_trajectory_modules=False):
+            enable_trajectory_modules=False,
+            enable_raster_segmentation=False,
+            raster_use_valid_mask=True,
+            anchor_grad_to_seg=True):
         super(RPNet, self).__init__()
         self.num_targets = num_targets
         self.enable_trajectory_modules = bool(enable_trajectory_modules)
+        self.enable_raster_segmentation = bool(enable_raster_segmentation)
+        self.anchor_grad_to_seg = bool(anchor_grad_to_seg)
+        if self.enable_trajectory_modules and self.enable_raster_segmentation:
+            raise ValueError(
+                "legacy trajectory modules and raster_seg_only modules are "
+                "mutually exclusive")
 
         self.conv_2_side = ConvReLU(256, 128, 3, 1, bn=True)
         self.conv_3_side = ConvReLU(512, 128, 3, 1, bn=True)
@@ -271,6 +288,17 @@ class RPNet(nn.Module):
             nn.init.normal_(
                 self.missing_traj_feature, mean=0.0, std=0.02)
 
+        if self.enable_raster_segmentation:
+            # Construct after every origin-backbone module so enabling this
+            # optional path does not perturb the baseline RNG initialization.
+            # RPNet.init_weights has already run, preserving this module's
+            # explicitly zero-initialized residual output projection.
+            self.segmentation_raster_fusion = SegmentationOnlyRasterFusion(
+                image_channels=128,
+                trajectory_channels=32,
+                use_valid_mask=raster_use_valid_mask,
+            )
+
     def conv_stage(
             self,
             dim_in,
@@ -326,11 +354,7 @@ class RPNet(nn.Module):
             upsample(self.conv_3_side(stage_3), 2),
             upsample(self.conv_4_side(stage_4), 2),
             upsample(self.conv_5_side(stage_5), 2)], dim=1)
-        stage_fuse = self.conv_fuse(stage_fuse)
-        road_fts = self.road_seg(stage_fuse)
-        road_final = self.conv_road_final(road_fts)
-        junc_fts = self.junc_seg(stage_fuse)
-        junc_final = self.conv_junc_final(junc_fts)
+        stage_fuse_img = self.conv_fuse(stage_fuse)
 
         feature_maps.update({
             'stage_1': stage_1,
@@ -338,19 +362,16 @@ class RPNet(nn.Module):
             'stage_3': stage_3,
             'stage_4': stage_4,
             'stage_5': stage_5,
-            'stage_fuse': stage_fuse,
-            'road_fts': road_fts,
-            'junc_fts': junc_fts})
+            # This key remains the image-only anchor feature for checkpoint and
+            # diagnostic compatibility. Raster fusion is stored separately.
+            'stage_fuse': stage_fuse_img,
+            'stage_fuse_img': stage_fuse_img})
         return (
             stage_1,
             stage_2,
             stage_3,
             stage_4,
-            stage_fuse,
-            road_fts,
-            junc_fts,
-            road_final,
-            junc_final)
+            stage_fuse_img)
 
     def forward(
             self,
@@ -363,13 +384,32 @@ class RPNet(nn.Module):
             NUM_TARGETS=None,
             test=False,
             model=None,
-            use_traj=None):
+            use_traj=None,
+            trajectory_mode=None,
+            traj_valid_mask=None):
         model = model or 'origin'
-        use_traj = bool(use_traj)
-        if use_traj and not self.enable_trajectory_modules:
+        if trajectory_mode is None:
+            if self.enable_raster_segmentation:
+                trajectory_mode = TRAJ_MODE_RASTER_SEG_ONLY
+            elif bool(use_traj):
+                trajectory_mode = TRAJ_MODE_LEGACY
+            else:
+                trajectory_mode = TRAJ_MODE_NONE
+        trajectory_mode = validate_trajectory_mode(trajectory_mode)
+        use_legacy_trajectory = trajectory_mode == TRAJ_MODE_LEGACY
+        use_raster_segmentation = trajectory_mode == TRAJ_MODE_RASTER_SEG_ONLY
+        if use_legacy_trajectory and not self.enable_trajectory_modules:
             raise RuntimeError(
-                'Trajectory input was requested, but RPNet was constructed '
+                'Legacy trajectory input was requested, but RPNet was constructed '
                 'with enable_trajectory_modules=False.')
+        if use_raster_segmentation and not self.enable_raster_segmentation:
+            raise RuntimeError(
+                'raster_seg_only was requested, but RPNet was constructed '
+                'with enable_raster_segmentation=False.')
+        if use_raster_segmentation and model != 'origin':
+            raise RuntimeError(
+                'raster_seg_only requires the origin image backbone; legacy '
+                'DSFNet is not a formal path.')
 
         feature_maps = {}
         traj_final = None
@@ -379,12 +419,49 @@ class RPNet(nn.Module):
                 stage_2,
                 stage_3,
                 stage_4,
-                stage_fuse,
-                road_fts,
-                junc_fts,
-                road_final,
-                junc_final,
+                stage_fuse_img,
             ) = self._forward_origin_backbone(aerial_image, feature_maps)
+            stage_fuse_seg = stage_fuse_img
+            if use_raster_segmentation:
+                if traj_image is None:
+                    raise ValueError(
+                        'raster_seg_only requires a trajectory raster input.')
+                traj_binary, canonical_valid_mask = canonicalize_raster_tensor(
+                    traj_image, traj_valid_mask)
+                if (
+                    traj_binary.shape[0] != aerial_image.shape[0]
+                    or traj_binary.shape[-2:] != aerial_image.shape[-2:]
+                ):
+                    raise ValueError(
+                        'aerial image {} and trajectory raster {} must be '
+                        'shape-aligned.'.format(
+                            tuple(aerial_image.shape), tuple(traj_binary.shape)))
+                raster_fusion = self.segmentation_raster_fusion(
+                    stage_fuse_img,
+                    traj_binary,
+                    canonical_valid_mask,
+                )
+                stage_fuse_seg = raster_fusion.stage_fuse_seg
+                feature_maps.update({
+                    'traj_feature_seg_only': raster_fusion.traj_feature,
+                    'projected_traj_seg_only': raster_fusion.projected_traj,
+                    'raster_delta_seg_only': raster_fusion.delta,
+                })
+                if raster_fusion.valid_mask_downsampled is not None:
+                    feature_maps['traj_valid_mask_seg_only'] = (
+                        raster_fusion.valid_mask_downsampled)
+            road_fts = self.road_seg(stage_fuse_seg)
+            road_final = self.conv_road_final(road_fts)
+            junc_fts = self.junc_seg(stage_fuse_seg)
+            junc_final = self.conv_junc_final(junc_fts)
+            feature_maps.update({
+                'stage_fuse_seg': stage_fuse_seg,
+                'road_fts': road_fts,
+                'junc_fts': junc_fts,
+            })
+            # Anchor retains only the image-backbone fused feature. Trajectory
+            # influence can reach it solely through road_fts/junc_fts below.
+            stage_fuse = stage_fuse_img
         elif model == 'DSFNet':
             if not self.enable_trajectory_modules:
                 raise RuntimeError(
@@ -422,7 +499,15 @@ class RPNet(nn.Module):
             device=stage_fuse.device,
             dtype=stage_fuse.dtype)
 
-        if use_traj:
+        anchor_road_fts = road_fts
+        anchor_junc_fts = junc_fts
+        if use_raster_segmentation and not self.anchor_grad_to_seg:
+            anchor_road_fts = road_fts.detach()
+            anchor_junc_fts = junc_fts.detach()
+        feature_maps['anchor_road_fts'] = anchor_road_fts
+        feature_maps['anchor_junc_fts'] = anchor_junc_fts
+
+        if use_legacy_trajectory:
             have_trajectory = bool(
                 neighborhood_trajectory_norm is not None
                 and not torch.all(neighborhood_trajectory_norm == 0))
@@ -454,16 +539,16 @@ class RPNet(nn.Module):
             feature_maps['valid_traj_feature'] = valid_traj_feature
             stage_fuse = torch.cat([
                 stage_fuse,
-                road_fts,
-                junc_fts,
+                anchor_road_fts,
+                anchor_junc_fts,
                 walked_path,
                 valid_traj_feature,
                 next_points_placeholder], dim=1)
         else:
             stage_fuse = torch.cat([
                 stage_fuse,
-                road_fts,
-                junc_fts,
+                anchor_road_fts,
+                anchor_junc_fts,
                 walked_path,
                 next_points_placeholder], dim=1)
 
@@ -480,7 +565,7 @@ class RPNet(nn.Module):
                 fuse_input = stage_fuse_list[index]
             else:
                 fuse_input = stage_fuse
-            if use_traj:
+            if use_legacy_trajectory:
                 next_step = self.fuse_module_traj(fuse_input)
             else:
                 next_step = self.fuse_module(fuse_input)
@@ -557,11 +642,17 @@ class RPNet(nn.Module):
 def build_model(
         num_targets=4,
         backbone_pretrained=True,
-        enable_trajectory_modules=False):
+        enable_trajectory_modules=False,
+        enable_raster_segmentation=False,
+        raster_use_valid_mask=True,
+        anchor_grad_to_seg=True):
     return RPNet(
         num_targets=num_targets,
         backbone_pretrained=backbone_pretrained,
-        enable_trajectory_modules=enable_trajectory_modules)
+        enable_trajectory_modules=enable_trajectory_modules,
+        enable_raster_segmentation=enable_raster_segmentation,
+        raster_use_valid_mask=raster_use_valid_mask,
+        anchor_grad_to_seg=anchor_grad_to_seg)
 
 
 if __name__ == '__main__':
