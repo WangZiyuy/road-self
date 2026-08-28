@@ -368,6 +368,15 @@ def prepare_config(args, checkpoint_step: int) -> Path:
     return path
 
 
+def select_postprocessed_graph(output_dir: Path) -> Path:
+    candidates = sorted((output_dir / "graphs").rglob("post/xian.graph"))
+    if len(candidates) != 1:
+        raise RuntimeError(
+            "expected exactly one post-processed output graph, found {}".format(
+                len(candidates)))
+    return candidates[0]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--audit-code-sha", required=True)
@@ -403,10 +412,7 @@ def main() -> int:
     torch.cuda.reset_peak_memory_stats()
     with torch.no_grad():
         infer.main()
-    candidates = sorted((args.output_dir / "graphs").rglob("xian.graph"))
-    if len(candidates) != 1:
-        raise RuntimeError("expected exactly one output graph, found {}".format(len(candidates)))
-    predicted_path = candidates[0]
+    predicted_path = select_postprocessed_graph(args.output_dir)
     reference_path = REPO_ROOT / "data_self/input/graphs/xian.graph"
     reference_vertices, reference_edges = parse_graph(reference_path)
     predicted_vertices, predicted_edges = parse_graph(predicted_path)

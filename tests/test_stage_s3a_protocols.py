@@ -6,7 +6,10 @@ from types import SimpleNamespace
 import pytest
 import yaml
 
-from tools.seg_raster.audit_stage_s3a_graph import prepare_config
+from tools.seg_raster.audit_stage_s3a_graph import (
+    prepare_config,
+    select_postprocessed_graph,
+)
 from tools.seg_raster.audit_stage_s3a_metrics import (
     graph_control_matrix,
     leave_one_out_deltas,
@@ -164,3 +167,13 @@ def test_graph_audit_resolves_inherited_stage_s3_config(tmp_path) -> None:
     assert resolved["TEST"]["CPU_WORKER"] == 5
     assert resolved["TEST"]["BATCH_SIZE_ANCHOR"] == 15
     assert resolved["DIR"]["PRE_JUNC_NMS_DIR"] == "data_self/input/junction_nms/"
+
+
+def test_graph_audit_selects_postprocessed_graph_not_raw_graph(tmp_path) -> None:
+    raw = tmp_path / "graphs" / "selected_4" / "graphs_junc" / "xian.graph"
+    post = tmp_path / "graphs" / "selected_4" / "post" / "xian.graph"
+    raw.parent.mkdir(parents=True)
+    post.parent.mkdir(parents=True)
+    raw.write_text("raw", encoding="utf-8")
+    post.write_text("post", encoding="utf-8")
+    assert select_postprocessed_graph(tmp_path) == post
