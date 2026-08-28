@@ -132,13 +132,11 @@ def test_anchor_checkpoint_provenance_is_explicit() -> None:
                for key in ("C0", "C1", "C2", "C3", "J0", "J1")
                for kind in ("best", "latest")}
     result, targets = anchor_payload(primary, {"runs": {}})
-    assert result["historical_anchor_comparison_provenance"] == {
-        "status": "PASS",
-        "checkpoint_kind": "latest",
-        "checkpoint_step": 102400,
-        "evidence": "historical evaluation/anchor.json was overwritten at each validation; values match latest protocol",
-        "historical_artifact": "artifacts/stage_s3_anchor_comparison.json",
-    }
+    provenance = result["historical_anchor_comparison_provenance"]
+    assert provenance["status"] == "PASS"
+    assert provenance["checkpoint_kind"] == "latest"
+    assert provenance["checkpoint_step"] == 102400
+    assert provenance["historical_vs_recomputed_latest_maximum_absolute_difference"] == 0.0
     assert targets["rows"] == []
 
 

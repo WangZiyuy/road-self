@@ -25,6 +25,7 @@ from tools.seg_raster.audit_stage_s3a_metrics import (
     finite_json_dumps,
     graph_control_matrix,
     leave_one_out_deltas,
+    numeric_max_abs_difference,
     paired_bootstrap_delta,
     select_best_validation_record,
     validate_recorded_best_step,
@@ -316,7 +317,8 @@ def training_dynamics_payload(all_rows: Mapping[str, list[dict]], validation: Ma
         validations = validation[key]
         best = select_best_validation_record(validations)
         latest = validations[-1]
-        train_rows = [row for row in all_rows[key] if row.get("kind") == "train"]
+        train_rows = [row for row in all_rows[key]
+                      if row.get("kind") is None and "loss" in row]
         final_recorded = training["runs"][key]["final_metrics"]
         last_train = train_rows[-1]["metrics"] if train_rows else None
         runs[key] = {
@@ -421,17 +423,24 @@ def anchor_payload(primary: Mapping[tuple[str, str], dict], old_anchor: Mapping[
                 targets.append({"run_key": key, "checkpoint_kind": kind, **target})
     best = {key: primary[(key, "best")] for key in RUN_KEYS}
     latest = {key: primary[(key, "latest")] for key in RUN_KEYS}
-    first_three_zero = all(
-        all(value == 0 for value in row["anchor"]["per_step_recall"][:3])
+    later_three_zero = all(
+        all(value == 0 for value in row["anchor"]["per_step_recall"][1:])
         for row in primary.values())
     no_predictions = all(
         row["anchor"]["false_positive_count"] == 0 for row in primary.values())
+    historical_difference = max(
+        numeric_max_abs_difference(
+            old_anchor.get("runs", {}).get(key, {}),
+            primary[(key, "latest")]["anchor"])
+        for key in RUN_KEYS)
     payload = {
         "stage": "seg_raster_stage_s3a", "status": "PASS",
         "historical_anchor_comparison_provenance": {
-            "status": "PASS", "checkpoint_kind": "latest", "checkpoint_step": 102400,
+            "status": "PASS" if historical_difference <= 1e-8 else "FAIL",
+            "checkpoint_kind": "latest", "checkpoint_step": 102400,
             "evidence": "historical evaluation/anchor.json was overwritten at each validation; values match latest protocol",
             "historical_artifact": "artifacts/stage_s3_anchor_comparison.json",
+            "historical_vs_recomputed_latest_maximum_absolute_difference": historical_difference,
         },
         "records": records,
         "protocol_comparisons": {
@@ -444,7 +453,7 @@ def anchor_payload(primary: Mapping[tuple[str, str], dict], old_anchor: Mapping[
             "common_step": {"status": "UNAVAILABLE_MISSING_CHECKPOINT"},
         },
         "multistep_diagnosis": {
-            "first_three_steps_zero_for_all_available_checkpoints": first_three_zero,
+            "zero_based_steps_1_through_3_recall_zero_for_all_available_checkpoints": later_three_zero,
             "fixed_threshold_produced_no_false_positive_pixels_for_all_available_checkpoints": no_predictions,
             "top_k_bypasses_fixed_threshold": True,
             "localization_error_scope": "all targets using global heatmap argmax",
@@ -456,7 +465,7 @@ def anchor_payload(primary: Mapping[tuple[str, str], dict], old_anchor: Mapping[
         "ALIGNED_VS_ZERO_SPECIFICITY": "INCONCLUSIVE",
         "ALIGNED_VS_SHIFTED_SPECIFICITY": "FAIL" if (
             best["C3"]["anchor"]["top_k_recall"] > best["C1"]["anchor"]["top_k_recall"]) else "INCONCLUSIVE",
-        "MULTISTEP_ANCHOR_VALIDITY": "FAIL" if first_three_zero else "INCONCLUSIVE",
+        "MULTISTEP_ANCHOR_VALIDITY": "FAIL" if later_three_zero else "INCONCLUSIVE",
         "ANCHOR_METRIC_VALIDITY": "PASS" if all(
             row["anchor_metric_reference_check"]["maximum_absolute_difference"] <= 1e-8
             for row in primary.values()) else "FAIL",
@@ -502,14 +511,18 @@ def sensitivity_payload(primary: Mapping[tuple[str, str], dict]) -> dict:
         c1_samples = [row["segmentation_composite"] for row in right["per_sample_segmentation"]]
         c0_targets = [float(row["top_k_hit"]) for row in left["anchor_per_target"]]
         c1_targets = [float(row["top_k_hit"]) for row in right["anchor_per_target"]]
+        segmentation_loo = leave_one_out_deltas(c0_samples, c1_samples)
+        anchor_loo = leave_one_out_deltas(c0_targets, c1_targets)
         protocols[kind] = {
             "segmentation": {
                 "bootstrap": paired_bootstrap_delta(c0_samples, c1_samples),
-                "leave_one_out": leave_one_out_deltas(c0_samples, c1_samples),
+                "leave_one_out": segmentation_loo,
+                "single_sample_removal_reverses_sign": segmentation_loo["sign_reversal"],
             },
             "anchor_top_k": {
                 "bootstrap": paired_bootstrap_delta(c0_targets, c1_targets),
-                "leave_one_out": leave_one_out_deltas(c0_targets, c1_targets),
+                "leave_one_out": anchor_loo,
+                "single_target_removal_reverses_sign": anchor_loo["sign_reversal"],
             },
         }
     return {
@@ -638,6 +651,7 @@ The original Stage S3 artifacts remain unchanged. Stage S3A narrows or supersede
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--audit-code-sha", required=True)
+    parser.add_argument("--evaluation-code-sha")
     parser.add_argument("--source-run-root", type=Path, required=True)
     parser.add_argument("--remote-output-root", type=Path, required=True)
     parser.add_argument("--local-pixel-manifest", type=Path, required=True)
@@ -647,15 +661,19 @@ def main() -> int:
     args = parser.parse_args()
     if git_text("rev-parse", "HEAD") != args.audit_code_sha:
         raise RuntimeError("reducer must run from the frozen audit-code checkout")
+    evaluation_code_sha = args.evaluation_code_sha or args.audit_code_sha
 
     training = read_json(REPO_ROOT / "artifacts/stage_s3_training_results.json")
     old_anchor = read_json(REPO_ROOT / "artifacts/stage_s3_anchor_comparison.json")
     old_conclusion = read_json(REPO_ROOT / "artifacts/stage_s3_conclusion.json")
     all_rows, validation = historical_metric_rows(args.source_run_root)
     evaluations, primary = load_evaluations(args.remote_output_root)
+    if any(row.get("audit_code_sha") != evaluation_code_sha for row in evaluations):
+        raise RuntimeError("checkpoint evaluation code SHA mismatch")
     inventory, by_run_inventory = checkpoint_inventory(
         args.source_run_root, training, validation)
     inventory["audit_code_sha"] = args.audit_code_sha
+    inventory["evaluation_code_sha"] = evaluation_code_sha
     provenance = provenance_payload(training, primary)
     reference = reference_gate(primary)
     protocols = protocol_payload(primary, validation)
@@ -665,6 +683,8 @@ def main() -> int:
     anchor, anchor_targets = anchor_payload(primary, old_anchor)
     graph_records = [read_json(path) for path in sorted(
         (args.remote_output_root / "graph_results").glob("*.json"))]
+    if any(row.get("audit_code_sha") != evaluation_code_sha for row in graph_records):
+        raise RuntimeError("graph evaluation code SHA mismatch")
     graph = {
         "stage": "seg_raster_stage_s3a",
         **graph_control_matrix(graph_records),
@@ -674,6 +694,32 @@ def main() -> int:
         "apls_kind": "deterministic_pixel_graph_approximation",
         "graph_density_normalized_comparison_recommended": True,
     }
+    graph_index = {
+        (row["run_key"], row["checkpoint_kind"]): row for row in graph_records}
+    graph["detailed_comparisons"] = {}
+    for kind in ("best", "latest"):
+        rows = {key: graph_index[(key, kind)] for key in DETACH_KEYS}
+        comparisons = {}
+        for baseline in ("C0", "C2", "C3"):
+            comparisons["C1_minus_" + baseline] = {
+                "apls": rows["C1"]["apls"] - rows[baseline]["apls"],
+                "topo_f1": rows["C1"]["topo"] - rows[baseline]["topo"],
+                "largest_component_edge_length_ratio": (
+                    rows["C1"]["connectivity"]["largest_component_edge_length_ratio"]
+                    - rows[baseline]["connectivity"]["largest_component_edge_length_ratio"]),
+                "junction_f1": (rows["C1"]["junction_correctness"]["f1"]
+                                - rows[baseline]["junction_correctness"]["f1"]),
+                "candidate_edge_count": rows["C1"]["candidate_edge_count"] - rows[baseline]["candidate_edge_count"],
+                "undirected_edge_count": rows["C1"]["undirected_edge_count"] - rows[baseline]["undirected_edge_count"],
+                "dangling_edge_count": rows["C1"]["dangling_edge_count"] - rows[baseline]["dangling_edge_count"],
+                "duplicate_edge_count": rows["C1"]["duplicate_edge_count"] - rows[baseline]["duplicate_edge_count"],
+                "graph_iterations": rows["C1"]["graph_iterations"] - rows[baseline]["graph_iterations"],
+                "runtime_seconds": rows["C1"]["inference_time_seconds"] - rows[baseline]["inference_time_seconds"],
+            }
+        graph["detailed_comparisons"][kind] = comparisons
+    graph["overgeneration_assessment"] = (
+        "C1 overgeneration must be interpreted jointly with C2/C3 candidate, undirected, dangling and duplicate edge counts; "
+        "connectivity or approximate APLS alone is not registration-specific evidence.")
     parity = pixel_parity(
         read_json(args.local_pixel_manifest), read_json(args.remote_pixel_manifest))
     sensitivity = sensitivity_payload(primary)
@@ -682,6 +728,7 @@ def main() -> int:
     matrix = {
         "stage": "seg_raster_stage_s3a", "status": "PASS_WITH_RETENTION_LIMITATION",
         "forward_recomputed_checkpoint_count": len(primary),
+        "evaluation_code_sha": evaluation_code_sha,
         "historical_log_only_validation_point_count": 120,
         "forward_recomputed": [compact_checkpoint(row) for row in primary.values()],
         "historical_validation_logs": {
@@ -697,16 +744,18 @@ def main() -> int:
 
     latest_cmp = protocols["protocols"]["A_latest"]["comparisons"]
     best_cmp = protocols["protocols"]["B_per_run_best"]["comparisons"]
-    seg_fair = any(sum(value[name] > 0 for name in METRIC_KEYS) >= 2
-                   for value in (latest_cmp["C1_minus_C0"], best_cmp["C1_minus_C0"]))
+    seg_latest = sum(latest_cmp["C1_minus_C0"][name] > 0 for name in METRIC_KEYS) >= 2
+    seg_best = sum(best_cmp["C1_minus_C0"][name] > 0 for name in METRIC_KEYS) >= 2
+    seg_fair = seg_latest or seg_best
     aligned_specific = any(
-        sum(group[name] > 0 for name in METRIC_KEYS) >= 2
-        for group in (
-            latest_cmp["C1_minus_C2"], latest_cmp["C1_minus_C3"],
-            best_cmp["C1_minus_C2"], best_cmp["C1_minus_C3"]))
+        sum(comparison["C1_minus_C2"][name] > 0 for name in METRIC_KEYS) >= 2
+        and sum(comparison["C1_minus_C3"][name] > 0 for name in METRIC_KEYS) >= 2
+        for comparison in (latest_cmp, best_cmp))
     graph_pass = graph["status"] in ("PASS", "INCOMPLETE") and len(graph_records) >= 8
     unresolved_p0 = reference["status"] != "PASS" or determinism["status"] != "PASS"
     if unresolved_p0 or parity["status"] != "PASS" or not graph_pass:
+        decision = "NO_GO"
+    elif seg_latest and not seg_best:
         decision = "NO_GO"
     elif seg_fair and aligned_specific and anchor["ALIGNED_VS_SHIFTED_SPECIFICITY"] != "PASS":
         decision = "GO_FOR_MULTI_SEED_SEGMENTATION_ONLY"
@@ -746,8 +795,10 @@ def main() -> int:
     }
     conclusion = {
         "stage": "seg_raster_stage_s3a", "branch": "feat/seg-raster-only",
-        "s3a_base_sha": read_json(REPO_ROOT / "artifacts/stage_s3a_git_start.json")["head_sha"],
+        "s3a_base_sha": read_json(
+            REPO_ROOT / "artifacts/stage_s3a_git_start.json")["s3a_base_sha"],
         "s3a_audit_code_sha": args.audit_code_sha,
+        "evaluation_code_sha": evaluation_code_sha,
         "formal_s3_run_code_sha": FORMAL_S3_SHA,
         "execution_environment": "REMOTE_TRAINING_SERVER",
         "metric_reference_gate": reference["status"],
@@ -788,6 +839,16 @@ def main() -> int:
         "stage_s3a_small_sample_sensitivity.json": sensitivity,
         "stage_s3a_evaluation_determinism.json": determinism,
         "stage_s3a_claim_reconciliation.json": reconciliation,
+        "stage_s3a_gpu_inventory.json": read_json(
+            args.remote_output_root / "stage_s3a_gpu_inventory.json"),
+        "stage_s3a_gpu_schedule.json": {
+            "stage": "seg_raster_stage_s3a",
+            "status": "PASS",
+            "checkpoint_evaluation": read_json(
+                args.remote_output_root / "stage_s3a_gpu_schedule.json"),
+            "graph_evaluation": read_json(
+                args.remote_output_root / "stage_s3a_graph_gpu_schedule.json"),
+        },
         "stage_s3a_conclusion.json": conclusion,
     }
     for name, payload in outputs.items():

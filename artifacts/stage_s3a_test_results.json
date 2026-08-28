@@ -8,7 +8,7 @@
     "passed": 22,
     "failed": 0,
     "errors": 0,
-    "duration_seconds": 3.30
+    "duration_seconds": 3.46
   },
   "full_suite": {
     "command": "python -m pytest tests -q -p no:cacheprovider",
@@ -17,7 +17,7 @@
     "errors": 0,
     "subtests_passed": 4,
     "warnings": 9,
-    "duration_seconds": 50.68
+    "duration_seconds": 54.45
   },
   "notes": [
     "The pytest cache plugin was disabled because preexisting local cache/temp ACLs were unreadable.",
@@ -25,6 +25,7 @@
     "Warnings were preexisting deprecation/prototype warnings and did not fail the suite.",
     "The suite was rerun after replacing one Python-3.9-only runtime type alias for remote Python compatibility.",
     "A regression test verifies that the graph wrapper resolves inherited Stage S3 YAML, merges the default inference contract, and then applies audit overrides.",
-    "A regression test verifies that graph scoring selects the post-processed graph rather than the raw graphs_junc output."
+    "A regression test verifies that graph scoring selects the post-processed graph rather than the raw graphs_junc output.",
+    "The reducer distinguishes untagged training-log rows from frozen_validation rows and records evaluation SHA separately during dry-run validation."
   ]
 }
