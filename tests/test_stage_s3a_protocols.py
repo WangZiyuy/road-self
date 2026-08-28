@@ -161,3 +161,6 @@ def test_graph_audit_resolves_inherited_stage_s3_config(tmp_path) -> None:
     assert "DIR" in resolved
     assert resolved["TRAIN"]["NUM_TARGETS"] == 4
     assert resolved["TEST"]["CROP_SZ"] == 256
+    assert resolved["TEST"]["CPU_WORKER"] == 5
+    assert resolved["TEST"]["BATCH_SIZE_ANCHOR"] == 15
+    assert resolved["DIR"]["PRE_JUNC_NMS_DIR"] == "data_self/input/junction_nms/"

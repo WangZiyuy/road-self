@@ -23,6 +23,7 @@ import yaml
 
 from utils.seg_raster.stage_s3 import (
     EXPERIMENT_MATRIX,
+    _deep_merge,
     load_stage_s3_config,
     sha256_file,
 )
@@ -282,7 +283,10 @@ def connectivity(graph: nx.Graph) -> dict:
 
 
 def prepare_config(args, checkpoint_step: int) -> Path:
-    base = load_stage_s3_config(args.base_config)
+    with (REPO_ROOT / "configs/default_self.yml").open(
+            "r", encoding="utf-8") as handle:
+        inference_defaults = yaml.load(handle, Loader=yaml.UnsafeLoader)
+    base = _deep_merge(inference_defaults, load_stage_s3_config(args.base_config))
     spec = next(value for value in EXPERIMENT_MATRIX if value.key == args.run_key)
     config = deepcopy(base)
     checkpoint_dir = args.output_dir / "checkpoint"
