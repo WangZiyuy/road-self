@@ -9,6 +9,7 @@ import yaml
 from tools.seg_raster.audit_stage_s3a_graph import (
     prepare_config,
     select_postprocessed_graph,
+    set_graph_seed,
 )
 from tools.seg_raster.audit_stage_s3a_metrics import (
     graph_control_matrix,
@@ -21,6 +22,8 @@ from tools.seg_raster.audit_stage_s3a_metrics import (
 from tools.seg_raster.audit_stage_s3a_reduce import (
     anchor_payload,
     checkpoint_inventory,
+    graph_determinism_payload,
+    reference_gate,
     stable_sha,
 )
 from utils.seg_raster.stage_s3 import EXPERIMENT_MATRIX
@@ -138,6 +141,79 @@ def test_anchor_checkpoint_provenance_is_explicit() -> None:
     assert provenance["checkpoint_step"] == 102400
     assert provenance["historical_vs_recomputed_latest_maximum_absolute_difference"] == 0.0
     assert targets["rows"] == []
+
+
+def test_reference_gate_uses_strict_confusion_tolerance_and_documented_auprc_tie_tolerance() -> None:
+    primary = {}
+    for key in ("C0", "C1", "C2", "C3", "J0", "J1"):
+        for kind in ("best", "latest"):
+            row = _checkpoint_record(key, kind)
+            segmentation_check = {
+                "absolute_differences": {
+                    "precision": 0.0, "recall": 0.0, "f1": 0.0,
+                    "iou": 0.0, "auprc": 4.7e-7,
+                },
+                "maximum_absolute_difference": 4.7e-7,
+            }
+            row["road_metric_reference_check"] = segmentation_check
+            row["junction_metric_reference_check"] = segmentation_check
+            primary[(key, kind)] = row
+    result = reference_gate(primary)
+    assert result["status"] == "PASS"
+    assert result["tolerances"]["auprc"] == 1e-6
+    primary[("C0", "best")]["road_metric_reference_check"][
+        "absolute_differences"]["f1"] = 1e-9
+    assert reference_gate(primary)["status"] == "FAIL"
+
+
+def test_anchor_forensics_flags_detach_multistep_failure_and_latest_false_positive_scope() -> None:
+    primary = {(key, kind): _checkpoint_record(key, kind)
+               for key in ("C0", "C1", "C2", "C3", "J0", "J1")
+               for kind in ("best", "latest")}
+    primary[("J1", "best")]["anchor"]["per_step_recall"] = [0.5, 0.2, 0.25, 1 / 3]
+    primary[("C1", "best")]["anchor"]["false_positive_count"] = 3
+    payload, _ = anchor_payload(primary, {"runs": {}})
+    assert payload["MULTISTEP_ANCHOR_VALIDITY"] == "FAIL"
+    diagnosis = payload["multistep_diagnosis"]
+    assert diagnosis["j1_best_has_a_later_step_hit"] is True
+    assert diagnosis[
+        "fixed_threshold_produced_no_false_positive_pixels_for_all_latest_checkpoints"] is True
+    assert diagnosis[
+        "fixed_threshold_produced_no_false_positive_pixels_for_all_available_checkpoints"] is False
+
+
+def test_graph_seed_restarts_python_numpy_and_torch_rngs() -> None:
+    import random
+    import numpy as np
+    import torch
+
+    first_settings = set_graph_seed(73)
+    first = (random.random(), float(np.random.rand()), float(torch.rand(1)))
+    second_settings = set_graph_seed(73)
+    second = (random.random(), float(np.random.rand()), float(torch.rand(1)))
+    assert first_settings == second_settings
+    assert first == second
+
+
+def test_graph_determinism_requires_equal_postprocessed_graph_and_metrics() -> None:
+    records = []
+    for kind in ("best", "latest"):
+        for repeat in (0, 1):
+            records.append({
+                "run_key": "C0", "checkpoint_kind": kind,
+                "repeat_index": repeat,
+                "postprocessed_graph_sha256": kind + "-sha",
+                "deterministic_settings": {"seed": 1},
+                "apls": 0.2, "apls_directional": {}, "topo": 0.1,
+                "topo_metrics": {}, "connectivity": {},
+                "junction_correctness": {}, "candidate_edge_count": 1,
+                "undirected_edge_count": 1, "dangling_edge_count": 0,
+                "duplicate_edge_count": 0, "vertex_count": 2,
+                "graph_iterations": 3,
+            })
+    assert graph_determinism_payload(records)["status"] == "PASS"
+    records[-1]["postprocessed_graph_sha256"] = "different"
+    assert graph_determinism_payload(records)["status"] == "FAIL"
 
 
 def test_graph_audit_resolves_inherited_stage_s3_config(tmp_path) -> None:

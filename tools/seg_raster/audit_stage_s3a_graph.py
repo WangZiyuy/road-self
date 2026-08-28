@@ -9,6 +9,7 @@ import json
 import math
 import os
 from pathlib import Path
+import random
 import subprocess
 import sys
 import time
@@ -18,6 +19,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 import networkx as nx
+import numpy as np
 import torch
 import yaml
 
@@ -34,6 +36,30 @@ RECT = (2176.0, 0.0, 4096.0, 4096.0)
 SNAP = 24.0
 DENSIFY = 16.0
 MAX_CONTROLS = 64
+GRAPH_SEED = 20260828
+
+
+def set_graph_seed(seed: int = GRAPH_SEED) -> dict:
+    """Freeze every RNG used by legacy graph exploration and post-processing."""
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+    if hasattr(torch.backends, "cudnn"):
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+    return {
+        "seed": int(seed),
+        "python_random": True,
+        "numpy_random": True,
+        "torch_cpu": True,
+        "torch_cuda_all": bool(torch.cuda.is_available()),
+        "cudnn_deterministic": bool(
+            getattr(torch.backends.cudnn, "deterministic", False)),
+        "cudnn_benchmark": bool(
+            getattr(torch.backends.cudnn, "benchmark", False)),
+    }
 
 
 def verify_checkout(expected_sha: str) -> None:
@@ -389,6 +415,7 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--result", type=Path, required=True)
     parser.add_argument("--physical-gpu", type=int, required=True)
+    parser.add_argument("--repeat-index", type=int, default=0)
     args = parser.parse_args()
     verify_checkout(args.audit_code_sha)
     if not torch.cuda.is_available():
@@ -400,6 +427,7 @@ def main() -> int:
     config_path = prepare_config(args, int(payload["optimizer_step"]))
     started_utc = datetime.now(timezone.utc).isoformat()
     started = time.monotonic()
+    deterministic_settings = set_graph_seed()
     sys.argv = ["infer.py", "--config", str(config_path)]
     import infer
     iterations = []
@@ -434,6 +462,7 @@ def main() -> int:
         "run_key": args.run_key,
         "run_id": args.run_id,
         "checkpoint_kind": args.checkpoint_kind,
+        "repeat_index": int(args.repeat_index),
         "checkpoint_step": int(payload["optimizer_step"]),
         "checkpoint_sha256": sha256_file(args.checkpoint),
         "fixed_probability_threshold": 0.3,
@@ -465,7 +494,12 @@ def main() -> int:
         "physical_gpu_index": args.physical_gpu,
         "gpu_name": torch.cuda.get_device_name(0),
         "started_at_utc": started_utc,
-        "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/" + args.run_key + "/" + args.checkpoint_kind + "/xian.graph",
+        "deterministic_settings": deterministic_settings,
+        "postprocessed_graph_sha256": sha256_file(predicted_path),
+        "graph_logical_path": (
+            "${S3A_REMOTE_OUTPUT}/graph/" + args.run_key + "/"
+            + args.checkpoint_kind + "/repeat_" + str(args.repeat_index)
+            + "/xian.graph"),
     }
     args.result.parent.mkdir(parents=True, exist_ok=True)
     args.result.write_text(

@@ -423,10 +423,17 @@ def anchor_payload(primary: Mapping[tuple[str, str], dict], old_anchor: Mapping[
                 targets.append({"run_key": key, "checkpoint_kind": kind, **target})
     best = {key: primary[(key, "best")] for key in RUN_KEYS}
     latest = {key: primary[(key, "latest")] for key in RUN_KEYS}
-    later_three_zero = all(
+    latest_later_three_zero = all(
         all(value == 0 for value in row["anchor"]["per_step_recall"][1:])
-        for row in primary.values())
-    no_predictions = all(
+        for row in latest.values())
+    detach_best_later_three_zero = all(
+        all(value == 0 for value in best[key]["anchor"]["per_step_recall"][1:])
+        for key in DETACH_KEYS)
+    j1_best_later_step_hit = any(
+        value > 0 for value in best["J1"]["anchor"]["per_step_recall"][1:])
+    latest_no_false_positives = all(
+        row["anchor"]["false_positive_count"] == 0 for row in latest.values())
+    all_available_no_false_positives = all(
         row["anchor"]["false_positive_count"] == 0 for row in primary.values())
     historical_difference = max(
         numeric_max_abs_difference(
@@ -453,25 +460,60 @@ def anchor_payload(primary: Mapping[tuple[str, str], dict], old_anchor: Mapping[
             "common_step": {"status": "UNAVAILABLE_MISSING_CHECKPOINT"},
         },
         "multistep_diagnosis": {
-            "zero_based_steps_1_through_3_recall_zero_for_all_available_checkpoints": later_three_zero,
-            "fixed_threshold_produced_no_false_positive_pixels_for_all_available_checkpoints": no_predictions,
+            "zero_based_steps_1_through_3_recall_zero_for_all_latest_checkpoints": latest_later_three_zero,
+            "zero_based_steps_1_through_3_recall_zero_for_all_detach_best_checkpoints": detach_best_later_three_zero,
+            "j1_best_has_a_later_step_hit": j1_best_later_step_hit,
+            "fixed_threshold_produced_no_false_positive_pixels_for_all_latest_checkpoints": latest_no_false_positives,
+            "fixed_threshold_produced_no_false_positive_pixels_for_all_available_checkpoints": all_available_no_false_positives,
             "top_k_bypasses_fixed_threshold": True,
             "localization_error_scope": "all targets using global heatmap argmax",
             "interpretation": (
                 "Threshold recall and false-positive counts can both be zero when all heatmaps stay below 0.3; top-K still measures ranking. "
                 "Near-zero channel diversity and absent later-step hits make multistep behavior invalid as positive evidence."),
         },
-        "C1_VS_C0_EFFECT": "INCONCLUSIVE",
-        "ALIGNED_VS_ZERO_SPECIFICITY": "INCONCLUSIVE",
-        "ALIGNED_VS_SHIFTED_SPECIFICITY": "FAIL" if (
-            best["C3"]["anchor"]["top_k_recall"] > best["C1"]["anchor"]["top_k_recall"]) else "INCONCLUSIVE",
-        "MULTISTEP_ANCHOR_VALIDITY": "FAIL" if later_three_zero else "INCONCLUSIVE",
+        "C1_VS_C0_EFFECT": _aggregate_anchor_effect(best, latest, "C0"),
+        "ALIGNED_VS_ZERO_SPECIFICITY": _aggregate_anchor_effect(best, latest, "C2"),
+        "ALIGNED_VS_SHIFTED_SPECIFICITY": _aggregate_anchor_effect(best, latest, "C3"),
+        "MULTISTEP_ANCHOR_VALIDITY": "FAIL" if (
+            latest_later_three_zero and detach_best_later_three_zero) else "INCONCLUSIVE",
         "ANCHOR_METRIC_VALIDITY": "PASS" if all(
             row["anchor_metric_reference_check"]["maximum_absolute_difference"] <= 1e-8
             for row in primary.values()) else "FAIL",
         "historical_values": old_anchor.get("runs", {}),
     }
     return payload, {"stage": "seg_raster_stage_s3a", "status": "PASS", "rows": targets}
+
+
+def _anchor_effect(left: Mapping[str, Any], aligned: Mapping[str, Any]) -> str:
+    """Apply the frozen top-K/non-regression rule to one checkpoint protocol."""
+    left_metrics = left["anchor"]
+    aligned_metrics = aligned["anchor"]
+    top_k_delta = float(aligned_metrics["top_k_recall"]) - float(
+        left_metrics["top_k_recall"])
+    improvements = (
+        top_k_delta > 0
+        or float(aligned_metrics["localization_error"])
+        < float(left_metrics["localization_error"])
+        or int(aligned_metrics["missed_branch_count"])
+        < int(left_metrics["missed_branch_count"])
+    )
+    return "PASS" if top_k_delta >= -0.005 and improvements else "FAIL"
+
+
+def _aggregate_anchor_effect(
+    best: Mapping[str, Mapping[str, Any]],
+    latest: Mapping[str, Mapping[str, Any]],
+    baseline_key: str,
+) -> str:
+    statuses = {
+        "best": _anchor_effect(best[baseline_key], best["C1"]),
+        "latest": _anchor_effect(latest[baseline_key], latest["C1"]),
+    }
+    if set(statuses.values()) == {"PASS"}:
+        return "PASS"
+    if set(statuses.values()) == {"FAIL"}:
+        return "FAIL"
+    return "INCONCLUSIVE"
 
 
 def pixel_parity(local: Mapping[str, Any], remote: Mapping[str, Any]) -> dict:
@@ -562,15 +604,71 @@ def determinism_payload(records: Sequence[Mapping[str, Any]]) -> dict:
     }
 
 
+def graph_determinism_payload(records: Sequence[Mapping[str, Any]]) -> dict:
+    indexed: dict[tuple[str, str], list[Mapping[str, Any]]] = {}
+    for row in records:
+        indexed.setdefault((row["run_key"], row["checkpoint_kind"]), []).append(row)
+    comparisons = []
+    metric_keys = (
+        "apls", "apls_directional", "topo", "topo_metrics", "connectivity",
+        "junction_correctness", "candidate_edge_count", "undirected_edge_count",
+        "dangling_edge_count", "duplicate_edge_count", "vertex_count",
+        "graph_iterations",
+    )
+    for kind in ("best", "latest"):
+        rows = sorted(
+            indexed.get(("C0", kind), []),
+            key=lambda row: int(row.get("repeat_index", 0)))
+        if len(rows) < 2:
+            comparisons.append({
+                "run_key": "C0", "checkpoint_kind": kind,
+                "status": "MISSING_REPEAT",
+            })
+            continue
+        first, second = rows[:2]
+        graph_equal = (
+            first.get("postprocessed_graph_sha256")
+            == second.get("postprocessed_graph_sha256")
+            and first.get("postprocessed_graph_sha256") is not None)
+        metrics_equal = all(first.get(key) == second.get(key) for key in metric_keys)
+        settings_equal = (
+            first.get("deterministic_settings")
+            == second.get("deterministic_settings"))
+        comparisons.append({
+            "run_key": "C0", "checkpoint_kind": kind,
+            "postprocessed_graph_checksum_exactly_equal": graph_equal,
+            "graph_metrics_exactly_equal": metrics_equal,
+            "deterministic_settings_exactly_equal": settings_equal,
+            "status": "PASS" if graph_equal and metrics_equal and settings_equal else "FAIL",
+        })
+    return {
+        "status": "PASS" if all(
+            row["status"] == "PASS" for row in comparisons) else "FAIL",
+        "comparisons": comparisons,
+        "floating_tolerance": 0.0,
+    }
+
+
 def reference_gate(primary: Mapping[tuple[str, str], dict]) -> dict:
+    exact_tolerance = 1e-12
+    auprc_tolerance = 1e-6
     rows = []
     for (key, kind), record in sorted(primary.items()):
         for task in ("road", "junction"):
             check = record[f"{task}_metric_reference_check"]
+            differences = check["absolute_differences"]
+            exact_max = max(
+                float(differences[name])
+                for name in ("precision", "recall", "f1", "iou"))
+            auprc_difference = float(differences["auprc"])
             rows.append({
                 "run_key": key, "checkpoint_kind": kind, "task": task,
                 "maximum_absolute_difference": check["maximum_absolute_difference"],
-                "status": "PASS" if check["maximum_absolute_difference"] <= 1e-8 else "FAIL",
+                "exact_metric_maximum_absolute_difference": exact_max,
+                "auprc_absolute_difference": auprc_difference,
+                "status": "PASS" if (
+                    exact_max <= exact_tolerance
+                    and auprc_difference <= auprc_tolerance) else "FAIL",
             })
         anchor = record["anchor_metric_reference_check"]["maximum_absolute_difference"]
         rows.append({"run_key": key, "checkpoint_kind": kind, "task": "anchor",
@@ -579,7 +677,15 @@ def reference_gate(primary: Mapping[tuple[str, str], dict]) -> dict:
     return {
         "stage": "seg_raster_stage_s3a",
         "status": "PASS" if all(row["status"] == "PASS" for row in rows) else "FAIL",
-        "tolerance": 1e-8,
+        "tolerances": {
+            "precision_recall_f1_iou": exact_tolerance,
+            "auprc": auprc_tolerance,
+        },
+        "auprc_tie_policy_note": (
+            "The frozen evaluator applies stable per-pixel ordering within equal-score ties; "
+            "the independent reference collapses equal scores into one threshold group. "
+            "Differences up to 1e-6 are accepted only for AUPRC; confusion-derived metrics "
+            "remain subject to 1e-12."),
         "synthetic_reference_tests": "tests/test_stage_s3a_metrics.py",
         "checkpoint_comparisons": rows,
     }
@@ -685,9 +791,11 @@ def main() -> int:
         (args.remote_output_root / "graph_results").glob("*.json"))]
     if any(row.get("audit_code_sha") != evaluation_code_sha for row in graph_records):
         raise RuntimeError("graph evaluation code SHA mismatch")
+    graph_primary = [
+        row for row in graph_records if int(row.get("repeat_index", 0)) == 0]
     graph = {
         "stage": "seg_raster_stage_s3a",
-        **graph_control_matrix(graph_records),
+        **graph_control_matrix(graph_primary),
         "records": graph_records,
         "common_step": {"status": "UNAVAILABLE_MISSING_CHECKPOINT", "step": 5120,
                         "missing_runs": ["C1"]},
@@ -695,7 +803,7 @@ def main() -> int:
         "graph_density_normalized_comparison_recommended": True,
     }
     graph_index = {
-        (row["run_key"], row["checkpoint_kind"]): row for row in graph_records}
+        (row["run_key"], row["checkpoint_kind"]): row for row in graph_primary}
     graph["detailed_comparisons"] = {}
     for kind in ("best", "latest"):
         rows = {key: graph_index[(key, kind)] for key in DETACH_KEYS}
@@ -723,7 +831,16 @@ def main() -> int:
     parity = pixel_parity(
         read_json(args.local_pixel_manifest), read_json(args.remote_pixel_manifest))
     sensitivity = sensitivity_payload(primary)
-    determinism = determinism_payload(evaluations)
+    validation_determinism = determinism_payload(evaluations)
+    graph_determinism = graph_determinism_payload(graph_records)
+    determinism = {
+        "stage": "seg_raster_stage_s3a",
+        "status": "PASS" if (
+            validation_determinism["status"] == "PASS"
+            and graph_determinism["status"] == "PASS") else "FAIL",
+        "validation_evaluation": validation_determinism,
+        "graph_evaluation": graph_determinism,
+    }
 
     matrix = {
         "stage": "seg_raster_stage_s3a", "status": "PASS_WITH_RETENTION_LIMITATION",
@@ -751,7 +868,10 @@ def main() -> int:
         sum(comparison["C1_minus_C2"][name] > 0 for name in METRIC_KEYS) >= 2
         and sum(comparison["C1_minus_C3"][name] > 0 for name in METRIC_KEYS) >= 2
         for comparison in (latest_cmp, best_cmp))
-    graph_pass = graph["status"] in ("PASS", "INCOMPLETE") and len(graph_records) >= 8
+    graph_pass = (
+        graph["status"] == "PASS"
+        and len(graph_primary) == 8
+        and graph_determinism["status"] == "PASS")
     unresolved_p0 = reference["status"] != "PASS" or determinism["status"] != "PASS"
     if unresolved_p0 or parity["status"] != "PASS" or not graph_pass:
         decision = "NO_GO"
@@ -776,7 +896,7 @@ def main() -> int:
             "indirect_anchor_screen": {
                 "old": old_conclusion.get("indirect_anchor_screen"),
                 "status": "SUPERSEDED",
-                "reason": "aligned C1 lacks shifted-control specificity and multistep validity is failed/inconclusive",
+                "reason": "aligned C1 lacks stable shifted-control specificity and multistep validity failed",
             },
             "joint_screen": {
                 "old": old_conclusion.get("joint_screen"), "status": "INCONCLUSIVE",

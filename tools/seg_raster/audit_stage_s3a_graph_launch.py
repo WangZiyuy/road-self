@@ -71,15 +71,35 @@ def main() -> int:
             checkpoint = args.source_run_root / spec.run_id / "checkpoints" / (
                 kind + ".pth.tar")
             jobs.append({
-                "job_id": "graph_{}_{}".format(key, kind),
+                "job_id": "graph_{}_{}_repeat0".format(key, kind),
                 "run_key": key,
                 "run_id": spec.run_id,
                 "checkpoint_kind": kind,
+                "repeat_index": 0,
                 "checkpoint": checkpoint,
-                "output_dir": args.output_root / "graph" / key / kind,
+                "output_dir": args.output_root / "graph" / key / kind / "repeat_0",
                 "result": args.output_root / "graph_results" / (
-                    "{}_{}.json".format(key, kind)),
+                    "{}_{}_repeat0.json".format(key, kind)),
             })
+    # Repeat the two C0 protocols end-to-end. Graph exploration historically
+    # consumed Python RNG state, so checkpoint-evaluation determinism alone is
+    # insufficient evidence for graph-control comparisons.
+    spec = specs["C0"]
+    for kind in ("best", "latest"):
+        jobs.append({
+            "job_id": "graph_C0_{}_repeat1".format(kind),
+            "run_key": "C0",
+            "run_id": spec.run_id,
+            "checkpoint_kind": kind,
+            "repeat_index": 1,
+            "checkpoint": (
+                args.source_run_root / spec.run_id / "checkpoints"
+                / (kind + ".pth.tar")),
+            "output_dir": (
+                args.output_root / "graph" / "C0" / kind / "repeat_1"),
+            "result": args.output_root / "graph_results" / (
+                "C0_{}_repeat1.json".format(kind)),
+        })
     scheduler = FifoGpuScheduler(row["index"] for row in selected)
     gpu_by_index = {row["index"]: row for row in selected}
     queue, running, records = list(jobs), {}, []
@@ -110,6 +130,7 @@ def main() -> int:
                 "--output-dir", str(job["output_dir"]),
                 "--result", str(job["result"]),
                 "--physical-gpu", str(index),
+                "--repeat-index", str(job["repeat_index"]),
             ]
             process = subprocess.Popen(
                 command, cwd=REPO_ROOT, env=environment,
@@ -118,6 +139,7 @@ def main() -> int:
             record = {
                 "job_id": job["job_id"], "run_key": job["run_key"],
                 "checkpoint_kind": job["checkpoint_kind"],
+                "repeat_index": job["repeat_index"],
                 "physical_gpu_index": index, "gpu_uuid": gpu["uuid"],
                 "gpu_name": gpu["name"], "pid": process.pid,
                 "start_time": utc_now(), "end_time": None, "exit_code": None,
