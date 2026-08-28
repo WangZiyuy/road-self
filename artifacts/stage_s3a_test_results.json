@@ -8,7 +8,7 @@
     "passed": 20,
     "failed": 0,
     "errors": 0,
-    "duration_seconds": 3.39
+    "duration_seconds": 2.78
   },
   "full_suite": {
     "command": "python -m pytest tests -q -p no:cacheprovider",
@@ -17,11 +17,12 @@
     "errors": 0,
     "subtests_passed": 4,
     "warnings": 9,
-    "duration_seconds": 48.29
+    "duration_seconds": 64.26
   },
   "notes": [
     "The pytest cache plugin was disabled because preexisting local cache/temp ACLs were unreadable.",
     "Tests ran on CPU and did not inspect or use the local GPU.",
-    "Warnings were preexisting deprecation/prototype warnings and did not fail the suite."
+    "Warnings were preexisting deprecation/prototype warnings and did not fail the suite.",
+    "The suite was rerun after replacing one Python-3.9-only runtime type alias for remote Python compatibility."
   ]
 }
