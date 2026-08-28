@@ -1,0 +1,28 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "captured_at_utc": "2026-08-28T15:26:58.3794953Z",
+  "workspace": "${SEG_RASTER_WORKTREE}",
+  "branch": "feat/seg-raster-only",
+  "s3a_base_sha": "033be5fb7bf61c8c1d4b58a3237825a3019fc8d3",
+  "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "upstream": "origin/feat/seg-raster-only",
+  "working_tree_status": "CLEAN",
+  "execution_policy": {
+    "checkpoint_evaluation_environment": "REMOTE_TRAINING_SERVER",
+    "local_gpu_forbidden": true,
+    "existing_stage_s3_evidence_read_only": true,
+    "production_model_training_inference_files_modifiable": false
+  },
+  "recent_commits": [
+    "033be5f exp: record remote stage s3 multi-gpu causal screening",
+    "2e68f4e fix: refreeze remote stage s3 launcher and sample plan",
+    "ea27c47 exp: record stage s3 multi-gpu causal screening",
+    "2e6cada exp: define stage s3 controlled raster training matrix",
+    "5a137b7 docs: add stage s2 artifacts and conclusion",
+    "2c4f39d test: add raster loader isolation and smoke coverage",
+    "79357d6 train: wire raster_seg_only mode without sequence branch",
+    "9a3d8f4 model: add isolated segmentation-only raster fusion",
+    "957fcb6 data: register canonical binary trajectory raster contract",
+    "c870019 data: define trajectory-raster registration contract"
+  ]
+}

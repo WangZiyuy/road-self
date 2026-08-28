@@ -1,0 +1,27 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "execution_environment": "LOCAL_WINDOWS_WORKSTATION_CPU_ONLY",
+  "formal_checkpoint_evaluation_performed_locally": false,
+  "targeted": {
+    "command": "python -m pytest tests/test_stage_s3a_metrics.py tests/test_stage_s3a_protocols.py -q -p no:cacheprovider",
+    "passed": 20,
+    "failed": 0,
+    "errors": 0,
+    "duration_seconds": 3.39
+  },
+  "full_suite": {
+    "command": "python -m pytest tests -q -p no:cacheprovider",
+    "passed": 315,
+    "failed": 0,
+    "errors": 0,
+    "subtests_passed": 4,
+    "warnings": 9,
+    "duration_seconds": 48.29
+  },
+  "notes": [
+    "The pytest cache plugin was disabled because preexisting local cache/temp ACLs were unreadable.",
+    "Tests ran on CPU and did not inspect or use the local GPU.",
+    "Warnings were preexisting deprecation/prototype warnings and did not fail the suite."
+  ]
+}
