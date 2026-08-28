@@ -1,7 +1,12 @@
 from __future__ import annotations
 
-import pytest
+from pathlib import Path
+from types import SimpleNamespace
 
+import pytest
+import yaml
+
+from tools.seg_raster.audit_stage_s3a_graph import prepare_config
 from tools.seg_raster.audit_stage_s3a_metrics import (
     graph_control_matrix,
     leave_one_out_deltas,
@@ -132,3 +137,27 @@ def test_anchor_checkpoint_provenance_is_explicit() -> None:
         "historical_artifact": "artifacts/stage_s3_anchor_comparison.json",
     }
     assert targets["rows"] == []
+
+
+def test_graph_audit_resolves_inherited_stage_s3_config(tmp_path) -> None:
+    output = tmp_path / "graph_output"
+    (output / "checkpoint").mkdir(parents=True)
+    (output / "checkpoint" / "selected.pth.tar").write_bytes(b"placeholder")
+    (output / "graph_trajectory").mkdir(parents=True)
+    (output / "graph_trajectory" / "xian.png").write_bytes(b"placeholder")
+    source_runtime = tmp_path / "runtime"
+    (source_runtime / "controls" / "aligned").mkdir(parents=True)
+    args = SimpleNamespace(
+        base_config=Path("configs/stage_s3_C0_image_detach.yml"),
+        run_key="C0",
+        checkpoint=tmp_path / "source.pth.tar",
+        checkpoint_kind="best",
+        output_dir=output,
+        source_runtime=source_runtime,
+    )
+    path = prepare_config(args, checkpoint_step=5120)
+    with path.open("r", encoding="utf-8") as handle:
+        resolved = yaml.safe_load(handle)
+    assert "DIR" in resolved
+    assert resolved["TRAIN"]["NUM_TARGETS"] == 4
+    assert resolved["TEST"]["CROP_SZ"] == 256

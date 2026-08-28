@@ -21,7 +21,11 @@ import networkx as nx
 import torch
 import yaml
 
-from utils.seg_raster.stage_s3 import EXPERIMENT_MATRIX, sha256_file
+from utils.seg_raster.stage_s3 import (
+    EXPERIMENT_MATRIX,
+    load_stage_s3_config,
+    sha256_file,
+)
 
 
 FORMAL_S3_SHA = "2e68f4e5a1c7cfad041182c2edce3194b8175b8c"
@@ -278,8 +282,7 @@ def connectivity(graph: nx.Graph) -> dict:
 
 
 def prepare_config(args, checkpoint_step: int) -> Path:
-    with args.base_config.open("r", encoding="utf-8") as handle:
-        base = yaml.load(handle, Loader=yaml.UnsafeLoader)
+    base = load_stage_s3_config(args.base_config)
     spec = next(value for value in EXPERIMENT_MATRIX if value.key == args.run_key)
     config = deepcopy(base)
     checkpoint_dir = args.output_dir / "checkpoint"
