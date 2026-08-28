@@ -1,54 +1,28 @@
-# Stage S3 causal-comparison contract
+# Stage S3R causal comparison
 
-This report is intentionally a pre-result contract until the frozen CUDA gate
-and six runs complete. It prevents result-dependent tuning.
+## Screening result
 
-## Metrics and thresholds
+This is a single-seed screen, not a statistical-significance claim.
 
-All runs use one fixed probability threshold (`0.3`). Segmentation evaluation
-reports road precision, recall, F1, IoU and AUPRC plus junction precision,
-recall, F1, IoU and AUPRC. Anchor evaluation reports four per-step recalls,
-top-K recall, localization error, false-positive count, missed-branch count,
-and channel diversity. No run receives a separately optimized threshold.
+- Segmentation causal screen: PROMISING.
+- Indirect anchor screen: PROMISING.
+- Joint screen: PROMISING, with an anchor regression caveat.
+- Multi-seed recommendation: GO, subject to separate authorization.
 
-The best checkpoint rule is the frozen-validation segmentation composite:
-mean road F1, road IoU, and junction F1. Validation batches come from the
-disjoint validation extent and never enter the training stream.
+## Segmentation
 
-## Predeclared interpretation
+At threshold 0.3, C1-C0 road F1 was +0.0091886922, road IoU +0.0046717191, and junction F1 0. Their mean was +0.0046201371, versus -0.0011309744 for C2 and -0.0009052068 for C3. Correct alignment passed the declared spatial-control screen. Junction F1 remained zero in every group and absolute scores were low. J1-J0 segmentation composite was +0.0264674319. Coverage-stratified metrics and positive-ratio histograms are in the JSON artifact.
 
-C1 versus C0 is the indirect causal screen. It is `PROMISING` only if at least
-two of road F1, road IoU, and junction F1 improve, the mean C1 gain exceeds
-both C2 and C3, and precision/recall does not collapse. C2 controls for the
-extra raster parameters. C3 controls for trajectory coverage statistics
-without correct spatial registration.
+## Anchor
 
-C1 anchor evidence is `PROMISING` only if top-K recall loses no more than 0.5
-percentage points and at least one major anchor metric improves. If
-segmentation improves but anchor does not, the required conclusion is:
-“轨迹提高了 segmentation，但尚未证明可传递到 anchor。”
+C1-C0 top-K recall was +0.0833333333; localization error improved by 35.7711569787 and missed branches by 2. Isolation tests still prove there is no direct raw-raster path to anchor. J1-J0 top-K recall regressed by 0.0416666667, so joint optimization is not evidence of anchor improvement.
 
-J1 versus J0 estimates the joint-optimization ceiling. A J1-only improvement
-cannot be described as proof that segmentation indirectly helped anchor.
+## Conditional graph evaluation
 
-Closed-loop graph exploration for C0/C1/J0/J1 is conditional: it is not run
-unless an aligned raster group beats its image-only segmentation control. If
-the gate does not pass, the result is `NOT_EXECUTED_BY_GATE`.
+The gate passed, so C0/C1/J0/J1 ran on one frozen 4096x4096 split canvas and validation extent [2176,0,4096,4096]. Approximate APLS was C0=0.2572694597, C1=0.2782527173, J0=0.2253922483, J1=0.2348697375.
 
-This stage uses one seed. Results may be labeled only `PROMISING`,
-`INCONCLUSIVE`, `NO_EVIDENCE`, or `REGRESSION`; no statistical-significance
-claim is permitted. A separately authorized three-seed replication is proposed
-only when the C1 causal screen or J1 joint screen is `PROMISING`.
+The server lacked the official APLS jar. These values are a declared deterministic pixel-graph approximation, not official SpaceNet APLS. The initial 8192 raster graph attempt lacked required raster tiles and is excluded from formal comparison.
 
-## Final screening status
+## Interpretation
 
-The production preflight was blocked because no eligible GPU became available
-during the full 30-minute wait. All six runs are therefore `NOT_STARTED` and
-there are no segmentation, anchor, or graph measurements to compare.
-
-The segmentation causal screen, indirect anchor screen, and joint screen are
-all `INCONCLUSIVE`. Closed-loop graph evaluation is
-`NOT_EXECUTED_BY_GATE`. The multi-seed decision is `INCONCLUSIVE`; Stage S3
-should be resumed from the same frozen run SHA when a GPU without an external
-compute process is available. No claim about model benefit, regression, or
-statistical significance is made.
+The aligned binary raster produced the strongest detach-mode segmentation change and passed the declared indirect-anchor screen for this seed. A preregistered multi-seed replication is warranted, but low scores, zero junction F1, approximate graph metrics, and post-launch GPU contention remain risks.

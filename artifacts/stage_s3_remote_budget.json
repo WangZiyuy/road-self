@@ -1,0 +1,26 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "PASS",
+  "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "n_baseline_steps": 102400,
+  "timing_probe": {
+    "mode": "aligned_raster_joint",
+    "steps": 100,
+    "elapsed_seconds": 15.760767018422484,
+    "seconds_per_step": 0.15760767018422484,
+    "crop_size": 256,
+    "num_targets": 4,
+    "includes_data_generation": true
+  },
+  "eligible_gpu_count": 4,
+  "assumed_parallelism": 4,
+  "estimated_full_matrix_wall_clock_hours": 6.72459392786026,
+  "kind": "FULL_BASELINE",
+  "optimizer_steps": 102400,
+  "evaluation_interval": 5120,
+  "evaluation_checkpoint_count": 20,
+  "single_budget_for_all_six_runs": true,
+  "frozen_before_comparative_results": true,
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel"
+}

@@ -2,44 +2,71 @@
   "stage": "seg_raster_stage_s3",
   "branch": "feat/seg-raster-only",
   "s3_base_sha": "5a137b70b2291837be46cea30a8d4905f5c96585",
-  "run_code_sha": "2e6cadab33dfe2de3a2a34f93339971f186d59f3",
-  "preflight": "BLOCKED",
+  "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "preflight": "PASS",
   "split_gate": "PASS",
   "sample_parity": "PASS",
   "gpu_discovery": {
-    "eligible_gpu_count": 0,
-    "parallel_job_peak": 0,
+    "eligible_gpu_count": 4,
+    "parallel_job_peak": 4,
     "gpu_models": [
-      "NVIDIA GeForce RTX 4050 Laptop GPU"
+      "NVIDIA GeForce RTX 4090"
     ],
-    "status": "BLOCKED"
+    "status": "PASS"
   },
   "training_budget": {
-    "kind": "SCREENING",
-    "optimizer_steps": 0
+    "kind": "FULL_BASELINE",
+    "optimizer_steps": 102400
   },
   "runs": {
-    "C0": "NOT_STARTED",
-    "C1": "NOT_STARTED",
-    "C2": "NOT_STARTED",
-    "C3": "NOT_STARTED",
-    "J0": "NOT_STARTED",
-    "J1": "NOT_STARTED"
+    "C0": "PASS",
+    "C1": "PASS",
+    "C2": "PASS",
+    "C3": "PASS",
+    "J0": "PASS",
+    "J1": "PASS"
   },
-  "segmentation_causal_screen": "INCONCLUSIVE",
-  "indirect_anchor_screen": "INCONCLUSIVE",
-  "joint_screen": "INCONCLUSIVE",
-  "closed_loop_graph": "NOT_EXECUTED_BY_GATE",
-  "go_no_go_for_multiseed": "INCONCLUSIVE",
+  "segmentation_causal_screen": "PROMISING",
+  "indirect_anchor_screen": "PROMISING",
+  "joint_screen": "PROMISING",
+  "closed_loop_graph": "PASS",
+  "go_no_go_for_multiseed": "GO",
+  "previous_attempts": [
+    {
+      "environment": "LOCAL_WINDOWS_WORKSTATION",
+      "status": "INVALID_FOR_FORMAL_TRAINING",
+      "reason": "LOCAL_EXECUTION_ENVIRONMENT_MISMATCH"
+    },
+    {
+      "environment": "REMOTE_TRAINING_SERVER",
+      "run_code_sha": "2e6cadab33dfe2de3a2a34f93339971f186d59f3",
+      "status": "INVALIDATED_BY_CODE_CHANGE",
+      "reasons": [
+        "launcher RUN_ROOT placeholder formatting bug",
+        "OS-specific sample-plan identity mismatch"
+      ]
+    }
+  ],
   "key_evidence": [
-    "The first 100 teacher-forced batches match across all six configs.",
-    "No eligible CUDA GPU became available during the declared wait.",
-    "No training subprocess was started and no external process was disturbed."
+    "C1-C0 road F1 +0.0091886922 and road IoU +0.0046717191; junction F1 unchanged at 0. Two of three preregistered segmentation metrics improved.",
+    "C1 segmentation composite delta +0.0046201371 exceeded C2 -0.0011309744 and C3 -0.0009052068.",
+    "C1-C0 top-K anchor recall +0.0833333333; localization error improved by 35.7711569787 and missed branches improved by 2.",
+    "J1-J0 segmentation composite +0.0264674319, while top-K anchor recall regressed by 0.0416666667.",
+    "All six runs used one code SHA, seed 20260827, one sample plan, one initialization, 102400 optimizer steps, and 204800 samples.",
+    "Conditional graph evaluation completed for C0/C1/J0/J1 on the same frozen validation extent."
   ],
   "risks": [
-    "Production CUDA preflight, memory measurement, timing probe, training, and evaluation remain unexecuted."
+    "Single-seed screening only; results are not statistical significance evidence.",
+    "Absolute fixed-threshold validation scores are low and junction F1 is zero for every run.",
+    "External workloads appeared post-launch on GPUs assigned to C2 and C3, causing substantial wall-clock slowdown; neither run had OOM, NaN, code drift, or step-count drift.",
+    "The server lacked the official APLS jar; graph APLS is a declared deterministic pixel-graph approximation.",
+    "Comparable graph evaluation used the 4096x4096 frozen split canvas rather than an 8192 full-canvas graph run."
   ],
   "next_stage_proposal": [
-    "Repeat Stage S3 from the same frozen SHA when an eligible CUDA GPU is available."
+    "Run a separately authorized three-seed replication with the frozen protocol.",
+    "Retain aligned, zero, and shifted controls and report uncertainty across seeds.",
+    "Do not infer statistical significance from this Stage S3 single-seed screen."
   ]
 }

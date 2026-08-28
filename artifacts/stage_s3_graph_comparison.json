@@ -1,7 +1,337 @@
 {
   "stage": "seg_raster_stage_s3",
-  "status": "NOT_EXECUTED_BY_GATE",
-  "segmentation_gate_passed": false,
-  "reason": "preflight blocked before training",
-  "runs": {}
+  "status": "PASS",
+  "segmentation_gate_passed": true,
+  "runs": {
+    "C0": {
+      "stage": "seg_raster_stage_s3",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C0",
+      "status": "PASS",
+      "checkpoint_kind": "best_validation_segmentation_composite",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176,
+        0,
+        4096,
+        4096
+      ],
+      "metric_scope": "frozen validation extent; edges clipped by endpoint inclusion",
+      "apls": 0.25726945966860243,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.008822029533642549,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1873
+        },
+        "pred_to_gt": {
+          "score": 0.5057168898035623,
+          "control_node_count": 64,
+          "path_pair_count": 120,
+          "missing_path_pair_count": 46
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.00909090909090909,
+      "topo_metrics": {
+        "precision": 0.038461538461538464,
+        "recall": 0.005154639175257732,
+        "f1": 0.00909090909090909,
+        "matched_reference_edges": 1,
+        "correct_candidate_edges": 1,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 26
+      },
+      "connectivity": {
+        "component_count": 18,
+        "largest_component_edge_length_ratio": 0.18694931128774925
+      },
+      "junction_correctness": {
+        "precision": 0.5,
+        "recall": 0.01834862385321101,
+        "f1": 0.035398230088495575,
+        "matched_count": 2,
+        "reference_count": 109,
+        "candidate_count": 4,
+        "tolerance_pixels": 24.0
+      },
+      "dangling_edge_count": 40,
+      "duplicate_edge_count": 0,
+      "undirected_edge_count": 552,
+      "vertex_count": 570,
+      "graph_iterations": 973,
+      "inference_time_seconds": 175.17331714835018,
+      "peak_gpu_memory_allocated_mb": 1511.97802734375,
+      "peak_gpu_memory_reserved_mb": 2310.0,
+      "graph_logical_path": "${RUN_ROOT}/C0_image_detach_seed20260827/evaluation/closed_loop_4096/graphs/best_4/post/xian.graph",
+      "limitations": [
+        "single-seed screening",
+        "APLS computed by documented deterministic pixel-graph approximation because the repository/server has no official APLS jar"
+      ]
+    },
+    "C1": {
+      "stage": "seg_raster_stage_s3",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C1",
+      "status": "PASS",
+      "checkpoint_kind": "best_validation_segmentation_composite",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176,
+        0,
+        4096,
+        4096
+      ],
+      "metric_scope": "frozen validation extent; edges clipped by endpoint inclusion",
+      "apls": 0.2782527172850544,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.0606373567359999,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1721
+        },
+        "pred_to_gt": {
+          "score": 0.49586807783410886,
+          "control_node_count": 64,
+          "path_pair_count": 1491,
+          "missing_path_pair_count": 499
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.04065040650406504,
+      "topo_metrics": {
+        "precision": 0.03355704697986577,
+        "recall": 0.05154639175257732,
+        "f1": 0.04065040650406504,
+        "matched_reference_edges": 10,
+        "correct_candidate_edges": 10,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 298
+      },
+      "connectivity": {
+        "component_count": 6,
+        "largest_component_edge_length_ratio": 0.9386562703113066
+      },
+      "junction_correctness": {
+        "precision": 0.1744186046511628,
+        "recall": 0.27522935779816515,
+        "f1": 0.21352313167259787,
+        "matched_count": 30,
+        "reference_count": 109,
+        "candidate_count": 172,
+        "tolerance_pixels": 24.0
+      },
+      "dangling_edge_count": 86,
+      "duplicate_edge_count": 64,
+      "undirected_edge_count": 2020,
+      "vertex_count": 1952,
+      "graph_iterations": 2277,
+      "inference_time_seconds": 389.68956815078855,
+      "peak_gpu_memory_allocated_mb": 1528.390625,
+      "peak_gpu_memory_reserved_mb": 2334.0,
+      "graph_logical_path": "${RUN_ROOT}/C1_aligned_detach_seed20260827/evaluation/closed_loop_4096/graphs/best_4/post/xian.graph",
+      "limitations": [
+        "single-seed screening",
+        "APLS computed by documented deterministic pixel-graph approximation because the repository/server has no official APLS jar"
+      ]
+    },
+    "J0": {
+      "stage": "seg_raster_stage_s3",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "J0",
+      "status": "PASS",
+      "checkpoint_kind": "best_validation_segmentation_composite",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176,
+        0,
+        4096,
+        4096
+      ],
+      "metric_scope": "frozen validation extent; edges clipped by endpoint inclusion",
+      "apls": 0.22539224833444357,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.011053641538180385,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1870
+        },
+        "pred_to_gt": {
+          "score": 0.43973085513070675,
+          "control_node_count": 64,
+          "path_pair_count": 229,
+          "missing_path_pair_count": 115
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.008771929824561403,
+      "topo_metrics": {
+        "precision": 0.029411764705882353,
+        "recall": 0.005154639175257732,
+        "f1": 0.008771929824561403,
+        "matched_reference_edges": 1,
+        "correct_candidate_edges": 1,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 34
+      },
+      "connectivity": {
+        "component_count": 14,
+        "largest_component_edge_length_ratio": 0.29222036138809543
+      },
+      "junction_correctness": {
+        "precision": 0.2727272727272727,
+        "recall": 0.027522935779816515,
+        "f1": 0.05,
+        "matched_count": 3,
+        "reference_count": 109,
+        "candidate_count": 11,
+        "tolerance_pixels": 24.0
+      },
+      "dangling_edge_count": 37,
+      "duplicate_edge_count": 6,
+      "undirected_edge_count": 748,
+      "vertex_count": 760,
+      "graph_iterations": 1063,
+      "inference_time_seconds": 183.18127191253006,
+      "peak_gpu_memory_allocated_mb": 1511.97802734375,
+      "peak_gpu_memory_reserved_mb": 2310.0,
+      "graph_logical_path": "${RUN_ROOT}/J0_image_joint_seed20260827/evaluation/closed_loop_4096/graphs/best_4/post/xian.graph",
+      "limitations": [
+        "single-seed screening",
+        "APLS computed by documented deterministic pixel-graph approximation because the repository/server has no official APLS jar"
+      ]
+    },
+    "J1": {
+      "stage": "seg_raster_stage_s3",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "J1",
+      "status": "PASS",
+      "checkpoint_kind": "best_validation_segmentation_composite",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176,
+        0,
+        4096,
+        4096
+      ],
+      "metric_scope": "frozen validation extent; edges clipped by endpoint inclusion",
+      "apls": 0.23486973751459178,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.00916830139674394,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1874
+        },
+        "pred_to_gt": {
+          "score": 0.4605711736324396,
+          "control_node_count": 64,
+          "path_pair_count": 205,
+          "missing_path_pair_count": 91
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.01465201465201465,
+      "topo_metrics": {
+        "precision": 0.02531645569620253,
+        "recall": 0.010309278350515464,
+        "f1": 0.01465201465201465,
+        "matched_reference_edges": 2,
+        "correct_candidate_edges": 2,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 79
+      },
+      "connectivity": {
+        "component_count": 20,
+        "largest_component_edge_length_ratio": 0.2839352957723487
+      },
+      "junction_correctness": {
+        "precision": 0.30303030303030304,
+        "recall": 0.09174311926605505,
+        "f1": 0.14084507042253522,
+        "matched_count": 10,
+        "reference_count": 109,
+        "candidate_count": 33,
+        "tolerance_pixels": 24.0
+      },
+      "dangling_edge_count": 64,
+      "duplicate_edge_count": 8,
+      "undirected_edge_count": 1128,
+      "vertex_count": 1142,
+      "graph_iterations": 1380,
+      "inference_time_seconds": 257.46317825000733,
+      "peak_gpu_memory_allocated_mb": 1528.390625,
+      "peak_gpu_memory_reserved_mb": 2334.0,
+      "graph_logical_path": "${RUN_ROOT}/J1_aligned_joint_seed20260827/evaluation/closed_loop_4096/graphs/best_4/post/xian.graph",
+      "limitations": [
+        "single-seed screening",
+        "APLS computed by documented deterministic pixel-graph approximation because the repository/server has no official APLS jar"
+      ]
+    }
+  },
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "evaluation_scope": {
+    "canvas_wh": [
+      4096,
+      4096
+    ],
+    "frozen_validation_extent_xyxy": [
+      2176,
+      0,
+      4096,
+      4096
+    ],
+    "official_apls_jar_available": false,
+    "apls_kind": "deterministic_pixel_graph_approximation",
+    "note": "Initial 8192 raster graph attempt lacked required raster tiles. Formal comparable evaluation used the frozen 4096 split canvas for all four gated runs."
+  }
 }

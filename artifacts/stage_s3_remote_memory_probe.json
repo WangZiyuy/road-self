@@ -1,0 +1,16 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "probe_mode": "J1_aligned_raster_joint",
+  "crop_size": 256,
+  "num_targets": 4,
+  "precision": "fp32",
+  "max_memory_allocated_mb": 2455.03271484375,
+  "max_memory_reserved_mb": 2646.0,
+  "required_free_memory_mb": 4504,
+  "formula": "max(ceil(reserved*1.30), allocated+2048MiB)",
+  "source": "formal remote production preflight"
+}

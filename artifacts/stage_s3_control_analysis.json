@@ -1,9 +1,55 @@
 {
   "stage": "seg_raster_stage_s3",
-  "status": "INCONCLUSIVE",
-  "segmentation_causal_screen": "INCONCLUSIVE",
-  "indirect_anchor_screen": "INCONCLUSIVE",
-  "joint_screen": "INCONCLUSIVE",
-  "reason": "no eligible GPU; no runs were started",
-  "single_seed_significance_claim": false
+  "status": "PASS",
+  "segmentation_causal_screen": {
+    "status": "PROMISING",
+    "metric_deltas_vs_C0": {
+      "C1": {
+        "road_f1": 0.009188692237727647,
+        "road_iou": 0.004671719062810471,
+        "junction_f1": 0.0
+      },
+      "C2": {
+        "road_f1": -0.0022536891356882104,
+        "road_iou": -0.0011392339789893565,
+        "junction_f1": 0.0
+      },
+      "C3": {
+        "road_f1": -0.0018036658906858839,
+        "road_iou": -0.0009119546111140114,
+        "junction_f1": 0.0
+      }
+    },
+    "mean_deltas_vs_C0": {
+      "C1": 0.0046201371001793725,
+      "C2": -0.0011309743715591889,
+      "C3": -0.0009052068339332984
+    },
+    "c1_improved_metric_count": 2,
+    "precision_recall_collapse": false
+  },
+  "indirect_anchor_screen": {
+    "status": "PROMISING",
+    "deltas": {
+      "top_k_recall": 0.08333333333333334,
+      "localization_error": 35.771156978653394,
+      "missed_branch_count": 2.0
+    }
+  },
+  "joint_screen": {
+    "status": "PROMISING",
+    "segmentation_improved_metric_count": 2,
+    "anchor_screen": {
+      "status": "REGRESSION",
+      "deltas": {
+        "top_k_recall": -0.041666666666666685,
+        "localization_error": 0.9089372145797086,
+        "missed_branch_count": 0.0
+      }
+    }
+  },
+  "interpretation_constraint": "A J1-only improvement is joint optimization evidence and is not evidence of an indirect segmentation-to-anchor causal effect.",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c"
 }

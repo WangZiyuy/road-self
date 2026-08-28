@@ -1,5 +1,620 @@
 {
   "stage": "seg_raster_stage_s3",
-  "status": "BLOCKED",
-  "reason": "PREFLIGHT_BLOCKED; no comparative model output exists"
+  "status": "PASS",
+  "fixed_threshold_shared": true,
+  "runs": {
+    "C0": {
+      "road_precision": 0.11016949152542373,
+      "road_recall": 0.006363191385217817,
+      "road_f1": 0.012031466913465986,
+      "road_iou": 0.006052141527001862,
+      "road_auprc": 0.05800584129861199,
+      "junction_precision": 0.0,
+      "junction_recall": 0.0,
+      "junction_f1": 0.0,
+      "junction_iou": 0.0,
+      "junction_auprc": 0.01748174612349704,
+      "segmentation_composite": 0.006027869480155949,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "trajectory_coverage_strata": {
+        "low": {
+          "sample_count": 5,
+          "road_precision": 0.0,
+          "road_recall": 0.0,
+          "road_f1": 0.0,
+          "road_iou": 0.0,
+          "road_auprc": 0.030659872297101896,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.006765604297827485
+        },
+        "medium": {
+          "sample_count": 5,
+          "road_precision": 0.1568627450980392,
+          "road_recall": 0.014760147601476014,
+          "road_f1": 0.026981450252951098,
+          "road_iou": 0.013675213675213675,
+          "road_auprc": 0.09058118149055747,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.03818405558205968
+        },
+        "high": {
+          "sample_count": 6,
+          "road_precision": 0.10416666666666667,
+          "road_recall": 0.005605381165919282,
+          "road_f1": 0.010638297872340425,
+          "road_iou": 0.0053475935828877,
+          "road_auprc": 0.06379383696662765,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.018397632055592146
+        }
+      },
+      "trajectory_coverage_assignment": {
+        "source_run": "C1",
+        "policy": "stable rank tertiles over aligned positive-pixel ratio",
+        "boundaries": {
+          "low_max": 0.0464019775390625,
+          "medium_max": 0.3145116017964072
+        },
+        "validation_sample_count": 16,
+        "identity_sha256": "b3275f528a8b7e69e596f08504c3007afaed3dfdc92e490080641c62e5f76ca8"
+      },
+      "trajectory_coverage_histogram": {
+        "bin_edges": [
+          0.0,
+          0.01,
+          0.05,
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0000001
+        ],
+        "counts": [
+          0,
+          5,
+          1,
+          3,
+          3,
+          4,
+          0
+        ],
+        "ratios_min": 0.017303466796875,
+        "ratios_mean": 0.25211546384549866,
+        "ratios_max": 0.56396484375
+      },
+      "execution_environment": "REMOTE_TRAINING_SERVER"
+    },
+    "C1": {
+      "road_precision": 0.1095890410958904,
+      "road_recall": 0.011747430249632892,
+      "road_f1": 0.021220159151193633,
+      "road_iou": 0.010723860589812333,
+      "road_auprc": 0.06806726118047957,
+      "junction_precision": 0.0,
+      "junction_recall": 0.0,
+      "junction_f1": 0.0,
+      "junction_iou": 0.0,
+      "junction_auprc": 0.017492636749540786,
+      "segmentation_composite": 0.010648006580335323,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "trajectory_coverage_strata": {
+        "low": {
+          "sample_count": 5,
+          "road_precision": 0.058823529411764705,
+          "road_recall": 0.0016420361247947454,
+          "road_f1": 0.003194888178913738,
+          "road_iou": 0.0016,
+          "road_auprc": 0.04746549430977554,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.003326059905922572
+        },
+        "medium": {
+          "sample_count": 5,
+          "road_precision": 0.24489795918367346,
+          "road_recall": 0.02214022140221402,
+          "road_f1": 0.04060913705583757,
+          "road_iou": 0.02072538860103627,
+          "road_auprc": 0.08885669796039027,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.011188325833578337
+        },
+        "high": {
+          "sample_count": 6,
+          "road_precision": 0.0718954248366013,
+          "road_recall": 0.01233183856502242,
+          "road_f1": 0.021052631578947368,
+          "road_iou": 0.010638297872340425,
+          "road_auprc": 0.07415624649593894,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.04552461830353727
+        }
+      },
+      "trajectory_coverage_assignment": {
+        "source_run": "C1",
+        "policy": "stable rank tertiles over aligned positive-pixel ratio",
+        "boundaries": {
+          "low_max": 0.0464019775390625,
+          "medium_max": 0.3145116017964072
+        },
+        "validation_sample_count": 16,
+        "identity_sha256": "b3275f528a8b7e69e596f08504c3007afaed3dfdc92e490080641c62e5f76ca8"
+      },
+      "trajectory_coverage_histogram": {
+        "bin_edges": [
+          0.0,
+          0.01,
+          0.05,
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0000001
+        ],
+        "counts": [
+          0,
+          5,
+          1,
+          3,
+          3,
+          4,
+          0
+        ],
+        "ratios_min": 0.017303466796875,
+        "ratios_mean": 0.25211546384549866,
+        "ratios_max": 0.56396484375
+      },
+      "execution_environment": "REMOTE_TRAINING_SERVER"
+    },
+    "C2": {
+      "road_precision": 0.05314009661835749,
+      "road_recall": 0.0053842388644150755,
+      "road_f1": 0.009777777777777776,
+      "road_iou": 0.004912907548012505,
+      "road_auprc": 0.05839353505188689,
+      "junction_precision": 0.0,
+      "junction_recall": 0.0,
+      "junction_f1": 0.0,
+      "junction_iou": 0.0,
+      "junction_auprc": 0.008485364576256123,
+      "segmentation_composite": 0.004896895108596761,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "trajectory_coverage_strata": {
+        "low": {
+          "sample_count": 5,
+          "road_precision": 0.0,
+          "road_recall": 0.0,
+          "road_f1": 0.0,
+          "road_iou": 0.0,
+          "road_auprc": 0.03391825336524538,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.004227211609709214
+        },
+        "medium": {
+          "sample_count": 5,
+          "road_precision": 0.07368421052631578,
+          "road_recall": 0.012915129151291513,
+          "road_f1": 0.021978021978021976,
+          "road_iou": 0.011111111111111112,
+          "road_auprc": 0.07876294691073805,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.007273619873513815
+        },
+        "high": {
+          "sample_count": 6,
+          "road_precision": 0.0380952380952381,
+          "road_recall": 0.004484304932735426,
+          "road_f1": 0.00802407221664995,
+          "road_iou": 0.004028197381671702,
+          "road_auprc": 0.06704876602984075,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.014496697356447558
+        }
+      },
+      "trajectory_coverage_assignment": {
+        "source_run": "C1",
+        "policy": "stable rank tertiles over aligned positive-pixel ratio",
+        "boundaries": {
+          "low_max": 0.0464019775390625,
+          "medium_max": 0.3145116017964072
+        },
+        "validation_sample_count": 16,
+        "identity_sha256": "b3275f528a8b7e69e596f08504c3007afaed3dfdc92e490080641c62e5f76ca8"
+      },
+      "trajectory_coverage_histogram": {
+        "bin_edges": [
+          0.0,
+          0.01,
+          0.05,
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0000001
+        ],
+        "counts": [
+          0,
+          5,
+          1,
+          3,
+          3,
+          4,
+          0
+        ],
+        "ratios_min": 0.017303466796875,
+        "ratios_mean": 0.25211546384549866,
+        "ratios_max": 0.56396484375
+      },
+      "execution_environment": "REMOTE_TRAINING_SERVER"
+    },
+    "C3": {
+      "road_precision": 0.10185185185185185,
+      "road_recall": 0.0053842388644150755,
+      "road_f1": 0.010227801022780102,
+      "road_iou": 0.0051401869158878505,
+      "road_auprc": 0.0501362480166083,
+      "junction_precision": 0.0,
+      "junction_recall": 0.0,
+      "junction_f1": 0.0,
+      "junction_iou": 0.0,
+      "junction_auprc": 0.008810545898874762,
+      "segmentation_composite": 0.005122662646222651,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "trajectory_coverage_strata": {
+        "low": {
+          "sample_count": 5,
+          "road_precision": 0.8333333333333334,
+          "road_recall": 0.008210180623973728,
+          "road_f1": 0.016260162601626018,
+          "road_iou": 0.00819672131147541,
+          "road_auprc": 0.04947407570695017,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.004313653912049378
+        },
+        "medium": {
+          "sample_count": 5,
+          "road_precision": 0.08695652173913043,
+          "road_recall": 0.01107011070110701,
+          "road_f1": 0.01963993453355155,
+          "road_iou": 0.009917355371900827,
+          "road_auprc": 0.0773035215287753,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.030274910697091786
+        },
+        "high": {
+          "sample_count": 6,
+          "road_precision": 0.0,
+          "road_recall": 0.0,
+          "road_f1": 0.0,
+          "road_iou": 0.0,
+          "road_auprc": 0.04708442452412505,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.007285518449264059
+        }
+      },
+      "trajectory_coverage_assignment": {
+        "source_run": "C1",
+        "policy": "stable rank tertiles over aligned positive-pixel ratio",
+        "boundaries": {
+          "low_max": 0.0464019775390625,
+          "medium_max": 0.3145116017964072
+        },
+        "validation_sample_count": 16,
+        "identity_sha256": "b3275f528a8b7e69e596f08504c3007afaed3dfdc92e490080641c62e5f76ca8"
+      },
+      "trajectory_coverage_histogram": {
+        "bin_edges": [
+          0.0,
+          0.01,
+          0.05,
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0000001
+        ],
+        "counts": [
+          0,
+          5,
+          1,
+          3,
+          3,
+          4,
+          0
+        ],
+        "ratios_min": 0.017303466796875,
+        "ratios_mean": 0.25211546384549866,
+        "ratios_max": 0.56396484375
+      },
+      "execution_environment": "REMOTE_TRAINING_SERVER"
+    },
+    "J0": {
+      "road_precision": 0.056179775280898875,
+      "road_recall": 0.007342143906020558,
+      "road_f1": 0.012987012987012986,
+      "road_iou": 0.006535947712418301,
+      "road_auprc": 0.05885911173849883,
+      "junction_precision": 0.0,
+      "junction_recall": 0.0,
+      "junction_f1": 0.0,
+      "junction_iou": 0.0,
+      "junction_auprc": 0.007655353760805206,
+      "segmentation_composite": 0.006507653566477096,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "trajectory_coverage_strata": {
+        "low": {
+          "sample_count": 5,
+          "road_precision": 0.0,
+          "road_recall": 0.0,
+          "road_f1": 0.0,
+          "road_iou": 0.0,
+          "road_auprc": 0.03632659709922199,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.005245360239533887
+        },
+        "medium": {
+          "sample_count": 5,
+          "road_precision": 0.07920792079207921,
+          "road_recall": 0.014760147601476014,
+          "road_f1": 0.024883359253499222,
+          "road_iou": 0.012598425196850394,
+          "road_auprc": 0.10108423944140783,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.014565867936542612
+        },
+        "high": {
+          "sample_count": 6,
+          "road_precision": 0.0440251572327044,
+          "road_recall": 0.007847533632286996,
+          "road_f1": 0.013320647002854423,
+          "road_iou": 0.006704980842911878,
+          "road_auprc": 0.05486819162487401,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.0072687228547528
+        }
+      },
+      "trajectory_coverage_assignment": {
+        "source_run": "C1",
+        "policy": "stable rank tertiles over aligned positive-pixel ratio",
+        "boundaries": {
+          "low_max": 0.0464019775390625,
+          "medium_max": 0.3145116017964072
+        },
+        "validation_sample_count": 16,
+        "identity_sha256": "b3275f528a8b7e69e596f08504c3007afaed3dfdc92e490080641c62e5f76ca8"
+      },
+      "trajectory_coverage_histogram": {
+        "bin_edges": [
+          0.0,
+          0.01,
+          0.05,
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0000001
+        ],
+        "counts": [
+          0,
+          5,
+          1,
+          3,
+          3,
+          4,
+          0
+        ],
+        "ratios_min": 0.017303466796875,
+        "ratios_mean": 0.25211546384549866,
+        "ratios_max": 0.56396484375
+      },
+      "execution_environment": "REMOTE_TRAINING_SERVER"
+    },
+    "J1": {
+      "road_precision": 0.2918287937743191,
+      "road_recall": 0.03671071953010279,
+      "road_f1": 0.06521739130434782,
+      "road_iou": 0.033707865168539325,
+      "road_auprc": 0.10851421676520405,
+      "junction_precision": 0.0,
+      "junction_recall": 0.0,
+      "junction_f1": 0.0,
+      "junction_iou": 0.0,
+      "junction_auprc": 0.028069423452644068,
+      "segmentation_composite": 0.03297508549096238,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "trajectory_coverage_strata": {
+        "low": {
+          "sample_count": 5,
+          "road_precision": 0.5555555555555556,
+          "road_recall": 0.008210180623973728,
+          "road_f1": 0.016181229773462785,
+          "road_iou": 0.008156606851549755,
+          "road_auprc": 0.05204619866955375,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.007484352844353028
+        },
+        "medium": {
+          "sample_count": 5,
+          "road_precision": 0.2391304347826087,
+          "road_recall": 0.02029520295202952,
+          "road_f1": 0.03741496598639456,
+          "road_iou": 0.019064124783362217,
+          "road_auprc": 0.12640906941039415,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.04086380440998845
+        },
+        "high": {
+          "sample_count": 6,
+          "road_precision": 0.29207920792079206,
+          "road_recall": 0.06614349775784753,
+          "road_f1": 0.10786106032906764,
+          "road_iou": 0.057004830917874394,
+          "road_auprc": 0.13129010954812786,
+          "junction_precision": 0.0,
+          "junction_recall": 0.0,
+          "junction_f1": 0.0,
+          "junction_iou": 0.0,
+          "junction_auprc": 0.039696356703027805
+        }
+      },
+      "trajectory_coverage_assignment": {
+        "source_run": "C1",
+        "policy": "stable rank tertiles over aligned positive-pixel ratio",
+        "boundaries": {
+          "low_max": 0.0464019775390625,
+          "medium_max": 0.3145116017964072
+        },
+        "validation_sample_count": 16,
+        "identity_sha256": "b3275f528a8b7e69e596f08504c3007afaed3dfdc92e490080641c62e5f76ca8"
+      },
+      "trajectory_coverage_histogram": {
+        "bin_edges": [
+          0.0,
+          0.01,
+          0.05,
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          1.0000001
+        ],
+        "counts": [
+          0,
+          5,
+          1,
+          3,
+          3,
+          4,
+          0
+        ],
+        "ratios_min": 0.017303466796875,
+        "ratios_mean": 0.25211546384549866,
+        "ratios_max": 0.56396484375
+      },
+      "execution_environment": "REMOTE_TRAINING_SERVER"
+    }
+  },
+  "deltas": {
+    "C1_minus_C0": {
+      "fixed_threshold": 0.0,
+      "road_precision": -0.0005804504295333218,
+      "road_recall": 0.0053842388644150755,
+      "road_iou": 0.004671719062810471,
+      "junction_precision": 0.0,
+      "junction_f1": 0.0,
+      "road_f1": 0.009188692237727647,
+      "junction_recall": 0.0,
+      "road_auprc": 0.010061419881867574,
+      "junction_iou": 0.0,
+      "junction_auprc": 1.0890626043747603e-05,
+      "segmentation_composite": 0.004620137100179374
+    },
+    "C2_minus_C0": {
+      "fixed_threshold": 0.0,
+      "road_precision": -0.05702939490706624,
+      "road_recall": -0.0009789525208027412,
+      "road_iou": -0.0011392339789893565,
+      "junction_precision": 0.0,
+      "junction_f1": 0.0,
+      "road_f1": -0.0022536891356882104,
+      "junction_recall": 0.0,
+      "road_auprc": 0.0003876937532748953,
+      "junction_iou": 0.0,
+      "junction_auprc": -0.008996381547240915,
+      "segmentation_composite": -0.0011309743715591878
+    },
+    "C3_minus_C0": {
+      "fixed_threshold": 0.0,
+      "road_precision": -0.00831763967357188,
+      "road_recall": -0.0009789525208027412,
+      "road_iou": -0.0009119546111140114,
+      "junction_precision": 0.0,
+      "junction_f1": 0.0,
+      "road_f1": -0.0018036658906858839,
+      "junction_recall": 0.0,
+      "road_auprc": -0.007869593282003692,
+      "junction_iou": 0.0,
+      "junction_auprc": -0.008671200224622276,
+      "segmentation_composite": -0.0009052068339332978
+    },
+    "J1_minus_J0": {
+      "fixed_threshold": 0.0,
+      "road_precision": 0.2356490184934202,
+      "road_recall": 0.02936857562408223,
+      "road_iou": 0.027171917456121023,
+      "junction_precision": 0.0,
+      "junction_f1": 0.0,
+      "road_f1": 0.05223037831733484,
+      "junction_recall": 0.0,
+      "road_auprc": 0.04965510502670522,
+      "junction_iou": 0.0,
+      "junction_auprc": 0.02041406969183886,
+      "segmentation_composite": 0.026467431924485287
+    }
+  },
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "evaluation_scope": {
+    "checkpoint": "latest at optimizer step 102400",
+    "threshold": 0.3,
+    "validation_sample_count": 16,
+    "coverage_strata": "Stable-rank tertiles from aligned-raster positive-pixel ratio; identical sample identities across all runs."
+  }
 }

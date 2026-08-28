@@ -1,5 +1,121 @@
 {
   "stage": "seg_raster_stage_s3",
-  "status": "BLOCKED",
-  "reason": "PREFLIGHT_BLOCKED; no comparative model output exists"
+  "status": "PASS",
+  "runs": {
+    "C0": {
+      "per_step_recall": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.20833333333333334,
+      "localization_error": 87.98092194083809,
+      "false_positive_count": 0,
+      "missed_branch_count": 24,
+      "channel_diversity_mean_absolute_difference": 7.303959173226934e-07,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "C1": {
+      "per_step_recall": [
+        0.16666666666666666,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.2916666666666667,
+      "localization_error": 52.20976496218469,
+      "false_positive_count": 0,
+      "missed_branch_count": 22,
+      "channel_diversity_mean_absolute_difference": 0.0001480440811046221,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "C2": {
+      "per_step_recall": [
+        0.08333333333333333,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.25,
+      "localization_error": 95.65592295967151,
+      "false_positive_count": 0,
+      "missed_branch_count": 23,
+      "channel_diversity_mean_absolute_difference": 7.776623121469287e-05,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "C3": {
+      "per_step_recall": [
+        0.08333333333333333,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.4166666666666667,
+      "localization_error": 17.76335519957512,
+      "false_positive_count": 0,
+      "missed_branch_count": 23,
+      "channel_diversity_mean_absolute_difference": 9.01405925287426e-05,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "J0": {
+      "per_step_recall": [
+        0.08333333333333333,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.20833333333333334,
+      "localization_error": 82.16842787632761,
+      "false_positive_count": 0,
+      "missed_branch_count": 23,
+      "channel_diversity_mean_absolute_difference": 9.743367020497691e-05,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "J1": {
+      "per_step_recall": [
+        0.08333333333333333,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.16666666666666666,
+      "localization_error": 81.2594906617479,
+      "false_positive_count": 0,
+      "missed_branch_count": 23,
+      "channel_diversity_mean_absolute_difference": 0.00010683342730628743,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    }
+  },
+  "C1_vs_C0_screen": {
+    "status": "PROMISING",
+    "deltas": {
+      "top_k_recall": 0.08333333333333334,
+      "localization_error": 35.771156978653394,
+      "missed_branch_count": 2.0
+    }
+  },
+  "J1_vs_J0_screen": {
+    "status": "REGRESSION",
+    "deltas": {
+      "top_k_recall": -0.041666666666666685,
+      "localization_error": 0.9089372145797086,
+      "missed_branch_count": 0.0
+    }
+  },
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c"
 }

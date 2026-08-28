@@ -1,46 +1,47 @@
 {
   "stage": "seg_raster_stage_s3",
   "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
   "targeted_seg_raster_tests": {
-    "command": "python -m pytest tests -k seg_raster -q",
-    "passed": 47,
+    "command": "python -m pytest tests/test_seg_raster_*.py -q",
+    "passed": 48,
     "failed": 0,
-    "deselected": 247,
-    "elapsed_seconds": 55.8
+    "warnings": 1
   },
   "full_repository_tests": {
     "command": "python -m pytest tests -q",
-    "passed": 294,
+    "passed": 295,
     "failed": 0,
     "subtests_passed": 4,
     "warnings": 9,
-    "elapsed_seconds": 64.81,
-    "execution_note": "Run outside the restricted filesystem sandbox because sandbox-created tempfile directories receive unusable Windows ACLs."
+    "elapsed_seconds": 148.21
   },
-  "production_shape_contract_test": {
-    "device": "CPU",
-    "crop_hw": [
-      256,
-      256
+  "remote_stage_s3_regression_tests": {
+    "passed": 13,
+    "failed": 0
+  },
+  "cuda_production_preflight": {
+    "environment": "REMOTE_TRAINING_SERVER",
+    "status": "PASS",
+    "six_modes": [
+      "C0",
+      "C1",
+      "C2",
+      "C3",
+      "J0",
+      "J1"
     ],
-    "num_targets": 4,
-    "forward": "PASS",
-    "backward": "PASS",
-    "optimizer_step": "PASS",
-    "cuda_preflight_substitute": false
+    "forward_backward_optimizer_step": true,
+    "shape_contract": true,
+    "finite_contract": true,
+    "isolation_contract": true,
+    "padding_contract": true,
+    "full_canvas_8192_stitching": true
   },
-  "coverage": [
-    "ANCHOR_GRAD_TO_SEG is defined for none and raster_seg_only",
-    "default image-only behavior remains joint and unchanged",
-    "zero and fixed-shift controls preserve shape and valid mask",
-    "fixed shift uses zero fill and no circular wrap",
-    "synchronized spatial augmentation",
-    "replay identity and first-100 parity",
-    "external compute process exclusion",
-    "one run per GPU and FIFO queue state",
-    "strict shared-key initialization",
-    "full-canvas stitching",
-    "256x256 NUM_TARGETS=4 model step"
-  ],
-  "cuda_production_preflight": "BLOCKED_NO_ELIGIBLE_GPU"
+  "superseded_local_result": {
+    "environment": "LOCAL_WINDOWS_WORKSTATION",
+    "status": "INVALID_FOR_FORMAL_TRAINING",
+    "reason": "LOCAL_EXECUTION_ENVIRONMENT_MISMATCH"
+  }
 }

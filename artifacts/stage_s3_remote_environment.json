@@ -1,0 +1,45 @@
+{
+  "stage": "seg_raster_stage_s3",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "remote_worktree_label": "${REMOTE_WORKTREE}",
+  "branch": "feat/seg-raster-only",
+  "s3_base_sha": "5a137b70b2291837be46cea30a8d4905f5c96585",
+  "formal_refrozen_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "original_requested_run_code_sha": "2e6cadab33dfe2de3a2a34f93339971f186d59f3",
+  "formal_code_state": {
+    "head_matches_run_code_sha": true,
+    "clean_before_training": true,
+    "code_frozen_during_training": true
+  },
+  "data_and_initialization": {
+    "status": "PASS",
+    "aerial_tile_sha256": "0abb67cf7627018a7e4a7ad5a4b6de22d248e42269d92b6bcb994a56132a3445",
+    "aerial_full_canvas_sha256": "14cdcb35f3dcaf61e5182d4b738fb819c603d9612fb55ba1272f314a8b6d8053",
+    "graph_sha256": "d8972239561ca9dac35218f2b578b6a809d7a4fd48938f3703378d0ffa6ff3c6",
+    "canonical_raster_tile_sha256": "35884e0d7fba90dfad5b551463524fac8649210174b641d4cf75ebf96d0053c7",
+    "canonical_raster_full_canvas_sha256": "f67ba7a91f186402373b23c94ac7e0ba501896a522125fe712fc22018de3cd16",
+    "sample_plan_sha256": "03a9705a0aca226eba2b491bc53212ca916e307defb1adfc214f7619acfdac62",
+    "split_manifest_sha256": "7e6d5d4c7ad10e18ff49cb85cad1dafd4cf6c064628cd913ecb08341c87018da",
+    "initialization_file_sha256": "3ea16c7720c7c49a681103f00c8e7cf2efae49608e54306a6e8d4e2d0425d7e6",
+    "initialization_content_sha256": "2d3de63223a99a0355bb92da0921e06ea37c2c869b0ffceab1f2437561a9880f"
+  },
+  "previous_attempts": [
+    {
+      "environment": "LOCAL_WINDOWS_WORKSTATION",
+      "status": "INVALID_FOR_FORMAL_TRAINING",
+      "reason": "LOCAL_EXECUTION_ENVIRONMENT_MISMATCH"
+    },
+    {
+      "environment": "REMOTE_TRAINING_SERVER",
+      "run_code_sha": "2e6cadab33dfe2de3a2a34f93339971f186d59f3",
+      "status": "INVALIDATED_BY_CODE_CHANGE",
+      "reasons": [
+        "launcher RUN_ROOT placeholder formatting bug",
+        "OS-specific sample-plan identity mismatch"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-08-28T13:25:37.849018+00:00"
+}
