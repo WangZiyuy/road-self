@@ -76,7 +76,7 @@ def array_sha256(arrays: list[np.ndarray]) -> str:
     for array in arrays:
         value = np.ascontiguousarray(array)
         digest.update(str(value.dtype).encode("ascii"))
-        digest.update(str(tuple(value.shape)).encode("ascii"))
+        digest.update(np.asarray(value.shape, dtype=np.int64).tobytes())
         digest.update(value.tobytes())
     return digest.hexdigest()
 
@@ -85,7 +85,8 @@ def common_batch_sha(batch: EasyDict) -> str:
     arrays = [
         batch.batch_inputs, batch.batch_walked_path_small,
         batch.batch_road_segmentation, batch.batch_junction_segmentation,
-        batch.batch_target_maps, np.asarray(batch.batch_end_index),
+        batch.batch_target_maps, batch.batch_is_key_point,
+        np.asarray(batch.batch_end_index),
     ]
     return array_sha256(arrays)
 
@@ -387,7 +388,8 @@ def main() -> int:
         raise RuntimeError("checkpoint grid differs from frozen S3B contract")
     threshold = float(config["S3"]["FIXED_THRESHOLD"])
     heartbeat_seconds = int(config["S3"]["HEARTBEAT_SECONDS"])
-    first_identities, first_common_shas, first_valid_mask_shas = [], [], []
+    first_identities, first_common_shas = [], []
+    first_raster_shas, first_valid_mask_shas = [], []
     validation_by_step, checkpoint_inventory = {}, []
     best_score = -1.0
     best_validation_metrics = {}
@@ -398,14 +400,17 @@ def main() -> int:
 
     # Replay the full parity gate before the first optimizer update, then
     # reset the deterministic dataset stream for comparable training.
-    for _ in range(100):
+    for parity_index in range(100):
         parity_batch = dataset.get_batch()
         first_identities.append(identity_sha256([
             sample_identity(row) for row in parity_batch.batch_sample_metadata]))
         first_common_shas.append(common_batch_sha(parity_batch))
         if hasattr(parity_batch, "batch_traj_valid_masks"):
+            first_raster_shas.append(array_sha256([
+                parity_batch.batch_traj_inputs]))
             first_valid_mask_shas.append(array_sha256([
                 parity_batch.batch_traj_valid_masks]))
+        dataset.push_and_vis_batch(parity_batch, 0, parity_index)
     expected_identities = frozen_plan_batch_identities(
         sample_plan["sample_order"], count=100)
     if first_identities != expected_identities:
@@ -414,6 +419,19 @@ def main() -> int:
         raise RuntimeError(
             "pre-training sample parity differs from frozen sample_order at "
             + str(mismatches[:10]))
+    expected_common = [row["common_tensor_sha256"]
+                       for row in sample_plan["sample_order"][:100]]
+    if first_common_shas != expected_common:
+        raise RuntimeError("pre-training common tensor parity mismatch")
+    if config["TRAJ"]["MODE"] == "raster_seg_only":
+        source_key = {"aligned": "C1", "zero": "C2",
+                      "shift_fixed": "C3"}[config["TRAJ"]["RASTER"]["CONTROL"]]
+        expected_raster = sample_plan["raster_control_batch_sha256"][source_key][:100]
+        if first_raster_shas != [row["raster_sha256"] for row in expected_raster]:
+            raise RuntimeError("pre-training raster control parity mismatch")
+        if first_valid_mask_shas != [row["valid_mask_sha256"]
+                                     for row in expected_raster]:
+            raise RuntimeError("pre-training valid-mask parity mismatch")
     set_seed(seed)
     dataset = OSMDataset(cfg, net=None, training=True)
 
@@ -557,6 +575,8 @@ def main() -> int:
                 "recomputed_from_frozen_sample_order_rows"),
             "historical_aggregate_hash_used_for_gate": False,
             "first_100_common_tensor_sha256": identity_sha256(first_common_shas),
+            "first_100_raster_sha256": (
+                identity_sha256(first_raster_shas) if first_raster_shas else None),
             "first_100_valid_mask_sha256": (
                 identity_sha256(first_valid_mask_shas)
                 if first_valid_mask_shas else None),

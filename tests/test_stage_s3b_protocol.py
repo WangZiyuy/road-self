@@ -112,6 +112,15 @@ def test_sample_gate_recomputes_explicit_rows_not_stale_aggregate() -> None:
     assert identities[0] == frozen_plan_batch_identities(order, count=1)[0]
 
 
+def test_worker_parity_gate_replays_teacher_forced_push() -> None:
+    source = Path("tools/seg_raster/train_stage_s3b.py").read_text(encoding="utf-8")
+    get_position = source.index("parity_batch = dataset.get_batch()")
+    push_position = source.index("dataset.push_and_vis_batch(parity_batch, 0, parity_index)")
+    assert get_position < push_position
+    assert "pre-training common tensor parity mismatch" in source
+    assert "pre-training valid-mask parity mismatch" in source
+
+
 def test_versioned_checkpoint_refuses_overwrite() -> None:
     path = Path("artifacts/_stage_s3b_test_checkpoint_0.pth.tar")
     path.unlink(missing_ok=True)
