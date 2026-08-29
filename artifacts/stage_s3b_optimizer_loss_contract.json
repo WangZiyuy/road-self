@@ -1,0 +1,56 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "status": "PASS",
+  "run_code_sha": "02068550f2acd97de6ae44dc97ffde0ae72344ff",
+  "historical_protocol": {
+    "optimizer": "Adam",
+    "base_learning_rate": 0.0001,
+    "parameter_group_count": 1,
+    "parameter_group_lr": [
+      0.0001
+    ],
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "weight_decay": 0.0002,
+    "scheduler": "none",
+    "warmup": "none",
+    "gradient_clipping": {
+      "kind": "clip_grad_value_",
+      "value": 10000.0
+    },
+    "road_loss": "BCEWithLogits(reduction=sum)",
+    "junction_loss": "BCEWithLogits(reduction=sum)",
+    "anchor_loss": "sum(BCEWithLogits(anchor)+BCEWithLogits(anchor_lowrs)) over valid target channels",
+    "task_weights": {
+      "road": 1.0,
+      "junction": 1.0,
+      "anchor": 1.0
+    },
+    "optimizer_step_order": "forward -> losses -> backward -> value clip -> optimizer.step -> last-train-batch metrics",
+    "output_elements_per_batch_size_2": {
+      "road": 8192,
+      "junction": 8192,
+      "anchor": 524288,
+      "anchor_lowrs": 524288
+    }
+  },
+  "stage_s3b_protocol": {
+    "optimizer": "Adam",
+    "scheduler": "none",
+    "warmup": "none",
+    "lr_multipliers": [
+      1.0,
+      0.3,
+      0.1
+    ],
+    "max_optimizer_steps": 20480,
+    "evaluation_interval": 2560,
+    "junction_loss_candidates": [
+      "legacy_exact",
+      "class_balanced_bce",
+      "class_balanced_bce_plus_dice"
+    ]
+  }
+}

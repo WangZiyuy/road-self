@@ -1,0 +1,899 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "run_code_sha": "02068550f2acd97de6ae44dc97ffde0ae72344ff",
+  "diagnostic_batch_count": 16,
+  "seed": 20260827,
+  "diagnostic_batch_identity_sha256": "7b6735be42df07d31bd93e5e4fcabe585b749cea2f4b86795888304ec3829fc9",
+  "pixel_counts": {
+    "road": {
+      "positive": 6063,
+      "negative": 125009,
+      "total": 131072,
+      "positive_ratio": 0.04625701904296875
+    },
+    "junction": {
+      "positive": 1016,
+      "negative": 130056,
+      "total": 131072,
+      "positive_ratio": 0.00775146484375
+    },
+    "anchor": {
+      "positive": 28954,
+      "negative": 8359654,
+      "total": 8388608,
+      "positive_ratio": 0.0034515857696533203
+    }
+  },
+  "junction_pos_weight": {
+    "positive_count": 1016,
+    "negative_count": 130056,
+    "raw_pos_weight": 128.00787401574803,
+    "capped_pos_weight": 32.0,
+    "cap": 32.0
+  },
+  "junction_gradient_matching": {
+    "class_balanced_bce": {
+      "alpha": 0.530960152407181,
+      "legacy_mean_norm": 36766.956609222616,
+      "candidate_mean_norm": 69246.16930768637
+    },
+    "class_balanced_bce_plus_dice": {
+      "alpha": 0.5309599939780386,
+      "legacy_mean_norm": 36766.956609222616,
+      "candidate_mean_norm": 69246.18996952783
+    }
+  },
+  "per_batch": [
+    {
+      "batch_index": 0,
+      "raw_loss": {
+        "road": 16961.931640625,
+        "junction": 14494.96484375,
+        "anchor": 31822956544.0,
+        "total": 31822987264.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1614381.9236482265,
+            "segmentation_heads": 36830.54503706033,
+            "raster_module": 7651.2007744162565
+          },
+          "maximum_absolute_gradient": 207307.875,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1505345.057983758,
+            "segmentation_heads": 34981.35799254246,
+            "raster_module": 7638.822369947451
+          },
+          "maximum_absolute_gradient": 259088.484375,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 1598036771910.5725,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 80615448576.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 1598048219309.515,
+            "segmentation_heads": 50795.51608881775,
+            "raster_module": 10857.916994895373
+          },
+          "maximum_absolute_gradient": 80796565504.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 34981.35799254246,
+        "class_balanced_bce": 57014.860546149655,
+        "class_balanced_bce_plus_dice": 57014.856040289524
+      }
+    },
+    {
+      "batch_index": 1,
+      "raw_loss": {
+        "road": 16716.19921875,
+        "junction": 14457.6962890625,
+        "anchor": 20047472.0,
+        "total": 20078646.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1948990.996162727,
+            "segmentation_heads": 35673.57225040245,
+            "raster_module": 6909.191305478529
+          },
+          "maximum_absolute_gradient": 348921.34375,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1503764.492777272,
+            "segmentation_heads": 36832.68702913564,
+            "raster_module": 8635.537118459131
+          },
+          "maximum_absolute_gradient": 169381.90625,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 722605215.8121758,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 75632144.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 722970628.609752,
+            "segmentation_heads": 51276.2185705122,
+            "raster_module": 10923.930929942417
+          },
+          "maximum_absolute_gradient": 75675392.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 36832.68702913564,
+        "class_balanced_bce": 84475.63900650736,
+        "class_balanced_bce_plus_dice": 84475.63515543911
+      }
+    },
+    {
+      "batch_index": 2,
+      "raw_loss": {
+        "road": 18497.71484375,
+        "junction": 13855.544921875,
+        "anchor": 20574522.0,
+        "total": 20606876.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1625237.2732246458,
+            "segmentation_heads": 35397.0962188609,
+            "raster_module": 8611.764241612347
+          },
+          "maximum_absolute_gradient": 187441.171875,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1688618.012901382,
+            "segmentation_heads": 33851.16390023914,
+            "raster_module": 8472.409741072088
+          },
+          "maximum_absolute_gradient": 202350.828125,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 849618062.8538787,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 152348224.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 850052890.8218786,
+            "segmentation_heads": 48978.11468531787,
+            "raster_module": 12180.706180914565
+          },
+          "maximum_absolute_gradient": 152362112.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 33851.16390023914,
+        "class_balanced_bce": 65745.24806172351,
+        "class_balanced_bce_plus_dice": 65745.25477728048
+      }
+    },
+    {
+      "batch_index": 3,
+      "raw_loss": {
+        "road": 17649.83984375,
+        "junction": 14613.4853515625,
+        "anchor": 20452830.0,
+        "total": 20485094.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 2046955.814641295,
+            "segmentation_heads": 51606.540308263306,
+            "raster_module": 13028.333713183938
+          },
+          "maximum_absolute_gradient": 189627.71875,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1626311.197387791,
+            "segmentation_heads": 42421.936893421676,
+            "raster_module": 11243.53498286764
+          },
+          "maximum_absolute_gradient": 159780.078125,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 835687805.9690185,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 126976536.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 836167934.4775759,
+            "segmentation_heads": 66804.60861630623,
+            "raster_module": 17413.0521734079
+          },
+          "maximum_absolute_gradient": 126704008.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 42421.936893421676,
+        "class_balanced_bce": 61533.431460950225,
+        "class_balanced_bce_plus_dice": 61533.54972423942
+      }
+    },
+    {
+      "batch_index": 4,
+      "raw_loss": {
+        "road": 18013.55859375,
+        "junction": 14096.162109375,
+        "anchor": 20444090.0,
+        "total": 20476200.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1374862.0425758332,
+            "segmentation_heads": 41501.79770378175,
+            "raster_module": 9996.986912989609
+          },
+          "maximum_absolute_gradient": 144289.96875,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1187335.446241537,
+            "segmentation_heads": 36382.35252141531,
+            "raster_module": 8730.539565810352
+          },
+          "maximum_absolute_gradient": 126755.4375,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 626148973.1383425,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 63905212.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 626612369.4843595,
+            "segmentation_heads": 55191.25644192347,
+            "raster_module": 13206.511172974095
+          },
+          "maximum_absolute_gradient": 64054160.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 36382.35252141531,
+        "class_balanced_bce": 80893.87521656266,
+        "class_balanced_bce_plus_dice": 80893.88956036446
+      }
+    },
+    {
+      "batch_index": 5,
+      "raw_loss": {
+        "road": 17458.69921875,
+        "junction": 14114.3984375,
+        "anchor": 20409872.0,
+        "total": 20441444.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1501984.3935656466,
+            "segmentation_heads": 41558.52953703335,
+            "raster_module": 8751.516657429856
+          },
+          "maximum_absolute_gradient": 142314.5,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1436226.8814448486,
+            "segmentation_heads": 37744.945489687154,
+            "raster_module": 9733.711524332637
+          },
+          "maximum_absolute_gradient": 273354.03125,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 714837946.4400207,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 72869640.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 714439969.5045995,
+            "segmentation_heads": 56140.82549535523,
+            "raster_module": 13009.945322733969
+          },
+          "maximum_absolute_gradient": 72701400.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 37744.945489687154,
+        "class_balanced_bce": 60427.79681573859,
+        "class_balanced_bce_plus_dice": 60427.8014857792
+      }
+    },
+    {
+      "batch_index": 6,
+      "raw_loss": {
+        "road": 17596.20703125,
+        "junction": 14302.4169921875,
+        "anchor": 29482872832.0,
+        "total": 29482905600.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1414175.2787388102,
+            "segmentation_heads": 35742.323010884385,
+            "raster_module": 7718.034676435023
+          },
+          "maximum_absolute_gradient": 132075.84375,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1701571.2581763288,
+            "segmentation_heads": 37599.10522991003,
+            "raster_module": 9758.621614158688
+          },
+          "maximum_absolute_gradient": 163739.875,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 1854879451398.1782,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 161659879424.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 1854637493595.275,
+            "segmentation_heads": 51876.83845710186,
+            "raster_module": 12417.42072583789
+          },
+          "maximum_absolute_gradient": 161571274752.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 37599.10522991003,
+        "class_balanced_bce": 56532.419039422035,
+        "class_balanced_bce_plus_dice": 56532.46779856908
+      }
+    },
+    {
+      "batch_index": 7,
+      "raw_loss": {
+        "road": 16907.078125,
+        "junction": 13271.3212890625,
+        "anchor": 19626942.0,
+        "total": 19657122.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1134649.5259854423,
+            "segmentation_heads": 46236.242817004204,
+            "raster_module": 10932.90120970173
+          },
+          "maximum_absolute_gradient": 80581.8046875,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1267160.4527663642,
+            "segmentation_heads": 35168.810601957564,
+            "raster_module": 8033.2302048220645
+          },
+          "maximum_absolute_gradient": 169479.15625,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 581146529.7391734,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 65091320.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 580675539.0828027,
+            "segmentation_heads": 58091.61203641482,
+            "raster_module": 13594.354394872938
+          },
+          "maximum_absolute_gradient": 65074092.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 35168.810601957564,
+        "class_balanced_bce": 104128.37104868457,
+        "class_balanced_bce_plus_dice": 104128.36248692822
+      }
+    },
+    {
+      "batch_index": 8,
+      "raw_loss": {
+        "road": 17789.322265625,
+        "junction": 14247.642578125,
+        "anchor": 26057512960.0,
+        "total": 26057545728.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1638301.3555285991,
+            "segmentation_heads": 41659.03364486865,
+            "raster_module": 10652.495943735275
+          },
+          "maximum_absolute_gradient": 168208.96875,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1717826.9047635095,
+            "segmentation_heads": 37188.59679402869,
+            "raster_module": 10122.7303518506
+          },
+          "maximum_absolute_gradient": 288898.84375,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 1388494344754.3862,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 95722479616.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 1388566491852.898,
+            "segmentation_heads": 55843.234287898646,
+            "raster_module": 14877.198070529732
+          },
+          "maximum_absolute_gradient": 95724773376.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 37188.59679402869,
+        "class_balanced_bce": 63449.38459931976,
+        "class_balanced_bce_plus_dice": 63449.403933694884
+      }
+    },
+    {
+      "batch_index": 9,
+      "raw_loss": {
+        "road": 17682.341796875,
+        "junction": 14659.96484375,
+        "anchor": 56565186560.0,
+        "total": 56565219328.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1866596.2821291976,
+            "segmentation_heads": 34824.4315104055,
+            "raster_module": 6436.277591215968
+          },
+          "maximum_absolute_gradient": 210894.25,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1410024.348300171,
+            "segmentation_heads": 36469.438559199174,
+            "raster_module": 8928.565625263824
+          },
+          "maximum_absolute_gradient": 142158.3125,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 2626268880858.646,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 170839408640.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 2625750902523.424,
+            "segmentation_heads": 50425.79675965593,
+            "raster_module": 11133.006108011159
+          },
+          "maximum_absolute_gradient": 170595401728.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 36469.438559199174,
+        "class_balanced_bce": 36469.438559199174,
+        "class_balanced_bce_plus_dice": 36469.43918785879
+      }
+    },
+    {
+      "batch_index": 10,
+      "raw_loss": {
+        "road": 17229.0546875,
+        "junction": 14117.4140625,
+        "anchor": 20171166.0,
+        "total": 20202514.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1629865.5127958206,
+            "segmentation_heads": 37919.46985544391,
+            "raster_module": 8385.768344596521
+          },
+          "maximum_absolute_gradient": 202391.8125,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1705918.7501544144,
+            "segmentation_heads": 36089.84471952278,
+            "raster_module": 8953.24816470429
+          },
+          "maximum_absolute_gradient": 245685.890625,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 664747117.5643458,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 53792860.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 664613059.7931856,
+            "segmentation_heads": 52348.47739903412,
+            "raster_module": 12225.354850475287
+          },
+          "maximum_absolute_gradient": 53694948.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 36089.84471952278,
+        "class_balanced_bce": 45528.87518375186,
+        "class_balanced_bce_plus_dice": 45528.88130253621
+      }
+    },
+    {
+      "batch_index": 11,
+      "raw_loss": {
+        "road": 16395.5546875,
+        "junction": 14181.58984375,
+        "anchor": 20227098.0,
+        "total": 20257676.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1330027.644970163,
+            "segmentation_heads": 33192.287819625315,
+            "raster_module": 7456.420875580267
+          },
+          "maximum_absolute_gradient": 107036.734375,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1389639.7036066442,
+            "segmentation_heads": 37182.80554986935,
+            "raster_module": 9965.443637491786
+          },
+          "maximum_absolute_gradient": 173500.21875,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 617063651.5932913,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 56151392.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 616932607.2027723,
+            "segmentation_heads": 49842.64237839163,
+            "raster_module": 12507.463109383356
+          },
+          "maximum_absolute_gradient": 56010456.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 37182.80554986935,
+        "class_balanced_bce": 92414.03775648965,
+        "class_balanced_bce_plus_dice": 92414.06748826272
+      }
+    },
+    {
+      "batch_index": 12,
+      "raw_loss": {
+        "road": 17955.35546875,
+        "junction": 14467.4921875,
+        "anchor": 20929612.0,
+        "total": 20962036.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1549460.8692951975,
+            "segmentation_heads": 38268.657890842434,
+            "raster_module": 9289.54161232492
+          },
+          "maximum_absolute_gradient": 245161.078125,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1209613.5615733701,
+            "segmentation_heads": 37722.61602356315,
+            "raster_module": 10138.935098405695
+          },
+          "maximum_absolute_gradient": 132543.546875,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 649277133.672423,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 105640920.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 649272198.3199025,
+            "segmentation_heads": 53735.33229103101,
+            "raster_module": 13810.96938398871
+          },
+          "maximum_absolute_gradient": 105686664.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 37722.61602356315,
+        "class_balanced_bce": 65517.27916124282,
+        "class_balanced_bce_plus_dice": 65517.30145591263
+      }
+    },
+    {
+      "batch_index": 13,
+      "raw_loss": {
+        "road": 18301.73046875,
+        "junction": 14194.908203125,
+        "anchor": 20388698.0,
+        "total": 20421194.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1293044.252056188,
+            "segmentation_heads": 39242.167400929044,
+            "raster_module": 7853.804630531472
+          },
+          "maximum_absolute_gradient": 105774.875,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1449211.8351426062,
+            "segmentation_heads": 34818.92487621213,
+            "raster_module": 7656.103156285557
+          },
+          "maximum_absolute_gradient": 147637.375,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 830102177.7885878,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 116031488.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 830055523.8018132,
+            "segmentation_heads": 52462.417327624564,
+            "raster_module": 10872.824550990692
+          },
+          "maximum_absolute_gradient": 116156032.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 34818.92487621213,
+        "class_balanced_bce": 64247.26116845402,
+        "class_balanced_bce_plus_dice": 64247.36958729665
+      }
+    },
+    {
+      "batch_index": 14,
+      "raw_loss": {
+        "road": 17882.45703125,
+        "junction": 14587.71875,
+        "anchor": 21034584.0,
+        "total": 21067054.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1584978.136652338,
+            "segmentation_heads": 35735.50496038382,
+            "raster_module": 7923.360416718891
+          },
+          "maximum_absolute_gradient": 134203.046875,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1768946.3899903921,
+            "segmentation_heads": 35532.02451822171,
+            "raster_module": 8862.77489485058
+          },
+          "maximum_absolute_gradient": 232125.1875,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 681954774.0356407,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 71663864.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 681544057.8362577,
+            "segmentation_heads": 50393.958776197826,
+            "raster_module": 11954.533381208921
+          },
+          "maximum_absolute_gradient": 71537768.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 35532.02451822171,
+        "class_balanced_bce": 80883.09303315224,
+        "class_balanced_bce_plus_dice": 80883.0651462723
+      }
+    },
+    {
+      "batch_index": 15,
+      "raw_loss": {
+        "road": 17598.29296875,
+        "junction": 14445.21484375,
+        "anchor": 20543268.0,
+        "total": 20575312.0
+      },
+      "backward": {
+        "road": {
+          "gradient_l2": {
+            "shared_backbone": 1473495.6042681,
+            "segmentation_heads": 39646.82173065231,
+            "raster_module": 9034.728127455584
+          },
+          "maximum_absolute_gradient": 192951.15625,
+          "finite_ratio": 1.0
+        },
+        "junction": {
+          "gradient_l2": {
+            "shared_backbone": 1269647.098437008,
+            "segmentation_heads": 38284.695048635935,
+            "raster_module": 10149.773927067301
+          },
+          "maximum_absolute_gradient": 115398.859375,
+          "finite_ratio": 1.0
+        },
+        "anchor": {
+          "gradient_l2": {
+            "shared_backbone": 632780824.9496523,
+            "segmentation_heads": 0.0,
+            "raster_module": 0.0
+          },
+          "maximum_absolute_gradient": 47235824.0,
+          "finite_ratio": 1.0
+        },
+        "total": {
+          "gradient_l2": {
+            "shared_backbone": 632390486.1236335,
+            "segmentation_heads": 55114.320718930874,
+            "raster_module": 13730.091731041968
+          },
+          "maximum_absolute_gradient": 47195100.0,
+          "finite_ratio": 1.0
+        }
+      },
+      "junction_head_gradient_norm_unscaled": {
+        "legacy_exact": 38284.695048635935,
+        "class_balanced_bce": 88677.69826563392,
+        "class_balanced_bce_plus_dice": 88677.69438172154
+      }
+    }
+  ],
+  "initialization": {
+    "path_label": "${S3B_RUNTIME}/common_initialization.pth.tar",
+    "file_sha256": "3ea16c7720c7c49a681103f00c8e7cf2efae49608e54306a6e8d4e2d0425d7e6",
+    "content_sha256": "2d3de63223a99a0355bb92da0921e06ea37c2c869b0ffceab1f2437561a9880f",
+    "selected_state": "raster_state_dict"
+  },
+  "data_provenance": {
+    "sample_plan_sha256": "03a9705a0aca226eba2b491bc53212ca916e307defb1adfc214f7619acfdac62",
+    "split_manifest_sha256": "7e6d5d4c7ad10e18ff49cb85cad1dafd4cf6c064628cd913ecb08341c87018da",
+    "initialization_content_sha256": "2d3de63223a99a0355bb92da0921e06ea37c2c869b0ffceab1f2437561a9880f",
+    "initialization_file_sha256": "3ea16c7720c7c49a681103f00c8e7cf2efae49608e54306a6e8d4e2d0425d7e6",
+    "graph_sha256": "d8972239561ca9dac35218f2b578b6a809d7a4fd48938f3703378d0ffa6ff3c6"
+  },
+  "peak_allocated_memory_mb": 3918.88916015625,
+  "peak_reserved_memory_mb": 4102.0,
+  "generated_at_utc": "2026-08-29T07:51:27.960043+00:00"
+}

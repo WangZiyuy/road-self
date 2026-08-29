@@ -23,6 +23,21 @@
       "passed": 26,
       "failed": 0,
       "status": "PASS"
+    },
+    {
+      "command_label": "postprocessing reducer regression: python -m pytest tests -q -k stage_s3b",
+      "passed": 27,
+      "failed": 0,
+      "deselected": 322,
+      "status": "PASS"
+    },
+    {
+      "command_label": "postprocessing reducer full regression: python -m pytest tests -q",
+      "passed": 349,
+      "subtests_passed": 4,
+      "failed": 0,
+      "warnings": 9,
+      "status": "PASS"
     }
   ],
   "warnings_summary": [

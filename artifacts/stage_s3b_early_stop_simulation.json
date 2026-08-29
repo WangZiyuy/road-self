@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "simulated_stop_step": 12800,
+  "would_stop": true,
+  "min_steps": 5120,
+  "patience_intervals": 3,
+  "min_delta": 0.0005,
+  "selection_source": "image_only_validation_control_only",
+  "history": [
+    {
+      "step": 0,
+      "repair_composite": 0.009972486975943958,
+      "improved": true,
+      "stale_intervals": 0
+    },
+    {
+      "step": 2560,
+      "repair_composite": 0.04723212180005352,
+      "improved": true,
+      "stale_intervals": 0
+    },
+    {
+      "step": 5120,
+      "repair_composite": 0.07630179965153219,
+      "improved": true,
+      "stale_intervals": 0
+    },
+    {
+      "step": 7680,
+      "repair_composite": 0.07020115933295255,
+      "improved": false,
+      "stale_intervals": 1
+    },
+    {
+      "step": 10240,
+      "repair_composite": 0.06412322689326394,
+      "improved": false,
+      "stale_intervals": 2
+    },
+    {
+      "step": 12800,
+      "repair_composite": 0.068990104259682,
+      "improved": false,
+      "stale_intervals": 3
+    }
+  ]
+}

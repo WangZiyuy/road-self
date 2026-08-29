@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S3B",
+  "branch": "feat/seg-raster-only",
+  "s3b_run_code_sha": "02068550f2acd97de6ae44dc97ffde0ae72344ff",
+  "reducer_code_sha": "5357f44baf94b07051d25d3f5d1ab0a2ce87d144",
+  "manifest_self_policy": {
+    "path": "artifacts/stage_s3b_commit_manifest.json",
+    "listed_in_entries": false,
+    "reason": "A file cannot contain a stable SHA-256 digest of itself; it is explicitly added with the listed paths."
+  },
+  "entries": [
+    {
+      "path": "artifacts/stage_s3b_anchor_comparison.json",
+      "size_bytes": 260,
+      "sha256": "7c2c8301a638c00e90bd7633c917cccdf1bcebbd78d99b7aaf2088c9f6300f02",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Small finite gate-status artifact."
+    },
+    {
+      "path": "artifacts/stage_s3b_checkpoint_inventory.json",
+      "size_bytes": 23613,
+      "sha256": "86665367acb8cf822828b0eaa62f2caae5d940104a81994ab24e29f98ceffc0e",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Phase A common-grid checkpoint metadata without model weights."
+    },
+    {
+      "path": "artifacts/stage_s3b_conclusion.json",
+      "size_bytes": 1958,
+      "sha256": "f846fabf4e3c611c0173400469ac2d644bdbc6b044b56e142875f921dd6e24f0",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Machine-readable Stage S3B gate conclusion."
+    },
+    {
+      "path": "artifacts/stage_s3b_control_matrix.json",
+      "size_bytes": 260,
+      "sha256": "7c2c8301a638c00e90bd7633c917cccdf1bcebbd78d99b7aaf2088c9f6300f02",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Explicit downstream-control non-execution status."
+    },
+    {
+      "path": "artifacts/stage_s3b_early_stop_simulation.json",
+      "size_bytes": 1014,
+      "sha256": "aa7450730af95fc0bccb5db50c113d16f27537419ab47479160855f3846c26de",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Preregistered image-only early-stop simulation evidence."
+    },
+    {
+      "path": "artifacts/stage_s3b_gpu_inventory.json",
+      "size_bytes": 16597,
+      "sha256": "bcc070f3742fffafa773956184f5b176f16bb19071c328bbc45344fbd0cf3d9f",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Redacted remote GPU eligibility evidence."
+    },
+    {
+      "path": "artifacts/stage_s3b_gpu_schedule.json",
+      "size_bytes": 4506,
+      "sha256": "2a0b475bb0832489997f53ca230e35ecb275910dbb8fd743a5b3ddedf27c7fcd",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Redacted Phase A GPU assignment and exit records."
+    },
+    {
+      "path": "artifacts/stage_s3b_graph_comparison.json",
+      "size_bytes": 260,
+      "sha256": "7c2c8301a638c00e90bd7633c917cccdf1bcebbd78d99b7aaf2088c9f6300f02",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Explicit graph non-execution status."
+    },
+    {
+      "path": "artifacts/stage_s3b_junction_loss_screen.json",
+      "size_bytes": 388,
+      "sha256": "0fe780dc9b3f3110d960ca83a89eff42e6e1f6cc9ddc31c627fcb9258eac66cf",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Explicit Phase B non-execution status."
+    },
+    {
+      "path": "artifacts/stage_s3b_loss_gradient_audit.json",
+      "size_bytes": 28221,
+      "sha256": "f327db5d66ca047020d230ebda6a06f4cca52093f196fc6d033acdb1f1498b3d",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Small remote CUDA loss and gradient audit."
+    },
+    {
+      "path": "artifacts/stage_s3b_lr_screen.json",
+      "size_bytes": 83807,
+      "sha256": "a938250b64fb0e6a6cbe2462619850bc26f7c9bf00e1b1fe79b62e436902e915",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Phase A validation curves and preregistered LR selection."
+    },
+    {
+      "path": "artifacts/stage_s3b_optimizer_loss_contract.json",
+      "size_bytes": 1424,
+      "sha256": "2a6514247577649c7ba03aaa5701b6f4cdd829a49b2367b258540cd019015eb2",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Frozen optimizer and loss contract."
+    },
+    {
+      "path": "artifacts/stage_s3b_remote_preflight.json",
+      "size_bytes": 435,
+      "sha256": "d8a66226b66e99fa708f27fbcc04fdf171562163329c76268f4a5c21c35164de",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Small formal remote preflight result."
+    },
+    {
+      "path": "artifacts/stage_s3b_sample_parity.json",
+      "size_bytes": 1972,
+      "sha256": "41662d5ea8201c6ecef43ae8ab6333f8facdb416602fd3fb95e9f6deaa1ab4af",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "First-100-batch Phase A parity evidence."
+    },
+    {
+      "path": "artifacts/stage_s3b_segmentation_comparison.json",
+      "size_bytes": 260,
+      "sha256": "7c2c8301a638c00e90bd7633c917cccdf1bcebbd78d99b7aaf2088c9f6300f02",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Explicit controlled-comparison non-execution status."
+    },
+    {
+      "path": "artifacts/stage_s3b_shared_threshold.json",
+      "size_bytes": 386,
+      "sha256": "5a6957d34acce83369714064909dd51e865aa41cfcc17be851a420570c5251cc",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Explicit shared-threshold non-selection status."
+    },
+    {
+      "path": "artifacts/stage_s3b_test_results.json",
+      "size_bytes": 1316,
+      "sha256": "f717ef4f7b049fb4d991cbe02f4e96fd1c08557eac2d8fa6e62d860abec2de35",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Protocol and reducer regression-test evidence."
+    },
+    {
+      "path": "artifacts/stage_s3b_training_dynamics.json",
+      "size_bytes": 1857583,
+      "sha256": "a418dafa83199a3be764a334a02c923a597d31342f568a9d5ab8942eabd76d28",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Finite validation dynamics for the six Phase A runs; no checkpoint binary."
+    },
+    {
+      "path": "docs/audits/stage_s3b_controlled_training.md",
+      "size_bytes": 707,
+      "sha256": "1f36548d6446a29ef68ebd2ab3b587315617aae1ca30c1d45a3051f7321d3fa2",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Human-readable controlled-training gate report."
+    },
+    {
+      "path": "docs/audits/stage_s3b_final_report.md",
+      "size_bytes": 1889,
+      "sha256": "861a9f3f39a3c5a885781b9e68121e3b6141af8432fb6bc6d1475ddf37864995",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Human-readable Stage S3B conclusion."
+    },
+    {
+      "path": "docs/audits/stage_s3b_junction_loss_screen.md",
+      "size_bytes": 672,
+      "sha256": "ef43d671e033e1b4f6a85c1738bbd3850c4855852e1062ae1afa67e382b7080f",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Human-readable Phase B non-execution report."
+    },
+    {
+      "path": "docs/audits/stage_s3b_lr_screen.md",
+      "size_bytes": 484,
+      "sha256": "c42bca1ab4a7f5246ac6b00725e1cb40219ceb7d14918010068edbf85dcdb0ed",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Human-readable Phase A LR screen."
+    },
+    {
+      "path": "docs/audits/stage_s3b_optimizer_loss_contract.md",
+      "size_bytes": 1270,
+      "sha256": "019e0f450e4670d34ffdfc903978bf5d26cbe94741f9eaa1aa26afd26f6f5af2",
+      "generated_by_stage_s3b": true,
+      "intended_for_commit": true,
+      "reason": "Human-readable optimizer, loss, and gradient audit."
+    }
+  ],
+  "entry_count": 23,
+  "exclusion_assertions": {
+    "checkpoints_in_commit": false,
+    "datasets_in_commit": false,
+    "trajectory_rasters_in_commit": false,
+    "model_weights_in_commit": false,
+    "prediction_cache_in_commit": false,
+    "tensorboard_events_in_commit": false,
+    "large_logs_in_commit": false,
+    "local_gpu_results_in_commit": false
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "branch": "feat/seg-raster-only",
+  "s3b_base_sha": "7cbd87d8e8fbbfe1783145b024c1dc4783213ee9",
+  "s3b_run_code_sha": "02068550f2acd97de6ae44dc97ffde0ae72344ff",
+  "reducer_code_sha": "5357f44baf94b07051d25d3f5d1ab0a2ce87d144",
+  "formal_execution_environment": "REMOTE_TRAINING_SERVER",
+  "phase_a_status": "PASS",
+  "phase_b_status": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "phase_c_status": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "phase_g_status": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "training_protocol_repair": "FAIL",
+  "lr_stability_gate": "FAIL",
+  "junction_loss_repair": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "segmentation_causal_gate": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "anchor_specificity_gate": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "multistep_anchor_validity": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "graph_stability_gate": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "computational_feasibility": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "go_for_segmentation_multi_seed": "NO_GO",
+  "go_for_end_to_end_multi_seed": "NO_GO",
+  "selected_lr_multiplier_for_diagnosis_only": 0.1,
+  "selected_junction_loss": "NOT_SELECTED",
+  "baseline_controlled_common_step": "NOT_SELECTED",
+  "formal_phase_a_runs": {
+    "A0": "PASS",
+    "A1": "PASS",
+    "A2": "PASS",
+    "A3": "PASS",
+    "A4": "PASS",
+    "A5": "PASS"
+  },
+  "invalidated_pre_optimizer_attempts": [
+    {
+      "code_sha_prefix": "b494a0d",
+      "status": "INVALIDATED_BY_CODE_CHANGE"
+    },
+    {
+      "code_sha_prefix": "8c0f50b",
+      "status": "INVALIDATED_BY_CODE_CHANGE"
+    }
+  ],
+  "automatic_multiseed_started": false,
+  "model_architecture_modified": false,
+  "risks": [
+    "All image-only LR candidates had retention below 0.70.",
+    "Phase B junction-loss repair was not evaluated.",
+    "Controlled aligned/zero/shifted causal comparison was not run.",
+    "Single seed and a small fixed validation plan remain limitations."
+  ]
+}

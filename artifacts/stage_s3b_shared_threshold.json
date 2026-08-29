@@ -1,0 +1,10 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "status": "NOT_EXECUTED_BY_LR_STABILITY_GATE",
+  "blocking_gate": "LR_STABILITY_GATE=FAIL",
+  "run_code_sha": "02068550f2acd97de6ae44dc97ffde0ae72344ff",
+  "reducer_code_sha": "5357f44baf94b07051d25d3f5d1ab0a2ce87d144",
+  "selected_threshold": "NOT_SELECTED",
+  "fixed_0_3_reported_in_phase_a": true,
+  "per_run_threshold_tuning_allowed": false
+}

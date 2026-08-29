@@ -1,0 +1,13 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "run_code_sha": "02068550f2acd97de6ae44dc97ffde0ae72344ff",
+  "diagnostic_batch_count": 16,
+  "all_losses_gradients_finite": true,
+  "sequence_loader_called": false,
+  "transformer_constructed": false,
+  "legacy_dsf_constructed": false,
+  "peak_allocated_memory_mb": 3918.88916015625,
+  "peak_reserved_memory_mb": 4102.0
+}

@@ -1,0 +1,498 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "phases": {
+    "A": {
+      "stage": "seg_raster_stage_s3b",
+      "phase": "A",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "remote_host_label": "exp-237-tunnel",
+      "run_code_sha": "02068550f2acd97de6ae44dc97ffde0ae72344ff",
+      "required_free_memory_mb": 5336,
+      "samples": [
+        {
+          "sampled_at": "2026-08-29T07:51:46.005431+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 1186,
+              "memory_free_mb": 22906,
+              "utilization_percent": 29,
+              "temperature_c": 39
+            },
+            {
+              "index": 1,
+              "uuid": "GPU-75f32c85-75f6-07fa-f335-6e1cc84aacf9",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 817,
+              "memory_free_mb": 23276,
+              "utilization_percent": 13,
+              "temperature_c": 37
+            },
+            {
+              "index": 2,
+              "uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 2289,
+              "memory_free_mb": 21804,
+              "utilization_percent": 9,
+              "temperature_c": 41
+            },
+            {
+              "index": 3,
+              "uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 1069,
+              "memory_free_mb": 23024,
+              "utilization_percent": 12,
+              "temperature_c": 41
+            },
+            {
+              "index": 4,
+              "uuid": "GPU-34587165-f7a3-9c6e-e4f0-a431b17af503",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 753,
+              "memory_free_mb": 23340,
+              "utilization_percent": 15,
+              "temperature_c": 40
+            },
+            {
+              "index": 5,
+              "uuid": "GPU-e888b579-a41b-5892-0c5d-f3145ddd6327",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 7969,
+              "memory_free_mb": 16124,
+              "utilization_percent": 100,
+              "temperature_c": 69
+            },
+            {
+              "index": 6,
+              "uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "temperature_c": 30
+            },
+            {
+              "index": 7,
+              "uuid": "GPU-ed81f3c7-cf0c-01fd-e758-6e512ee3a0b9",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 20295,
+              "memory_free_mb": 3798,
+              "utilization_percent": 13,
+              "temperature_c": 46
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-29T07:51:53.274244+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 1186,
+              "memory_free_mb": 22906,
+              "utilization_percent": 20,
+              "temperature_c": 39
+            },
+            {
+              "index": 1,
+              "uuid": "GPU-75f32c85-75f6-07fa-f335-6e1cc84aacf9",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 6365,
+              "memory_free_mb": 17728,
+              "utilization_percent": 45,
+              "temperature_c": 40
+            },
+            {
+              "index": 2,
+              "uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 2289,
+              "memory_free_mb": 21804,
+              "utilization_percent": 16,
+              "temperature_c": 41
+            },
+            {
+              "index": 3,
+              "uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 10067,
+              "memory_free_mb": 14026,
+              "utilization_percent": 69,
+              "temperature_c": 44
+            },
+            {
+              "index": 4,
+              "uuid": "GPU-34587165-f7a3-9c6e-e4f0-a431b17af503",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 753,
+              "memory_free_mb": 23340,
+              "utilization_percent": 11,
+              "temperature_c": 40
+            },
+            {
+              "index": 5,
+              "uuid": "GPU-e888b579-a41b-5892-0c5d-f3145ddd6327",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 7969,
+              "memory_free_mb": 16124,
+              "utilization_percent": 90,
+              "temperature_c": 71
+            },
+            {
+              "index": 6,
+              "uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "temperature_c": 30
+            },
+            {
+              "index": 7,
+              "uuid": "GPU-ed81f3c7-cf0c-01fd-e758-6e512ee3a0b9",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 20295,
+              "memory_free_mb": 3798,
+              "utilization_percent": 9,
+              "temperature_c": 46
+            }
+          ]
+        },
+        {
+          "sampled_at": "2026-08-29T07:52:00.610504+00:00",
+          "gpus": [
+            {
+              "index": 0,
+              "uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 5824,
+              "memory_free_mb": 18268,
+              "utilization_percent": 31,
+              "temperature_c": 42
+            },
+            {
+              "index": 1,
+              "uuid": "GPU-75f32c85-75f6-07fa-f335-6e1cc84aacf9",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 919,
+              "memory_free_mb": 23174,
+              "utilization_percent": 12,
+              "temperature_c": 38
+            },
+            {
+              "index": 2,
+              "uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 2289,
+              "memory_free_mb": 21804,
+              "utilization_percent": 5,
+              "temperature_c": 41
+            },
+            {
+              "index": 3,
+              "uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 12877,
+              "memory_free_mb": 11216,
+              "utilization_percent": 40,
+              "temperature_c": 43
+            },
+            {
+              "index": 4,
+              "uuid": "GPU-34587165-f7a3-9c6e-e4f0-a431b17af503",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 753,
+              "memory_free_mb": 23340,
+              "utilization_percent": 4,
+              "temperature_c": 40
+            },
+            {
+              "index": 5,
+              "uuid": "GPU-e888b579-a41b-5892-0c5d-f3145ddd6327",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 7969,
+              "memory_free_mb": 16124,
+              "utilization_percent": 90,
+              "temperature_c": 71
+            },
+            {
+              "index": 6,
+              "uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "temperature_c": 30
+            },
+            {
+              "index": 7,
+              "uuid": "GPU-ed81f3c7-cf0c-01fd-e758-6e512ee3a0b9",
+              "name": "NVIDIA GeForce RTX 4090",
+              "driver_version": "570.181",
+              "memory_total_mb": 24564,
+              "memory_used_mb": 20295,
+              "memory_free_mb": 3798,
+              "utilization_percent": 80,
+              "temperature_c": 46
+            }
+          ]
+        }
+      ],
+      "compute_apps": [
+        {
+          "pid": 3470742,
+          "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+          "used_memory_mb": 5280,
+          "process_name": "python"
+        },
+        {
+          "pid": 656519,
+          "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+          "used_memory_mb": 516,
+          "process_name": "python"
+        },
+        {
+          "pid": 3476686,
+          "gpu_uuid": "GPU-75f32c85-75f6-07fa-f335-6e1cc84aacf9",
+          "used_memory_mb": 896,
+          "process_name": "python"
+        },
+        {
+          "pid": 1997460,
+          "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+          "used_memory_mb": 2266,
+          "process_name": "python"
+        },
+        {
+          "pid": 3481740,
+          "gpu_uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+          "used_memory_mb": 12854,
+          "process_name": "python"
+        },
+        {
+          "pid": 3479681,
+          "gpu_uuid": "GPU-34587165-f7a3-9c6e-e4f0-a431b17af503",
+          "used_memory_mb": 730,
+          "process_name": "python"
+        },
+        {
+          "pid": 475932,
+          "gpu_uuid": "GPU-e888b579-a41b-5892-0c5d-f3145ddd6327",
+          "used_memory_mb": 7946,
+          "process_name": "python"
+        },
+        {
+          "pid": 1307666,
+          "gpu_uuid": "GPU-ed81f3c7-cf0c-01fd-e758-6e512ee3a0b9",
+          "used_memory_mb": 20270,
+          "process_name": "python"
+        }
+      ],
+      "eligibility": [
+        {
+          "index": 0,
+          "uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+          "name": "NVIDIA GeForce RTX 4090",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 3470742,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 5280,
+              "process_name": "python"
+            },
+            {
+              "pid": 656519,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 516,
+              "process_name": "python"
+            }
+          ],
+          "sample_count": 3
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-75f32c85-75f6-07fa-f335-6e1cc84aacf9",
+          "name": "NVIDIA GeForce RTX 4090",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 3476686,
+              "gpu_uuid": "GPU-75f32c85-75f6-07fa-f335-6e1cc84aacf9",
+              "used_memory_mb": 896,
+              "process_name": "python"
+            }
+          ],
+          "sample_count": 3
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+          "name": "NVIDIA GeForce RTX 4090",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 1997460,
+              "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+              "used_memory_mb": 2266,
+              "process_name": "python"
+            }
+          ],
+          "sample_count": 3
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+          "name": "NVIDIA GeForce RTX 4090",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 3481740,
+              "gpu_uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+              "used_memory_mb": 12854,
+              "process_name": "python"
+            }
+          ],
+          "sample_count": 3
+        },
+        {
+          "index": 4,
+          "uuid": "GPU-34587165-f7a3-9c6e-e4f0-a431b17af503",
+          "name": "NVIDIA GeForce RTX 4090",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 3479681,
+              "gpu_uuid": "GPU-34587165-f7a3-9c6e-e4f0-a431b17af503",
+              "used_memory_mb": 730,
+              "process_name": "python"
+            }
+          ],
+          "sample_count": 3
+        },
+        {
+          "index": 5,
+          "uuid": "GPU-e888b579-a41b-5892-0c5d-f3145ddd6327",
+          "name": "NVIDIA GeForce RTX 4090",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 475932,
+              "gpu_uuid": "GPU-e888b579-a41b-5892-0c5d-f3145ddd6327",
+              "used_memory_mb": 7946,
+              "process_name": "python"
+            }
+          ],
+          "sample_count": 3
+        },
+        {
+          "index": 6,
+          "uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+          "name": "NVIDIA GeForce RTX 4090",
+          "eligible": true,
+          "reasons": [],
+          "external_compute_processes": [],
+          "sample_count": 3
+        },
+        {
+          "index": 7,
+          "uuid": "GPU-ed81f3c7-cf0c-01fd-e758-6e512ee3a0b9",
+          "name": "NVIDIA GeForce RTX 4090",
+          "eligible": false,
+          "reasons": [
+            "external_compute_process",
+            "utilization_above_limit",
+            "insufficient_free_memory"
+          ],
+          "external_compute_processes": [
+            {
+              "pid": 1307666,
+              "gpu_uuid": "GPU-ed81f3c7-cf0c-01fd-e758-6e512ee3a0b9",
+              "used_memory_mb": 20270,
+              "process_name": "python"
+            }
+          ],
+          "sample_count": 3
+        }
+      ],
+      "eligible_gpu_count": 1,
+      "status": "PASS"
+    }
+  }
+}

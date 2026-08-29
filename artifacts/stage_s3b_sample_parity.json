@@ -1,0 +1,41 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "status": "PASS",
+  "scope": "FIRST_100_BATCHES_ACROSS_PHASE_A",
+  "first_100_batches": {
+    "A0": {
+      "sample_identity_sha256": "915acc1ad8a4af9bcd32d7f888eb441b41e43fe8e51687c2372c8a4a16d543cb",
+      "common_tensor_sha256": "88f26cdc611c3b42fd1a7c9c386035e72147a6446c2e0b02d363047eaa2df755",
+      "valid_mask_sha256": null
+    },
+    "A1": {
+      "sample_identity_sha256": "915acc1ad8a4af9bcd32d7f888eb441b41e43fe8e51687c2372c8a4a16d543cb",
+      "common_tensor_sha256": "88f26cdc611c3b42fd1a7c9c386035e72147a6446c2e0b02d363047eaa2df755",
+      "valid_mask_sha256": "4f5df9e19b7081ff32c580f2c4cfbae991fa32838d08921b60a3c4a2f1795b82"
+    },
+    "A2": {
+      "sample_identity_sha256": "915acc1ad8a4af9bcd32d7f888eb441b41e43fe8e51687c2372c8a4a16d543cb",
+      "common_tensor_sha256": "88f26cdc611c3b42fd1a7c9c386035e72147a6446c2e0b02d363047eaa2df755",
+      "valid_mask_sha256": null
+    },
+    "A3": {
+      "sample_identity_sha256": "915acc1ad8a4af9bcd32d7f888eb441b41e43fe8e51687c2372c8a4a16d543cb",
+      "common_tensor_sha256": "88f26cdc611c3b42fd1a7c9c386035e72147a6446c2e0b02d363047eaa2df755",
+      "valid_mask_sha256": "4f5df9e19b7081ff32c580f2c4cfbae991fa32838d08921b60a3c4a2f1795b82"
+    },
+    "A4": {
+      "sample_identity_sha256": "915acc1ad8a4af9bcd32d7f888eb441b41e43fe8e51687c2372c8a4a16d543cb",
+      "common_tensor_sha256": "88f26cdc611c3b42fd1a7c9c386035e72147a6446c2e0b02d363047eaa2df755",
+      "valid_mask_sha256": null
+    },
+    "A5": {
+      "sample_identity_sha256": "915acc1ad8a4af9bcd32d7f888eb441b41e43fe8e51687c2372c8a4a16d543cb",
+      "common_tensor_sha256": "88f26cdc611c3b42fd1a7c9c386035e72147a6446c2e0b02d363047eaa2df755",
+      "valid_mask_sha256": "4f5df9e19b7081ff32c580f2c4cfbae991fa32838d08921b60a3c4a2f1795b82"
+    }
+  },
+  "sample_identity_parity": true,
+  "common_tensor_parity": true,
+  "raster_valid_mask_parity": true,
+  "image_only_valid_mask": "NOT_APPLICABLE_NOT_LOADED"
+}
