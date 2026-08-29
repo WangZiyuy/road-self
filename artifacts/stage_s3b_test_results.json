@@ -1,0 +1,34 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "status": "PASS",
+  "execution_environment": "LOCAL_CPU_CODE_VALIDATION_ONLY",
+  "formal_cuda_used": false,
+  "commands": [
+    {
+      "command_label": "python -m pytest tests/test_stage_s3b_protocol.py -q",
+      "passed": 24,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "command_label": "python -m pytest tests -q",
+      "passed": 346,
+      "subtests_passed": 4,
+      "failed": 0,
+      "warnings": 9,
+      "status": "PASS"
+    },
+    {
+      "command_label": "post-cap compatibility: stage_s3b protocol plus seg_raster infer",
+      "passed": 26,
+      "failed": 0,
+      "status": "PASS"
+    }
+  ],
+  "warnings_summary": [
+    "Existing NumPy trapz deprecation warnings.",
+    "Existing PyTorch nested tensor prototype warning.",
+    "Existing tensor-to-scalar warning in a Stage3FA test."
+  ],
+  "temporary_files_committed": false
+}

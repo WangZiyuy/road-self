@@ -1,0 +1,27 @@
+{
+  "stage": "seg_raster_stage_s3b",
+  "status": "PASS",
+  "captured_at_local": "2026-08-29T00:00:00+08:00",
+  "workspace_label": "${LOCAL_SEG_RASTER_WORKTREE}",
+  "branch": "feat/seg-raster-only",
+  "upstream": "origin/feat/seg-raster-only",
+  "s3b_base_sha": "7cbd87d8e8fbbfe1783145b024c1dc4783213ee9",
+  "worktree_clean": true,
+  "stage_s3a_committed_and_pushed": true,
+  "source_trajectory_worktree": {
+    "workspace_label": "${SOURCE_TRAJECTORY_WORKTREE}",
+    "branch": "master",
+    "head_sha": "13488c7",
+    "access": "READ_ONLY",
+    "modified_by_stage_s3b": false
+  },
+  "formal_execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "remote_url_redacted": true,
+  "trajectory_branch_merged": false,
+  "notes": [
+    "Git status contained no tracked or untracked entries.",
+    "Filesystem warnings for pre-existing inaccessible temporary/cache directories were not treated as repository changes and those paths are excluded from commits.",
+    "Stage S3B starts from the pushed Stage S3A reconciliation commit."
+  ]
+}

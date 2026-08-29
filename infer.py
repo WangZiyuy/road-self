@@ -263,7 +263,7 @@ def main():
 
 #删除标记长度过短的道路段。重新生成图以确保拓扑结构的正确性。
 def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=True,
-                 max_iteration=99999999, verbose=True):
+                 max_iteration=99999999, verbose=True, resource_limits=None):
     print("infer anchor start")
     net.eval()
     if len(paths) < batch_size:
@@ -273,10 +273,43 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
     graph_dict = dict()
 
     iteration = 0
+    processed_iterations = 0
+    resource_started = time.monotonic()
+    resource_stop = None
     pbar = tqdm(total=None, desc="graph exploration", unit="iter")
 
     try:
         for iteration in range(max_iteration):
+            if resource_limits is not None:
+                snapshot = {
+                    "iterations": processed_iterations,
+                    "vertices": sum(len(path.graph.vertices) for path in paths),
+                    "directed_edges": sum(len(path.graph.edges) for path in paths),
+                    "elapsed_seconds": time.monotonic() - resource_started,
+                }
+                reached = []
+                if snapshot["iterations"] >= int(resource_limits["max_iterations"]):
+                    reached.append("MAX_GRAPH_ITERATIONS")
+                if snapshot["vertices"] >= int(resource_limits["max_vertices"]):
+                    reached.append("MAX_GRAPH_VERTICES")
+                if snapshot["directed_edges"] >= int(resource_limits["max_directed_edges"]):
+                    reached.append("MAX_DIRECTED_EDGES")
+                if snapshot["elapsed_seconds"] >= float(
+                        resource_limits["max_wall_time_seconds"]):
+                    reached.append("MAX_GRAPH_WALL_TIME_SECONDS")
+                if reached:
+                    resource_stop = {
+                        "status": "RESOURCE_CAP_REACHED",
+                        "reached_caps": reached,
+                        "snapshot": snapshot,
+                        "natural_termination": False,
+                    }
+                    for path in paths:
+                        path.graph.save(os.path.join(
+                            save_graph_dir,
+                            '{}.graph'.format(region_lst[path.idx])))
+                        graph_dict[region_lst[path.idx]] = path.graph
+                    break
             path_indices = []
             batch_extension_vertices = []
             batch_is_key_point = np.empty(batch_size)
@@ -461,10 +494,27 @@ def infer_anchor(paths, net, region_lst, save_graph_dir, batch_size=2, save_pic=
                 "edges": sum(len(path.graph.edges) for path in paths),
             })
             pbar.update(1)
+            processed_iterations += 1
     finally:
         pbar.close()
 
-    return iteration, graph_dict
+    infer_anchor.last_resource_status = (
+        resource_stop if resource_stop is not None else {
+            "status": "NATURAL_TERMINATION",
+            "reached_caps": [],
+            "snapshot": {
+                "iterations": processed_iterations,
+                "vertices": sum(len(path.graph.vertices) for path in paths),
+                "directed_edges": sum(len(path.graph.edges) for path in paths),
+                "elapsed_seconds": time.monotonic() - resource_started,
+            },
+            "natural_termination": True,
+        })
+    # Preserve the legacy zero-based return contract for every pre-S3B caller.
+    # Capped S3B evaluation uses the explicit processed-iteration count.
+    returned_iterations = (
+        processed_iterations if resource_limits is not None else iteration)
+    return returned_iterations, graph_dict
 
 
 def get_tile_data(region, cache, junction_nms_res=None, get_starting_locations=True):
