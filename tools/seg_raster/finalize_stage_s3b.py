@@ -53,17 +53,210 @@ def compact_dynamics(summary: dict) -> dict:
             "last_train_batch_metrics": summary["last_train_batch_metrics"]}
 
 
+LR_GATE_NOT_EXECUTED = "NOT_EXECUTED_BY_LR_STABILITY_GATE"
+
+
+def phase_a_summaries(args, phase_a: dict) -> list[dict]:
+    run_ids = [row["run_id"] for row in phase_a.get("jobs", [])]
+    summaries = [read_json(args.run_root / run_id / "summary.json")
+                 for run_id in run_ids]
+    if any(row.get("code_sha") != args.run_code_sha for row in summaries):
+        raise RuntimeError("run-code SHA drift in Phase A summaries")
+    if any(row.get("status") != "PASS" for row in summaries):
+        raise RuntimeError("Phase A contains a non-PASS run")
+    expected_steps = list(range(0, 20481, 2560))
+    expected_keys = {str(step) for step in expected_steps}
+    for row in summaries:
+        if set(row.get("validation_metrics_by_step", {})) != expected_keys:
+            raise RuntimeError("incomplete Phase A checkpoint grid: "
+                               + row.get("run_id", "UNKNOWN"))
+        if len(row.get("checkpoint_inventory", [])) != len(expected_steps):
+            raise RuntimeError("incomplete Phase A checkpoint inventory: "
+                               + row.get("run_id", "UNKNOWN"))
+    return summaries
+
+
+def finalize_lr_stability_failure(args, lr: dict, phase_a: dict) -> int:
+    summaries = phase_a_summaries(args, phase_a)
+    expected_steps = list(range(0, 20481, 2560))
+    training_dynamics = {
+        "stage": "seg_raster_stage_s3b", "status": "PASS",
+        "run_code_sha": args.run_code_sha,
+        "reducer_code_sha": args.reducer_code_sha,
+        "metric_scope_warning": (
+            "last_train_batch_metrics are diagnostic only and are excluded from "
+            "selection, comparison and conclusions."),
+        "runs": [compact_dynamics(row) for row in summaries]}
+    write_json(args.output_root / "stage_s3b_training_dynamics.json",
+               training_dynamics)
+
+    checkpoint_runs = {
+        row["run_key"]: row["checkpoint_inventory"] for row in summaries}
+    write_json(args.output_root / "stage_s3b_checkpoint_inventory.json", {
+        "stage": "seg_raster_stage_s3b", "status": "PASS",
+        "scope": "PHASE_A_ONLY_LR_STABILITY_GATE_FAILED",
+        "expected_steps": expected_steps,
+        "versioned_model_checkpoint_count": sum(
+            len(value) for value in checkpoint_runs.values()),
+        "all_phase_a_runs_have_identical_step_grid": True,
+        "phase_b_c_controls_not_created": True,
+        "runs": checkpoint_runs})
+
+    parity = {
+        row["run_key"]: {
+            "sample_identity_sha256": row["first_100_batch_identity_sha256"],
+            "common_tensor_sha256": row["first_100_common_tensor_sha256"],
+            "valid_mask_sha256": row.get("first_100_valid_mask_sha256")}
+        for row in summaries}
+    sample_pass = len({row["sample_identity_sha256"]
+                       for row in parity.values()}) == 1
+    common_pass = len({row["common_tensor_sha256"]
+                       for row in parity.values()}) == 1
+    raster_rows = [row for row in parity.values()
+                   if row["valid_mask_sha256"] is not None]
+    mask_pass = bool(raster_rows) and len({row["valid_mask_sha256"]
+                                          for row in raster_rows}) == 1
+    write_json(args.output_root / "stage_s3b_sample_parity.json", {
+        "stage": "seg_raster_stage_s3b",
+        "status": "PASS" if sample_pass and common_pass and mask_pass else "FAIL",
+        "scope": "FIRST_100_BATCHES_ACROSS_PHASE_A",
+        "first_100_batches": parity,
+        "sample_identity_parity": sample_pass,
+        "common_tensor_parity": common_pass,
+        "raster_valid_mask_parity": mask_pass,
+        "image_only_valid_mask": "NOT_APPLICABLE_NOT_LOADED"})
+
+    placeholder = {
+        "stage": "seg_raster_stage_s3b",
+        "status": LR_GATE_NOT_EXECUTED,
+        "blocking_gate": "LR_STABILITY_GATE=FAIL",
+        "run_code_sha": args.run_code_sha,
+        "reducer_code_sha": args.reducer_code_sha}
+    loss_payload = dict(placeholder)
+    loss_payload["selection"] = {
+        "selected_loss_kind": "NOT_SELECTED",
+        "junction_loss_repair": LR_GATE_NOT_EXECUTED}
+    write_json(args.output_root / "stage_s3b_junction_loss_screen.json",
+               loss_payload)
+    threshold_payload = dict(placeholder)
+    threshold_payload.update({
+        "selected_threshold": "NOT_SELECTED",
+        "fixed_0_3_reported_in_phase_a": True,
+        "per_run_threshold_tuning_allowed": False})
+    write_json(args.output_root / "stage_s3b_shared_threshold.json",
+               threshold_payload)
+    for name in ("stage_s3b_control_matrix.json",
+                 "stage_s3b_segmentation_comparison.json",
+                 "stage_s3b_anchor_comparison.json",
+                 "stage_s3b_graph_comparison.json"):
+        write_json(args.output_root / name, dict(placeholder))
+
+    inventories, schedules = {}, {}
+    for phase in ("A", "B", "C", "G"):
+        inventory_path = args.output_root / ("gpu_inventory_phase_" + phase + ".json")
+        schedule_path = args.output_root / ("gpu_schedule_phase_" + phase + ".json")
+        if inventory_path.is_file():
+            inventories[phase] = read_json(inventory_path)
+        if schedule_path.is_file():
+            schedules[phase] = read_json(schedule_path)
+    write_json(args.output_root / "stage_s3b_gpu_inventory.json", {
+        "stage": "seg_raster_stage_s3b", "status": "PASS",
+        "execution_environment": "REMOTE_TRAINING_SERVER",
+        "phases": inventories})
+    write_json(args.output_root / "stage_s3b_gpu_schedule.json", {
+        "stage": "seg_raster_stage_s3b", "status": "PASS",
+        "execution_environment": "REMOTE_TRAINING_SERVER",
+        "phases": schedules,
+        "external_processes_terminated": False})
+
+    conclusion = {
+        "stage": "seg_raster_stage_s3b", "branch": "feat/seg-raster-only",
+        "s3b_base_sha": "7cbd87d8e8fbbfe1783145b024c1dc4783213ee9",
+        "s3b_run_code_sha": args.run_code_sha,
+        "reducer_code_sha": args.reducer_code_sha,
+        "formal_execution_environment": "REMOTE_TRAINING_SERVER",
+        "phase_a_status": "PASS",
+        "phase_b_status": LR_GATE_NOT_EXECUTED,
+        "phase_c_status": LR_GATE_NOT_EXECUTED,
+        "phase_g_status": LR_GATE_NOT_EXECUTED,
+        "training_protocol_repair": "FAIL",
+        "lr_stability_gate": "FAIL",
+        "junction_loss_repair": LR_GATE_NOT_EXECUTED,
+        "segmentation_causal_gate": LR_GATE_NOT_EXECUTED,
+        "anchor_specificity_gate": LR_GATE_NOT_EXECUTED,
+        "multistep_anchor_validity": LR_GATE_NOT_EXECUTED,
+        "graph_stability_gate": LR_GATE_NOT_EXECUTED,
+        "computational_feasibility": LR_GATE_NOT_EXECUTED,
+        "go_for_segmentation_multi_seed": "NO_GO",
+        "go_for_end_to_end_multi_seed": "NO_GO",
+        "selected_lr_multiplier_for_diagnosis_only":
+            lr["selection"]["selected_lr_multiplier"],
+        "selected_junction_loss": "NOT_SELECTED",
+        "baseline_controlled_common_step": "NOT_SELECTED",
+        "formal_phase_a_runs": {row["run_key"]: row["status"]
+                                for row in summaries},
+        "invalidated_pre_optimizer_attempts": [
+            {"code_sha_prefix": "b494a0d",
+             "status": "INVALIDATED_BY_CODE_CHANGE"},
+            {"code_sha_prefix": "8c0f50b",
+             "status": "INVALIDATED_BY_CODE_CHANGE"}],
+        "automatic_multiseed_started": False,
+        "model_architecture_modified": False,
+        "risks": [
+            "All image-only LR candidates had retention below 0.70.",
+            "Phase B junction-loss repair was not evaluated.",
+            "Controlled aligned/zero/shifted causal comparison was not run.",
+            "Single seed and a small fixed validation plan remain limitations."]}
+    write_json(args.output_root / "stage_s3b_conclusion.json", conclusion)
+
+    docs = args.output_root / "docs"
+    write_markdown(docs / "stage_s3b_optimizer_loss_contract.md",
+                   "Stage S3B Optimizer and Loss Contract", [
+        ("Historical contract", "Adam, LR 1e-4, betas 0.9/0.99, weight decay 2e-4, no scheduler or warmup; all legacy BCE terms use reduction=sum."),
+        ("Diagnostic scope", "Sixteen frozen remote CUDA batches were audited with independent road, junction, anchor and total backward passes."),
+        ("Provenance", "Formal training code: `{}`; result reducer: `{}`.".format(
+            args.run_code_sha, args.reducer_code_sha))])
+    candidates = lr["image_only_candidates"]
+    rows = ["- {}: LR×{}, best repair composite {:.6f}, retention {:.6f}".format(
+        row["run_key"], row["lr_multiplier"],
+        row["best_repair_composite"], row["retention"])
+        for row in candidates]
+    write_markdown(docs / "stage_s3b_lr_screen.md",
+                   "Stage S3B Learning-Rate Screen", [
+        ("Image-only selection", "\n".join(rows)),
+        ("Gate", "No candidate reached retention >= 0.70. The LR stability gate is `FAIL`; Phase B and all later phases were not executed."),
+        ("Selection scope", "Aligned A1/A3/A5 were excluded from LR selection exactly as preregistered.")])
+    write_markdown(docs / "stage_s3b_junction_loss_screen.md",
+                   "Stage S3B Junction-Loss Screen", [
+        ("Status", LR_GATE_NOT_EXECUTED),
+        ("Reason", "The preregistered LR stability gate failed, so no Phase B loss run was launched and no junction-loss claim is made.")])
+    write_markdown(docs / "stage_s3b_controlled_training.md",
+                   "Stage S3B Controlled Training", [
+        ("Status", LR_GATE_NOT_EXECUTED),
+        ("Boundary", "Phase C aligned/zero/shifted controls, conditional anchor evaluation, and graph evaluation were not executed.")])
+    write_markdown(docs / "stage_s3b_final_report.md",
+                   "Stage S3B Final Report", [
+        ("Phase A", "Six of six formal LR-screen runs completed 20,480 optimizer steps and passed integrity checks."),
+        ("Training protocol repair", "`FAIL`: retention stayed below 0.70 for every image-only LR candidate."),
+        ("Downstream phases", LR_GATE_NOT_EXECUTED),
+        ("Decision", "Segmentation multi-seed: `NO_GO`; end-to-end multi-seed: `NO_GO`. No additional training was started.")])
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-code-sha", required=True)
+    parser.add_argument("--reducer-code-sha", required=True)
     parser.add_argument("--run-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     args = parser.parse_args()
     lr = read_json(args.output_root / "stage_s3b_lr_screen.json")
+    phase_a = read_json(args.output_root / "phase_a_plan.json")
+    if lr["selection"]["lr_stability_gate"] != "PASS":
+        return finalize_lr_stability_failure(args, lr, phase_a)
     loss = read_json(args.output_root / "stage_s3b_junction_loss_screen.json")
     controls = read_json(args.output_root / "stage_s3b_control_matrix.json")
     segmentation = read_json(args.output_root / "stage_s3b_segmentation_comparison.json")
-    phase_a = read_json(args.output_root / "phase_a_plan.json")
     phase_b = read_json(args.output_root / "phase_b_plan.json")
     phase_c = read_json(args.output_root / "phase_c_plan.json")
     all_run_ids = []
