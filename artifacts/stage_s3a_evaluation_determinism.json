@@ -1,0 +1,65 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "validation_evaluation": {
+    "stage": "seg_raster_stage_s3a",
+    "status": "PASS",
+    "comparisons": [
+      {
+        "run_key": "C0",
+        "checkpoint_kind": "best",
+        "metrics_exactly_equal": true,
+        "prediction_and_probability_checksums_equal": true,
+        "sample_order_exactly_equal": true,
+        "status": "PASS"
+      },
+      {
+        "run_key": "C0",
+        "checkpoint_kind": "latest",
+        "metrics_exactly_equal": true,
+        "prediction_and_probability_checksums_equal": true,
+        "sample_order_exactly_equal": true,
+        "status": "PASS"
+      },
+      {
+        "run_key": "C1",
+        "checkpoint_kind": "best",
+        "metrics_exactly_equal": true,
+        "prediction_and_probability_checksums_equal": true,
+        "sample_order_exactly_equal": true,
+        "status": "PASS"
+      },
+      {
+        "run_key": "C1",
+        "checkpoint_kind": "latest",
+        "metrics_exactly_equal": true,
+        "prediction_and_probability_checksums_equal": true,
+        "sample_order_exactly_equal": true,
+        "status": "PASS"
+      }
+    ],
+    "floating_tolerance": 0.0
+  },
+  "graph_evaluation": {
+    "status": "PASS",
+    "comparisons": [
+      {
+        "run_key": "C0",
+        "checkpoint_kind": "best",
+        "postprocessed_graph_checksum_exactly_equal": true,
+        "graph_metrics_exactly_equal": true,
+        "deterministic_settings_exactly_equal": true,
+        "status": "PASS"
+      },
+      {
+        "run_key": "C0",
+        "checkpoint_kind": "latest",
+        "postprocessed_graph_checksum_exactly_equal": true,
+        "graph_metrics_exactly_equal": true,
+        "deterministic_settings_exactly_equal": true,
+        "status": "PASS"
+      }
+    ],
+    "floating_tolerance": 0.0
+  }
+}

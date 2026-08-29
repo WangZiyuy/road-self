@@ -1,0 +1,115 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "audit_kind": "c1_best_closed_loop_expansion_diagnosis",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "read_only": true,
+  "process_liveness": {
+    "status": "PASS",
+    "evidence": [
+      "Worker PID 857133 remained in Rl state with about 160% CPU across four samples.",
+      "The log mtime and iteration count advanced at every sample.",
+      "RSS remained near 1.53 GiB; host RAM, disk, and GPU memory were not exhausted."
+    ]
+  },
+  "graph_expansion": {
+    "status": "FAIL",
+    "classification": "SUSTAINED_ACCEPTED_RAW_GRAPH_EXPANSION",
+    "evidence": [
+      "From iteration 2000 onward, 8776 of 8780 observable consecutive transitions added raw directed edges.",
+      "The dominant two-state pattern alternates between 0 vertex + 2 directed edges and 1 vertex + 4 directed edges.",
+      "From 2000 to 10861 the graph added about 0.5 raw vertices and 3 raw directed edges per iteration without plateau."
+    ],
+    "semantic_validity_of_growth": "INCONCLUSIVE_UNTIL_POSTPROCESS_AND_METRICS",
+    "valid_road_growth_must_not_be_claimed": true
+  },
+  "where_extra_iterations_go": {
+    "accepted_raw_edge_growth": {
+      "status": "MEASURABLE",
+      "observed_fraction_after_iteration_2000": 0.9995444191343963,
+      "meaning": "Fraction of observable consecutive transitions with positive raw directed-edge growth."
+    },
+    "accepted_useful_expansion": "NOT_MEASURABLE",
+    "duplicate_candidates": "NOT_INSTRUMENTED",
+    "visited_candidates": "NOT_INSTRUMENTED",
+    "rejected_candidates": "NOT_INSTRUMENTED",
+    "low_confidence_rejections": "NOT_INSTRUMENTED",
+    "out_of_bounds_rejections": "NOT_INSTRUMENTED",
+    "other": "Coordinate-duplicate vertices/edges and repeated visits are permitted by the container/queue contract but cannot be counted in the live process.",
+    "wasted_iteration_ratio": "NOT_MEASURABLE",
+    "raw_no_graph_growth_lower_bound": 0.00045558086560364467,
+    "caution": "Raw growth is not equivalent to useful road growth; the lower bound is not a complete wasted-work estimate."
+  },
+  "frontier_trend": {
+    "classification": "NOT_OBSERVABLE",
+    "frontier_current": "NOT_INSTRUMENTED",
+    "frontier_15_minutes_ago": "NOT_INSTRUMENTED",
+    "frontier_slope": "NOT_INSTRUMENTED",
+    "frontier_at_iterations": {
+      "2000": "NOT_INSTRUMENTED",
+      "4000": "NOT_INSTRUMENTED",
+      "6000": "NOT_INSTRUMENTED",
+      "8000": "NOT_INSTRUMENTED",
+      "10000": "NOT_INSTRUMENTED"
+    },
+    "effective_work_supply_assessment": "NOT_DRAINING_TO_TERMINATION",
+    "reason": "Only 121 initial junction starts existed, yet one active path persisted past 10.8k iterations with near-continuous accepted edge growth. The finite initial queue therefore cannot explain the sustained work supply; search-state reproduction is occurring, although its exact queue-size trajectory is not logged."
+  },
+  "termination_behavior": {
+    "status": "FAIL",
+    "classification": "NATURAL_TERMINATION_NOT_IMMINENT",
+    "evidence": [
+      "C1-best exceeded the largest completed primary job by 6.39x iterations and 390.88x graph-phase elapsed time.",
+      "All three five-minute sample intervals continued at about 4.2-4.4 iterations/minute with no growth plateau.",
+      "No measurable frontier drain exists, and per-iteration cost is increasing."
+    ],
+    "estimated_remaining_iterations": "NOT_ESTIMABLE_WITHOUT_FRONTIER_SIZE"
+  },
+  "computational_efficiency": {
+    "status": "FAIL",
+    "evidence": [
+      "Sec/iteration rose from 0.094 over iterations 0-2000 to 10.075 over iterations 8000-10861.",
+      "Directed-edge count versus sec/iteration Pearson r was 0.943 in descriptive 500-iteration intervals.",
+      "GPU utilization was 0% in all four instantaneous samples while CPU remained active, consistent with CPU-side graph-density overhead."
+    ]
+  },
+  "graph_size_control": {
+    "status": "FAIL",
+    "evidence": [
+      "At the comparison cutoff, raw directed edges were 4.60x the largest completed primary graph and 7.33x the completed-primary median.",
+      "Graph.add_vertex and Graph.add_edge do not deduplicate coordinates/connections before insertion.",
+      "No graph-size, visited-state, or iteration cap near the control-job scale is active; max_iteration is 99,999,999."
+    ]
+  },
+  "c1_best_computational_feasibility": "FAIL",
+  "diagnostic_classification": {
+    "A_sustained_acceptance_of_new_graph_objects": "SUPPORTED_AT_RAW_CONTAINER_LEVEL",
+    "B_rejected_candidates_with_nonempty_frontier": "NOT_MEASURABLE",
+    "C_duplicate_or_visited_candidate_rejections": "NOT_INSTRUMENTED",
+    "D_low_confidence_candidates": "NOT_INSTRUMENTED",
+    "E_erroneous_branches_accepted": "PLAUSIBLE_BUT_NOT_PROVEN_WITHOUT_FINAL_GRAPH",
+    "F_loop_or_revisit_search": "SOURCE_SUPPORTED_MECHANISM_BUT_LIVE_COUNT_NOT_INSTRUMENTED",
+    "G_iteration_count_not_corresponding_to_growth": "REJECTED_BY_OBSERVATION",
+    "H_insufficient_logs_for_candidate_reason_breakdown": "TRUE"
+  },
+  "recommendation": {
+    "choice": "terminate_as_pathological_expansion",
+    "action_executed": true,
+    "action_authorized_after_read_only_diagnosis": true,
+    "worker_exit": "SIGTERM_EXITED_WITHIN_120_SECONDS",
+    "sigkill_required": false,
+    "launcher_exit": "EXITED_NATURALLY_AFTER_WORKER",
+    "reason": "Computational feasibility and graph-size control failed independently of final metric availability. After explicit user authorization, only the verified C1-best worker received SIGTERM; it exited within the grace period and the launcher then exited naturally."
+  },
+  "prohibited_actions_confirmed": {
+    "model_or_config_modified": false,
+    "threshold_or_seed_modified": false,
+    "process_terminated": true,
+    "only_verified_stage_s3a_processes_affected": true,
+    "graph_rerun_started": false,
+    "local_gpu_checked_or_used": false,
+    "reducer_executed": false,
+    "commit_created": false,
+    "push_executed": false
+  }
+}

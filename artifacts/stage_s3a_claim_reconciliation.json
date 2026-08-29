@@ -1,0 +1,32 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "source_conclusion": "artifacts/stage_s3_conclusion.json",
+  "claims": {
+    "segmentation_causal_screen": {
+      "old": "PROMISING",
+      "status": "VERIFIED_WITH_NARROWER_SCOPE",
+      "new_scope": "single-seed checkpoint-protocol-sensitive screening; Protocol C unavailable"
+    },
+    "indirect_anchor_screen": {
+      "old": "PROMISING",
+      "status": "SUPERSEDED",
+      "reason": "aligned C1 lacks stable shifted-control specificity and multistep validity failed"
+    },
+    "joint_screen": {
+      "old": "PROMISING",
+      "status": "INCONCLUSIVE",
+      "reason": "single seed and common-step weights unavailable"
+    },
+    "closed_loop_graph": {
+      "old": "PASS",
+      "status": "FAILED_PATHOLOGICAL_EXPANSION",
+      "new_scope": "C1-latest and the completed C0/C2/C3 controls remain valid; C1-best has no complete graph metrics."
+    },
+    "go_no_go_for_multiseed": {
+      "old": "GO",
+      "status": "SUPERSEDED",
+      "new": "NO_GO"
+    }
+  }
+}

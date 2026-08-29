@@ -1,0 +1,97 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "audit_kind": "c1_best_closed_loop_expansion_timeseries",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "read_only": true,
+  "source": {
+    "log": "${S3A_REMOTE_OUTPUT}/graph_logs/graph_C1_best_repeat0.stderr",
+    "method": "LOG_DERIVED",
+    "selection": "Last parsed tqdm state at each exact 500-iteration boundary, plus the latest state at extraction."
+  },
+  "points": [
+    {"iteration": 0, "elapsed_seconds": 0.0, "vertices": 3, "directed_edges": 4},
+    {"iteration": 500, "elapsed_seconds": 41.0, "vertices": 1131, "directed_edges": 2340},
+    {"iteration": 1000, "elapsed_seconds": 75.0, "vertices": 2248, "directed_edges": 4704},
+    {"iteration": 1500, "elapsed_seconds": 115.0, "vertices": 2844, "directed_edges": 6630},
+    {"iteration": 2000, "elapsed_seconds": 188.0, "vertices": 3094, "directed_edges": 8130},
+    {"iteration": 2500, "elapsed_seconds": 323.0, "vertices": 3344, "directed_edges": 9630},
+    {"iteration": 3000, "elapsed_seconds": 552.0, "vertices": 3594, "directed_edges": 11130},
+    {"iteration": 3500, "elapsed_seconds": 890.0, "vertices": 3844, "directed_edges": 12630},
+    {"iteration": 4000, "elapsed_seconds": 1393.0, "vertices": 4094, "directed_edges": 14130},
+    {"iteration": 4500, "elapsed_seconds": 2093.0, "vertices": 4344, "directed_edges": 15630},
+    {"iteration": 5000, "elapsed_seconds": 3012.0, "vertices": 4594, "directed_edges": 17130},
+    {"iteration": 5500, "elapsed_seconds": 4221.0, "vertices": 4844, "directed_edges": 18630},
+    {"iteration": 6000, "elapsed_seconds": 5739.0, "vertices": 5094, "directed_edges": 20130},
+    {"iteration": 6500, "elapsed_seconds": 7629.0, "vertices": 5344, "directed_edges": 21630},
+    {"iteration": 7000, "elapsed_seconds": 9900.0, "vertices": 5594, "directed_edges": 23130},
+    {"iteration": 7500, "elapsed_seconds": 12583.0, "vertices": 5844, "directed_edges": 24630},
+    {"iteration": 8000, "elapsed_seconds": 15736.0, "vertices": 6094, "directed_edges": 26130},
+    {"iteration": 8500, "elapsed_seconds": 19456.0, "vertices": 6344, "directed_edges": 27630},
+    {"iteration": 9000, "elapsed_seconds": 23685.0, "vertices": 6594, "directed_edges": 29130},
+    {"iteration": 9500, "elapsed_seconds": 28409.0, "vertices": 6844, "directed_edges": 30630},
+    {"iteration": 10000, "elapsed_seconds": 33806.0, "vertices": 7094, "directed_edges": 32130},
+    {"iteration": 10500, "elapsed_seconds": 39777.0, "vertices": 7344, "directed_edges": 33630},
+    {"iteration": 10861, "elapsed_seconds": 44560.0, "vertices": 7524, "directed_edges": 34710}
+  ],
+  "historical_segments": [
+    {
+      "iteration_range": [0, 2000],
+      "delta_seconds": 188.0,
+      "sec_per_iteration": 0.094,
+      "iterations_per_minute": 638.2978723404256,
+      "vertices_per_iteration": 1.5455,
+      "directed_edges_per_iteration": 4.063
+    },
+    {
+      "iteration_range": [2000, 4000],
+      "delta_seconds": 1205.0,
+      "sec_per_iteration": 0.6025,
+      "iterations_per_minute": 99.5850622406639,
+      "vertices_per_iteration": 0.5,
+      "directed_edges_per_iteration": 3.0
+    },
+    {
+      "iteration_range": [4000, 6000],
+      "delta_seconds": 4346.0,
+      "sec_per_iteration": 2.173,
+      "iterations_per_minute": 27.61159687068569,
+      "vertices_per_iteration": 0.5,
+      "directed_edges_per_iteration": 3.0
+    },
+    {
+      "iteration_range": [6000, 8000],
+      "delta_seconds": 9997.0,
+      "sec_per_iteration": 4.9985,
+      "iterations_per_minute": 12.003601080324097,
+      "vertices_per_iteration": 0.5,
+      "directed_edges_per_iteration": 3.0
+    },
+    {
+      "iteration_range": [8000, 10861],
+      "delta_seconds": 28824.0,
+      "sec_per_iteration": 10.074799021321216,
+      "iterations_per_minute": 5.955453788509575,
+      "vertices_per_iteration": 0.4998252359314925,
+      "directed_edges_per_iteration": 2.9989514155889547
+    }
+  ],
+  "descriptive_correlations": {
+    "method": "Pearson correlation over consecutive approximately 500-iteration interval rates; descriptive only.",
+    "iteration_vs_sec_per_iteration": 0.9502446962021416,
+    "vertex_count_vs_sec_per_iteration": 0.9007556135594094,
+    "directed_edge_count_vs_sec_per_iteration": 0.942970198901275
+  },
+  "growth_pattern_after_iteration_2000": {
+    "observation_cutoff_iteration": 10864,
+    "observed_consecutive_transition_count": 8780,
+    "distribution": [
+      {"delta_vertices": 0, "delta_directed_edges": 0, "count": 4, "fraction": 0.00045558086560364467},
+      {"delta_vertices": 0, "delta_directed_edges": 2, "count": 4388, "fraction": 0.4997722095671982},
+      {"delta_vertices": 1, "delta_directed_edges": 4, "count": 4388, "fraction": 0.4997722095671982}
+    ],
+    "raw_edge_growth_transition_fraction": 0.9995444191343963,
+    "interpretation": "A near-exact two-state cycle continues to accept reciprocal edge insertions; graph growth has not plateaued."
+  },
+  "timestamp_note": "The tqdm log records elapsed time, not wall-clock timestamps. Absolute point timestamps are therefore not asserted; the four wall-clock samples are recorded separately in the snapshot artifact."
+}

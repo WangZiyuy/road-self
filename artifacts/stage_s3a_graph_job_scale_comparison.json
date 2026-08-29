@@ -1,0 +1,59 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "audit_kind": "graph_job_scale_comparison",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "read_only": true,
+  "comparison_protocol": {
+    "primary_jobs_only": true,
+    "repeat_jobs_excluded_from_scale_comparison": true,
+    "raw_counts": "Last pre-postprocess tqdm state from each graph log.",
+    "postprocessed_counts": "Final result JSON; unavailable for running C1-best.",
+    "candidate_count": "NOT_INSTRUMENTED",
+    "frontier_final_size": "NOT_INSTRUMENTED"
+  },
+  "jobs": [
+    {"run": "C0-best", "status": "PASS", "iterations": 937, "raw_vertices": 2435, "raw_directed_edges": 4734, "graph_elapsed_seconds": 54.0, "total_inference_seconds": 65.28327529877424, "postprocessed_vertices": 542, "postprocessed_undirected_edges": 522, "postprocessed_duplicate_directed_edges": 4, "dangling_edges": 43, "peak_gpu_memory_reserved_mb": 2310.0},
+    {"run": "C0-latest", "status": "PASS", "iterations": 816, "raw_vertices": 2205, "raw_directed_edges": 4338, "graph_elapsed_seconds": 46.0, "total_inference_seconds": 58.04134520236403, "postprocessed_vertices": 31, "postprocessed_undirected_edges": 28, "postprocessed_duplicate_directed_edges": 0, "dangling_edges": 6, "peak_gpu_memory_reserved_mb": 2310.0},
+    {"run": "C1-best-current", "status": "RUNNING", "iterations": 10861, "raw_vertices": 7524, "raw_directed_edges": 34710, "graph_elapsed_seconds": 44560.0, "total_inference_seconds": null, "postprocessed_vertices": null, "postprocessed_undirected_edges": null, "postprocessed_duplicate_directed_edges": null, "dangling_edges": null, "peak_gpu_memory_reserved_mb": null},
+    {"run": "C1-latest", "status": "PASS", "iterations": 929, "raw_vertices": 2541, "raw_directed_edges": 5054, "graph_elapsed_seconds": 67.0, "total_inference_seconds": 95.1899859085679, "postprocessed_vertices": 228, "postprocessed_undirected_edges": 220, "postprocessed_duplicate_directed_edges": 0, "dangling_edges": 18, "peak_gpu_memory_reserved_mb": 2334.0},
+    {"run": "C2-best", "status": "PASS", "iterations": 1207, "raw_vertices": 3034, "raw_directed_edges": 5962, "graph_elapsed_seconds": 82.0, "total_inference_seconds": 108.77994820382446, "postprocessed_vertices": 883, "postprocessed_undirected_edges": 865, "postprocessed_duplicate_directed_edges": 0, "dangling_edges": 51, "peak_gpu_memory_reserved_mb": 2334.0},
+    {"run": "C2-latest", "status": "PASS", "iterations": 838, "raw_vertices": 2333, "raw_directed_edges": 4586, "graph_elapsed_seconds": 60.0, "total_inference_seconds": 79.30392249021679, "postprocessed_vertices": 84, "postprocessed_undirected_edges": 80, "postprocessed_duplicate_directed_edges": 0, "dangling_edges": 8, "peak_gpu_memory_reserved_mb": 2334.0},
+    {"run": "C3-best", "status": "PASS", "iterations": 1701, "raw_vertices": 3825, "raw_directed_edges": 7552, "graph_elapsed_seconds": 114.0, "total_inference_seconds": 130.88732671178877, "postprocessed_vertices": 1144, "postprocessed_undirected_edges": 1122, "postprocessed_duplicate_directed_edges": 6, "dangling_edges": 77, "peak_gpu_memory_reserved_mb": 2334.0},
+    {"run": "C3-latest", "status": "PASS", "iterations": 810, "raw_vertices": 2293, "raw_directed_edges": 4512, "graph_elapsed_seconds": 54.0, "total_inference_seconds": 68.81140203587711, "postprocessed_vertices": 137, "postprocessed_undirected_edges": 132, "postprocessed_duplicate_directed_edges": 0, "dangling_edges": 10, "peak_gpu_memory_reserved_mb": 2334.0}
+  ],
+  "c1_best_current_ratios": {
+    "vs_largest_completed_primary_by_each_measure": {
+      "iterations_vs_C3_best": 6.385067607289829,
+      "raw_vertices_vs_C3_best": 1.9670588235294117,
+      "raw_directed_edges_vs_C3_best": 4.596133474576271,
+      "graph_elapsed_vs_C3_best": 390.87719298245617
+    },
+    "vs_completed_primary_median": {
+      "iterations": 11.691065662002153,
+      "raw_vertices": 3.0899383983572895,
+      "raw_directed_edges": 7.332065906210393,
+      "graph_elapsed": 742.6666666666666
+    },
+    "full_pairwise": [
+      {"baseline": "C0-best", "iterations": 11.591248665955176, "raw_vertices": 3.0899383983572895, "raw_directed_edges": 7.332065906210393, "graph_elapsed": 825.1851851851852},
+      {"baseline": "C0-latest", "iterations": 13.310049019607844, "raw_vertices": 3.4122448979591837, "raw_directed_edges": 8.001383125864454, "graph_elapsed": 968.695652173913},
+      {"baseline": "C1-latest", "iterations": 11.691065662002153, "raw_vertices": 2.961038961038961, "raw_directed_edges": 6.86782746339533, "graph_elapsed": 665.0746268656717},
+      {"baseline": "C2-best", "iterations": 8.9983429991715, "raw_vertices": 2.4798945286750165, "raw_directed_edges": 5.821871855082187, "graph_elapsed": 543.4146341463414},
+      {"baseline": "C2-latest", "iterations": 12.960620525059666, "raw_vertices": 3.2250321474496357, "raw_directed_edges": 7.568687309201919, "graph_elapsed": 742.6666666666666},
+      {"baseline": "C3-best", "iterations": 6.385067607289829, "raw_vertices": 1.9670588235294117, "raw_directed_edges": 4.596133474576271, "graph_elapsed": 390.87719298245617},
+      {"baseline": "C3-latest", "iterations": 13.408641975308642, "raw_vertices": 3.2812908853030964, "raw_directed_edges": 7.69281914893617, "graph_elapsed": 825.1851851851852}
+    ]
+  },
+  "starting_junction_counts": {
+    "C0-best": 103,
+    "C0-latest": 81,
+    "C1-best": 121,
+    "C1-latest": 76,
+    "C2-best": 95,
+    "C2-latest": 80,
+    "C3-best": 146,
+    "C3-latest": 74,
+    "interpretation": "C1-best does not have the largest initial junction count; C3-best starts from 146 and still terminates at 1701 iterations. Initial seed count alone does not explain C1-best."
+  }
+}

@@ -1,0 +1,5190 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "rows": [
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 102,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.7163533045277718,
+      "peak_yx": [
+        127,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00028575431666250035,
+      "peak_yx": [
+        160,
+        127
+      ],
+      "localization_error": 24.698178070456937,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.008980063286049814,
+      "peak_yx": [
+        116,
+        149
+      ],
+      "localization_error": 26.419689627245813,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.09535837013111674,
+      "peak_yx": [
+        117,
+        165
+      ],
+      "localization_error": 51.61395160225576,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.046032405198116154,
+      "peak_yx": [
+        113,
+        189
+      ],
+      "localization_error": 86.55634003352961,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.012496099991888533,
+      "peak_yx": [
+        117,
+        47
+      ],
+      "localization_error": 106.5269918846862,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0005351810726294459,
+      "peak_yx": [
+        108,
+        127
+      ],
+      "localization_error": 14.866068747318506,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0024534224246267645,
+      "peak_yx": [
+        169,
+        128
+      ],
+      "localization_error": 44.553338819890925,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.019331403957735672,
+      "peak_yx": [
+        188,
+        127
+      ],
+      "localization_error": 74.24957912338628,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.019280120537497236,
+      "peak_yx": [
+        208,
+        123
+      ],
+      "localization_error": 71.449282711585,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0007643226107975767,
+      "peak_yx": [
+        137,
+        145
+      ],
+      "localization_error": 7.280109889280518,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0004765254246217037,
+      "peak_yx": [
+        139,
+        86
+      ],
+      "localization_error": 43.86342439892262,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0005895141097183471,
+      "peak_yx": [
+        117,
+        157
+      ],
+      "localization_error": 29.732137494637012,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00011685358348963366,
+      "peak_yx": [
+        27,
+        137
+      ],
+      "localization_error": 112.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0013835613977433866,
+      "peak_yx": [
+        125,
+        165
+      ],
+      "localization_error": 48.82622246293481,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00016358944330185506,
+      "peak_yx": [
+        188,
+        172
+      ],
+      "localization_error": 15.811388300841896,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.009180372990541946,
+      "peak_yx": [
+        128,
+        147
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0002640434303463158,
+      "peak_yx": [
+        101,
+        134
+      ],
+      "localization_error": 38.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0003090768032085278,
+      "peak_yx": [
+        101,
+        94
+      ],
+      "localization_error": 62.03224967708329,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0003210325954355878,
+      "peak_yx": [
+        119,
+        185
+      ],
+      "localization_error": 79.39773296511683,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 6.901993881672786e-05,
+      "peak_yx": [
+        104,
+        185
+      ],
+      "localization_error": 111.89280584559492,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00013138399035724787,
+      "peak_yx": [
+        125,
+        169
+      ],
+      "localization_error": 12.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0004667177001803473,
+      "peak_yx": [
+        110,
+        126
+      ],
+      "localization_error": 12.041594578792296,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.013904810912163055,
+      "peak_yx": [
+        125,
+        110
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.00027397728193358315,
+      "peak_yx": [
+        137,
+        154
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 9.188806736768233e-05,
+      "peak_yx": [
+        10,
+        252
+      ],
+      "localization_error": 145.41664278891878,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 7.251816520443866e-05,
+      "peak_yx": [
+        120,
+        82
+      ],
+      "localization_error": 40.70626487409524,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00016912136859761377,
+      "peak_yx": [
+        121,
+        82
+      ],
+      "localization_error": 51.66236541235796,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00014009485986031875,
+      "peak_yx": [
+        119,
+        68
+      ],
+      "localization_error": 76.21679604916491,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0002933443121246447,
+      "peak_yx": [
+        242,
+        243
+      ],
+      "localization_error": 112.80514172678478,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 2.41792043595572e-05,
+      "peak_yx": [
+        209,
+        133
+      ],
+      "localization_error": 73.7563556583431,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.9278181457415234e-05,
+      "peak_yx": [
+        64,
+        132
+      ],
+      "localization_error": 65.19202405202648,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 4.2575624098456364e-05,
+      "peak_yx": [
+        136,
+        5
+      ],
+      "localization_error": 51.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0004975896977273961,
+      "peak_yx": [
+        242,
+        242
+      ],
+      "localization_error": 188.73261509341728,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 5.309780862234829e-05,
+      "peak_yx": [
+        52,
+        3
+      ],
+      "localization_error": 145.8012345626744,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 6.853420782948954e-05,
+      "peak_yx": [
+        50,
+        3
+      ],
+      "localization_error": 165.48715962273326,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 4.4598743297011854e-05,
+      "peak_yx": [
+        11,
+        252
+      ],
+      "localization_error": 172.07265907168403,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 3.715848916645049e-05,
+      "peak_yx": [
+        152,
+        131
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 2.554538292184965e-05,
+      "peak_yx": [
+        164,
+        133
+      ],
+      "localization_error": 1.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.2764069020486295e-05,
+      "peak_yx": [
+        213,
+        4
+      ],
+      "localization_error": 99.62429422585637,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 6.245798673926961e-05,
+      "peak_yx": [
+        195,
+        3
+      ],
+      "localization_error": 113.01769772916099,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 4.7417335118023924e-05,
+      "peak_yx": [
+        180,
+        3
+      ],
+      "localization_error": 117.27744881263405,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 4.8907102578719097e-05,
+      "peak_yx": [
+        180,
+        3
+      ],
+      "localization_error": 113.03981599418853,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.5553208897295863e-05,
+      "peak_yx": [
+        142,
+        4
+      ],
+      "localization_error": 117.00427342623003,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0002107276801050714,
+      "peak_yx": [
+        242,
+        243
+      ],
+      "localization_error": 114.1402645870422,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 5.625761302394189e-05,
+      "peak_yx": [
+        124,
+        159
+      ],
+      "localization_error": 2.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 2.8959147995561564e-05,
+      "peak_yx": [
+        118,
+        115
+      ],
+      "localization_error": 1.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 7.215787337727795e-05,
+      "peak_yx": [
+        10,
+        252
+      ],
+      "localization_error": 144.58907289280197,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 131,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.7689813957080391,
+      "peak_yx": [
+        127,
+        149
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.07437898108824613,
+      "peak_yx": [
+        147,
+        126
+      ],
+      "localization_error": 12.806248474865697,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 26,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.5034285972795898,
+      "peak_yx": [
+        114,
+        108
+      ],
+      "localization_error": 26.92582403567252,
+      "false_positive_pixel_count": 26
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 162,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.7543625739935188,
+      "peak_yx": [
+        111,
+        89
+      ],
+      "localization_error": 55.569775957799216,
+      "false_positive_pixel_count": 162
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 82,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.7368609743727523,
+      "peak_yx": [
+        110,
+        187
+      ],
+      "localization_error": 87.6184911990614,
+      "false_positive_pixel_count": 82
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 127,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.7363308516569703,
+      "peak_yx": [
+        110,
+        208
+      ],
+      "localization_error": 116.3872845288522,
+      "false_positive_pixel_count": 127
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0007079529504701316,
+      "peak_yx": [
+        146,
+        136
+      ],
+      "localization_error": 21.02379604162864,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.19520468372464866,
+      "peak_yx": [
+        90,
+        130
+      ],
+      "localization_error": 43.93176527297759,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 27,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.4208784675415114,
+      "peak_yx": [
+        66,
+        129
+      ],
+      "localization_error": 75.69015788066504,
+      "false_positive_pixel_count": 27
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.13186521703108375,
+      "peak_yx": [
+        46,
+        127
+      ],
+      "localization_error": 101.82337649086284,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00033903486797097113,
+      "peak_yx": [
+        133,
+        109
+      ],
+      "localization_error": 12.529964086141668,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0005667781929809719,
+      "peak_yx": [
+        138,
+        134
+      ],
+      "localization_error": 31.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.004174894584977453,
+      "peak_yx": [
+        116,
+        145
+      ],
+      "localization_error": 24.351591323771842,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.007726821191299947,
+      "peak_yx": [
+        128,
+        147
+      ],
+      "localization_error": 14.866068747318506,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0011205075378687684,
+      "peak_yx": [
+        90,
+        127
+      ],
+      "localization_error": 75.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0006441931451043887,
+      "peak_yx": [
+        42,
+        156
+      ],
+      "localization_error": 123.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.010853919680989605,
+      "peak_yx": [
+        127,
+        147
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0012305944460482884,
+      "peak_yx": [
+        147,
+        128
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0007736521340391103,
+      "peak_yx": [
+        92,
+        141
+      ],
+      "localization_error": 67.36467917239716,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0006895070578643261,
+      "peak_yx": [
+        188,
+        127
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.000267569540194371,
+      "peak_yx": [
+        209,
+        128
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0349098810568304,
+      "peak_yx": [
+        127,
+        144
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.00464561046722578,
+      "peak_yx": [
+        126,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 190,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.7592364306671024,
+      "peak_yx": [
+        130,
+        108
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 79,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.8966550673000677,
+      "peak_yx": [
+        130,
+        148
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0001734597666439321,
+      "peak_yx": [
+        51,
+        88
+      ],
+      "localization_error": 57.14017850864661,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.005056571457039075,
+      "peak_yx": [
+        117,
+        137
+      ],
+      "localization_error": 22.02271554554524,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0007153326358535798,
+      "peak_yx": [
+        110,
+        136
+      ],
+      "localization_error": 49.01020301937138,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.008276982005858484,
+      "peak_yx": [
+        111,
+        122
+      ],
+      "localization_error": 68.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0023298441628258615,
+      "peak_yx": [
+        109,
+        121
+      ],
+      "localization_error": 90.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0017797243839791854,
+      "peak_yx": [
+        52,
+        109
+      ],
+      "localization_error": 67.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0003386707954563516,
+      "peak_yx": [
+        54,
+        111
+      ],
+      "localization_error": 66.49060083951716,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.000609321221117985,
+      "peak_yx": [
+        59,
+        125
+      ],
+      "localization_error": 77.98717843338096,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.010091015398205259,
+      "peak_yx": [
+        54,
+        124
+      ],
+      "localization_error": 94.11163583744573,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00017704824158999791,
+      "peak_yx": [
+        33,
+        137
+      ],
+      "localization_error": 106.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00011839511770943655,
+      "peak_yx": [
+        37,
+        139
+      ],
+      "localization_error": 132.03408650799233,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.000129794469657956,
+      "peak_yx": [
+        52,
+        172
+      ],
+      "localization_error": 86.05230967266364,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0004958340873241329,
+      "peak_yx": [
+        143,
+        125
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 7.674057456477714e-05,
+      "peak_yx": [
+        41,
+        225
+      ],
+      "localization_error": 152.0526224699857,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00023277558886488741,
+      "peak_yx": [
+        32,
+        125
+      ],
+      "localization_error": 133.24038426843418,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.00015426803000367933,
+      "peak_yx": [
+        146,
+        119
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.08467806463939288,
+      "peak_yx": [
+        150,
+        125
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0032955392081734157,
+      "peak_yx": [
+        167,
+        124
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0005244396104918088,
+      "peak_yx": [
+        190,
+        124
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0052717782873825374,
+      "peak_yx": [
+        174,
+        124
+      ],
+      "localization_error": 28.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.008645833018987312,
+      "peak_yx": [
+        149,
+        124
+      ],
+      "localization_error": 13.892443989449804,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0002153387536557587,
+      "peak_yx": [
+        147,
+        118
+      ],
+      "localization_error": 10.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 64,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.9115155888240672,
+      "peak_yx": [
+        128,
+        108
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 105,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.7479154009053993,
+      "peak_yx": [
+        127,
+        108
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.002016550956403468,
+      "peak_yx": [
+        48,
+        115
+      ],
+      "localization_error": 51.15662224971465,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.034943304066186565,
+      "peak_yx": [
+        107,
+        143
+      ],
+      "localization_error": 32.7566787083184,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.01045659077677512,
+      "peak_yx": [
+        107,
+        146
+      ],
+      "localization_error": 53.150729063673246,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.011518112453214572,
+      "peak_yx": [
+        106,
+        185
+      ],
+      "localization_error": 89.62700485902673,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.002060053829390378,
+      "peak_yx": [
+        101,
+        207
+      ],
+      "localization_error": 122.80065146407001,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.009516532907915877,
+      "peak_yx": [
+        110,
+        129
+      ],
+      "localization_error": 15.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0012268381933382834,
+      "peak_yx": [
+        164,
+        127
+      ],
+      "localization_error": 40.36087214122113,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0014926659817610008,
+      "peak_yx": [
+        188,
+        125
+      ],
+      "localization_error": 72.83543093852057,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.007913585805618743,
+      "peak_yx": [
+        47,
+        130
+      ],
+      "localization_error": 103.27632836231156,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0016907894960156346,
+      "peak_yx": [
+        25,
+        147
+      ],
+      "localization_error": 114.35471131527551,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0021945000584087286,
+      "peak_yx": [
+        91,
+        144
+      ],
+      "localization_error": 78.40918313565064,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0012199798007761472,
+      "peak_yx": [
+        43,
+        139
+      ],
+      "localization_error": 78.84795495128583,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0003994455130114331,
+      "peak_yx": [
+        146,
+        164
+      ],
+      "localization_error": 27.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0019337051747194635,
+      "peak_yx": [
+        114,
+        94
+      ],
+      "localization_error": 56.79788728465171,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00028062697850932616,
+      "peak_yx": [
+        169,
+        170
+      ],
+      "localization_error": 13.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 26,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.6308744891800347,
+      "peak_yx": [
+        128,
+        148
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00061122698779459,
+      "peak_yx": [
+        108,
+        139
+      ],
+      "localization_error": 31.144823004794873,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00021087460617038467,
+      "peak_yx": [
+        89,
+        131
+      ],
+      "localization_error": 70.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0006159733279405174,
+      "peak_yx": [
+        104,
+        185
+      ],
+      "localization_error": 91.2633551870629,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 9.745206226623606e-05,
+      "peak_yx": [
+        104,
+        189
+      ],
+      "localization_error": 113.87712676389407,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.016396486821312558,
+      "peak_yx": [
+        130,
+        111
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.015965510805762893,
+      "peak_yx": [
+        125,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.054163017098139636,
+      "peak_yx": [
+        127,
+        103
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 66,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.9105621556887986,
+      "peak_yx": [
+        128,
+        148
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 2.069736712375161e-05,
+      "peak_yx": [
+        0,
+        251
+      ],
+      "localization_error": 150.98675438593943,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0040165222717857465,
+      "peak_yx": [
+        145,
+        129
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 6.118901938717937e-06,
+      "peak_yx": [
+        140,
+        147
+      ],
+      "localization_error": 22.47220505424423,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.1012404751839665e-05,
+      "peak_yx": [
+        111,
+        142
+      ],
+      "localization_error": 68.59300255857006,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 5.137348235119169e-05,
+      "peak_yx": [
+        0,
+        0
+      ],
+      "localization_error": 229.83907413666634,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.0267319615649397e-05,
+      "peak_yx": [
+        0,
+        251
+      ],
+      "localization_error": 179.21216476567656,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.095252056111513e-05,
+      "peak_yx": [
+        0,
+        251
+      ],
+      "localization_error": 194.62014284240982,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 2.5625535447059083e-05,
+      "peak_yx": [
+        0,
+        251
+      ],
+      "localization_error": 212.72752525237536,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 5.708091253555288e-05,
+      "peak_yx": [
+        0,
+        251
+      ],
+      "localization_error": 224.43930137121706,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 4.2087891222719646e-05,
+      "peak_yx": [
+        142,
+        142
+      ],
+      "localization_error": 4.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00016742924726163396,
+      "peak_yx": [
+        149,
+        144
+      ],
+      "localization_error": 21.540659228538015,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.9310851287060466e-05,
+      "peak_yx": [
+        0,
+        251
+      ],
+      "localization_error": 178.46568297574746,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 2.671087704073265e-06,
+      "peak_yx": [
+        0,
+        251
+      ],
+      "localization_error": 179.76929659983654,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.710078814703112e-05,
+      "peak_yx": [
+        92,
+        156
+      ],
+      "localization_error": 75.43208866258443,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0001964962235716672,
+      "peak_yx": [
+        91,
+        156
+      ],
+      "localization_error": 74.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 2.348901940820083e-06,
+      "peak_yx": [
+        134,
+        141
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.8647532556308812e-06,
+      "peak_yx": [
+        134,
+        164
+      ],
+      "localization_error": 28.442925306655784,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 7.0138308098104165e-06,
+      "peak_yx": [
+        172,
+        167
+      ],
+      "localization_error": 33.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.952361156137743e-06,
+      "peak_yx": [
+        172,
+        167
+      ],
+      "localization_error": 34.713109915419565,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.1850573049520217e-05,
+      "peak_yx": [
+        0,
+        0
+      ],
+      "localization_error": 231.4584195919431,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 2.444133785286919e-05,
+      "peak_yx": [
+        123,
+        158
+      ],
+      "localization_error": 1.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 8.970021611709725e-06,
+      "peak_yx": [
+        129,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 3.31115069976875e-05,
+      "peak_yx": [
+        0,
+        250
+      ],
+      "localization_error": 151.02979838429235,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 124,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.8669968347657105,
+      "peak_yx": [
+        129,
+        146
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 9,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.4118767507556317,
+      "peak_yx": [
+        149,
+        130
+      ],
+      "localization_error": 16.97056274847714,
+      "false_positive_pixel_count": 9
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.043450573062258066,
+      "peak_yx": [
+        109,
+        144
+      ],
+      "localization_error": 31.04834939252005,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.008874961620158536,
+      "peak_yx": [
+        111,
+        167
+      ],
+      "localization_error": 57.688820407423826,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.02378348266063293,
+      "peak_yx": [
+        184,
+        139
+      ],
+      "localization_error": 6.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.002220540997382294,
+      "peak_yx": [
+        110,
+        206
+      ],
+      "localization_error": 115.10864433221339,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.03324433551779487,
+      "peak_yx": [
+        109,
+        127
+      ],
+      "localization_error": 14.142135623730951,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0008581046415673288,
+      "peak_yx": [
+        108,
+        111
+      ],
+      "localization_error": 17.804493814764857,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0051360014418358494,
+      "peak_yx": [
+        188,
+        128
+      ],
+      "localization_error": 74.96665925596525,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00809361910753171,
+      "peak_yx": [
+        47,
+        128
+      ],
+      "localization_error": 101.83319694480774,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.269269749809308,
+      "peak_yx": [
+        107,
+        142
+      ],
+      "localization_error": 32.2490309931942,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.04398142278497021,
+      "peak_yx": [
+        94,
+        145
+      ],
+      "localization_error": 75.53806987208503,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.002088697669982683,
+      "peak_yx": [
+        47,
+        147
+      ],
+      "localization_error": 77.62087348130012,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0015876165518335292,
+      "peak_yx": [
+        134,
+        147
+      ],
+      "localization_error": 11.180339887498949,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.003859790517446605,
+      "peak_yx": [
+        136,
+        168
+      ],
+      "localization_error": 42.44997055358225,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0001856118663858479,
+      "peak_yx": [
+        173,
+        174
+      ],
+      "localization_error": 17.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 17,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.3956520775116878,
+      "peak_yx": [
+        130,
+        147
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.001262254216444529,
+      "peak_yx": [
+        108,
+        140
+      ],
+      "localization_error": 31.25699921617557,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.001172201501566098,
+      "peak_yx": [
+        87,
+        134
+      ],
+      "localization_error": 72.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00019759475622498803,
+      "peak_yx": [
+        95,
+        174
+      ],
+      "localization_error": 93.47192091746055,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0002666751060985918,
+      "peak_yx": [
+        206,
+        122
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0010538583657579877,
+      "peak_yx": [
+        144,
+        128
+      ],
+      "localization_error": 13.038404810405298,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 38,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.7161728259571578,
+      "peak_yx": [
+        147,
+        129
+      ],
+      "localization_error": 14.866068747318506,
+      "false_positive_pixel_count": 38
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.1026708406095849,
+      "peak_yx": [
+        127,
+        110
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 60,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.9295556926178405,
+      "peak_yx": [
+        128,
+        148
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.1197743185870535e-06,
+      "peak_yx": [
+        56,
+        127
+      ],
+      "localization_error": 43.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0012520297014105817,
+      "peak_yx": [
+        148,
+        127
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 7.048537956056339e-06,
+      "peak_yx": [
+        163,
+        124
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 8.62499824523958e-06,
+      "peak_yx": [
+        179,
+        137
+      ],
+      "localization_error": 4.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 7.958231367748362e-06,
+      "peak_yx": [
+        190,
+        133
+      ],
+      "localization_error": 9.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0003523430280163551,
+      "peak_yx": [
+        148,
+        128
+      ],
+      "localization_error": 15.556349186104045,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 9.925756147162973e-06,
+      "peak_yx": [
+        154,
+        127
+      ],
+      "localization_error": 34.48187929913333,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 6.545778626533618e-06,
+      "peak_yx": [
+        141,
+        119
+      ],
+      "localization_error": 45.27692569068709,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.040773432463857e-05,
+      "peak_yx": [
+        48,
+        104
+      ],
+      "localization_error": 85.44588931013593,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0006265607395633433,
+      "peak_yx": [
+        147,
+        123
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.5051006567997587e-05,
+      "peak_yx": [
+        138,
+        113
+      ],
+      "localization_error": 31.400636936215164,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 2.668346520748161e-05,
+      "peak_yx": [
+        117,
+        115
+      ],
+      "localization_error": 2.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0008891208851983022,
+      "peak_yx": [
+        148,
+        126
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.7031277038144944e-05,
+      "peak_yx": [
+        137,
+        111
+      ],
+      "localization_error": 29.120439557122072,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 9.332272540913569e-06,
+      "peak_yx": [
+        137,
+        110
+      ],
+      "localization_error": 28.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 2.5379753398857575e-05,
+      "peak_yx": [
+        145,
+        127
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.00043370465529237064,
+      "peak_yx": [
+        149,
+        128
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.7430056875421396e-06,
+      "peak_yx": [
+        151,
+        128
+      ],
+      "localization_error": 8.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 8.56480218254113e-06,
+      "peak_yx": [
+        128,
+        130
+      ],
+      "localization_error": 51.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.1794438759411044e-06,
+      "peak_yx": [
+        175,
+        126
+      ],
+      "localization_error": 27.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0015032306803559477,
+      "peak_yx": [
+        148,
+        124
+      ],
+      "localization_error": 13.038404810405298,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0005938380422737441,
+      "peak_yx": [
+        122,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 9.847937319653294e-05,
+      "peak_yx": [
+        140,
+        122
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 123,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.7332749675681832,
+      "peak_yx": [
+        126,
+        150
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00384354053867127,
+      "peak_yx": [
+        150,
+        128
+      ],
+      "localization_error": 16.401219466856727,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.019441738599039242,
+      "peak_yx": [
+        143,
+        132
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.05734620067553806,
+      "peak_yx": [
+        106,
+        165
+      ],
+      "localization_error": 60.90155991434045,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.015496800526801817,
+      "peak_yx": [
+        107,
+        188
+      ],
+      "localization_error": 90.60353193998566,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.013744382280865136,
+      "peak_yx": [
+        104,
+        209
+      ],
+      "localization_error": 121.65936051122412,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.016145978292091592,
+      "peak_yx": [
+        145,
+        129
+      ],
+      "localization_error": 14.422205101855956,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.008893532474311187,
+      "peak_yx": [
+        162,
+        131
+      ],
+      "localization_error": 42.20189569201838,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.002545533606747024,
+      "peak_yx": [
+        187,
+        130
+      ],
+      "localization_error": 75.7429864739964,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0501999242106091,
+      "peak_yx": [
+        48,
+        128
+      ],
+      "localization_error": 101.13851887386922,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0005229074630704205,
+      "peak_yx": [
+        104,
+        147
+      ],
+      "localization_error": 36.138621999185304,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.002369314910672711,
+      "peak_yx": [
+        86,
+        147
+      ],
+      "localization_error": 83.72574275573791,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.002871101080024455,
+      "peak_yx": [
+        113,
+        147
+      ],
+      "localization_error": 27.85677655436824,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0025602217352414837,
+      "peak_yx": [
+        122,
+        88
+      ],
+      "localization_error": 35.35533905932738,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.008062544470469196,
+      "peak_yx": [
+        122,
+        88
+      ],
+      "localization_error": 53.009433122794285,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00042133503693641194,
+      "peak_yx": [
+        79,
+        88
+      ],
+      "localization_error": 86.70063436907483,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.002692274894296628,
+      "peak_yx": [
+        112,
+        128
+      ],
+      "localization_error": 12.206555615733702,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.06527997443444744,
+      "peak_yx": [
+        147,
+        129
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0017151509333677096,
+      "peak_yx": [
+        162,
+        124
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0013316357693447108,
+      "peak_yx": [
+        96,
+        71
+      ],
+      "localization_error": 93.94147114027967,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0005014459311911691,
+      "peak_yx": [
+        48,
+        61
+      ],
+      "localization_error": 162.5423021862309,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.010279492368424478,
+      "peak_yx": [
+        127,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.013745358341863922,
+      "peak_yx": [
+        126,
+        111
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.04845426914618659,
+      "peak_yx": [
+        108,
+        129
+      ],
+      "localization_error": 14.866068747318506,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 66,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.8915528357246244,
+      "peak_yx": [
+        128,
+        148
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 4.8058343296018035e-06,
+      "peak_yx": [
+        195,
+        151
+      ],
+      "localization_error": 66.73080248281148,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 3.988441086640035e-05,
+      "peak_yx": [
+        150,
+        129
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 7.376249053630362e-05,
+      "peak_yx": [
+        111,
+        189
+      ],
+      "localization_error": 72.24956747275377,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 2.6787259891293805e-05,
+      "peak_yx": [
+        108,
+        191
+      ],
+      "localization_error": 91.67878707749138,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0001047032047437515,
+      "peak_yx": [
+        108,
+        190
+      ],
+      "localization_error": 107.37783756436893,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 2.7130448350825765e-05,
+      "peak_yx": [
+        0,
+        255
+      ],
+      "localization_error": 182.22239159883728,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00013162951980858926,
+      "peak_yx": [
+        96,
+        27
+      ],
+      "localization_error": 56.859475903318,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.288669079803796e-05,
+      "peak_yx": [
+        91,
+        27
+      ],
+      "localization_error": 39.6232255123179,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 8.243810113689211e-05,
+      "peak_yx": [
+        91,
+        27
+      ],
+      "localization_error": 28.792360097775937,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 5.7198798108694805e-06,
+      "peak_yx": [
+        7,
+        218
+      ],
+      "localization_error": 154.3502510525979,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 2.8066560938076826e-05,
+      "peak_yx": [
+        6,
+        194
+      ],
+      "localization_error": 173.0115603073968,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 5.803080967957506e-05,
+      "peak_yx": [
+        131,
+        104
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 6.085399570475209e-06,
+      "peak_yx": [
+        89,
+        91
+      ],
+      "localization_error": 57.30619512757761,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 6.413267888361157e-05,
+      "peak_yx": [
+        114,
+        91
+      ],
+      "localization_error": 58.180752831155424,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.296253682099814e-05,
+      "peak_yx": [
+        84,
+        91
+      ],
+      "localization_error": 81.39410298049853,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 5.300676804798372e-06,
+      "peak_yx": [
+        213,
+        168
+      ],
+      "localization_error": 65.36818798161687,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 3.796127016056418e-06,
+      "peak_yx": [
+        145,
+        126
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 1.5094056877573599e-05,
+      "peak_yx": [
+        6,
+        154
+      ],
+      "localization_error": 154.30165261590687,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 9.809903544145343e-06,
+      "peak_yx": [
+        6,
+        190
+      ],
+      "localization_error": 182.14829123546562,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 2.156861987752121e-06,
+      "peak_yx": [
+        63,
+        252
+      ],
+      "localization_error": 184.2878183711555,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.95488682144203e-06,
+      "peak_yx": [
+        0,
+        255
+      ],
+      "localization_error": 154.1590088188167,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 8.033315022370922e-05,
+      "peak_yx": [
+        119,
+        111
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 8.0093583927705e-06,
+      "peak_yx": [
+        218,
+        126
+      ],
+      "localization_error": 62.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 131,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.855426629851023,
+      "peak_yx": [
+        128,
+        149
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0014948629350564266,
+      "peak_yx": [
+        201,
+        6
+      ],
+      "localization_error": 113.718951806636,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00014981854600312237,
+      "peak_yx": [
+        4,
+        166
+      ],
+      "localization_error": 138.2931668593933,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.06601354816905104,
+      "peak_yx": [
+        175,
+        146
+      ],
+      "localization_error": 11.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.21386487921900638,
+      "peak_yx": [
+        190,
+        139
+      ],
+      "localization_error": 6.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.2916613267859118,
+      "peak_yx": [
+        213,
+        144
+      ],
+      "localization_error": 11.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.018551664506676255,
+      "peak_yx": [
+        109,
+        127
+      ],
+      "localization_error": 14.142135623730951,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.005023418358226892,
+      "peak_yx": [
+        82,
+        128
+      ],
+      "localization_error": 48.27007354458868,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00011665040559918427,
+      "peak_yx": [
+        68,
+        131
+      ],
+      "localization_error": 75.82216034906945,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0007746255353887886,
+      "peak_yx": [
+        48,
+        130
+      ],
+      "localization_error": 102.59142264341595,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.022199396789678603,
+      "peak_yx": [
+        128,
+        147
+      ],
+      "localization_error": 14.212670403551895,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0014893400754250196,
+      "peak_yx": [
+        91,
+        149
+      ],
+      "localization_error": 79.07591289387686,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 10,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.3712794544501253,
+      "peak_yx": [
+        129,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 5.247527943527924e-05,
+      "peak_yx": [
+        7,
+        13
+      ],
+      "localization_error": 169.29264603047588,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00018060603497045338,
+      "peak_yx": [
+        40,
+        126
+      ],
+      "localization_error": 125.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 3.389608296616054e-05,
+      "peak_yx": [
+        22,
+        0
+      ],
+      "localization_error": 173.92527130926086,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 75,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.8517399495214951,
+      "peak_yx": [
+        148,
+        127
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 65,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.9498428808916404,
+      "peak_yx": [
+        148,
+        128
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 63,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.9603728219444226,
+      "peak_yx": [
+        168,
+        127
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 67,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.9459090737356708,
+      "peak_yx": [
+        188,
+        127
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 67,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.9028030848127672,
+      "peak_yx": [
+        208,
+        128
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 2
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00015346037261166948,
+      "peak_yx": [
+        7,
+        14
+      ],
+      "localization_error": 140.60227594174995,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 59,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.6159976837233965,
+      "peak_yx": [
+        129,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 142,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.914758601903138,
+      "peak_yx": [
+        128,
+        109
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 0,
+      "sample_index": 0,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 61,
+      "threshold_hit": true,
+      "top_k_hit": true,
+      "peak_probability": 0.9029145792923221,
+      "peak_yx": [
+        128,
+        147
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 1,
+      "sample_index": 1,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.001141789144549873,
+      "peak_yx": [
+        56,
+        48
+      ],
+      "localization_error": 81.68843247363729,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 2,
+      "sample_index": 2,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0003307159854224011,
+      "peak_yx": [
+        112,
+        48
+      ],
+      "localization_error": 75.02666192761077,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 3,
+      "sample_index": 2,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0006761740021049193,
+      "peak_yx": [
+        113,
+        93
+      ],
+      "localization_error": 51.884487084291386,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 4,
+      "sample_index": 2,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00037385032239597185,
+      "peak_yx": [
+        115,
+        85
+      ],
+      "localization_error": 70.68238818828917,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 5,
+      "sample_index": 2,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0006178751536950474,
+      "peak_yx": [
+        114,
+        88
+      ],
+      "localization_error": 89.1852005660132,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 6,
+      "sample_index": 3,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00229711285174385,
+      "peak_yx": [
+        64,
+        140
+      ],
+      "localization_error": 59.61543424315552,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 7,
+      "sample_index": 3,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0018365119725366839,
+      "peak_yx": [
+        54,
+        63
+      ],
+      "localization_error": 66.94027188471824,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 8,
+      "sample_index": 3,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0011963630536446206,
+      "peak_yx": [
+        65,
+        138
+      ],
+      "localization_error": 83.09632964216891,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 9,
+      "sample_index": 3,
+      "anchor_step": 3,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.002354006588237703,
+      "peak_yx": [
+        54,
+        63
+      ],
+      "localization_error": 64.4980619863884,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 10,
+      "sample_index": 4,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00016832645944608347,
+      "peak_yx": [
+        123,
+        150
+      ],
+      "localization_error": 20.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 11,
+      "sample_index": 4,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00016422819977190937,
+      "peak_yx": [
+        34,
+        33
+      ],
+      "localization_error": 159.53056133543816,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 12,
+      "sample_index": 5,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.007069620266227123,
+      "peak_yx": [
+        53,
+        133
+      ],
+      "localization_error": 67.68308503607086,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 13,
+      "sample_index": 7,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0013252458039094829,
+      "peak_yx": [
+        30,
+        132
+      ],
+      "localization_error": 109.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 14,
+      "sample_index": 7,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0022153892084679377,
+      "peak_yx": [
+        34,
+        133
+      ],
+      "localization_error": 131.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 15,
+      "sample_index": 7,
+      "anchor_step": 2,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0036325938432067396,
+      "peak_yx": [
+        39,
+        134
+      ],
+      "localization_error": 126.09916732476864,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 16,
+      "sample_index": 8,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0002734373637332522,
+      "peak_yx": [
+        255,
+        0
+      ],
+      "localization_error": 154.02921800749363,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 17,
+      "sample_index": 10,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0004336135027585534,
+      "peak_yx": [
+        255,
+        0
+      ],
+      "localization_error": 153.3883959105121,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 18,
+      "sample_index": 10,
+      "anchor_step": 1,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0003904017344175069,
+      "peak_yx": [
+        255,
+        0
+      ],
+      "localization_error": 139.7855500400524,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 19,
+      "sample_index": 10,
+      "anchor_step": 2,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.00036564664770972474,
+      "peak_yx": [
+        255,
+        0
+      ],
+      "localization_error": 128.79829191413992,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 20,
+      "sample_index": 10,
+      "anchor_step": 3,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": false,
+      "peak_probability": 0.0003861517628957549,
+      "peak_yx": [
+        255,
+        0
+      ],
+      "localization_error": 118.29623831720095,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 21,
+      "sample_index": 11,
+      "anchor_step": 0,
+      "target_pixel_count": 722,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.00017843030531039262,
+      "peak_yx": [
+        126,
+        107
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 22,
+      "sample_index": 13,
+      "anchor_step": 0,
+      "target_pixel_count": 361,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.0006037893694313572,
+      "peak_yx": [
+        122,
+        110
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "target_index": 23,
+      "sample_index": 15,
+      "anchor_step": 0,
+      "target_pixel_count": 1083,
+      "predicted_positive_count": 0,
+      "threshold_hit": false,
+      "top_k_hit": true,
+      "peak_probability": 0.007743066948293422,
+      "peak_yx": [
+        129,
+        105
+      ],
+      "localization_error": 0.0,
+      "false_positive_pixel_count": 0
+    }
+  ]
+}

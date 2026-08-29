@@ -1,0 +1,103 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "audit_kind": "closed_loop_iteration_complexity",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "read_only": true,
+  "operations": [
+    {
+      "function": "infer.infer_anchor",
+      "source_location": "infer.py:265",
+      "operation": "one fixed-shape model forward for each non-empty exploration batch",
+      "estimated_complexity": "O(1) with respect to current graph size",
+      "executed_every_iteration": true,
+      "likely_runtime_impact": "GPU cost is bounded; sampled GPU utilization was 0% while CPU remained about 160%, so it does not explain the late graph-size-dependent slowdown."
+    },
+    {
+      "function": "Path.make_path_input",
+      "source_location": "utils/model_utils.py:819",
+      "operation": "edge_rtree window query followed by two OpenCV line draws for every returned directed edge",
+      "estimated_complexity": "O(log E + k_window), degenerating toward O(E) when dense/duplicate edges overlap the 256x256 window",
+      "executed_every_iteration": true,
+      "likely_runtime_impact": "HIGH; the R-tree is output-sensitive and no direction/duplicate suppression is applied in the walked-path loop."
+    },
+    {
+      "function": "Path._add_edge_to_rtree",
+      "source_location": "utils/model_utils.py:132",
+      "operation": "insert each accepted directed edge into a dynamic spatial index",
+      "estimated_complexity": "Expected O(log E) per directed edge insertion",
+      "executed_every_iteration": "WHEN_EDGE_ACCEPTED",
+      "likely_runtime_impact": "MEDIUM; after iteration 2000 almost every iteration inserts two or four directed edges."
+    },
+    {
+      "function": "Path.get_vertex_from_point_in_graph",
+      "source_location": "utils/model_utils.py:224",
+      "operation": "exact-point R-tree query followed by a scan of all intersecting edge ids and both endpoints",
+      "estimated_complexity": "O(log E + k_point)",
+      "executed_every_iteration": "CONDITIONAL",
+      "likely_runtime_impact": "HIGH when many duplicate/overlapping edges share a coordinate."
+    },
+    {
+      "function": "Path._follow_graph_one_step",
+      "source_location": "utils/model_utils.py:566",
+      "operation": "R-tree range queries over key points and generated anchor points, removal of locally explored points, and nearest-endpoint scans",
+      "estimated_complexity": "O(log V + k_anchor + k_key + k_explored)",
+      "executed_every_iteration": "ONE_OR_MORE_TIMES",
+      "likely_runtime_impact": "MEDIUM_TO_HIGH when the local anchor density grows."
+    },
+    {
+      "function": "graph.get_nearby_vertices/get_nearby_edge_segments",
+      "source_location": "lib/graph.py:736",
+      "operation": "depth-limited adjacency traversal and nested duplicate/opposite-edge scan",
+      "estimated_complexity": "Local O(d^2) in get_nearby_edge_segments; depth-2 traversal grows with local degree",
+      "executed_every_iteration": "CONDITIONAL",
+      "likely_runtime_impact": "MEDIUM_TO_HIGH if repeated connections inflate local degree."
+    },
+    {
+      "function": "model_utils.map_to_coordinate",
+      "source_location": "utils/model_utils.py:1810",
+      "operation": "threshold and connected-component analysis on up to four 256x256 maps",
+      "estimated_complexity": "O(NUM_TARGETS * WINDOW_SIZE^2), constant with respect to graph size",
+      "executed_every_iteration": true,
+      "likely_runtime_impact": "BOUNDED; cannot explain the monotonic graph-size correlation by itself."
+    },
+    {
+      "function": "infer.post_process_graph",
+      "source_location": "infer.py:524",
+      "operation": "road-segment reconstruction, full edge scan, coordinate vertex deduplication, and serialization",
+      "estimated_complexity": "At least O(V + E), plus road-segment construction",
+      "executed_every_iteration": false,
+      "likely_runtime_impact": "END_ONLY; not responsible for current exploration slowdown."
+    },
+    {
+      "function": "directional_apls/topology_metrics/greedy_match",
+      "source_location": "tools/seg_raster/audit_stage_s3a_graph.py:171",
+      "operation": "NetworkX shortest paths, all-pairs candidate construction for greedy matching, and graph metric calculation",
+      "estimated_complexity": "Post-run Dijkstra plus O(V_reference * V_candidate) matching candidates and sorting",
+      "executed_every_iteration": false,
+      "likely_runtime_impact": "POST_COMPLETION_ONLY; not yet running for C1-best."
+    }
+  ],
+  "explicit_checks": {
+    "full_graph_vertex_scan_every_iteration": false,
+    "full_graph_edge_scan_every_iteration": false,
+    "networkx_shortest_path_every_iteration": false,
+    "connected_component_recomputation_every_iteration": "IMAGE_MAP_ONLY_FIXED_SIZE",
+    "duplicate_edge_global_search_every_iteration": false,
+    "nearest_node_brute_force_every_iteration": false,
+    "graph_copy_or_deepcopy_every_iteration": false,
+    "repeated_graph_serialization_every_iteration": false,
+    "output_sensitive_spatial_queries_every_iteration": true
+  },
+  "empirical_scaling": {
+    "iteration_vs_sec_per_iteration_pearson_r": 0.9502446962021416,
+    "vertex_count_vs_sec_per_iteration_pearson_r": 0.9007556135594094,
+    "directed_edge_count_vs_sec_per_iteration_pearson_r": 0.942970198901275,
+    "iteration_linear_fit_r_squared": 0.9030634247805334,
+    "directed_edge_linear_fit_r_squared": 0.8892867344364734,
+    "early_0_to_2000_sec_per_iteration": 0.094,
+    "late_8000_to_10861_sec_per_iteration": 10.074799021321216,
+    "interpretation": "Per-iteration CPU work grows strongly with accumulated graph scale. Source inspection points to output-sensitive R-tree queries, drawing all locally intersecting directed edges, and local-degree scans rather than a per-iteration NetworkX/global-serialization call."
+  },
+  "dominant_runtime_assessment": "CPU-side local graph-density amplification; exact per-function attribution is INCONCLUSIVE without profiling instrumentation, which was intentionally not added to the live process."
+}

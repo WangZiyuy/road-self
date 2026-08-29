@@ -1,0 +1,173 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "pixel_array_sha_definition": "sha256(np.ascontiguousarray(array).tobytes())",
+  "files": {
+    "aerial_full_canvas": {
+      "local": {
+        "size_bytes": 33561629,
+        "byte_sha256": "14cdcb35da3cb1923136d76f9f2263ad86e99b522e9e98a9eebfc46c01ad3b9f",
+        "decoded_shape": [
+          8192,
+          8192,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "decoded_pixel_array_sha256": "79a49e49dc590e655935e6862b9f3b98d969ce20303607d5cadcc5341b6a02e3",
+        "metadata": {
+          "format": "PNG",
+          "mode": "RGB",
+          "info": {}
+        }
+      },
+      "remote": {
+        "size_bytes": 33561629,
+        "byte_sha256": "14cdcb35da3cb1923136d76f9f2263ad86e99b522e9e98a9eebfc46c01ad3b9f",
+        "decoded_shape": [
+          8192,
+          8192,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "decoded_pixel_array_sha256": "79a49e49dc590e655935e6862b9f3b98d969ce20303607d5cadcc5341b6a02e3",
+        "metadata": {
+          "format": "PNG",
+          "mode": "RGB",
+          "info": {}
+        }
+      },
+      "byte_sha_equal": true,
+      "decoded_shape_equal": true,
+      "decoded_dtype_equal": true,
+      "decoded_pixel_array_sha_equal": true,
+      "max_absolute_difference": 0,
+      "different_pixel_count": 0,
+      "metadata_equal": true,
+      "png_encoding_difference_only": false
+    },
+    "aerial_tile": {
+      "local": {
+        "size_bytes": 25120650,
+        "byte_sha256": "0abb67cfbc25d77cbc9dde71fdaffc441114e1c53f6d77f0e0256f2645db45b9",
+        "decoded_shape": [
+          4096,
+          4096,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "decoded_pixel_array_sha256": "eaf7f9c21ca7c8c8ee6f99a73bfa0b8321cce6fb5fbfb50b1372e6c1936df895",
+        "metadata": {
+          "format": "PNG",
+          "mode": "RGB",
+          "info": {}
+        }
+      },
+      "remote": {
+        "size_bytes": 25120650,
+        "byte_sha256": "0abb67cfbc25d77cbc9dde71fdaffc441114e1c53f6d77f0e0256f2645db45b9",
+        "decoded_shape": [
+          4096,
+          4096,
+          3
+        ],
+        "decoded_dtype": "uint8",
+        "decoded_pixel_array_sha256": "eaf7f9c21ca7c8c8ee6f99a73bfa0b8321cce6fb5fbfb50b1372e6c1936df895",
+        "metadata": {
+          "format": "PNG",
+          "mode": "RGB",
+          "info": {}
+        }
+      },
+      "byte_sha_equal": true,
+      "decoded_shape_equal": true,
+      "decoded_dtype_equal": true,
+      "decoded_pixel_array_sha_equal": true,
+      "max_absolute_difference": 0,
+      "different_pixel_count": 0,
+      "metadata_equal": true,
+      "png_encoding_difference_only": false
+    },
+    "raster_full_canvas": {
+      "local": {
+        "size_bytes": 697418,
+        "byte_sha256": "8fa530473e30d8ba27667336c119378fb66b02bf7e7bba9da0d0489cddbd0a1c",
+        "decoded_shape": [
+          8192,
+          8192
+        ],
+        "decoded_dtype": "uint8",
+        "decoded_pixel_array_sha256": "ed532245f554fccef3280058dd9214a3ae66e79915d4b9b8aa18b541db5f104d",
+        "metadata": {
+          "format": "PNG",
+          "mode": "L",
+          "info": {}
+        }
+      },
+      "remote": {
+        "size_bytes": 697418,
+        "byte_sha256": "8fa530473e30d8ba27667336c119378fb66b02bf7e7bba9da0d0489cddbd0a1c",
+        "decoded_shape": [
+          8192,
+          8192
+        ],
+        "decoded_dtype": "uint8",
+        "decoded_pixel_array_sha256": "ed532245f554fccef3280058dd9214a3ae66e79915d4b9b8aa18b541db5f104d",
+        "metadata": {
+          "format": "PNG",
+          "mode": "L",
+          "info": {}
+        }
+      },
+      "byte_sha_equal": true,
+      "decoded_shape_equal": true,
+      "decoded_dtype_equal": true,
+      "decoded_pixel_array_sha_equal": true,
+      "max_absolute_difference": 0,
+      "different_pixel_count": 0,
+      "metadata_equal": true,
+      "png_encoding_difference_only": false
+    },
+    "raster_tile": {
+      "local": {
+        "size_bytes": 489982,
+        "byte_sha256": "b36055cf866e0e3eb62f278ce5d77cf42d62cd0d714e29aa6555cd40ee1425b1",
+        "decoded_shape": [
+          4096,
+          4096
+        ],
+        "decoded_dtype": "uint8",
+        "decoded_pixel_array_sha256": "ad1a9c8440fc00cfd8e8b7f1dc8f64a0f20d35a40adfe13cb1c901345826e175",
+        "metadata": {
+          "format": "PNG",
+          "mode": "L",
+          "info": {}
+        }
+      },
+      "remote": {
+        "size_bytes": 489982,
+        "byte_sha256": "b36055cf866e0e3eb62f278ce5d77cf42d62cd0d714e29aa6555cd40ee1425b1",
+        "decoded_shape": [
+          4096,
+          4096
+        ],
+        "decoded_dtype": "uint8",
+        "decoded_pixel_array_sha256": "ad1a9c8440fc00cfd8e8b7f1dc8f64a0f20d35a40adfe13cb1c901345826e175",
+        "metadata": {
+          "format": "PNG",
+          "mode": "L",
+          "info": {}
+        }
+      },
+      "byte_sha_equal": true,
+      "decoded_shape_equal": true,
+      "decoded_dtype_equal": true,
+      "decoded_pixel_array_sha_equal": true,
+      "max_absolute_difference": 0,
+      "different_pixel_count": 0,
+      "metadata_equal": true,
+      "png_encoding_difference_only": false
+    }
+  },
+  "all_decoded_pixel_arrays_identical": true,
+  "encoding_difference_claim_allowed": true
+}

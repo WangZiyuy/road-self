@@ -1,0 +1,530 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "actual_loss_contract": {
+    "function": "tools/seg_raster/train_stage_s3.py:_losses",
+    "criterion": "binary_cross_entropy_with_logits",
+    "reduction": "sum",
+    "batch_normalization": null,
+    "class_weighting": null,
+    "positive_weighting": null,
+    "total": "road + junction + anchor + anchor_lowrs"
+  },
+  "checkpoint_batch_forensics": {
+    "C0": {
+      "best": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 5217.8701171875,
+          "road": 1559.7392578125,
+          "junction": 615.1444702148438,
+          "total": 7392.75390625
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 1990.680745541222,
+            "image_backbone": 14433.100149393129,
+            "road_head": 1909.5446937220881
+          },
+          "junction": {
+            "anchor_or_other": 1273.7458481169062,
+            "image_backbone": 7023.726441827166,
+            "junction_head": 1465.2223875030395
+          },
+          "anchor": {
+            "anchor_or_other": 70696.422810982,
+            "image_backbone": 82598.88349513059
+          },
+          "total": {
+            "anchor_or_other": 70818.3957798733,
+            "image_backbone": 87256.97931133509,
+            "junction_head": 1465.2223875030395,
+            "road_head": 1909.5446937220881
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      },
+      "latest": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 14709.0400390625,
+          "road": 3394.15234375,
+          "junction": 1102.20361328125,
+          "total": 19205.39453125
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2358.0080116022964,
+            "image_backbone": 7554.774266125982,
+            "road_head": 4461.967286313623
+          },
+          "junction": {
+            "anchor_or_other": 1948.9240575061553,
+            "image_backbone": 3059.482843878995,
+            "junction_head": 2254.871479074533
+          },
+          "anchor": {
+            "anchor_or_other": 87084.13494380961,
+            "image_backbone": 275147.96432461735
+          },
+          "total": {
+            "anchor_or_other": 87415.97584625687,
+            "image_backbone": 275330.96867372614,
+            "junction_head": 2254.871479074533,
+            "road_head": 4461.967286313623
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      }
+    },
+    "C1": {
+      "best": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 3176.61181640625,
+          "road": 2153.62451171875,
+          "junction": 874.9701538085938,
+          "total": 6205.20654296875
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2476.5341069666,
+            "image_backbone": 8572.204983900188,
+            "raster_fusion": 2104.2036974959533,
+            "road_head": 2887.4340445886764
+          },
+          "junction": {
+            "anchor_or_other": 2260.8192379964285,
+            "image_backbone": 5042.5930644674645,
+            "junction_head": 2142.0664302004943,
+            "raster_fusion": 1679.4276134285662
+          },
+          "anchor": {
+            "anchor_or_other": 47438.3359367482,
+            "image_backbone": 24217.287644508928
+          },
+          "total": {
+            "anchor_or_other": 47584.44886648951,
+            "image_backbone": 26935.1675214768,
+            "junction_head": 2142.0664302004943,
+            "raster_fusion": 2782.042542391673,
+            "road_head": 2887.4340445886764
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      },
+      "latest": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 18536.703125,
+          "road": 3249.73876953125,
+          "junction": 992.666259765625,
+          "total": 22779.107421875
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2079.4696965148582,
+            "image_backbone": 6632.142623265022,
+            "raster_fusion": 2966.63683909063,
+            "road_head": 3419.2997372740056
+          },
+          "junction": {
+            "anchor_or_other": 1395.360739240604,
+            "image_backbone": 2600.0858601647424,
+            "junction_head": 1730.3387678842957,
+            "raster_fusion": 1868.7585193137888
+          },
+          "anchor": {
+            "anchor_or_other": 119092.70129790198,
+            "image_backbone": 634927.4002173888
+          },
+          "total": {
+            "anchor_or_other": 119083.59176350349,
+            "image_backbone": 635291.8933243825,
+            "junction_head": 1730.3387678842957,
+            "raster_fusion": 4178.742271460106,
+            "road_head": 3419.2997372740056
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      }
+    },
+    "C2": {
+      "best": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 5373.408203125,
+          "road": 1732.115478515625,
+          "junction": 662.029296875,
+          "total": 7767.552734375
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2216.9935197657014,
+            "image_backbone": 17113.871584628992,
+            "raster_fusion": 1385.0410486114322,
+            "road_head": 2296.6035606054356
+          },
+          "junction": {
+            "anchor_or_other": 1580.3701421380058,
+            "image_backbone": 6570.032008875856,
+            "junction_head": 1464.1246969092174,
+            "raster_fusion": 672.855146480514
+          },
+          "anchor": {
+            "anchor_or_other": 87008.66156254403,
+            "image_backbone": 50735.95609247717
+          },
+          "total": {
+            "anchor_or_other": 87081.21656214677,
+            "image_backbone": 56414.250432321736,
+            "junction_head": 1464.1246969092174,
+            "raster_fusion": 1528.8594270212532,
+            "road_head": 2296.6035606054356
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      },
+      "latest": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 15470.638671875,
+          "road": 3543.21533203125,
+          "junction": 1169.507568359375,
+          "total": 20183.361328125
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2394.790090950193,
+            "image_backbone": 11868.113126988414,
+            "raster_fusion": 2360.23904784378,
+            "road_head": 3409.625855651411
+          },
+          "junction": {
+            "anchor_or_other": 1131.053014757819,
+            "image_backbone": 2727.082439534755,
+            "junction_head": 1505.3627469184376,
+            "raster_fusion": 1146.0767906148349
+          },
+          "anchor": {
+            "anchor_or_other": 72990.47100841173,
+            "image_backbone": 394976.2851691737
+          },
+          "total": {
+            "anchor_or_other": 73150.07720893955,
+            "image_backbone": 396562.6674605203,
+            "junction_head": 1505.3627469184376,
+            "raster_fusion": 2793.367835093289,
+            "road_head": 3409.625855651411
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      }
+    },
+    "C3": {
+      "best": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 4170.33251953125,
+          "road": 1750.471923828125,
+          "junction": 614.0718994140625,
+          "total": 6534.87646484375
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2238.4178933199,
+            "image_backbone": 18011.410482704774,
+            "raster_fusion": 1571.9829947621533,
+            "road_head": 2310.706681096882
+          },
+          "junction": {
+            "anchor_or_other": 1634.9047267855035,
+            "image_backbone": 7249.367506525068,
+            "junction_head": 1335.008179350715,
+            "raster_fusion": 752.2101141623735
+          },
+          "anchor": {
+            "anchor_or_other": 116811.78468358298,
+            "image_backbone": 34675.180026903756
+          },
+          "total": {
+            "anchor_or_other": 116862.83396443681,
+            "image_backbone": 42607.730094225655,
+            "junction_head": 1335.008179350715,
+            "raster_fusion": 1919.6611075987832,
+            "road_head": 2310.706681096882
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      },
+      "latest": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 5331.419921875,
+          "road": 3322.34716796875,
+          "junction": 1111.3231201171875,
+          "total": 9765.0908203125
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2062.000881648822,
+            "image_backbone": 7186.027842678481,
+            "raster_fusion": 2590.3424339248277,
+            "road_head": 3278.221784147693
+          },
+          "junction": {
+            "anchor_or_other": 1462.4901008346476,
+            "image_backbone": 2577.5321209543245,
+            "junction_head": 1690.8849346041152,
+            "raster_fusion": 1546.5580181806317
+          },
+          "anchor": {
+            "anchor_or_other": 107804.91890934946,
+            "image_backbone": 42627.16085852008
+          },
+          "total": {
+            "anchor_or_other": 107845.80802418265,
+            "image_backbone": 43335.43811757622,
+            "junction_head": 1690.8849346041152,
+            "raster_fusion": 3191.4469671588145,
+            "road_head": 3278.221784147693
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      }
+    },
+    "J0": {
+      "best": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 4685.56640625,
+          "road": 1730.583740234375,
+          "junction": 613.4889526367188,
+          "total": 7029.63916015625
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2177.378215532711,
+            "image_backbone": 11740.820998708741,
+            "road_head": 2864.13050410306
+          },
+          "junction": {
+            "anchor_or_other": 1212.496554740972,
+            "image_backbone": 4727.055622670433,
+            "junction_head": 1369.9600416560195
+          },
+          "anchor": {
+            "anchor_or_other": 82381.69515431074,
+            "image_backbone": 46671.83455614652,
+            "junction_head": 3157.0759745531277,
+            "road_head": 2604.822039781921
+          },
+          "total": {
+            "anchor_or_other": 82450.54416617166,
+            "image_backbone": 50189.25939740532,
+            "junction_head": 3428.532377961326,
+            "road_head": 4351.925221357404
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      },
+      "latest": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 10461.775390625,
+          "road": 3528.6943359375,
+          "junction": 1042.8565673828125,
+          "total": 15033.326171875
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 2160.00465675498,
+            "image_backbone": 7870.205418627291,
+            "road_head": 4269.318972037024
+          },
+          "junction": {
+            "anchor_or_other": 949.9885424040126,
+            "image_backbone": 2074.249984050879,
+            "junction_head": 1802.4529513439588
+          },
+          "anchor": {
+            "anchor_or_other": 67710.55787024913,
+            "image_backbone": 135559.87565486945,
+            "junction_head": 12230.039706800982,
+            "road_head": 14179.076022185898
+          },
+          "total": {
+            "anchor_or_other": 67891.20205066043,
+            "image_backbone": 136313.6231672374,
+            "junction_head": 12443.522727309082,
+            "road_head": 15588.937105307325
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      }
+    },
+    "J1": {
+      "best": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 5519.9326171875,
+          "road": 1987.201904296875,
+          "junction": 600.6445922851562,
+          "total": 8107.779296875
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 1769.029695248455,
+            "image_backbone": 9565.82676168874,
+            "raster_fusion": 1554.8682836667779,
+            "road_head": 2659.7994057594337
+          },
+          "junction": {
+            "anchor_or_other": 852.9344991022132,
+            "image_backbone": 2020.0234663277615,
+            "junction_head": 1222.585807669214,
+            "raster_fusion": 916.0258042741378
+          },
+          "anchor": {
+            "anchor_or_other": 59104.02980583101,
+            "image_backbone": 45938.72040805861,
+            "junction_head": 5187.766269545972,
+            "raster_fusion": 3219.8200318556396,
+            "road_head": 3766.8195228141494
+          },
+          "total": {
+            "anchor_or_other": 59185.23992065371,
+            "image_backbone": 47697.92519584115,
+            "junction_head": 5347.409477527259,
+            "raster_fusion": 3899.4033686556195,
+            "road_head": 5114.92486966322
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      },
+      "latest": {
+        "mode": "model.train() forensic gradient pass; no optimizer step",
+        "loss_reduction": "sum",
+        "class_weighting": null,
+        "positive_weighting": null,
+        "loss_values": {
+          "anchor": 9243.4453125,
+          "road": 2859.812255859375,
+          "junction": 799.7577514648438,
+          "total": 12903.015625
+        },
+        "gradient_l2_norm_by_parameter_group": {
+          "road": {
+            "anchor_or_other": 1657.9620567607546,
+            "image_backbone": 6020.283143930873,
+            "raster_fusion": 3053.33519473108,
+            "road_head": 3519.9547645577322
+          },
+          "junction": {
+            "anchor_or_other": 602.1602193915518,
+            "image_backbone": 1428.6366909840592,
+            "junction_head": 1288.48303620665,
+            "raster_fusion": 901.7486879466284
+          },
+          "anchor": {
+            "anchor_or_other": 47853.778022635706,
+            "image_backbone": 115230.37959202507,
+            "junction_head": 10732.935601758383,
+            "raster_fusion": 10224.882711907176,
+            "road_head": 12608.450452586547
+          },
+          "total": {
+            "anchor_or_other": 47938.54444379324,
+            "image_backbone": 116474.74538314102,
+            "junction_head": 10836.506097830954,
+            "raster_fusion": 11926.495350651248,
+            "road_head": 13600.789661042876
+          }
+        },
+        "junction_target_positive_count": 65,
+        "junction_target_negative_count": 8127,
+        "junction_pure_background_logit_minus_80_loss_sum": 5200.0,
+        "junction_one_positive_corrected_logit_plus_80_loss_sum": 5120.0,
+        "one_correct_positive_loss_reduction": 80.0
+      }
+    }
+  },
+  "interpretation": "Summed dense losses give background pixels substantial aggregate influence. Gradient norms are forensic passes on the frozen checkpoint and first validation batch; no optimizer update was performed."
+}

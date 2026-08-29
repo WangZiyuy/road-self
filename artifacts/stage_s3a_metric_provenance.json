@@ -1,0 +1,147 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "final_metrics_classification": "LAST_TRAIN_BATCH_METRICS",
+  "fields": {
+    "final_metrics": {
+      "definition": "tools/seg_raster/train_stage_s3.py:_seg_metrics and main lines 329-375,427-428",
+      "input": "last deterministic training batch at optimizer step 102400",
+      "split": "train",
+      "batch_identity": "last sample-plan batch",
+      "model_mode": "train",
+      "torch_no_grad": false,
+      "checkpoint_kind": "none; live training model",
+      "checkpoint_step": 102400,
+      "checkpoint_sha256": null,
+      "sigmoid": "once inside _seg_metrics",
+      "threshold": 0.3,
+      "aggregation": "micro within one batch",
+      "cross_batch_accumulation": false,
+      "optimizer_timing": "pre-update output measured after optimizer.step",
+      "classification_trace": {
+        "dataset_split": "train",
+        "batch_count": 1,
+        "cross_batch_accumulation": false,
+        "model_mode": "train",
+        "torch_no_grad": false,
+        "computed_from_output_before_optimizer_update": true,
+        "stored_after_optimizer_update": true,
+        "target_prediction_alias": false,
+        "accumulator_reset": false,
+        "computation_bug": false
+      },
+      "per_run_values": {
+        "C0": {
+          "road_precision": 0.9928825622775801,
+          "road_recall": 0.998211091234347,
+          "road_f1": 0.9955396966993756,
+          "road_iou": 0.9911190053285968,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9955529006759908
+        },
+        "C1": {
+          "road_precision": 0.998211091234347,
+          "road_recall": 0.998211091234347,
+          "road_f1": 0.998211091234347,
+          "road_iou": 0.9964285714285714,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9982132208876395
+        },
+        "C2": {
+          "road_precision": 0.9875,
+          "road_recall": 0.9892665474060823,
+          "road_f1": 0.9883824843610367,
+          "road_iou": 0.9770318021201413,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9884714288270593
+        },
+        "C3": {
+          "road_precision": 0.9964349376114082,
+          "road_recall": 1.0,
+          "road_f1": 0.9982142857142857,
+          "road_iou": 0.9964349376114082,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9982164077752312
+        },
+        "J0": {
+          "road_precision": 0.9964285714285714,
+          "road_recall": 0.998211091234347,
+          "road_f1": 0.9973190348525469,
+          "road_iou": 0.9946524064171123,
+          "junction_precision": 1.0,
+          "junction_recall": 0.9615384615384616,
+          "junction_f1": 0.9803921568627451,
+          "junction_iou": 0.9615384615384616,
+          "segmentation_composite": 0.9907878660441347
+        },
+        "J1": {
+          "road_precision": 0.9747747747747748,
+          "road_recall": 0.9677996422182469,
+          "road_f1": 0.9712746858168761,
+          "road_iou": 0.944153577661431,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9718094211594357
+        }
+      }
+    },
+    "best_metrics": {
+      "definition": "tools/seg_raster/train_stage_s3.py:_evaluate_validation lines 203-240; main 388-400",
+      "input": "frozen validation plan: 8 batches / 16 samples",
+      "split": "validation",
+      "model_mode": "eval",
+      "torch_no_grad": true,
+      "checkpoint_kind": "per-run best validation segmentation composite",
+      "sigmoid": "once at metric boundary",
+      "threshold": 0.3,
+      "aggregation": "micro over all 16 samples",
+      "cross_batch_accumulation": true,
+      "optimizer_timing": "post-update model"
+    },
+    "stage_s3_segmentation_comparison": {
+      "source": "each run evaluation/segmentation.json overwritten at every evaluation",
+      "checkpoint_kind": "latest",
+      "checkpoint_step": 102400,
+      "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+    },
+    "stage_s3_anchor_comparison": {
+      "source": "each run evaluation/anchor.json overwritten at every evaluation",
+      "checkpoint_kind": "latest",
+      "checkpoint_step": 102400,
+      "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+    },
+    "stage_s3_graph_comparison": {
+      "source": "formal closed-loop evaluator",
+      "checkpoint_kind": "per-run best",
+      "checkpoint_steps": {
+        "C0": 5120,
+        "C1": 10240,
+        "C2": 5120,
+        "C3": 5120,
+        "J0": 5120,
+        "J1": 15360
+      },
+      "metric": "deterministic_pixel_graph_approximation, not official SpaceNet APLS"
+    },
+    "segmentation_composite": {
+      "formula": "mean(road_F1, road_IoU, junction_F1)",
+      "numerator": "road_F1 + road_IoU + junction_F1",
+      "denominator": 3
+    }
+  }
+}

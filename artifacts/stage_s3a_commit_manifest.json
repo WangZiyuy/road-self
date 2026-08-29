@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S3A",
+  "generated_at": "2026-08-29T06:24:51.300Z",
+  "branch": "feat/seg-raster-only",
+  "s3a_base_sha": "033be5fb7bf61c8c1d4b58a3237825a3019fc8d3",
+  "evaluation_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "reducer_code_sha": "8ac39ea846f91eb4d99469c033fdc643b0129824",
+  "prior_code_commits": [
+    {
+      "sha": "8a485e67627210e2beae251684bad0dffc69fe7d",
+      "purpose": "Teach the reducer to preserve pathological C1-best as a failed incomplete graph job."
+    },
+    {
+      "sha": "8ac39ea846f91eb4d99469c033fdc643b0129824",
+      "purpose": "Separate immutable evaluation provenance from postprocessing reducer provenance."
+    }
+  ],
+  "manifest_self_policy": {
+    "path": "artifacts/stage_s3a_commit_manifest.json",
+    "listed_in_entries": false,
+    "reason": "A file cannot contain a stable SHA-256 digest of itself; it will be explicitly staged with the listed paths."
+  },
+  "entries": [
+    {
+      "path": "artifacts/stage_s3a_test_results.json",
+      "size_bytes": 3192,
+      "sha256": "43344e133fe625f8d716bb03be01bade520875886de2e295d629b4ee033e7381",
+      "generated_by_stage_s3a": false,
+      "preexisting_file_modified_by_stage_s3a": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_anchor_forensics.json",
+      "size_bytes": 19467,
+      "sha256": "b464625ed6f20a4245ab66252dcb2d0a4bda29c8947915ecded5fad9a656fce8",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_anchor_per_target.json",
+      "size_bytes": 130192,
+      "sha256": "4a9d5d47b7d0d40734bd169863683f0a66c62840cbb3581c2bcb64fd86abf918",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_c1_expansion_counter_contract.json",
+      "size_bytes": 7991,
+      "sha256": "9026b4840a21385150868e81c65a7317e6b65dc935b48d81e2a0f82bcd67ff0e",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Read-only C1-best pathological expansion evidence or termination record."
+    },
+    {
+      "path": "artifacts/stage_s3a_c1_expansion_diagnosis.json",
+      "size_bytes": 6022,
+      "sha256": "0f0beb0237e3633fdb98775b54ab4b7da8216610e7fb004b421dcaa5e601a13e",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Read-only C1-best pathological expansion evidence or termination record."
+    },
+    {
+      "path": "artifacts/stage_s3a_c1_expansion_snapshot.json",
+      "size_bytes": 5247,
+      "sha256": "c9d04ac7687daa41173a23a97774730c849bde5d740a40b92e0c920b638a33b9",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Read-only C1-best pathological expansion evidence or termination record."
+    },
+    {
+      "path": "artifacts/stage_s3a_c1_expansion_timeseries.json",
+      "size_bytes": 5202,
+      "sha256": "7eacc4a1992951a586b70c9270f3cd5a4d1d55881541aa79b795cffbd2b3c872",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Read-only C1-best pathological expansion evidence or termination record."
+    },
+    {
+      "path": "artifacts/stage_s3a_c1_pathological_expansion_final_snapshot.json",
+      "size_bytes": 2543,
+      "sha256": "c3f2971cc7b46e2aa5f6084b2812085228abb8a632e8c69ec0b2c906af016282",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Read-only C1-best pathological expansion evidence or termination record."
+    },
+    {
+      "path": "artifacts/stage_s3a_c1_pathological_graph_result.json",
+      "size_bytes": 2132,
+      "sha256": "93bac057c4edbe5a34302df13c523a04166fc21769f10626fd53f1362b4f3d89",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Read-only C1-best pathological expansion evidence or termination record."
+    },
+    {
+      "path": "artifacts/stage_s3a_checkpoint_inventory.json",
+      "size_bytes": 36746,
+      "sha256": "8ffcb9d8a550388c2bc63e1e87d3ed1ac61132362fe1e1a0dc90520443ac582e",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_checkpoint_metric_matrix.json",
+      "size_bytes": 127883,
+      "sha256": "0ca71d68b7cf2a6189d215357d6c6f2e75d3a3bb7e862961ab46cdce48882c51",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_checkpoint_protocol_comparison.json",
+      "size_bytes": 41405,
+      "sha256": "8a8131863800dcd0035bb0e3cd75e0b347591b646ed744419200fda1d1ebdf10",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_claim_reconciliation.json",
+      "size_bytes": 1032,
+      "sha256": "fbfa9da7d86a691648359dbabade4a5e3783c068b679e6e7aa924ccf3e213ddd",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_conclusion.json",
+      "size_bytes": 2297,
+      "sha256": "96a414243bb01c9718bab4d219b8bac97da5aa00c737f7d1295d32544c866c11",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_evaluation_determinism.json",
+      "size_bytes": 1824,
+      "sha256": "982df3dc0503b5f2a7db8cbf3cfb102d61a4610fa3125b9594127bc3076dbedf",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_gpu_inventory.json",
+      "size_bytes": 14172,
+      "sha256": "9e869a3e60903905d647eea70f6d482b1affc9175e4f87889d2d0be67393abd1",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_gpu_schedule.json",
+      "size_bytes": 17697,
+      "sha256": "e60a1a892e1ee1b11fdcfdc328e1033fc6f0a3fffb184316ff6c9bdb22c553df",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_graph_control_comparison.json",
+      "size_bytes": 46847,
+      "sha256": "04bb6842a031aa567434a018cb87f607c26e6ca65efbc80245250f3c6bea47c9",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_graph_iteration_complexity_audit.json",
+      "size_bytes": 6077,
+      "sha256": "f90bdd94a380f0cba27928d365137a91ccb9931528af557d35c4afea6b59f5af",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Read-only C1-best pathological expansion evidence or termination record."
+    },
+    {
+      "path": "artifacts/stage_s3a_graph_job_scale_comparison.json",
+      "size_bytes": 5729,
+      "sha256": "fa1bad83fcf34a77a8e4e9763a5c1b48344daf846ee1ae5fcbd174f66cf48e9e",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Read-only C1-best pathological expansion evidence or termination record."
+    },
+    {
+      "path": "artifacts/stage_s3a_junction_forensics.json",
+      "size_bytes": 241184,
+      "sha256": "a87b69d4dd0c8e74cc03d695961db4aee58ae3e28039cea5355af1d8400d3089",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_local_remote_pixel_parity.json",
+      "size_bytes": 5273,
+      "sha256": "ed458b35dbdccafe0451f2b43fde7a57607736daa6be98f9400a78edbc1bf525",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_loss_balance_audit.json",
+      "size_bytes": 19815,
+      "sha256": "5a6092dbd4251627e075f532f18a47fa98605679eec9b145acae6944451e5a7c",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_metric_provenance.json",
+      "size_bytes": 5425,
+      "sha256": "136f59a196a2c2d88e58e592712a24e9c4bae48273ab8ac70ebbe1281785a085",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_metric_reference_check.json",
+      "size_bytes": 9378,
+      "sha256": "fe70b5085185f99e87630091ae905cc6d773e918150d734c79800a5643b54f4d",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_small_sample_sensitivity.json",
+      "size_bytes": 5689,
+      "sha256": "e153c7f8f8826517eb42c4cf2d527dbe9d32afe5768102dbe2b7a543e37f51e6",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "artifacts/stage_s3a_training_dynamics.json",
+      "size_bytes": 114237,
+      "sha256": "3b7f1d3d345d448dbe8f20d7298278ec6dc70214e9f92989fe01e40021a967f7",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A machine-readable audit evidence."
+    },
+    {
+      "path": "docs/audits/stage_s3a_anchor_forensics.md",
+      "size_bytes": 418,
+      "sha256": "d00e02b7b10949491a66840a027e99d77536ff234779d0d713dee869aeaa144a",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A forensic report."
+    },
+    {
+      "path": "docs/audits/stage_s3a_final_report.md",
+      "size_bytes": 1263,
+      "sha256": "f965e27ba573dd7e1c79ecdff7afb4300ba6e12e59645b5d22e15ace1bd362e9",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A forensic report."
+    },
+    {
+      "path": "docs/audits/stage_s3a_graph_overgeneration.md",
+      "size_bytes": 889,
+      "sha256": "e2c798268906cf868cc3c3de222f2be78e635d640c93335886e46aae30ba7a33",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A forensic report."
+    },
+    {
+      "path": "docs/audits/stage_s3a_junction_forensics.md",
+      "size_bytes": 609,
+      "sha256": "c23ba87e1210146b74606852db07d87ef1a60f464edeb4abc5d7b2ca999c3ff6",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A forensic report."
+    },
+    {
+      "path": "docs/audits/stage_s3a_metric_dataflow.md",
+      "size_bytes": 733,
+      "sha256": "6292e9f5c227effa11d58250ef3c28730f315ba3666abb931b97d66e5e2ce380",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A forensic report."
+    },
+    {
+      "path": "docs/audits/stage_s3a_training_dynamics.md",
+      "size_bytes": 618,
+      "sha256": "70780886a71d4000e41f3a67fe8555754ef27ab042919dd893767ce04ef00d3f",
+      "generated_by_stage_s3a": true,
+      "preexisting_file_modified_by_stage_s3a": false,
+      "intended_for_commit": true,
+      "reason": "Stage S3A forensic report."
+    }
+  ],
+  "exclusion_assertions": {
+    "checkpoints_in_commit": false,
+    "datasets_in_commit": false,
+    "trajectory_rasters_in_commit": false,
+    "model_weights_in_commit": false,
+    "tensorboard_events_in_commit": false,
+    "caches_in_commit": false,
+    "large_logs_in_commit": false
+  }
+}

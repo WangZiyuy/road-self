@@ -1,0 +1,2894 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "runs": {
+    "C0": {
+      "raw_validation_points": [
+        {
+          "time": "2026-08-27T12:35:29.680678+00:00",
+          "step": 5120,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.24733727810650888,
+            "road_recall": 0.10230053842388644,
+            "road_f1": 0.14473684210526314,
+            "road_iou": 0.07801418439716312,
+            "road_auprc": 0.10233830008222625,
+            "junction_precision": 0.16666666666666666,
+            "junction_recall": 0.0024271844660194173,
+            "junction_f1": 0.004784688995215311,
+            "junction_iou": 0.002398081534772182,
+            "junction_auprc": 0.03128333422227276,
+            "segmentation_composite": 0.07584523849921386,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T12:52:05.147281+00:00",
+          "step": 10240,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.20241691842900303,
+            "road_recall": 0.032794909446891826,
+            "road_f1": 0.05644481887110363,
+            "road_iou": 0.02904204594711747,
+            "road_auprc": 0.08128887058867636,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.015721855808088915,
+            "segmentation_composite": 0.0284956216060737,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:08:58.187405+00:00",
+          "step": 15360,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.14124293785310735,
+            "road_recall": 0.024473813020068527,
+            "road_f1": 0.041718815185648725,
+            "road_iou": 0.021303792074989347,
+            "road_auprc": 0.06416885530113343,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007876857062381656,
+            "segmentation_composite": 0.021007535753546025,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:25:35.802134+00:00",
+          "step": 20480,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.16363636363636364,
+            "road_recall": 0.03524229074889868,
+            "road_f1": 0.05799436165928313,
+            "road_iou": 0.02986312733305682,
+            "road_auprc": 0.06971162668836851,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.016025741591324374,
+            "segmentation_composite": 0.029285829664113316,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:41:36.908820+00:00",
+          "step": 25600,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.10546875,
+            "road_recall": 0.013215859030837005,
+            "road_f1": 0.0234884732492388,
+            "road_iou": 0.011883802816901408,
+            "road_auprc": 0.062126382327096975,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007833631306816954,
+            "segmentation_composite": 0.011790758688713402,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:56:53.283724+00:00",
+          "step": 30720,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.13004484304932734,
+            "road_recall": 0.014194811551639746,
+            "road_f1": 0.02559576345984113,
+            "road_iou": 0.012963790791238265,
+            "road_auprc": 0.07090029910853185,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.0078586858240787,
+            "segmentation_composite": 0.012853184750359799,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:11:54.296827+00:00",
+          "step": 35840,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.15942028985507245,
+            "road_recall": 0.016152716593245228,
+            "road_f1": 0.029333333333333333,
+            "road_iou": 0.014884979702300407,
+            "road_auprc": 0.07254794921077005,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.013809126676186532,
+            "segmentation_composite": 0.014739437678544581,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:27:30.605036+00:00",
+          "step": 40960,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.11475409836065574,
+            "road_recall": 0.013705335291238374,
+            "road_f1": 0.024486226497595104,
+            "road_iou": 0.01239486498450642,
+            "road_auprc": 0.07645865218244521,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.011189004754228599,
+            "segmentation_composite": 0.012293697160700508,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:43:17.487452+00:00",
+          "step": 46080,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1630901287553648,
+            "road_recall": 0.01860009789525208,
+            "road_f1": 0.033391915641476276,
+            "road_iou": 0.016979445933869526,
+            "road_auprc": 0.07301307842425377,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.006819463866815178,
+            "segmentation_composite": 0.0167904538584486,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:59:31.261134+00:00",
+          "step": 51200,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.10410094637223975,
+            "road_recall": 0.016152716593245228,
+            "road_f1": 0.027966101694915254,
+            "road_iou": 0.014181349376880103,
+            "road_auprc": 0.06751525042980269,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01632972006548538,
+            "segmentation_composite": 0.014049150357265118,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:15:10.756607+00:00",
+          "step": 56320,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.0962566844919786,
+            "road_recall": 0.00881057268722467,
+            "road_f1": 0.016143497757847534,
+            "road_iou": 0.0081374321880651,
+            "road_auprc": 0.057149911463733744,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009353134212558345,
+            "segmentation_composite": 0.008093643315304211,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:30:22.696561+00:00",
+          "step": 61440,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.21052631578947367,
+            "road_recall": 0.01957905041605482,
+            "road_f1": 0.035826242722794444,
+            "road_iou": 0.01823985408116735,
+            "road_auprc": 0.072673453576871,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.022541162387014122,
+            "segmentation_composite": 0.018022032267987265,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:45:11.749853+00:00",
+          "step": 66560,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.06698564593301436,
+            "road_recall": 0.006852667645619187,
+            "road_f1": 0.012433392539964474,
+            "road_iou": 0.006255585344057194,
+            "road_auprc": 0.06747702995737388,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.030499788717892946,
+            "segmentation_composite": 0.006229659294673889,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T16:00:10.907275+00:00",
+          "step": 71680,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.16216216216216217,
+            "road_recall": 0.014684287812041116,
+            "road_f1": 0.026929982046678635,
+            "road_iou": 0.01364877161055505,
+            "road_auprc": 0.06652696964996155,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.015081924005770214,
+            "segmentation_composite": 0.013526251219077896,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T16:15:25.354366+00:00",
+          "step": 76800,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.11692307692307692,
+            "road_recall": 0.01860009789525208,
+            "road_f1": 0.03209459459459459,
+            "road_iou": 0.01630901287553648,
+            "road_auprc": 0.0685402356436673,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.013850491073115584,
+            "segmentation_composite": 0.016134535823377025,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T16:30:47.278066+00:00",
+          "step": 81920,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.17985611510791366,
+            "road_recall": 0.012236906510034264,
+            "road_f1": 0.022914757103574705,
+            "road_iou": 0.011590171534538712,
+            "road_auprc": 0.07539739451493657,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.015497824962478346,
+            "segmentation_composite": 0.011501642879371138,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T16:46:26.098578+00:00",
+          "step": 87040,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.12280701754385964,
+            "road_recall": 0.006852667645619187,
+            "road_f1": 0.012980992118683357,
+            "road_iou": 0.006532897806812879,
+            "road_auprc": 0.060810573486455924,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.012180298013142906,
+            "segmentation_composite": 0.006504629975165412,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T17:02:17.913025+00:00",
+          "step": 92160,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.26576576576576577,
+            "road_recall": 0.02887909936368086,
+            "road_f1": 0.0520971302428256,
+            "road_iou": 0.02674524025385313,
+            "road_auprc": 0.07995926525553874,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.011765426595166103,
+            "segmentation_composite": 0.026280790165559575,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T17:18:35.413720+00:00",
+          "step": 97280,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.24666666666666667,
+            "road_recall": 0.01811062163485071,
+            "road_f1": 0.0337437300501596,
+            "road_iou": 0.017161410018552876,
+            "road_auprc": 0.08406447438507925,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.012273547852092429,
+            "segmentation_composite": 0.01696838002290416,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T17:35:08.348981+00:00",
+          "step": 102400,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.11016949152542373,
+            "road_recall": 0.006363191385217817,
+            "road_f1": 0.012031466913465986,
+            "road_iou": 0.006052141527001862,
+            "road_auprc": 0.05800584129861199,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01748174612349704,
+            "segmentation_composite": 0.006027869480155949,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        }
+      ],
+      "training_log_point_count": 513,
+      "first_training_log_point": {
+        "time": "2026-08-27T12:18:42.570336+00:00",
+        "step": 1,
+        "samples_seen": 2,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 31822956544.0,
+          "road": 16961.931640625,
+          "junction": 14494.96484375,
+          "total": 31822987264.0
+        },
+        "metrics": {
+          "road_precision": 0.024678922185847392,
+          "road_recall": 0.593939393939394,
+          "road_f1": 0.04738878143133462,
+          "road_iou": 0.02426944031698861,
+          "junction_precision": 0.004826254826254826,
+          "junction_recall": 0.39473684210526316,
+          "junction_f1": 0.009535918626827717,
+          "junction_iou": 0.0047908016608112424,
+          "segmentation_composite": 0.02706471345838365
+        },
+        "gpu_memory_allocated_mb": 677.39599609375,
+        "gpu_memory_reserved_mb": 2174.0
+      },
+      "last_training_log_point": {
+        "time": "2026-08-27T17:35:05.735331+00:00",
+        "step": 102400,
+        "samples_seen": 204800,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 748.9805908203125,
+          "road": 11.879068374633789,
+          "junction": 0.025991473346948624,
+          "total": 760.8856811523438
+        },
+        "metrics": {
+          "road_precision": 0.9928825622775801,
+          "road_recall": 0.998211091234347,
+          "road_f1": 0.9955396966993756,
+          "road_iou": 0.9911190053285968,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9955529006759908
+        },
+        "gpu_memory_allocated_mb": 674.64599609375,
+        "gpu_memory_reserved_mb": 2594.0
+      },
+      "best_step": 5120,
+      "best_composite": 0.07584523849921386,
+      "latest_composite": 0.006027869480155949,
+      "latest_over_best_ratio": 0.07947591173068073,
+      "deterioration_after_best": -0.06981736901905791,
+      "final_metrics_exactly_match_last_train_log": true
+    },
+    "C1": {
+      "raw_validation_points": [
+        {
+          "time": "2026-08-27T12:38:16.988375+00:00",
+          "step": 5120,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.14642082429501085,
+            "road_recall": 0.06607929515418502,
+            "road_f1": 0.09106239460370995,
+            "road_iou": 0.04770318021201413,
+            "road_auprc": 0.08890150363133124,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.018469806149608758,
+            "segmentation_composite": 0.04625519160524136,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T12:57:25.555072+00:00",
+          "step": 10240,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.21428571428571427,
+            "road_recall": 0.07782672540381791,
+            "road_f1": 0.11418312387791742,
+            "road_iou": 0.06054836252856055,
+            "road_auprc": 0.1009145510040042,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.011814830843019276,
+            "segmentation_composite": 0.058243828802159316,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:16:48.821585+00:00",
+          "step": 15360,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.16443594646271512,
+            "road_recall": 0.042094958394517865,
+            "road_f1": 0.06703039750584568,
+            "road_iou": 0.03467741935483871,
+            "road_auprc": 0.08989488147755069,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008469810432288907,
+            "segmentation_composite": 0.03390260562022813,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:35:49.418345+00:00",
+          "step": 20480,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.13580246913580246,
+            "road_recall": 0.02692119432207538,
+            "road_f1": 0.04493464052287582,
+            "road_iou": 0.022983702465524447,
+            "road_auprc": 0.07408338914501493,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01944482421534037,
+            "segmentation_composite": 0.02263944766280009,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:53:10.668234+00:00",
+          "step": 25600,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.12056737588652482,
+            "road_recall": 0.024963289280469897,
+            "road_f1": 0.04136253041362531,
+            "road_iou": 0.02111801242236025,
+            "road_auprc": 0.08311559964645385,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.028188637540729273,
+            "segmentation_composite": 0.020826847611995186,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:09:57.687041+00:00",
+          "step": 30720,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.10098522167487685,
+            "road_recall": 0.020068526676456193,
+            "road_f1": 0.03348305430788077,
+            "road_iou": 0.0170265780730897,
+            "road_auprc": 0.0778752561561525,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01174829489488726,
+            "segmentation_composite": 0.016836544126990156,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:27:32.136221+00:00",
+          "step": 35840,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.14772727272727273,
+            "road_recall": 0.0381791483113069,
+            "road_f1": 0.060676779463243874,
+            "road_iou": 0.031287605294825514,
+            "road_auprc": 0.08522718711656374,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.014538990174141776,
+            "segmentation_composite": 0.030654794919356465,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:45:42.553798+00:00",
+          "step": 40960,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.13962264150943396,
+            "road_recall": 0.01811062163485071,
+            "road_f1": 0.032062391681109186,
+            "road_iou": 0.016292382210479964,
+            "road_auprc": 0.08561822981432561,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.014237034783907117,
+            "segmentation_composite": 0.016118257963863052,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:04:19.172504+00:00",
+          "step": 46080,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.14123006833712984,
+            "road_recall": 0.030347528144884974,
+            "road_f1": 0.0499597099113618,
+            "road_iou": 0.0256198347107438,
+            "road_auprc": 0.07674819770964333,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.0053585542866347435,
+            "segmentation_composite": 0.025193181540701867,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:22:00.790403+00:00",
+          "step": 51200,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.11948051948051948,
+            "road_recall": 0.022515907978463045,
+            "road_f1": 0.03789126853377265,
+            "road_iou": 0.019311502938706968,
+            "road_auprc": 0.0732769535310605,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009846887556556256,
+            "segmentation_composite": 0.019067590490826538,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:39:18.451639+00:00",
+          "step": 56320,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1044776119402985,
+            "road_recall": 0.013705335291238374,
+            "road_f1": 0.024231934227607096,
+            "road_iou": 0.012264564169951819,
+            "road_auprc": 0.08133274093711447,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.026266500605934887,
+            "segmentation_composite": 0.012165499465852972,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:56:35.369411+00:00",
+          "step": 61440,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.20945945945945946,
+            "road_recall": 0.030347528144884974,
+            "road_f1": 0.053014108593415994,
+            "road_iou": 0.027228809837505488,
+            "road_auprc": 0.09095222057829963,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.022592768806210962,
+            "segmentation_composite": 0.02674763947697383,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T16:14:36.473181+00:00",
+          "step": 66560,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.11937377690802348,
+            "road_recall": 0.0298580518844836,
+            "road_f1": 0.047768206734534066,
+            "road_iou": 0.024468511833132773,
+            "road_auprc": 0.07843141455267826,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.019336053290653184,
+            "segmentation_composite": 0.024078906189222277,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T16:31:54.303711+00:00",
+          "step": 71680,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.09959349593495935,
+            "road_recall": 0.023984336759667158,
+            "road_f1": 0.03865877712031558,
+            "road_iou": 0.019710378117457763,
+            "road_auprc": 0.07254536244008003,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.013796475552596155,
+            "segmentation_composite": 0.019456385079257784,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T16:49:29.570888+00:00",
+          "step": 76800,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.13747228381374724,
+            "road_recall": 0.030347528144884974,
+            "road_f1": 0.04971932638331997,
+            "road_iou": 0.02549342105263158,
+            "road_auprc": 0.07361132603367529,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.05003152208825097,
+            "segmentation_composite": 0.02507091581198385,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T17:08:17.562958+00:00",
+          "step": 81920,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.04597701149425287,
+            "road_recall": 0.003915810083210965,
+            "road_f1": 0.007216959855660804,
+            "road_iou": 0.0036215482118605704,
+            "road_auprc": 0.07100731319107167,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01946718850013605,
+            "segmentation_composite": 0.0036128360225071245,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T17:26:07.311666+00:00",
+          "step": 87040,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.0873015873015873,
+            "road_recall": 0.0053842388644150755,
+            "road_f1": 0.010142923005993544,
+            "road_iou": 0.005097312326227989,
+            "road_auprc": 0.07069303585238049,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.010332597019075934,
+            "segmentation_composite": 0.0050800784440738446,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T17:43:56.490112+00:00",
+          "step": 92160,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1111111111111111,
+            "road_recall": 0.01811062163485071,
+            "road_f1": 0.031144781144781145,
+            "road_iou": 0.01581872595126122,
+            "road_auprc": 0.07345077359006048,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.027561465722520755,
+            "segmentation_composite": 0.015654502365347458,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T18:01:21.067542+00:00",
+          "step": 97280,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.06865671641791045,
+            "road_recall": 0.011257953989231522,
+            "road_f1": 0.01934398654331371,
+            "road_iou": 0.009766454352441613,
+            "road_auprc": 0.06251471903198576,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.014086480156592956,
+            "segmentation_composite": 0.009703480298585108,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T18:18:41.479038+00:00",
+          "step": 102400,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1095890410958904,
+            "road_recall": 0.011747430249632892,
+            "road_f1": 0.021220159151193633,
+            "road_iou": 0.010723860589812333,
+            "road_auprc": 0.06806726118047957,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.017492636749540786,
+            "segmentation_composite": 0.010648006580335323,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        }
+      ],
+      "training_log_point_count": 513,
+      "first_training_log_point": {
+        "time": "2026-08-27T12:18:43.646333+00:00",
+        "step": 1,
+        "samples_seen": 2,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 31822956544.0,
+          "road": 16961.931640625,
+          "junction": 14494.96484375,
+          "total": 31822987264.0
+        },
+        "metrics": {
+          "road_precision": 0.024678922185847392,
+          "road_recall": 0.593939393939394,
+          "road_f1": 0.04738878143133462,
+          "road_iou": 0.02426944031698861,
+          "junction_precision": 0.004826254826254826,
+          "junction_recall": 0.39473684210526316,
+          "junction_f1": 0.009535918626827717,
+          "junction_iou": 0.0047908016608112424,
+          "segmentation_composite": 0.02706471345838365
+        },
+        "gpu_memory_allocated_mb": 689.76904296875,
+        "gpu_memory_reserved_mb": 2208.0
+      },
+      "last_training_log_point": {
+        "time": "2026-08-27T18:18:38.051919+00:00",
+        "step": 102400,
+        "samples_seen": 204800,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 765.043212890625,
+          "road": 6.654980659484863,
+          "junction": 0.07484206557273865,
+          "total": 771.7730102539062
+        },
+        "metrics": {
+          "road_precision": 0.998211091234347,
+          "road_recall": 0.998211091234347,
+          "road_f1": 0.998211091234347,
+          "road_iou": 0.9964285714285714,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9982132208876395
+        },
+        "gpu_memory_allocated_mb": 688.271484375,
+        "gpu_memory_reserved_mb": 2690.0
+      },
+      "best_step": 10240,
+      "best_composite": 0.058243828802159316,
+      "latest_composite": 0.010648006580335323,
+      "latest_over_best_ratio": 0.18281776454813975,
+      "deterioration_after_best": -0.04759582222182399,
+      "final_metrics_exactly_match_last_train_log": true
+    },
+    "C2": {
+      "raw_validation_points": [
+        {
+          "time": "2026-08-27T12:37:57.104002+00:00",
+          "step": 5120,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.26927502876869963,
+            "road_recall": 0.1145374449339207,
+            "road_f1": 0.1607142857142857,
+            "road_iou": 0.08737864077669903,
+            "road_auprc": 0.10322578870197119,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01084268937241628,
+            "segmentation_composite": 0.08269764216366159,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T12:57:13.325375+00:00",
+          "step": 10240,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.16475095785440613,
+            "road_recall": 0.042094958394517865,
+            "road_f1": 0.06705653021442494,
+            "road_iou": 0.03469140782573618,
+            "road_auprc": 0.07530564594133918,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.012029844562137166,
+            "segmentation_composite": 0.033915979346720374,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:17:06.918247+00:00",
+          "step": 15360,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.18763796909492272,
+            "road_recall": 0.041605482134116495,
+            "road_f1": 0.06810897435897435,
+            "road_iou": 0.035255080879303194,
+            "road_auprc": 0.08011615767868771,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007491914164073648,
+            "segmentation_composite": 0.03445468507942585,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:36:52.019606+00:00",
+          "step": 20480,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.08454810495626822,
+            "road_recall": 0.014194811551639746,
+            "road_f1": 0.024308466051969825,
+            "road_iou": 0.01230377598642342,
+            "road_auprc": 0.07708637040987398,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.017751969715211535,
+            "segmentation_composite": 0.012204080679464414,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:54:12.084027+00:00",
+          "step": 25600,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.164021164021164,
+            "road_recall": 0.015173764072442487,
+            "road_f1": 0.027777777777777783,
+            "road_iou": 0.014084507042253521,
+            "road_auprc": 0.06781101940944692,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008599892036358482,
+            "segmentation_composite": 0.013954094940010436,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:11:04.871993+00:00",
+          "step": 30720,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.046357615894039736,
+            "road_recall": 0.006852667645619187,
+            "road_f1": 0.011940298507462687,
+            "road_iou": 0.006006006006006006,
+            "road_auprc": 0.0668387359644645,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009676642882522127,
+            "segmentation_composite": 0.005982101504489565,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:28:53.203481+00:00",
+          "step": 35840,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.14697406340057637,
+            "road_recall": 0.024963289280469897,
+            "road_f1": 0.042677824267782424,
+            "road_iou": 0.021804189824711415,
+            "road_auprc": 0.06610917360988235,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008186576832894412,
+            "segmentation_composite": 0.021494004697497945,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:47:07.647755+00:00",
+          "step": 40960,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1773049645390071,
+            "road_recall": 0.024473813020068527,
+            "road_f1": 0.043010752688172046,
+            "road_iou": 0.02197802197802198,
+            "road_auprc": 0.0850484876288495,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009174411134198712,
+            "segmentation_composite": 0.021662924888731342,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:05:49.174064+00:00",
+          "step": 46080,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.4032258064516129,
+            "road_recall": 0.024473813020068527,
+            "road_f1": 0.04614674665436087,
+            "road_iou": 0.023618327822390175,
+            "road_auprc": 0.09262321181706064,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.014311248501345027,
+            "segmentation_composite": 0.023255024825583684,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T16:49:58.420640+00:00",
+          "step": 51200,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.09146341463414634,
+            "road_recall": 0.007342143906020558,
+            "road_f1": 0.013593112822836428,
+            "road_iou": 0.006843065693430657,
+            "road_auprc": 0.08053405798153679,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.011124710911522671,
+            "segmentation_composite": 0.006812059505422362,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T18:43:06.990309+00:00",
+          "step": 56320,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.08928571428571429,
+            "road_recall": 0.004894762604013705,
+            "road_f1": 0.009280742459396751,
+            "road_iou": 0.004662004662004662,
+            "road_auprc": 0.067134306676375,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.005668182560653441,
+            "segmentation_composite": 0.004647582373800471,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:28:16.212807+00:00",
+          "step": 61440,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.29120879120879123,
+            "road_recall": 0.02594224180127264,
+            "road_f1": 0.04764044943820225,
+            "road_iou": 0.02440147329650092,
+            "road_auprc": 0.09039380617861441,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.011640128490846696,
+            "segmentation_composite": 0.024013974244901055,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:18:19.276851+00:00",
+          "step": 66560,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.10661764705882353,
+            "road_recall": 0.014194811551639746,
+            "road_f1": 0.02505399568034557,
+            "road_iou": 0.01268591426071741,
+            "road_auprc": 0.07558445337643256,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.010019856593248715,
+            "segmentation_composite": 0.012579969980354327,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T00:00:31.442423+00:00",
+          "step": 71680,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.08059701492537313,
+            "road_recall": 0.013215859030837005,
+            "road_f1": 0.022708158116063918,
+            "road_iou": 0.011484474691620587,
+            "road_auprc": 0.0622254644356882,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008076348415338424,
+            "segmentation_composite": 0.011397544269228168,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T01:39:55.201678+00:00",
+          "step": 76800,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.23770491803278687,
+            "road_recall": 0.014194811551639746,
+            "road_f1": 0.026789838337182445,
+            "road_iou": 0.013576779026217229,
+            "road_auprc": 0.07552009764310408,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007784730196513663,
+            "segmentation_composite": 0.013455539121133224,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T03:21:02.963530+00:00",
+          "step": 81920,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.3170731707317073,
+            "road_recall": 0.01908957415565345,
+            "road_f1": 0.036011080332409975,
+            "road_iou": 0.018335684062059238,
+            "road_auprc": 0.08927915138009392,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009948063683841157,
+            "segmentation_composite": 0.018115588131489738,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T05:02:32.675025+00:00",
+          "step": 87040,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.15328467153284672,
+            "road_recall": 0.010279001468428781,
+            "road_f1": 0.01926605504587156,
+            "road_iou": 0.009726725335803613,
+            "road_auprc": 0.07490187642273594,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.014132879875690733,
+            "segmentation_composite": 0.009664260127225058,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T06:42:53.357295+00:00",
+          "step": 92160,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.08148148148148149,
+            "road_recall": 0.0053842388644150755,
+            "road_f1": 0.0101010101010101,
+            "road_iou": 0.005076142131979695,
+            "road_auprc": 0.05047925866568792,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007090384569830984,
+            "segmentation_composite": 0.005059050744329932,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T08:23:47.002916+00:00",
+          "step": 97280,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.0058823529411764705,
+            "road_recall": 0.0004894762604013706,
+            "road_f1": 0.0009037505648441032,
+            "road_iou": 0.0004520795660036166,
+            "road_auprc": 0.05861470966363522,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007511346002335073,
+            "segmentation_composite": 0.0004519433769492399,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T10:04:54.524886+00:00",
+          "step": 102400,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.05314009661835749,
+            "road_recall": 0.0053842388644150755,
+            "road_f1": 0.009777777777777776,
+            "road_iou": 0.004912907548012505,
+            "road_auprc": 0.05839353505188689,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008485364576256123,
+            "segmentation_composite": 0.004896895108596761,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        }
+      ],
+      "training_log_point_count": 513,
+      "first_training_log_point": {
+        "time": "2026-08-27T12:18:42.769911+00:00",
+        "step": 1,
+        "samples_seen": 2,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 31822956544.0,
+          "road": 16961.931640625,
+          "junction": 14494.96484375,
+          "total": 31822987264.0
+        },
+        "metrics": {
+          "road_precision": 0.024678922185847392,
+          "road_recall": 0.593939393939394,
+          "road_f1": 0.04738878143133462,
+          "road_iou": 0.02426944031698861,
+          "junction_precision": 0.004826254826254826,
+          "junction_recall": 0.39473684210526316,
+          "junction_f1": 0.009535918626827717,
+          "junction_iou": 0.0047908016608112424,
+          "segmentation_composite": 0.02706471345838365
+        },
+        "gpu_memory_allocated_mb": 689.76904296875,
+        "gpu_memory_reserved_mb": 2208.0
+      },
+      "last_training_log_point": {
+        "time": "2026-08-28T10:04:49.453743+00:00",
+        "step": 102400,
+        "samples_seen": 204800,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 745.5416259765625,
+          "road": 62.47890853881836,
+          "junction": 0.1370558887720108,
+          "total": 808.1575927734375
+        },
+        "metrics": {
+          "road_precision": 0.9875,
+          "road_recall": 0.9892665474060823,
+          "road_f1": 0.9883824843610367,
+          "road_iou": 0.9770318021201413,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9884714288270593
+        },
+        "gpu_memory_allocated_mb": 688.271484375,
+        "gpu_memory_reserved_mb": 2690.0
+      },
+      "best_step": 5120,
+      "best_composite": 0.08269764216366159,
+      "latest_composite": 0.004896895108596761,
+      "latest_over_best_ratio": 0.05921444651233986,
+      "deterioration_after_best": -0.07780074705506483,
+      "final_metrics_exactly_match_last_train_log": true
+    },
+    "C3": {
+      "raw_validation_points": [
+        {
+          "time": "2026-08-27T12:38:02.267152+00:00",
+          "step": 5120,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.20428893905191872,
+            "road_recall": 0.08859520313264807,
+            "road_f1": 0.12359166951177875,
+            "road_iou": 0.06586608442503639,
+            "road_auprc": 0.0840874650149785,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.017439476830337808,
+            "segmentation_composite": 0.06315258464560504,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T12:57:25.673941+00:00",
+          "step": 10240,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.17391304347826086,
+            "road_recall": 0.03524229074889868,
+            "road_f1": 0.058608058608058615,
+            "road_iou": 0.03018867924528302,
+            "road_auprc": 0.0798228669519836,
+            "junction_precision": 0.3333333333333333,
+            "junction_recall": 0.0024271844660194173,
+            "junction_f1": 0.0048192771084337345,
+            "junction_iou": 0.0024154589371980675,
+            "junction_auprc": 0.015124432896623397,
+            "segmentation_composite": 0.03120533832059179,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:17:23.670047+00:00",
+          "step": 15360,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.12525667351129363,
+            "road_recall": 0.0298580518844836,
+            "road_f1": 0.048221343873517786,
+            "road_iou": 0.024706358849736737,
+            "road_auprc": 0.07003467318949186,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.021575219291329304,
+            "segmentation_composite": 0.024309234241084842,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T13:37:13.508989+00:00",
+          "step": 20480,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.07758620689655173,
+            "road_recall": 0.013215859030837005,
+            "road_f1": 0.02258469259723965,
+            "road_iou": 0.011421319796954314,
+            "road_auprc": 0.06717565856164276,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.00992241759388566,
+            "segmentation_composite": 0.011335337464731322,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T14:34:11.747843+00:00",
+          "step": 25600,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.09547738693467336,
+            "road_recall": 0.01860009789525208,
+            "road_f1": 0.031134780827529702,
+            "road_iou": 0.01581356637536413,
+            "road_auprc": 0.07417015268017378,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.02008344816050727,
+            "segmentation_composite": 0.015649449067631275,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T15:50:49.471462+00:00",
+          "step": 30720,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.15699658703071673,
+            "road_recall": 0.022515907978463045,
+            "road_f1": 0.03938356164383562,
+            "road_iou": 0.020087336244541485,
+            "road_auprc": 0.07139306321041383,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.015033256049875368,
+            "segmentation_composite": 0.019823632629459034,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T17:08:38.012992+00:00",
+          "step": 35840,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.14988814317673377,
+            "road_recall": 0.032794909446891826,
+            "road_f1": 0.05381526104417671,
+            "road_iou": 0.02765167148163434,
+            "road_auprc": 0.07703513899151725,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.0106206288769506,
+            "segmentation_composite": 0.02715564417527035,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T18:30:09.781722+00:00",
+          "step": 40960,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.20760233918128654,
+            "road_recall": 0.034752814488497305,
+            "road_f1": 0.05953878406708595,
+            "road_iou": 0.030682800345721694,
+            "road_auprc": 0.07116910514152942,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.010329370781928722,
+            "segmentation_composite": 0.03007386147093588,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T19:54:43.330824+00:00",
+          "step": 46080,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1568627450980392,
+            "road_recall": 0.023494860499265784,
+            "road_f1": 0.04086845466155811,
+            "road_iou": 0.020860495436766623,
+            "road_auprc": 0.07595253185421295,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007209279408454502,
+            "segmentation_composite": 0.02057631669944158,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T21:14:55.226178+00:00",
+          "step": 51200,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.11780104712041885,
+            "road_recall": 0.022026431718061675,
+            "road_f1": 0.03711340206185567,
+            "road_iou": 0.018907563025210083,
+            "road_auprc": 0.0660706390418181,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.00838698374376051,
+            "segmentation_composite": 0.018673655029021918,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:32:22.398249+00:00",
+          "step": 56320,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.08902077151335312,
+            "road_recall": 0.014684287812041116,
+            "road_f1": 0.025210084033613446,
+            "road_iou": 0.01276595744680851,
+            "road_auprc": 0.06623974659896763,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.006439909201894252,
+            "segmentation_composite": 0.012658680493473984,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T23:49:59.684891+00:00",
+          "step": 61440,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.2,
+            "road_recall": 0.02692119432207538,
+            "road_f1": 0.04745470232959448,
+            "road_iou": 0.024304021210782147,
+            "road_auprc": 0.07263991241977442,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009298726481678034,
+            "segmentation_composite": 0.023919574513458875,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T01:07:54.371684+00:00",
+          "step": 66560,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.15950920245398773,
+            "road_recall": 0.025452765540871267,
+            "road_f1": 0.043900379907133816,
+            "road_iou": 0.022442813983599482,
+            "road_auprc": 0.0667950206143639,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008843580331348178,
+            "segmentation_composite": 0.022114397963577767,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T02:25:34.848164+00:00",
+          "step": 71680,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.15168539325842698,
+            "road_recall": 0.013215859030837005,
+            "road_f1": 0.024313372354795137,
+            "road_iou": 0.012306289881494986,
+            "road_auprc": 0.06507724742749252,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01015963263877455,
+            "segmentation_composite": 0.012206554078763374,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T03:43:04.305335+00:00",
+          "step": 76800,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.02643171806167401,
+            "road_recall": 0.002936857562408223,
+            "road_f1": 0.005286343612334802,
+            "road_iou": 0.00265017667844523,
+            "road_auprc": 0.05350023537320253,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.014948149584251105,
+            "segmentation_composite": 0.002645506763593344,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T04:58:32.669900+00:00",
+          "step": 81920,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.05647840531561462,
+            "road_recall": 0.008321096426823299,
+            "road_f1": 0.014505119453924912,
+            "road_iou": 0.00730554361839278,
+            "road_auprc": 0.05544603904081669,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009905008619300928,
+            "segmentation_composite": 0.007270221024105897,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T06:17:48.510511+00:00",
+          "step": 87040,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.12449799196787148,
+            "road_recall": 0.015173764072442487,
+            "road_f1": 0.02705061082024433,
+            "road_iou": 0.013710747456877488,
+            "road_auprc": 0.060585763716972746,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01351056554239217,
+            "segmentation_composite": 0.013587119425707271,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T07:34:07.840072+00:00",
+          "step": 92160,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.08179419525065963,
+            "road_recall": 0.015173764072442487,
+            "road_f1": 0.02559867877786953,
+            "road_iou": 0.012965286491007947,
+            "road_auprc": 0.0566937391044974,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008344920922285708,
+            "segmentation_composite": 0.012854655089625825,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T08:50:05.059658+00:00",
+          "step": 97280,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.14984709480122324,
+            "road_recall": 0.023984336759667158,
+            "road_f1": 0.04135021097046414,
+            "road_iou": 0.02111158983196898,
+            "road_auprc": 0.06390552056121594,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007169227882603456,
+            "segmentation_composite": 0.020820600267477705,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T10:05:53.637179+00:00",
+          "step": 102400,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.10185185185185185,
+            "road_recall": 0.0053842388644150755,
+            "road_f1": 0.010227801022780102,
+            "road_iou": 0.0051401869158878505,
+            "road_auprc": 0.0501362480166083,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008810545898874762,
+            "segmentation_composite": 0.005122662646222651,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        }
+      ],
+      "training_log_point_count": 513,
+      "first_training_log_point": {
+        "time": "2026-08-27T12:18:42.764953+00:00",
+        "step": 1,
+        "samples_seen": 2,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 31822956544.0,
+          "road": 16961.931640625,
+          "junction": 14494.96484375,
+          "total": 31822987264.0
+        },
+        "metrics": {
+          "road_precision": 0.024678922185847392,
+          "road_recall": 0.593939393939394,
+          "road_f1": 0.04738878143133462,
+          "road_iou": 0.02426944031698861,
+          "junction_precision": 0.004826254826254826,
+          "junction_recall": 0.39473684210526316,
+          "junction_f1": 0.009535918626827717,
+          "junction_iou": 0.0047908016608112424,
+          "segmentation_composite": 0.02706471345838365
+        },
+        "gpu_memory_allocated_mb": 692.26904296875,
+        "gpu_memory_reserved_mb": 2208.0
+      },
+      "last_training_log_point": {
+        "time": "2026-08-28T10:05:48.850871+00:00",
+        "step": 102400,
+        "samples_seen": 204800,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 746.873779296875,
+          "road": 4.394451141357422,
+          "junction": 0.0171341709792614,
+          "total": 751.285400390625
+        },
+        "metrics": {
+          "road_precision": 0.9964349376114082,
+          "road_recall": 1.0,
+          "road_f1": 0.9982142857142857,
+          "road_iou": 0.9964349376114082,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9982164077752312
+        },
+        "gpu_memory_allocated_mb": 692.33154296875,
+        "gpu_memory_reserved_mb": 2634.0
+      },
+      "best_step": 5120,
+      "best_composite": 0.06315258464560504,
+      "latest_composite": 0.005122662646222651,
+      "latest_over_best_ratio": 0.08111564514690296,
+      "deterioration_after_best": -0.05802992199938239,
+      "final_metrics_exactly_match_last_train_log": true
+    },
+    "J0": {
+      "raw_validation_points": [
+        {
+          "time": "2026-08-27T17:51:15.217108+00:00",
+          "step": 5120,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.25981524249422633,
+            "road_recall": 0.11013215859030837,
+            "road_f1": 0.15469233413544173,
+            "road_iou": 0.0838301043219076,
+            "road_auprc": 0.1104494942769061,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.011812226462037417,
+            "segmentation_composite": 0.07950747948578311,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T18:07:13.592983+00:00",
+          "step": 10240,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.09606986899563319,
+            "road_recall": 0.021536955457660302,
+            "road_f1": 0.0351859256297481,
+            "road_iou": 0.01790801790801791,
+            "road_auprc": 0.06937820529340083,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.013573833763567071,
+            "segmentation_composite": 0.017697981179255338,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T18:22:42.084965+00:00",
+          "step": 15360,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.08490566037735849,
+            "road_recall": 0.022026431718061675,
+            "road_f1": 0.03497862417411582,
+            "road_iou": 0.017800632911392406,
+            "road_auprc": 0.05417751434450855,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007508951961557906,
+            "segmentation_composite": 0.017593085695169406,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T18:39:25.620897+00:00",
+          "step": 20480,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.03807615230460922,
+            "road_recall": 0.00930004894762604,
+            "road_f1": 0.014948859166011014,
+            "road_iou": 0.0075307173999207295,
+            "road_auprc": 0.05304006179106264,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.0164363666003492,
+            "segmentation_composite": 0.007493192188643915,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T18:59:27.180159+00:00",
+          "step": 25600,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.09055118110236221,
+            "road_recall": 0.022515907978463045,
+            "road_f1": 0.03606428851430811,
+            "road_iou": 0.018363273453093812,
+            "road_auprc": 0.0680623805611269,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009100737278825842,
+            "segmentation_composite": 0.018142520655800642,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T19:19:16.604693+00:00",
+          "step": 30720,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.0486322188449848,
+            "road_recall": 0.00783162016642193,
+            "road_f1": 0.013490725126475549,
+            "road_iou": 0.006791171477079796,
+            "road_auprc": 0.05561103511461245,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01263020172562328,
+            "segmentation_composite": 0.006760632201185115,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T19:37:43.772636+00:00",
+          "step": 35840,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.0945945945945946,
+            "road_recall": 0.013705335291238374,
+            "road_f1": 0.02394185549380077,
+            "road_iou": 0.012115967113803548,
+            "road_auprc": 0.06176871765545299,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01235694902059022,
+            "segmentation_composite": 0.012019274202534772,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T19:53:29.482808+00:00",
+          "step": 40960,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.05714285714285714,
+            "road_recall": 0.012726382770435633,
+            "road_f1": 0.020816653322658127,
+            "road_iou": 0.010517799352750809,
+            "road_auprc": 0.06651852840448398,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009196223807665254,
+            "segmentation_composite": 0.010444817558469646,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:09:16.600294+00:00",
+          "step": 46080,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.23178807947019867,
+            "road_recall": 0.034263338228095935,
+            "road_f1": 0.05970149253731343,
+            "road_iou": 0.03076923076923077,
+            "road_auprc": 0.07538635274831519,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.010812085398320247,
+            "segmentation_composite": 0.03015690776884807,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:24:53.212031+00:00",
+          "step": 51200,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.09289617486338798,
+            "road_recall": 0.016642192853646598,
+            "road_f1": 0.028227480282274803,
+            "road_iou": 0.01431578947368421,
+            "road_auprc": 0.0714558028302983,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009989257373418202,
+            "segmentation_composite": 0.014181089918653004,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:40:38.830639+00:00",
+          "step": 56320,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.027777777777777776,
+            "road_recall": 0.004405286343612335,
+            "road_f1": 0.007604562737642586,
+            "road_iou": 0.003816793893129771,
+            "road_auprc": 0.058868932823778634,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01175659484257954,
+            "segmentation_composite": 0.003807118876924119,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:56:18.950514+00:00",
+          "step": 61440,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.09486166007905138,
+            "road_recall": 0.011747430249632892,
+            "road_f1": 0.020905923344947737,
+            "road_iou": 0.01056338028169014,
+            "road_auprc": 0.05571390538612314,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.00955253450267897,
+            "segmentation_composite": 0.01048976787554596,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T21:11:58.245237+00:00",
+          "step": 66560,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.08278145695364239,
+            "road_recall": 0.012236906510034264,
+            "road_f1": 0.021321961620469086,
+            "road_iou": 0.010775862068965518,
+            "road_auprc": 0.05632264581083905,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009773125527669348,
+            "segmentation_composite": 0.010699274563144867,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T21:27:53.897330+00:00",
+          "step": 71680,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.07894736842105263,
+            "road_recall": 0.011747430249632892,
+            "road_f1": 0.020451640391989774,
+            "road_iou": 0.010331467929401636,
+            "road_auprc": 0.05850788046268849,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.017421068908835775,
+            "segmentation_composite": 0.01026103610713047,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T21:43:12.159432+00:00",
+          "step": 76800,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.17857142857142858,
+            "road_recall": 0.017131669114047968,
+            "road_f1": 0.03126395712371594,
+            "road_iou": 0.01588021778584392,
+            "road_auprc": 0.07468385652231077,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009020798656597669,
+            "segmentation_composite": 0.015714724969853287,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T21:58:06.004862+00:00",
+          "step": 81920,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.06134969325153374,
+            "road_recall": 0.004894762604013705,
+            "road_f1": 0.009066183136899365,
+            "road_iou": 0.004553734061930784,
+            "road_auprc": 0.05174188434453325,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.013486191433112851,
+            "segmentation_composite": 0.00453997239961005,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:12:50.186859+00:00",
+          "step": 87040,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1746987951807229,
+            "road_recall": 0.014194811551639746,
+            "road_f1": 0.026256224535989137,
+            "road_iou": 0.013302752293577982,
+            "road_auprc": 0.068312900843718,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008709054629892635,
+            "segmentation_composite": 0.013186325609855706,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:28:04.419134+00:00",
+          "step": 92160,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.152,
+            "road_recall": 0.00930004894762604,
+            "road_f1": 0.017527675276752766,
+            "road_iou": 0.008841321544904607,
+            "road_auprc": 0.059684262779978764,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.008710693323080464,
+            "segmentation_composite": 0.008789665607219124,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:43:21.102125+00:00",
+          "step": 97280,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.048327137546468404,
+            "road_recall": 0.006363191385217817,
+            "road_f1": 0.01124567474048443,
+            "road_iou": 0.005654632448890822,
+            "road_auprc": 0.06414091481053354,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.013331560481014278,
+            "segmentation_composite": 0.0056334357297917505,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:58:10.007068+00:00",
+          "step": 102400,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.056179775280898875,
+            "road_recall": 0.007342143906020558,
+            "road_f1": 0.012987012987012986,
+            "road_iou": 0.006535947712418301,
+            "road_auprc": 0.05885911173849883,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.007655353760805206,
+            "segmentation_composite": 0.006507653566477096,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        }
+      ],
+      "training_log_point_count": 513,
+      "first_training_log_point": {
+        "time": "2026-08-27T17:35:24.082751+00:00",
+        "step": 1,
+        "samples_seen": 2,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 31822956544.0,
+          "road": 16961.931640625,
+          "junction": 14494.96484375,
+          "total": 31822987264.0
+        },
+        "metrics": {
+          "road_precision": 0.024678922185847392,
+          "road_recall": 0.593939393939394,
+          "road_f1": 0.04738878143133462,
+          "road_iou": 0.02426944031698861,
+          "junction_precision": 0.004826254826254826,
+          "junction_recall": 0.39473684210526316,
+          "junction_f1": 0.009535918626827717,
+          "junction_iou": 0.0047908016608112424,
+          "segmentation_composite": 0.02706471345838365
+        },
+        "gpu_memory_allocated_mb": 677.53564453125,
+        "gpu_memory_reserved_mb": 2174.0
+      },
+      "last_training_log_point": {
+        "time": "2026-08-27T22:58:05.939853+00:00",
+        "step": 102400,
+        "samples_seen": 204800,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 755.865966796875,
+          "road": 22.400955200195312,
+          "junction": 10.328836441040039,
+          "total": 788.5957641601562
+        },
+        "metrics": {
+          "road_precision": 0.9964285714285714,
+          "road_recall": 0.998211091234347,
+          "road_f1": 0.9973190348525469,
+          "road_iou": 0.9946524064171123,
+          "junction_precision": 1.0,
+          "junction_recall": 0.9615384615384616,
+          "junction_f1": 0.9803921568627451,
+          "junction_iou": 0.9615384615384616,
+          "segmentation_composite": 0.9907878660441347
+        },
+        "gpu_memory_allocated_mb": 679.62939453125,
+        "gpu_memory_reserved_mb": 2596.0
+      },
+      "best_step": 5120,
+      "best_composite": 0.07950747948578311,
+      "latest_composite": 0.006507653566477096,
+      "latest_over_best_ratio": 0.08184957702804227,
+      "deterioration_after_best": -0.07299982591930602,
+      "final_metrics_exactly_match_last_train_log": true
+    },
+    "J1": {
+      "raw_validation_points": [
+        {
+          "time": "2026-08-27T18:38:42.480035+00:00",
+          "step": 5120,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.2932454695222405,
+            "road_recall": 0.08712677435144396,
+            "road_f1": 0.13433962264150945,
+            "road_iou": 0.07200647249190939,
+            "road_auprc": 0.10853555222714252,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.016116892875994788,
+            "segmentation_composite": 0.06878203171113961,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T19:02:39.087766+00:00",
+          "step": 10240,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.18951612903225806,
+            "road_recall": 0.04601076847772883,
+            "road_f1": 0.07404489956675857,
+            "road_iou": 0.03844580777096115,
+            "road_auprc": 0.08595480319461865,
+            "junction_precision": 0.1935483870967742,
+            "junction_recall": 0.014563106796116505,
+            "junction_f1": 0.027088036117381493,
+            "junction_iou": 0.013729977116704805,
+            "junction_auprc": 0.03144149779647356,
+            "segmentation_composite": 0.04652624781836707,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T19:26:18.812470+00:00",
+          "step": 15360,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.22164276401564537,
+            "road_recall": 0.08321096426823299,
+            "road_f1": 0.12099644128113879,
+            "road_iou": 0.06439393939393939,
+            "road_auprc": 0.10574547524176152,
+            "junction_precision": 0.15789473684210525,
+            "junction_recall": 0.014563106796116505,
+            "junction_f1": 0.02666666666666667,
+            "junction_iou": 0.013513513513513514,
+            "junction_auprc": 0.03490207928658343,
+            "segmentation_composite": 0.07068568244724828,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T19:45:56.434879+00:00",
+          "step": 20480,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1257995735607676,
+            "road_recall": 0.02887909936368086,
+            "road_f1": 0.046974522292993634,
+            "road_iou": 0.02405218100285365,
+            "road_auprc": 0.08544329508899913,
+            "junction_precision": 0.09090909090909091,
+            "junction_recall": 0.0024271844660194173,
+            "junction_f1": 0.004728132387706856,
+            "junction_iou": 0.002369668246445498,
+            "junction_auprc": 0.020082881805945814,
+            "segmentation_composite": 0.02525161189451805,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:03:50.424857+00:00",
+          "step": 25600,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.23243243243243245,
+            "road_recall": 0.042094958394517865,
+            "road_f1": 0.0712805636137588,
+            "road_iou": 0.03695745595186936,
+            "road_auprc": 0.10287496270511684,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01646013354343562,
+            "segmentation_composite": 0.036079339855209384,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:21:54.393511+00:00",
+          "step": 30720,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.17117117117117117,
+            "road_recall": 0.027900146842878122,
+            "road_f1": 0.04797979797979798,
+            "road_iou": 0.02457956015523933,
+            "road_auprc": 0.09579187337058204,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.013619167691448518,
+            "segmentation_composite": 0.0241864527116791,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:40:07.106689+00:00",
+          "step": 35840,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.32653061224489793,
+            "road_recall": 0.06265296133137543,
+            "road_f1": 0.1051334702258727,
+            "road_iou": 0.055483311660164715,
+            "road_auprc": 0.13467694983298015,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.026528987039822954,
+            "segmentation_composite": 0.05353892729534581,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T20:58:26.033002+00:00",
+          "step": 40960,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.13746223564954682,
+            "road_recall": 0.04454233969652472,
+            "road_f1": 0.06728280961182995,
+            "road_iou": 0.03481254781943382,
+            "road_auprc": 0.08823318151979374,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.04241877262514807,
+            "segmentation_composite": 0.03403178581042126,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T21:16:40.172549+00:00",
+          "step": 46080,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.15236051502145923,
+            "road_recall": 0.034752814488497305,
+            "road_f1": 0.0565962534874452,
+            "road_iou": 0.02912223133716161,
+            "road_auprc": 0.09201214402369838,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.01598922963623704,
+            "segmentation_composite": 0.028572828274868938,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T21:34:33.583269+00:00",
+          "step": 51200,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.14521452145214522,
+            "road_recall": 0.043073910915320604,
+            "road_f1": 0.06644016610041525,
+            "road_iou": 0.03436157750878563,
+            "road_auprc": 0.08649703125216532,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.016083487922968237,
+            "segmentation_composite": 0.03360058120306696,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T21:52:43.184508+00:00",
+          "step": 56320,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.17721518987341772,
+            "road_recall": 0.041116005873715125,
+            "road_f1": 0.066746126340882,
+            "road_iou": 0.0345252774352651,
+            "road_auprc": 0.09524509101095292,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.03249556453223479,
+            "segmentation_composite": 0.033757134592049036,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:10:22.703499+00:00",
+          "step": 61440,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.30491803278688523,
+            "road_recall": 0.04552129221732746,
+            "road_f1": 0.07921635434412266,
+            "road_iou": 0.04124168514412417,
+            "road_auprc": 0.09956233989563039,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.02437106993143692,
+            "segmentation_composite": 0.04015267982941561,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:28:07.218990+00:00",
+          "step": 66560,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1907356948228883,
+            "road_recall": 0.034263338228095935,
+            "road_f1": 0.05809128630705394,
+            "road_iou": 0.029914529914529916,
+            "road_auprc": 0.0807277301092996,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.03397725916146775,
+            "segmentation_composite": 0.029335272073861284,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T22:45:56.709294+00:00",
+          "step": 71680,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.13218390804597702,
+            "road_recall": 0.022515907978463045,
+            "road_f1": 0.03847762442492682,
+            "road_iou": 0.019616204690831557,
+            "road_auprc": 0.08263011904830608,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.04146755658527522,
+            "segmentation_composite": 0.01936460970525279,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T23:03:25.381039+00:00",
+          "step": 76800,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.20207253886010362,
+            "road_recall": 0.01908957415565345,
+            "road_f1": 0.03488372093023256,
+            "road_iou": 0.01775147928994083,
+            "road_auprc": 0.09992477852450214,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.014160012225665987,
+            "segmentation_composite": 0.017545066740057794,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T23:20:45.460926+00:00",
+          "step": 81920,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.23076923076923078,
+            "road_recall": 0.023494860499265784,
+            "road_f1": 0.04264771212794313,
+            "road_iou": 0.021788470267816613,
+            "road_auprc": 0.09858093306730709,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.015619776497241568,
+            "segmentation_composite": 0.021478727465253245,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T23:37:55.916034+00:00",
+          "step": 87040,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.1386861313868613,
+            "road_recall": 0.01860009789525208,
+            "road_f1": 0.03280103582218386,
+            "road_iou": 0.016673979815708645,
+            "road_auprc": 0.06425651968565056,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.009784112313175445,
+            "segmentation_composite": 0.016491671879297502,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-27T23:54:36.586585+00:00",
+          "step": 92160,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.11910669975186104,
+            "road_recall": 0.023494860499265784,
+            "road_f1": 0.039247751430907606,
+            "road_iou": 0.020016680567139282,
+            "road_auprc": 0.0767043426492902,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.02565495730908335,
+            "segmentation_composite": 0.01975481066601563,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T00:11:23.232260+00:00",
+          "step": 97280,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.18153846153846154,
+            "road_recall": 0.02887909936368086,
+            "road_f1": 0.049831081081081086,
+            "road_iou": 0.025552187093980078,
+            "road_auprc": 0.0827677260552856,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.013866318198820489,
+            "segmentation_composite": 0.025127756058353722,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        },
+        {
+          "time": "2026-08-28T00:27:45.397128+00:00",
+          "step": 102400,
+          "kind": "frozen_validation",
+          "metrics": {
+            "road_precision": 0.2918287937743191,
+            "road_recall": 0.03671071953010279,
+            "road_f1": 0.06521739130434782,
+            "road_iou": 0.033707865168539325,
+            "road_auprc": 0.10851421676520405,
+            "junction_precision": 0.0,
+            "junction_recall": 0.0,
+            "junction_f1": 0.0,
+            "junction_iou": 0.0,
+            "junction_auprc": 0.028069423452644068,
+            "segmentation_composite": 0.03297508549096238,
+            "fixed_threshold": 0.3,
+            "validation_batch_count": 8
+          },
+          "validation_plan_sha": "a421a9b8a76286aad078e8470a567b60f2d91d918137f7599ed2e81573918b6a"
+        }
+      ],
+      "training_log_point_count": 513,
+      "first_training_log_point": {
+        "time": "2026-08-27T18:19:00.576290+00:00",
+        "step": 1,
+        "samples_seen": 2,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 31822956544.0,
+          "road": 16961.931640625,
+          "junction": 14494.96484375,
+          "total": 31822987264.0
+        },
+        "metrics": {
+          "road_precision": 0.024678922185847392,
+          "road_recall": 0.593939393939394,
+          "road_f1": 0.04738878143133462,
+          "road_iou": 0.02426944031698861,
+          "junction_precision": 0.004826254826254826,
+          "junction_recall": 0.39473684210526316,
+          "junction_f1": 0.009535918626827717,
+          "junction_iou": 0.0047908016608112424,
+          "segmentation_composite": 0.02706471345838365
+        },
+        "gpu_memory_allocated_mb": 692.26904296875,
+        "gpu_memory_reserved_mb": 2208.0
+      },
+      "last_training_log_point": {
+        "time": "2026-08-28T00:27:43.211353+00:00",
+        "step": 102400,
+        "samples_seen": 204800,
+        "learning_rate": 0.0001,
+        "loss": {
+          "anchor": 4457.83837890625,
+          "road": 171.32533264160156,
+          "junction": 0.11738767474889755,
+          "total": 4629.28076171875
+        },
+        "metrics": {
+          "road_precision": 0.9747747747747748,
+          "road_recall": 0.9677996422182469,
+          "road_f1": 0.9712746858168761,
+          "road_iou": 0.944153577661431,
+          "junction_precision": 1.0,
+          "junction_recall": 1.0,
+          "junction_f1": 1.0,
+          "junction_iou": 1.0,
+          "segmentation_composite": 0.9718094211594357
+        },
+        "gpu_memory_allocated_mb": 692.17529296875,
+        "gpu_memory_reserved_mb": 2634.0
+      },
+      "best_step": 15360,
+      "best_composite": 0.07068568244724828,
+      "latest_composite": 0.03297508549096238,
+      "latest_over_best_ratio": 0.4665030363903075,
+      "deterioration_after_best": -0.0377105969562859,
+      "final_metrics_exactly_match_last_train_log": true
+    }
+  },
+  "overall_assessment": "All run-specific best steps occur before step 102400 and all latest composites are below their best; the fixed 102400 budget is longer than the observed validation optima for this single seed.",
+  "final_metrics_scope": "last training batch only; not a validation or generalization estimate"
+}

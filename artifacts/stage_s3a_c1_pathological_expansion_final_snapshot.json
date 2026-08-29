@@ -1,0 +1,67 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "artifact": "c1_best_pathological_expansion_final_snapshot",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "timestamp": "2026-08-29T14:08:26+08:00",
+  "evaluation_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "read_only_snapshot_before_termination": true,
+  "process_identity": {
+    "launcher_pid": 847715,
+    "launcher_ppid": 1,
+    "launcher_command": "audit_stage_s3a_graph_launch.py",
+    "worker_pid": 857133,
+    "worker_ppid": 847715,
+    "worker_command": "audit_stage_s3a_graph.py --run-key C1 --checkpoint-kind best --repeat-index 0 --physical-gpu 6",
+    "worker_belongs_to_launcher": true,
+    "other_direct_launcher_children": [],
+    "worker_stat": "Rl",
+    "worker_elapsed": "12:57:46",
+    "worker_cpu_time": "20:29:45",
+    "worker_cpu_percent": 158.0,
+    "worker_rss_kib": 1568916,
+    "worker_rss_mib": 1532.14453125,
+    "worker_vsz_kib": 29685876,
+    "worker_vsz_mib": 28990.11328125
+  },
+  "graph_state": {
+    "iteration": 11007,
+    "graph_elapsed": "12:57:03",
+    "graph_elapsed_seconds": 46623,
+    "vertices": 7597,
+    "directed_edges": 35148,
+    "reciprocal_insertion_pairs": 17574,
+    "unique_undirected_edges": "NOT_AVAILABLE_INCOMPLETE_RUN",
+    "frontier": "NOT_INSTRUMENTED",
+    "status_at_snapshot": "RUNNING_PATHOLOGICAL_EXPANSION"
+  },
+  "remote_resources": {
+    "physical_gpu_index": 6,
+    "gpu_uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+    "gpu_model": "NVIDIA GeForce RTX 4090",
+    "gpu_utilization_percent": 0,
+    "gpu_memory_used_mb": 2819,
+    "gpu_memory_free_mb": 21274
+  },
+  "partial_output": {
+    "graph_result_json_status": "NOT_WRITTEN_INCOMPLETE_RUN",
+    "postprocessed_graph_status": "NOT_WRITTEN_INCOMPLETE_RUN",
+    "graph_output_directory_size_bytes": 1636696,
+    "stderr_log_size_bytes": 2094792,
+    "stderr_log_mtime": "2026-08-29T14:08:09.337376454+08:00",
+    "stderr_log_logical_path": "${S3A_REMOTE_OUTPUT}/graph_logs/graph_C1_best_repeat0.stderr",
+    "partial_output_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C1/best/repeat_0"
+  },
+  "termination_gate": {
+    "status": "PASS_PATHOLOGICAL_TERMINATION_AUTHORIZED",
+    "reasons": [
+      "iterations > 10800",
+      "graph elapsed > 12 hours",
+      "raw directed edges > 34600",
+      "runtime ratio > 390x vs largest completed control",
+      "sustained accepted raw graph expansion",
+      "per-iteration cost strongly increases with graph size",
+      "natural termination not imminent",
+      "computational feasibility failed"
+    ]
+  }
+}

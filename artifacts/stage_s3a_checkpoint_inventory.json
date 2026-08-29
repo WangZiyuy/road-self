@@ -1,0 +1,1088 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS_WITH_HISTORICAL_CHECKPOINT_LIMITATION",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "expected_validation_checkpoint_count_from_protocol": 120,
+  "historical_validation_log_record_count": 120,
+  "actual_checkpoint_file_count": 12,
+  "forwardable_unique_file_count": 12,
+  "missing_historical_checkpoint_file_count": 108,
+  "retention_policy_observed": "train_stage_s3.py overwrote latest.pth.tar at each evaluation and best.pth.tar only on composite improvement; no versioned step files remain",
+  "evidence_boundary": "All 120 historical points are log evidence; only the 12 listed files can be independently forwarded. Missing weights were not fabricated or retrained.",
+  "actual_checkpoint_files": [
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "step": 5120,
+      "sha256": "27fcc1ce782cafcacca26360a74e5c75712e40b60c35004f5fa03696090c01e9",
+      "size_bytes": 390323854,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/C0_image_detach_seed20260827/checkpoints/best.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "step": 102400,
+      "sha256": "4e26657e97b56da83ffec9ef3eb53791c5cd39cbd1f93c259dab300405cf82dd",
+      "size_bytes": 390327336,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/C0_image_detach_seed20260827/checkpoints/latest.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "step": 10240,
+      "sha256": "32231f1cf0fd5c0656ccdb9fbae59644004b37d9c2bf15208bd1348ddf49934d",
+      "size_bytes": 391630478,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/C1_aligned_detach_seed20260827/checkpoints/best.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "step": 102400,
+      "sha256": "b3a54229e901ff009131b866493c7b09565382aa684c39b039b1b50151b01379",
+      "size_bytes": 391634104,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/C1_aligned_detach_seed20260827/checkpoints/latest.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "step": 5120,
+      "sha256": "0c2df5fd4617bb20718739931e177c767897efa42fae0a964376ec3ed82b695c",
+      "size_bytes": 391630478,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/C2_zero_detach_seed20260827/checkpoints/best.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "step": 102400,
+      "sha256": "77f8199c3b0e12bf33f83a977692a194226c18f1add6f2b9625531e3a47411cf",
+      "size_bytes": 391634104,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/C2_zero_detach_seed20260827/checkpoints/latest.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "step": 5120,
+      "sha256": "131834cadfed3d6b99e745f6a9ca0fb848f984d09ed54a654a27235c15b5870d",
+      "size_bytes": 391630478,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/C3_shifted_detach_seed20260827/checkpoints/best.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "step": 102400,
+      "sha256": "d4e762bda40b5413ebf382f929efa2ad9c17594db4f8405c17fb94543922d104",
+      "size_bytes": 391634104,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/C3_shifted_detach_seed20260827/checkpoints/latest.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "step": 5120,
+      "sha256": "c118fca4a01424f10f407945bb4d92305fe504ce1e970592df2388abfd551058",
+      "size_bytes": 390323854,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/J0_image_joint_seed20260827/checkpoints/best.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "step": 102400,
+      "sha256": "b66c1dd1d993f2e8735a136f628875b9a0031763e3d4588db05a2674af60b81c",
+      "size_bytes": 390327336,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/J0_image_joint_seed20260827/checkpoints/latest.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "step": 15360,
+      "sha256": "ba8876a576bc9701d2477d4570cf302dd3c221cf5ff0539c1d7f47d751f7d486",
+      "size_bytes": 391630478,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/J1_aligned_joint_seed20260827/checkpoints/best.pth.tar",
+      "forwardable": true
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "step": 102400,
+      "sha256": "a0edeb8661023c0723f0fd4e086f45cad2cd49259372d90a9c2177e8d9f68bd5",
+      "size_bytes": 391634104,
+      "logical_path": "${REMOTE_RUN_ROOT}/stage_s3/J1_aligned_joint_seed20260827/checkpoints/latest.pth.tar",
+      "forwardable": true
+    }
+  ],
+  "historical_validation_records": [
+    {
+      "run_key": "C0",
+      "step": 5120,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "best",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "C0",
+      "step": 10240,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 15360,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 20480,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 25600,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 30720,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 35840,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 40960,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 46080,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 51200,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 56320,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 61440,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 66560,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 71680,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 76800,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 81920,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 87040,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 92160,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 97280,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C0",
+      "step": 102400,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "latest",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "C1",
+      "step": 5120,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 10240,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "best",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "C1",
+      "step": 15360,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 20480,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 25600,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 30720,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 35840,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 40960,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 46080,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 51200,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 56320,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 61440,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 66560,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 71680,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 76800,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 81920,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 87040,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 92160,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 97280,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C1",
+      "step": 102400,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "latest",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "C2",
+      "step": 5120,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "best",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "C2",
+      "step": 10240,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 15360,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 20480,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 25600,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 30720,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 35840,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 40960,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 46080,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 51200,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 56320,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 61440,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 66560,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 71680,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 76800,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 81920,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 87040,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 92160,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 97280,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C2",
+      "step": 102400,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "latest",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "C3",
+      "step": 5120,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "best",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "C3",
+      "step": 10240,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 15360,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 20480,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 25600,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 30720,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 35840,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 40960,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 46080,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 51200,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 56320,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 61440,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 66560,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 71680,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 76800,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 81920,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 87040,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 92160,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 97280,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "C3",
+      "step": 102400,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "latest",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "J0",
+      "step": 5120,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "best",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "J0",
+      "step": 10240,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 15360,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 20480,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 25600,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 30720,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 35840,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 40960,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 46080,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 51200,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 56320,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 61440,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 66560,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 71680,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 76800,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 81920,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 87040,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 92160,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 97280,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J0",
+      "step": 102400,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "latest",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "J1",
+      "step": 5120,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 10240,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 15360,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "best",
+      "forward_recomputation_status": "AVAILABLE"
+    },
+    {
+      "run_key": "J1",
+      "step": 20480,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 25600,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 30720,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 35840,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 40960,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 46080,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 51200,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 56320,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 61440,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 66560,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 71680,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 76800,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 81920,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 87040,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 92160,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 97280,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": false,
+      "checkpoint_kind_if_available": null,
+      "forward_recomputation_status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    },
+    {
+      "run_key": "J1",
+      "step": 102400,
+      "logged_validation_metrics_available": true,
+      "checkpoint_file_available": true,
+      "checkpoint_kind_if_available": "latest",
+      "forward_recomputation_status": "AVAILABLE"
+    }
+  ],
+  "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "evaluation_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "reducer_code_sha": "8ac39ea846f91eb4d99469c033fdc643b0129824"
+}

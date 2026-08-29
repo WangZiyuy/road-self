@@ -1,0 +1,312 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "tolerances": {
+    "precision_recall_f1_iou": 1e-12,
+    "auprc": 1e-06
+  },
+  "auprc_tie_policy_note": "The frozen evaluator applies stable per-pixel ordering within equal-score ties; the independent reference collapses equal scores into one threshold group. Differences up to 1e-6 are accepted only for AUPRC; confusion-derived metrics remain subject to 1e-12.",
+  "synthetic_reference_tests": "tests/test_stage_s3a_metrics.py",
+  "checkpoint_comparisons": [
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "task": "road",
+      "maximum_absolute_difference": 1.009611214075612e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 1.009611214075612e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "task": "junction",
+      "maximum_absolute_difference": 0.0,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "best",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "task": "road",
+      "maximum_absolute_difference": 8.14006777261067e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 8.14006777261067e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "task": "junction",
+      "maximum_absolute_difference": 2.0014786945854457e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 2.0014786945854457e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C0",
+      "checkpoint_kind": "latest",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "task": "road",
+      "maximum_absolute_difference": 2.3000634175041057e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 2.3000634175041057e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "task": "junction",
+      "maximum_absolute_difference": 2.647733126498464e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 2.647733126498464e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "best",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "task": "road",
+      "maximum_absolute_difference": 1.5700084149417037e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 1.5700084149417037e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "task": "junction",
+      "maximum_absolute_difference": 6.938893903907228e-18,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 6.938893903907228e-18,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C1",
+      "checkpoint_kind": "latest",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "task": "road",
+      "maximum_absolute_difference": 3.062885223226175e-10,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 3.062885223226175e-10,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "task": "junction",
+      "maximum_absolute_difference": 1.0713039049620177e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 1.0713039049620177e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "best",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "task": "road",
+      "maximum_absolute_difference": 2.1371491153165945e-08,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 2.1371491153165945e-08,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "task": "junction",
+      "maximum_absolute_difference": 2.2129480765215037e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 2.2129480765215037e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C2",
+      "checkpoint_kind": "latest",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "task": "road",
+      "maximum_absolute_difference": 4.543166745585303e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 4.543166745585303e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "task": "junction",
+      "maximum_absolute_difference": 3.469446951953614e-18,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 3.469446951953614e-18,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "best",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "task": "road",
+      "maximum_absolute_difference": 2.045786306331676e-08,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 2.045786306331676e-08,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "task": "junction",
+      "maximum_absolute_difference": 1.7307438936881026e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 1.7307438936881026e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "C3",
+      "checkpoint_kind": "latest",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "task": "road",
+      "maximum_absolute_difference": 5.076778497592471e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 5.076778497592471e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "task": "junction",
+      "maximum_absolute_difference": 3.318734653409705e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 3.318734653409705e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "best",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "task": "road",
+      "maximum_absolute_difference": 1.3368595230822677e-08,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 1.3368595230822677e-08,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "task": "junction",
+      "maximum_absolute_difference": 2.2352709214829014e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 2.2352709214829014e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J0",
+      "checkpoint_kind": "latest",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "task": "road",
+      "maximum_absolute_difference": 4.671955993740262e-07,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 4.671955993740262e-07,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "task": "junction",
+      "maximum_absolute_difference": 1.3877787807814457e-17,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 1.3877787807814457e-17,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "best",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "task": "road",
+      "maximum_absolute_difference": 6.206865785229887e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 6.206865785229887e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "task": "junction",
+      "maximum_absolute_difference": 2.4679964981400015e-09,
+      "exact_metric_maximum_absolute_difference": 0.0,
+      "auprc_absolute_difference": 2.4679964981400015e-09,
+      "status": "PASS"
+    },
+    {
+      "run_key": "J1",
+      "checkpoint_kind": "latest",
+      "task": "anchor",
+      "maximum_absolute_difference": 0.0,
+      "status": "PASS"
+    }
+  ]
+}

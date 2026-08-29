@@ -1,0 +1,59 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "TERMINATED_PATHOLOGICAL_EXPANSION",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "evaluation_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+  "run_key": "C1",
+  "run_id": "C1_aligned_detach_seed20260827",
+  "checkpoint_kind": "best",
+  "repeat_index": 0,
+  "checkpoint_step": 10240,
+  "checkpoint_sha256": "32231f1cf0fd5c0656ccdb9fbae59644004b37d9c2bf15208bd1348ddf49934d",
+  "fixed_probability_threshold": 0.3,
+  "inference_canvas_wh": [
+    4096,
+    4096
+  ],
+  "metric_extent_xyxy": [
+    2176.0,
+    0.0,
+    4096.0,
+    4096.0
+  ],
+  "physical_gpu_index": 6,
+  "gpu_uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "worker_pid": 857133,
+  "worker_ppid": 847715,
+  "launcher_pid": 847715,
+  "started_at_utc": "2026-08-28T17:10:43.593479+00:00",
+  "ended_at_utc": "2026-08-29T06:09:34.953316+00:00",
+  "exit_code": -15,
+  "termination_signal": "SIGTERM",
+  "sigkill_required": false,
+  "graph_metrics_status": "NOT_AVAILABLE_INCOMPLETE_RUN",
+  "partial_forensic_state": {
+    "graph_iterations": 11007,
+    "graph_elapsed_seconds": 46623,
+    "raw_vertex_count": 7597,
+    "raw_directed_edge_count": 35148,
+    "reciprocal_insertion_pairs": 17574,
+    "undirected_edge_count": "NOT_AVAILABLE_INCOMPLETE_RUN",
+    "postprocessed_graph_sha256": "NOT_AVAILABLE_INCOMPLETE_RUN",
+    "stderr_log_logical_path": "${S3A_REMOTE_OUTPUT}/graph_logs/graph_C1_best_repeat0.stderr",
+    "partial_output_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C1/best/repeat_0"
+  },
+  "termination_reason": [
+    "iterations > 10800",
+    "graph elapsed > 12 hours",
+    "raw directed edges > 34600",
+    "runtime ratio > 390x vs largest completed control",
+    "sustained accepted raw graph expansion",
+    "per-iteration cost strongly increases with graph size",
+    "natural termination not imminent",
+    "computational feasibility failed"
+  ],
+  "completed_graph_metrics_must_not_be_inferred": true
+}

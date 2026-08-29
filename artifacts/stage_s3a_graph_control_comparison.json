@@ -1,0 +1,1361 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PARTIAL_TERMINATED_PATHOLOGICAL_EXPANSION",
+  "protocols": {
+    "best": {
+      "status": "INCOMPLETE",
+      "missing_runs": [
+        "C1"
+      ]
+    },
+    "latest": {
+      "status": "PASS",
+      "runs": {
+        "C0": {
+          "stage": "seg_raster_stage_s3a",
+          "status": "PASS",
+          "execution_environment": "REMOTE_TRAINING_SERVER",
+          "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+          "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+          "run_key": "C0",
+          "run_id": "C0_image_detach_seed20260827",
+          "checkpoint_kind": "latest",
+          "repeat_index": 0,
+          "checkpoint_step": 102400,
+          "checkpoint_sha256": "4e26657e97b56da83ffec9ef3eb53791c5cd39cbd1f93c259dab300405cf82dd",
+          "fixed_probability_threshold": 0.3,
+          "inference_canvas_wh": [
+            4096,
+            4096
+          ],
+          "metric_extent_xyxy": [
+            2176.0,
+            0.0,
+            4096.0,
+            4096.0
+          ],
+          "apls": 0.3287436938578571,
+          "apls_directional": {
+            "gt_to_pred": {
+              "score": 0.0,
+              "control_node_count": 64,
+              "path_pair_count": 1892,
+              "missing_path_pair_count": 1892
+            },
+            "pred_to_gt": {
+              "score": 0.6574873877157142,
+              "control_node_count": 59,
+              "path_pair_count": 568,
+              "missing_path_pair_count": 124
+            }
+          },
+          "apls_protocol": {
+            "kind": "deterministic_pixel_graph_approximation",
+            "densify_step_pixels": 16.0,
+            "snap_tolerance_pixels": 24.0,
+            "max_control_nodes_per_direction": 64,
+            "official_apls_jar_available": false
+          },
+          "topo": 0.0,
+          "topo_metrics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "matched_reference_edges": 0,
+            "correct_candidate_edges": 0,
+            "reference_edge_count": 194,
+            "candidate_edge_count": 3
+          },
+          "connectivity": {
+            "component_count": 3,
+            "largest_component_edge_length_ratio": 0.3932986799533823
+          },
+          "junction_correctness": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "matched_count": 0,
+            "reference_count": 109,
+            "candidate_count": 0,
+            "tolerance_pixels": 24.0
+          },
+          "candidate_edge_count": 3,
+          "undirected_edge_count": 28,
+          "dangling_edge_count": 6,
+          "duplicate_edge_count": 0,
+          "vertex_count": 31,
+          "graph_iterations": 816,
+          "inference_time_seconds": 58.04134520236403,
+          "peak_gpu_memory_allocated_mb": 1520.32177734375,
+          "peak_gpu_memory_reserved_mb": 2310.0,
+          "physical_gpu_index": 6,
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "started_at_utc": "2026-08-28T17:09:41.180027+00:00",
+          "deterministic_settings": {
+            "seed": 20260828,
+            "python_random": true,
+            "numpy_random": true,
+            "torch_cpu": true,
+            "torch_cuda_all": true,
+            "cudnn_deterministic": true,
+            "cudnn_benchmark": false
+          },
+          "postprocessed_graph_sha256": "e0fa8d3cdb08befac57d267710e3506ea53ff9b9f3b3210138975959221c47a7",
+          "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C0/latest/repeat_0/xian.graph"
+        },
+        "C1": {
+          "stage": "seg_raster_stage_s3a",
+          "status": "PASS",
+          "execution_environment": "REMOTE_TRAINING_SERVER",
+          "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+          "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+          "run_key": "C1",
+          "run_id": "C1_aligned_detach_seed20260827",
+          "checkpoint_kind": "latest",
+          "repeat_index": 0,
+          "checkpoint_step": 102400,
+          "checkpoint_sha256": "b3a54229e901ff009131b866493c7b09565382aa684c39b039b1b50151b01379",
+          "fixed_probability_threshold": 0.3,
+          "inference_canvas_wh": [
+            4096,
+            4096
+          ],
+          "metric_extent_xyxy": [
+            2176.0,
+            0.0,
+            4096.0,
+            4096.0
+          ],
+          "apls": 0.35517677820696675,
+          "apls_directional": {
+            "gt_to_pred": {
+              "score": 0.0029896667735790678,
+              "control_node_count": 64,
+              "path_pair_count": 1892,
+              "missing_path_pair_count": 1886
+            },
+            "pred_to_gt": {
+              "score": 0.7073638896403545,
+              "control_node_count": 64,
+              "path_pair_count": 264,
+              "missing_path_pair_count": 62
+            }
+          },
+          "apls_protocol": {
+            "kind": "deterministic_pixel_graph_approximation",
+            "densify_step_pixels": 16.0,
+            "snap_tolerance_pixels": 24.0,
+            "max_control_nodes_per_direction": 64,
+            "official_apls_jar_available": false
+          },
+          "topo": 0.00970873786407767,
+          "topo_metrics": {
+            "precision": 0.08333333333333333,
+            "recall": 0.005154639175257732,
+            "f1": 0.00970873786407767,
+            "matched_reference_edges": 1,
+            "correct_candidate_edges": 1,
+            "reference_edge_count": 194,
+            "candidate_edge_count": 12
+          },
+          "connectivity": {
+            "component_count": 8,
+            "largest_component_edge_length_ratio": 0.2498324761758039
+          },
+          "junction_correctness": {
+            "precision": 0.5,
+            "recall": 0.009174311926605505,
+            "f1": 0.01801801801801802,
+            "matched_count": 1,
+            "reference_count": 109,
+            "candidate_count": 2,
+            "tolerance_pixels": 24.0
+          },
+          "candidate_edge_count": 12,
+          "undirected_edge_count": 220,
+          "dangling_edge_count": 18,
+          "duplicate_edge_count": 0,
+          "vertex_count": 228,
+          "graph_iterations": 929,
+          "inference_time_seconds": 95.1899859085679,
+          "peak_gpu_memory_allocated_mb": 1536.515625,
+          "peak_gpu_memory_reserved_mb": 2334.0,
+          "physical_gpu_index": 5,
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "started_at_utc": "2026-08-28T17:10:51.650828+00:00",
+          "deterministic_settings": {
+            "seed": 20260828,
+            "python_random": true,
+            "numpy_random": true,
+            "torch_cpu": true,
+            "torch_cuda_all": true,
+            "cudnn_deterministic": true,
+            "cudnn_benchmark": false
+          },
+          "postprocessed_graph_sha256": "ae269c8b21c3d0e31e3dd61f3b7e766bf01d66e3a6497129a361f3200ab44050",
+          "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C1/latest/repeat_0/xian.graph"
+        },
+        "C2": {
+          "stage": "seg_raster_stage_s3a",
+          "status": "PASS",
+          "execution_environment": "REMOTE_TRAINING_SERVER",
+          "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+          "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+          "run_key": "C2",
+          "run_id": "C2_zero_detach_seed20260827",
+          "checkpoint_kind": "latest",
+          "repeat_index": 0,
+          "checkpoint_step": 102400,
+          "checkpoint_sha256": "77f8199c3b0e12bf33f83a977692a194226c18f1add6f2b9625531e3a47411cf",
+          "fixed_probability_threshold": 0.3,
+          "inference_canvas_wh": [
+            4096,
+            4096
+          ],
+          "metric_extent_xyxy": [
+            2176.0,
+            0.0,
+            4096.0,
+            4096.0
+          ],
+          "apls": 0.38587537361800944,
+          "apls_directional": {
+            "gt_to_pred": {
+              "score": 0.0015446577979333638,
+              "control_node_count": 64,
+              "path_pair_count": 1892,
+              "missing_path_pair_count": 1889
+            },
+            "pred_to_gt": {
+              "score": 0.7702060894380856,
+              "control_node_count": 64,
+              "path_pair_count": 697,
+              "missing_path_pair_count": 121
+            }
+          },
+          "apls_protocol": {
+            "kind": "deterministic_pixel_graph_approximation",
+            "densify_step_pixels": 16.0,
+            "snap_tolerance_pixels": 24.0,
+            "max_control_nodes_per_direction": 64,
+            "official_apls_jar_available": false
+          },
+          "topo": 0.0,
+          "topo_metrics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "matched_reference_edges": 0,
+            "correct_candidate_edges": 0,
+            "reference_edge_count": 194,
+            "candidate_edge_count": 4
+          },
+          "connectivity": {
+            "component_count": 4,
+            "largest_component_edge_length_ratio": 0.5347201511212843
+          },
+          "junction_correctness": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "matched_count": 0,
+            "reference_count": 109,
+            "candidate_count": 0,
+            "tolerance_pixels": 24.0
+          },
+          "candidate_edge_count": 4,
+          "undirected_edge_count": 80,
+          "dangling_edge_count": 8,
+          "duplicate_edge_count": 0,
+          "vertex_count": 84,
+          "graph_iterations": 838,
+          "inference_time_seconds": 79.30392249021679,
+          "peak_gpu_memory_allocated_mb": 1536.515625,
+          "peak_gpu_memory_reserved_mb": 2334.0,
+          "physical_gpu_index": 5,
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "started_at_utc": "2026-08-28T17:14:27.309746+00:00",
+          "deterministic_settings": {
+            "seed": 20260828,
+            "python_random": true,
+            "numpy_random": true,
+            "torch_cpu": true,
+            "torch_cuda_all": true,
+            "cudnn_deterministic": true,
+            "cudnn_benchmark": false
+          },
+          "postprocessed_graph_sha256": "5f3eb3467f4295f6afe8a3221b12607983b921b7be8ebba8b18eaffcb2a9d796",
+          "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C2/latest/repeat_0/xian.graph"
+        },
+        "C3": {
+          "stage": "seg_raster_stage_s3a",
+          "status": "PASS",
+          "execution_environment": "REMOTE_TRAINING_SERVER",
+          "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+          "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+          "run_key": "C3",
+          "run_id": "C3_shifted_detach_seed20260827",
+          "checkpoint_kind": "latest",
+          "repeat_index": 0,
+          "checkpoint_step": 102400,
+          "checkpoint_sha256": "d4e762bda40b5413ebf382f929efa2ad9c17594db4f8405c17fb94543922d104",
+          "fixed_probability_threshold": 0.3,
+          "inference_canvas_wh": [
+            4096,
+            4096
+          ],
+          "metric_extent_xyxy": [
+            2176.0,
+            0.0,
+            4096.0,
+            4096.0
+          ],
+          "apls": 0.32181219861279153,
+          "apls_directional": {
+            "gt_to_pred": {
+              "score": 0.0005231290153277592,
+              "control_node_count": 64,
+              "path_pair_count": 1892,
+              "missing_path_pair_count": 1891
+            },
+            "pred_to_gt": {
+              "score": 0.6431012682102553,
+              "control_node_count": 64,
+              "path_pair_count": 486,
+              "missing_path_pair_count": 161
+            }
+          },
+          "apls_protocol": {
+            "kind": "deterministic_pixel_graph_approximation",
+            "densify_step_pixels": 16.0,
+            "snap_tolerance_pixels": 24.0,
+            "max_control_nodes_per_direction": 64,
+            "official_apls_jar_available": false
+          },
+          "topo": 0.0,
+          "topo_metrics": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "matched_reference_edges": 0,
+            "correct_candidate_edges": 0,
+            "reference_edge_count": 194,
+            "candidate_edge_count": 5
+          },
+          "connectivity": {
+            "component_count": 5,
+            "largest_component_edge_length_ratio": 0.3499329010417848
+          },
+          "junction_correctness": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "matched_count": 0,
+            "reference_count": 109,
+            "candidate_count": 0,
+            "tolerance_pixels": 24.0
+          },
+          "candidate_edge_count": 5,
+          "undirected_edge_count": 132,
+          "dangling_edge_count": 10,
+          "duplicate_edge_count": 0,
+          "vertex_count": 137,
+          "graph_iterations": 810,
+          "inference_time_seconds": 68.81140203587711,
+          "peak_gpu_memory_allocated_mb": 1536.515625,
+          "peak_gpu_memory_reserved_mb": 2334.0,
+          "physical_gpu_index": 5,
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "started_at_utc": "2026-08-28T17:18:07.542140+00:00",
+          "deterministic_settings": {
+            "seed": 20260828,
+            "python_random": true,
+            "numpy_random": true,
+            "torch_cpu": true,
+            "torch_cuda_all": true,
+            "cudnn_deterministic": true,
+            "cudnn_benchmark": false
+          },
+          "postprocessed_graph_sha256": "1907b43248f306be5903bdaddedc4775fe2cb4c40e0eee9bb137a6000bd9ca02",
+          "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C3/latest/repeat_0/xian.graph"
+        }
+      },
+      "c1_deltas": {
+        "C0": {
+          "apls": 0.026433084349109626,
+          "topo": 0.00970873786407767
+        },
+        "C2": {
+          "apls": -0.030698595411042695,
+          "topo": 0.00970873786407767
+        },
+        "C3": {
+          "apls": 0.033364579594175214,
+          "topo": 0.00970873786407767
+        }
+      }
+    }
+  },
+  "control_matrix_status": "INCOMPLETE",
+  "job_accounting": {
+    "status": "PARTIAL_TERMINATED_PATHOLOGICAL_EXPANSION",
+    "expected_primary_job_count": 8,
+    "observed_primary_job_count": 8,
+    "total_record_count": 10,
+    "successful_record_count": 9,
+    "pathological_termination_count": 1,
+    "missing_primary_jobs": [],
+    "duplicate_primary_jobs": [],
+    "unexpected_failure_count": 0,
+    "c1_best_graph_metrics": "NOT_AVAILABLE_INCOMPLETE_RUN"
+  },
+  "records": [
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C0",
+      "run_id": "C0_image_detach_seed20260827",
+      "checkpoint_kind": "best",
+      "repeat_index": 0,
+      "checkpoint_step": 5120,
+      "checkpoint_sha256": "27fcc1ce782cafcacca26360a74e5c75712e40b60c35004f5fa03696090c01e9",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.27401271567200663,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.006782063896556805,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1878
+        },
+        "pred_to_gt": {
+          "score": 0.5412433674474565,
+          "control_node_count": 64,
+          "path_pair_count": 95,
+          "missing_path_pair_count": 36
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.01818181818181818,
+      "topo_metrics": {
+        "precision": 0.07692307692307693,
+        "recall": 0.010309278350515464,
+        "f1": 0.01818181818181818,
+        "matched_reference_edges": 2,
+        "correct_candidate_edges": 2,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 26
+      },
+      "connectivity": {
+        "component_count": 20,
+        "largest_component_edge_length_ratio": 0.14382915795573828
+      },
+      "junction_correctness": {
+        "precision": 0.6666666666666666,
+        "recall": 0.01834862385321101,
+        "f1": 0.03571428571428572,
+        "matched_count": 2,
+        "reference_count": 109,
+        "candidate_count": 3,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 26,
+      "undirected_edge_count": 522,
+      "dangling_edge_count": 43,
+      "duplicate_edge_count": 4,
+      "vertex_count": 542,
+      "graph_iterations": 937,
+      "inference_time_seconds": 65.28327529877424,
+      "peak_gpu_memory_allocated_mb": 1520.32177734375,
+      "peak_gpu_memory_reserved_mb": 2310.0,
+      "physical_gpu_index": 5,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:09:41.238504+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "1578510229f8d2f6bd040697e149bfae0dac2e32d4d57386fce774ef053b0aa1",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C0/best/repeat_0/xian.graph"
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C0",
+      "run_id": "C0_image_detach_seed20260827",
+      "checkpoint_kind": "best",
+      "repeat_index": 1,
+      "checkpoint_step": 5120,
+      "checkpoint_sha256": "27fcc1ce782cafcacca26360a74e5c75712e40b60c35004f5fa03696090c01e9",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.27401271567200663,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.006782063896556805,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1878
+        },
+        "pred_to_gt": {
+          "score": 0.5412433674474565,
+          "control_node_count": 64,
+          "path_pair_count": 95,
+          "missing_path_pair_count": 36
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.01818181818181818,
+      "topo_metrics": {
+        "precision": 0.07692307692307693,
+        "recall": 0.010309278350515464,
+        "f1": 0.01818181818181818,
+        "matched_reference_edges": 2,
+        "correct_candidate_edges": 2,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 26
+      },
+      "connectivity": {
+        "component_count": 20,
+        "largest_component_edge_length_ratio": 0.14382915795573828
+      },
+      "junction_correctness": {
+        "precision": 0.6666666666666666,
+        "recall": 0.01834862385321101,
+        "f1": 0.03571428571428572,
+        "matched_count": 2,
+        "reference_count": 109,
+        "candidate_count": 3,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 26,
+      "undirected_edge_count": 522,
+      "dangling_edge_count": 43,
+      "duplicate_edge_count": 4,
+      "vertex_count": 542,
+      "graph_iterations": 937,
+      "inference_time_seconds": 68.52652687113732,
+      "peak_gpu_memory_allocated_mb": 1520.32177734375,
+      "peak_gpu_memory_reserved_mb": 2310.0,
+      "physical_gpu_index": 5,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:19:22.419055+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "1578510229f8d2f6bd040697e149bfae0dac2e32d4d57386fce774ef053b0aa1",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C0/best/repeat_1/xian.graph"
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C0",
+      "run_id": "C0_image_detach_seed20260827",
+      "checkpoint_kind": "latest",
+      "repeat_index": 0,
+      "checkpoint_step": 102400,
+      "checkpoint_sha256": "4e26657e97b56da83ffec9ef3eb53791c5cd39cbd1f93c259dab300405cf82dd",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.3287436938578571,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.0,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1892
+        },
+        "pred_to_gt": {
+          "score": 0.6574873877157142,
+          "control_node_count": 59,
+          "path_pair_count": 568,
+          "missing_path_pair_count": 124
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.0,
+      "topo_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_edges": 0,
+        "correct_candidate_edges": 0,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 3
+      },
+      "connectivity": {
+        "component_count": 3,
+        "largest_component_edge_length_ratio": 0.3932986799533823
+      },
+      "junction_correctness": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_count": 0,
+        "reference_count": 109,
+        "candidate_count": 0,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 3,
+      "undirected_edge_count": 28,
+      "dangling_edge_count": 6,
+      "duplicate_edge_count": 0,
+      "vertex_count": 31,
+      "graph_iterations": 816,
+      "inference_time_seconds": 58.04134520236403,
+      "peak_gpu_memory_allocated_mb": 1520.32177734375,
+      "peak_gpu_memory_reserved_mb": 2310.0,
+      "physical_gpu_index": 6,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:09:41.180027+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "e0fa8d3cdb08befac57d267710e3506ea53ff9b9f3b3210138975959221c47a7",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C0/latest/repeat_0/xian.graph"
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C0",
+      "run_id": "C0_image_detach_seed20260827",
+      "checkpoint_kind": "latest",
+      "repeat_index": 1,
+      "checkpoint_step": 102400,
+      "checkpoint_sha256": "4e26657e97b56da83ffec9ef3eb53791c5cd39cbd1f93c259dab300405cf82dd",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.3287436938578571,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.0,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1892
+        },
+        "pred_to_gt": {
+          "score": 0.6574873877157142,
+          "control_node_count": 59,
+          "path_pair_count": 568,
+          "missing_path_pair_count": 124
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.0,
+      "topo_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_edges": 0,
+        "correct_candidate_edges": 0,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 3
+      },
+      "connectivity": {
+        "component_count": 3,
+        "largest_component_edge_length_ratio": 0.3932986799533823
+      },
+      "junction_correctness": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_count": 0,
+        "reference_count": 109,
+        "candidate_count": 0,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 3,
+      "undirected_edge_count": 28,
+      "dangling_edge_count": 6,
+      "duplicate_edge_count": 0,
+      "vertex_count": 31,
+      "graph_iterations": 816,
+      "inference_time_seconds": 55.68013801146299,
+      "peak_gpu_memory_allocated_mb": 1520.32177734375,
+      "peak_gpu_memory_reserved_mb": 2310.0,
+      "physical_gpu_index": 5,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:20:37.329861+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "e0fa8d3cdb08befac57d267710e3506ea53ff9b9f3b3210138975959221c47a7",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C0/latest/repeat_1/xian.graph"
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "TERMINATED_PATHOLOGICAL_EXPANSION",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "evaluation_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C1",
+      "run_id": "C1_aligned_detach_seed20260827",
+      "checkpoint_kind": "best",
+      "repeat_index": 0,
+      "checkpoint_step": 10240,
+      "checkpoint_sha256": "32231f1cf0fd5c0656ccdb9fbae59644004b37d9c2bf15208bd1348ddf49934d",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "physical_gpu_index": 6,
+      "gpu_uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "worker_pid": 857133,
+      "worker_ppid": 847715,
+      "launcher_pid": 847715,
+      "started_at_utc": "2026-08-28T17:10:43.593479+00:00",
+      "ended_at_utc": "2026-08-29T06:09:34.953316+00:00",
+      "exit_code": -15,
+      "termination_signal": "SIGTERM",
+      "sigkill_required": false,
+      "graph_metrics_status": "NOT_AVAILABLE_INCOMPLETE_RUN",
+      "partial_forensic_state": {
+        "graph_iterations": 11007,
+        "graph_elapsed_seconds": 46623,
+        "raw_vertex_count": 7597,
+        "raw_directed_edge_count": 35148,
+        "reciprocal_insertion_pairs": 17574,
+        "undirected_edge_count": "NOT_AVAILABLE_INCOMPLETE_RUN",
+        "postprocessed_graph_sha256": "NOT_AVAILABLE_INCOMPLETE_RUN",
+        "stderr_log_logical_path": "${S3A_REMOTE_OUTPUT}/graph_logs/graph_C1_best_repeat0.stderr",
+        "partial_output_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C1/best/repeat_0"
+      },
+      "termination_reason": [
+        "iterations > 10800",
+        "graph elapsed > 12 hours",
+        "raw directed edges > 34600",
+        "runtime ratio > 390x vs largest completed control",
+        "sustained accepted raw graph expansion",
+        "per-iteration cost strongly increases with graph size",
+        "natural termination not imminent",
+        "computational feasibility failed"
+      ],
+      "completed_graph_metrics_must_not_be_inferred": true
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C1",
+      "run_id": "C1_aligned_detach_seed20260827",
+      "checkpoint_kind": "latest",
+      "repeat_index": 0,
+      "checkpoint_step": 102400,
+      "checkpoint_sha256": "b3a54229e901ff009131b866493c7b09565382aa684c39b039b1b50151b01379",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.35517677820696675,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.0029896667735790678,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1886
+        },
+        "pred_to_gt": {
+          "score": 0.7073638896403545,
+          "control_node_count": 64,
+          "path_pair_count": 264,
+          "missing_path_pair_count": 62
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.00970873786407767,
+      "topo_metrics": {
+        "precision": 0.08333333333333333,
+        "recall": 0.005154639175257732,
+        "f1": 0.00970873786407767,
+        "matched_reference_edges": 1,
+        "correct_candidate_edges": 1,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 12
+      },
+      "connectivity": {
+        "component_count": 8,
+        "largest_component_edge_length_ratio": 0.2498324761758039
+      },
+      "junction_correctness": {
+        "precision": 0.5,
+        "recall": 0.009174311926605505,
+        "f1": 0.01801801801801802,
+        "matched_count": 1,
+        "reference_count": 109,
+        "candidate_count": 2,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 12,
+      "undirected_edge_count": 220,
+      "dangling_edge_count": 18,
+      "duplicate_edge_count": 0,
+      "vertex_count": 228,
+      "graph_iterations": 929,
+      "inference_time_seconds": 95.1899859085679,
+      "peak_gpu_memory_allocated_mb": 1536.515625,
+      "peak_gpu_memory_reserved_mb": 2334.0,
+      "physical_gpu_index": 5,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:10:51.650828+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "ae269c8b21c3d0e31e3dd61f3b7e766bf01d66e3a6497129a361f3200ab44050",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C1/latest/repeat_0/xian.graph"
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C2",
+      "run_id": "C2_zero_detach_seed20260827",
+      "checkpoint_kind": "best",
+      "repeat_index": 0,
+      "checkpoint_step": 5120,
+      "checkpoint_sha256": "0c2df5fd4617bb20718739931e177c767897efa42fae0a964376ec3ed82b695c",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.24899294387392687,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.0046642241200554,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1879
+        },
+        "pred_to_gt": {
+          "score": 0.49332166362779833,
+          "control_node_count": 64,
+          "path_pair_count": 159,
+          "missing_path_pair_count": 56
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.03333333333333333,
+      "topo_metrics": {
+        "precision": 0.08695652173913043,
+        "recall": 0.020618556701030927,
+        "f1": 0.03333333333333333,
+        "matched_reference_edges": 4,
+        "correct_candidate_edges": 4,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 46
+      },
+      "connectivity": {
+        "component_count": 19,
+        "largest_component_edge_length_ratio": 0.2495809108101382
+      },
+      "junction_correctness": {
+        "precision": 0.6153846153846154,
+        "recall": 0.07339449541284404,
+        "f1": 0.13114754098360656,
+        "matched_count": 8,
+        "reference_count": 109,
+        "candidate_count": 13,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 46,
+      "undirected_edge_count": 865,
+      "dangling_edge_count": 51,
+      "duplicate_edge_count": 0,
+      "vertex_count": 883,
+      "graph_iterations": 1207,
+      "inference_time_seconds": 108.77994820382446,
+      "peak_gpu_memory_allocated_mb": 1536.515625,
+      "peak_gpu_memory_reserved_mb": 2334.0,
+      "physical_gpu_index": 5,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:12:32.021131+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "3a91a49431eeef2f71922cc441c9e8325a5c2db11d1afdcebdf8d88fcf497fe2",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C2/best/repeat_0/xian.graph"
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C2",
+      "run_id": "C2_zero_detach_seed20260827",
+      "checkpoint_kind": "latest",
+      "repeat_index": 0,
+      "checkpoint_step": 102400,
+      "checkpoint_sha256": "77f8199c3b0e12bf33f83a977692a194226c18f1add6f2b9625531e3a47411cf",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.38587537361800944,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.0015446577979333638,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1889
+        },
+        "pred_to_gt": {
+          "score": 0.7702060894380856,
+          "control_node_count": 64,
+          "path_pair_count": 697,
+          "missing_path_pair_count": 121
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.0,
+      "topo_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_edges": 0,
+        "correct_candidate_edges": 0,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 4
+      },
+      "connectivity": {
+        "component_count": 4,
+        "largest_component_edge_length_ratio": 0.5347201511212843
+      },
+      "junction_correctness": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_count": 0,
+        "reference_count": 109,
+        "candidate_count": 0,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 4,
+      "undirected_edge_count": 80,
+      "dangling_edge_count": 8,
+      "duplicate_edge_count": 0,
+      "vertex_count": 84,
+      "graph_iterations": 838,
+      "inference_time_seconds": 79.30392249021679,
+      "peak_gpu_memory_allocated_mb": 1536.515625,
+      "peak_gpu_memory_reserved_mb": 2334.0,
+      "physical_gpu_index": 5,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:14:27.309746+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "5f3eb3467f4295f6afe8a3221b12607983b921b7be8ebba8b18eaffcb2a9d796",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C2/latest/repeat_0/xian.graph"
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C3",
+      "run_id": "C3_shifted_detach_seed20260827",
+      "checkpoint_kind": "best",
+      "repeat_index": 0,
+      "checkpoint_step": 5120,
+      "checkpoint_sha256": "131834cadfed3d6b99e745f6a9ca0fb848f984d09ed54a654a27235c15b5870d",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.21066821454745976,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.014911964098159447,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1850
+        },
+        "pred_to_gt": {
+          "score": 0.4064244649967601,
+          "control_node_count": 64,
+          "path_pair_count": 220,
+          "missing_path_pair_count": 88
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.029197080291970805,
+      "topo_metrics": {
+        "precision": 0.05,
+        "recall": 0.020618556701030927,
+        "f1": 0.029197080291970805,
+        "matched_reference_edges": 4,
+        "correct_candidate_edges": 4,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 80
+      },
+      "connectivity": {
+        "component_count": 27,
+        "largest_component_edge_length_ratio": 0.3014575124045077
+      },
+      "junction_correctness": {
+        "precision": 0.2857142857142857,
+        "recall": 0.07339449541284404,
+        "f1": 0.11678832116788322,
+        "matched_count": 8,
+        "reference_count": 109,
+        "candidate_count": 28,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 80,
+      "undirected_edge_count": 1122,
+      "dangling_edge_count": 77,
+      "duplicate_edge_count": 6,
+      "vertex_count": 1144,
+      "graph_iterations": 1701,
+      "inference_time_seconds": 130.88732671178877,
+      "peak_gpu_memory_allocated_mb": 1536.515625,
+      "peak_gpu_memory_reserved_mb": 2334.0,
+      "physical_gpu_index": 5,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:15:52.124232+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "0c138b8c0675eaf9dc57f29f42382e7f90183fc8b803535ec85add5d45fad1b2",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C3/best/repeat_0/xian.graph"
+    },
+    {
+      "stage": "seg_raster_stage_s3a",
+      "status": "PASS",
+      "execution_environment": "REMOTE_TRAINING_SERVER",
+      "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+      "formal_s3_run_code_sha": "2e68f4e5a1c7cfad041182c2edce3194b8175b8c",
+      "run_key": "C3",
+      "run_id": "C3_shifted_detach_seed20260827",
+      "checkpoint_kind": "latest",
+      "repeat_index": 0,
+      "checkpoint_step": 102400,
+      "checkpoint_sha256": "d4e762bda40b5413ebf382f929efa2ad9c17594db4f8405c17fb94543922d104",
+      "fixed_probability_threshold": 0.3,
+      "inference_canvas_wh": [
+        4096,
+        4096
+      ],
+      "metric_extent_xyxy": [
+        2176.0,
+        0.0,
+        4096.0,
+        4096.0
+      ],
+      "apls": 0.32181219861279153,
+      "apls_directional": {
+        "gt_to_pred": {
+          "score": 0.0005231290153277592,
+          "control_node_count": 64,
+          "path_pair_count": 1892,
+          "missing_path_pair_count": 1891
+        },
+        "pred_to_gt": {
+          "score": 0.6431012682102553,
+          "control_node_count": 64,
+          "path_pair_count": 486,
+          "missing_path_pair_count": 161
+        }
+      },
+      "apls_protocol": {
+        "kind": "deterministic_pixel_graph_approximation",
+        "densify_step_pixels": 16.0,
+        "snap_tolerance_pixels": 24.0,
+        "max_control_nodes_per_direction": 64,
+        "official_apls_jar_available": false
+      },
+      "topo": 0.0,
+      "topo_metrics": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_reference_edges": 0,
+        "correct_candidate_edges": 0,
+        "reference_edge_count": 194,
+        "candidate_edge_count": 5
+      },
+      "connectivity": {
+        "component_count": 5,
+        "largest_component_edge_length_ratio": 0.3499329010417848
+      },
+      "junction_correctness": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "matched_count": 0,
+        "reference_count": 109,
+        "candidate_count": 0,
+        "tolerance_pixels": 24.0
+      },
+      "candidate_edge_count": 5,
+      "undirected_edge_count": 132,
+      "dangling_edge_count": 10,
+      "duplicate_edge_count": 0,
+      "vertex_count": 137,
+      "graph_iterations": 810,
+      "inference_time_seconds": 68.81140203587711,
+      "peak_gpu_memory_allocated_mb": 1536.515625,
+      "peak_gpu_memory_reserved_mb": 2334.0,
+      "physical_gpu_index": 5,
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "started_at_utc": "2026-08-28T17:18:07.542140+00:00",
+      "deterministic_settings": {
+        "seed": 20260828,
+        "python_random": true,
+        "numpy_random": true,
+        "torch_cpu": true,
+        "torch_cuda_all": true,
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "postprocessed_graph_sha256": "1907b43248f306be5903bdaddedc4775fe2cb4c40e0eee9bb137a6000bd9ca02",
+      "graph_logical_path": "${S3A_REMOTE_OUTPUT}/graph/C3/latest/repeat_0/xian.graph"
+    }
+  ],
+  "common_step": {
+    "status": "UNAVAILABLE_MISSING_CHECKPOINT",
+    "step": 5120,
+    "missing_runs": [
+      "C1"
+    ]
+  },
+  "apls_kind": "deterministic_pixel_graph_approximation",
+  "graph_density_normalized_comparison_recommended": true,
+  "detailed_comparisons": {
+    "best": {
+      "status": "NOT_AVAILABLE_INCOMPLETE_RUN",
+      "missing_runs": [
+        "C1"
+      ],
+      "reason": "C1-best was terminated for pathological closed-loop expansion before complete graph metrics were produced."
+    },
+    "latest": {
+      "status": "PASS",
+      "comparisons": {
+        "C1_minus_C0": {
+          "apls": 0.026433084349109626,
+          "topo_f1": 0.00970873786407767,
+          "largest_component_edge_length_ratio": -0.1434662037775784,
+          "junction_f1": 0.01801801801801802,
+          "candidate_edge_count": 9,
+          "undirected_edge_count": 192,
+          "dangling_edge_count": 12,
+          "duplicate_edge_count": 0,
+          "graph_iterations": 113,
+          "runtime_seconds": 37.14864070620388
+        },
+        "C1_minus_C2": {
+          "apls": -0.030698595411042695,
+          "topo_f1": 0.00970873786407767,
+          "largest_component_edge_length_ratio": -0.28488767494548045,
+          "junction_f1": 0.01801801801801802,
+          "candidate_edge_count": 8,
+          "undirected_edge_count": 140,
+          "dangling_edge_count": 10,
+          "duplicate_edge_count": 0,
+          "graph_iterations": 91,
+          "runtime_seconds": 15.886063418351114
+        },
+        "C1_minus_C3": {
+          "apls": 0.033364579594175214,
+          "topo_f1": 0.00970873786407767,
+          "largest_component_edge_length_ratio": -0.10010042486598092,
+          "junction_f1": 0.01801801801801802,
+          "candidate_edge_count": 7,
+          "undirected_edge_count": 88,
+          "dangling_edge_count": 8,
+          "duplicate_edge_count": 0,
+          "graph_iterations": 119,
+          "runtime_seconds": 26.378583872690797
+        }
+      }
+    }
+  },
+  "overgeneration_assessment": "C1 overgeneration must be interpreted jointly with C2/C3 candidate, undirected, dangling and duplicate edge counts; connectivity or approximate APLS alone is not registration-specific evidence."
+}

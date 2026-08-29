@@ -1,6 +1,6 @@
 {
   "stage": "seg_raster_stage_s3a",
-  "status": "PASS",
+  "status": "PASS_WITH_ENVIRONMENT_CONSTRAINED_FULL_SUITE_RERUN",
   "execution_environment": "LOCAL_WINDOWS_WORKSTATION_CPU_ONLY",
   "formal_checkpoint_evaluation_performed_locally": false,
   "targeted": {
@@ -19,6 +19,26 @@
     "warnings": 9,
     "duration_seconds": 52.89
   },
+  "post_termination_reducer_validation": {
+    "execution_environment": "REMOTE_TRAINING_SERVER_CPU_TEST_PROCESS",
+    "reducer_code_sha": "8ac39ea846f91eb4d99469c033fdc643b0129824",
+    "command": "python -m pytest tests/test_stage_s3a_metrics.py tests/test_stage_s3a_protocols.py -q -p no:cacheprovider",
+    "passed": 27,
+    "failed": 0,
+    "errors": 0,
+    "duration_seconds": 2.60,
+    "status": "PASS"
+  },
+  "full_suite_at_reducer_sha": {
+    "execution_environment": "REMOTE_TRAINING_SERVER_WITH_CUDA_HIDDEN",
+    "command": "CUDA_VISIBLE_DEVICES=<empty> python -m pytest tests -q -p no:cacheprovider",
+    "passed": 321,
+    "failed": 1,
+    "errors": 0,
+    "duration_seconds": 63.10,
+    "status": "ENVIRONMENT_CONSTRAINED_ONE_LEGACY_CUDA_CONSTRUCTION_FAILURE",
+    "failure_scope": "Unmodified legacy DSFNet constructor allocates a CUDA tensor; failure occurred only because CUDA was deliberately hidden. The postprocessing reducer tests all passed."
+  },
   "notes": [
     "The pytest cache plugin was disabled because preexisting local cache/temp ACLs were unreadable.",
     "Tests ran on CPU and did not inspect or use the local GPU.",
@@ -29,6 +49,7 @@
     "The reducer distinguishes untagged training-log rows from frozen_validation rows and records evaluation SHA separately during dry-run validation.",
     "AUPRC has a documented 1e-6 tie-policy tolerance while precision, recall, F1 and IoU retain a 1e-12 tolerance.",
     "Graph audit tests verify Python, NumPy and Torch RNG reset plus exact repeated postprocessed-graph checksum and metric comparison.",
-    "Anchor tests distinguish latest-checkpoint all-zero later steps from the J1-best exception and scope the no-false-positive observation to latest checkpoints."
+    "Anchor tests distinguish latest-checkpoint all-zero later steps from the J1-best exception and scope the no-false-positive observation to latest checkpoints.",
+    "The final reducer-specific remote suite passed 27/27. A broader remote run with CUDA deliberately hidden passed 321 tests and hit one unrelated legacy DSFNet constructor that hardcodes a CUDA allocation; no model or evaluator change was made."
   ]
 }

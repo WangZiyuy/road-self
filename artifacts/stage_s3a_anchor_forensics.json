@@ -1,0 +1,568 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "status": "PASS",
+  "historical_anchor_comparison_provenance": {
+    "status": "PASS",
+    "checkpoint_kind": "latest",
+    "checkpoint_step": 102400,
+    "evidence": "historical evaluation/anchor.json was overwritten at each validation; values match latest protocol",
+    "historical_artifact": "artifacts/stage_s3_anchor_comparison.json",
+    "historical_vs_recomputed_latest_maximum_absolute_difference": 0.0
+  },
+  "records": {
+    "C0": {
+      "best": {
+        "checkpoint_step": 5120,
+        "checkpoint_sha256": "27fcc1ce782cafcacca26360a74e5c75712e40b60c35004f5fa03696090c01e9",
+        "metrics": {
+          "per_step_recall": [
+            0.08333333333333333,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.125,
+          "localization_error": 44.74212859306497,
+          "false_positive_count": 0,
+          "missed_branch_count": 23,
+          "channel_diversity_mean_absolute_difference": 0.0002024271901702187,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      },
+      "latest": {
+        "checkpoint_step": 102400,
+        "checkpoint_sha256": "4e26657e97b56da83ffec9ef3eb53791c5cd39cbd1f93c259dab300405cf82dd",
+        "metrics": {
+          "per_step_recall": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.20833333333333334,
+          "localization_error": 87.98092194083809,
+          "false_positive_count": 0,
+          "missed_branch_count": 24,
+          "channel_diversity_mean_absolute_difference": 7.303959173226934e-07,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      }
+    },
+    "C1": {
+      "best": {
+        "checkpoint_step": 10240,
+        "checkpoint_sha256": "32231f1cf0fd5c0656ccdb9fbae59644004b37d9c2bf15208bd1348ddf49934d",
+        "metrics": {
+          "per_step_recall": [
+            0.16666666666666666,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.3333333333333333,
+          "localization_error": 37.0787093005006,
+          "false_positive_count": 424,
+          "missed_branch_count": 22,
+          "channel_diversity_mean_absolute_difference": 0.000714776217165704,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      },
+      "latest": {
+        "checkpoint_step": 102400,
+        "checkpoint_sha256": "b3a54229e901ff009131b866493c7b09565382aa684c39b039b1b50151b01379",
+        "metrics": {
+          "per_step_recall": [
+            0.16666666666666666,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.2916666666666667,
+          "localization_error": 52.20976496218469,
+          "false_positive_count": 0,
+          "missed_branch_count": 22,
+          "channel_diversity_mean_absolute_difference": 0.0001480440811046221,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      }
+    },
+    "C2": {
+      "best": {
+        "checkpoint_step": 5120,
+        "checkpoint_sha256": "0c2df5fd4617bb20718739931e177c767897efa42fae0a964376ec3ed82b695c",
+        "metrics": {
+          "per_step_recall": [
+            0.16666666666666666,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.20833333333333334,
+          "localization_error": 52.319139976227994,
+          "false_positive_count": 0,
+          "missed_branch_count": 22,
+          "channel_diversity_mean_absolute_difference": 0.00018607991933636956,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      },
+      "latest": {
+        "checkpoint_step": 102400,
+        "checkpoint_sha256": "77f8199c3b0e12bf33f83a977692a194226c18f1add6f2b9625531e3a47411cf",
+        "metrics": {
+          "per_step_recall": [
+            0.08333333333333333,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.25,
+          "localization_error": 95.65592295967151,
+          "false_positive_count": 0,
+          "missed_branch_count": 23,
+          "channel_diversity_mean_absolute_difference": 7.776623121469287e-05,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      }
+    },
+    "C3": {
+      "best": {
+        "checkpoint_step": 5120,
+        "checkpoint_sha256": "131834cadfed3d6b99e745f6a9ca0fb848f984d09ed54a654a27235c15b5870d",
+        "metrics": {
+          "per_step_recall": [
+            0.16666666666666666,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.16666666666666666,
+          "localization_error": 38.176439208288485,
+          "false_positive_count": 47,
+          "missed_branch_count": 22,
+          "channel_diversity_mean_absolute_difference": 0.00038952849186513894,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      },
+      "latest": {
+        "checkpoint_step": 102400,
+        "checkpoint_sha256": "d4e762bda40b5413ebf382f929efa2ad9c17594db4f8405c17fb94543922d104",
+        "metrics": {
+          "per_step_recall": [
+            0.08333333333333333,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.4166666666666667,
+          "localization_error": 17.76335519957512,
+          "false_positive_count": 0,
+          "missed_branch_count": 23,
+          "channel_diversity_mean_absolute_difference": 9.01405925287426e-05,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      }
+    },
+    "J0": {
+      "best": {
+        "checkpoint_step": 5120,
+        "checkpoint_sha256": "c118fca4a01424f10f407945bb4d92305fe504ce1e970592df2388abfd551058",
+        "metrics": {
+          "per_step_recall": [
+            0.08333333333333333,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.3333333333333333,
+          "localization_error": 47.0589259801749,
+          "false_positive_count": 0,
+          "missed_branch_count": 23,
+          "channel_diversity_mean_absolute_difference": 0.00026739593128171794,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      },
+      "latest": {
+        "checkpoint_step": 102400,
+        "checkpoint_sha256": "b66c1dd1d993f2e8735a136f628875b9a0031763e3d4588db05a2674af60b81c",
+        "metrics": {
+          "per_step_recall": [
+            0.08333333333333333,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.20833333333333334,
+          "localization_error": 82.16842787632761,
+          "false_positive_count": 0,
+          "missed_branch_count": 23,
+          "channel_diversity_mean_absolute_difference": 9.743367020497691e-05,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      }
+    },
+    "J1": {
+      "best": {
+        "checkpoint_step": 15360,
+        "checkpoint_sha256": "ba8876a576bc9701d2477d4570cf302dd3c221cf5ff0539c1d7f47d751f7d486",
+        "metrics": {
+          "per_step_recall": [
+            0.5,
+            0.2,
+            0.25,
+            0.3333333333333333
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.4166666666666667,
+          "localization_error": 50.95611197523957,
+          "false_positive_count": 2,
+          "missed_branch_count": 15,
+          "channel_diversity_mean_absolute_difference": 0.0009359616798673974,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      },
+      "latest": {
+        "checkpoint_step": 102400,
+        "checkpoint_sha256": "a0edeb8661023c0723f0fd4e086f45cad2cd49259372d90a9c2177e8d9f68bd5",
+        "metrics": {
+          "per_step_recall": [
+            0.08333333333333333,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "per_step_target_count": [
+            12,
+            5,
+            4,
+            3
+          ],
+          "top_k": 10,
+          "top_k_recall": 0.16666666666666666,
+          "localization_error": 81.2594906617479,
+          "false_positive_count": 0,
+          "missed_branch_count": 23,
+          "channel_diversity_mean_absolute_difference": 0.00010683342730628743,
+          "evaluated_target_count": 24,
+          "fixed_threshold": 0.3,
+          "top_k_bypasses_fixed_threshold": true,
+          "localization_error_scope": "all evaluated targets using global heatmap argmax",
+          "false_positive_unit": "thresholded pixels outside target mask"
+        },
+        "existing_vs_reference_max_abs_difference": 0.0
+      }
+    }
+  },
+  "protocol_comparisons": {
+    "best": {
+      "C1_minus_C0": {
+        "road_f1": -0.03055371822734572,
+        "road_iou": -0.01746582186860257,
+        "junction_f1": -0.004784688995215311,
+        "segmentation_composite": -0.017601409697054544,
+        "anchor_top_k_recall": 0.20833333333333331,
+        "anchor_localization_error": -7.66341929256437,
+        "anchor_missed_branch_count": -1.0,
+        "anchor_channel_diversity_mean_absolute_difference": 0.0005123490269954853
+      },
+      "C1_minus_C2": {
+        "road_f1": -0.04653116183636828,
+        "road_iou": -0.02683027824813848,
+        "junction_f1": 0.0,
+        "segmentation_composite": -0.02445381336150227,
+        "anchor_top_k_recall": 0.12499999999999997,
+        "anchor_localization_error": -15.240430675727396,
+        "anchor_missed_branch_count": 0.0,
+        "anchor_channel_diversity_mean_absolute_difference": 0.0005286962978293345
+      },
+      "C1_minus_C3": {
+        "road_f1": -0.009408545633861329,
+        "road_iou": -0.0053177218964758355,
+        "junction_f1": 0.0,
+        "segmentation_composite": -0.004908755843445724,
+        "anchor_top_k_recall": 0.16666666666666666,
+        "anchor_localization_error": -1.0977299077878868,
+        "anchor_missed_branch_count": 0.0,
+        "anchor_channel_diversity_mean_absolute_difference": 0.0003252477253005651
+      }
+    },
+    "latest": {
+      "C1_minus_C0": {
+        "road_f1": 0.009188692237727647,
+        "road_iou": 0.004671719062810471,
+        "junction_f1": 0.0,
+        "segmentation_composite": 0.004620137100179374,
+        "anchor_top_k_recall": 0.08333333333333334,
+        "anchor_localization_error": -35.771156978653394,
+        "anchor_missed_branch_count": -2.0,
+        "anchor_channel_diversity_mean_absolute_difference": 0.0001473136851872994
+      },
+      "C1_minus_C2": {
+        "road_f1": 0.011442381373415857,
+        "road_iou": 0.005810953041799827,
+        "junction_f1": 0.0,
+        "segmentation_composite": 0.005751111471738562,
+        "anchor_top_k_recall": 0.041666666666666685,
+        "anchor_localization_error": -43.44615799748682,
+        "anchor_missed_branch_count": -1.0,
+        "anchor_channel_diversity_mean_absolute_difference": 7.027784988992923e-05
+      },
+      "C1_minus_C3": {
+        "road_f1": 0.01099235812841353,
+        "road_iou": 0.005583673673924482,
+        "junction_f1": 0.0,
+        "segmentation_composite": 0.005525343934112672,
+        "anchor_top_k_recall": -0.125,
+        "anchor_localization_error": 34.446409762609576,
+        "anchor_missed_branch_count": -1.0,
+        "anchor_channel_diversity_mean_absolute_difference": 5.7903488575879506e-05
+      }
+    },
+    "common_step": {
+      "status": "UNAVAILABLE_MISSING_CHECKPOINT"
+    }
+  },
+  "multistep_diagnosis": {
+    "zero_based_steps_1_through_3_recall_zero_for_all_latest_checkpoints": true,
+    "zero_based_steps_1_through_3_recall_zero_for_all_detach_best_checkpoints": true,
+    "j1_best_has_a_later_step_hit": true,
+    "fixed_threshold_produced_no_false_positive_pixels_for_all_latest_checkpoints": true,
+    "fixed_threshold_produced_no_false_positive_pixels_for_all_available_checkpoints": false,
+    "top_k_bypasses_fixed_threshold": true,
+    "localization_error_scope": "all targets using global heatmap argmax",
+    "interpretation": "Threshold recall and false-positive counts can both be zero when all heatmaps stay below 0.3; top-K still measures ranking. Near-zero channel diversity and absent later-step hits make multistep behavior invalid as positive evidence."
+  },
+  "C1_VS_C0_EFFECT": "PASS",
+  "ALIGNED_VS_ZERO_SPECIFICITY": "PASS",
+  "ALIGNED_VS_SHIFTED_SPECIFICITY": "INCONCLUSIVE",
+  "MULTISTEP_ANCHOR_VALIDITY": "FAIL",
+  "ANCHOR_METRIC_VALIDITY": "PASS",
+  "historical_values": {
+    "C0": {
+      "per_step_recall": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.20833333333333334,
+      "localization_error": 87.98092194083809,
+      "false_positive_count": 0,
+      "missed_branch_count": 24,
+      "channel_diversity_mean_absolute_difference": 7.303959173226934e-07,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "C1": {
+      "per_step_recall": [
+        0.16666666666666666,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.2916666666666667,
+      "localization_error": 52.20976496218469,
+      "false_positive_count": 0,
+      "missed_branch_count": 22,
+      "channel_diversity_mean_absolute_difference": 0.0001480440811046221,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "C2": {
+      "per_step_recall": [
+        0.08333333333333333,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.25,
+      "localization_error": 95.65592295967151,
+      "false_positive_count": 0,
+      "missed_branch_count": 23,
+      "channel_diversity_mean_absolute_difference": 7.776623121469287e-05,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "C3": {
+      "per_step_recall": [
+        0.08333333333333333,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.4166666666666667,
+      "localization_error": 17.76335519957512,
+      "false_positive_count": 0,
+      "missed_branch_count": 23,
+      "channel_diversity_mean_absolute_difference": 9.01405925287426e-05,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "J0": {
+      "per_step_recall": [
+        0.08333333333333333,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.20833333333333334,
+      "localization_error": 82.16842787632761,
+      "false_positive_count": 0,
+      "missed_branch_count": 23,
+      "channel_diversity_mean_absolute_difference": 9.743367020497691e-05,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    },
+    "J1": {
+      "per_step_recall": [
+        0.08333333333333333,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "top_k": 10,
+      "top_k_recall": 0.16666666666666666,
+      "localization_error": 81.2594906617479,
+      "false_positive_count": 0,
+      "missed_branch_count": 23,
+      "channel_diversity_mean_absolute_difference": 0.00010683342730628743,
+      "evaluated_target_count": 24,
+      "fixed_threshold": 0.3
+    }
+  }
+}

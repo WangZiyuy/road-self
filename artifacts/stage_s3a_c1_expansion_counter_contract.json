@@ -1,0 +1,164 @@
+{
+  "stage": "seg_raster_stage_s3a",
+  "audit_kind": "c1_best_closed_loop_expansion_counter_contract",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "audit_code_sha": "9c8d50b2c5c5b88640babec5e9508ac545bbc1f0",
+  "read_only": true,
+  "counter_contract": {
+    "graph_iterations": {
+      "meaning": "For a naturally exhausted infer_anchor call, the returned zero-based loop index equals the number of completed non-empty exploration batches/forwards because the final empty-pop loop body does not call pbar.update. The audit wrapper sums this value over infer_anchor calls.",
+      "current_run_call_count": 1,
+      "is_model_forward_count_for_current_run": true,
+      "caveat": "If max_iteration were exhausted rather than the frontier becoming empty, the returned index would be one less than the number of completed loop bodies.",
+      "sources": [
+        {
+          "file": "infer.py",
+          "function": "infer_anchor",
+          "lines": [275, 279, 344, 351, 463, 467],
+          "counter_update_logic": "The Python loop index advances once per outer batch; pbar advances only after a non-empty batch has been forwarded and pushed."
+        },
+        {
+          "file": "tools/seg_raster/audit_stage_s3a_graph.py",
+          "function": "tracked/main",
+          "lines": [433, 439, 490],
+          "counter_update_logic": "tracked appends infer_anchor result[0], and the result stores sum(iterations)."
+        }
+      ]
+    },
+    "iteration_log_step": {
+      "meaning": "The tqdm unit is one non-empty outer infer_anchor batch. With one active Xi'an path, each unit consumes one Path state and performs one model forward.",
+      "processes_at_most_one_vertex_per_path": true,
+      "active_path_count_for_c1_best": 1,
+      "sources": [
+        {
+          "file": "infer.py",
+          "function": "infer_anchor",
+          "lines": [299, 342, 377, 388, 438, 463],
+          "counter_update_logic": "At most one state is popped per path per batch; one batched network call follows."
+        }
+      ]
+    },
+    "vertex_count": {
+      "meaning": "Raw in-memory Graph vertex objects before post-processing.",
+      "includes": [
+        "junction starting vertices when popped",
+        "newly generated vertices",
+        "coordinate-duplicate vertices because Graph.add_vertex does not deduplicate"
+      ],
+      "observation_method": "LOG_DERIVED",
+      "sources": [
+        {
+          "file": "infer.py",
+          "function": "infer_anchor",
+          "lines": [348, 349, 457, 462],
+          "counter_update_logic": "tqdm postfix sums len(path.graph.vertices)."
+        },
+        {
+          "file": "lib/graph.py",
+          "function": "Graph.add_vertex",
+          "lines": [168, 178],
+          "counter_update_logic": "Each call allocates a new id and inserts a vertex; no coordinate deduplication is performed."
+        }
+      ]
+    },
+    "directed_edge_count": {
+      "meaning": "Raw in-memory directed Edge objects before post-processing.",
+      "includes_temporary_edges": false,
+      "can_include_duplicate_edges": true,
+      "observation_method": "LOG_DERIVED",
+      "sources": [
+        {
+          "file": "infer.py",
+          "function": "infer_anchor",
+          "lines": [348, 350, 457, 462],
+          "counter_update_logic": "tqdm postfix sums len(path.graph.edges)."
+        },
+        {
+          "file": "utils/model_utils.py",
+          "function": "Path._add_bidirectional_edge",
+          "lines": [140, 146],
+          "counter_update_logic": "Every accepted connection calls Graph.add_bidirectional_edge and inserts two directed edges."
+        },
+        {
+          "file": "lib/graph.py",
+          "function": "Graph.add_bidirectional_edge",
+          "lines": [180, 202],
+          "counter_update_logic": "Adds src->dst and dst->src without duplicate suppression."
+        }
+      ]
+    },
+    "undirected_edge_count": {
+      "meaning": "Unique undirected coordinate pairs in the final postprocessed graph, after extent filtering.",
+      "available_during_current_run": false,
+      "current_status": "NOT_INSTRUMENTED",
+      "do_not_substitute": "raw_directed_edges/2 is the number of reciprocal insertion pairs, not the number of unique undirected edges.",
+      "sources": [
+        {
+          "file": "tools/seg_raster/audit_stage_s3a_graph.py",
+          "function": "raw_stats/main",
+          "lines": [101, 112, 455, 485],
+          "counter_update_logic": "Final-only set cardinality over sorted endpoint-coordinate pairs from the postprocessed graph."
+        }
+      ]
+    },
+    "frontier_and_queues": {
+      "frontier_size": "NOT_INSTRUMENTED",
+      "search_vertices_queue": "Path.search_vertices; LIFO when follow_order=true",
+      "unexplored_start_queue": "Path.not_explored_starting_points; used only after search_vertices empties",
+      "road_peak_fallback": "Disabled for this C1-best run",
+      "active_postfix_is_frontier_size": false,
+      "active_postfix_meaning": "Number of paths included in the current network batch.",
+      "sources": [
+        {
+          "file": "utils/model_utils.py",
+          "function": "Path.__init__/prepend_search_vertex/pop_state",
+          "lines": [75, 78, 166, 178, 419, 435, 529, 537],
+          "counter_update_logic": "Queue items are appended by prepend_search_vertex and consumed by pop_state; no queue-length telemetry is emitted."
+        }
+      ]
+    },
+    "candidate_and_rejection_counters": {
+      "candidate_count": "NOT_INSTRUMENTED",
+      "accepted_vertex_count": "NOT_SEPARATELY_INSTRUMENTED",
+      "accepted_edge_count": "Raw accepted edge-object insertions are observable as directed_edge_count, but unique/useful edges are not separable.",
+      "rejected_candidate_count": "NOT_INSTRUMENTED",
+      "duplicate_rejection_count": "NOT_INSTRUMENTED",
+      "visited_rejection_count": "NOT_INSTRUMENTED",
+      "low_score_rejection_count": "NOT_INSTRUMENTED",
+      "out_of_bounds_rejection_count": "NOT_INSTRUMENTED",
+      "notes": [
+        "map_to_coordinate thresholds/components are not counted.",
+        "Path.push early returns and key-point road-confidence removals are not counted.",
+        "prepend_search_vertex suppresses out-of-extent queue insertion but emits no counter and runs after the graph edge is inserted.",
+        "Final duplicate_edge_count is a postprocessed-graph statistic, not a runtime rejection counter."
+      ],
+      "sources": [
+        {
+          "file": "utils/model_utils.py",
+          "function": "Path.push/_follow_graph_one_step/prepend_search_vertex",
+          "lines": [166, 178, 260, 359, 582, 683],
+          "counter_update_logic": "Accept/reject branches mutate state but do not increment diagnostic counters."
+        },
+        {
+          "file": "utils/model_utils.py",
+          "function": "map_to_coordinate",
+          "lines": [1810, 1875],
+          "counter_update_logic": "Thresholding and connected-component filtering return coordinates only; rejection reasons are not retained."
+        }
+      ]
+    }
+  },
+  "per_iteration_growth_bounds": {
+    "non_key_point": "At most NUM_TARGETS=4 coordinate steps; each Path.proc can insert at most one vertex and one reciprocal edge pair, so at most 4 vertices and 8 directed edges.",
+    "key_point": "Only the first output channel is consumed, but the number of accepted connected components has no explicit small cap; every accepted component may insert one vertex and one reciprocal edge pair.",
+    "observed_c1_best_max_delta": {
+      "vertices": 4,
+      "directed_edges": 8
+    }
+  },
+  "theoretical_relations": [
+    "raw_directed_edge_count is even because connections are inserted bidirectionally.",
+    "raw_directed_edge_count / 2 equals reciprocal insertion-pair count, not unique geometric undirected-edge count.",
+    "No fixed relation forces graph_iterations to equal vertex_count or edge_count because an iteration may add zero to many graph objects and may connect existing vertices."
+  ]
+}
