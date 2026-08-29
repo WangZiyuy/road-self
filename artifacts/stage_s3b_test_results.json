@@ -6,13 +6,13 @@
   "commands": [
     {
       "command_label": "python -m pytest tests/test_stage_s3b_protocol.py -q",
-      "passed": 24,
+      "passed": 25,
       "failed": 0,
       "status": "PASS"
     },
     {
       "command_label": "python -m pytest tests -q",
-      "passed": 346,
+      "passed": 347,
       "subtests_passed": 4,
       "failed": 0,
       "warnings": 9,

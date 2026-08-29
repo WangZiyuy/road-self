@@ -44,6 +44,34 @@ def canonical_sha256(value: Any) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def frozen_plan_batch_identities(
+    sample_order: Sequence[Mapping[str, Any]], *, count: int = 100
+) -> list[str]:
+    """Recompute authoritative batch identities from frozen sample records.
+
+    Historical S3 artifacts contain an aggregate first-100 hash produced by
+    an older hash protocol.  The explicit sample_order rows are the data
+    contract, so Stage S3B compares their canonical content batch by batch.
+    """
+    if len(sample_order) < count:
+        raise ValueError("frozen sample order is shorter than parity gate")
+    required = (
+        "region", "crop_origin_xy", "extension_vertex_xy", "is_key_point",
+        "target_count", "end_index", "augmentation")
+    result = []
+    for batch in sample_order[:count]:
+        samples = batch.get("samples", [])
+        canonical_samples = []
+        for sample in samples:
+            missing = [key for key in required if key not in sample]
+            if missing:
+                raise ValueError("sample plan row is missing: {}".format(missing))
+            canonical_samples.append({key: sample[key] for key in required})
+        per_sample = [canonical_sha256(value) for value in canonical_samples]
+        result.append(canonical_sha256(per_sample))
+    return result
+
+
 def repair_composite(metrics: Mapping[str, float]) -> float:
     return float(
         (float(metrics["road_f1"]) + float(metrics["road_iou"])

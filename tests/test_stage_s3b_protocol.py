@@ -13,7 +13,8 @@ from utils.seg_raster.stage_s3b import (
     CHECKPOINT_STEPS, GRAPH_CAPS, LOSS_BALANCED, LOSS_BALANCED_DICE,
     LOSS_LEGACY, GraphResourceSnapshot, assert_json_finite,
     choose_shared_threshold, gradient_matching_alpha, graph_resource_status,
-    junction_loss, load_common_step_checkpoint, positive_weight_from_counts,
+    frozen_plan_batch_identities, junction_loss, load_common_step_checkpoint,
+    positive_weight_from_counts,
     repair_composite, save_versioned_model_checkpoint, select_junction_loss,
     select_learning_rate, simulate_early_stop, soft_dice_loss,
     validate_commit_paths)
@@ -102,6 +103,13 @@ def test_loss_selection_uses_only_image_candidates() -> None:
 def test_sample_plan_replay_parity() -> None:
     plan = [sample(index) for index in range(100)]
     assert audit_batch_parity({"A0": plan, "A1": list(plan)}, 100)["status"] == "PASS"
+
+
+def test_sample_gate_recomputes_explicit_rows_not_stale_aggregate() -> None:
+    order = [{"samples": [sample(index)]} for index in range(100)]
+    identities = frozen_plan_batch_identities(order, count=100)
+    assert len(identities) == 100
+    assert identities[0] == frozen_plan_batch_identities(order, count=1)[0]
 
 
 def test_versioned_checkpoint_refuses_overwrite() -> None:

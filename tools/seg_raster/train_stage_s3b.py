@@ -29,7 +29,8 @@ from utils.seg_raster.stage_s3 import (
     anchor_metrics, binary_segmentation_metrics, identity_sha256,
     load_stage_s3_config, sample_identity, sha256_file)
 from utils.seg_raster.stage_s3b import (
-    CHECKPOINT_STEPS, LOSS_KINDS, junction_loss, legacy_composite,
+    CHECKPOINT_STEPS, LOSS_KINDS, frozen_plan_batch_identities,
+    junction_loss, legacy_composite,
     repair_composite, save_versioned_model_checkpoint)
 
 
@@ -405,9 +406,14 @@ def main() -> int:
         if hasattr(parity_batch, "batch_traj_valid_masks"):
             first_valid_mask_shas.append(array_sha256([
                 parity_batch.batch_traj_valid_masks]))
-    expected_identity = sample_plan["first_100_batch_identity_sha256"]["C0"]
-    if identity_sha256(first_identities) != expected_identity:
-        raise RuntimeError("pre-training sample parity differs from frozen S3 plan")
+    expected_identities = frozen_plan_batch_identities(
+        sample_plan["sample_order"], count=100)
+    if first_identities != expected_identities:
+        mismatches = [index for index, pair in enumerate(
+            zip(first_identities, expected_identities)) if pair[0] != pair[1]]
+        raise RuntimeError(
+            "pre-training sample parity differs from frozen sample_order at "
+            + str(mismatches[:10]))
     set_seed(seed)
     dataset = OSMDataset(cfg, net=None, training=True)
 
@@ -547,6 +553,9 @@ def main() -> int:
             "optimizer_steps": step,
             "samples_seen": step * int(cfg.TRAIN.BATCH_SIZE),
             "first_100_batch_identity_sha256": identity_sha256(first_identities),
+            "first_100_batch_identity_gate_source": (
+                "recomputed_from_frozen_sample_order_rows"),
+            "historical_aggregate_hash_used_for_gate": False,
             "first_100_common_tensor_sha256": identity_sha256(first_common_shas),
             "first_100_valid_mask_sha256": (
                 identity_sha256(first_valid_mask_shas)
