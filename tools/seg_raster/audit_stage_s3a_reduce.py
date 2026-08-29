@@ -37,6 +37,7 @@ FORMAL_S3_SHA = "2e68f4e5a1c7cfad041182c2edce3194b8175b8c"
 RUN_KEYS = ("C0", "C1", "C2", "C3", "J0", "J1")
 DETACH_KEYS = ("C0", "C1", "C2", "C3")
 METRIC_KEYS = ("road_f1", "road_iou", "junction_f1")
+PATHOLOGICAL_GRAPH_STATUS = "TERMINATED_PATHOLOGICAL_EXPANSION"
 
 
 def read_json(path: Path) -> Any:
@@ -649,6 +650,72 @@ def graph_determinism_payload(records: Sequence[Mapping[str, Any]]) -> dict:
     }
 
 
+def graph_job_accounting(records: Sequence[Mapping[str, Any]]) -> dict:
+    """Account for complete and explicitly terminated primary graph jobs.
+
+    A pathological termination remains a failed evaluation.  It may complete
+    the job identity matrix for forensic reduction, but it must never be
+    counted as a successful graph metric result.
+    """
+    expected_primary = {
+        (key, kind) for key in DETACH_KEYS for kind in ("best", "latest")}
+    primary = [
+        row for row in records if int(row.get("repeat_index", 0)) == 0]
+    identities = [
+        (str(row.get("run_key")), str(row.get("checkpoint_kind")))
+        for row in primary]
+    missing = sorted(expected_primary - set(identities))
+    duplicate = sorted({identity for identity in identities
+                        if identities.count(identity) > 1})
+    successful = [row for row in records if row.get("status") == "PASS"]
+    pathological = [
+        row for row in records
+        if row.get("status") == PATHOLOGICAL_GRAPH_STATUS]
+    unexpected_failures = [
+        row for row in records
+        if row.get("status") not in ("PASS", PATHOLOGICAL_GRAPH_STATUS)]
+    c1_best_pathological = [
+        row for row in pathological
+        if row.get("run_key") == "C1"
+        and row.get("checkpoint_kind") == "best"
+        and int(row.get("repeat_index", 0)) == 0]
+    other_primary_pass = all(
+        row.get("status") == "PASS"
+        for row in primary
+        if not (row.get("run_key") == "C1"
+                and row.get("checkpoint_kind") == "best"))
+    recognized_partial = (
+        not missing and not duplicate and not unexpected_failures
+        and len(primary) == len(expected_primary)
+        and len(c1_best_pathological) == 1
+        and len(pathological) == 1
+        and other_primary_pass)
+    all_primary_pass = (
+        not missing and not duplicate and not pathological
+        and not unexpected_failures and len(primary) == len(expected_primary)
+        and all(row.get("status") == "PASS" for row in primary))
+    if all_primary_pass:
+        status = "PASS"
+    elif recognized_partial:
+        status = "PARTIAL_TERMINATED_PATHOLOGICAL_EXPANSION"
+    else:
+        status = "FAIL"
+    return {
+        "status": status,
+        "expected_primary_job_count": len(expected_primary),
+        "observed_primary_job_count": len(primary),
+        "total_record_count": len(records),
+        "successful_record_count": len(successful),
+        "pathological_termination_count": len(pathological),
+        "missing_primary_jobs": [list(identity) for identity in missing],
+        "duplicate_primary_jobs": [list(identity) for identity in duplicate],
+        "unexpected_failure_count": len(unexpected_failures),
+        "c1_best_graph_metrics": (
+            "NOT_AVAILABLE_INCOMPLETE_RUN" if c1_best_pathological
+            else "AVAILABLE"),
+    }
+
+
 def reference_gate(primary: Mapping[tuple[str, str], dict]) -> dict:
     exact_tolerance = 1e-12
     auprc_tolerance = 1e-6
@@ -731,9 +798,9 @@ Multistep validity: **{anchor['MULTISTEP_ANCHOR_VALIDITY']}**. The fixed-thresho
 """,
         "stage_s3a_graph_overgeneration.md": f"""# Stage S3A graph controls and overgeneration
 
-Graph audit status: **{graph['status']}**. C0/C1/C2/C3 were evaluated under per-run best and latest where checkpoint files exist. The C0-best common-step matrix is unavailable because C1's step-5120 weights were not retained.
+Graph audit status: **{graph['status']}**. Nine jobs completed successfully. C1-best was terminated as `TERMINATED_PATHOLOGICAL_EXPANSION` after its forensic snapshot; its incomplete partial graph is not reported as a completed graph metric result. C1-latest and the completed C0/C2/C3 controls remain valid. The C0-best common-step matrix is unavailable because C1's step-5120 weights were not retained.
 
-All APLS values are `deterministic_pixel_graph_approximation`, not official SpaceNet APLS. Candidate/undirected/dangling/duplicate edge counts are reported with C1−C0, C1−C2 and C1−C3 deltas so connectivity gains cannot be separated from overgeneration by APLS alone.
+All available APLS values are `deterministic_pixel_graph_approximation`, not official SpaceNet APLS. Latest-checkpoint candidate/undirected/dangling/duplicate edge counts are reported with C1−C0, C1−C2 and C1−C3 deltas so connectivity gains cannot be separated from overgeneration by APLS alone. The best-checkpoint comparison is explicitly incomplete rather than populated from the C1-best partial graph.
 """,
         "stage_s3a_final_report.md": f"""# Stage S3A final report
 
@@ -745,9 +812,16 @@ Stage S3A completed a read-only post-training audit of the immutable S3 checkpoi
 - Anchor specificity: **{conclusion['anchor_control_specificity']}**
 - Pixel parity: **{conclusion['local_remote_pixel_parity']}**
 - Evaluation determinism: **{conclusion['evaluation_determinism']}**
+- C1-best computational feasibility: **{conclusion['c1_best_computational_feasibility']}**
+- C1-best graph expansion: **{conclusion['c1_best_graph_expansion']}**
+- C1-best graph metrics: **{conclusion['c1_best_graph_metrics']}**
+- Segmentation-only multi-seed: **{conclusion['segmentation_only_multiseed']}**
+- End-to-end multi-seed: **{conclusion['end_to_end_multiseed']}**
 - Multi-seed decision: **{conclusion['go_no_go_for_multiseed']}**
 
-The original Stage S3 artifacts remain unchanged. Stage S3A narrows or supersedes claims in a separate reconciliation artifact.
+Checkpoint selection finding: segmentation-composite best checkpoint is not graph-stable; C1-latest terminates normally while C1-best exhibits pathological expansion.
+
+The original Stage S3 artifacts remain unchanged. Stage S3A narrows or supersedes claims in a separate reconciliation artifact. The failed C1-best run is preserved as failed evidence and is never represented as `PASS`.
 """,
     }
     for name, text in docs_payload.items():
@@ -793,9 +867,14 @@ def main() -> int:
         raise RuntimeError("graph evaluation code SHA mismatch")
     graph_primary = [
         row for row in graph_records if int(row.get("repeat_index", 0)) == 0]
+    graph_matrix = graph_control_matrix(graph_primary)
+    graph_accounting = graph_job_accounting(graph_records)
     graph = {
         "stage": "seg_raster_stage_s3a",
-        **graph_control_matrix(graph_primary),
+        **graph_matrix,
+        "status": graph_accounting["status"],
+        "control_matrix_status": graph_matrix["status"],
+        "job_accounting": graph_accounting,
         "records": graph_records,
         "common_step": {"status": "UNAVAILABLE_MISSING_CHECKPOINT", "step": 5120,
                         "missing_runs": ["C1"]},
@@ -806,6 +885,18 @@ def main() -> int:
         (row["run_key"], row["checkpoint_kind"]): row for row in graph_primary}
     graph["detailed_comparisons"] = {}
     for kind in ("best", "latest"):
+        protocol = graph_matrix["protocols"][kind]
+        if protocol["status"] != "PASS":
+            graph["detailed_comparisons"][kind] = {
+                "status": "NOT_AVAILABLE_INCOMPLETE_RUN",
+                "missing_runs": protocol["missing_runs"],
+                "reason": (
+                    "C1-best was terminated for pathological closed-loop "
+                    "expansion before complete graph metrics were produced."
+                    if kind == "best" and "C1" in protocol["missing_runs"]
+                    else "Required completed graph result is unavailable."),
+            }
+            continue
         rows = {key: graph_index[(key, kind)] for key in DETACH_KEYS}
         comparisons = {}
         for baseline in ("C0", "C2", "C3"):
@@ -824,7 +915,8 @@ def main() -> int:
                 "graph_iterations": rows["C1"]["graph_iterations"] - rows[baseline]["graph_iterations"],
                 "runtime_seconds": rows["C1"]["inference_time_seconds"] - rows[baseline]["inference_time_seconds"],
             }
-        graph["detailed_comparisons"][kind] = comparisons
+        graph["detailed_comparisons"][kind] = {
+            "status": "PASS", "comparisons": comparisons}
     graph["overgeneration_assessment"] = (
         "C1 overgeneration must be interpreted jointly with C2/C3 candidate, undirected, dangling and duplicate edge counts; "
         "connectivity or approximate APLS alone is not registration-specific evidence.")
@@ -868,21 +960,22 @@ def main() -> int:
         sum(comparison["C1_minus_C2"][name] > 0 for name in METRIC_KEYS) >= 2
         and sum(comparison["C1_minus_C3"][name] > 0 for name in METRIC_KEYS) >= 2
         for comparison in (latest_cmp, best_cmp))
-    graph_pass = (
-        graph["status"] == "PASS"
-        and len(graph_primary) == 8
+    graph_completed_evidence_pass = (
+        graph_accounting["status"]
+        == "PARTIAL_TERMINATED_PATHOLOGICAL_EXPANSION"
+        and graph_matrix["protocols"]["latest"]["status"] == "PASS"
         and graph_determinism["status"] == "PASS")
     unresolved_p0 = reference["status"] != "PASS" or determinism["status"] != "PASS"
-    if unresolved_p0 or parity["status"] != "PASS" or not graph_pass:
-        decision = "NO_GO"
+    if unresolved_p0 or parity["status"] != "PASS":
+        segmentation_only_decision = "NO_GO"
     elif seg_latest and not seg_best:
-        decision = "NO_GO"
-    elif seg_fair and aligned_specific and anchor["ALIGNED_VS_SHIFTED_SPECIFICITY"] != "PASS":
-        decision = "GO_FOR_MULTI_SEED_SEGMENTATION_ONLY"
+        segmentation_only_decision = "NO_GO"
     elif seg_fair and aligned_specific:
-        decision = "GO_FOR_MULTI_SEED"
+        segmentation_only_decision = "GO"
     else:
-        decision = "NO_GO"
+        segmentation_only_decision = "NO_GO"
+    end_to_end_decision = "NO_GO"
+    decision = "NO_GO"
 
     reconciliation = {
         "stage": "seg_raster_stage_s3a", "status": "PASS",
@@ -904,8 +997,10 @@ def main() -> int:
             },
             "closed_loop_graph": {
                 "old": old_conclusion.get("closed_loop_graph"),
-                "status": "VERIFIED_WITH_NARROWER_SCOPE" if graph_pass else "INCONCLUSIVE",
-                "new_scope": "deterministic approximation with C2/C3 controls; density confounding retained",
+                "status": "FAILED_PATHOLOGICAL_EXPANSION",
+                "new_scope": (
+                    "C1-latest and the completed C0/C2/C3 controls remain valid; "
+                    "C1-best has no complete graph metrics."),
             },
             "go_no_go_for_multiseed": {
                 "old": old_conclusion.get("go_no_go_for_multiseed"),
@@ -917,7 +1012,8 @@ def main() -> int:
         "stage": "seg_raster_stage_s3a", "branch": "feat/seg-raster-only",
         "s3a_base_sha": read_json(
             REPO_ROOT / "artifacts/stage_s3a_git_start.json")["s3a_base_sha"],
-        "s3a_audit_code_sha": args.audit_code_sha,
+        "s3a_audit_code_sha": evaluation_code_sha,
+        "reducer_code_sha": args.audit_code_sha,
         "evaluation_code_sha": evaluation_code_sha,
         "formal_s3_run_code_sha": FORMAL_S3_SHA,
         "execution_environment": "REMOTE_TRAINING_SERVER",
@@ -930,16 +1026,29 @@ def main() -> int:
         "anchor_provenance": anchor["historical_anchor_comparison_provenance"]["status"],
         "anchor_control_specificity": anchor["ALIGNED_VS_SHIFTED_SPECIFICITY"],
         "multistep_anchor_validity": anchor["MULTISTEP_ANCHOR_VALIDITY"],
-        "graph_c2_c3_controls": "PASS" if graph_pass else "FAIL",
+        "graph_c2_c3_controls": (
+            "PASS_LATEST_AND_COMPLETED_BEST_CONTROLS"
+            if graph_completed_evidence_pass else "FAIL"),
+        "c1_best_computational_feasibility": "FAIL",
+        "c1_best_graph_expansion": "PATHOLOGICAL",
+        "c1_best_natural_termination": "NOT_IMMINENT",
+        "c1_best_graph_metrics": "NOT_AVAILABLE_INCOMPLETE_RUN",
+        "c1_best_graph_status": PATHOLOGICAL_GRAPH_STATUS,
+        "checkpoint_selection_finding": (
+            "segmentation-composite best checkpoint is not graph-stable; "
+            "C1-latest terminates normally while C1-best exhibits pathological expansion."),
         "local_remote_pixel_parity": parity["status"],
         "small_sample_sensitivity": "DESCRIPTIVE_ONLY",
         "evaluation_determinism": determinism["status"],
+        "end_to_end_multiseed": end_to_end_decision,
+        "segmentation_only_multiseed": segmentation_only_decision,
         "go_no_go_for_multiseed": decision,
         "unresolved_p0_metric_bug": unresolved_p0,
         "key_limitations": [
             "Only best/latest checkpoint files were retained; Protocol C cannot be recomputed.",
             "Single seed, 16 validation samples and 24 anchor targets do not establish statistical significance.",
             "APLS is a deterministic pixel-graph approximation, not official SpaceNet APLS.",
+            "C1-best graph metrics are unavailable because pathological expansion was terminated after forensic capture.",
         ],
     }
 
@@ -963,7 +1072,9 @@ def main() -> int:
             args.remote_output_root / "stage_s3a_gpu_inventory.json"),
         "stage_s3a_gpu_schedule.json": {
             "stage": "seg_raster_stage_s3a",
-            "status": "PASS",
+            "status": "PARTIAL_TERMINATED_PATHOLOGICAL_EXPANSION",
+            "evaluation_code_sha": evaluation_code_sha,
+            "reducer_code_sha": args.audit_code_sha,
             "checkpoint_evaluation": read_json(
                 args.remote_output_root / "stage_s3a_gpu_schedule.json"),
             "graph_evaluation": read_json(
@@ -975,8 +1086,10 @@ def main() -> int:
         write_json(args.artifact_dir / name, payload)
     write_docs(args.docs_dir, provenance, dynamics, junction, anchor, graph, conclusion, protocols)
     print(finite_json_dumps({
-        "status": "PASS", "artifact_count": len(outputs),
-        "audit_code_sha": args.audit_code_sha,
+        "status": "PASS_WITH_PATHOLOGICAL_GRAPH_FAILURE",
+        "artifact_count": len(outputs),
+        "evaluation_code_sha": evaluation_code_sha,
+        "reducer_code_sha": args.audit_code_sha,
         "go_no_go_for_multiseed": decision,
     }), end="")
     return 0

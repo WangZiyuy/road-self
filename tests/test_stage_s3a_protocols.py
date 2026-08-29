@@ -23,6 +23,7 @@ from tools.seg_raster.audit_stage_s3a_reduce import (
     anchor_payload,
     checkpoint_inventory,
     graph_determinism_payload,
+    graph_job_accounting,
     reference_gate,
     stable_sha,
 )
@@ -214,6 +215,36 @@ def test_graph_determinism_requires_equal_postprocessed_graph_and_metrics() -> N
     assert graph_determinism_payload(records)["status"] == "PASS"
     records[-1]["postprocessed_graph_sha256"] = "different"
     assert graph_determinism_payload(records)["status"] == "FAIL"
+
+
+def test_graph_accounting_preserves_pathological_c1_best_as_failure() -> None:
+    records = []
+    for kind in ("best", "latest"):
+        for key in ("C0", "C1", "C2", "C3"):
+            status = (
+                "TERMINATED_PATHOLOGICAL_EXPANSION"
+                if key == "C1" and kind == "best" else "PASS")
+            records.append({
+                "run_key": key, "checkpoint_kind": kind,
+                "repeat_index": 0, "status": status,
+            })
+    for kind in ("best", "latest"):
+        records.append({
+            "run_key": "C0", "checkpoint_kind": kind,
+            "repeat_index": 1, "status": "PASS",
+        })
+    accounting = graph_job_accounting(records)
+    assert accounting["status"] == (
+        "PARTIAL_TERMINATED_PATHOLOGICAL_EXPANSION")
+    assert accounting["successful_record_count"] == 9
+    assert accounting["pathological_termination_count"] == 1
+    assert accounting["c1_best_graph_metrics"] == (
+        "NOT_AVAILABLE_INCOMPLETE_RUN")
+
+    records[1]["status"] = "USER_CANCELLED"
+    accounting = graph_job_accounting(records)
+    assert accounting["status"] == "FAIL"
+    assert accounting["unexpected_failure_count"] == 1
 
 
 def test_graph_audit_resolves_inherited_stage_s3_config(tmp_path) -> None:
