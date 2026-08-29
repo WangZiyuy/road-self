@@ -852,8 +852,9 @@ def main() -> int:
         raise RuntimeError("checkpoint evaluation code SHA mismatch")
     inventory, by_run_inventory = checkpoint_inventory(
         args.source_run_root, training, validation)
-    inventory["audit_code_sha"] = args.audit_code_sha
+    inventory["audit_code_sha"] = evaluation_code_sha
     inventory["evaluation_code_sha"] = evaluation_code_sha
+    inventory["reducer_code_sha"] = args.audit_code_sha
     provenance = provenance_payload(training, primary)
     reference = reference_gate(primary)
     protocols = protocol_payload(primary, validation)
