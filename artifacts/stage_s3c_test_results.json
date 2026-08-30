@@ -3,14 +3,14 @@
   "status": "PASS",
   "local_cpu_tests": [
     {
-      "command": "python -m pytest tests -k stage_s3c -q",
-      "passed": 21,
+      "command": "python -m pytest tests -k \"stage_s3c or gpu_free_memory_decline or gpu_schedule_evidence or low_memory_external_process_allowance\" -q -p no:cacheprovider",
+      "passed": 25,
       "failed": 0,
-      "deselected": 350
+      "deselected": 349
     },
     {
       "command": "python -m pytest tests -q",
-      "passed": 371,
+      "passed": 374,
       "failed": 0,
       "subtests_passed": 4,
       "warnings": 9

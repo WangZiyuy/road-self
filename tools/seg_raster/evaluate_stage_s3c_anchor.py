@@ -63,6 +63,7 @@ def main() -> int:
     verify_checkout(args.run_code_sha)
     if not torch.cuda.is_available():
         raise RuntimeError("formal frozen-anchor evaluation requires remote CUDA")
+    torch.cuda.reset_peak_memory_stats()
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
     split = json.loads((REPO_ROOT / "artifacts/stage_s3_split_manifest.json")
                        .read_text(encoding="utf-8"))
@@ -143,6 +144,10 @@ def main() -> int:
         "frozen_backbone_anchor_sha256": next(iter(frozen_shas.values())),
         "anchor_loss_backward_executed": False,
         "raw_raster_direct_anchor_path": False,
+        "peak_gpu_memory_allocated_mb": (
+            torch.cuda.max_memory_allocated() / 2**20),
+        "peak_gpu_memory_reserved_mb": (
+            torch.cuda.max_memory_reserved() / 2**20),
         "runs": rows,
     })
     return 0

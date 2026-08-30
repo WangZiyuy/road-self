@@ -8,17 +8,30 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import time
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from tools.seg_raster.launch_stage_s3b_phase import (
-    collect_inventory, excluded_indices, utc_now, write_json,
+    collect_inventory, excluded_indices, inventory_sample, utc_now, write_json,
 )
 from utils.seg_raster.stage_s3 import (
     evaluate_gpu_eligibility, gpu_eligibility_overrides_from_environment,
+    gpu_prelaunch_evidence, update_post_launch_contention,
 )
+
+
+def assert_frozen(expected_sha: str) -> None:
+    head = subprocess.run(
+        ["git", "rev-parse", "HEAD"], check=True, text=True,
+        capture_output=True).stdout.strip()
+    status = subprocess.run(
+        ["git", "status", "--short", "--untracked-files=all"], check=True,
+        text=True, capture_output=True).stdout.strip()
+    if head != expected_sha or status:
+        raise RuntimeError("Stage S3C anchor requires a clean frozen checkout")
 
 
 def main() -> int:
@@ -29,6 +42,7 @@ def main() -> int:
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--required-free-memory-mb", type=int, default=12000)
     args = parser.parse_args()
+    assert_frozen(args.run_code_sha)
     samples, apps = collect_inventory(7.0)
     eligibility_policy = gpu_eligibility_overrides_from_environment()
     eligibility = evaluate_gpu_eligibility(
@@ -38,6 +52,10 @@ def main() -> int:
     write_json(args.output_root / "gpu_inventory_phase_ANCHOR.json", {
         "stage": "seg_raster_stage_s3c", "phase": "ANCHOR",
         "execution_environment": "REMOTE_TRAINING_SERVER",
+        "remote_host_label": "exp-237-tunnel",
+        "run_code_sha": args.run_code_sha,
+        "required_free_memory_mb": args.required_free_memory_mb,
+        "s3_exclude_gpus": os.environ.get("S3_EXCLUDE_GPUS", ""),
         "samples": samples, "compute_apps": apps,
         "eligibility_policy": eligibility_policy,
         "eligibility": eligibility, "eligible_gpu_count": len(eligible),
@@ -56,15 +74,55 @@ def main() -> int:
         "--physical-gpu", str(gpu["index"]),
     ]
     started = utc_now()
-    completed = subprocess.run(command, cwd=REPO_ROOT, env=environment)
+    process = subprocess.Popen(command, cwd=REPO_ROOT, env=environment)
+    record = {
+        "physical_index": gpu["index"], "gpu_uuid": gpu["uuid"],
+        "gpu_name": gpu["name"], "pid": process.pid,
+        "start_time": started, "end_time": None, "exit_code": None,
+        "prelaunch_gpu_samples": gpu_prelaunch_evidence(
+            samples, gpu["index"], gpu["uuid"]),
+        "eligibility_policy": eligibility_policy,
+        "post_launch_contention": {
+            "observed": False, "sample_count": 0,
+            "min_free_memory_mb": None,
+            "max_external_compute_memory_mb": None,
+            "new_external_pids": [], "gpu_query_error_count": 0,
+            "last_sampled_at": None,
+        },
+    }
+    while process.poll() is None:
+        time.sleep(5)
+        try:
+            contention_sample, contention_apps = inventory_sample()
+            update_post_launch_contention(
+                record, contention_sample, contention_apps,
+                own_pid=process.pid,
+                required_free_memory_mb=args.required_free_memory_mb,
+                max_external_compute_memory_mb=eligibility_policy[
+                    "max_external_compute_memory_mb"],
+            )
+        except Exception as error:
+            record["post_launch_contention"]["observed"] = True
+            record["post_launch_contention"]["gpu_query_error_count"] += 1
+            record["post_launch_contention"]["last_query_error"] = (
+                type(error).__name__)
+    completed_code = int(process.returncode)
+    record["end_time"] = utc_now()
+    record["exit_code"] = completed_code
+    result_path = args.output_root / "stage_s3c_anchor_raw.json"
+    if result_path.is_file():
+        result = json.loads(result_path.read_text(encoding="utf-8"))
+        record["peak_allocated_memory_mb"] = result.get(
+            "peak_gpu_memory_allocated_mb")
+        record["peak_reserved_memory_mb"] = result.get(
+            "peak_gpu_memory_reserved_mb")
     write_json(args.output_root / "gpu_schedule_phase_ANCHOR.json", {
         "stage": "seg_raster_stage_s3c", "phase": "ANCHOR",
-        "status": "PASS" if completed.returncode == 0 else "FAIL",
-        "jobs": [{"physical_index": gpu["index"], "gpu_uuid": gpu["uuid"],
-                  "gpu_name": gpu["name"], "start_time": started,
-                  "end_time": utc_now(), "exit_code": completed.returncode}],
+        "run_code_sha": args.run_code_sha,
+        "status": "PASS" if completed_code == 0 else "FAIL",
+        "jobs": [record],
         "external_processes_terminated": False})
-    return completed.returncode
+    return completed_code
 
 
 if __name__ == "__main__":

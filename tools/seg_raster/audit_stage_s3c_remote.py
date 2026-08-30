@@ -285,6 +285,7 @@ def baseline(args: argparse.Namespace) -> int:
     verify_checkout(args.run_code_sha)
     if not torch.cuda.is_available():
         raise RuntimeError("formal baseline evaluation requires remote CUDA")
+    torch.cuda.reset_peak_memory_stats()
     config = config_for(raster=False)
     split = json.loads((REPO_ROOT / config["S3"]["SPLIT_MANIFEST"])
                        .read_text(encoding="utf-8"))
@@ -346,6 +347,8 @@ def baseline(args: argparse.Namespace) -> int:
         "anchor_channel_pair_max_abs_difference": diversity,
         "multistep_anchor_validity": "PASS" if all(v > 0 for v in diversity)
                                      else "FAIL",
+        "peak_allocated_memory_mb": torch.cuda.max_memory_allocated() / 2**20,
+        "peak_reserved_memory_mb": torch.cuda.max_memory_reserved() / 2**20,
         "graph": {"status": "PENDING"},
     })
     return 0

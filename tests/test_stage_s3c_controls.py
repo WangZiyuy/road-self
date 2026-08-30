@@ -37,8 +37,26 @@ def test_low_memory_gpu_colocation_requires_explicit_bounded_opt_in(
     monkeypatch.setenv("S3_ALLOW_LOW_MEMORY_EXTERNAL_PROCESSES", "1")
     monkeypatch.setenv("S3_MAX_EXTERNAL_COMPUTE_MEM_MB", "4096")
     monkeypatch.setenv("S3_MAX_UTILIZATION", "20")
+    monkeypatch.setenv("S3_MAX_FREE_MEMORY_DROP_MB", "2048")
+    monkeypatch.delenv("S3_EXCLUDE_GPUS", raising=False)
     assert gpu_eligibility_overrides_from_environment() == {
         "allow_external_compute": True,
         "max_external_compute_memory_mb": 4096,
         "max_utilization": 20,
+        "max_free_memory_drop_mb": 2048,
     }
+
+
+def test_stage_s3c_launchers_do_not_hardcode_gpu_indices() -> None:
+    root = __import__("pathlib").Path(__file__).resolve().parents[1]
+    for name in (
+        "launch_stage_s3c_audit.py",
+        "launch_stage_s3c_phase.py", "launch_stage_s3c_graph.py",
+        "launch_stage_s3c_anchor.py",
+    ):
+        source = (root / "tools" / "seg_raster" / name).read_text(
+            encoding="utf-8")
+        assert "CUDA_VISIBLE_DEVICES" in source
+        assert "collect_inventory(" in source
+        assert "evaluate_gpu_eligibility(" in source
+        assert "excluded_indices()" in source

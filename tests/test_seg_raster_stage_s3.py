@@ -18,6 +18,7 @@ from utils.seg_raster.stage_s3 import (
     audit_batch_parity,
     build_spatial_split,
     evaluate_gpu_eligibility,
+    gpu_prelaunch_evidence,
     load_stage_s3_config,
     parse_compute_apps_csv,
     parse_gpu_inventory_csv,
@@ -26,6 +27,7 @@ from utils.seg_raster.stage_s3 import (
     segmentation_causal_screen,
     stitch_tiles,
     strict_shared_state_audit,
+    update_post_launch_contention,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -143,11 +145,74 @@ def test_explicit_low_memory_external_process_allowance_is_bounded() -> None:
     assert allowed[0]["eligible"] is True
     assert allowed[0]["external_compute_allowed"] is True
     assert allowed[0]["external_compute_memory_mb"] == 700
+    assert allowed[0]["external_compute_memory_series_mb"] == [700, 700, 700]
     rejected = evaluate_gpu_eligibility(
         samples, apps, required_free_mb=12000, max_utilization=20,
         allow_external_compute=True, max_external_compute_memory_mb=512)
     assert rejected[0]["eligible"] is False
     assert "external_compute_process" in rejected[0]["reasons"]
+
+
+def test_gpu_free_memory_decline_is_an_explicit_gate() -> None:
+    rows = []
+    for free in (20000, 19000, 17000):
+        gpu = parse_gpu_inventory_csv(
+            f"0, GPU-a, RTX 4090, 566.24, 24564, {24564-free}, "
+            f"{free}, 3, 50")[0]
+        rows.append({"gpus": [gpu]})
+    result = evaluate_gpu_eligibility(
+        rows, [], required_free_mb=12000, max_utilization=20,
+        allow_external_compute=True, max_external_compute_memory_mb=8192,
+        max_free_memory_drop_mb=2048)
+    assert result[0]["eligible"] is False
+    assert result[0]["free_memory_series_mb"] == [20000, 19000, 17000]
+    assert result[0]["free_memory_drop_mb"] == 3000
+    assert "free_memory_declining" in result[0]["reasons"]
+
+    exact = parse_gpu_inventory_csv(
+        "0, GPU-a, RTX 4090, 566.24, 24564, 12564, 12000, 0, 50")[0]
+    boundary = evaluate_gpu_eligibility(
+        [{"gpus": [dict(exact)]} for _ in range(3)], [],
+        required_free_mb=12000, max_utilization=20,
+        max_free_memory_drop_mb=2048)
+    assert boundary[0]["eligible"] is True
+
+
+def test_gpu_schedule_evidence_records_prelaunch_and_contention() -> None:
+    samples = []
+    for offset, free in enumerate((20000, 19900, 19800)):
+        gpu = parse_gpu_inventory_csv(
+            f"2, GPU-a, RTX 4090, 566.24, 24564, {24564-free}, "
+            f"{free}, 4, 50")[0]
+        samples.append({
+            "sampled_at": f"2026-08-30T00:00:0{offset}Z", "gpus": [gpu],
+            "compute_apps": [{
+                "pid": 111, "gpu_uuid": "GPU-a", "used_memory_mb": 512,
+                "process_name": "external"}],
+        })
+    evidence = gpu_prelaunch_evidence(samples, 2, "GPU-a")
+    assert len(evidence) == 3
+    assert evidence[0]["external_compute_memory_mb"] == 512
+    record = {
+        "physical_index": 2, "gpu_uuid": "GPU-a",
+        "prelaunch_gpu_samples": evidence,
+    }
+    later_gpu = parse_gpu_inventory_csv(
+        "2, GPU-a, RTX 4090, 566.24, 24564, 13000, 11564, 8, 50")[0]
+    update_post_launch_contention(
+        record,
+        {"sampled_at": "2026-08-30T00:01:00Z", "gpus": [later_gpu]},
+        [{"pid": 111, "gpu_uuid": "GPU-a", "used_memory_mb": 512,
+          "process_name": "external"},
+         {"pid": 222, "gpu_uuid": "GPU-a", "used_memory_mb": 256,
+          "process_name": "new-external"}],
+        own_pid=333, required_free_memory_mb=12000,
+        max_external_compute_memory_mb=8192,
+    )
+    summary = record["post_launch_contention"]
+    assert summary["observed"] is True
+    assert summary["new_external_pids"] == [222]
+    assert summary["min_free_memory_mb"] == 11564
 
 
 def test_gpu_scheduler_queues_and_never_double_assigns() -> None:

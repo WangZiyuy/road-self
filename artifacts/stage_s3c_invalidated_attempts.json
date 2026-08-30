@@ -18,6 +18,17 @@
       "cuda_preflight_started": true,
       "formal_training_started": false,
       "reason": "The user explicitly authorized co-location with low-memory external GPU processes. The frozen launchers required a transparent opt-in bounded allowance before Phase A/B could execute; no adaptation optimizer step had started."
+    },
+    {
+      "run_code_sha": "4b049f4b0cbe97bf68fed7ef5306872fe950a955",
+      "status": "INVALIDATED_BY_CODE_CHANGE",
+      "failure_gate": "GPU_SCHEDULER_FORENSIC_CONTRACT",
+      "optimizer_steps_completed": 0,
+      "cuda_preflight_started": true,
+      "baseline_evaluation_started": true,
+      "baseline_graph_completed": false,
+      "formal_training_started": false,
+      "reason": "Before any adaptation optimizer step, the user required an explicit free-memory trend gate plus per-job three-sample startup evidence and post-launch contention evidence. The incomplete baseline graph was stopped and is excluded from formal results."
     }
   ]
 }

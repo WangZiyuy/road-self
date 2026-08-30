@@ -337,6 +337,7 @@ def evaluate_gpu_eligibility(
     max_utilization: int = 15,
     allow_external_compute: bool = False,
     max_external_compute_memory_mb: int = 0,
+    max_free_memory_drop_mb: int | None = None,
 ) -> list[dict[str, Any]]:
     """Apply the S3 hard GPU gate to three or more inventory snapshots."""
     if len(samples) < 3:
@@ -356,13 +357,27 @@ def evaluate_gpu_eligibility(
         uuid = first["uuid"]
         if index in excluded:
             reasons.append("excluded_by_environment")
-        external = [
-            app for app in compute_apps
-            if app["gpu_uuid"] == uuid and int(app["pid"]) not in own]
+        sample_apps = []
+        for sample in samples:
+            source = (sample["compute_apps"] if "compute_apps" in sample
+                      else compute_apps)
+            sample_apps.append([
+                app for app in source
+                if app["gpu_uuid"] == uuid and int(app["pid"]) not in own])
+        external_by_identity = {}
+        for rows in sample_apps:
+            for app in rows:
+                external_by_identity[(int(app["pid"]), app["gpu_uuid"])] = app
+        external = list(external_by_identity.values())
+        external_memory_series_mb = [
+            (sum(int(app["used_memory_mb"]) for app in rows)
+             if all(app.get("used_memory_mb") is not None for app in rows)
+             else None)
+            for rows in sample_apps]
         external_memory_known = all(
-            app.get("used_memory_mb") is not None for app in external)
+            value is not None for value in external_memory_series_mb)
         external_memory_mb = (
-            sum(int(app["used_memory_mb"]) for app in external)
+            max(external_memory_series_mb)
             if external_memory_known else None)
         external_allowed = bool(
             external and allow_external_compute and external_memory_known
@@ -372,9 +387,18 @@ def evaluate_gpu_eligibility(
         if any(int(obs["utilization_percent"]) > max_utilization
                for obs in observations):
             reasons.append("utilization_above_limit")
-        if any(int(obs["memory_free_mb"]) <= required_free_mb
+        if any(int(obs["memory_free_mb"]) < required_free_mb
                for obs in observations):
             reasons.append("insufficient_free_memory")
+        free_memory_series = [
+            int(obs["memory_free_mb"]) for obs in observations]
+        utilization_series = [
+            int(obs["utilization_percent"]) for obs in observations]
+        free_memory_drop_mb = max(
+            0, free_memory_series[0] - free_memory_series[-1])
+        if (max_free_memory_drop_mb is not None
+                and free_memory_drop_mb > int(max_free_memory_drop_mb)):
+            reasons.append("free_memory_declining")
         result.append({
             "index": index,
             "uuid": uuid,
@@ -383,7 +407,11 @@ def evaluate_gpu_eligibility(
             "reasons": reasons,
             "external_compute_processes": external,
             "external_compute_memory_mb": external_memory_mb,
+            "external_compute_memory_series_mb": external_memory_series_mb,
             "external_compute_allowed": external_allowed,
+            "free_memory_series_mb": free_memory_series,
+            "utilization_series_percent": utilization_series,
+            "free_memory_drop_mb": free_memory_drop_mb,
             "sample_count": len(observations),
         })
     return result
@@ -402,6 +430,8 @@ def gpu_eligibility_overrides_from_environment() -> dict[str, Any]:
         "S3_MAX_EXTERNAL_COMPUTE_MEM_MB", "0") or 0)
     maximum_utilization = int(os.environ.get(
         "S3_MAX_UTILIZATION", "15") or 15)
+    maximum_free_memory_drop = int(os.environ.get(
+        "S3_MAX_FREE_MEMORY_DROP_MB", "2048") or 2048)
     if allow and maximum_external <= 0:
         raise ValueError(
             "low-memory external-process allowance requires a positive "
@@ -410,7 +440,81 @@ def gpu_eligibility_overrides_from_environment() -> dict[str, Any]:
         "allow_external_compute": allow,
         "max_external_compute_memory_mb": maximum_external,
         "max_utilization": maximum_utilization,
+        "max_free_memory_drop_mb": maximum_free_memory_drop,
     }
+
+
+def gpu_prelaunch_evidence(
+    samples: Sequence[Mapping[str, Any]], index: int, uuid: str,
+) -> list[dict[str, Any]]:
+    """Extract the three per-GPU snapshots embedded in a launcher inventory."""
+    result = []
+    for sample in samples:
+        gpu = next(row for row in sample["gpus"] if int(row["index"]) == int(index))
+        external = [
+            dict(app) for app in sample.get("compute_apps", [])
+            if app["gpu_uuid"] == uuid]
+        known = all(app.get("used_memory_mb") is not None for app in external)
+        result.append({
+            "sampled_at": sample["sampled_at"],
+            "memory_used_mb": int(gpu["memory_used_mb"]),
+            "memory_free_mb": int(gpu["memory_free_mb"]),
+            "utilization_percent": int(gpu["utilization_percent"]),
+            "external_compute_processes": external,
+            "external_compute_memory_mb": (
+                sum(int(app["used_memory_mb"]) for app in external)
+                if known else None),
+        })
+    return result
+
+
+def update_post_launch_contention(
+    record: dict[str, Any], sample: Mapping[str, Any],
+    compute_apps: Sequence[Mapping[str, Any]], *, own_pid: int,
+    required_free_memory_mb: int, max_external_compute_memory_mb: int,
+) -> None:
+    """Accumulate bounded evidence without retaining an unbounded time series."""
+    gpu = next(row for row in sample["gpus"]
+               if int(row["index"]) == int(record["physical_index"]))
+    external = [
+        dict(app) for app in compute_apps
+        if app["gpu_uuid"] == record["gpu_uuid"]
+        and int(app["pid"]) != int(own_pid)]
+    known = all(app.get("used_memory_mb") is not None for app in external)
+    external_memory = (
+        sum(int(app["used_memory_mb"]) for app in external)
+        if known else None)
+    baseline_pids = {
+        int(app["pid"])
+        for snapshot in record["prelaunch_gpu_samples"]
+        for app in snapshot["external_compute_processes"]}
+    new_pids = sorted(
+        int(app["pid"]) for app in external
+        if int(app["pid"]) not in baseline_pids)
+    summary = record.setdefault("post_launch_contention", {
+        "observed": False, "sample_count": 0,
+        "min_free_memory_mb": None, "max_external_compute_memory_mb": None,
+        "new_external_pids": [], "gpu_query_error_count": 0,
+        "last_sampled_at": None,
+    })
+    summary["sample_count"] += 1
+    free_memory = int(gpu["memory_free_mb"])
+    summary["min_free_memory_mb"] = (
+        free_memory if summary["min_free_memory_mb"] is None
+        else min(summary["min_free_memory_mb"], free_memory))
+    if external_memory is not None:
+        summary["max_external_compute_memory_mb"] = (
+            external_memory
+            if summary["max_external_compute_memory_mb"] is None
+            else max(summary["max_external_compute_memory_mb"], external_memory))
+    summary["new_external_pids"] = sorted(set(
+        summary["new_external_pids"] + new_pids))
+    summary["last_sampled_at"] = sample["sampled_at"]
+    if (free_memory < int(required_free_memory_mb)
+            or external_memory is None
+            or external_memory > int(max_external_compute_memory_mb)
+            or new_pids):
+        summary["observed"] = True
 
 
 class FifoGpuScheduler:

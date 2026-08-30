@@ -64,6 +64,7 @@ def collect_inventory(interval: float) -> tuple[list[dict], list[dict]]:
     samples, apps = [], {}
     for index in range(3):
         sample, current_apps = inventory_sample()
+        sample["compute_apps"] = current_apps
         samples.append(sample)
         for row in current_apps:
             apps[(row["pid"], row["gpu_uuid"])] = row

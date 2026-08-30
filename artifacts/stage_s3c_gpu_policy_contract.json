@@ -1,0 +1,63 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "FROZEN_BEFORE_FORMAL_OPTIMIZER_STEP",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "dynamic_inventory": {
+    "physical_gpu_count": 8,
+    "samples_per_phase": 3,
+    "recompute_before_every_phase": true,
+    "reuse_previous_phase_assignment": false,
+    "hardcoded_physical_indices": false,
+    "s3_exclude_gpus_formal_value": ""
+  },
+  "eligibility": {
+    "minimum_free_memory_mb": 12000,
+    "maximum_external_compute_memory_mb": 8192,
+    "maximum_utilization_percent_each_sample": 20,
+    "maximum_first_to_last_free_memory_drop_mb": 2048,
+    "gpu_query_must_succeed": true,
+    "external_compute_processes_must_be_absent": false
+  },
+  "formal_environment": {
+    "S3_ALLOW_LOW_MEMORY_EXTERNAL_PROCESSES": "1",
+    "S3_MAX_EXTERNAL_COMPUTE_MEM_MB": "8192",
+    "S3_MAX_UTILIZATION": "20",
+    "S3_MAX_FREE_MEMORY_DROP_MB": "2048",
+    "S3_MIN_FREE_MEM_MB": "12000",
+    "S3_EXCLUDE_GPUS": "",
+    "S3_MAX_PARALLEL": "4"
+  },
+  "launcher_commands": {
+    "sample_plan": "python tools/seg_raster/audit_stage_s3c_remote.py prepare --run-code-sha ${S3C_RUN_CODE_SHA} --output-root ${S3C_REMOTE_OUTPUT} --sample-plan ${S3C_SAMPLE_PLAN}",
+    "production_preflight": "python tools/seg_raster/launch_stage_s3c_audit.py --run-code-sha ${S3C_RUN_CODE_SHA} --action preflight --output-root ${S3C_REMOTE_OUTPUT} --sample-plan ${S3C_SAMPLE_PLAN} --required-free-memory-mb 12000",
+    "baseline_segmentation_and_anchor": "python tools/seg_raster/launch_stage_s3c_audit.py --run-code-sha ${S3C_RUN_CODE_SHA} --action baseline --output-root ${S3C_REMOTE_OUTPUT} --sample-plan ${S3C_SAMPLE_PLAN} --required-free-memory-mb 12000",
+    "baseline_graph": "python tools/seg_raster/launch_stage_s3c_graph.py --run-code-sha ${S3C_RUN_CODE_SHA} --graph-plan ${S3C_BASELINE_GRAPH_PLAN} --run-root ${S3C_RUN_ROOT} --control-root ${S3C_CONTROL_ROOT} --output-root ${S3C_REMOTE_OUTPUT} --required-free-memory-mb 12000",
+    "phase_training": "python tools/seg_raster/launch_stage_s3c_phase.py --run-code-sha ${S3C_RUN_CODE_SHA} --phase-plan ${S3C_PHASE_PLAN} --output-root ${S3C_REMOTE_OUTPUT} --required-free-memory-mb 12000"
+  },
+  "scheduling": {
+    "one_stage_s3c_job_per_gpu": true,
+    "insufficient_gpu_policy": "FIFO",
+    "terminate_external_processes": false,
+    "pause_external_processes": false,
+    "interfere_with_external_processes": false
+  },
+  "required_job_evidence": [
+    "physical_index",
+    "gpu_uuid",
+    "gpu_model",
+    "three_prelaunch_memory_and_utilization_samples",
+    "external_process_pid_and_memory",
+    "job_pid",
+    "start_time",
+    "end_time",
+    "peak_allocated_memory_mb",
+    "peak_reserved_memory_mb",
+    "post_launch_contention"
+  ],
+  "superseded_attempts_excluded_from_formal_results": [
+    "46476a17370cabca0e7e093a890e480169e668a3",
+    "d2645eb3972ecefb6678fb6b18367e2b312ff0c2",
+    "4b049f4b0cbe97bf68fed7ef5306872fe950a955"
+  ]
+}

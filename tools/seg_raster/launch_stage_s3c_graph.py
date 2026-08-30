@@ -15,12 +15,24 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from tools.seg_raster.launch_stage_s3b_phase import (
-    collect_inventory, excluded_indices, utc_now, write_json,
+    collect_inventory, excluded_indices, inventory_sample, utc_now, write_json,
 )
 from utils.seg_raster.stage_s3 import (
     FifoGpuScheduler, evaluate_gpu_eligibility,
-    gpu_eligibility_overrides_from_environment,
+    gpu_eligibility_overrides_from_environment, gpu_prelaunch_evidence,
+    update_post_launch_contention,
 )
+
+
+def assert_frozen(expected_sha: str) -> None:
+    head = subprocess.run(
+        ["git", "rev-parse", "HEAD"], check=True, text=True,
+        capture_output=True).stdout.strip()
+    status = subprocess.run(
+        ["git", "status", "--short", "--untracked-files=all"], check=True,
+        text=True, capture_output=True).stdout.strip()
+    if head != expected_sha or status:
+        raise RuntimeError("Stage S3C graph requires a clean frozen checkout")
 
 
 def main() -> int:
@@ -32,6 +44,7 @@ def main() -> int:
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--required-free-memory-mb", type=int, default=12000)
     args = parser.parse_args()
+    assert_frozen(args.run_code_sha)
     plan = json.loads(args.graph_plan.read_text(encoding="utf-8"))
     if plan.get("run_code_sha") != args.run_code_sha:
         raise RuntimeError("graph plan code SHA mismatch")
@@ -45,6 +58,10 @@ def main() -> int:
     write_json(args.output_root / ("gpu_inventory_phase_" + phase + ".json"), {
         "stage": "seg_raster_stage_s3c", "phase": phase,
         "execution_environment": "REMOTE_TRAINING_SERVER",
+        "remote_host_label": "exp-237-tunnel",
+        "run_code_sha": args.run_code_sha,
+        "required_free_memory_mb": args.required_free_memory_mb,
+        "s3_exclude_gpus": os.environ.get("S3_EXCLUDE_GPUS", ""),
         "samples": samples, "compute_apps": apps,
         "eligibility_policy": eligibility_policy,
         "eligibility": eligibility, "eligible_gpu_count": len(eligible),
@@ -96,6 +113,16 @@ def main() -> int:
                 "gpu_uuid": gpu["uuid"], "gpu_name": gpu["name"],
                 "pid": process.pid, "start_time": utc_now(), "end_time": None,
                 "exit_code": None,
+                "prelaunch_gpu_samples": gpu_prelaunch_evidence(
+                    samples, gpu_index, gpu["uuid"]),
+                "eligibility_policy": eligibility_policy,
+                "post_launch_contention": {
+                    "observed": False, "sample_count": 0,
+                    "min_free_memory_mb": None,
+                    "max_external_compute_memory_mb": None,
+                    "new_external_pids": [], "gpu_query_error_count": 0,
+                    "last_sampled_at": None,
+                },
                 "result_path": "${S3C_REMOTE_OUTPUT}/graph_results/" + key + ".json"}
             records.append(record)
             running[gpu_index] = {
@@ -104,10 +131,28 @@ def main() -> int:
         peak = max(peak, len(running))
         write_json(schedule_path, {
             "stage": "seg_raster_stage_s3c", "phase": phase,
-            "status": "RUNNING", "jobs": records,
+            "status": "RUNNING", "run_code_sha": args.run_code_sha,
+            "jobs": records,
             "parallel_job_peak": peak,
             "preferred_homogeneous_gpu_model": preferred_model})
         time.sleep(5)
+        if running:
+            try:
+                contention_sample, contention_apps = inventory_sample()
+                for state in running.values():
+                    update_post_launch_contention(
+                        state["record"], contention_sample, contention_apps,
+                        own_pid=state["process"].pid,
+                        required_free_memory_mb=args.required_free_memory_mb,
+                        max_external_compute_memory_mb=eligibility_policy[
+                            "max_external_compute_memory_mb"],
+                    )
+            except Exception as error:
+                for state in running.values():
+                    summary = state["record"]["post_launch_contention"]
+                    summary["observed"] = True
+                    summary["gpu_query_error_count"] += 1
+                    summary["last_query_error"] = type(error).__name__
         for gpu_index, state in list(running.items()):
             code = state["process"].poll()
             if code is None:
@@ -115,12 +160,21 @@ def main() -> int:
             state["stdout"].close(); state["stderr"].close()
             state["record"]["exit_code"] = code
             state["record"]["end_time"] = utc_now()
+            result_path = args.output_root / "graph_results" / (
+                state["key"] + ".json")
+            if result_path.is_file():
+                result = json.loads(result_path.read_text(encoding="utf-8"))
+                state["record"]["peak_allocated_memory_mb"] = result.get(
+                    "peak_gpu_memory_allocated_mb")
+                state["record"]["peak_reserved_memory_mb"] = result.get(
+                    "peak_gpu_memory_reserved_mb")
             scheduler.release(gpu_index, state["key"])
             del running[gpu_index]
     status = "PASS" if all(row["exit_code"] == 0 for row in records) else "FAIL"
     write_json(schedule_path, {
         "stage": "seg_raster_stage_s3c", "phase": phase,
-        "status": status, "jobs": records, "parallel_job_peak": peak,
+        "status": status, "run_code_sha": args.run_code_sha,
+        "jobs": records, "parallel_job_peak": peak,
         "preferred_homogeneous_gpu_model": preferred_model,
         "external_processes_terminated": False})
     return 0 if status == "PASS" else 1

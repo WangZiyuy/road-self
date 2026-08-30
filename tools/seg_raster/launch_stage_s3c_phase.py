@@ -15,11 +15,12 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from tools.seg_raster.launch_stage_s3b_phase import (
-    collect_inventory, excluded_indices, utc_now, write_json,
+    collect_inventory, excluded_indices, inventory_sample, utc_now, write_json,
 )
 from utils.seg_raster.stage_s3 import (
     FifoGpuScheduler, evaluate_gpu_eligibility,
-    gpu_eligibility_overrides_from_environment,
+    gpu_eligibility_overrides_from_environment, gpu_prelaunch_evidence,
+    update_post_launch_contention,
 )
 
 
@@ -78,6 +79,7 @@ def main() -> int:
         "remote_host_label": "exp-237-tunnel",
         "run_code_sha": args.run_code_sha,
         "required_free_memory_mb": required,
+        "s3_exclude_gpus": os.environ.get("S3_EXCLUDE_GPUS", ""),
         "eligibility_policy": eligibility_policy,
         "samples": samples, "compute_apps": apps,
         "eligibility": eligibility, "eligible_gpu_count": len(eligible),
@@ -92,6 +94,7 @@ def main() -> int:
         write_json(schedule_path, {
             "stage": "seg_raster_stage_s3c", "phase": plan["phase"],
             "status": "BLOCKED_NO_ELIGIBLE_GPU", "jobs": [],
+            "run_code_sha": args.run_code_sha,
             "external_processes_terminated": False})
         return 3
     by_model: dict[str, list[dict]] = {}
@@ -125,6 +128,16 @@ def main() -> int:
                 "gpu_uuid": gpu["uuid"], "gpu_name": gpu["name"],
                 "pid": process.pid, "start_time": utc_now(), "end_time": None,
                 "exit_code": None,
+                "prelaunch_gpu_samples": gpu_prelaunch_evidence(
+                    samples, gpu_index, gpu["uuid"]),
+                "eligibility_policy": eligibility_policy,
+                "post_launch_contention": {
+                    "observed": False, "sample_count": 0,
+                    "min_free_memory_mb": None,
+                    "max_external_compute_memory_mb": None,
+                    "new_external_pids": [], "gpu_query_error_count": 0,
+                    "last_sampled_at": None,
+                },
                 "stdout_path": "${S3C_RUN_ROOT}/" + job["run_id"] + "/stdout.log",
                 "stderr_path": "${S3C_RUN_ROOT}/" + job["run_id"] + "/stderr.log",
             }
@@ -139,6 +152,23 @@ def main() -> int:
             "jobs": records, "parallel_job_peak": peak,
             "preferred_homogeneous_gpu_model": preferred_model})
         time.sleep(5)
+        if running:
+            try:
+                contention_sample, contention_apps = inventory_sample()
+                for state in running.values():
+                    update_post_launch_contention(
+                        state["record"], contention_sample, contention_apps,
+                        own_pid=state["process"].pid,
+                        required_free_memory_mb=required,
+                        max_external_compute_memory_mb=eligibility_policy[
+                            "max_external_compute_memory_mb"],
+                    )
+            except Exception as error:
+                for state in running.values():
+                    summary = state["record"]["post_launch_contention"]
+                    summary["observed"] = True
+                    summary["gpu_query_error_count"] += 1
+                    summary["last_query_error"] = type(error).__name__
         for gpu_index, state in list(running.items()):
             exit_code = state["process"].poll()
             if exit_code is None:
