@@ -1,0 +1,39 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "workspace": "${SEG_RASTER_WORKTREE}",
+  "branch": "feat/seg-raster-only",
+  "s3c_base_sha": "4864f63bed4303fe489849b1c2304bbbfec040bb",
+  "upstream": "origin/feat/seg-raster-only",
+  "upstream_in_sync_at_start": true,
+  "git_status_short": [],
+  "recent_commits": [
+    "4864f63 exp: record stage s3b training-protocol repair",
+    "5357f44 fix: finalize stage s3b at failed lr gate",
+    "0206855 fix: replay stage s3b teacher-forced parity gate",
+    "8c0f50b fix: validate stage s3b sample order directly",
+    "b494a0d exp: define stage s3b training-protocol repair",
+    "7cbd87d audit: record stage s3a forensic reconciliation",
+    "8ac39ea audit: separate evaluation and reducer provenance",
+    "8a485e6 audit: handle pathological stage s3a graph termination",
+    "9c8d50b fix: make stage s3a graph audit deterministic",
+    "2881438 fix: validate stage s3a reducer provenance",
+    "0bde4ea fix: select postprocessed graph in s3a audit",
+    "665c860 fix: merge inference defaults for s3a graph audit"
+  ],
+  "worktrees": [
+    {
+      "label": "CURRENT_DIRTY_SNAPSHOT_READ_ONLY",
+      "branch": "master",
+      "head": "13488c768d147b37632ffeefe4b62cb3e94b36ec",
+      "modified": false
+    },
+    {
+      "label": "SEG_RASTER_WORKTREE",
+      "branch": "feat/seg-raster-only",
+      "head": "4864f63bed4303fe489849b1c2304bbbfec040bb"
+    }
+  ],
+  "trajectory_branch_merged": false,
+  "stage_s3a_s3b_committed_and_pushed": true
+}

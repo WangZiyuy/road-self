@@ -386,7 +386,8 @@ class RPNet(nn.Module):
             model=None,
             use_traj=None,
             trajectory_mode=None,
-            traj_valid_mask=None):
+            traj_valid_mask=None,
+            segmentation_only=False):
         model = model or 'origin'
         if trajectory_mode is None:
             if self.enable_raster_segmentation:
@@ -482,6 +483,13 @@ class RPNet(nn.Module):
             ) = self.DSF(traj_image, aerial_image)
         else:
             raise ValueError('Unknown model mode: {!r}'.format(model))
+
+        # Stage S3C adaptation optimizes only the native 1/4-resolution
+        # segmentation logits.  Skipping the frozen recursive explorer here
+        # changes no registered module or default forward behaviour and avoids
+        # retaining an unused anchor graph during segmentation-only backward.
+        if segmentation_only:
+            return {'road': road_final, 'junc': junc_final}
 
         if test:
             if model == 'origin':

@@ -1,0 +1,114 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "audit_kind": "OFFICIAL_SOURCE_CONTRACT",
+  "official_repository": "tansor/VecRoad",
+  "official_source_revision": "ffcb47e50e48ced717b2ac0e0f8c720ffc083441",
+  "source_files": {
+    "train.py": {
+      "sha256": "aa36edf5c9ef037ed2e665774d64b4e17fc096d6c329bf43b607e17bc3496fa1"
+    },
+    "configs/default.yml": {
+      "sha256": "023d917cb537e4b2e42e6fa6accc022c7151f9a9957117fd1dfbe7809351800b"
+    },
+    "model/model.py": {
+      "sha256": "21586a178ca5e7e857574be9eb57ef7818904ba5dead39ea5f67a413d1342eb0"
+    }
+  },
+  "official_training_contract": {
+    "backbone": "Res2Net-50 res2net50_v1b_26w_4s",
+    "backbone_pretrained": true,
+    "window_size": 256,
+    "num_targets": 4,
+    "follow_mode": "follow_target",
+    "batch_size": 20,
+    "data_parallel": true,
+    "gpu_ids": "0,1",
+    "training_region_count": 25,
+    "training_regions": [
+      "indianapolis",
+      "louisville",
+      "columbus",
+      "milwaukee",
+      "minneapolis",
+      "seattle",
+      "portland",
+      "sf",
+      "san antonio",
+      "vegas",
+      "phoenix",
+      "dallas",
+      "austin",
+      "san jose",
+      "houston",
+      "miami",
+      "tampa",
+      "orlando",
+      "atlanta",
+      "st louis",
+      "nashville",
+      "dc",
+      "baltimore",
+      "philadelphia",
+      "london"
+    ],
+    "optimizer": "Adam",
+    "betas": [0.9, 0.99],
+    "weight_decay": 0.0002,
+    "learning_rate_schedule": [
+      {
+        "outer_iterations": [1, 20],
+        "learning_rate": 0.001
+      },
+      {
+        "outer_iterations": [21, 50],
+        "learning_rate": 0.0001
+      }
+    ],
+    "batches_per_outer_iteration": 2048,
+    "outer_iteration_count": 50,
+    "optimizer_update_count": 102400,
+    "loss_reduction": "sum",
+    "road_loss": "BCEWithLogits",
+    "junction_loss": "BCEWithLogits",
+    "anchor_main_loss": "BCEWithLogits summed over valid target channels",
+    "anchor_middle_loss": "BCEWithLogits summed over valid target channels",
+    "total_loss": "anchor_main + anchor_middle + road + junction",
+    "gradient_clipping": {
+      "kind": "clip_grad_value_",
+      "value": 10000.0
+    },
+    "anchor_segmentation_feature_inputs": [
+      "road_fts",
+      "junc_fts"
+    ],
+    "validation_early_stopping": false
+  },
+  "current_repository_contract": {
+    "origin_rpnet_official_shared_state_key_count": 648,
+    "origin_checkpoint_strict_compatibility": true,
+    "anchor_middle_current_name": "anchor_lowrs",
+    "optional_raster_adapter_state_key_count": 18,
+    "legacy_sequence_and_dsf_excluded_from_raster_seg_only": true
+  },
+  "stage_s3c_adaptation_contract": {
+    "description": "small-region fine-tuning from a trained official RPNet; not a full official-training reproduction",
+    "learning_rate": 0.00001,
+    "micro_batch_per_gpu": 10,
+    "gradient_accumulation": 2,
+    "effective_samples_per_optimizer_update": 20,
+    "sum_loss_divided_by_accumulation": false,
+    "max_samples_seen": 40960,
+    "anchor_loss_backward": false,
+    "backbone_frozen": true,
+    "anchor_frozen": true,
+    "original_batch_norm_running_statistics_frozen": true,
+    "trainable_modules": [
+      "road_seg",
+      "conv_road_final",
+      "junc_seg",
+      "conv_junc_final",
+      "segmentation_raster_fusion for raster controls"
+    ]
+  }
+}

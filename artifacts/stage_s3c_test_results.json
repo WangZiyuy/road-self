@@ -1,0 +1,24 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "local_cpu_tests": [
+    {
+      "command": "python -m pytest tests -k stage_s3c -q",
+      "passed": 18,
+      "failed": 0,
+      "deselected": 349
+    },
+    {
+      "command": "python -m pytest tests -q",
+      "passed": 367,
+      "failed": 0,
+      "subtests_passed": 4,
+      "warnings": 9
+    }
+  ],
+  "local_gpu_used": false,
+  "notes": [
+    "The first sandboxed full-suite attempt was invalid because Windows temporary directories were inaccessible.",
+    "The reported full-suite result is the clean rerun with an explicit writable basetemp and cache disabled."
+  ]
+}

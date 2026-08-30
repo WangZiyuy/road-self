@@ -1,0 +1,61 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "baseline_provenance": "OFFICIAL_RELEASE",
+  "checkpoint": {
+    "path_label": "${OFFICIAL_VECROAD_RELEASE}/data/ckpt/vecroad.pth.tar",
+    "size_bytes": 130206305,
+    "sha256": "498abc76e4ea461040b2b4ce69dc3d896cb975e93aae58815fe76443f6acf7c3",
+    "wrapper_keys": [
+      "state_dict"
+    ],
+    "state_key_count": 648,
+    "data_parallel_prefix_policy": "UNCHANGED",
+    "trajectory_related_key_count": 0
+  },
+  "source_provenance": {
+    "source_code_sha": "ffcb47e50e48ced717b2ac0e0f8c720ffc083441",
+    "config_sha256": "023d917cb537e4b2e42e6fa6accc022c7151f9a9957117fd1dfbe7809351800b",
+    "release_source_tree_matches_official_revision": true,
+    "release_readme_sha256": "d8d8600b5b24a121c757aafd54885e454f81169317c787cf4d7c21798e278ed3",
+    "release_prepare_data_sha256": "6c669aa3dc129bc5224da633bf994c29694f9f7e441df2fe566f78d8b2db80a7",
+    "official_prepare_data_destination": "data/ckpt/vecroad.pth.tar",
+    "res2net_pretrained_provenance": "official RPNet constructor calls res2net50_v1b_26w_4s(pretrained=True)"
+  },
+  "official_rpnet_strict_load": {
+    "official_state_key_count": 648,
+    "checkpoint_state_key_count": 648,
+    "shared_key_count": 648,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatch": [],
+    "strict_load_ok": true
+  },
+  "current_origin_strict_load": {
+    "shared_key_count": 648,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatch": [],
+    "strict_load_ok": true
+  },
+  "current_raster_model_load": {
+    "model_state_key_count": 666,
+    "shared_key_count": 648,
+    "allowed_new_key_count": 18,
+    "allowed_new_key_prefix": "segmentation_raster_fusion.",
+    "disallowed_missing_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatch": [],
+    "strict_merged_load_ok": true,
+    "raster_residual_projection_zero_initialized": true
+  },
+  "actual_execution_modules": {
+    "image_backbone": "origin RPNet Res2Net stages 1-5",
+    "anchor": "official fuse_module plus recursive decoders",
+    "trajectory_sequence_loader": false,
+    "transformer": false,
+    "legacy_dsf": false,
+    "fuse_module_traj": false
+  },
+  "gate": "PASS"
+}
