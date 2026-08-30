@@ -2,7 +2,9 @@ import copy
 
 import torch
 from torch import nn
+import yaml
 
+from utils.OSMDataset import replicate_subtiles_for_independent_paths
 from utils.seg_raster.stage_s3c import (
     SampleBudgetCounter, checkpoint_name, segmentation_losses,
 )
@@ -39,3 +41,18 @@ def test_samples_seen_and_versioned_checkpoint_grid() -> None:
     assert counter.micro_batches == 2
     assert counter.optimizer_updates == 1
     assert checkpoint_name(2560) == "samples_002560.pth.tar"
+
+
+def test_xian_path_replication_provides_independent_local_batch_slots() -> None:
+    source = [{"region": "xian", "slot": 0}, {"region": "xian", "slot": 1}]
+    replicated = replicate_subtiles_for_independent_paths(source, 5)
+    assert len(replicated) == 10
+    assert all(row is not source[index % 2]
+               for index, row in enumerate(replicated))
+    replicated[0]["slot"] = 99
+    assert replicated[2]["slot"] == 0
+
+
+def test_stage_s3c_uses_five_independent_path_replicas() -> None:
+    config = yaml.safe_load(open("configs/stage_s3c_common.yml", encoding="utf-8"))
+    assert config["TRAIN"]["SPATIAL_PATH_REPLICAS"] == 5

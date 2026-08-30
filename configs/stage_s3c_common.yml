@@ -21,6 +21,10 @@ TRAJ:
 
 TRAIN:
   BATCH_SIZE: 10
+  # Each frozen Xi'an spatial half exposes two eligible subtiles. Five
+  # independent Path replicas recover the official local batch of ten without
+  # reusing one mutable explorer twice inside a micro-batch.
+  SPATIAL_PATH_REPLICAS: 5
   OPTIMIZER_STEPS: 2048
   SOLVER:
     METHOD: Adam

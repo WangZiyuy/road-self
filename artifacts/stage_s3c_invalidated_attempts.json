@@ -1,0 +1,14 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "attempts": [
+    {
+      "run_code_sha": "46476a17370cabca0e7e093a890e480169e668a3",
+      "status": "INVALIDATED_BY_CODE_CHANGE",
+      "failure_gate": "SAMPLE_PLAN_PREPARATION",
+      "optimizer_steps_completed": 0,
+      "cuda_preflight_started": false,
+      "formal_training_started": false,
+      "reason": "The frozen Xi'an train extent exposed two eligible mutable Path objects, fewer than the required local micro-batch of 10. The formal contract requires independent teacher-forced path replicas rather than duplicate reuse of one mutable Path within a batch."
+    }
+  ]
+}

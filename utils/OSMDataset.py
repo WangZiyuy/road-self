@@ -18,6 +18,21 @@ from utils.trajectory_mode import (
 )
 import time
 
+
+def replicate_subtiles_for_independent_paths(subtiles, replica_count):
+    """Create independent path slots without changing the spatial samples.
+
+    A single Xi'an region yields only four 2048x2048 subtiles, while the
+    official two-GPU contract exposes ten samples to each replica. Repeating
+    the subtile descriptors lets every slot own an independent ``Path`` (and
+    therefore an independent teacher-forced frontier) instead of sampling the
+    same mutable path object more than once inside a batch.
+    """
+    replica_count = int(replica_count)
+    if replica_count < 1:
+        raise ValueError("TRAIN.SPATIAL_PATH_REPLICAS must be >= 1")
+    return [dict(subtile) for _ in range(replica_count) for subtile in subtiles]
+
 class OSMDataset:
 
     def __init__(self, cfg, net=None, training=True, seg_input=None):
@@ -54,7 +69,9 @@ class OSMDataset:
         self.training = training
         self.net = net # 用于传递给path从而传递给model_utils文件中的轨迹过滤方法传递两个半径自定义参数
 
-        self.subtiles = self.tiles.prepare_training()
+        self.subtiles = replicate_subtiles_for_independent_paths(
+            self.tiles.prepare_training(),
+            self.cfg.TRAIN.get("SPATIAL_PATH_REPLICAS", 1))
         print("extracted {} subtiles from {} tiles (missing {})".format(
             len(self.subtiles), len(self.tiles.train_tiles), 4 * len(self.tiles.train_tiles) - len(self.subtiles)))
 
