@@ -1,0 +1,6 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "NOT_EXECUTED_BY_GATE",
+  "segmentation_causal_gate": "FAIL",
+  "baseline_controlled_common_samples": 40960
+}

@@ -1,0 +1,26 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "runs": {
+    "R0": {
+      "initial": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "final": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "unchanged": true
+    },
+    "R1": {
+      "initial": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "final": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "unchanged": true
+    },
+    "R2": {
+      "initial": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "final": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "unchanged": true
+    },
+    "R3": {
+      "initial": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "final": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "unchanged": true
+    }
+  }
+}

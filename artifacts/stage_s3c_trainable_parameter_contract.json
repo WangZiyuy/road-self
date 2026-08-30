@@ -1,0 +1,5216 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "image_only": [
+    {
+      "name": "conv_2_side.conv.weight",
+      "module": "conv_2_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_2_side.conv.bias",
+      "module": "conv_2_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_2_side.bn.weight",
+      "module": "conv_2_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_2_side.bn.bias",
+      "module": "conv_2_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_3_side.conv.weight",
+      "module": "conv_3_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_3_side.conv.bias",
+      "module": "conv_3_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_3_side.bn.weight",
+      "module": "conv_3_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_3_side.bn.bias",
+      "module": "conv_3_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_4_side.conv.weight",
+      "module": "conv_4_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_4_side.conv.bias",
+      "module": "conv_4_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_4_side.bn.weight",
+      "module": "conv_4_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_4_side.bn.bias",
+      "module": "conv_4_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_5_side.conv.weight",
+      "module": "conv_5_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_5_side.conv.bias",
+      "module": "conv_5_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_5_side.bn.weight",
+      "module": "conv_5_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_5_side.bn.bias",
+      "module": "conv_5_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_fuse.conv.weight",
+      "module": "conv_fuse.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_fuse.conv.bias",
+      "module": "conv_fuse.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_fuse.bn.weight",
+      "module": "conv_fuse.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_fuse.bn.bias",
+      "module": "conv_fuse.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "road_seg.0.conv.weight",
+      "module": "road_seg.0.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.conv.bias",
+      "module": "road_seg.0.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.bn.weight",
+      "module": "road_seg.0.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.bn.bias",
+      "module": "road_seg.0.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.conv.weight",
+      "module": "road_seg.1.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.conv.bias",
+      "module": "road_seg.1.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.bn.weight",
+      "module": "road_seg.1.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.bn.bias",
+      "module": "road_seg.1.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "conv_road_final.weight",
+      "module": "conv_road_final",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "conv_road_final.bias",
+      "module": "conv_road_final",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.conv.weight",
+      "module": "junc_seg.0.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.conv.bias",
+      "module": "junc_seg.0.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.bn.weight",
+      "module": "junc_seg.0.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.bn.bias",
+      "module": "junc_seg.0.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.1.conv.weight",
+      "module": "junc_seg.1.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.1.conv.bias",
+      "module": "junc_seg.1.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.1.bn.weight",
+      "module": "junc_seg.1.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.1.bn.bias",
+      "module": "junc_seg.1.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "conv_junc_final.weight",
+      "module": "conv_junc_final",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "conv_junc_final.bias",
+      "module": "conv_junc_final",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "fuse_module.encoder_1.0.conv.weight",
+      "module": "fuse_module.encoder_1.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_1.0.conv.bias",
+      "module": "fuse_module.encoder_1.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_1.1.conv.weight",
+      "module": "fuse_module.encoder_1.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_1.1.conv.bias",
+      "module": "fuse_module.encoder_1.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_2.0.conv.weight",
+      "module": "fuse_module.encoder_2.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_2.0.conv.bias",
+      "module": "fuse_module.encoder_2.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_2.1.conv.weight",
+      "module": "fuse_module.encoder_2.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_2.1.conv.bias",
+      "module": "fuse_module.encoder_2.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_3.0.conv.weight",
+      "module": "fuse_module.encoder_3.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_3.0.conv.bias",
+      "module": "fuse_module.encoder_3.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_3.1.conv.weight",
+      "module": "fuse_module.encoder_3.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_3.1.conv.bias",
+      "module": "fuse_module.encoder_3.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_4.0.conv.weight",
+      "module": "fuse_module.encoder_4.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_4.0.conv.bias",
+      "module": "fuse_module.encoder_4.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_4.1.conv.weight",
+      "module": "fuse_module.encoder_4.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_4.1.conv.bias",
+      "module": "fuse_module.encoder_4.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_5.0.conv.weight",
+      "module": "fuse_module.encoder_5.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_5.0.conv.bias",
+      "module": "fuse_module.encoder_5.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_5.1.conv.weight",
+      "module": "fuse_module.encoder_5.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_5.1.conv.bias",
+      "module": "fuse_module.encoder_5.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_4.0.conv.weight",
+      "module": "fuse_module.decoder_4.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_4.0.conv.bias",
+      "module": "fuse_module.decoder_4.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_4.1.conv.weight",
+      "module": "fuse_module.decoder_4.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_4.1.conv.bias",
+      "module": "fuse_module.decoder_4.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_3.0.conv.weight",
+      "module": "fuse_module.decoder_3.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_3.0.conv.bias",
+      "module": "fuse_module.decoder_3.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_3.1.conv.weight",
+      "module": "fuse_module.decoder_3.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_3.1.conv.bias",
+      "module": "fuse_module.decoder_3.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_2.0.conv.weight",
+      "module": "fuse_module.decoder_2.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_2.0.conv.bias",
+      "module": "fuse_module.decoder_2.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_2.1.conv.weight",
+      "module": "fuse_module.decoder_2.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_2.1.conv.bias",
+      "module": "fuse_module.decoder_2.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_1.0.conv.weight",
+      "module": "fuse_module.decoder_1.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_1.0.conv.bias",
+      "module": "fuse_module.decoder_1.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_1.1.conv.weight",
+      "module": "fuse_module.decoder_1.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_1.1.conv.bias",
+      "module": "fuse_module.decoder_1.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.ft_conv.0.conv.weight",
+      "module": "decoders.0.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.ft_conv.0.conv.bias",
+      "module": "decoders.0.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.conv.0.conv.weight",
+      "module": "decoders.0.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.conv.0.conv.bias",
+      "module": "decoders.0.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.conv.1.weight",
+      "module": "decoders.0.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.conv.1.bias",
+      "module": "decoders.0.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.ft_conv.0.conv.weight",
+      "module": "decoders.1.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.ft_conv.0.conv.bias",
+      "module": "decoders.1.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.conv.0.conv.weight",
+      "module": "decoders.1.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.conv.0.conv.bias",
+      "module": "decoders.1.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.conv.1.weight",
+      "module": "decoders.1.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.conv.1.bias",
+      "module": "decoders.1.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.ft_conv.0.conv.weight",
+      "module": "decoders.2.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.ft_conv.0.conv.bias",
+      "module": "decoders.2.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.conv.0.conv.weight",
+      "module": "decoders.2.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.conv.0.conv.bias",
+      "module": "decoders.2.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.conv.1.weight",
+      "module": "decoders.2.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.conv.1.bias",
+      "module": "decoders.2.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.ft_conv.0.conv.weight",
+      "module": "decoders.3.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.ft_conv.0.conv.bias",
+      "module": "decoders.3.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.conv.0.conv.weight",
+      "module": "decoders.3.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.conv.0.conv.bias",
+      "module": "decoders.3.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.conv.1.weight",
+      "module": "decoders.3.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.conv.1.bias",
+      "module": "decoders.3.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "next_step_final.weight",
+      "module": "next_step_final",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "next_step_final.bias",
+      "module": "next_step_final",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_final.weight",
+      "module": "conv_final",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_final.bias",
+      "module": "conv_final",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.0.weight",
+      "module": "stage_1.0.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.1.weight",
+      "module": "stage_1.0.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.1.bias",
+      "module": "stage_1.0.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.3.weight",
+      "module": "stage_1.0.3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.4.weight",
+      "module": "stage_1.0.4",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.4.bias",
+      "module": "stage_1.0.4",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.6.weight",
+      "module": "stage_1.0.6",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.conv1.weight",
+      "module": "stage_2.0.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bn1.weight",
+      "module": "stage_2.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bn1.bias",
+      "module": "stage_2.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.convs.0.weight",
+      "module": "stage_2.0.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.convs.1.weight",
+      "module": "stage_2.0.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.convs.2.weight",
+      "module": "stage_2.0.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.0.weight",
+      "module": "stage_2.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.0.bias",
+      "module": "stage_2.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.1.weight",
+      "module": "stage_2.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.1.bias",
+      "module": "stage_2.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.2.weight",
+      "module": "stage_2.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.2.bias",
+      "module": "stage_2.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.conv3.weight",
+      "module": "stage_2.0.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bn3.weight",
+      "module": "stage_2.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bn3.bias",
+      "module": "stage_2.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.downsample.1.weight",
+      "module": "stage_2.0.downsample.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.downsample.2.weight",
+      "module": "stage_2.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.downsample.2.bias",
+      "module": "stage_2.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.conv1.weight",
+      "module": "stage_2.1.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bn1.weight",
+      "module": "stage_2.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bn1.bias",
+      "module": "stage_2.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.convs.0.weight",
+      "module": "stage_2.1.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.convs.1.weight",
+      "module": "stage_2.1.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.convs.2.weight",
+      "module": "stage_2.1.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.0.weight",
+      "module": "stage_2.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.0.bias",
+      "module": "stage_2.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.1.weight",
+      "module": "stage_2.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.1.bias",
+      "module": "stage_2.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.2.weight",
+      "module": "stage_2.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.2.bias",
+      "module": "stage_2.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.conv3.weight",
+      "module": "stage_2.1.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bn3.weight",
+      "module": "stage_2.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bn3.bias",
+      "module": "stage_2.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.conv1.weight",
+      "module": "stage_2.2.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bn1.weight",
+      "module": "stage_2.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bn1.bias",
+      "module": "stage_2.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.convs.0.weight",
+      "module": "stage_2.2.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.convs.1.weight",
+      "module": "stage_2.2.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.convs.2.weight",
+      "module": "stage_2.2.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.0.weight",
+      "module": "stage_2.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.0.bias",
+      "module": "stage_2.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.1.weight",
+      "module": "stage_2.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.1.bias",
+      "module": "stage_2.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.2.weight",
+      "module": "stage_2.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.2.bias",
+      "module": "stage_2.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.conv3.weight",
+      "module": "stage_2.2.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bn3.weight",
+      "module": "stage_2.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bn3.bias",
+      "module": "stage_2.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.conv1.weight",
+      "module": "stage_3.0.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bn1.weight",
+      "module": "stage_3.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bn1.bias",
+      "module": "stage_3.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.convs.0.weight",
+      "module": "stage_3.0.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.convs.1.weight",
+      "module": "stage_3.0.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.convs.2.weight",
+      "module": "stage_3.0.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.0.weight",
+      "module": "stage_3.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.0.bias",
+      "module": "stage_3.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.1.weight",
+      "module": "stage_3.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.1.bias",
+      "module": "stage_3.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.2.weight",
+      "module": "stage_3.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.2.bias",
+      "module": "stage_3.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.conv3.weight",
+      "module": "stage_3.0.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bn3.weight",
+      "module": "stage_3.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bn3.bias",
+      "module": "stage_3.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.downsample.1.weight",
+      "module": "stage_3.0.downsample.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.downsample.2.weight",
+      "module": "stage_3.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.downsample.2.bias",
+      "module": "stage_3.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.conv1.weight",
+      "module": "stage_3.1.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bn1.weight",
+      "module": "stage_3.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bn1.bias",
+      "module": "stage_3.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.convs.0.weight",
+      "module": "stage_3.1.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.convs.1.weight",
+      "module": "stage_3.1.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.convs.2.weight",
+      "module": "stage_3.1.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.0.weight",
+      "module": "stage_3.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.0.bias",
+      "module": "stage_3.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.1.weight",
+      "module": "stage_3.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.1.bias",
+      "module": "stage_3.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.2.weight",
+      "module": "stage_3.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.2.bias",
+      "module": "stage_3.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.conv3.weight",
+      "module": "stage_3.1.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bn3.weight",
+      "module": "stage_3.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bn3.bias",
+      "module": "stage_3.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.conv1.weight",
+      "module": "stage_3.2.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bn1.weight",
+      "module": "stage_3.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bn1.bias",
+      "module": "stage_3.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.convs.0.weight",
+      "module": "stage_3.2.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.convs.1.weight",
+      "module": "stage_3.2.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.convs.2.weight",
+      "module": "stage_3.2.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.0.weight",
+      "module": "stage_3.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.0.bias",
+      "module": "stage_3.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.1.weight",
+      "module": "stage_3.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.1.bias",
+      "module": "stage_3.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.2.weight",
+      "module": "stage_3.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.2.bias",
+      "module": "stage_3.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.conv3.weight",
+      "module": "stage_3.2.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bn3.weight",
+      "module": "stage_3.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bn3.bias",
+      "module": "stage_3.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.conv1.weight",
+      "module": "stage_3.3.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bn1.weight",
+      "module": "stage_3.3.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bn1.bias",
+      "module": "stage_3.3.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.convs.0.weight",
+      "module": "stage_3.3.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.convs.1.weight",
+      "module": "stage_3.3.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.convs.2.weight",
+      "module": "stage_3.3.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.0.weight",
+      "module": "stage_3.3.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.0.bias",
+      "module": "stage_3.3.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.1.weight",
+      "module": "stage_3.3.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.1.bias",
+      "module": "stage_3.3.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.2.weight",
+      "module": "stage_3.3.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.2.bias",
+      "module": "stage_3.3.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.conv3.weight",
+      "module": "stage_3.3.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bn3.weight",
+      "module": "stage_3.3.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bn3.bias",
+      "module": "stage_3.3.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.conv1.weight",
+      "module": "stage_4.0.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bn1.weight",
+      "module": "stage_4.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bn1.bias",
+      "module": "stage_4.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.convs.0.weight",
+      "module": "stage_4.0.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.convs.1.weight",
+      "module": "stage_4.0.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.convs.2.weight",
+      "module": "stage_4.0.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.0.weight",
+      "module": "stage_4.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.0.bias",
+      "module": "stage_4.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.1.weight",
+      "module": "stage_4.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.1.bias",
+      "module": "stage_4.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.2.weight",
+      "module": "stage_4.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.2.bias",
+      "module": "stage_4.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.conv3.weight",
+      "module": "stage_4.0.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bn3.weight",
+      "module": "stage_4.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bn3.bias",
+      "module": "stage_4.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.downsample.1.weight",
+      "module": "stage_4.0.downsample.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.downsample.2.weight",
+      "module": "stage_4.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.downsample.2.bias",
+      "module": "stage_4.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.conv1.weight",
+      "module": "stage_4.1.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bn1.weight",
+      "module": "stage_4.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bn1.bias",
+      "module": "stage_4.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.convs.0.weight",
+      "module": "stage_4.1.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.convs.1.weight",
+      "module": "stage_4.1.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.convs.2.weight",
+      "module": "stage_4.1.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.0.weight",
+      "module": "stage_4.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.0.bias",
+      "module": "stage_4.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.1.weight",
+      "module": "stage_4.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.1.bias",
+      "module": "stage_4.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.2.weight",
+      "module": "stage_4.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.2.bias",
+      "module": "stage_4.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.conv3.weight",
+      "module": "stage_4.1.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bn3.weight",
+      "module": "stage_4.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bn3.bias",
+      "module": "stage_4.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.conv1.weight",
+      "module": "stage_4.2.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bn1.weight",
+      "module": "stage_4.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bn1.bias",
+      "module": "stage_4.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.convs.0.weight",
+      "module": "stage_4.2.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.convs.1.weight",
+      "module": "stage_4.2.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.convs.2.weight",
+      "module": "stage_4.2.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.0.weight",
+      "module": "stage_4.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.0.bias",
+      "module": "stage_4.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.1.weight",
+      "module": "stage_4.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.1.bias",
+      "module": "stage_4.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.2.weight",
+      "module": "stage_4.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.2.bias",
+      "module": "stage_4.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.conv3.weight",
+      "module": "stage_4.2.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bn3.weight",
+      "module": "stage_4.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bn3.bias",
+      "module": "stage_4.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.conv1.weight",
+      "module": "stage_4.3.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bn1.weight",
+      "module": "stage_4.3.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bn1.bias",
+      "module": "stage_4.3.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.convs.0.weight",
+      "module": "stage_4.3.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.convs.1.weight",
+      "module": "stage_4.3.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.convs.2.weight",
+      "module": "stage_4.3.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.0.weight",
+      "module": "stage_4.3.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.0.bias",
+      "module": "stage_4.3.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.1.weight",
+      "module": "stage_4.3.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.1.bias",
+      "module": "stage_4.3.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.2.weight",
+      "module": "stage_4.3.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.2.bias",
+      "module": "stage_4.3.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.conv3.weight",
+      "module": "stage_4.3.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bn3.weight",
+      "module": "stage_4.3.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bn3.bias",
+      "module": "stage_4.3.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.conv1.weight",
+      "module": "stage_4.4.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bn1.weight",
+      "module": "stage_4.4.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bn1.bias",
+      "module": "stage_4.4.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.convs.0.weight",
+      "module": "stage_4.4.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.convs.1.weight",
+      "module": "stage_4.4.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.convs.2.weight",
+      "module": "stage_4.4.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.0.weight",
+      "module": "stage_4.4.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.0.bias",
+      "module": "stage_4.4.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.1.weight",
+      "module": "stage_4.4.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.1.bias",
+      "module": "stage_4.4.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.2.weight",
+      "module": "stage_4.4.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.2.bias",
+      "module": "stage_4.4.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.conv3.weight",
+      "module": "stage_4.4.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bn3.weight",
+      "module": "stage_4.4.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bn3.bias",
+      "module": "stage_4.4.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.conv1.weight",
+      "module": "stage_4.5.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bn1.weight",
+      "module": "stage_4.5.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bn1.bias",
+      "module": "stage_4.5.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.convs.0.weight",
+      "module": "stage_4.5.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.convs.1.weight",
+      "module": "stage_4.5.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.convs.2.weight",
+      "module": "stage_4.5.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.0.weight",
+      "module": "stage_4.5.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.0.bias",
+      "module": "stage_4.5.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.1.weight",
+      "module": "stage_4.5.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.1.bias",
+      "module": "stage_4.5.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.2.weight",
+      "module": "stage_4.5.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.2.bias",
+      "module": "stage_4.5.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.conv3.weight",
+      "module": "stage_4.5.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bn3.weight",
+      "module": "stage_4.5.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bn3.bias",
+      "module": "stage_4.5.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.conv1.weight",
+      "module": "stage_5.0.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bn1.weight",
+      "module": "stage_5.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bn1.bias",
+      "module": "stage_5.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.convs.0.weight",
+      "module": "stage_5.0.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.convs.1.weight",
+      "module": "stage_5.0.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.convs.2.weight",
+      "module": "stage_5.0.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.0.weight",
+      "module": "stage_5.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.0.bias",
+      "module": "stage_5.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.1.weight",
+      "module": "stage_5.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.1.bias",
+      "module": "stage_5.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.2.weight",
+      "module": "stage_5.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.2.bias",
+      "module": "stage_5.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.conv3.weight",
+      "module": "stage_5.0.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bn3.weight",
+      "module": "stage_5.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bn3.bias",
+      "module": "stage_5.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.downsample.1.weight",
+      "module": "stage_5.0.downsample.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.downsample.2.weight",
+      "module": "stage_5.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.downsample.2.bias",
+      "module": "stage_5.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.conv1.weight",
+      "module": "stage_5.1.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bn1.weight",
+      "module": "stage_5.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bn1.bias",
+      "module": "stage_5.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.convs.0.weight",
+      "module": "stage_5.1.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.convs.1.weight",
+      "module": "stage_5.1.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.convs.2.weight",
+      "module": "stage_5.1.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.0.weight",
+      "module": "stage_5.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.0.bias",
+      "module": "stage_5.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.1.weight",
+      "module": "stage_5.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.1.bias",
+      "module": "stage_5.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.2.weight",
+      "module": "stage_5.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.2.bias",
+      "module": "stage_5.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.conv3.weight",
+      "module": "stage_5.1.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bn3.weight",
+      "module": "stage_5.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bn3.bias",
+      "module": "stage_5.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.conv1.weight",
+      "module": "stage_5.2.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bn1.weight",
+      "module": "stage_5.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bn1.bias",
+      "module": "stage_5.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.convs.0.weight",
+      "module": "stage_5.2.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.convs.1.weight",
+      "module": "stage_5.2.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.convs.2.weight",
+      "module": "stage_5.2.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.0.weight",
+      "module": "stage_5.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.0.bias",
+      "module": "stage_5.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.1.weight",
+      "module": "stage_5.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.1.bias",
+      "module": "stage_5.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.2.weight",
+      "module": "stage_5.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.2.bias",
+      "module": "stage_5.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.conv3.weight",
+      "module": "stage_5.2.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bn3.weight",
+      "module": "stage_5.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bn3.bias",
+      "module": "stage_5.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    }
+  ],
+  "raster": [
+    {
+      "name": "conv_2_side.conv.weight",
+      "module": "conv_2_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_2_side.conv.bias",
+      "module": "conv_2_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_2_side.bn.weight",
+      "module": "conv_2_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_2_side.bn.bias",
+      "module": "conv_2_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_3_side.conv.weight",
+      "module": "conv_3_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_3_side.conv.bias",
+      "module": "conv_3_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_3_side.bn.weight",
+      "module": "conv_3_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_3_side.bn.bias",
+      "module": "conv_3_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_4_side.conv.weight",
+      "module": "conv_4_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_4_side.conv.bias",
+      "module": "conv_4_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_4_side.bn.weight",
+      "module": "conv_4_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_4_side.bn.bias",
+      "module": "conv_4_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_5_side.conv.weight",
+      "module": "conv_5_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_5_side.conv.bias",
+      "module": "conv_5_side.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_5_side.bn.weight",
+      "module": "conv_5_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_5_side.bn.bias",
+      "module": "conv_5_side.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_fuse.conv.weight",
+      "module": "conv_fuse.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_fuse.conv.bias",
+      "module": "conv_fuse.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_fuse.bn.weight",
+      "module": "conv_fuse.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_fuse.bn.bias",
+      "module": "conv_fuse.bn",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "road_seg.0.conv.weight",
+      "module": "road_seg.0.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.conv.bias",
+      "module": "road_seg.0.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.bn.weight",
+      "module": "road_seg.0.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.bn.bias",
+      "module": "road_seg.0.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.conv.weight",
+      "module": "road_seg.1.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.conv.bias",
+      "module": "road_seg.1.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.bn.weight",
+      "module": "road_seg.1.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.bn.bias",
+      "module": "road_seg.1.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "conv_road_final.weight",
+      "module": "conv_road_final",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "conv_road_final.bias",
+      "module": "conv_road_final",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.conv.weight",
+      "module": "junc_seg.0.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.conv.bias",
+      "module": "junc_seg.0.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.bn.weight",
+      "module": "junc_seg.0.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.bn.bias",
+      "module": "junc_seg.0.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.1.conv.weight",
+      "module": "junc_seg.1.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.1.conv.bias",
+      "module": "junc_seg.1.conv",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.1.bn.weight",
+      "module": "junc_seg.1.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.1.bn.bias",
+      "module": "junc_seg.1.bn",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "conv_junc_final.weight",
+      "module": "conv_junc_final",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "conv_junc_final.bias",
+      "module": "conv_junc_final",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_or_junction_segmentation_loss"
+    },
+    {
+      "name": "fuse_module.encoder_1.0.conv.weight",
+      "module": "fuse_module.encoder_1.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_1.0.conv.bias",
+      "module": "fuse_module.encoder_1.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_1.1.conv.weight",
+      "module": "fuse_module.encoder_1.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_1.1.conv.bias",
+      "module": "fuse_module.encoder_1.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_2.0.conv.weight",
+      "module": "fuse_module.encoder_2.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_2.0.conv.bias",
+      "module": "fuse_module.encoder_2.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_2.1.conv.weight",
+      "module": "fuse_module.encoder_2.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_2.1.conv.bias",
+      "module": "fuse_module.encoder_2.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_3.0.conv.weight",
+      "module": "fuse_module.encoder_3.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_3.0.conv.bias",
+      "module": "fuse_module.encoder_3.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_3.1.conv.weight",
+      "module": "fuse_module.encoder_3.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_3.1.conv.bias",
+      "module": "fuse_module.encoder_3.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_4.0.conv.weight",
+      "module": "fuse_module.encoder_4.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_4.0.conv.bias",
+      "module": "fuse_module.encoder_4.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_4.1.conv.weight",
+      "module": "fuse_module.encoder_4.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_4.1.conv.bias",
+      "module": "fuse_module.encoder_4.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_5.0.conv.weight",
+      "module": "fuse_module.encoder_5.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_5.0.conv.bias",
+      "module": "fuse_module.encoder_5.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_5.1.conv.weight",
+      "module": "fuse_module.encoder_5.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.encoder_5.1.conv.bias",
+      "module": "fuse_module.encoder_5.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_4.0.conv.weight",
+      "module": "fuse_module.decoder_4.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_4.0.conv.bias",
+      "module": "fuse_module.decoder_4.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_4.1.conv.weight",
+      "module": "fuse_module.decoder_4.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_4.1.conv.bias",
+      "module": "fuse_module.decoder_4.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_3.0.conv.weight",
+      "module": "fuse_module.decoder_3.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_3.0.conv.bias",
+      "module": "fuse_module.decoder_3.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_3.1.conv.weight",
+      "module": "fuse_module.decoder_3.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_3.1.conv.bias",
+      "module": "fuse_module.decoder_3.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_2.0.conv.weight",
+      "module": "fuse_module.decoder_2.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_2.0.conv.bias",
+      "module": "fuse_module.decoder_2.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_2.1.conv.weight",
+      "module": "fuse_module.decoder_2.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_2.1.conv.bias",
+      "module": "fuse_module.decoder_2.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_1.0.conv.weight",
+      "module": "fuse_module.decoder_1.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_1.0.conv.bias",
+      "module": "fuse_module.decoder_1.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_1.1.conv.weight",
+      "module": "fuse_module.decoder_1.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "fuse_module.decoder_1.1.conv.bias",
+      "module": "fuse_module.decoder_1.1.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.ft_conv.0.conv.weight",
+      "module": "decoders.0.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.ft_conv.0.conv.bias",
+      "module": "decoders.0.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.conv.0.conv.weight",
+      "module": "decoders.0.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.conv.0.conv.bias",
+      "module": "decoders.0.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.conv.1.weight",
+      "module": "decoders.0.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.0.conv.1.bias",
+      "module": "decoders.0.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.ft_conv.0.conv.weight",
+      "module": "decoders.1.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.ft_conv.0.conv.bias",
+      "module": "decoders.1.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.conv.0.conv.weight",
+      "module": "decoders.1.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.conv.0.conv.bias",
+      "module": "decoders.1.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.conv.1.weight",
+      "module": "decoders.1.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.1.conv.1.bias",
+      "module": "decoders.1.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.ft_conv.0.conv.weight",
+      "module": "decoders.2.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.ft_conv.0.conv.bias",
+      "module": "decoders.2.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.conv.0.conv.weight",
+      "module": "decoders.2.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.conv.0.conv.bias",
+      "module": "decoders.2.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.conv.1.weight",
+      "module": "decoders.2.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.2.conv.1.bias",
+      "module": "decoders.2.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.ft_conv.0.conv.weight",
+      "module": "decoders.3.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.ft_conv.0.conv.bias",
+      "module": "decoders.3.ft_conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.conv.0.conv.weight",
+      "module": "decoders.3.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.conv.0.conv.bias",
+      "module": "decoders.3.conv.0.conv",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.conv.1.weight",
+      "module": "decoders.3.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "decoders.3.conv.1.bias",
+      "module": "decoders.3.conv.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "next_step_final.weight",
+      "module": "next_step_final",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "next_step_final.bias",
+      "module": "next_step_final",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_final.weight",
+      "module": "conv_final",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "conv_final.bias",
+      "module": "conv_final",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.0.weight",
+      "module": "stage_1.0.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.1.weight",
+      "module": "stage_1.0.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.1.bias",
+      "module": "stage_1.0.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.3.weight",
+      "module": "stage_1.0.3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.4.weight",
+      "module": "stage_1.0.4",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.4.bias",
+      "module": "stage_1.0.4",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_1.0.6.weight",
+      "module": "stage_1.0.6",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.conv1.weight",
+      "module": "stage_2.0.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bn1.weight",
+      "module": "stage_2.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bn1.bias",
+      "module": "stage_2.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.convs.0.weight",
+      "module": "stage_2.0.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.convs.1.weight",
+      "module": "stage_2.0.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.convs.2.weight",
+      "module": "stage_2.0.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.0.weight",
+      "module": "stage_2.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.0.bias",
+      "module": "stage_2.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.1.weight",
+      "module": "stage_2.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.1.bias",
+      "module": "stage_2.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.2.weight",
+      "module": "stage_2.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bns.2.bias",
+      "module": "stage_2.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.conv3.weight",
+      "module": "stage_2.0.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bn3.weight",
+      "module": "stage_2.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.bn3.bias",
+      "module": "stage_2.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.downsample.1.weight",
+      "module": "stage_2.0.downsample.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.downsample.2.weight",
+      "module": "stage_2.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.0.downsample.2.bias",
+      "module": "stage_2.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.conv1.weight",
+      "module": "stage_2.1.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bn1.weight",
+      "module": "stage_2.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bn1.bias",
+      "module": "stage_2.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.convs.0.weight",
+      "module": "stage_2.1.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.convs.1.weight",
+      "module": "stage_2.1.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.convs.2.weight",
+      "module": "stage_2.1.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.0.weight",
+      "module": "stage_2.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.0.bias",
+      "module": "stage_2.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.1.weight",
+      "module": "stage_2.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.1.bias",
+      "module": "stage_2.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.2.weight",
+      "module": "stage_2.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bns.2.bias",
+      "module": "stage_2.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.conv3.weight",
+      "module": "stage_2.1.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bn3.weight",
+      "module": "stage_2.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.1.bn3.bias",
+      "module": "stage_2.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.conv1.weight",
+      "module": "stage_2.2.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bn1.weight",
+      "module": "stage_2.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bn1.bias",
+      "module": "stage_2.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.convs.0.weight",
+      "module": "stage_2.2.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.convs.1.weight",
+      "module": "stage_2.2.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.convs.2.weight",
+      "module": "stage_2.2.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.0.weight",
+      "module": "stage_2.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.0.bias",
+      "module": "stage_2.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.1.weight",
+      "module": "stage_2.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.1.bias",
+      "module": "stage_2.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.2.weight",
+      "module": "stage_2.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bns.2.bias",
+      "module": "stage_2.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.conv3.weight",
+      "module": "stage_2.2.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bn3.weight",
+      "module": "stage_2.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_2.2.bn3.bias",
+      "module": "stage_2.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.conv1.weight",
+      "module": "stage_3.0.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bn1.weight",
+      "module": "stage_3.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bn1.bias",
+      "module": "stage_3.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.convs.0.weight",
+      "module": "stage_3.0.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.convs.1.weight",
+      "module": "stage_3.0.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.convs.2.weight",
+      "module": "stage_3.0.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.0.weight",
+      "module": "stage_3.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.0.bias",
+      "module": "stage_3.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.1.weight",
+      "module": "stage_3.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.1.bias",
+      "module": "stage_3.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.2.weight",
+      "module": "stage_3.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bns.2.bias",
+      "module": "stage_3.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.conv3.weight",
+      "module": "stage_3.0.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bn3.weight",
+      "module": "stage_3.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.bn3.bias",
+      "module": "stage_3.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.downsample.1.weight",
+      "module": "stage_3.0.downsample.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.downsample.2.weight",
+      "module": "stage_3.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.0.downsample.2.bias",
+      "module": "stage_3.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.conv1.weight",
+      "module": "stage_3.1.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bn1.weight",
+      "module": "stage_3.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bn1.bias",
+      "module": "stage_3.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.convs.0.weight",
+      "module": "stage_3.1.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.convs.1.weight",
+      "module": "stage_3.1.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.convs.2.weight",
+      "module": "stage_3.1.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.0.weight",
+      "module": "stage_3.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.0.bias",
+      "module": "stage_3.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.1.weight",
+      "module": "stage_3.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.1.bias",
+      "module": "stage_3.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.2.weight",
+      "module": "stage_3.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bns.2.bias",
+      "module": "stage_3.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.conv3.weight",
+      "module": "stage_3.1.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bn3.weight",
+      "module": "stage_3.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.1.bn3.bias",
+      "module": "stage_3.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.conv1.weight",
+      "module": "stage_3.2.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bn1.weight",
+      "module": "stage_3.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bn1.bias",
+      "module": "stage_3.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.convs.0.weight",
+      "module": "stage_3.2.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.convs.1.weight",
+      "module": "stage_3.2.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.convs.2.weight",
+      "module": "stage_3.2.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.0.weight",
+      "module": "stage_3.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.0.bias",
+      "module": "stage_3.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.1.weight",
+      "module": "stage_3.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.1.bias",
+      "module": "stage_3.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.2.weight",
+      "module": "stage_3.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bns.2.bias",
+      "module": "stage_3.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.conv3.weight",
+      "module": "stage_3.2.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bn3.weight",
+      "module": "stage_3.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.2.bn3.bias",
+      "module": "stage_3.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.conv1.weight",
+      "module": "stage_3.3.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bn1.weight",
+      "module": "stage_3.3.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bn1.bias",
+      "module": "stage_3.3.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.convs.0.weight",
+      "module": "stage_3.3.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.convs.1.weight",
+      "module": "stage_3.3.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.convs.2.weight",
+      "module": "stage_3.3.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.0.weight",
+      "module": "stage_3.3.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.0.bias",
+      "module": "stage_3.3.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.1.weight",
+      "module": "stage_3.3.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.1.bias",
+      "module": "stage_3.3.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.2.weight",
+      "module": "stage_3.3.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bns.2.bias",
+      "module": "stage_3.3.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.conv3.weight",
+      "module": "stage_3.3.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bn3.weight",
+      "module": "stage_3.3.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_3.3.bn3.bias",
+      "module": "stage_3.3.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.conv1.weight",
+      "module": "stage_4.0.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bn1.weight",
+      "module": "stage_4.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bn1.bias",
+      "module": "stage_4.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.convs.0.weight",
+      "module": "stage_4.0.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.convs.1.weight",
+      "module": "stage_4.0.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.convs.2.weight",
+      "module": "stage_4.0.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.0.weight",
+      "module": "stage_4.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.0.bias",
+      "module": "stage_4.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.1.weight",
+      "module": "stage_4.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.1.bias",
+      "module": "stage_4.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.2.weight",
+      "module": "stage_4.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bns.2.bias",
+      "module": "stage_4.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.conv3.weight",
+      "module": "stage_4.0.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bn3.weight",
+      "module": "stage_4.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.bn3.bias",
+      "module": "stage_4.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.downsample.1.weight",
+      "module": "stage_4.0.downsample.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.downsample.2.weight",
+      "module": "stage_4.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.0.downsample.2.bias",
+      "module": "stage_4.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.conv1.weight",
+      "module": "stage_4.1.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bn1.weight",
+      "module": "stage_4.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bn1.bias",
+      "module": "stage_4.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.convs.0.weight",
+      "module": "stage_4.1.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.convs.1.weight",
+      "module": "stage_4.1.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.convs.2.weight",
+      "module": "stage_4.1.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.0.weight",
+      "module": "stage_4.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.0.bias",
+      "module": "stage_4.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.1.weight",
+      "module": "stage_4.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.1.bias",
+      "module": "stage_4.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.2.weight",
+      "module": "stage_4.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bns.2.bias",
+      "module": "stage_4.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.conv3.weight",
+      "module": "stage_4.1.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bn3.weight",
+      "module": "stage_4.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.1.bn3.bias",
+      "module": "stage_4.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.conv1.weight",
+      "module": "stage_4.2.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bn1.weight",
+      "module": "stage_4.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bn1.bias",
+      "module": "stage_4.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.convs.0.weight",
+      "module": "stage_4.2.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.convs.1.weight",
+      "module": "stage_4.2.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.convs.2.weight",
+      "module": "stage_4.2.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.0.weight",
+      "module": "stage_4.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.0.bias",
+      "module": "stage_4.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.1.weight",
+      "module": "stage_4.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.1.bias",
+      "module": "stage_4.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.2.weight",
+      "module": "stage_4.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bns.2.bias",
+      "module": "stage_4.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.conv3.weight",
+      "module": "stage_4.2.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bn3.weight",
+      "module": "stage_4.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.2.bn3.bias",
+      "module": "stage_4.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.conv1.weight",
+      "module": "stage_4.3.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bn1.weight",
+      "module": "stage_4.3.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bn1.bias",
+      "module": "stage_4.3.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.convs.0.weight",
+      "module": "stage_4.3.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.convs.1.weight",
+      "module": "stage_4.3.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.convs.2.weight",
+      "module": "stage_4.3.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.0.weight",
+      "module": "stage_4.3.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.0.bias",
+      "module": "stage_4.3.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.1.weight",
+      "module": "stage_4.3.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.1.bias",
+      "module": "stage_4.3.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.2.weight",
+      "module": "stage_4.3.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bns.2.bias",
+      "module": "stage_4.3.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.conv3.weight",
+      "module": "stage_4.3.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bn3.weight",
+      "module": "stage_4.3.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.3.bn3.bias",
+      "module": "stage_4.3.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.conv1.weight",
+      "module": "stage_4.4.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bn1.weight",
+      "module": "stage_4.4.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bn1.bias",
+      "module": "stage_4.4.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.convs.0.weight",
+      "module": "stage_4.4.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.convs.1.weight",
+      "module": "stage_4.4.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.convs.2.weight",
+      "module": "stage_4.4.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.0.weight",
+      "module": "stage_4.4.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.0.bias",
+      "module": "stage_4.4.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.1.weight",
+      "module": "stage_4.4.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.1.bias",
+      "module": "stage_4.4.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.2.weight",
+      "module": "stage_4.4.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bns.2.bias",
+      "module": "stage_4.4.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.conv3.weight",
+      "module": "stage_4.4.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bn3.weight",
+      "module": "stage_4.4.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.4.bn3.bias",
+      "module": "stage_4.4.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.conv1.weight",
+      "module": "stage_4.5.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bn1.weight",
+      "module": "stage_4.5.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bn1.bias",
+      "module": "stage_4.5.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.convs.0.weight",
+      "module": "stage_4.5.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.convs.1.weight",
+      "module": "stage_4.5.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.convs.2.weight",
+      "module": "stage_4.5.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.0.weight",
+      "module": "stage_4.5.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.0.bias",
+      "module": "stage_4.5.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.1.weight",
+      "module": "stage_4.5.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.1.bias",
+      "module": "stage_4.5.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.2.weight",
+      "module": "stage_4.5.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bns.2.bias",
+      "module": "stage_4.5.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.conv3.weight",
+      "module": "stage_4.5.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bn3.weight",
+      "module": "stage_4.5.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_4.5.bn3.bias",
+      "module": "stage_4.5.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.conv1.weight",
+      "module": "stage_5.0.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bn1.weight",
+      "module": "stage_5.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bn1.bias",
+      "module": "stage_5.0.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.convs.0.weight",
+      "module": "stage_5.0.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.convs.1.weight",
+      "module": "stage_5.0.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.convs.2.weight",
+      "module": "stage_5.0.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.0.weight",
+      "module": "stage_5.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.0.bias",
+      "module": "stage_5.0.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.1.weight",
+      "module": "stage_5.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.1.bias",
+      "module": "stage_5.0.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.2.weight",
+      "module": "stage_5.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bns.2.bias",
+      "module": "stage_5.0.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.conv3.weight",
+      "module": "stage_5.0.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bn3.weight",
+      "module": "stage_5.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.bn3.bias",
+      "module": "stage_5.0.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.downsample.1.weight",
+      "module": "stage_5.0.downsample.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.downsample.2.weight",
+      "module": "stage_5.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.0.downsample.2.bias",
+      "module": "stage_5.0.downsample.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.conv1.weight",
+      "module": "stage_5.1.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bn1.weight",
+      "module": "stage_5.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bn1.bias",
+      "module": "stage_5.1.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.convs.0.weight",
+      "module": "stage_5.1.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.convs.1.weight",
+      "module": "stage_5.1.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.convs.2.weight",
+      "module": "stage_5.1.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.0.weight",
+      "module": "stage_5.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.0.bias",
+      "module": "stage_5.1.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.1.weight",
+      "module": "stage_5.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.1.bias",
+      "module": "stage_5.1.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.2.weight",
+      "module": "stage_5.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bns.2.bias",
+      "module": "stage_5.1.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.conv3.weight",
+      "module": "stage_5.1.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bn3.weight",
+      "module": "stage_5.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.1.bn3.bias",
+      "module": "stage_5.1.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.conv1.weight",
+      "module": "stage_5.2.conv1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bn1.weight",
+      "module": "stage_5.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bn1.bias",
+      "module": "stage_5.2.bn1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.convs.0.weight",
+      "module": "stage_5.2.convs.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.convs.1.weight",
+      "module": "stage_5.2.convs.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.convs.2.weight",
+      "module": "stage_5.2.convs.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.0.weight",
+      "module": "stage_5.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.0.bias",
+      "module": "stage_5.2.bns.0",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.1.weight",
+      "module": "stage_5.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.1.bias",
+      "module": "stage_5.2.bns.1",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.2.weight",
+      "module": "stage_5.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bns.2.bias",
+      "module": "stage_5.2.bns.2",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.conv3.weight",
+      "module": "stage_5.2.conv3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bn3.weight",
+      "module": "stage_5.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "stage_5.2.bn3.bias",
+      "module": "stage_5.2.bn3",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "expected_gradient_source": "FROZEN_NO_BACKWARD"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.downsample_1.0.weight",
+      "module": "segmentation_raster_fusion.raster_encoder.downsample_1.0",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.downsample_1.1.weight",
+      "module": "segmentation_raster_fusion.raster_encoder.downsample_1.1",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.downsample_1.1.bias",
+      "module": "segmentation_raster_fusion.raster_encoder.downsample_1.1",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.downsample_2.0.weight",
+      "module": "segmentation_raster_fusion.raster_encoder.downsample_2.0",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.downsample_2.1.weight",
+      "module": "segmentation_raster_fusion.raster_encoder.downsample_2.1",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.downsample_2.1.bias",
+      "module": "segmentation_raster_fusion.raster_encoder.downsample_2.1",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.depthwise.0.weight",
+      "module": "segmentation_raster_fusion.raster_encoder.depthwise.0",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.depthwise.1.weight",
+      "module": "segmentation_raster_fusion.raster_encoder.depthwise.1",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.depthwise.1.bias",
+      "module": "segmentation_raster_fusion.raster_encoder.depthwise.1",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.depthwise.3.weight",
+      "module": "segmentation_raster_fusion.raster_encoder.depthwise.3",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.depthwise.4.weight",
+      "module": "segmentation_raster_fusion.raster_encoder.depthwise.4",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.raster_encoder.depthwise.4.bias",
+      "module": "segmentation_raster_fusion.raster_encoder.depthwise.4",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.traj_projection.weight",
+      "module": "segmentation_raster_fusion.traj_projection",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.fusion.0.weight",
+      "module": "segmentation_raster_fusion.fusion.0",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.fusion.1.weight",
+      "module": "segmentation_raster_fusion.fusion.1",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.fusion.1.bias",
+      "module": "segmentation_raster_fusion.fusion.1",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.delta_projection.weight",
+      "module": "segmentation_raster_fusion.delta_projection",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    },
+    {
+      "name": "segmentation_raster_fusion.delta_projection.bias",
+      "module": "segmentation_raster_fusion.delta_projection",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "expected_gradient_source": "road_and_junction_segmentation_losses"
+    }
+  ]
+}

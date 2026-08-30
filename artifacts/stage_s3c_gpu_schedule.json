@@ -1,0 +1,711 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "phases": {
+    "A": {
+      "stage": "seg_raster_stage_s3c",
+      "phase": "A",
+      "status": "PASS",
+      "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+      "jobs": [
+        {
+          "run_key": "P0",
+          "run_id": "P0_seed20260827",
+          "phase": "A",
+          "physical_index": 0,
+          "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 1253788,
+          "start_time": "2026-08-30T10:25:38.975766+00:00",
+          "end_time": "2026-08-30T10:44:17.675593+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T10:25:24.502173+00:00",
+              "memory_used_mb": 679,
+              "memory_free_mb": 23414,
+              "utilization_percent": 16,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 656,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 656
+            },
+            {
+              "sampled_at": "2026-08-30T10:25:31.737719+00:00",
+              "memory_used_mb": 679,
+              "memory_free_mb": 23414,
+              "utilization_percent": 12,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 976,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 976
+            },
+            {
+              "sampled_at": "2026-08-30T10:25:38.959157+00:00",
+              "memory_used_mb": 679,
+              "memory_free_mb": 23414,
+              "utilization_percent": 11,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 656,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 656
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": false,
+            "sample_count": 212,
+            "min_free_memory_mb": 18924,
+            "max_external_compute_memory_mb": 3852,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T10:44:17.674937+00:00"
+          },
+          "stdout_path": "${S3C_RUN_ROOT}/P0_seed20260827/stdout.log",
+          "stderr_path": "${S3C_RUN_ROOT}/P0_seed20260827/stderr.log",
+          "peak_allocated_memory_mb": 564.8154296875,
+          "peak_reserved_memory_mb": 820.0
+        },
+        {
+          "run_key": "P1",
+          "run_id": "P1_seed20260827",
+          "phase": "A",
+          "physical_index": 3,
+          "gpu_uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 1253789,
+          "start_time": "2026-08-30T10:25:38.987885+00:00",
+          "end_time": "2026-08-30T10:44:59.690127+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T10:25:24.502173+00:00",
+              "memory_used_mb": 1271,
+              "memory_free_mb": 22822,
+              "utilization_percent": 18,
+              "external_compute_processes": [
+                {
+                  "pid": 3481740,
+                  "gpu_uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+                  "used_memory_mb": 1248,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1248
+            },
+            {
+              "sampled_at": "2026-08-30T10:25:31.737719+00:00",
+              "memory_used_mb": 1271,
+              "memory_free_mb": 22822,
+              "utilization_percent": 17,
+              "external_compute_processes": [
+                {
+                  "pid": 3481740,
+                  "gpu_uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+                  "used_memory_mb": 1248,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1248
+            },
+            {
+              "sampled_at": "2026-08-30T10:25:38.959157+00:00",
+              "memory_used_mb": 1271,
+              "memory_free_mb": 22822,
+              "utilization_percent": 15,
+              "external_compute_processes": [
+                {
+                  "pid": 3481740,
+                  "gpu_uuid": "GPU-b46f451f-cbbf-cb05-ec58-d124e7dbb743",
+                  "used_memory_mb": 1248,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1248
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": true,
+            "sample_count": 220,
+            "min_free_memory_mb": 3556,
+            "max_external_compute_memory_mb": 19220,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T10:44:59.689359+00:00"
+          },
+          "stdout_path": "${S3C_RUN_ROOT}/P1_seed20260827/stdout.log",
+          "stderr_path": "${S3C_RUN_ROOT}/P1_seed20260827/stderr.log",
+          "peak_allocated_memory_mb": 564.5029296875,
+          "peak_reserved_memory_mb": 820.0
+        }
+      ],
+      "parallel_job_peak": 2,
+      "preferred_homogeneous_gpu_model": "NVIDIA GeForce RTX 4090",
+      "external_processes_terminated": false
+    },
+    "B": {
+      "stage": "seg_raster_stage_s3c",
+      "phase": "B",
+      "status": "PASS",
+      "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+      "jobs": [
+        {
+          "run_key": "R0",
+          "run_id": "R0_seed20260827",
+          "phase": "B",
+          "physical_index": 0,
+          "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 1435616,
+          "start_time": "2026-08-30T11:11:44.605744+00:00",
+          "end_time": "2026-08-30T11:33:26.168998+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T11:11:30.157278+00:00",
+              "memory_used_mb": 673,
+              "memory_free_mb": 23420,
+              "utilization_percent": 15,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 650,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 650
+            },
+            {
+              "sampled_at": "2026-08-30T11:11:37.370809+00:00",
+              "memory_used_mb": 673,
+              "memory_free_mb": 23420,
+              "utilization_percent": 10,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 650,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 650
+            },
+            {
+              "sampled_at": "2026-08-30T11:11:44.591454+00:00",
+              "memory_used_mb": 673,
+              "memory_free_mb": 23420,
+              "utilization_percent": 17,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 650,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 650
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": false,
+            "sample_count": 246,
+            "min_free_memory_mb": 19158,
+            "max_external_compute_memory_mb": 3618,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T11:33:26.167973+00:00"
+          },
+          "stdout_path": "${S3C_RUN_ROOT}/R0_seed20260827/stdout.log",
+          "stderr_path": "${S3C_RUN_ROOT}/R0_seed20260827/stderr.log",
+          "peak_allocated_memory_mb": 564.5029296875,
+          "peak_reserved_memory_mb": 820.0
+        },
+        {
+          "run_key": "R1",
+          "run_id": "R1_seed20260827",
+          "phase": "B",
+          "physical_index": 2,
+          "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 1435617,
+          "start_time": "2026-08-30T11:11:44.620951+00:00",
+          "end_time": "2026-08-30T11:40:06.942114+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T11:11:30.157278+00:00",
+              "memory_used_mb": 1621,
+              "memory_free_mb": 22472,
+              "utilization_percent": 13,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1598,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1598
+            },
+            {
+              "sampled_at": "2026-08-30T11:11:37.370809+00:00",
+              "memory_used_mb": 1621,
+              "memory_free_mb": 22472,
+              "utilization_percent": 10,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1598,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1598
+            },
+            {
+              "sampled_at": "2026-08-30T11:11:44.591454+00:00",
+              "memory_used_mb": 1621,
+              "memory_free_mb": 22472,
+              "utilization_percent": 8,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1598,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1598
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": true,
+            "sample_count": 322,
+            "min_free_memory_mb": 10138,
+            "max_external_compute_memory_mb": 12634,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T11:40:06.941410+00:00"
+          },
+          "stdout_path": "${S3C_RUN_ROOT}/R1_seed20260827/stdout.log",
+          "stderr_path": "${S3C_RUN_ROOT}/R1_seed20260827/stderr.log",
+          "peak_allocated_memory_mb": 647.8271484375,
+          "peak_reserved_memory_mb": 822.0
+        },
+        {
+          "run_key": "R2",
+          "run_id": "R2_seed20260827",
+          "phase": "B",
+          "physical_index": 6,
+          "gpu_uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 1435618,
+          "start_time": "2026-08-30T11:11:44.635449+00:00",
+          "end_time": "2026-08-30T11:30:26.915647+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T11:11:30.157278+00:00",
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "external_compute_processes": [],
+              "external_compute_memory_mb": 0
+            },
+            {
+              "sampled_at": "2026-08-30T11:11:37.370809+00:00",
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "external_compute_processes": [],
+              "external_compute_memory_mb": 0
+            },
+            {
+              "sampled_at": "2026-08-30T11:11:44.591454+00:00",
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "external_compute_processes": [],
+              "external_compute_memory_mb": 0
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": false,
+            "sample_count": 212,
+            "min_free_memory_mb": 22778,
+            "max_external_compute_memory_mb": 0,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T11:30:26.914886+00:00"
+          },
+          "stdout_path": "${S3C_RUN_ROOT}/R2_seed20260827/stdout.log",
+          "stderr_path": "${S3C_RUN_ROOT}/R2_seed20260827/stderr.log",
+          "peak_allocated_memory_mb": 647.8271484375,
+          "peak_reserved_memory_mb": 822.0
+        },
+        {
+          "run_key": "R3",
+          "run_id": "R3_seed20260827",
+          "phase": "B",
+          "physical_index": 6,
+          "gpu_uuid": "GPU-268df8cd-d4ff-6179-5702-d6173f63cac2",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 1514235,
+          "start_time": "2026-08-30T11:30:26.947804+00:00",
+          "end_time": "2026-08-30T11:46:08.400899+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T11:11:30.157278+00:00",
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "external_compute_processes": [],
+              "external_compute_memory_mb": 0
+            },
+            {
+              "sampled_at": "2026-08-30T11:11:37.370809+00:00",
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "external_compute_processes": [],
+              "external_compute_memory_mb": 0
+            },
+            {
+              "sampled_at": "2026-08-30T11:11:44.591454+00:00",
+              "memory_used_mb": 18,
+              "memory_free_mb": 24075,
+              "utilization_percent": 0,
+              "external_compute_processes": [],
+              "external_compute_memory_mb": 0
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": false,
+            "sample_count": 179,
+            "min_free_memory_mb": 22778,
+            "max_external_compute_memory_mb": 0,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T11:46:08.400040+00:00"
+          },
+          "stdout_path": "${S3C_RUN_ROOT}/R3_seed20260827/stdout.log",
+          "stderr_path": "${S3C_RUN_ROOT}/R3_seed20260827/stderr.log",
+          "peak_allocated_memory_mb": 647.8271484375,
+          "peak_reserved_memory_mb": 822.0
+        }
+      ],
+      "parallel_job_peak": 3,
+      "preferred_homogeneous_gpu_model": "NVIDIA GeForce RTX 4090",
+      "external_processes_terminated": false
+    },
+    "BASELINE": {
+      "stage": "seg_raster_stage_s3c",
+      "phase": "BASELINE",
+      "status": "PASS",
+      "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+      "jobs": [
+        {
+          "action": "baseline",
+          "physical_index": 0,
+          "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 1084374,
+          "start_time": "2026-08-30T09:42:09.855743+00:00",
+          "end_time": "2026-08-30T09:42:25.577313+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T09:41:55.372665+00:00",
+              "memory_used_mb": 621,
+              "memory_free_mb": 23472,
+              "utilization_percent": 17,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 598,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 598
+            },
+            {
+              "sampled_at": "2026-08-30T09:42:02.619836+00:00",
+              "memory_used_mb": 621,
+              "memory_free_mb": 23472,
+              "utilization_percent": 14,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 598,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 598
+            },
+            {
+              "sampled_at": "2026-08-30T09:42:09.830452+00:00",
+              "memory_used_mb": 757,
+              "memory_free_mb": 23336,
+              "utilization_percent": 1,
+              "external_compute_processes": [
+                {
+                  "pid": 3470742,
+                  "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+                  "used_memory_mb": 734,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 734
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": false,
+            "sample_count": 3,
+            "min_free_memory_mb": 20442,
+            "max_external_compute_memory_mb": 662,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T09:42:25.576459+00:00"
+          },
+          "stdout_path": "${S3C_REMOTE_OUTPUT}/logs/baseline.stdout.log",
+          "stderr_path": "${S3C_REMOTE_OUTPUT}/logs/baseline.stderr.log",
+          "peak_allocated_memory_mb": 2267.9287109375,
+          "peak_reserved_memory_mb": 2500.0
+        }
+      ],
+      "external_processes_terminated": false
+    },
+    "BASELINE_GRAPH": {
+      "stage": "seg_raster_stage_s3c",
+      "phase": "BASELINE_GRAPH",
+      "status": "PASS",
+      "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+      "jobs": [
+        {
+          "run_key": "BASELINE",
+          "physical_index": 2,
+          "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 1088682,
+          "start_time": "2026-08-30T09:43:08.288132+00:00",
+          "end_time": "2026-08-30T09:53:57.900645+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T09:42:53.804037+00:00",
+              "memory_used_mb": 1571,
+              "memory_free_mb": 22522,
+              "utilization_percent": 14,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1548,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1548
+            },
+            {
+              "sampled_at": "2026-08-30T09:43:01.044647+00:00",
+              "memory_used_mb": 1573,
+              "memory_free_mb": 22520,
+              "utilization_percent": 9,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1550,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1550
+            },
+            {
+              "sampled_at": "2026-08-30T09:43:08.261557+00:00",
+              "memory_used_mb": 1573,
+              "memory_free_mb": 22520,
+              "utilization_percent": 13,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1550,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1550
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": true,
+            "sample_count": 124,
+            "min_free_memory_mb": 9594,
+            "max_external_compute_memory_mb": 11698,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T09:53:57.899995+00:00"
+          },
+          "result_path": "${S3C_REMOTE_OUTPUT}/graph_results/BASELINE.json",
+          "peak_allocated_memory_mb": 1534.3251953125,
+          "peak_reserved_memory_mb": 2310.0
+        }
+      ],
+      "parallel_job_peak": 1,
+      "preferred_homogeneous_gpu_model": "NVIDIA GeForce RTX 4090",
+      "external_processes_terminated": false
+    },
+    "PREFLIGHT": {
+      "stage": "seg_raster_stage_s3c",
+      "phase": "PREFLIGHT",
+      "status": "PASS",
+      "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+      "jobs": [
+        {
+          "action": "preflight",
+          "physical_index": 2,
+          "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+          "gpu_name": "NVIDIA GeForce RTX 4090",
+          "pid": 917528,
+          "start_time": "2026-08-30T09:07:57.626819+00:00",
+          "end_time": "2026-08-30T09:08:18.627851+00:00",
+          "exit_code": 0,
+          "prelaunch_gpu_samples": [
+            {
+              "sampled_at": "2026-08-30T09:07:43.173554+00:00",
+              "memory_used_mb": 1593,
+              "memory_free_mb": 22500,
+              "utilization_percent": 14,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1570,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1570
+            },
+            {
+              "sampled_at": "2026-08-30T09:07:50.389829+00:00",
+              "memory_used_mb": 1593,
+              "memory_free_mb": 22500,
+              "utilization_percent": 18,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1570,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1570
+            },
+            {
+              "sampled_at": "2026-08-30T09:07:57.601573+00:00",
+              "memory_used_mb": 1593,
+              "memory_free_mb": 22500,
+              "utilization_percent": 12,
+              "external_compute_processes": [
+                {
+                  "pid": 1220293,
+                  "gpu_uuid": "GPU-835451b2-a7e7-335e-2968-fd188801cf61",
+                  "used_memory_mb": 1570,
+                  "process_name": "python"
+                }
+              ],
+              "external_compute_memory_mb": 1570
+            }
+          ],
+          "eligibility_policy": {
+            "allow_external_compute": true,
+            "max_external_compute_memory_mb": 8192,
+            "max_utilization": 20,
+            "max_free_memory_drop_mb": 2048
+          },
+          "post_launch_contention": {
+            "observed": false,
+            "sample_count": 4,
+            "min_free_memory_mb": 16216,
+            "max_external_compute_memory_mb": 5456,
+            "new_external_pids": [],
+            "gpu_query_error_count": 0,
+            "last_sampled_at": "2026-08-30T09:08:18.626991+00:00"
+          },
+          "stdout_path": "${S3C_REMOTE_OUTPUT}/logs/preflight.stdout.log",
+          "stderr_path": "${S3C_REMOTE_OUTPUT}/logs/preflight.stderr.log",
+          "peak_allocated_memory_mb": 1712.8681640625,
+          "peak_reserved_memory_mb": 1922.0
+        }
+      ],
+      "external_processes_terminated": false
+    }
+  }
+}

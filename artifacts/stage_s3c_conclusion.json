@@ -1,0 +1,29 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "branch": "feat/seg-raster-only",
+  "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "official_contract_audit": "PASS",
+  "baseline_checkpoint_gate": "PASS",
+  "baseline_graph_gate": "PASS",
+  "bn_freeze_gate": "PASS",
+  "loss_screen": "PASS",
+  "selected_loss": "legacy_exact",
+  "sample_parity": "PASS",
+  "baseline_controlled_common_samples": 40960,
+  "segmentation_causal_gate": "FAIL",
+  "frozen_anchor_indirect_gate": "NOT_EXECUTED_BY_GATE",
+  "multistep_anchor_validity": "NOT_EXECUTED_BY_GATE",
+  "graph_stability_gate": "NOT_EXECUTED_BY_GATE",
+  "computational_feasibility": "NOT_EXECUTED_BY_GATE",
+  "go_for_segmentation_multi_seed": "NO_GO",
+  "go_for_end_to_end_multi_seed": "NO_GO",
+  "multi_seed_started": false,
+  "key_evidence": [
+    "official 648-key RPNet checkpoint strict load",
+    "original backbone, anchor, and BatchNorm frozen",
+    "baseline-controlled common sample comparison",
+    "aligned/zero/shifted raster controls"
+  ]
+}

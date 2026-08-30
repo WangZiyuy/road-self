@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "seg_raster_stage_s3c",
+  "branch": "feat/seg-raster-only",
+  "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "status": "PASS",
+  "manifest_self_policy": {
+    "path": "artifacts/stage_s3c_commit_manifest.json",
+    "listed_in_entries": false,
+    "reason": "A file cannot contain a stable SHA-256 digest of itself; it will be explicitly staged with the listed paths."
+  },
+  "entries": [
+    {
+      "path": "artifacts/stage_s3c_anchor_comparison.json",
+      "size_bytes": 159,
+      "sha256": "f7ccd7431289baed4138a3ec52c1e455ea5dbfeae1caeda3e2b94dc9fdcbadf5",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_baseline_evaluation.json",
+      "size_bytes": 4716,
+      "sha256": "5547173ddc2357fbd6a33d9c54a02cdbde03a2a61c85b4838c4b6d15db2c3eb1",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_bn_checksum_audit.json",
+      "size_bytes": 918,
+      "sha256": "8ca2bb0d65404e7f6d60bd01b978e577aa44774878a5a4561e38534d1777f8e8",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_checkpoint_inventory.json",
+      "size_bytes": 22648,
+      "sha256": "ab44b89157d3690a11a43a052c704f9cce400d0b90773a0099d890eea22037c5",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_conclusion.json",
+      "size_bytes": 1081,
+      "sha256": "7eb4f44e7bf0114967919caf42f1f552768d8e5a224ef9bfb54ddb349f258cb6",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_control_matrix.json",
+      "size_bytes": 277,
+      "sha256": "b6df14035641d746ced15a9dbab3eeb714f235eb21057425c459df95a12e8813",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_gpu_inventory.json",
+      "size_bytes": 135426,
+      "sha256": "a3bce657cbe3e26a3a4df883ff3c0dab3bba21f0c3ef55ac9a05c1bc0abab1f0",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_gpu_schedule.json",
+      "size_bytes": 26394,
+      "sha256": "ccc57fd3353abf3e57727258405eb56dd93f0ac105ddc8c8041df045c67937a3",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_graph_comparison.json",
+      "size_bytes": 161,
+      "sha256": "db47172a433161d5f6662f25bd6dd778d65f225254bcaf8a9bde60c34e3d890a",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_loss_gradient_audit.json",
+      "size_bytes": 575,
+      "sha256": "4878dbdb1392d1e61992bcfab26ae58f723851114376fc9e9a9aaefe0bcb98e1",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_loss_screen.json",
+      "size_bytes": 48330,
+      "sha256": "33c88c2f7e3e118d5fb098accbe89b3f3a99aaea6317fe29f964489b8f42e6a0",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_sample_parity.json",
+      "size_bytes": 1720,
+      "sha256": "4f5a57ea548b349511b83aa4971c8cba818cdc031a28d1be698ff713d4999b11",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_sample_plan.json",
+      "size_bytes": 1059293,
+      "sha256": "b3e35b1e152988ebe222b79bb3252628cba01ac3cb597a056dc894bca942d0e9",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_segmentation_comparison.json",
+      "size_bytes": 89311,
+      "sha256": "326826befe254b27a007aed4ae2d1cca655a093438ab970a716ad357dd2c9d3c",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_trainable_parameter_contract.json",
+      "size_bytes": 158826,
+      "sha256": "ff94f87ed7bcbece2edccc3e7b9e3930ca7f2ae4ccce40c489239bb552d8011b",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "artifacts/stage_s3c_training_dynamics.json",
+      "size_bytes": 1285312,
+      "sha256": "e52bc337dcbc95b7f2b859eb4922b5be8f3c2137a4cbe04b4913b39d1bbabf69",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "docs/audits/stage_s3c_controlled_comparison.md",
+      "size_bytes": 275,
+      "sha256": "fef9506168a9c460aa10e05478b3e4f7a62704e77ecb76b27b2af6467e5bc290",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    },
+    {
+      "path": "docs/audits/stage_s3c_final_report.md",
+      "size_bytes": 338,
+      "sha256": "6cec8f439e739bbc60f591533c3d4be160223c54d1af58eda506ee57ad64e175",
+      "generated_by_stage_s3c": true,
+      "intended_for_commit": true,
+      "reason": "Formal remote Stage S3C result evidence or audit report."
+    }
+  ],
+  "excluded_from_commit": {
+    "checkpoints": true,
+    "datasets": true,
+    "rasters": true,
+    "caches": true,
+    "tensorboard_events": true,
+    "large_logs": true
+  }
+}

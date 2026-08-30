@@ -1,0 +1,12 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "selected_loss_kind": "legacy_exact",
+  "baseline_controlled_common_samples": 40960,
+  "runs": {
+    "R0": "R0_seed20260827",
+    "R1": "R1_seed20260827",
+    "R2": "R2_seed20260827",
+    "R3": "R3_seed20260827"
+  }
+}

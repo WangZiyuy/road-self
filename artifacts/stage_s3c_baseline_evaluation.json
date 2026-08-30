@@ -1,0 +1,156 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+  "checkpoint": {
+    "checkpoint_state_key_count": 648,
+    "model_state_key_count": 648,
+    "shared_key_count": 648,
+    "missing_new_key_count": 0,
+    "missing_new_keys": [],
+    "unexpected_keys": [],
+    "shape_mismatch_keys": [],
+    "trajectory_related_key_count": 0,
+    "data_parallel_prefix_policy": "UNCHANGED",
+    "strict_merged_load": true,
+    "path_label": "${OFFICIAL_VECROAD_RELEASE}/data/ckpt/vecroad.pth.tar",
+    "sha256": "498abc76e4ea461040b2b4ce69dc3d896cb975e93aae58815fe76443f6acf7c3",
+    "baseline_provenance": "OFFICIAL_RELEASE"
+  },
+  "validation_plan_sha256": "00ea19ec5699fb05bf0d59bb5544baefeb16608479c084efe7f28fcad3ea93c4",
+  "segmentation": {
+    "road_precision": 0.31849698054126596,
+    "road_recall": 0.16769710887357947,
+    "road_f1": 0.21971070395371264,
+    "road_iou": 0.12341292195692681,
+    "road_auprc": 0.2095589758941738,
+    "junction_precision": 0.35082604470359574,
+    "junction_recall": 0.11094038106945298,
+    "junction_f1": 0.16857342983889795,
+    "junction_iou": 0.09204487506374298,
+    "junction_auprc": 0.14742157974449283,
+    "repair_composite": 0.16351506855171075
+  },
+  "anchor": {
+    "per_step_recall": [
+      0.7848101265822784,
+      0.7872340425531915,
+      0.7777777777777778,
+      0.8055555555555556
+    ],
+    "top_k": 10,
+    "top_k_recall": 0.9710144927536232,
+    "localization_error": 0.5949930823573986,
+    "false_positive_count": 461,
+    "missed_branch_count": 44,
+    "channel_diversity_mean_absolute_difference": 0.0011547729871180957,
+    "evaluated_target_count": 207,
+    "fixed_threshold": 0.3
+  },
+  "output_shapes": {
+    "road": [
+      10,
+      1,
+      64,
+      64
+    ],
+    "junction": [
+      10,
+      1,
+      64,
+      64
+    ],
+    "anchor": [
+      10,
+      4,
+      256,
+      256
+    ],
+    "anchor_lowrs": [
+      10,
+      4,
+      256,
+      256
+    ]
+  },
+  "all_logits_finite": true,
+  "anchor_channel_pair_max_abs_difference": [
+    17.94849967956543,
+    16.697254180908203,
+    15.981261253356934
+  ],
+  "multistep_anchor_validity": "PASS",
+  "peak_allocated_memory_mb": 2267.9287109375,
+  "peak_reserved_memory_mb": 2500.0,
+  "graph": {
+    "stage": "seg_raster_stage_s3c",
+    "status": "PASS",
+    "natural_termination": true,
+    "execution_environment": "REMOTE_TRAINING_SERVER",
+    "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+    "run_key": "BASELINE",
+    "checkpoint_kind": "official_release",
+    "checkpoint_samples_seen": 0,
+    "checkpoint_sha256": "498abc76e4ea461040b2b4ce69dc3d896cb975e93aae58815fe76443f6acf7c3",
+    "fixed_probability_threshold": 0.3,
+    "resource_caps": {
+      "max_iterations": 3000,
+      "max_vertices": 5000,
+      "max_directed_edges": 10000,
+      "max_wall_time_seconds": 900
+    },
+    "resource_status": {
+      "status": "NATURAL_TERMINATION",
+      "reached_caps": [],
+      "snapshot": {
+        "iterations": 1577,
+        "vertices": 3997,
+        "directed_edges": 7872,
+        "elapsed_seconds": 630.5803411519155
+      },
+      "natural_termination": true
+    },
+    "graph_iterations": 1577,
+    "vertex_count": 3914,
+    "directed_edge_count": 7838,
+    "undirected_edge_count": 1998,
+    "candidate_edge_count": 178,
+    "dangling_edge_count": 112,
+    "duplicate_edge_count": 6,
+    "runtime_seconds": 640.9477161988616,
+    "apls": 0.15835733391148396,
+    "apls_protocol": "deterministic_pixel_graph_approximation",
+    "topo": 0.06989247311827958,
+    "topo_metrics": {
+      "precision": 0.07303370786516854,
+      "recall": 0.06701030927835051,
+      "f1": 0.06989247311827958,
+      "matched_reference_edges": 13,
+      "correct_candidate_edges": 13,
+      "reference_edge_count": 194,
+      "candidate_edge_count": 178
+    },
+    "connectivity": {
+      "component_count": 19,
+      "largest_component_edge_length_ratio": 0.5691625825652648
+    },
+    "junction_correctness": {
+      "precision": 0.4155844155844156,
+      "recall": 0.29357798165137616,
+      "f1": 0.34408602150537637,
+      "matched_count": 32,
+      "reference_count": 109,
+      "candidate_count": 77,
+      "tolerance_pixels": 24.0
+    },
+    "peak_gpu_memory_allocated_mb": 1534.3251953125,
+    "peak_gpu_memory_reserved_mb": 2310.0,
+    "physical_gpu_index": 2,
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "started_at_utc": "2026-08-30T09:43:13.375578+00:00",
+    "graph_sha256": "8dd6539afb66225ca8c6450cf6c2cf2d04b41a1e52941d7a79099d37e9cfca53",
+    "graph_logical_path": "${S3C_REMOTE_OUTPUT}/graph/BASELINE/xian.graph"
+  },
+  "baseline_graph_gate": "PASS"
+}

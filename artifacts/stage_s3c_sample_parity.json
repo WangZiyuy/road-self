@@ -1,0 +1,34 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "first_200_samples": {
+    "R0": {
+      "batch_identity_sha256": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde",
+      "common_tensor_sha256": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af",
+      "raster_sha256": null,
+      "valid_mask_sha256": null
+    },
+    "R1": {
+      "batch_identity_sha256": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde",
+      "common_tensor_sha256": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af",
+      "raster_sha256": "b773edcadbb8841a9335bc328ee9be5b0bc68710ee596b5c7a81d608c9b618ec",
+      "valid_mask_sha256": "6a7b0751f6c0744161bd9f5bd4d4874ae5bdfbbe2f3d995da0335e9b2f30b3a9"
+    },
+    "R2": {
+      "batch_identity_sha256": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde",
+      "common_tensor_sha256": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af",
+      "raster_sha256": "3964167703c98b8e1b285599670ce4f17ae20deceb4506e668ee78711e4dc106",
+      "valid_mask_sha256": "6a7b0751f6c0744161bd9f5bd4d4874ae5bdfbbe2f3d995da0335e9b2f30b3a9"
+    },
+    "R3": {
+      "batch_identity_sha256": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde",
+      "common_tensor_sha256": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af",
+      "raster_sha256": "ccea4225a3834a759108250144406da337479d726d163c2f12cbc854da420608",
+      "valid_mask_sha256": "6a7b0751f6c0744161bd9f5bd4d4874ae5bdfbbe2f3d995da0335e9b2f30b3a9"
+    }
+  },
+  "sample_identity_parity": true,
+  "common_tensor_parity": true,
+  "raster_control_valid_mask_parity": true,
+  "raster_content_control_specific": true
+}

@@ -1,0 +1,15 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+  "diagnostic_batch_count": 16,
+  "junction_positive_pixels": 5859,
+  "junction_total_pixels": 655360,
+  "junction_positive_ratio": 0.00894012451171875,
+  "raw_pos_weight": 110.8552654036525,
+  "capped_pos_weight": 32.0,
+  "legacy_junction_head_gradient_norm_mean": 1255.1010172651281,
+  "balanced_junction_head_gradient_norm_mean": 116514.97541757514,
+  "balanced_global_alpha": 0.010772014608139448
+}

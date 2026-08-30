@@ -1,0 +1,2729 @@
+{
+  "stage": "seg_raster_stage_s3c",
+  "status": "PASS",
+  "baseline_controlled_common_samples": 40960,
+  "common_samples_selected_from": "R0_image_only_repair_composite_only",
+  "fixed_threshold": 0.3,
+  "runs": {
+    "R0": {
+      "scope": "frozen_validation",
+      "model_mode": "eval",
+      "no_grad": true,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "validation_sample_count": 80,
+      "road_precision": 0.48875802997858675,
+      "road_recall": 0.16127892598480834,
+      "road_f1": 0.24252888829857883,
+      "road_iou": 0.1379987908101572,
+      "road_auprc": 0.2630785641898821,
+      "junction_precision": 0.45611015490533563,
+      "junction_recall": 0.0814382298709281,
+      "junction_f1": 0.13820078226857888,
+      "junction_iou": 0.0742296918767507,
+      "junction_auprc": 0.17801602799139996,
+      "per_sample": [
+        {
+          "sample_index": 0,
+          "road_f1": 0.17142857142857143,
+          "road_iou": 0.09375,
+          "road_auprc": 0.20817957110481405,
+          "junction_f1": 0.048780487804878044,
+          "junction_auprc": 0.1758852616915146
+        },
+        {
+          "sample_index": 1,
+          "road_f1": 0.3514644351464435,
+          "road_iou": 0.2131979695431472,
+          "road_auprc": 0.34296373658077783,
+          "junction_f1": 0.33333333333333337,
+          "junction_auprc": 0.4931943463027679
+        },
+        {
+          "sample_index": 2,
+          "road_f1": 0.2580645161290323,
+          "road_iou": 0.14814814814814814,
+          "road_auprc": 0.21821037110085167,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.03648831482017207
+        },
+        {
+          "sample_index": 3,
+          "road_f1": 0.518918918918919,
+          "road_iou": 0.35036496350364965,
+          "road_auprc": 0.7796117408208247,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 4,
+          "road_f1": 0.6625766871165645,
+          "road_iou": 0.4954128440366973,
+          "road_auprc": 0.6757059027182033,
+          "junction_f1": 0.65,
+          "junction_auprc": 0.6709738785109018
+        },
+        {
+          "sample_index": 5,
+          "road_f1": 0.3048327137546468,
+          "road_iou": 0.17982456140350878,
+          "road_auprc": 0.3857539347495358,
+          "junction_f1": 0.16901408450704225,
+          "junction_auprc": 0.30497015868322264
+        },
+        {
+          "sample_index": 6,
+          "road_f1": 0.15277777777777776,
+          "road_iou": 0.08270676691729323,
+          "road_auprc": 0.23358302018152186,
+          "junction_f1": 0.3209876543209877,
+          "junction_auprc": 0.28559842350166637
+        },
+        {
+          "sample_index": 7,
+          "road_f1": 0.3361344537815126,
+          "road_iou": 0.20202020202020202,
+          "road_auprc": 0.23516340010429684,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.7158082144565427
+        },
+        {
+          "sample_index": 8,
+          "road_f1": 0.032586558044806514,
+          "road_iou": 0.016563146997929608,
+          "road_auprc": 0.237675642118785,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.1080361049103009
+        },
+        {
+          "sample_index": 9,
+          "road_f1": 0.2535211267605633,
+          "road_iou": 0.14516129032258066,
+          "road_auprc": 0.32552840672041977,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.14825148311355288
+        },
+        {
+          "sample_index": 10,
+          "road_f1": 0.24827586206896549,
+          "road_iou": 0.14173228346456693,
+          "road_auprc": 0.1731035714873858,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.029219675819033522
+        },
+        {
+          "sample_index": 11,
+          "road_f1": 0.3162790697674419,
+          "road_iou": 0.1878453038674033,
+          "road_auprc": 0.4459373166024282,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.6281776585757884
+        },
+        {
+          "sample_index": 12,
+          "road_f1": 0.5822784810126582,
+          "road_iou": 0.4107142857142857,
+          "road_auprc": 0.7555737799425141,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 13,
+          "road_f1": 0.11764705882352941,
+          "road_iou": 0.0625,
+          "road_auprc": 0.18157398192267257,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.10915072582171347
+        },
+        {
+          "sample_index": 14,
+          "road_f1": 0.06354515050167224,
+          "road_iou": 0.03281519861830743,
+          "road_auprc": 0.20339711825454865,
+          "junction_f1": 0.08000000000000002,
+          "junction_auprc": 0.1940434703099436
+        },
+        {
+          "sample_index": 15,
+          "road_f1": 0.06140350877192982,
+          "road_iou": 0.03167420814479638,
+          "road_auprc": 0.06834684991144094,
+          "junction_f1": 0.1509433962264151,
+          "junction_auprc": 0.17176546546674845
+        },
+        {
+          "sample_index": 16,
+          "road_f1": 0.18453865336658354,
+          "road_iou": 0.10164835164835165,
+          "road_auprc": 0.19618094804051397,
+          "junction_f1": 0.3037974683544304,
+          "junction_auprc": 0.28345056919160333
+        },
+        {
+          "sample_index": 17,
+          "road_f1": 0.2095238095238095,
+          "road_iou": 0.11702127659574468,
+          "road_auprc": 0.20593085335613323,
+          "junction_f1": 0.25806451612903225,
+          "junction_auprc": 0.3321271651595835
+        },
+        {
+          "sample_index": 18,
+          "road_f1": 0.14814814814814814,
+          "road_iou": 0.08,
+          "road_auprc": 0.1803608648113116,
+          "junction_f1": 0.05882352941176471,
+          "junction_auprc": 0.149562319913233
+        },
+        {
+          "sample_index": 19,
+          "road_f1": 0.7096774193548387,
+          "road_iou": 0.55,
+          "road_auprc": 0.6961035056803432,
+          "junction_f1": 0.6666666666666666,
+          "junction_auprc": 0.6252406357450536
+        },
+        {
+          "sample_index": 20,
+          "road_f1": 0.3076923076923077,
+          "road_iou": 0.18181818181818182,
+          "road_auprc": 0.30420650130084176,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 21,
+          "road_f1": 0.36734693877551017,
+          "road_iou": 0.225,
+          "road_auprc": 0.307912155338105,
+          "junction_f1": 0.42424242424242425,
+          "junction_auprc": 0.5405961728924245
+        },
+        {
+          "sample_index": 22,
+          "road_f1": 0.17543859649122806,
+          "road_iou": 0.09615384615384616,
+          "road_auprc": 0.15530052591497076,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.14089400743630867
+        },
+        {
+          "sample_index": 23,
+          "road_f1": 0.0,
+          "road_iou": 0.0,
+          "road_auprc": 0.0,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 24,
+          "road_f1": 0.27807486631016043,
+          "road_iou": 0.16149068322981366,
+          "road_auprc": 0.3116357634845443,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.23051361446613397
+        },
+        {
+          "sample_index": 25,
+          "road_f1": 0.1739130434782609,
+          "road_iou": 0.09523809523809523,
+          "road_auprc": 0.28348425359115026,
+          "junction_f1": 0.2616822429906542,
+          "junction_auprc": 0.37501388527440277
+        },
+        {
+          "sample_index": 26,
+          "road_f1": 0.2043010752688172,
+          "road_iou": 0.11377245508982035,
+          "road_auprc": 0.20221410226970324,
+          "junction_f1": 0.29545454545454547,
+          "junction_auprc": 0.27745223074730213
+        },
+        {
+          "sample_index": 27,
+          "road_f1": 0.1568627450980392,
+          "road_iou": 0.0851063829787234,
+          "road_auprc": 0.32917621890713034,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.48732798732308696
+        },
+        {
+          "sample_index": 28,
+          "road_f1": 0.052434456928838954,
+          "road_iou": 0.026923076923076925,
+          "road_auprc": 0.06949980962695891,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.07229375476116959
+        },
+        {
+          "sample_index": 29,
+          "road_f1": 0.7577639751552795,
+          "road_iou": 0.61,
+          "road_auprc": 0.690130437281722,
+          "junction_f1": 0.47058823529411764,
+          "junction_auprc": 0.523846162556675
+        },
+        {
+          "sample_index": 30,
+          "road_f1": 0.20596205962059622,
+          "road_iou": 0.1148036253776435,
+          "road_auprc": 0.2727265793322038,
+          "junction_f1": 0.33333333333333337,
+          "junction_auprc": 0.3255082734985238
+        },
+        {
+          "sample_index": 31,
+          "road_f1": 0.5765765765765766,
+          "road_iou": 0.4050632911392405,
+          "road_auprc": 0.5212094906654758,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 32,
+          "road_f1": 0.27615062761506276,
+          "road_iou": 0.16019417475728157,
+          "road_auprc": 0.24450023485607147,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.07988643981412186
+        },
+        {
+          "sample_index": 33,
+          "road_f1": 0.26905829596412556,
+          "road_iou": 0.15544041450777202,
+          "road_auprc": 0.37555517101123287,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.08350018789551006
+        },
+        {
+          "sample_index": 34,
+          "road_f1": 0.21612903225806454,
+          "road_iou": 0.12115732368896925,
+          "road_auprc": 0.3077881543147039,
+          "junction_f1": 0.18604651162790697,
+          "junction_auprc": 0.2728797442497262
+        },
+        {
+          "sample_index": 35,
+          "road_f1": 0.10628019323671496,
+          "road_iou": 0.05612244897959184,
+          "road_auprc": 0.14550098028296637,
+          "junction_f1": 0.06382978723404256,
+          "junction_auprc": 0.13246950075626351
+        },
+        {
+          "sample_index": 36,
+          "road_f1": 0.1824817518248175,
+          "road_iou": 0.10040160642570281,
+          "road_auprc": 0.25079287714534204,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.21279608682388665
+        },
+        {
+          "sample_index": 37,
+          "road_f1": 0.19742489270386265,
+          "road_iou": 0.10952380952380952,
+          "road_auprc": 0.2090168981652818,
+          "junction_f1": 0.09756097560975609,
+          "junction_auprc": 0.5236614251151985
+        },
+        {
+          "sample_index": 38,
+          "road_f1": 0.25196850393700787,
+          "road_iou": 0.14414414414414414,
+          "road_auprc": 0.25057422993086875,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2402220727193581
+        },
+        {
+          "sample_index": 39,
+          "road_f1": 0.1683168316831683,
+          "road_iou": 0.0918918918918919,
+          "road_auprc": 0.15135172951409148,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.037405557506219815
+        },
+        {
+          "sample_index": 40,
+          "road_f1": 0.5993031358885018,
+          "road_iou": 0.42786069651741293,
+          "road_auprc": 0.6409109930614382,
+          "junction_f1": 0.8387096774193548,
+          "junction_auprc": 1.0
+        },
+        {
+          "sample_index": 41,
+          "road_f1": 0.33463035019455256,
+          "road_iou": 0.20093457943925233,
+          "road_auprc": 0.2886391677483166,
+          "junction_f1": 0.6666666666666666,
+          "junction_auprc": 0.5225425445966658
+        },
+        {
+          "sample_index": 42,
+          "road_f1": 0.33816425120772947,
+          "road_iou": 0.20348837209302326,
+          "road_auprc": 0.5289439378128401,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2418646560031581
+        },
+        {
+          "sample_index": 43,
+          "road_f1": 0.19713831478537364,
+          "road_iou": 0.10934744268077601,
+          "road_auprc": 0.3021814601792207,
+          "junction_f1": 0.023529411764705882,
+          "junction_auprc": 0.2057317416435683
+        },
+        {
+          "sample_index": 44,
+          "road_f1": 0.3018867924528302,
+          "road_iou": 0.17777777777777778,
+          "road_auprc": 0.423647198544139,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.4298489572577644
+        },
+        {
+          "sample_index": 45,
+          "road_f1": 0.6162162162162161,
+          "road_iou": 0.4453125,
+          "road_auprc": 0.628544234413835,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.7325809817712652
+        },
+        {
+          "sample_index": 46,
+          "road_f1": 0.3541666666666667,
+          "road_iou": 0.21518987341772153,
+          "road_auprc": 0.3373766720244001,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 47,
+          "road_f1": 0.1197604790419162,
+          "road_iou": 0.06369426751592357,
+          "road_auprc": 0.2542259565724079,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.19087609201476766
+        },
+        {
+          "sample_index": 48,
+          "road_f1": 0.6105263157894737,
+          "road_iou": 0.4393939393939394,
+          "road_auprc": 0.5192272613912885,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 49,
+          "road_f1": 0.1440677966101695,
+          "road_iou": 0.0776255707762557,
+          "road_auprc": 0.158822258217127,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.06648169045048692
+        },
+        {
+          "sample_index": 50,
+          "road_f1": 0.5759162303664921,
+          "road_iou": 0.40441176470588236,
+          "road_auprc": 0.5036966024575437,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.14620330046356156
+        },
+        {
+          "sample_index": 51,
+          "road_f1": 0.2905982905982906,
+          "road_iou": 0.17,
+          "road_auprc": 0.33438463952579117,
+          "junction_f1": 0.631578947368421,
+          "junction_auprc": 0.9081668386576192
+        },
+        {
+          "sample_index": 52,
+          "road_f1": 0.075,
+          "road_iou": 0.03896103896103896,
+          "road_auprc": 0.13964846400758987,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.05336024465792082
+        },
+        {
+          "sample_index": 53,
+          "road_f1": 0.4342857142857142,
+          "road_iou": 0.2773722627737226,
+          "road_auprc": 0.4334779460908815,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 54,
+          "road_f1": 0.1426256077795786,
+          "road_iou": 0.07678883071553229,
+          "road_auprc": 0.21345321553905494,
+          "junction_f1": 0.0625,
+          "junction_auprc": 0.1958362706308949
+        },
+        {
+          "sample_index": 55,
+          "road_f1": 0.3282051282051282,
+          "road_iou": 0.19631901840490798,
+          "road_auprc": 0.34105006274810307,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.03191945095784688
+        },
+        {
+          "sample_index": 56,
+          "road_f1": 0.07999999999999999,
+          "road_iou": 0.041666666666666664,
+          "road_auprc": 0.24466915875866388,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.07060562401570239
+        },
+        {
+          "sample_index": 57,
+          "road_f1": 0.3258145363408521,
+          "road_iou": 0.19461077844311378,
+          "road_auprc": 0.2955455122446927,
+          "junction_f1": 0.5945945945945945,
+          "junction_auprc": 0.5210048155576749
+        },
+        {
+          "sample_index": 58,
+          "road_f1": 0.4114832535885167,
+          "road_iou": 0.25903614457831325,
+          "road_auprc": 0.3761890088547456,
+          "junction_f1": 0.6666666666666666,
+          "junction_auprc": 0.5273621935922207
+        },
+        {
+          "sample_index": 59,
+          "road_f1": 0.053639846743295014,
+          "road_iou": 0.027559055118110236,
+          "road_auprc": 0.08264828212223913,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.05227202459795784
+        },
+        {
+          "sample_index": 60,
+          "road_f1": 0.07885304659498207,
+          "road_iou": 0.041044776119402986,
+          "road_auprc": 0.11895518663637238,
+          "junction_f1": 0.32727272727272727,
+          "junction_auprc": 0.3792428710177916
+        },
+        {
+          "sample_index": 61,
+          "road_f1": 0.38431372549019605,
+          "road_iou": 0.23786407766990292,
+          "road_auprc": 0.40823551069703506,
+          "junction_f1": 0.08695652173913043,
+          "junction_auprc": 0.25480370275460945
+        },
+        {
+          "sample_index": 62,
+          "road_f1": 0.05141388174807198,
+          "road_iou": 0.026385224274406333,
+          "road_auprc": 0.16484821394770155,
+          "junction_f1": 0.08108108108108109,
+          "junction_auprc": 0.2599257302787483
+        },
+        {
+          "sample_index": 63,
+          "road_f1": 0.44086021505376344,
+          "road_iou": 0.2827586206896552,
+          "road_auprc": 0.4384424883089662,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 64,
+          "road_f1": 0.24166666666666664,
+          "road_iou": 0.13744075829383887,
+          "road_auprc": 0.3312762444089252,
+          "junction_f1": 0.037037037037037035,
+          "junction_auprc": 0.27471676208624696
+        },
+        {
+          "sample_index": 65,
+          "road_f1": 0.22058823529411764,
+          "road_iou": 0.12396694214876033,
+          "road_auprc": 0.31264784197119394,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.03826906565531935
+        },
+        {
+          "sample_index": 66,
+          "road_f1": 0.048231511254019296,
+          "road_iou": 0.02471169686985173,
+          "road_auprc": 0.17353349135010424,
+          "junction_f1": 0.014084507042253521,
+          "junction_auprc": 0.10754485459457604
+        },
+        {
+          "sample_index": 67,
+          "road_f1": 0.369047619047619,
+          "road_iou": 0.22627737226277372,
+          "road_auprc": 0.4515392612841845,
+          "junction_f1": 0.3414634146341463,
+          "junction_auprc": 0.233766109625861
+        },
+        {
+          "sample_index": 68,
+          "road_f1": 0.46766169154228854,
+          "road_iou": 0.3051948051948052,
+          "road_auprc": 0.44111989542741015,
+          "junction_f1": 0.6046511627906976,
+          "junction_auprc": 0.4822269638392172
+        },
+        {
+          "sample_index": 69,
+          "road_f1": 0.29885057471264365,
+          "road_iou": 0.17567567567567569,
+          "road_auprc": 0.45542096124658676,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.9723443223443222
+        },
+        {
+          "sample_index": 70,
+          "road_f1": 0.5882352941176471,
+          "road_iou": 0.4166666666666667,
+          "road_auprc": 0.656652391043189,
+          "junction_f1": 0.761904761904762,
+          "junction_auprc": 0.9786324786324786
+        },
+        {
+          "sample_index": 71,
+          "road_f1": 0.29315960912052114,
+          "road_iou": 0.1717557251908397,
+          "road_auprc": 0.25956691919962477,
+          "junction_f1": 0.2631578947368421,
+          "junction_auprc": 0.15563499192847555
+        },
+        {
+          "sample_index": 72,
+          "road_f1": 0.33587786259541985,
+          "road_iou": 0.2018348623853211,
+          "road_auprc": 0.3050403664316217,
+          "junction_f1": 0.08695652173913043,
+          "junction_auprc": 0.07373528755842067
+        },
+        {
+          "sample_index": 73,
+          "road_f1": 0.06666666666666667,
+          "road_iou": 0.034482758620689655,
+          "road_auprc": 0.33914039303652477,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.21297511633296387
+        },
+        {
+          "sample_index": 74,
+          "road_f1": 0.08522727272727272,
+          "road_iou": 0.04451038575667656,
+          "road_auprc": 0.1461015922282605,
+          "junction_f1": 0.06382978723404256,
+          "junction_auprc": 0.08291300117828299
+        },
+        {
+          "sample_index": 75,
+          "road_f1": 0.05009633911368015,
+          "road_iou": 0.025691699604743084,
+          "road_auprc": 0.22745869567722157,
+          "junction_f1": 0.013071895424836602,
+          "junction_auprc": 0.12952869319634688
+        },
+        {
+          "sample_index": 76,
+          "road_f1": 0.31223628691983124,
+          "road_iou": 0.185,
+          "road_auprc": 0.24446467449235332,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.23838197908001385
+        },
+        {
+          "sample_index": 77,
+          "road_f1": 0.03428571428571429,
+          "road_iou": 0.01744186046511628,
+          "road_auprc": 0.10713822847537519,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.06186659860879106
+        },
+        {
+          "sample_index": 78,
+          "road_f1": 0.04324324324324325,
+          "road_iou": 0.022099447513812154,
+          "road_auprc": 0.14205202655837643,
+          "junction_f1": 0.052631578947368425,
+          "junction_auprc": 0.12573511542368063
+        },
+        {
+          "sample_index": 79,
+          "road_f1": 0.015873015873015872,
+          "road_iou": 0.008,
+          "road_auprc": 0.06651239597862522,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.020249462109579223
+        }
+      ],
+      "repair_composite": 0.18618123570004533,
+      "samples_seen": 40960,
+      "optimizer_updates": 2048,
+      "checkpoint_sha256": "5d2f5262f1c6623a05b7d18637d224c5fae9b412b4c84b191f73eb1ba730421d",
+      "prediction_sha256": "830df5f7c3230c99cb49d8b8e943196f9cade49980fb688651d61b5e2ac0f678",
+      "learning_rate": 1e-05,
+      "original_bn_checksum_before": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "original_bn_checksum_after": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3"
+    },
+    "R1": {
+      "scope": "frozen_validation",
+      "model_mode": "eval",
+      "no_grad": true,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "validation_sample_count": 80,
+      "road_precision": 0.4503661513425549,
+      "road_recall": 0.19554848966613672,
+      "road_f1": 0.27269368148786793,
+      "road_iou": 0.1578722190530519,
+      "road_auprc": 0.2785255348381871,
+      "junction_precision": 0.5121951219512195,
+      "junction_recall": 0.0645359557467732,
+      "junction_f1": 0.1146288209606987,
+      "junction_iou": 0.06079907353792704,
+      "junction_auprc": 0.1717439813131023,
+      "per_sample": [
+        {
+          "sample_index": 0,
+          "road_f1": 0.12371134020618557,
+          "road_iou": 0.06593406593406594,
+          "road_auprc": 0.16753185698036235,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.06812816652233818
+        },
+        {
+          "sample_index": 1,
+          "road_f1": 0.49042145593869735,
+          "road_iou": 0.3248730964467005,
+          "road_auprc": 0.42301370150059575,
+          "junction_f1": 0.07692307692307693,
+          "junction_auprc": 0.5342707632188057
+        },
+        {
+          "sample_index": 2,
+          "road_f1": 0.23880597014925373,
+          "road_iou": 0.13559322033898305,
+          "road_auprc": 0.302527386537073,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.06827956660003008
+        },
+        {
+          "sample_index": 3,
+          "road_f1": 0.5136612021857924,
+          "road_iou": 0.34558823529411764,
+          "road_auprc": 0.7277625942405417,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 4,
+          "road_f1": 0.7217125382262997,
+          "road_iou": 0.5645933014354066,
+          "road_auprc": 0.693862776780624,
+          "junction_f1": 0.6666666666666666,
+          "junction_auprc": 0.5548400126819106
+        },
+        {
+          "sample_index": 5,
+          "road_f1": 0.30564784053156147,
+          "road_iou": 0.1803921568627451,
+          "road_auprc": 0.3276961453544421,
+          "junction_f1": 0.030303030303030307,
+          "junction_auprc": 0.3141845451604625
+        },
+        {
+          "sample_index": 6,
+          "road_f1": 0.20210526315789473,
+          "road_iou": 0.11241217798594848,
+          "road_auprc": 0.2573636968818427,
+          "junction_f1": 0.33333333333333337,
+          "junction_auprc": 0.30149020426179307
+        },
+        {
+          "sample_index": 7,
+          "road_f1": 0.2743362831858407,
+          "road_iou": 0.15897435897435896,
+          "road_auprc": 0.27038520182041403,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.7105348615059668
+        },
+        {
+          "sample_index": 8,
+          "road_f1": 0.14390602055800295,
+          "road_iou": 0.07753164556962025,
+          "road_auprc": 0.20960809611590756,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.11003139901879122
+        },
+        {
+          "sample_index": 9,
+          "road_f1": 0.2,
+          "road_iou": 0.1111111111111111,
+          "road_auprc": 0.2501726470515825,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.1322639436771973
+        },
+        {
+          "sample_index": 10,
+          "road_f1": 0.24806201550387597,
+          "road_iou": 0.1415929203539823,
+          "road_auprc": 0.23349882420393508,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.04236459352580127
+        },
+        {
+          "sample_index": 11,
+          "road_f1": 0.4633204633204633,
+          "road_iou": 0.3015075376884422,
+          "road_auprc": 0.39288484386052785,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.4658537375294313
+        },
+        {
+          "sample_index": 12,
+          "road_f1": 0.5411764705882353,
+          "road_iou": 0.3709677419354839,
+          "road_auprc": 0.7376845141150454,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 13,
+          "road_f1": 0.11673151750972763,
+          "road_iou": 0.06198347107438017,
+          "road_auprc": 0.16476074832863596,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.062125250168776486
+        },
+        {
+          "sample_index": 14,
+          "road_f1": 0.15143603133159267,
+          "road_iou": 0.08192090395480225,
+          "road_auprc": 0.20237009345472365,
+          "junction_f1": 0.1276595744680851,
+          "junction_auprc": 0.24027030823769707
+        },
+        {
+          "sample_index": 15,
+          "road_f1": 0.0510204081632653,
+          "road_iou": 0.02617801047120419,
+          "road_auprc": 0.07007169841126207,
+          "junction_f1": 0.05,
+          "junction_auprc": 0.18169673737875833
+        },
+        {
+          "sample_index": 16,
+          "road_f1": 0.2160919540229885,
+          "road_iou": 0.1211340206185567,
+          "road_auprc": 0.21497074581662268,
+          "junction_f1": 0.325,
+          "junction_auprc": 0.28987507779452765
+        },
+        {
+          "sample_index": 17,
+          "road_f1": 0.25116279069767444,
+          "road_iou": 0.14361702127659576,
+          "road_auprc": 0.287059483752365,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.3790305758263025
+        },
+        {
+          "sample_index": 18,
+          "road_f1": 0.1678832116788321,
+          "road_iou": 0.09163346613545817,
+          "road_auprc": 0.19507509427395037,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.137359175703395
+        },
+        {
+          "sample_index": 19,
+          "road_f1": 0.7325581395348837,
+          "road_iou": 0.5779816513761468,
+          "road_auprc": 0.7052674859390062,
+          "junction_f1": 0.631578947368421,
+          "junction_auprc": 0.5492239612576423
+        },
+        {
+          "sample_index": 20,
+          "road_f1": 0.28148148148148144,
+          "road_iou": 0.16379310344827586,
+          "road_auprc": 0.2974742504719552,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 21,
+          "road_f1": 0.3397683397683398,
+          "road_iou": 0.20465116279069767,
+          "road_auprc": 0.2698375832480756,
+          "junction_f1": 0.20689655172413793,
+          "junction_auprc": 0.5046206959822525
+        },
+        {
+          "sample_index": 22,
+          "road_f1": 0.23529411764705882,
+          "road_iou": 0.13333333333333333,
+          "road_auprc": 0.21845442776271304,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.17012505419339224
+        },
+        {
+          "sample_index": 23,
+          "road_f1": 0.0,
+          "road_iou": 0.0,
+          "road_auprc": 0.0,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 24,
+          "road_f1": 0.40909090909090906,
+          "road_iou": 0.2571428571428571,
+          "road_auprc": 0.34154071974037964,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.09493518647164183
+        },
+        {
+          "sample_index": 25,
+          "road_f1": 0.2523489932885906,
+          "road_iou": 0.1443932411674347,
+          "road_auprc": 0.2905211851980836,
+          "junction_f1": 0.3018867924528302,
+          "junction_auprc": 0.39837253530239625
+        },
+        {
+          "sample_index": 26,
+          "road_f1": 0.11461318051575929,
+          "road_iou": 0.060790273556231005,
+          "road_auprc": 0.20622966801863268,
+          "junction_f1": 0.05333333333333334,
+          "junction_auprc": 0.13232314296867878
+        },
+        {
+          "sample_index": 27,
+          "road_f1": 0.3983050847457626,
+          "road_iou": 0.24867724867724866,
+          "road_auprc": 0.3403302617194847,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.30285717504254384
+        },
+        {
+          "sample_index": 28,
+          "road_f1": 0.05490196078431372,
+          "road_iou": 0.028225806451612902,
+          "road_auprc": 0.0866663580228153,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.1412045214074326
+        },
+        {
+          "sample_index": 29,
+          "road_f1": 0.6920821114369501,
+          "road_iou": 0.5291479820627802,
+          "road_auprc": 0.6846819105179198,
+          "junction_f1": 0.5945945945945945,
+          "junction_auprc": 0.5862680986904699
+        },
+        {
+          "sample_index": 30,
+          "road_f1": 0.25948103792415167,
+          "road_iou": 0.14908256880733944,
+          "road_auprc": 0.2531037611731081,
+          "junction_f1": 0.39285714285714285,
+          "junction_auprc": 0.32034651303031436
+        },
+        {
+          "sample_index": 31,
+          "road_f1": 0.5245901639344263,
+          "road_iou": 0.35555555555555557,
+          "road_auprc": 0.5580652787005892,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 32,
+          "road_f1": 0.2551440329218107,
+          "road_iou": 0.14622641509433962,
+          "road_auprc": 0.24378666691526754,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.06534405631677162
+        },
+        {
+          "sample_index": 33,
+          "road_f1": 0.453125,
+          "road_iou": 0.29292929292929293,
+          "road_auprc": 0.3754967970894127,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.09408169192615064
+        },
+        {
+          "sample_index": 34,
+          "road_f1": 0.22626788036410925,
+          "road_iou": 0.12756598240469208,
+          "road_auprc": 0.30172891565028687,
+          "junction_f1": 0.2047244094488189,
+          "junction_auprc": 0.3036867726987971
+        },
+        {
+          "sample_index": 35,
+          "road_f1": 0.0849056603773585,
+          "road_iou": 0.04433497536945813,
+          "road_auprc": 0.13995408094369452,
+          "junction_f1": 0.023809523809523808,
+          "junction_auprc": 0.11736271520158281
+        },
+        {
+          "sample_index": 36,
+          "road_f1": 0.12781954887218044,
+          "road_iou": 0.06827309236947791,
+          "road_auprc": 0.23762396342702677,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.16752746562724236
+        },
+        {
+          "sample_index": 37,
+          "road_f1": 0.1773399014778325,
+          "road_iou": 0.0972972972972973,
+          "road_auprc": 0.23164299989804746,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.49099328301586437
+        },
+        {
+          "sample_index": 38,
+          "road_f1": 0.2753623188405797,
+          "road_iou": 0.15966386554621848,
+          "road_auprc": 0.233975258902515,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.21411836108041019
+        },
+        {
+          "sample_index": 39,
+          "road_f1": 0.1552511415525114,
+          "road_iou": 0.08415841584158416,
+          "road_auprc": 0.1864456473308171,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.06446730387392187
+        },
+        {
+          "sample_index": 40,
+          "road_f1": 0.6990291262135923,
+          "road_iou": 0.5373134328358209,
+          "road_auprc": 0.6429290396087408,
+          "junction_f1": 0.8666666666666666,
+          "junction_auprc": 1.0
+        },
+        {
+          "sample_index": 41,
+          "road_f1": 0.3981900452488688,
+          "road_iou": 0.24858757062146894,
+          "road_auprc": 0.30600730972755946,
+          "junction_f1": 0.65,
+          "junction_auprc": 0.5111732720802118
+        },
+        {
+          "sample_index": 42,
+          "road_f1": 0.5126050420168067,
+          "road_iou": 0.3446327683615819,
+          "road_auprc": 0.44700720894734286,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.18987083802431037
+        },
+        {
+          "sample_index": 43,
+          "road_f1": 0.22811671087533153,
+          "road_iou": 0.12874251497005987,
+          "road_auprc": 0.2872354012145719,
+          "junction_f1": 0.07058823529411765,
+          "junction_auprc": 0.22424597872787544
+        },
+        {
+          "sample_index": 44,
+          "road_f1": 0.2093023255813954,
+          "road_iou": 0.11688311688311688,
+          "road_auprc": 0.3589914703594255,
+          "junction_f1": 0.11764705882352941,
+          "junction_auprc": 0.4199381887953974
+        },
+        {
+          "sample_index": 45,
+          "road_f1": 0.537142857142857,
+          "road_iou": 0.3671875,
+          "road_auprc": 0.6080746399992148,
+          "junction_f1": 0.14285714285714288,
+          "junction_auprc": 0.8717650912772863
+        },
+        {
+          "sample_index": 46,
+          "road_f1": 0.2784810126582279,
+          "road_iou": 0.16176470588235295,
+          "road_auprc": 0.3918407838494851,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 47,
+          "road_f1": 0.2184873949579832,
+          "road_iou": 0.12264150943396226,
+          "road_auprc": 0.2709095555853078,
+          "junction_f1": 0.058823529411764705,
+          "junction_auprc": 0.19102777678440847
+        },
+        {
+          "sample_index": 48,
+          "road_f1": 0.5981308411214953,
+          "road_iou": 0.4266666666666667,
+          "road_auprc": 0.5764402629646702,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 49,
+          "road_f1": 0.09795918367346937,
+          "road_iou": 0.05150214592274678,
+          "road_auprc": 0.17735478821377057,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.07255639374941102
+        },
+        {
+          "sample_index": 50,
+          "road_f1": 0.5060240963855422,
+          "road_iou": 0.3387096774193548,
+          "road_auprc": 0.5191536290091,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.07487023896133403
+        },
+        {
+          "sample_index": 51,
+          "road_f1": 0.30303030303030304,
+          "road_iou": 0.17857142857142858,
+          "road_auprc": 0.3611338889491957,
+          "junction_f1": 0.375,
+          "junction_auprc": 0.7613875159780193
+        },
+        {
+          "sample_index": 52,
+          "road_f1": 0.08810572687224669,
+          "road_iou": 0.04608294930875576,
+          "road_auprc": 0.1704779853255307,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.10380055111225023
+        },
+        {
+          "sample_index": 53,
+          "road_f1": 0.58,
+          "road_iou": 0.4084507042253521,
+          "road_auprc": 0.565999224092485,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 54,
+          "road_f1": 0.15709969788519637,
+          "road_iou": 0.08524590163934426,
+          "road_auprc": 0.2170040098723449,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.11033001959466054
+        },
+        {
+          "sample_index": 55,
+          "road_f1": 0.4034334763948498,
+          "road_iou": 0.25268817204301075,
+          "road_auprc": 0.36423634427366985,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.04378597764363959
+        },
+        {
+          "sample_index": 56,
+          "road_f1": 0.06779661016949153,
+          "road_iou": 0.03508771929824561,
+          "road_auprc": 0.22114388545796068,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.300214502468362
+        },
+        {
+          "sample_index": 57,
+          "road_f1": 0.2971175166297117,
+          "road_iou": 0.17447916666666666,
+          "road_auprc": 0.2740731320932132,
+          "junction_f1": 0.6153846153846155,
+          "junction_auprc": 0.5647230263268449
+        },
+        {
+          "sample_index": 58,
+          "road_f1": 0.33170731707317075,
+          "road_iou": 0.19883040935672514,
+          "road_auprc": 0.33889632545340165,
+          "junction_f1": 0.5945945945945945,
+          "junction_auprc": 0.5136663640321466
+        },
+        {
+          "sample_index": 59,
+          "road_f1": 0.01834862385321101,
+          "road_iou": 0.009259259259259259,
+          "road_auprc": 0.11702081742167697,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.09029773493021359
+        },
+        {
+          "sample_index": 60,
+          "road_f1": 0.08368200836820085,
+          "road_iou": 0.043668122270742356,
+          "road_auprc": 0.12744826784850058,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.27384949392627955
+        },
+        {
+          "sample_index": 61,
+          "road_f1": 0.4098360655737705,
+          "road_iou": 0.25773195876288657,
+          "road_auprc": 0.40819219994535455,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2399502563730948
+        },
+        {
+          "sample_index": 62,
+          "road_f1": 0.12735849056603774,
+          "road_iou": 0.06801007556675064,
+          "road_auprc": 0.17168052430868047,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.21086407523076706
+        },
+        {
+          "sample_index": 63,
+          "road_f1": 0.5346534653465346,
+          "road_iou": 0.36486486486486486,
+          "road_auprc": 0.5816449053506557,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 64,
+          "road_f1": 0.2992125984251968,
+          "road_iou": 0.17592592592592593,
+          "road_auprc": 0.3234034251067137,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2714875274021985
+        },
+        {
+          "sample_index": 65,
+          "road_f1": 0.1195219123505976,
+          "road_iou": 0.0635593220338983,
+          "road_auprc": 0.34847653374668297,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.057520770322050344
+        },
+        {
+          "sample_index": 66,
+          "road_f1": 0.11994784876140807,
+          "road_iou": 0.0638002773925104,
+          "road_auprc": 0.18826779259270238,
+          "junction_f1": 0.01492537313432836,
+          "junction_auprc": 0.09953108940146248
+        },
+        {
+          "sample_index": 67,
+          "road_f1": 0.4130434782608696,
+          "road_iou": 0.2602739726027397,
+          "road_auprc": 0.4990779403991797,
+          "junction_f1": 0.3783783783783784,
+          "junction_auprc": 0.41536152500912554
+        },
+        {
+          "sample_index": 68,
+          "road_f1": 0.5213270142180094,
+          "road_iou": 0.3525641025641026,
+          "road_auprc": 0.4810073746457755,
+          "junction_f1": 0.07407407407407407,
+          "junction_auprc": 0.4896562390540532
+        },
+        {
+          "sample_index": 69,
+          "road_f1": 0.4666666666666667,
+          "road_iou": 0.30434782608695654,
+          "road_auprc": 0.5345032526029223,
+          "junction_f1": 0.47058823529411764,
+          "junction_auprc": 0.9478726401803326
+        },
+        {
+          "sample_index": 70,
+          "road_f1": 0.6099290780141844,
+          "road_iou": 0.4387755102040816,
+          "road_auprc": 0.6205782870285192,
+          "junction_f1": 0.5714285714285714,
+          "junction_auprc": 0.8128134236433832
+        },
+        {
+          "sample_index": 71,
+          "road_f1": 0.3660130718954248,
+          "road_iou": 0.224,
+          "road_auprc": 0.39904979504668997,
+          "junction_f1": 0.17142857142857146,
+          "junction_auprc": 0.19987882872510546
+        },
+        {
+          "sample_index": 72,
+          "road_f1": 0.3622641509433962,
+          "road_iou": 0.22119815668202766,
+          "road_auprc": 0.3101889139145933,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.06056480575516609
+        },
+        {
+          "sample_index": 73,
+          "road_f1": 0.04469273743016759,
+          "road_iou": 0.022857142857142857,
+          "road_auprc": 0.26027274553141494,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.3836292763498489
+        },
+        {
+          "sample_index": 74,
+          "road_f1": 0.11343283582089551,
+          "road_iou": 0.060126582278481014,
+          "road_auprc": 0.16569011042889722,
+          "junction_f1": 0.029850746268656723,
+          "junction_auprc": 0.06525709517647142
+        },
+        {
+          "sample_index": 75,
+          "road_f1": 0.2006172839506173,
+          "road_iou": 0.11149228130360206,
+          "road_auprc": 0.2674909798226545,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.12084149680837611
+        },
+        {
+          "sample_index": 76,
+          "road_f1": 0.2716049382716049,
+          "road_iou": 0.15714285714285714,
+          "road_auprc": 0.2441649190187,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.1966819859709983
+        },
+        {
+          "sample_index": 77,
+          "road_f1": 0.03902439024390244,
+          "road_iou": 0.01990049751243781,
+          "road_auprc": 0.15223174765253902,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.05305733572938847
+        },
+        {
+          "sample_index": 78,
+          "road_f1": 0.08520179372197309,
+          "road_iou": 0.04449648711943794,
+          "road_auprc": 0.1490303410946377,
+          "junction_f1": 0.02777777777777778,
+          "junction_auprc": 0.12652065014623876
+        },
+        {
+          "sample_index": 79,
+          "road_f1": 0.016194331983805668,
+          "road_iou": 0.00816326530612245,
+          "road_auprc": 0.06412178240513956,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.01951456082161332
+        }
+      ],
+      "repair_composite": 0.20076996061800736,
+      "samples_seen": 40960,
+      "optimizer_updates": 2048,
+      "checkpoint_sha256": "3087f8dcd3debbd5894c257c0b4ddf4249ca80eda29f0c7a4390a1e57e5c4e36",
+      "prediction_sha256": "db67a62f95ba9e4555d2342867692a34803d5b2cce6d104c4778335e23d3f3ca",
+      "learning_rate": 1e-05,
+      "original_bn_checksum_before": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "original_bn_checksum_after": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3"
+    },
+    "R2": {
+      "scope": "frozen_validation",
+      "model_mode": "eval",
+      "no_grad": true,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "validation_sample_count": 80,
+      "road_precision": 0.4477707824746242,
+      "road_recall": 0.20520520520520522,
+      "road_f1": 0.28143422433982074,
+      "road_iou": 0.16376110145199943,
+      "road_auprc": 0.2821298489450731,
+      "junction_precision": 0.5373134328358209,
+      "junction_recall": 0.07744314689612784,
+      "junction_f1": 0.1353746978243352,
+      "junction_iou": 0.07260155574762317,
+      "junction_auprc": 0.18515825155340837,
+      "per_sample": [
+        {
+          "sample_index": 0,
+          "road_f1": 0.186046511627907,
+          "road_iou": 0.10256410256410256,
+          "road_auprc": 0.23055016828024047,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.18453529005551386
+        },
+        {
+          "sample_index": 1,
+          "road_f1": 0.46564885496183206,
+          "road_iou": 0.3034825870646766,
+          "road_auprc": 0.37846144482860855,
+          "junction_f1": 0.2758620689655173,
+          "junction_auprc": 0.4103993875845927
+        },
+        {
+          "sample_index": 2,
+          "road_f1": 0.41830065359477125,
+          "road_iou": 0.2644628099173554,
+          "road_auprc": 0.38344327035208053,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0640754608551334
+        },
+        {
+          "sample_index": 3,
+          "road_f1": 0.5529411764705883,
+          "road_iou": 0.3821138211382114,
+          "road_auprc": 0.7480556752937081,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 4,
+          "road_f1": 0.7041420118343195,
+          "road_iou": 0.54337899543379,
+          "road_auprc": 0.6989405888802269,
+          "junction_f1": 0.6666666666666666,
+          "junction_auprc": 0.5682044666774103
+        },
+        {
+          "sample_index": 5,
+          "road_f1": 0.3333333333333333,
+          "road_iou": 0.2,
+          "road_auprc": 0.3671605634471394,
+          "junction_f1": 0.19444444444444445,
+          "junction_auprc": 0.3173880931452451
+        },
+        {
+          "sample_index": 6,
+          "road_f1": 0.1859504132231405,
+          "road_iou": 0.10250569476082004,
+          "road_auprc": 0.25162621377527067,
+          "junction_f1": 0.33333333333333337,
+          "junction_auprc": 0.2912404207221863
+        },
+        {
+          "sample_index": 7,
+          "road_f1": 0.2532751091703057,
+          "road_iou": 0.145,
+          "road_auprc": 0.23105907166092615,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.7394387612624433
+        },
+        {
+          "sample_index": 8,
+          "road_f1": 0.15841584158415842,
+          "road_iou": 0.08602150537634409,
+          "road_auprc": 0.19778278875324007,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.11093688936106272
+        },
+        {
+          "sample_index": 9,
+          "road_f1": 0.26206896551724135,
+          "road_iou": 0.15079365079365079,
+          "road_auprc": 0.30074705690217685,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.1919068952048892
+        },
+        {
+          "sample_index": 10,
+          "road_f1": 0.3611111111111111,
+          "road_iou": 0.22033898305084745,
+          "road_auprc": 0.3009895058315983,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.05995591501066164
+        },
+        {
+          "sample_index": 11,
+          "road_f1": 0.45914396887159536,
+          "road_iou": 0.29797979797979796,
+          "road_auprc": 0.3883706062859478,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.36855032730169723
+        },
+        {
+          "sample_index": 12,
+          "road_f1": 0.575,
+          "road_iou": 0.40350877192982454,
+          "road_auprc": 0.7372309336124229,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 13,
+          "road_f1": 0.13584905660377358,
+          "road_iou": 0.0728744939271255,
+          "road_auprc": 0.17842276822596112,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.09506076077290496
+        },
+        {
+          "sample_index": 14,
+          "road_f1": 0.15701415701415702,
+          "road_iou": 0.08519553072625698,
+          "road_auprc": 0.20898225367357903,
+          "junction_f1": 0.16901408450704225,
+          "junction_auprc": 0.25575760441323636
+        },
+        {
+          "sample_index": 15,
+          "road_f1": 0.0761904761904762,
+          "road_iou": 0.039603960396039604,
+          "road_auprc": 0.09057687637905186,
+          "junction_f1": 0.13953488372093026,
+          "junction_auprc": 0.24565559726943667
+        },
+        {
+          "sample_index": 16,
+          "road_f1": 0.21729490022172948,
+          "road_iou": 0.12189054726368159,
+          "road_auprc": 0.20282316377529555,
+          "junction_f1": 0.3209876543209877,
+          "junction_auprc": 0.27894560286487124
+        },
+        {
+          "sample_index": 17,
+          "road_f1": 0.2982456140350877,
+          "road_iou": 0.17525773195876287,
+          "road_auprc": 0.2774756405647775,
+          "junction_f1": 0.20689655172413793,
+          "junction_auprc": 0.37106543587892465
+        },
+        {
+          "sample_index": 18,
+          "road_f1": 0.1391941391941392,
+          "road_iou": 0.07480314960629922,
+          "road_auprc": 0.16355672981577926,
+          "junction_f1": 0.14084507042253522,
+          "junction_auprc": 0.17945679154941363
+        },
+        {
+          "sample_index": 19,
+          "road_f1": 0.7096774193548387,
+          "road_iou": 0.55,
+          "road_auprc": 0.7073392679148408,
+          "junction_f1": 0.5945945945945945,
+          "junction_auprc": 0.5685318646986942
+        },
+        {
+          "sample_index": 20,
+          "road_f1": 0.43786982248520717,
+          "road_iou": 0.2803030303030303,
+          "road_auprc": 0.39797263219844864,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 21,
+          "road_f1": 0.2948207171314741,
+          "road_iou": 0.17289719626168223,
+          "road_auprc": 0.24579551550305132,
+          "junction_f1": 0.20689655172413793,
+          "junction_auprc": 0.46113121354595743
+        },
+        {
+          "sample_index": 22,
+          "road_f1": 0.26461538461538464,
+          "road_iou": 0.1524822695035461,
+          "road_auprc": 0.23090451885048918,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.22163188046372165
+        },
+        {
+          "sample_index": 23,
+          "road_f1": 0.0,
+          "road_iou": 0.0,
+          "road_auprc": 0.0,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 24,
+          "road_f1": 0.3681592039800995,
+          "road_iou": 0.22560975609756098,
+          "road_auprc": 0.3095769620344108,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.08564880255605062
+        },
+        {
+          "sample_index": 25,
+          "road_f1": 0.23783783783783782,
+          "road_iou": 0.13496932515337423,
+          "road_auprc": 0.2896989260544411,
+          "junction_f1": 0.25490196078431376,
+          "junction_auprc": 0.4180576926896026
+        },
+        {
+          "sample_index": 26,
+          "road_f1": 0.18716577540106952,
+          "road_iou": 0.10324483775811209,
+          "road_auprc": 0.22760742877807058,
+          "junction_f1": 0.2619047619047619,
+          "junction_auprc": 0.2515551286070939
+        },
+        {
+          "sample_index": 27,
+          "road_f1": 0.34821428571428575,
+          "road_iou": 0.21081081081081082,
+          "road_auprc": 0.3286593258673144,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.21157773831632226
+        },
+        {
+          "sample_index": 28,
+          "road_f1": 0.06,
+          "road_iou": 0.030927835051546393,
+          "road_auprc": 0.094789795823483,
+          "junction_f1": 0.02531645569620253,
+          "junction_auprc": 0.1757901085881812
+        },
+        {
+          "sample_index": 29,
+          "road_f1": 0.6934097421203439,
+          "road_iou": 0.5307017543859649,
+          "road_auprc": 0.6848474965139324,
+          "junction_f1": 0.5945945945945945,
+          "junction_auprc": 0.5840927385557612
+        },
+        {
+          "sample_index": 30,
+          "road_f1": 0.2697095435684647,
+          "road_iou": 0.15587529976019185,
+          "road_auprc": 0.25947429728887006,
+          "junction_f1": 0.4,
+          "junction_auprc": 0.3347322319923976
+        },
+        {
+          "sample_index": 31,
+          "road_f1": 0.5,
+          "road_iou": 0.3333333333333333,
+          "road_auprc": 0.5371456637458721,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 32,
+          "road_f1": 0.26050420168067223,
+          "road_iou": 0.1497584541062802,
+          "road_auprc": 0.25677122730122304,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.06885761999881149
+        },
+        {
+          "sample_index": 33,
+          "road_f1": 0.38135593220338987,
+          "road_iou": 0.2356020942408377,
+          "road_auprc": 0.3538002216570401,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.04357465405281629
+        },
+        {
+          "sample_index": 34,
+          "road_f1": 0.2222222222222222,
+          "road_iou": 0.125,
+          "road_auprc": 0.30788418506240933,
+          "junction_f1": 0.208,
+          "junction_auprc": 0.28959942986639664
+        },
+        {
+          "sample_index": 35,
+          "road_f1": 0.08755760368663594,
+          "road_iou": 0.04578313253012048,
+          "road_auprc": 0.1356761452821016,
+          "junction_f1": 0.022727272727272728,
+          "junction_auprc": 0.11484869825603061
+        },
+        {
+          "sample_index": 36,
+          "road_f1": 0.14126394052044608,
+          "road_iou": 0.076,
+          "road_auprc": 0.2283223521986796,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.24248481840477654
+        },
+        {
+          "sample_index": 37,
+          "road_f1": 0.29411764705882354,
+          "road_iou": 0.1724137931034483,
+          "road_auprc": 0.288592584793723,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.34737225950535
+        },
+        {
+          "sample_index": 38,
+          "road_f1": 0.29118773946360155,
+          "road_iou": 0.17040358744394618,
+          "road_auprc": 0.28140115257600484,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.22360571327256265
+        },
+        {
+          "sample_index": 39,
+          "road_f1": 0.34883720930232553,
+          "road_iou": 0.2112676056338028,
+          "road_auprc": 0.41697253064719453,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.09015172992962889
+        },
+        {
+          "sample_index": 40,
+          "road_f1": 0.6583072100313481,
+          "road_iou": 0.49065420560747663,
+          "road_auprc": 0.6383433090528493,
+          "junction_f1": 0.896551724137931,
+          "junction_auprc": 1.0
+        },
+        {
+          "sample_index": 41,
+          "road_f1": 0.39130434782608703,
+          "road_iou": 0.24324324324324326,
+          "road_auprc": 0.2885334125143039,
+          "junction_f1": 0.65,
+          "junction_auprc": 0.5126647170404047
+        },
+        {
+          "sample_index": 42,
+          "road_f1": 0.4298245614035088,
+          "road_iou": 0.2737430167597765,
+          "road_auprc": 0.4656512387462572,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2646807792722921
+        },
+        {
+          "sample_index": 43,
+          "road_f1": 0.2311688311688312,
+          "road_iou": 0.13069016152716592,
+          "road_auprc": 0.28492927946573493,
+          "junction_f1": 0.06741573033707864,
+          "junction_auprc": 0.2072374650760282
+        },
+        {
+          "sample_index": 44,
+          "road_f1": 0.29850746268656714,
+          "road_iou": 0.17543859649122806,
+          "road_auprc": 0.40878164506102843,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.30902460270960486
+        },
+        {
+          "sample_index": 45,
+          "road_f1": 0.631578947368421,
+          "road_iou": 0.46153846153846156,
+          "road_auprc": 0.6034280320176665,
+          "junction_f1": 0.2666666666666667,
+          "junction_auprc": 0.8835967253090378
+        },
+        {
+          "sample_index": 46,
+          "road_f1": 0.29906542056074764,
+          "road_iou": 0.17582417582417584,
+          "road_auprc": 0.414384397062229,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 47,
+          "road_f1": 0.1969439728353141,
+          "road_iou": 0.10922787193973635,
+          "road_auprc": 0.26424112022640783,
+          "junction_f1": 0.057692307692307696,
+          "junction_auprc": 0.17309816101457054
+        },
+        {
+          "sample_index": 48,
+          "road_f1": 0.5953488372093023,
+          "road_iou": 0.423841059602649,
+          "road_auprc": 0.561068411766595,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 49,
+          "road_f1": 0.09638554216867469,
+          "road_iou": 0.05063291139240506,
+          "road_auprc": 0.19808633475111553,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.07839697756130717
+        },
+        {
+          "sample_index": 50,
+          "road_f1": 0.5583756345177665,
+          "road_iou": 0.3873239436619718,
+          "road_auprc": 0.505792921107654,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.10401917314324065
+        },
+        {
+          "sample_index": 51,
+          "road_f1": 0.3022222222222222,
+          "road_iou": 0.17801047120418848,
+          "road_auprc": 0.3718626370304701,
+          "junction_f1": 0.5945945945945945,
+          "junction_auprc": 0.7776604531466096
+        },
+        {
+          "sample_index": 52,
+          "road_f1": 0.08368200836820085,
+          "road_iou": 0.043668122270742356,
+          "road_auprc": 0.17808610811671932,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.08511102824648331
+        },
+        {
+          "sample_index": 53,
+          "road_f1": 0.5671641791044776,
+          "road_iou": 0.3958333333333333,
+          "road_auprc": 0.5454397168544071,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 54,
+          "road_f1": 0.15620214395099538,
+          "road_iou": 0.08471760797342193,
+          "road_auprc": 0.22169878212268354,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.11461859576395127
+        },
+        {
+          "sample_index": 55,
+          "road_f1": 0.3982683982683982,
+          "road_iou": 0.24864864864864866,
+          "road_auprc": 0.35299426272708895,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.03434400161410581
+        },
+        {
+          "sample_index": 56,
+          "road_f1": 0.057471264367816084,
+          "road_iou": 0.029585798816568046,
+          "road_auprc": 0.32662712828454293,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.352773815291256
+        },
+        {
+          "sample_index": 57,
+          "road_f1": 0.2832244008714597,
+          "road_iou": 0.1649746192893401,
+          "road_auprc": 0.26652262380094854,
+          "junction_f1": 0.65,
+          "junction_auprc": 0.564453197158412
+        },
+        {
+          "sample_index": 58,
+          "road_f1": 0.36633663366336633,
+          "road_iou": 0.22424242424242424,
+          "road_auprc": 0.34818152316471906,
+          "junction_f1": 0.5555555555555556,
+          "junction_auprc": 0.5140590463420115
+        },
+        {
+          "sample_index": 59,
+          "road_f1": 0.08333333333333334,
+          "road_iou": 0.043478260869565216,
+          "road_auprc": 0.174053850242319,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.09806170779840236
+        },
+        {
+          "sample_index": 60,
+          "road_f1": 0.12903225806451613,
+          "road_iou": 0.06896551724137931,
+          "road_auprc": 0.1658932803687564,
+          "junction_f1": 0.05,
+          "junction_auprc": 0.37725828781563475
+        },
+        {
+          "sample_index": 61,
+          "road_f1": 0.4214876033057851,
+          "road_iou": 0.2670157068062827,
+          "road_auprc": 0.4175770968905215,
+          "junction_f1": 0.08333333333333334,
+          "junction_auprc": 0.2648556444557463
+        },
+        {
+          "sample_index": 62,
+          "road_f1": 0.15894039735099338,
+          "road_iou": 0.08633093525179857,
+          "road_auprc": 0.16125216011394078,
+          "junction_f1": 0.05714285714285715,
+          "junction_auprc": 0.20445372887179478
+        },
+        {
+          "sample_index": 63,
+          "road_f1": 0.5151515151515151,
+          "road_iou": 0.3469387755102041,
+          "road_auprc": 0.5778171972962899,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 64,
+          "road_f1": 0.4235294117647059,
+          "road_iou": 0.26865671641791045,
+          "road_auprc": 0.38712287575273885,
+          "junction_f1": 0.03389830508474577,
+          "junction_auprc": 0.2900166490726673
+        },
+        {
+          "sample_index": 65,
+          "road_f1": 0.196969696969697,
+          "road_iou": 0.1092436974789916,
+          "road_auprc": 0.34168151914165235,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.20254181213531067
+        },
+        {
+          "sample_index": 66,
+          "road_f1": 0.11594202898550726,
+          "road_iou": 0.06153846153846154,
+          "road_auprc": 0.1873921867104872,
+          "junction_f1": 0.01492537313432836,
+          "junction_auprc": 0.09829263625448549
+        },
+        {
+          "sample_index": 67,
+          "road_f1": 0.41450777202072536,
+          "road_iou": 0.26143790849673204,
+          "road_auprc": 0.5064767202510997,
+          "junction_f1": 0.35000000000000003,
+          "junction_auprc": 0.2762069034172693
+        },
+        {
+          "sample_index": 68,
+          "road_f1": 0.530232558139535,
+          "road_iou": 0.36075949367088606,
+          "road_auprc": 0.4996046968504991,
+          "junction_f1": 0.5555555555555556,
+          "junction_auprc": 0.512066341380084
+        },
+        {
+          "sample_index": 69,
+          "road_f1": 0.42790697674418604,
+          "road_iou": 0.27218934911242604,
+          "road_auprc": 0.5239334283999242,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.934981684981685
+        },
+        {
+          "sample_index": 70,
+          "road_f1": 0.5801526717557252,
+          "road_iou": 0.40860215053763443,
+          "road_auprc": 0.6170417826295391,
+          "junction_f1": 0.4,
+          "junction_auprc": 0.659191035010873
+        },
+        {
+          "sample_index": 71,
+          "road_f1": 0.3853820598006645,
+          "road_iou": 0.23868312757201646,
+          "road_auprc": 0.4246279040688733,
+          "junction_f1": 0.16666666666666669,
+          "junction_auprc": 0.18258268174444803
+        },
+        {
+          "sample_index": 72,
+          "road_f1": 0.37354085603112835,
+          "road_iou": 0.22966507177033493,
+          "road_auprc": 0.32889156199520936,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.05737773209374394
+        },
+        {
+          "sample_index": 73,
+          "road_f1": 0.08839779005524862,
+          "road_iou": 0.046242774566473986,
+          "road_auprc": 0.4123625017743432,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2659179468255319
+        },
+        {
+          "sample_index": 74,
+          "road_f1": 0.13227513227513227,
+          "road_iou": 0.0708215297450425,
+          "road_auprc": 0.15846977236003712,
+          "junction_f1": 0.10526315789473685,
+          "junction_auprc": 0.08331977590094695
+        },
+        {
+          "sample_index": 75,
+          "road_f1": 0.206794682422452,
+          "road_iou": 0.11532125205930807,
+          "road_auprc": 0.26670854341161476,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.12307798429447916
+        },
+        {
+          "sample_index": 76,
+          "road_f1": 0.26778242677824265,
+          "road_iou": 0.15458937198067632,
+          "road_auprc": 0.24429436792134698,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.1626204259700668
+        },
+        {
+          "sample_index": 77,
+          "road_f1": 0.010582010582010581,
+          "road_iou": 0.005319148936170213,
+          "road_auprc": 0.15009398026062976,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.14661511229314916
+        },
+        {
+          "sample_index": 78,
+          "road_f1": 0.09623430962343098,
+          "road_iou": 0.05054945054945055,
+          "road_auprc": 0.13892805749115417,
+          "junction_f1": 0.052631578947368425,
+          "junction_auprc": 0.11697617825979047
+        },
+        {
+          "sample_index": 79,
+          "road_f1": 0.029850746268656716,
+          "road_iou": 0.015151515151515152,
+          "road_auprc": 0.07003919727368897,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.02315360824484365
+        }
+      ],
+      "repair_composite": 0.2101178591150762,
+      "samples_seen": 40960,
+      "optimizer_updates": 2048,
+      "checkpoint_sha256": "65dd2f4905aada0269677409298700566c054ca83d38a447a385e7a2dd84d739",
+      "prediction_sha256": "7a96210795bd3b118d7df1eed20a0f2b7aadf3a1e9fe3e99ccd5d5140a1ea88c",
+      "learning_rate": 1e-05,
+      "original_bn_checksum_before": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "original_bn_checksum_after": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3"
+    },
+    "R3": {
+      "scope": "frozen_validation",
+      "model_mode": "eval",
+      "no_grad": true,
+      "fixed_threshold": 0.3,
+      "validation_batch_count": 8,
+      "validation_sample_count": 80,
+      "road_precision": 0.4451019066403682,
+      "road_recall": 0.19931696402284638,
+      "road_f1": 0.2753375630388808,
+      "road_iou": 0.15964721973305665,
+      "road_auprc": 0.2776697536618865,
+      "junction_precision": 0.48255813953488375,
+      "junction_recall": 0.07652120467117395,
+      "junction_f1": 0.1320954907161804,
+      "junction_iou": 0.07071854586765124,
+      "junction_auprc": 0.17942515133869952,
+      "per_sample": [
+        {
+          "sample_index": 0,
+          "road_f1": 0.2,
+          "road_iou": 0.1111111111111111,
+          "road_auprc": 0.22235330307554785,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.15456827466180775
+        },
+        {
+          "sample_index": 1,
+          "road_f1": 0.4669260700389105,
+          "road_iou": 0.30456852791878175,
+          "road_auprc": 0.3893435905261322,
+          "junction_f1": 0.2758620689655173,
+          "junction_auprc": 0.5328608778439271
+        },
+        {
+          "sample_index": 2,
+          "road_f1": 0.3537414965986395,
+          "road_iou": 0.21487603305785125,
+          "road_auprc": 0.3460682423281575,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.05639957042739913
+        },
+        {
+          "sample_index": 3,
+          "road_f1": 0.5423728813559322,
+          "road_iou": 0.37209302325581395,
+          "road_auprc": 0.7766777172559332,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 4,
+          "road_f1": 0.7027027027027027,
+          "road_iou": 0.5416666666666666,
+          "road_auprc": 0.700184415761652,
+          "junction_f1": 0.6666666666666666,
+          "junction_auprc": 0.5787639046752233
+        },
+        {
+          "sample_index": 5,
+          "road_f1": 0.3157894736842105,
+          "road_iou": 0.1875,
+          "road_auprc": 0.3693405712782387,
+          "junction_f1": 0.16901408450704225,
+          "junction_auprc": 0.3427792332834134
+        },
+        {
+          "sample_index": 6,
+          "road_f1": 0.22265625,
+          "road_iou": 0.12527472527472527,
+          "road_auprc": 0.25247786005358364,
+          "junction_f1": 0.33333333333333337,
+          "junction_auprc": 0.2919073746591085
+        },
+        {
+          "sample_index": 7,
+          "road_f1": 0.2638297872340425,
+          "road_iou": 0.15196078431372548,
+          "road_auprc": 0.23112565193958018,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.6850738253182881
+        },
+        {
+          "sample_index": 8,
+          "road_f1": 0.1421947449768161,
+          "road_iou": 0.07653910149750416,
+          "road_auprc": 0.21900833869250386,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.12031085137790284
+        },
+        {
+          "sample_index": 9,
+          "road_f1": 0.19259259259259257,
+          "road_iou": 0.10655737704918032,
+          "road_auprc": 0.32860852308994287,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.18517359347379608
+        },
+        {
+          "sample_index": 10,
+          "road_f1": 0.27692307692307694,
+          "road_iou": 0.16071428571428573,
+          "road_auprc": 0.23164741312473827,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.04591367501023291
+        },
+        {
+          "sample_index": 11,
+          "road_f1": 0.44615384615384607,
+          "road_iou": 0.2871287128712871,
+          "road_auprc": 0.38862273159850574,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.45705956763160804
+        },
+        {
+          "sample_index": 12,
+          "road_f1": 0.5575757575757576,
+          "road_iou": 0.3865546218487395,
+          "road_auprc": 0.7409183798444583,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 13,
+          "road_f1": 0.10937499999999999,
+          "road_iou": 0.05785123966942149,
+          "road_auprc": 0.16221851352808142,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.08689827718513013
+        },
+        {
+          "sample_index": 14,
+          "road_f1": 0.15637860082304528,
+          "road_iou": 0.08482142857142858,
+          "road_auprc": 0.22509926723885923,
+          "junction_f1": 0.15172413793103448,
+          "junction_auprc": 0.2503167473558464
+        },
+        {
+          "sample_index": 15,
+          "road_f1": 0.059574468085106386,
+          "road_iou": 0.03070175438596491,
+          "road_auprc": 0.0739808833095122,
+          "junction_f1": 0.163265306122449,
+          "junction_auprc": 0.18627901229983776
+        },
+        {
+          "sample_index": 16,
+          "road_f1": 0.20731707317073172,
+          "road_iou": 0.11564625850340136,
+          "road_auprc": 0.21115716666680906,
+          "junction_f1": 0.3,
+          "junction_auprc": 0.2781542471665704
+        },
+        {
+          "sample_index": 17,
+          "road_f1": 0.2905982905982906,
+          "road_iou": 0.17,
+          "road_auprc": 0.25756420225473736,
+          "junction_f1": 0.25,
+          "junction_auprc": 0.3279937747411165
+        },
+        {
+          "sample_index": 18,
+          "road_f1": 0.14814814814814814,
+          "road_iou": 0.08,
+          "road_auprc": 0.17590940839595565,
+          "junction_f1": 0.05479452054794521,
+          "junction_auprc": 0.1757533858369325
+        },
+        {
+          "sample_index": 19,
+          "road_f1": 0.7278106508875739,
+          "road_iou": 0.5720930232558139,
+          "road_auprc": 0.7121790413786298,
+          "junction_f1": 0.5789473684210527,
+          "junction_auprc": 0.5799495043341464
+        },
+        {
+          "sample_index": 20,
+          "road_f1": 0.36619718309859156,
+          "road_iou": 0.22413793103448276,
+          "road_auprc": 0.3516162455396839,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 21,
+          "road_f1": 0.30952380952380953,
+          "road_iou": 0.18309859154929578,
+          "road_auprc": 0.25092487779342776,
+          "junction_f1": 0.2666666666666667,
+          "junction_auprc": 0.4545747369651752
+        },
+        {
+          "sample_index": 22,
+          "road_f1": 0.21212121212121213,
+          "road_iou": 0.11864406779661017,
+          "road_auprc": 0.19899140736963797,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.18367190309349454
+        },
+        {
+          "sample_index": 23,
+          "road_f1": 0.0,
+          "road_iou": 0.0,
+          "road_auprc": 0.0,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 24,
+          "road_f1": 0.3961352657004831,
+          "road_iou": 0.2469879518072289,
+          "road_auprc": 0.3078393852583267,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.14353026236424002
+        },
+        {
+          "sample_index": 25,
+          "road_f1": 0.25641025641025644,
+          "road_iou": 0.14705882352941177,
+          "road_auprc": 0.3106862680939805,
+          "junction_f1": 0.3018867924528302,
+          "junction_auprc": 0.421541570300853
+        },
+        {
+          "sample_index": 26,
+          "road_f1": 0.20047732696897375,
+          "road_iou": 0.11140583554376658,
+          "road_auprc": 0.230562967694718,
+          "junction_f1": 0.21951219512195122,
+          "junction_auprc": 0.20850786516661707
+        },
+        {
+          "sample_index": 27,
+          "road_f1": 0.33766233766233766,
+          "road_iou": 0.203125,
+          "road_auprc": 0.3217610217058887,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.3427264573388098
+        },
+        {
+          "sample_index": 28,
+          "road_f1": 0.05714285714285715,
+          "road_iou": 0.029411764705882353,
+          "road_auprc": 0.08834478246201173,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.17053921511000095
+        },
+        {
+          "sample_index": 29,
+          "road_f1": 0.7214076246334311,
+          "road_iou": 0.5642201834862385,
+          "road_auprc": 0.6901477401919959,
+          "junction_f1": 0.631578947368421,
+          "junction_auprc": 0.6488988867659344
+        },
+        {
+          "sample_index": 30,
+          "road_f1": 0.26347305389221554,
+          "road_iou": 0.15172413793103448,
+          "road_auprc": 0.2329165868356643,
+          "junction_f1": 0.4,
+          "junction_auprc": 0.3030871848774611
+        },
+        {
+          "sample_index": 31,
+          "road_f1": 0.5423728813559322,
+          "road_iou": 0.37209302325581395,
+          "road_auprc": 0.5375751882750167,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 32,
+          "road_f1": 0.2612244897959184,
+          "road_iou": 0.15023474178403756,
+          "road_auprc": 0.2625958733613829,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.07746812088945254
+        },
+        {
+          "sample_index": 33,
+          "road_f1": 0.40495867768595045,
+          "road_iou": 0.2538860103626943,
+          "road_auprc": 0.35777911028447085,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.04923858016899711
+        },
+        {
+          "sample_index": 34,
+          "road_f1": 0.2564802182810368,
+          "road_iou": 0.14710485133020346,
+          "road_auprc": 0.326732109453313,
+          "junction_f1": 0.192,
+          "junction_auprc": 0.3227553299487325
+        },
+        {
+          "sample_index": 35,
+          "road_f1": 0.08968609865470852,
+          "road_iou": 0.046948356807511735,
+          "road_auprc": 0.13184330591813676,
+          "junction_f1": 0.023529411764705885,
+          "junction_auprc": 0.0910493972537361
+        },
+        {
+          "sample_index": 36,
+          "road_f1": 0.14126394052044608,
+          "road_iou": 0.076,
+          "road_auprc": 0.22735067645104354,
+          "junction_f1": 0.0273972602739726,
+          "junction_auprc": 0.24828746044731764
+        },
+        {
+          "sample_index": 37,
+          "road_f1": 0.2892561983471074,
+          "road_iou": 0.16908212560386474,
+          "road_auprc": 0.2856742879686713,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.45608581925562003
+        },
+        {
+          "sample_index": 38,
+          "road_f1": 0.23809523809523808,
+          "road_iou": 0.13513513513513514,
+          "road_auprc": 0.23813205707685692,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2756664648323234
+        },
+        {
+          "sample_index": 39,
+          "road_f1": 0.24050632911392406,
+          "road_iou": 0.1366906474820144,
+          "road_auprc": 0.37162220767583637,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.13578911804927918
+        },
+        {
+          "sample_index": 40,
+          "road_f1": 0.6644736842105263,
+          "road_iou": 0.4975369458128079,
+          "road_auprc": 0.6450626327241502,
+          "junction_f1": 0.787878787878788,
+          "junction_auprc": 1.0
+        },
+        {
+          "sample_index": 41,
+          "road_f1": 0.3790322580645162,
+          "road_iou": 0.23383084577114427,
+          "road_auprc": 0.2692855255582423,
+          "junction_f1": 0.5416666666666667,
+          "junction_auprc": 0.5159230330328961
+        },
+        {
+          "sample_index": 42,
+          "road_f1": 0.42592592592592593,
+          "road_iou": 0.27058823529411763,
+          "road_auprc": 0.47611862822350626,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.28782811012633547
+        },
+        {
+          "sample_index": 43,
+          "road_f1": 0.25375170532060026,
+          "road_iou": 0.1453125,
+          "road_auprc": 0.3036281442666614,
+          "junction_f1": 0.17391304347826086,
+          "junction_auprc": 0.26822071667981634
+        },
+        {
+          "sample_index": 44,
+          "road_f1": 0.2538461538461539,
+          "road_iou": 0.14537444933920704,
+          "road_auprc": 0.38527556443833216,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.4950337534172178
+        },
+        {
+          "sample_index": 45,
+          "road_f1": 0.6210526315789473,
+          "road_iou": 0.45038167938931295,
+          "road_auprc": 0.5988113997829927,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.7996648231942349
+        },
+        {
+          "sample_index": 46,
+          "road_f1": 0.35714285714285715,
+          "road_iou": 0.21739130434782608,
+          "road_auprc": 0.40622346491028277,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 47,
+          "road_f1": 0.1739130434782609,
+          "road_iou": 0.09523809523809523,
+          "road_auprc": 0.2536955208122255,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.16176373330474428
+        },
+        {
+          "sample_index": 48,
+          "road_f1": 0.6146341463414634,
+          "road_iou": 0.44366197183098594,
+          "road_auprc": 0.5655378138489877,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 49,
+          "road_f1": 0.08979591836734695,
+          "road_iou": 0.04700854700854701,
+          "road_auprc": 0.20348544007926858,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.07967248596499278
+        },
+        {
+          "sample_index": 50,
+          "road_f1": 0.5544554455445544,
+          "road_iou": 0.3835616438356164,
+          "road_auprc": 0.5141376419936071,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.09996993765765164
+        },
+        {
+          "sample_index": 51,
+          "road_f1": 0.33620689655172414,
+          "road_iou": 0.20207253886010362,
+          "road_auprc": 0.35433819559790086,
+          "junction_f1": 0.5555555555555556,
+          "junction_auprc": 0.7812898181620906
+        },
+        {
+          "sample_index": 52,
+          "road_f1": 0.06866952789699571,
+          "road_iou": 0.035555555555555556,
+          "road_auprc": 0.1759257455672311,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.05827951956016282
+        },
+        {
+          "sample_index": 53,
+          "road_f1": 0.5583756345177665,
+          "road_iou": 0.3873239436619718,
+          "road_auprc": 0.5390447021377198,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 54,
+          "road_f1": 0.1506024096385542,
+          "road_iou": 0.08143322475570032,
+          "road_auprc": 0.20760747169604246,
+          "junction_f1": 0.09230769230769231,
+          "junction_auprc": 0.18784960552759758
+        },
+        {
+          "sample_index": 55,
+          "road_f1": 0.3911111111111111,
+          "road_iou": 0.2430939226519337,
+          "road_auprc": 0.3504944456317151,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.03273968186611921
+        },
+        {
+          "sample_index": 56,
+          "road_f1": 0.023121387283236993,
+          "road_iou": 0.011695906432748537,
+          "road_auprc": 0.2657817503259344,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2666977158869674
+        },
+        {
+          "sample_index": 57,
+          "road_f1": 0.2911392405063291,
+          "road_iou": 0.17037037037037037,
+          "road_auprc": 0.25239859412198784,
+          "junction_f1": 0.65,
+          "junction_auprc": 0.5470564452100439
+        },
+        {
+          "sample_index": 58,
+          "road_f1": 0.383177570093458,
+          "road_iou": 0.23699421965317918,
+          "road_auprc": 0.33219328838778067,
+          "junction_f1": 0.5555555555555556,
+          "junction_auprc": 0.508487617110636
+        },
+        {
+          "sample_index": 59,
+          "road_f1": 0.061674008810572695,
+          "road_iou": 0.031818181818181815,
+          "road_auprc": 0.16979164236533945,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.11090172881230077
+        },
+        {
+          "sample_index": 60,
+          "road_f1": 0.08730158730158731,
+          "road_iou": 0.04564315352697095,
+          "road_auprc": 0.14323899797227574,
+          "junction_f1": 0.048780487804878044,
+          "junction_auprc": 0.31294184365362177
+        },
+        {
+          "sample_index": 61,
+          "road_f1": 0.4578313253012048,
+          "road_iou": 0.296875,
+          "road_auprc": 0.425025283604392,
+          "junction_f1": 0.07692307692307693,
+          "junction_auprc": 0.24616163508459293
+        },
+        {
+          "sample_index": 62,
+          "road_f1": 0.1419624217118998,
+          "road_iou": 0.07640449438202247,
+          "road_auprc": 0.15236222459496523,
+          "junction_f1": 0.05479452054794521,
+          "junction_auprc": 0.17631534551697176
+        },
+        {
+          "sample_index": 63,
+          "road_f1": 0.5025641025641026,
+          "road_iou": 0.3356164383561644,
+          "road_auprc": 0.5434510218324845,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.0
+        },
+        {
+          "sample_index": 64,
+          "road_f1": 0.3552123552123552,
+          "road_iou": 0.215962441314554,
+          "road_auprc": 0.3445361920593898,
+          "junction_f1": 0.03333333333333334,
+          "junction_auprc": 0.2893900092832303
+        },
+        {
+          "sample_index": 65,
+          "road_f1": 0.14785992217898833,
+          "road_iou": 0.07983193277310924,
+          "road_auprc": 0.3017715406620478,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.12275453946644012
+        },
+        {
+          "sample_index": 66,
+          "road_f1": 0.13369713506139153,
+          "road_iou": 0.07163742690058479,
+          "road_auprc": 0.1986921160266795,
+          "junction_f1": 0.014492753623188406,
+          "junction_auprc": 0.11023684598092386
+        },
+        {
+          "sample_index": 67,
+          "road_f1": 0.391304347826087,
+          "road_iou": 0.24324324324324326,
+          "road_auprc": 0.5128347264968758,
+          "junction_f1": 0.3333333333333333,
+          "junction_auprc": 0.4892032364236025
+        },
+        {
+          "sample_index": 68,
+          "road_f1": 0.5352112676056339,
+          "road_iou": 0.36538461538461536,
+          "road_auprc": 0.48575936730490654,
+          "junction_f1": 0.42424242424242425,
+          "junction_auprc": 0.5083454761901945
+        },
+        {
+          "sample_index": 69,
+          "road_f1": 0.3959390862944162,
+          "road_iou": 0.2468354430379747,
+          "road_auprc": 0.5536292076730444,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.9709114414996769
+        },
+        {
+          "sample_index": 70,
+          "road_f1": 0.587360594795539,
+          "road_iou": 0.41578947368421054,
+          "road_auprc": 0.5987606697627097,
+          "junction_f1": 0.47058823529411764,
+          "junction_auprc": 0.7435392144087796
+        },
+        {
+          "sample_index": 71,
+          "road_f1": 0.3434343434343434,
+          "road_iou": 0.2073170731707317,
+          "road_auprc": 0.3767717410612515,
+          "junction_f1": 0.16666666666666669,
+          "junction_auprc": 0.1771487594810767
+        },
+        {
+          "sample_index": 72,
+          "road_f1": 0.34883720930232565,
+          "road_iou": 0.2112676056338028,
+          "road_auprc": 0.3137542705766713,
+          "junction_f1": 0.09090909090909093,
+          "junction_auprc": 0.07942909327125956
+        },
+        {
+          "sample_index": 73,
+          "road_f1": 0.04519774011299435,
+          "road_iou": 0.023121387283236993,
+          "road_auprc": 0.3586906918361771,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.2594696751004279
+        },
+        {
+          "sample_index": 74,
+          "road_f1": 0.1267605633802817,
+          "road_iou": 0.06766917293233082,
+          "road_auprc": 0.1505516748403452,
+          "junction_f1": 0.024390243902439025,
+          "junction_auprc": 0.06709807728555829
+        },
+        {
+          "sample_index": 75,
+          "road_f1": 0.1568627450980392,
+          "road_iou": 0.0851063829787234,
+          "road_auprc": 0.27271945587705304,
+          "junction_f1": 0.0136986301369863,
+          "junction_auprc": 0.1279809733953309
+        },
+        {
+          "sample_index": 76,
+          "road_f1": 0.270042194092827,
+          "road_iou": 0.15609756097560976,
+          "road_auprc": 0.2439239457608497,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.25829837941850237
+        },
+        {
+          "sample_index": 77,
+          "road_f1": 0.031914893617021274,
+          "road_iou": 0.016216216216216217,
+          "road_auprc": 0.15499933690359188,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.11962107965967214
+        },
+        {
+          "sample_index": 78,
+          "road_f1": 0.11088295687885011,
+          "road_iou": 0.058695652173913045,
+          "road_auprc": 0.13692305408704591,
+          "junction_f1": 0.07142857142857142,
+          "junction_auprc": 0.10650047645631204
+        },
+        {
+          "sample_index": 79,
+          "road_f1": 0.030769230769230767,
+          "road_iou": 0.015625,
+          "road_auprc": 0.06598384190678988,
+          "junction_f1": 0.0,
+          "junction_auprc": 0.021117814432213805
+        }
+      ],
+      "repair_composite": 0.20480331137021232,
+      "samples_seen": 40960,
+      "optimizer_updates": 2048,
+      "checkpoint_sha256": "1021331fa365959828d4840b1490feea5abc5e3771a5d8132be45cf7b5b178bc",
+      "prediction_sha256": "2d66ac87e655c5949352f23612abda97c5ce3ac8fcbeea3a0574a0bfbb2ce91d",
+      "learning_rate": 1e-05,
+      "original_bn_checksum_before": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3",
+      "original_bn_checksum_after": "30807e46c6d088ce640c4d40395a5d03e8293372aaea59c50c580d2a5526c7c3"
+    }
+  },
+  "deltas_vs_R0": {
+    "R1": {
+      "road_f1": 0.030164793189289107,
+      "road_iou": 0.019873428242894703,
+      "road_auprc": 0.01544697064830497
+    },
+    "R2": {
+      "road_f1": 0.03890533604124191,
+      "road_iou": 0.02576231064184223,
+      "road_auprc": 0.019051284755190967
+    },
+    "R3": {
+      "road_f1": 0.03280867474030197,
+      "road_iou": 0.02164842892289945,
+      "road_auprc": 0.014591189472004384
+    }
+  },
+  "mean_deltas_vs_R0": {
+    "R1": 0.021828397360162927,
+    "R2": 0.027906310479425035,
+    "R3": 0.023016097711735267
+  },
+  "three_checkpoint_direction": [
+    {
+      "samples_seen": 30720,
+      "road_repair_signal": 0.020574316204991654
+    },
+    {
+      "samples_seen": 35840,
+      "road_repair_signal": 0.03271486057558345
+    },
+    {
+      "samples_seen": 40960,
+      "road_repair_signal": 0.021828397360162927
+    }
+  ],
+  "small_sample_sensitivity": {
+    "status": "PASS",
+    "single_sample_driven": false,
+    "leave_one_out_min_delta": 0.015314978598489957,
+    "bootstrap_95_percentile_interval": [
+      0.006672958012596166,
+      0.02707274527216199
+    ],
+    "sample_count": 80
+  },
+  "precision_recall_collapse": false,
+  "segmentation_causal_gate": "FAIL"
+}
