@@ -17,7 +17,10 @@ if str(REPO_ROOT) not in sys.path:
 from tools.seg_raster.launch_stage_s3b_phase import (
     collect_inventory, excluded_indices, utc_now, write_json,
 )
-from utils.seg_raster.stage_s3 import FifoGpuScheduler, evaluate_gpu_eligibility
+from utils.seg_raster.stage_s3 import (
+    FifoGpuScheduler, evaluate_gpu_eligibility,
+    gpu_eligibility_overrides_from_environment,
+)
 
 
 def assert_frozen(expected_sha: str) -> None:
@@ -64,9 +67,10 @@ def main() -> int:
     samples, apps = collect_inventory(args.sample_interval_seconds)
     required = max(args.required_free_memory_mb,
                    int(os.environ.get("S3_MIN_FREE_MEM_MB", "0") or 0))
+    eligibility_policy = gpu_eligibility_overrides_from_environment()
     eligibility = evaluate_gpu_eligibility(
         samples, apps, required_free_mb=required,
-        excluded_indices=excluded_indices())
+        excluded_indices=excluded_indices(), **eligibility_policy)
     eligible = [row for row in eligibility if row["eligible"]]
     inventory = {
         "stage": "seg_raster_stage_s3c", "phase": plan["phase"],
@@ -74,6 +78,7 @@ def main() -> int:
         "remote_host_label": "exp-237-tunnel",
         "run_code_sha": args.run_code_sha,
         "required_free_memory_mb": required,
+        "eligibility_policy": eligibility_policy,
         "samples": samples, "compute_apps": apps,
         "eligibility": eligibility, "eligible_gpu_count": len(eligible),
         "status": "PASS" if eligible else "BLOCKED_NO_ELIGIBLE_GPU",

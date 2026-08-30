@@ -16,7 +16,9 @@ if str(REPO_ROOT) not in sys.path:
 from tools.seg_raster.launch_stage_s3b_phase import (
     collect_inventory, excluded_indices, utc_now, write_json,
 )
-from utils.seg_raster.stage_s3 import evaluate_gpu_eligibility
+from utils.seg_raster.stage_s3 import (
+    evaluate_gpu_eligibility, gpu_eligibility_overrides_from_environment,
+)
 
 
 def main() -> int:
@@ -28,14 +30,16 @@ def main() -> int:
     parser.add_argument("--required-free-memory-mb", type=int, default=12000)
     args = parser.parse_args()
     samples, apps = collect_inventory(7.0)
+    eligibility_policy = gpu_eligibility_overrides_from_environment()
     eligibility = evaluate_gpu_eligibility(
         samples, apps, required_free_mb=args.required_free_memory_mb,
-        excluded_indices=excluded_indices())
+        excluded_indices=excluded_indices(), **eligibility_policy)
     eligible = [row for row in eligibility if row["eligible"]]
     write_json(args.output_root / "gpu_inventory_phase_ANCHOR.json", {
         "stage": "seg_raster_stage_s3c", "phase": "ANCHOR",
         "execution_environment": "REMOTE_TRAINING_SERVER",
         "samples": samples, "compute_apps": apps,
+        "eligibility_policy": eligibility_policy,
         "eligibility": eligibility, "eligible_gpu_count": len(eligible),
         "status": "PASS" if eligible else "BLOCKED_NO_ELIGIBLE_GPU"})
     if not eligible:

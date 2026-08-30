@@ -9,6 +9,15 @@
       "cuda_preflight_started": false,
       "formal_training_started": false,
       "reason": "The frozen Xi'an train extent exposed two eligible mutable Path objects, fewer than the required local micro-batch of 10. The formal contract requires independent teacher-forced path replicas rather than duplicate reuse of one mutable Path within a batch."
+    },
+    {
+      "run_code_sha": "d2645eb3972ecefb6678fb6b18367e2b312ff0c2",
+      "status": "INVALIDATED_BY_CODE_CHANGE",
+      "failure_gate": "GPU_ELIGIBILITY_POLICY",
+      "optimizer_steps_completed": 0,
+      "cuda_preflight_started": true,
+      "formal_training_started": false,
+      "reason": "The user explicitly authorized co-location with low-memory external GPU processes. The frozen launchers required a transparent opt-in bounded allowance before Phase A/B could execute; no adaptation optimizer step had started."
     }
   ]
 }

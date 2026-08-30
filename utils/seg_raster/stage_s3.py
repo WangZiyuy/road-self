@@ -335,6 +335,8 @@ def evaluate_gpu_eligibility(
     excluded_indices: Iterable[int] = (),
     own_pids: Iterable[int] = (),
     max_utilization: int = 15,
+    allow_external_compute: bool = False,
+    max_external_compute_memory_mb: int = 0,
 ) -> list[dict[str, Any]]:
     """Apply the S3 hard GPU gate to three or more inventory snapshots."""
     if len(samples) < 3:
@@ -357,7 +359,15 @@ def evaluate_gpu_eligibility(
         external = [
             app for app in compute_apps
             if app["gpu_uuid"] == uuid and int(app["pid"]) not in own]
-        if external:
+        external_memory_known = all(
+            app.get("used_memory_mb") is not None for app in external)
+        external_memory_mb = (
+            sum(int(app["used_memory_mb"]) for app in external)
+            if external_memory_known else None)
+        external_allowed = bool(
+            external and allow_external_compute and external_memory_known
+            and external_memory_mb <= int(max_external_compute_memory_mb))
+        if external and not external_allowed:
             reasons.append("external_compute_process")
         if any(int(obs["utilization_percent"]) > max_utilization
                for obs in observations):
@@ -372,9 +382,35 @@ def evaluate_gpu_eligibility(
             "eligible": not reasons,
             "reasons": reasons,
             "external_compute_processes": external,
+            "external_compute_memory_mb": external_memory_mb,
+            "external_compute_allowed": external_allowed,
             "sample_count": len(observations),
         })
     return result
+
+
+def gpu_eligibility_overrides_from_environment() -> dict[str, Any]:
+    """Read the explicit, opt-in low-memory co-location policy.
+
+    The default remains the original hard gate.  Co-location is enabled only
+    when the user has explicitly authorized it and the launcher receives all
+    three environment values.
+    """
+    allow = os.environ.get(
+        "S3_ALLOW_LOW_MEMORY_EXTERNAL_PROCESSES", "0") == "1"
+    maximum_external = int(os.environ.get(
+        "S3_MAX_EXTERNAL_COMPUTE_MEM_MB", "0") or 0)
+    maximum_utilization = int(os.environ.get(
+        "S3_MAX_UTILIZATION", "15") or 15)
+    if allow and maximum_external <= 0:
+        raise ValueError(
+            "low-memory external-process allowance requires a positive "
+            "S3_MAX_EXTERNAL_COMPUTE_MEM_MB")
+    return {
+        "allow_external_compute": allow,
+        "max_external_compute_memory_mb": maximum_external,
+        "max_utilization": maximum_utilization,
+    }
 
 
 class FifoGpuScheduler:

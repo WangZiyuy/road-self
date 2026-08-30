@@ -4,13 +4,13 @@
   "local_cpu_tests": [
     {
       "command": "python -m pytest tests -k stage_s3c -q",
-      "passed": 20,
+      "passed": 21,
       "failed": 0,
-      "deselected": 349
+      "deselected": 350
     },
     {
       "command": "python -m pytest tests -q",
-      "passed": 369,
+      "passed": 371,
       "failed": 0,
       "subtests_passed": 4,
       "warnings": 9

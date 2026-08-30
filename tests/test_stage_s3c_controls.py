@@ -1,6 +1,8 @@
 import numpy as np
 
-from utils.seg_raster.stage_s3 import apply_raster_control
+from utils.seg_raster.stage_s3 import (
+    apply_raster_control, gpu_eligibility_overrides_from_environment,
+)
 from utils.seg_raster.stage_s3c import canonical_sha256
 
 
@@ -28,3 +30,15 @@ def test_replay_plan_hash_changes_on_any_common_sample_identity_change() -> None
     changed = [dict(row) for row in plan]
     changed[1] = dict(changed[1], end_index=2)
     assert canonical_sha256(plan) != canonical_sha256(changed)
+
+
+def test_low_memory_gpu_colocation_requires_explicit_bounded_opt_in(
+        monkeypatch) -> None:
+    monkeypatch.setenv("S3_ALLOW_LOW_MEMORY_EXTERNAL_PROCESSES", "1")
+    monkeypatch.setenv("S3_MAX_EXTERNAL_COMPUTE_MEM_MB", "4096")
+    monkeypatch.setenv("S3_MAX_UTILIZATION", "20")
+    assert gpu_eligibility_overrides_from_environment() == {
+        "allow_external_compute": True,
+        "max_external_compute_memory_mb": 4096,
+        "max_utilization": 20,
+    }

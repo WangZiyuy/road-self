@@ -132,6 +132,24 @@ def test_gpu_inventory_and_compute_process_are_hard_eligibility_gates() -> None:
     assert required_free_memory_mb(4000, 4500) == 6048
 
 
+def test_explicit_low_memory_external_process_allowance_is_bounded() -> None:
+    gpu_text = "0, GPU-a, RTX 4090, 566.24, 24564, 700, 23864, 12, 50"
+    gpu = parse_gpu_inventory_csv(gpu_text)[0]
+    samples = [{"gpus": [dict(gpu)]} for _ in range(3)]
+    apps = parse_compute_apps_csv("123, GPU-a, 700, external.exe")
+    allowed = evaluate_gpu_eligibility(
+        samples, apps, required_free_mb=12000, max_utilization=20,
+        allow_external_compute=True, max_external_compute_memory_mb=4096)
+    assert allowed[0]["eligible"] is True
+    assert allowed[0]["external_compute_allowed"] is True
+    assert allowed[0]["external_compute_memory_mb"] == 700
+    rejected = evaluate_gpu_eligibility(
+        samples, apps, required_free_mb=12000, max_utilization=20,
+        allow_external_compute=True, max_external_compute_memory_mb=512)
+    assert rejected[0]["eligible"] is False
+    assert "external_compute_process" in rejected[0]["reasons"]
+
+
 def test_gpu_scheduler_queues_and_never_double_assigns() -> None:
     scheduler = FifoGpuScheduler([3])
     assert scheduler.allocate("C0") == 3
