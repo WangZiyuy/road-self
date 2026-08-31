@@ -1,0 +1,28 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "branch": "feat/seg-raster-only",
+  "s3d_run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
+  "current_raster_input_dependence": "FAIL",
+  "current_zero_path_root_cause": "MULTIPLE_CAUSES",
+  "strict_zero_preserving_contract": "PASS",
+  "road_only_routing": "PASS",
+  "null_parity_gate": "FAIL",
+  "baseline_controlled_common_samples": 40960,
+  "segmentation_spatial_causal_gate": "FAIL",
+  "junction_parity": "PASS",
+  "frozen_anchor_indirect_gate": "NOT_EXECUTED",
+  "multistep_anchor_validity": "NOT_EXECUTED",
+  "graph_stability_gate": "NOT_EXECUTED",
+  "computational_feasibility": "NOT_EXECUTED_BY_GATE",
+  "go_for_segmentation_multi_seed": "NO_GO",
+  "go_for_end_to_end_multi_seed": "NO_GO",
+  "raster_branch_decision": "STOP_AFTER_NEGATIVE_CONTROL_RESULT",
+  "multi_seed_started": false,
+  "additional_adapter_designed": false,
+  "risks": [
+    "single-seed screening cannot establish statistical significance",
+    "sample-permuted full-graph control uses deterministic tile donors"
+  ]
+}

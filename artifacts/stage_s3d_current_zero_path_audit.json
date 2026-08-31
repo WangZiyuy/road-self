@@ -1,0 +1,41 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "source_contract": {
+    "convolution_bias": true,
+    "group_norm_affine": true,
+    "image_feature_enters_trainable_fusion": true,
+    "valid_mask_enters_trainable_fusion": true,
+    "zero_initialized_final_projection": true
+  },
+  "runtime": {
+    "initialization": {
+      "max_abs_stage_fuse_seg_minus_img": 0.0,
+      "raster_residual_l2_norm": 0.0,
+      "road_logits_sha256": "141b3b4cdd63a8fe617241d7dd18a9d07702105d4ab31dd6b02ea82e5fb1238c"
+    },
+    "after_one_optimizer_step": {
+      "max_abs_stage_fuse_seg_minus_img": 0.003795623779296875,
+      "raster_residual_l2_norm": 0.40930917859077454,
+      "road_logits_sha256": "9c7fcc18364f834f8be1ffe36fc8b79ee5c86bb4160daaa87759902c47c4c0a9"
+    },
+    "s3c_checkpoints": {
+      "R1": {
+        "max_abs_stage_fuse_seg_minus_img": 0.24660290777683258,
+        "raster_residual_l2_norm": 70.0943832397461,
+        "road_logits_sha256": "4e8df8385e5b1077f0744e9cf58abe337eeae4370d63d0b0305f38234c64f2ff"
+      },
+      "R2": {
+        "max_abs_stage_fuse_seg_minus_img": 0.29744428396224976,
+        "raster_residual_l2_norm": 60.21839141845703,
+        "road_logits_sha256": "5fc557e37b50b9d8ee21b049bc90f043d14aa7ad45b5af92d928af56c4e82a7d"
+      },
+      "R3": {
+        "max_abs_stage_fuse_seg_minus_img": 0.2750570476055145,
+        "raster_residual_l2_norm": 72.34194946289062,
+        "road_logits_sha256": "5a5a13cc2bb73bca339ce63e03b4bc45a550766ac09928471fe046428ef0b0d3"
+      }
+    }
+  },
+  "root_cause": "MULTIPLE_CAUSES"
+}

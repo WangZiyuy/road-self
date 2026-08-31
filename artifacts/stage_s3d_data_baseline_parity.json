@@ -1,0 +1,22 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
+  "s3c_run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+  "official_checkpoint_sha256": "498abc76e4ea461040b2b4ce69dc3d896cb975e93aae58815fe76443f6acf7c3",
+  "canonical_raster_sha256": "f67ba7a9383abc8adcbbc7033cd4cb704ddddc1b4f74bbc9de128685b00e0821",
+  "aligned_tile_sha256": "b36055cf866e0e3eb62f278ce5d77cf42d62cd0d714e29aa6555cd40ee1425b1",
+  "shift_large_tile_sha256": "a985178a86af820e4bba5c9a2d85e270f7544a0b614b45c220f4c663e4d6935c",
+  "permuted_tile_sha256": "801563a5c1461afdf08ef7c836b80224aa1b97f00e1d18a86ca7e20597ca88e9",
+  "permuted_tile_donor_mapping_sha256": "763d515d9f94f85741e8ec3703133c3b0bdd6758e6a3350ff03fd2d7294297b0",
+  "sample_plan_sha256": "b3e35b1e152988ebe222b79bb3252628cba01ac3cb597a056dc894bca942d0e9",
+  "sample_plan_contract_sha256": "3d156b4815e484469c46fef1b3f3ba34a7cb2c3f2ab29a5dd0762f66e55c5219",
+  "split_manifest_sha256": "7e6d5d4c7ad10e18ff49cb85cad1dafd4cf6c064628cd913ecb08341c87018da",
+  "shift_xy": [
+    512,
+    512
+  ],
+  "zero_fill": true,
+  "circular_wrap": false,
+  "intended_for_commit": false
+}

@@ -1,0 +1,27 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "RECORDED",
+  "formal_run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
+  "invalidated_code_shas": [
+    {
+      "sha": "a0aa632dc6a61c74fc7849806c566dde06d3206f",
+      "status": "INVALIDATED_BY_CODE_CHANGE",
+      "reason": "DIRECT_EXECUTION_IMPORT_PATH_BUG",
+      "formal_adaptation_optimizer_steps": 0,
+      "formal_results_used": false
+    },
+    {
+      "sha": "ff61ec1c343670da65b02e019d9ee6624e75d004",
+      "status": "INVALIDATED_BY_CODE_CHANGE",
+      "reason": "PREFLIGHT_COMPARED_PRE_STEP_TRAIN_MODE_JUNCTION_WITH_POST_STEP_EVAL_MODE_JUNCTION",
+      "formal_adaptation_optimizer_steps": 0,
+      "temporary_preflight_optimizer_steps": 1,
+      "formal_results_used": false
+    }
+  ],
+  "blocked_gpu_sampling_attempts": {
+    "status": "NOT_FORMAL_RUNS",
+    "optimizer_steps": 0,
+    "reason": "DYNAMIC_GPU_GATE_FOUND_NO_ELIGIBLE_GPU_AT_SAMPLE_TIME"
+  }
+}

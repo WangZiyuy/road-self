@@ -1,0 +1,26 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "sample_identity_sha256": {
+    "N0": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde",
+    "N1": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde",
+    "N2": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde",
+    "N3": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde",
+    "N4": "06bc7d78537b882bb64a6695f8b4ce3d794b7e33736a1922624f872a877a8bde"
+  },
+  "common_tensor_sha256": {
+    "N0": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af",
+    "N1": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af",
+    "N2": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af",
+    "N3": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af",
+    "N4": "df12fed329ad1e9d4b32b793dd80c37505d9cff21ae22994d3b80df164bca6af"
+  },
+  "valid_mask_sha256": {
+    "N0": "6a7b0751f6c0744161bd9f5bd4d4874ae5bdfbbe2f3d995da0335e9b2f30b3a9",
+    "N1": "6a7b0751f6c0744161bd9f5bd4d4874ae5bdfbbe2f3d995da0335e9b2f30b3a9",
+    "N2": "6a7b0751f6c0744161bd9f5bd4d4874ae5bdfbbe2f3d995da0335e9b2f30b3a9",
+    "N3": "6a7b0751f6c0744161bd9f5bd4d4874ae5bdfbbe2f3d995da0335e9b2f30b3a9",
+    "N4": "6a7b0751f6c0744161bd9f5bd4d4874ae5bdfbbe2f3d995da0335e9b2f30b3a9"
+  },
+  "permutation_donor_mapping_sha256": "ea37be0afe656bcbe4e7c5a15ac78c90e882fb8c47644319b6f63116caa43237"
+}

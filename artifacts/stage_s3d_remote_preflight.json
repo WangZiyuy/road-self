@@ -1,0 +1,2240 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
+  "validation_plan_sha256": "00ea19ec5699fb05bf0d59bb5544baefeb16608479c084efe7f28fcad3ea93c4",
+  "checkpoint_load": {
+    "checkpoint_state_key_count": 648,
+    "model_state_key_count": 651,
+    "shared_key_count": 648,
+    "missing_new_key_count": 3,
+    "missing_new_keys": [
+      "zero_preserving_road_adapter.encoder.0.weight",
+      "zero_preserving_road_adapter.encoder.2.weight",
+      "zero_preserving_road_adapter.projection.weight"
+    ],
+    "unexpected_keys": [],
+    "shape_mismatch_keys": [],
+    "trajectory_related_key_count": 0,
+    "data_parallel_prefix_policy": "UNCHANGED",
+    "strict_merged_load": true
+  },
+  "road_shape": [
+    10,
+    1,
+    64,
+    64
+  ],
+  "junction_shape": [
+    10,
+    1,
+    64,
+    64
+  ],
+  "zero_stage_fuse_identity": true,
+  "zero_residual_max_abs": 0.0,
+  "zero_vs_null_road_logits_equal": true,
+  "junction_raster_invariant": true,
+  "finite_trainable_gradients": true,
+  "trainable_parameter_contract": [
+    {
+      "name": "conv_2_side.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_2_side.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_2_side.bn.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_2_side.bn.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_3_side.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_3_side.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_3_side.bn.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_3_side.bn.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_4_side.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_4_side.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_4_side.bn.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_4_side.bn.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_5_side.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_5_side.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_5_side.bn.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_5_side.bn.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_fuse.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_fuse.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_fuse.bn.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_fuse.bn.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "road_seg.0.conv.weight",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.conv.bias",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.bn.weight",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "road_seg.0.bn.bias",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.conv.weight",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.conv.bias",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.bn.weight",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "road_seg.1.bn.bias",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "conv_road_final.weight",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "conv_road_final.bias",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "junc_seg.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "junc_seg.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "junc_seg.0.bn.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "junc_seg.0.bn.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "junc_seg.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "junc_seg.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "junc_seg.1.bn.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "junc_seg.1.bn.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_junc_final.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_junc_final.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_1.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_1.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_1.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_1.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_2.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_2.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_2.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_2.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_3.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_3.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_3.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_3.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_4.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_4.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_4.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_4.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_5.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_5.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_5.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.encoder_5.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_4.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_4.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_4.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_4.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_3.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_3.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_3.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_3.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_2.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_2.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_2.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_2.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_1.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_1.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_1.1.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "fuse_module.decoder_1.1.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.0.ft_conv.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.0.ft_conv.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.0.conv.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.0.conv.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.0.conv.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.0.conv.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.1.ft_conv.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.1.ft_conv.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.1.conv.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.1.conv.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.1.conv.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.1.conv.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.2.ft_conv.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.2.ft_conv.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.2.conv.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.2.conv.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.2.conv.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.2.conv.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.3.ft_conv.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.3.ft_conv.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.3.conv.0.conv.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.3.conv.0.conv.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.3.conv.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "decoders.3.conv.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "next_step_final.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "next_step_final.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_final.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "conv_final.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_1.0.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_1.0.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_1.0.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_1.0.3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_1.0.4.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_1.0.4.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_1.0.6.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.downsample.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.downsample.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.0.downsample.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.1.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_2.2.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.downsample.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.downsample.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.0.downsample.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.1.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.2.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_3.3.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.downsample.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.downsample.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.0.downsample.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.1.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.2.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.3.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.4.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_4.5.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.downsample.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.downsample.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.0.downsample.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.1.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.conv1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bn1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bn1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.convs.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.convs.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.convs.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bns.0.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bns.0.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bns.1.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bns.1.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bns.2.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bns.2.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.conv3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bn3.weight",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "stage_5.2.bn3.bias",
+      "requires_grad": false,
+      "optimizer_included": false,
+      "gradient_source": "FROZEN"
+    },
+    {
+      "name": "zero_preserving_road_adapter.encoder.0.weight",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "zero_preserving_road_adapter.encoder.2.weight",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    },
+    {
+      "name": "zero_preserving_road_adapter.projection.weight",
+      "requires_grad": true,
+      "optimizer_included": true,
+      "gradient_source": "road_segmentation_loss"
+    }
+  ],
+  "peak_allocated_memory_mb": 1632.611328125,
+  "peak_reserved_memory_mb": 1898.0
+}

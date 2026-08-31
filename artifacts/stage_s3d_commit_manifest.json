@@ -1,0 +1,49 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "scope": "final_results_commit_candidate",
+  "branch": "feat/seg-raster-only",
+  "s3d_base_sha": "2271a83a563c39f3d971df9a6342ad6c8a464a78",
+  "run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
+  "manifest_self_policy": {
+    "path": "artifacts/stage_s3d_commit_manifest.json",
+    "listed_in_entries": false,
+    "reason": "A file cannot contain a stable SHA256 digest of itself."
+  },
+  "entries": [
+    {"path":"artifacts/stage_s3d_activation_forensics.json","size_bytes":170793,"sha256":"4af8bf8af1b71447fff21f28fca4b81dec94cb64bce13c708efa5d1d51b46de5","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_anchor_comparison.json","size_bytes":167,"sha256":"775328d0fadcbac316bcbce364ea0dcf65e21d41a2b133ff8d0f203e33e0f7d0","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_checkpoint_inventory.json","size_bytes":22338,"sha256":"94565368704d02d7d805ab8e01f64452751444e9fe940884e854afba671d338f","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_conclusion.json","size_bytes":1118,"sha256":"57291515147306993326f8065ba7879ce4de1e6c6e44dea4dfb322c739bb8eed","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_control_strength_audit.json","size_bytes":66312,"sha256":"e8624583d1e7456111f44019865191c926b3a84ca456d6dfdb8470cc6b6e99c0","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_current_zero_path_audit.json","size_bytes":1557,"sha256":"4f5aa6ba94b93ff94da7d6ee6802b2190cddc9eb374b2b2a3368610f0013d03e","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_data_baseline_parity.json","size_bytes":1180,"sha256":"e71373cfa950217efc8f3a2952673c0f36e24adc1514aadffd0d8108778d99c2","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_git_start.json","size_bytes":569,"sha256":"e2ed484513b0b978e94635e3f7335584e56bf89b5df7bdd2da9cf07691c72db9","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_gpu_inventory_blocked_001.json","size_bytes":24786,"sha256":"17f515455a174d6b7879338909f763a499fbb170874e9da7873f40f4adc19d09","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_gpu_inventory.json","size_bytes":25608,"sha256":"54798fffcee80c7258eea2f67809ec7714d7edf8f50e2aa3d8f92c0c164b63f0","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_gpu_schedule_blocked_001.json","size_bytes":149,"sha256":"87bf5f2ab93d4f1928bc7f81d69af9d317befbeb815e360737a15562a4feddf7","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_gpu_schedule.json","size_bytes":13431,"sha256":"3c64c91075595ebd605cb914c42220c45452c28f2f60c500bac3b36fda9fb937","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_graph_comparison.json","size_bytes":169,"sha256":"66096409574c3e3ce806c8d33280dd823a9f324775362a9af30124c329b457a3","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_input_swap_matrix.json","size_bytes":709892,"sha256":"83e064fd7312652aa35a45c754c97cf80c946cb6db0ea219ba6448724215c817","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_invalid_runs.json","size_bytes":930,"sha256":"11685bf4177e3c0c61610cde1176a8ec43e5052be0d30324eb8d5700df705e24","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_model_contract.json","size_bytes":614,"sha256":"220a20b9e20d5b282d1a202922639aaff70d2f7e22b138d7b3212de38b5e8e30","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_null_parity.json","size_bytes":23862,"sha256":"1eff5e362f7b3671b5bc19932551882aa707a243c1afd57c6b7d8e44caabb905","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_remote_preflight.json","size_bytes":57441,"sha256":"3f7baa98bf318567628e8429461bd499d8ed050db0e5533cb96ba9001e56817f","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_sample_parity.json","size_bytes":1429,"sha256":"086abff0ae413b1a3f134a635132ac74a4b7832f60448f7244e7e5cf97f310ef","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_segmentation_comparison.json","size_bytes":170366,"sha256":"3f158a1a335503347aa0a7424f55209c977cea2d578ed51043af0cdc841798c8","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_test_results.json","size_bytes":723,"sha256":"b5f1a9b091d7e8b78c013c3145681f32cc49173db0ca05bb9a32242fe855ad62","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"artifacts/stage_s3d_training_dynamics.json","size_bytes":2426449,"sha256":"1997c1ae474c0905a993583f31d623bd355ff46f339cb660d18e22b059614b84","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D machine-readable evidence."},
+    {"path":"docs/audits/stage_s3d_controlled_comparison.md","size_bytes":1607,"sha256":"64dc42d20ca5f13d097c27837019beec598e50670f4c2fcae74bcc7b3a39efcf","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D audit report."},
+    {"path":"docs/audits/stage_s3d_final_report.md","size_bytes":1507,"sha256":"1b09b9da1c23ff563bbb9765f4489a5440f3de82103927ee8216e2409017c762","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D audit report."},
+    {"path":"docs/audits/stage_s3d_input_dependence.md","size_bytes":906,"sha256":"cf98a90888c0c7a219d49cfc653af68417956e660bd87233198f4cd2ec495c71","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D audit report."},
+    {"path":"docs/audits/stage_s3d_zero_path.md","size_bytes":929,"sha256":"fd4931283ff1cc0a104be6909bbceba91d87c6678ea95247c4a5ccc739a1462a","generated_by_stage_s3d":true,"intended_for_commit":true,"reason":"Stage S3D audit report."}
+  ],
+  "exclusion_assertions": {
+    "checkpoints_in_commit": false,
+    "datasets_in_commit": false,
+    "raster_in_commit": false,
+    "model_weights_in_commit": false,
+    "cache_in_commit": false,
+    "tensorboard_in_commit": false,
+    "large_logs_in_commit": false
+  }
+}

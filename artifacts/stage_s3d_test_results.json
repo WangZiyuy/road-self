@@ -1,0 +1,25 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
+  "runs": [
+    {
+      "scope": "targeted_zero_path_road_only_null_parity",
+      "command": "python -m pytest tests/test_stage_s3d_zero_path.py tests/test_stage_s3d_road_only_adapter.py tests/test_stage_s3d_null_parity.py -q",
+      "passed": 8,
+      "failed": 0,
+      "warnings": 1,
+      "duration_seconds": 6.34
+    },
+    {
+      "scope": "full_repository_tests",
+      "command": "python -m pytest tests -q",
+      "passed": 389,
+      "failed": 0,
+      "warnings": 13,
+      "duration_seconds": 36.93
+    }
+  ],
+  "local_gpu_used": false
+}

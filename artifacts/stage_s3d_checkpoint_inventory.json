@@ -1,0 +1,552 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "expected_samples_seen": [
+    0,
+    2560,
+    5120,
+    7680,
+    10240,
+    12800,
+    15360,
+    17920,
+    20480,
+    25600,
+    30720,
+    35840,
+    40960
+  ],
+  "versioned_model_checkpoint_count": 65,
+  "runs": {
+    "N0": [
+      {
+        "samples_seen": 0,
+        "optimizer_updates": 0,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_000000.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "facb858b1890b857590cebd8afd1963cf4cb362cd4a69a73372d41ba3a67ce4a",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 2560,
+        "optimizer_updates": 128,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_002560.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "f43fbe77ae22ceed55a29b64c4457c8b5dd2359e704733539a4bde917b870179",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 5120,
+        "optimizer_updates": 256,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_005120.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "85f5db7a4756ebbdca8b1c5f9447645dc76a74eab5eb97e655056f493202ea51",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 7680,
+        "optimizer_updates": 384,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_007680.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "c9764d468eb30217c5e8c50446269101380b4f3fd00ad7ced904b5c452d60a29",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 10240,
+        "optimizer_updates": 512,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_010240.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "e3860ff712416d8d1b5027161697649f373a961ac7ed8afda428b4d99556b5c1",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 12800,
+        "optimizer_updates": 640,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_012800.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "09a18dc1f8680a608189770bb2afe0f322ded46bee0e2da80c21da13707fd688",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 15360,
+        "optimizer_updates": 768,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_015360.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "ad4179bc2b43c4f29e49984380b033fef8a1a785c58f3dc7beb226415af2cfcd",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 17920,
+        "optimizer_updates": 896,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_017920.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "9bbf6cc7ba11f3a4db6c9cd33c26305623165106fd2655b228d7a309e146ffaf",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 20480,
+        "optimizer_updates": 1024,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_020480.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "0b95a6d36c05ab0ccdc1426df88ad7fcdde9024a17e66d2ef14b36ef7cbadffa",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 25600,
+        "optimizer_updates": 1280,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_025600.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "de1e9647f1711a1052b23eca7c8309213b1c32e348acd7b0b954c096bfe99400",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 30720,
+        "optimizer_updates": 1536,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_030720.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "82f1e5d83221eeba76856b11263dc1ff5d5157ba3fddd09ac50a3ce5c4003de3",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 35840,
+        "optimizer_updates": 1792,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_035840.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "7a4459f45cfddd88bc674e3ecc4c5591bbeefb6725ce5d098f654f8f92db90de",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 40960,
+        "optimizer_updates": 2048,
+        "logical_path": "${S3D_RUN_ROOT}/N0_null_seed20260827/checkpoints/samples_040960.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "4703db29a472c608e1b3ecd09ce73308ec19e25aed3ac4f34124c3373ddff964",
+        "optimizer_included": false
+      }
+    ],
+    "N1": [
+      {
+        "samples_seen": 0,
+        "optimizer_updates": 0,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_000000.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "5bd10e4feed6ac4170d75cd265988b2b5f3701cdc2098dd6989643f92ed3c0cf",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 2560,
+        "optimizer_updates": 128,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_002560.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "3d9da4be3c4c83ed12790cc16139bb5f674e1909426f837a4f344a832fbd2987",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 5120,
+        "optimizer_updates": 256,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_005120.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "c9339affbce4e5f531cb23aacaedcfabcc92bc6169a3bb3d48955b20592e342f",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 7680,
+        "optimizer_updates": 384,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_007680.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "fb7925505348187ef079d7a78b633859f96dece56d47780d82c7c36c67828215",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 10240,
+        "optimizer_updates": 512,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_010240.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "2cf42f53c2a4fd001fab916ce0050081837cf7fc1e5a24a90258301e6b5dc527",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 12800,
+        "optimizer_updates": 640,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_012800.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "4f386adb855d9dacc005efb25cff3fc3ed1bb817ff7395a573f22dd7aa106c8b",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 15360,
+        "optimizer_updates": 768,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_015360.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "9bb8e747c8a45c44eddddde2a2fe07719f678a63145ee2315be315adc70ffffb",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 17920,
+        "optimizer_updates": 896,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_017920.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "c40821c1fcc096276db48f81a14a5b08b74de9173fc9538bb685fbdc24c823ed",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 20480,
+        "optimizer_updates": 1024,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_020480.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "156a0ed91f3e3ef9b7033b5cc641aa70033222adc9f4e612e5d839dd5146f92a",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 25600,
+        "optimizer_updates": 1280,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_025600.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "6e9c21168986195d641d755b4deaeba5301312e6b744f8a86577d0b55d5d4d48",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 30720,
+        "optimizer_updates": 1536,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_030720.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "074a5db9c1e776a769358844f4b358801496737681cbc143dc5cb08b8c3bfe49",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 35840,
+        "optimizer_updates": 1792,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_035840.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "d1494004d90dc390e2f3ba2efa4e5d39e2a2ba9bed6f76222c08a62168aa6441",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 40960,
+        "optimizer_updates": 2048,
+        "logical_path": "${S3D_RUN_ROOT}/N1_aligned_seed20260827/checkpoints/samples_040960.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "694b588448ac4febc1164abdd93041aba503428f8c43a6a4d9dc51b6500075a5",
+        "optimizer_included": false
+      }
+    ],
+    "N2": [
+      {
+        "samples_seen": 0,
+        "optimizer_updates": 0,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_000000.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "44d13f7a7f8d6dcb28f78c885fdc5e59fa07981a4dadd025732663fdedd334d1",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 2560,
+        "optimizer_updates": 128,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_002560.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "a99463452d55880ac5eb74bf7ca63515da6b5cd401eac670c3e726d911326987",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 5120,
+        "optimizer_updates": 256,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_005120.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "dd9b1a876507a5f552e62dbf8165b08b90bec610c45fc0ff3ad5f6927d537259",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 7680,
+        "optimizer_updates": 384,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_007680.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "a1d6210b35735c0cd837d7e14eafebea6dced6c405ff8cf433306d619c44ee17",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 10240,
+        "optimizer_updates": 512,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_010240.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "a21cefdf8d1f968800bef65747bf553a414f1716271ca987a9c44949144f1d8c",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 12800,
+        "optimizer_updates": 640,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_012800.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "2d45fdad17e1c5e6bc1d4434978a7014a965f1101ef9d0602066d6f0792cb75c",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 15360,
+        "optimizer_updates": 768,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_015360.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "1420e2b624c75397ad23f91622f9e3a8f2bcf3ed10e0b6590540c59588b2e2ff",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 17920,
+        "optimizer_updates": 896,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_017920.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "34464a5db9cfa2d2e354217cf7736b17366c1b4c25c2ae111a48173fb30d8043",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 20480,
+        "optimizer_updates": 1024,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_020480.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "8610c8bb788ee61e04a1774a7ae844e2a29241348258eb9457e09361183b09c3",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 25600,
+        "optimizer_updates": 1280,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_025600.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "6cba04c6e755784b515a172e0bc3e88fff50da0426ff3028c176e58dd9d169b8",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 30720,
+        "optimizer_updates": 1536,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_030720.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "bb16911e8ac53688228d47a1c7df1990e5e49ad1cc74a07ec78d6ac52f9e6cfb",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 35840,
+        "optimizer_updates": 1792,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_035840.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "83644d790c8981831b1e6668f89fd8f948f2a7303e5c4ed13532cf0dd076ec9c",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 40960,
+        "optimizer_updates": 2048,
+        "logical_path": "${S3D_RUN_ROOT}/N2_zero_seed20260827/checkpoints/samples_040960.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "655756c782689740688ade130b2f9218bfbd011dc31d7cb03181c9aac9aab3ac",
+        "optimizer_included": false
+      }
+    ],
+    "N3": [
+      {
+        "samples_seen": 0,
+        "optimizer_updates": 0,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_000000.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "321bc91cdbf762bde4200f27d7514f54d475b36c932bdc258017ffb802efdf8d",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 2560,
+        "optimizer_updates": 128,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_002560.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "44d28269d064a8984ef0a7d9824cf27031c1c608ba90c06c921be9fa6763f614",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 5120,
+        "optimizer_updates": 256,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_005120.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "7750fdafc5a7ce28e0d5a935a54d896f5464280fa27e688db6a4884839ca032f",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 7680,
+        "optimizer_updates": 384,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_007680.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "99a292a4b2a87a332f52d41ddd062ce7336f70ef62ca14a38d199fcc9f1f5d91",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 10240,
+        "optimizer_updates": 512,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_010240.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "b8b90096f52210827af2c640996e08b94d452c9fc619dbfd3b359f3ab83903b7",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 12800,
+        "optimizer_updates": 640,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_012800.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "87d9e74df6ba42c093548496b077a0c248ae3bd6a81e6b922996c4554d2b6358",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 15360,
+        "optimizer_updates": 768,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_015360.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "a3c493e1e4534dee223d918e418422de641d5d9e7faefc06c730635c929e2965",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 17920,
+        "optimizer_updates": 896,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_017920.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "a46a74b7215a7f323c55a1a2c2fe96e78b9f84b11c91a4be291c294e8ee50316",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 20480,
+        "optimizer_updates": 1024,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_020480.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "3560c82753ffcdc9ff545dafaee017cb7579969d2c10ad8e7d593f44b77bcedf",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 25600,
+        "optimizer_updates": 1280,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_025600.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "e09aa20e822130e0a93118b889e7a71bf2b7d6e0802e49fb5355838c218996f6",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 30720,
+        "optimizer_updates": 1536,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_030720.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "f7dd0d9a5a5eab78c414eb0b86474a4e4548d8511a91350fa12f4b6635a9e7ed",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 35840,
+        "optimizer_updates": 1792,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_035840.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "7720e0dcf66feb2a1ff28cbedf09cb37d169fc514713faf7f912f73e1f2d162b",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 40960,
+        "optimizer_updates": 2048,
+        "logical_path": "${S3D_RUN_ROOT}/N3_shift512_seed20260827/checkpoints/samples_040960.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "abaa889e054a81582c794820c8502135a1e6575c648a345d2ac13ce194ca19fb",
+        "optimizer_included": false
+      }
+    ],
+    "N4": [
+      {
+        "samples_seen": 0,
+        "optimizer_updates": 0,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_000000.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "b96435c224725344d019229516edbf91fc1e637e3551dc39d657260de8b0f079",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 2560,
+        "optimizer_updates": 128,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_002560.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "97ec395c69cd1baccf0e5067c964728e3c5f96cf9db46db662b34a79e80d0c06",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 5120,
+        "optimizer_updates": 256,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_005120.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "f56a3c41b59758193a2cd0726526dfd80d334a375dc4f053641e441e45484388",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 7680,
+        "optimizer_updates": 384,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_007680.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "66867bdd14633eb1c5878b5f25d59921a9dde9c43351977dd57785f9da762fc1",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 10240,
+        "optimizer_updates": 512,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_010240.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "39d3ed1f2a2bea57d26fa38392b1e605f32e868699c18dd6d1370f423ca93838",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 12800,
+        "optimizer_updates": 640,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_012800.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "291c2a81b104627f6c4daab1496a3d944038ba7b911fa7627867a613cdcf34f1",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 15360,
+        "optimizer_updates": 768,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_015360.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "8c9e79f15c1503b99176bfc8b9702ec9f432b881ad6c1aa2ddee070ee08c41cf",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 17920,
+        "optimizer_updates": 896,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_017920.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "7d3a0023a521ed1f52831d171bcf4762d38392a737fc23c64ddc491f3707b2e4",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 20480,
+        "optimizer_updates": 1024,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_020480.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "0c4ed2d92aa033ec39c2ac6fa89d3186343fb4b60d34b8815698edbca1c20241",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 25600,
+        "optimizer_updates": 1280,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_025600.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "ca23d8a59161b71ec48546e9eb135d3f05455d58469adcce7313a835fa7d1d90",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 30720,
+        "optimizer_updates": 1536,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_030720.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "5009afc2faec3b1a4cfb370564ab5278275cdbe633010391f095987545a230e5",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 35840,
+        "optimizer_updates": 1792,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_035840.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "2ab3d0d30dc292322071293a067b1bcd71532968c720f10846d11b776b747614",
+        "optimizer_included": false
+      },
+      {
+        "samples_seen": 40960,
+        "optimizer_updates": 2048,
+        "logical_path": "${S3D_RUN_ROOT}/N4_permuted_seed20260827/checkpoints/samples_040960.pth.tar",
+        "size_bytes": 130359933,
+        "sha256": "7890b2f0f7e344942ff8a90b75ef58b2d715bad0290038625ef7950ab4f71b28",
+        "optimizer_included": false
+      }
+    ]
+  }
+}

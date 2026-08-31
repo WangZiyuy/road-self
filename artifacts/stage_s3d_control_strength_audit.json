@@ -1,0 +1,1985 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "controls": {
+    "aligned": {
+      "positive_ratio": 0.48213825225830076,
+      "aligned_control_iou": 1.0,
+      "binary_pearson_correlation_mean": 1.0,
+      "road_gt_overlap_ratio": 0.07202884096917746,
+      "positive_to_road_gt_distance_pixels": {
+        "status": "PASS",
+        "mean": 23.778759267026608,
+        "p50": 16.0,
+        "p95": 77.0
+      },
+      "per_sample": [
+        {
+          "sample_index": 0,
+          "positive_ratio": 0.2013092041015625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.031607670734480404
+        },
+        {
+          "sample_index": 1,
+          "positive_ratio": 0.477386474609375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.05823691107843764
+        },
+        {
+          "sample_index": 2,
+          "positive_ratio": 0.1268310546875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.0715832531280077
+        },
+        {
+          "sample_index": 3,
+          "positive_ratio": 0.5891571044921875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.026520939628603246
+        },
+        {
+          "sample_index": 4,
+          "positive_ratio": 0.6454315185546875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06399678479396675
+        },
+        {
+          "sample_index": 5,
+          "positive_ratio": 0.0150299072265625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.09137055837563451
+        },
+        {
+          "sample_index": 6,
+          "positive_ratio": 0.85406494140625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.09263560351604373
+        },
+        {
+          "sample_index": 7,
+          "positive_ratio": 0.7489471435546875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.047307621783509564
+        },
+        {
+          "sample_index": 8,
+          "positive_ratio": 0.7490386962890625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.13361445537696837
+        },
+        {
+          "sample_index": 9,
+          "positive_ratio": 0.005950927734375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.038461538461538464
+        },
+        {
+          "sample_index": 10,
+          "positive_ratio": 0.1187744140625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06770298047276464
+        },
+        {
+          "sample_index": 11,
+          "positive_ratio": 0.482391357421875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.05434301258935915
+        },
+        {
+          "sample_index": 12,
+          "positive_ratio": 0.6153717041015625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.025391157727689753
+        },
+        {
+          "sample_index": 13,
+          "positive_ratio": 0.00555419921875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04120879120879121
+        },
+        {
+          "sample_index": 14,
+          "positive_ratio": 0.7943878173828125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.13954783811298285
+        },
+        {
+          "sample_index": 15,
+          "positive_ratio": 0.201324462890625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.030998938911626497
+        },
+        {
+          "sample_index": 16,
+          "positive_ratio": 0.8404998779296875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.0917887551513171
+        },
+        {
+          "sample_index": 17,
+          "positive_ratio": 0.7549591064453125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04515229298461912
+        },
+        {
+          "sample_index": 18,
+          "positive_ratio": 0.01611328125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.14962121212121213
+        },
+        {
+          "sample_index": 19,
+          "positive_ratio": 0.64532470703125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06464579589520476
+        },
+        {
+          "sample_index": 20,
+          "positive_ratio": 0.09857177734375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.034055727554179564
+        },
+        {
+          "sample_index": 21,
+          "positive_ratio": 0.7437591552734375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04872494512032497
+        },
+        {
+          "sample_index": 22,
+          "positive_ratio": 0.0239410400390625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.17590822179732313
+        },
+        {
+          "sample_index": 23,
+          "positive_ratio": 0.0538482666015625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 24,
+          "positive_ratio": 0.74627685546875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04154739510918459
+        },
+        {
+          "sample_index": 25,
+          "positive_ratio": 0.8977813720703125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.12357870047759063
+        },
+        {
+          "sample_index": 26,
+          "positive_ratio": 0.431396484375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.07512733446519525
+        },
+        {
+          "sample_index": 27,
+          "positive_ratio": 0.473968505859375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06004120790676711
+        },
+        {
+          "sample_index": 28,
+          "positive_ratio": 0.2208404541015625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04629309749188144
+        },
+        {
+          "sample_index": 29,
+          "positive_ratio": 0.637603759765625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06873115397501556
+        },
+        {
+          "sample_index": 30,
+          "positive_ratio": 0.7614593505859375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.09554535799450935
+        },
+        {
+          "sample_index": 31,
+          "positive_ratio": 0.5891571044921875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.05304187925720649
+        },
+        {
+          "sample_index": 32,
+          "positive_ratio": 0.7257843017578125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.05157153369073899
+        },
+        {
+          "sample_index": 33,
+          "positive_ratio": 0.52264404296875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.05398224921172486
+        },
+        {
+          "sample_index": 34,
+          "positive_ratio": 0.897247314453125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.1260671405734499
+        },
+        {
+          "sample_index": 35,
+          "positive_ratio": 0.84423828125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.09425607287449393
+        },
+        {
+          "sample_index": 36,
+          "positive_ratio": 0.00518798828125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.07058823529411765
+        },
+        {
+          "sample_index": 37,
+          "positive_ratio": 0.1287689208984375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04443654461429079
+        },
+        {
+          "sample_index": 38,
+          "positive_ratio": 0.0160064697265625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.09914204003813155
+        },
+        {
+          "sample_index": 39,
+          "positive_ratio": 0.198944091796875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.08352508053382421
+        },
+        {
+          "sample_index": 40,
+          "positive_ratio": 0.7837371826171875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04849794599225123
+        },
+        {
+          "sample_index": 41,
+          "positive_ratio": 0.7591094970703125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04092544573760277
+        },
+        {
+          "sample_index": 42,
+          "positive_ratio": 0.4644775390625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06323915900131406
+        },
+        {
+          "sample_index": 43,
+          "positive_ratio": 0.9018096923828125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.12353428875991947
+        },
+        {
+          "sample_index": 44,
+          "positive_ratio": 0.0181121826171875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.10193765796124685
+        },
+        {
+          "sample_index": 45,
+          "positive_ratio": 0.0778656005859375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.14285714285714285
+        },
+        {
+          "sample_index": 46,
+          "positive_ratio": 0.1508941650390625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.011325715441399535
+        },
+        {
+          "sample_index": 47,
+          "positive_ratio": 0.899688720703125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.1170923645737933
+        },
+        {
+          "sample_index": 48,
+          "positive_ratio": 0.5996856689453125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.052110633317218394
+        },
+        {
+          "sample_index": 49,
+          "positive_ratio": 0.50054931640625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04907938056334593
+        },
+        {
+          "sample_index": 50,
+          "positive_ratio": 0.1026611328125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.10775862068965517
+        },
+        {
+          "sample_index": 51,
+          "positive_ratio": 0.71722412109375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04510254446430091
+        },
+        {
+          "sample_index": 52,
+          "positive_ratio": 0.5367431640625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04565612917898567
+        },
+        {
+          "sample_index": 53,
+          "positive_ratio": 0.6126708984375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.05100617652918908
+        },
+        {
+          "sample_index": 54,
+          "positive_ratio": 0.91363525390625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.11821096933662903
+        },
+        {
+          "sample_index": 55,
+          "positive_ratio": 0.575347900390625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.048665994801888296
+        },
+        {
+          "sample_index": 56,
+          "positive_ratio": 0.0071868896484375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.040339702760084924
+        },
+        {
+          "sample_index": 57,
+          "positive_ratio": 0.7392425537109375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.09181167048527257
+        },
+        {
+          "sample_index": 58,
+          "positive_ratio": 0.75634765625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.039400419625564884
+        },
+        {
+          "sample_index": 59,
+          "positive_ratio": 0.28558349609375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06331481085702073
+        },
+        {
+          "sample_index": 60,
+          "positive_ratio": 0.1867523193359375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.033744586976060136
+        },
+        {
+          "sample_index": 61,
+          "positive_ratio": 0.288818359375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.0617603550295858
+        },
+        {
+          "sample_index": 62,
+          "positive_ratio": 0.818511962890625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.09675254464785056
+        },
+        {
+          "sample_index": 63,
+          "positive_ratio": 0.6392822265625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.0488829482528165
+        },
+        {
+          "sample_index": 64,
+          "positive_ratio": 0.01397705078125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.0851528384279476
+        },
+        {
+          "sample_index": 65,
+          "positive_ratio": 0.0523681640625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.07400932400932402
+        },
+        {
+          "sample_index": 66,
+          "positive_ratio": 0.887115478515625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.1252881076060408
+        },
+        {
+          "sample_index": 67,
+          "positive_ratio": 0.7436676025390625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.0259351211605146
+        },
+        {
+          "sample_index": 68,
+          "positive_ratio": 0.555755615234375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.041733018505298994
+        },
+        {
+          "sample_index": 69,
+          "positive_ratio": 0.5842742919921875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04860149904677339
+        },
+        {
+          "sample_index": 70,
+          "positive_ratio": 0.787353515625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.03937984496124031
+        },
+        {
+          "sample_index": 71,
+          "positive_ratio": 0.740997314453125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06260038713397306
+        },
+        {
+          "sample_index": 72,
+          "positive_ratio": 0.2764129638671875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.06596743030637593
+        },
+        {
+          "sample_index": 73,
+          "positive_ratio": 0.0064544677734375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04491725768321513
+        },
+        {
+          "sample_index": 74,
+          "positive_ratio": 0.43511962890625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.07792116706410436
+        },
+        {
+          "sample_index": 75,
+          "positive_ratio": 0.8376617431640625,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.1271836348070022
+        },
+        {
+          "sample_index": 76,
+          "positive_ratio": 0.7263641357421875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04812721887276012
+        },
+        {
+          "sample_index": 77,
+          "positive_ratio": 0.5609130859375,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04975516866158868
+        },
+        {
+          "sample_index": 78,
+          "positive_ratio": 0.832794189453125,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.09754846275055884
+        },
+        {
+          "sample_index": 79,
+          "positive_ratio": 0.2886199951171875,
+          "aligned_control_iou": 1.0,
+          "road_gt_overlap_ratio": 0.04472640761300555
+        }
+      ]
+    },
+    "shift_fixed": {
+      "positive_ratio": 0.38157119750976565,
+      "aligned_control_iou": 0.3446630684861867,
+      "binary_pearson_correlation_mean": -0.1245711108322601,
+      "road_gt_overlap_ratio": 0.05158627805003869,
+      "positive_to_road_gt_distance_pixels": {
+        "status": "PASS",
+        "mean": 37.694617576620026,
+        "p50": 25.495097567963924,
+        "p95": 105.0
+      },
+      "per_sample": [
+        {
+          "sample_index": 0,
+          "positive_ratio": 0.036865234375,
+          "aligned_control_iou": 0.051606818028700395,
+          "road_gt_overlap_ratio": 0.04718543046357616
+        },
+        {
+          "sample_index": 1,
+          "positive_ratio": 0.271484375,
+          "aligned_control_iou": 0.10858123828239706,
+          "road_gt_overlap_ratio": 0.01410746402877698
+        },
+        {
+          "sample_index": 2,
+          "positive_ratio": 0.573150634765625,
+          "aligned_control_iou": 0.10518454273874915,
+          "road_gt_overlap_ratio": 0.032080293914062086
+        },
+        {
+          "sample_index": 3,
+          "positive_ratio": 0.329620361328125,
+          "aligned_control_iou": 0.14770128087831655,
+          "road_gt_overlap_ratio": 0.005508749189889825
+        },
+        {
+          "sample_index": 4,
+          "positive_ratio": 0.492767333984375,
+          "aligned_control_iou": 0.28926491176521424,
+          "road_gt_overlap_ratio": 0.03960488016349786
+        },
+        {
+          "sample_index": 5,
+          "positive_ratio": 0.0093536376953125,
+          "aligned_control_iou": 0.01139240506329114,
+          "road_gt_overlap_ratio": 0.0636215334420881
+        },
+        {
+          "sample_index": 6,
+          "positive_ratio": 0.91387939453125,
+          "aligned_control_iou": 0.7683760683760684,
+          "road_gt_overlap_ratio": 0.0742837106792226
+        },
+        {
+          "sample_index": 7,
+          "positive_ratio": 0.54168701171875,
+          "aligned_control_iou": 0.4052666555906297,
+          "road_gt_overlap_ratio": 0.03163380281690141
+        },
+        {
+          "sample_index": 8,
+          "positive_ratio": 0.7007293701171875,
+          "aligned_control_iou": 0.4499671890976239,
+          "road_gt_overlap_ratio": 0.09383097794133659
+        },
+        {
+          "sample_index": 9,
+          "positive_ratio": 0.010833740234375,
+          "aligned_control_iou": 0.0045662100456621,
+          "road_gt_overlap_ratio": 0.05352112676056338
+        },
+        {
+          "sample_index": 10,
+          "positive_ratio": 0.519500732421875,
+          "aligned_control_iou": 0.0879912606965433,
+          "road_gt_overlap_ratio": 0.03501145509017212
+        },
+        {
+          "sample_index": 11,
+          "positive_ratio": 0.266693115234375,
+          "aligned_control_iou": 0.1055013849167924,
+          "road_gt_overlap_ratio": 0.012816111683258954
+        },
+        {
+          "sample_index": 12,
+          "positive_ratio": 0.3323211669921875,
+          "aligned_control_iou": 0.15981325863678805,
+          "road_gt_overlap_ratio": 0.0058772211763625515
+        },
+        {
+          "sample_index": 13,
+          "positive_ratio": 0.01019287109375,
+          "aligned_control_iou": 0.0029154518950437317,
+          "road_gt_overlap_ratio": 0.05688622754491018
+        },
+        {
+          "sample_index": 14,
+          "positive_ratio": 0.6486663818359375,
+          "aligned_control_iou": 0.4432523997741389,
+          "road_gt_overlap_ratio": 0.09835101503140364
+        },
+        {
+          "sample_index": 15,
+          "positive_ratio": 0.047210693359375,
+          "aligned_control_iou": 0.06318537859007833,
+          "road_gt_overlap_ratio": 0.04751131221719457
+        },
+        {
+          "sample_index": 16,
+          "positive_ratio": 0.92608642578125,
+          "aligned_control_iou": 0.7670177045177046,
+          "road_gt_overlap_ratio": 0.07106373162855072
+        },
+        {
+          "sample_index": 17,
+          "positive_ratio": 0.5039520263671875,
+          "aligned_control_iou": 0.37978091813696796,
+          "road_gt_overlap_ratio": 0.030702152784085748
+        },
+        {
+          "sample_index": 18,
+          "positive_ratio": 0.0072021484375,
+          "aligned_control_iou": 0.011920529801324504,
+          "road_gt_overlap_ratio": 0.1038135593220339
+        },
+        {
+          "sample_index": 19,
+          "positive_ratio": 0.488677978515625,
+          "aligned_control_iou": 0.2928467051701343,
+          "road_gt_overlap_ratio": 0.039311809155061515
+        },
+        {
+          "sample_index": 20,
+          "positive_ratio": 0.31353759765625,
+          "aligned_control_iou": 0.0289937897664495,
+          "road_gt_overlap_ratio": 0.059373175004866656
+        },
+        {
+          "sample_index": 21,
+          "positive_ratio": 0.5820159912109375,
+          "aligned_control_iou": 0.4326040000659533,
+          "road_gt_overlap_ratio": 0.03324332118606298
+        },
+        {
+          "sample_index": 22,
+          "positive_ratio": 0.0065460205078125,
+          "aligned_control_iou": 0.010111223458038422,
+          "road_gt_overlap_ratio": 0.11188811188811189
+        },
+        {
+          "sample_index": 23,
+          "positive_ratio": 0.4893035888671875,
+          "aligned_control_iou": 0.08680120904955271,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 24,
+          "positive_ratio": 0.3666229248046875,
+          "aligned_control_iou": 0.24668820402372527,
+          "road_gt_overlap_ratio": 0.021975277812460982
+        },
+        {
+          "sample_index": 25,
+          "positive_ratio": 0.49285888671875,
+          "aligned_control_iou": 0.4419042495965573,
+          "road_gt_overlap_ratio": 0.12247678018575851
+        },
+        {
+          "sample_index": 26,
+          "positive_ratio": 0.0637969970703125,
+          "aligned_control_iou": 0.09627402628112015,
+          "road_gt_overlap_ratio": 0.07199234632862951
+        },
+        {
+          "sample_index": 27,
+          "positive_ratio": 0.2722930908203125,
+          "aligned_control_iou": 0.11003427222587893,
+          "road_gt_overlap_ratio": 0.015746707761277668
+        },
+        {
+          "sample_index": 28,
+          "positive_ratio": 0.0381622314453125,
+          "aligned_control_iou": 0.04674395658608781,
+          "road_gt_overlap_ratio": 0.06117552978808476
+        },
+        {
+          "sample_index": 29,
+          "positive_ratio": 0.4501953125,
+          "aligned_control_iou": 0.2976682381637148,
+          "road_gt_overlap_ratio": 0.038876084598698485
+        },
+        {
+          "sample_index": 30,
+          "positive_ratio": 0.930877685546875,
+          "aligned_control_iou": 0.6927503052503052,
+          "road_gt_overlap_ratio": 0.06884568730944497
+        },
+        {
+          "sample_index": 31,
+          "positive_ratio": 0.4121856689453125,
+          "aligned_control_iou": 0.2309885574939036,
+          "road_gt_overlap_ratio": 0.02195239329211861
+        },
+        {
+          "sample_index": 32,
+          "positive_ratio": 0.676605224609375,
+          "aligned_control_iou": 0.48596604688763134,
+          "road_gt_overlap_ratio": 0.03608317171079338
+        },
+        {
+          "sample_index": 33,
+          "positive_ratio": 0.262908935546875,
+          "aligned_control_iou": 0.13137306610407876,
+          "road_gt_overlap_ratio": 0.00934416715031921
+        },
+        {
+          "sample_index": 34,
+          "positive_ratio": 0.486602783203125,
+          "aligned_control_iou": 0.4403328780611759,
+          "road_gt_overlap_ratio": 0.12978990279084351
+        },
+        {
+          "sample_index": 35,
+          "positive_ratio": 0.915771484375,
+          "aligned_control_iou": 0.7604395604395604,
+          "road_gt_overlap_ratio": 0.07517995201279659
+        },
+        {
+          "sample_index": 36,
+          "positive_ratio": 0.0108184814453125,
+          "aligned_control_iou": 0.0028680688336520078,
+          "road_gt_overlap_ratio": 0.07193229901269393
+        },
+        {
+          "sample_index": 37,
+          "positive_ratio": 0.031707763671875,
+          "aligned_control_iou": 0.0331041257367387,
+          "road_gt_overlap_ratio": 0.05919153031761309
+        },
+        {
+          "sample_index": 38,
+          "positive_ratio": 0.0125579833984375,
+          "aligned_control_iou": 0.011891891891891892,
+          "road_gt_overlap_ratio": 0.04495747266099635
+        },
+        {
+          "sample_index": 39,
+          "positive_ratio": 0.573760986328125,
+          "aligned_control_iou": 0.13987304731463557,
+          "road_gt_overlap_ratio": 0.032524865698633054
+        },
+        {
+          "sample_index": 40,
+          "positive_ratio": 0.504730224609375,
+          "aligned_control_iou": 0.3939679080824089,
+          "road_gt_overlap_ratio": 0.03053388959429228
+        },
+        {
+          "sample_index": 41,
+          "positive_ratio": 0.4665679931640625,
+          "aligned_control_iou": 0.34997142953178045,
+          "road_gt_overlap_ratio": 0.025018804984138405
+        },
+        {
+          "sample_index": 42,
+          "positive_ratio": 0.248382568359375,
+          "aligned_control_iou": 0.09422649022133739,
+          "road_gt_overlap_ratio": 0.0190441086128517
+        },
+        {
+          "sample_index": 43,
+          "positive_ratio": 0.4989166259765625,
+          "aligned_control_iou": 0.4484434416270887,
+          "road_gt_overlap_ratio": 0.12138728323699421
+        },
+        {
+          "sample_index": 44,
+          "positive_ratio": 0.0159759521484375,
+          "aligned_control_iou": 0.010402532790592492,
+          "road_gt_overlap_ratio": 0.06208213944603629
+        },
+        {
+          "sample_index": 45,
+          "positive_ratio": 0.0413818359375,
+          "aligned_control_iou": 0.022370486656200943,
+          "road_gt_overlap_ratio": 0.034292035398230086
+        },
+        {
+          "sample_index": 46,
+          "positive_ratio": 0.2593841552734375,
+          "aligned_control_iou": 0.0562539283469516,
+          "road_gt_overlap_ratio": 0.04400258838755221
+        },
+        {
+          "sample_index": 47,
+          "positive_ratio": 0.8760528564453125,
+          "aligned_control_iou": 0.7757415771484375,
+          "road_gt_overlap_ratio": 0.09651124309825301
+        },
+        {
+          "sample_index": 48,
+          "positive_ratio": 0.3153533935546875,
+          "aligned_control_iou": 0.16399774840350162,
+          "road_gt_overlap_ratio": 0.014661053853970098
+        },
+        {
+          "sample_index": 49,
+          "positive_ratio": 0.599822998046875,
+          "aligned_control_iou": 0.22816220174736448,
+          "road_gt_overlap_ratio": 0.043067921648435516
+        },
+        {
+          "sample_index": 50,
+          "positive_ratio": 0.0441741943359375,
+          "aligned_control_iou": 0.02656283336889268,
+          "road_gt_overlap_ratio": 0.03557858376511226
+        },
+        {
+          "sample_index": 51,
+          "positive_ratio": 0.640777587890625,
+          "aligned_control_iou": 0.4051946001421015,
+          "road_gt_overlap_ratio": 0.026122779444682574
+        },
+        {
+          "sample_index": 52,
+          "positive_ratio": 0.579437255859375,
+          "aligned_control_iou": 0.2320415003452748,
+          "road_gt_overlap_ratio": 0.04374045399483857
+        },
+        {
+          "sample_index": 53,
+          "positive_ratio": 0.3069000244140625,
+          "aligned_control_iou": 0.16397875422501207,
+          "road_gt_overlap_ratio": 0.01153482822055387
+        },
+        {
+          "sample_index": 54,
+          "positive_ratio": 0.5108795166015625,
+          "aligned_control_iou": 0.47346075537808363,
+          "road_gt_overlap_ratio": 0.11717093276783848
+        },
+        {
+          "sample_index": 55,
+          "positive_ratio": 0.2679595947265625,
+          "aligned_control_iou": 0.1853257838973963,
+          "road_gt_overlap_ratio": 0.02032913843175218
+        },
+        {
+          "sample_index": 56,
+          "positive_ratio": 0.016815185546875,
+          "aligned_control_iou": 0.001910828025477707,
+          "road_gt_overlap_ratio": 0.019056261343012703
+        },
+        {
+          "sample_index": 57,
+          "positive_ratio": 0.9287109375,
+          "aligned_control_iou": 0.6683608058608058,
+          "road_gt_overlap_ratio": 0.0632722134595163
+        },
+        {
+          "sample_index": 58,
+          "positive_ratio": 0.4629669189453125,
+          "aligned_control_iou": 0.347424331843858,
+          "road_gt_overlap_ratio": 0.024092811706931214
+        },
+        {
+          "sample_index": 59,
+          "positive_ratio": 0.5640869140625,
+          "aligned_control_iou": 0.19498690930941243,
+          "road_gt_overlap_ratio": 0.036193464618048045
+        },
+        {
+          "sample_index": 60,
+          "positive_ratio": 0.113494873046875,
+          "aligned_control_iou": 0.10290902976290567,
+          "road_gt_overlap_ratio": 0.0571390158644797
+        },
+        {
+          "sample_index": 61,
+          "positive_ratio": 0.51605224609375,
+          "aligned_control_iou": 0.2139092812924309,
+          "road_gt_overlap_ratio": 0.025931401537551746
+        },
+        {
+          "sample_index": 62,
+          "positive_ratio": 0.930938720703125,
+          "aligned_control_iou": 0.7503854902978581,
+          "road_gt_overlap_ratio": 0.07377479101786592
+        },
+        {
+          "sample_index": 63,
+          "positive_ratio": 0.313079833984375,
+          "aligned_control_iou": 0.17942515920557833,
+          "road_gt_overlap_ratio": 0.009357637196607857
+        },
+        {
+          "sample_index": 64,
+          "positive_ratio": 0.007415771484375,
+          "aligned_control_iou": 0.009359251259899209,
+          "road_gt_overlap_ratio": 0.06378600823045268
+        },
+        {
+          "sample_index": 65,
+          "positive_ratio": 0.021942138671875,
+          "aligned_control_iou": 0.020108923334729786,
+          "road_gt_overlap_ratio": 0.08136300417246176
+        },
+        {
+          "sample_index": 66,
+          "positive_ratio": 0.5154876708984375,
+          "aligned_control_iou": 0.4345620825269992,
+          "road_gt_overlap_ratio": 0.1184027469437291
+        },
+        {
+          "sample_index": 67,
+          "positive_ratio": 0.4713134765625,
+          "aligned_control_iou": 0.34326973362349644,
+          "road_gt_overlap_ratio": 0.015442890442890442
+        },
+        {
+          "sample_index": 68,
+          "positive_ratio": 0.4416656494140625,
+          "aligned_control_iou": 0.2532737695803056,
+          "road_gt_overlap_ratio": 0.035550181378476424
+        },
+        {
+          "sample_index": 69,
+          "positive_ratio": 0.2574615478515625,
+          "aligned_control_iou": 0.18169744226896878,
+          "road_gt_overlap_ratio": 0.01908374325846026
+        },
+        {
+          "sample_index": 70,
+          "positive_ratio": 0.509796142578125,
+          "aligned_control_iou": 0.380077275236209,
+          "road_gt_overlap_ratio": 0.023436096976953008
+        },
+        {
+          "sample_index": 71,
+          "positive_ratio": 0.325103759765625,
+          "aligned_control_iou": 0.22661516853932584,
+          "road_gt_overlap_ratio": 0.028912043555805875
+        },
+        {
+          "sample_index": 72,
+          "positive_ratio": 0.456024169921875,
+          "aligned_control_iou": 0.18089450895493014,
+          "road_gt_overlap_ratio": 0.028173726828615405
+        },
+        {
+          "sample_index": 73,
+          "positive_ratio": 0.01141357421875,
+          "aligned_control_iou": 0.0025684931506849314,
+          "road_gt_overlap_ratio": 0.02807486631016043
+        },
+        {
+          "sample_index": 74,
+          "positive_ratio": 0.0737457275390625,
+          "aligned_control_iou": 0.10496670090454259,
+          "road_gt_overlap_ratio": 0.07097041175253466
+        },
+        {
+          "sample_index": 75,
+          "positive_ratio": 0.593048095703125,
+          "aligned_control_iou": 0.4330714678730819,
+          "road_gt_overlap_ratio": 0.09512170020068955
+        },
+        {
+          "sample_index": 76,
+          "positive_ratio": 0.6644134521484375,
+          "aligned_control_iou": 0.4329780209414206,
+          "road_gt_overlap_ratio": 0.02875318650529362
+        },
+        {
+          "sample_index": 77,
+          "positive_ratio": 0.1794281005859375,
+          "aligned_control_iou": 0.15535182759852365,
+          "road_gt_overlap_ratio": 0.019049238880857217
+        },
+        {
+          "sample_index": 78,
+          "positive_ratio": 0.9098358154296875,
+          "aligned_control_iou": 0.7429491484036383,
+          "road_gt_overlap_ratio": 0.0742281181344022
+        },
+        {
+          "sample_index": 79,
+          "positive_ratio": 0.0447540283203125,
+          "aligned_control_iou": 0.05975941016686069,
+          "road_gt_overlap_ratio": 0.06887146266621207
+        }
+      ]
+    },
+    "shift_large": {
+      "positive_ratio": 0.22409343719482422,
+      "aligned_control_iou": 0.1714204994664415,
+      "binary_pearson_correlation_mean": 0.014587652770277449,
+      "road_gt_overlap_ratio": 0.04336047051013069,
+      "positive_to_road_gt_distance_pixels": {
+        "status": "PASS",
+        "mean": 40.183130600985805,
+        "p50": 29.0,
+        "p95": 110.0
+      },
+      "per_sample": [
+        {
+          "sample_index": 0,
+          "positive_ratio": 0.5699462890625,
+          "aligned_control_iou": 0.18126153918063054,
+          "road_gt_overlap_ratio": 0.03359927179267509
+        },
+        {
+          "sample_index": 1,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 2,
+          "positive_ratio": 0.0125732421875,
+          "aligned_control_iou": 0.041376952011854554,
+          "road_gt_overlap_ratio": 0.007281553398058253
+        },
+        {
+          "sample_index": 3,
+          "positive_ratio": 0.36614990234375,
+          "aligned_control_iou": 0.26188172693191436,
+          "road_gt_overlap_ratio": 0.013252208701450241
+        },
+        {
+          "sample_index": 4,
+          "positive_ratio": 0.6739654541015625,
+          "aligned_control_iou": 0.5793530475442474,
+          "road_gt_overlap_ratio": 0.0577554393352804
+        },
+        {
+          "sample_index": 5,
+          "positive_ratio": 0.4256134033203125,
+          "aligned_control_iou": 0.008486118386589837,
+          "road_gt_overlap_ratio": 0.05689599541103502
+        },
+        {
+          "sample_index": 6,
+          "positive_ratio": 0.0209197998046875,
+          "aligned_control_iou": 0.018543846249489335,
+          "road_gt_overlap_ratio": 0.07221006564551423
+        },
+        {
+          "sample_index": 7,
+          "positive_ratio": 0.2901611328125,
+          "aligned_control_iou": 0.20802880862839707,
+          "road_gt_overlap_ratio": 0.019772822885990745
+        },
+        {
+          "sample_index": 8,
+          "positive_ratio": 0.031005859375,
+          "aligned_control_iou": 0.026217002910769848,
+          "road_gt_overlap_ratio": 0.06692913385826772
+        },
+        {
+          "sample_index": 9,
+          "positive_ratio": 0.15899658203125,
+          "aligned_control_iou": 0.0025969207939157855,
+          "road_gt_overlap_ratio": 0.08944337811900192
+        },
+        {
+          "sample_index": 10,
+          "positive_ratio": 0.0158233642578125,
+          "aligned_control_iou": 0.050869668811055514,
+          "road_gt_overlap_ratio": 0.0057859209257473485
+        },
+        {
+          "sample_index": 11,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 12,
+          "positive_ratio": 0.3863677978515625,
+          "aligned_control_iou": 0.2870277794114764,
+          "road_gt_overlap_ratio": 0.013230125192527942
+        },
+        {
+          "sample_index": 13,
+          "positive_ratio": 0.2367095947265625,
+          "aligned_control_iou": 0.003539599266797295,
+          "road_gt_overlap_ratio": 0.060078643718171856
+        },
+        {
+          "sample_index": 14,
+          "positive_ratio": 0.040985107421875,
+          "aligned_control_iou": 0.034445620134532534,
+          "road_gt_overlap_ratio": 0.06366344005956813
+        },
+        {
+          "sample_index": 15,
+          "positive_ratio": 0.5208587646484375,
+          "aligned_control_iou": 0.17815891665836903,
+          "road_gt_overlap_ratio": 0.03497876080269518
+        },
+        {
+          "sample_index": 16,
+          "positive_ratio": 0.0226287841796875,
+          "aligned_control_iou": 0.020512727994371177,
+          "road_gt_overlap_ratio": 0.07889413351314903
+        },
+        {
+          "sample_index": 17,
+          "positive_ratio": 0.2880859375,
+          "aligned_control_iou": 0.20846813400512684,
+          "road_gt_overlap_ratio": 0.019279661016949154
+        },
+        {
+          "sample_index": 18,
+          "positive_ratio": 0.42376708984375,
+          "aligned_control_iou": 0.009136416144502398,
+          "road_gt_overlap_ratio": 0.05253492726487109
+        },
+        {
+          "sample_index": 19,
+          "positive_ratio": 0.6284942626953125,
+          "aligned_control_iou": 0.5788070201981995,
+          "road_gt_overlap_ratio": 0.06096287843841802
+        },
+        {
+          "sample_index": 20,
+          "positive_ratio": 0.0534210205078125,
+          "aligned_control_iou": 0.08424948296505932,
+          "road_gt_overlap_ratio": 0.011139674378748929
+        },
+        {
+          "sample_index": 21,
+          "positive_ratio": 0.2994537353515625,
+          "aligned_control_iou": 0.21620948518162736,
+          "road_gt_overlap_ratio": 0.02129936305732484
+        },
+        {
+          "sample_index": 22,
+          "positive_ratio": 0.421173095703125,
+          "aligned_control_iou": 0.012179042331714088,
+          "road_gt_overlap_ratio": 0.043040359394246795
+        },
+        {
+          "sample_index": 23,
+          "positive_ratio": 0.2715911865234375,
+          "aligned_control_iou": 0.0431380221070136,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 24,
+          "positive_ratio": 0.3835601806640625,
+          "aligned_control_iou": 0.2976691202243253,
+          "road_gt_overlap_ratio": 0.020447945259975335
+        },
+        {
+          "sample_index": 25,
+          "positive_ratio": 0.025177001953125,
+          "aligned_control_iou": 0.02313976894061131,
+          "road_gt_overlap_ratio": 0.07818181818181819
+        },
+        {
+          "sample_index": 26,
+          "positive_ratio": 0.6115875244140625,
+          "aligned_control_iou": 0.2795394983152377,
+          "road_gt_overlap_ratio": 0.04715451211297123
+        },
+        {
+          "sample_index": 27,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 28,
+          "positive_ratio": 0.0329742431640625,
+          "aligned_control_iou": 0.03735578422201434,
+          "road_gt_overlap_ratio": 0.1008792225821379
+        },
+        {
+          "sample_index": 29,
+          "positive_ratio": 0.4416656494140625,
+          "aligned_control_iou": 0.5690106477373558,
+          "road_gt_overlap_ratio": 0.08429780618414234
+        },
+        {
+          "sample_index": 30,
+          "positive_ratio": 0.030059814453125,
+          "aligned_control_iou": 0.028002378121284185,
+          "road_gt_overlap_ratio": 0.0766497461928934
+        },
+        {
+          "sample_index": 31,
+          "positive_ratio": 0.39910888671875,
+          "aligned_control_iou": 0.583003372928582,
+          "road_gt_overlap_ratio": 0.07229698730692767
+        },
+        {
+          "sample_index": 32,
+          "positive_ratio": 0.490478515625,
+          "aligned_control_iou": 0.3624771379245509,
+          "road_gt_overlap_ratio": 0.03247884519661523
+        },
+        {
+          "sample_index": 33,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 34,
+          "positive_ratio": 0.027130126953125,
+          "aligned_control_iou": 0.02521577255034693,
+          "road_gt_overlap_ratio": 0.08211473565804274
+        },
+        {
+          "sample_index": 35,
+          "positive_ratio": 0.020111083984375,
+          "aligned_control_iou": 0.017751266664271084,
+          "road_gt_overlap_ratio": 0.06449165402124431
+        },
+        {
+          "sample_index": 36,
+          "positive_ratio": 0.49249267578125,
+          "aligned_control_iou": 0.004156275976724855,
+          "road_gt_overlap_ratio": 0.04703185029123807
+        },
+        {
+          "sample_index": 37,
+          "positive_ratio": 0.5568389892578125,
+          "aligned_control_iou": 0.1389029706985704,
+          "road_gt_overlap_ratio": 0.03406132682980298
+        },
+        {
+          "sample_index": 38,
+          "positive_ratio": 0.35137939453125,
+          "aligned_control_iou": 0.009644819054807732,
+          "road_gt_overlap_ratio": 0.04442417926003127
+        },
+        {
+          "sample_index": 39,
+          "positive_ratio": 0.023956298828125,
+          "aligned_control_iou": 0.081673454276194,
+          "road_gt_overlap_ratio": 0.06496815286624204
+        },
+        {
+          "sample_index": 40,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 41,
+          "positive_ratio": 0.317138671875,
+          "aligned_control_iou": 0.23842047968536012,
+          "road_gt_overlap_ratio": 0.01804272517321016
+        },
+        {
+          "sample_index": 42,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 43,
+          "positive_ratio": 0.023895263671875,
+          "aligned_control_iou": 0.022259292959929903,
+          "road_gt_overlap_ratio": 0.08620689655172414
+        },
+        {
+          "sample_index": 44,
+          "positive_ratio": 0.1607208251953125,
+          "aligned_control_iou": 0.01086769018457823,
+          "road_gt_overlap_ratio": 0.07547707205924238
+        },
+        {
+          "sample_index": 45,
+          "positive_ratio": 0.0110321044921875,
+          "aligned_control_iou": 0.011458333333333333,
+          "road_gt_overlap_ratio": 0.05255878284923928
+        },
+        {
+          "sample_index": 46,
+          "positive_ratio": 0.308990478515625,
+          "aligned_control_iou": 0.24825015531165873,
+          "road_gt_overlap_ratio": 0.0020246913580246914
+        },
+        {
+          "sample_index": 47,
+          "positive_ratio": 0.0192413330078125,
+          "aligned_control_iou": 0.0171429536549115,
+          "road_gt_overlap_ratio": 0.09516256938937351
+        },
+        {
+          "sample_index": 48,
+          "positive_ratio": 0.3921966552734375,
+          "aligned_control_iou": 0.579722471992029,
+          "road_gt_overlap_ratio": 0.07302649496167762
+        },
+        {
+          "sample_index": 49,
+          "positive_ratio": 0.0157318115234375,
+          "aligned_control_iou": 0.0194335643266044,
+          "road_gt_overlap_ratio": 0.03394762366634336
+        },
+        {
+          "sample_index": 50,
+          "positive_ratio": 0.0109710693359375,
+          "aligned_control_iou": 0.010722041259500542,
+          "road_gt_overlap_ratio": 0.05006954102920723
+        },
+        {
+          "sample_index": 51,
+          "positive_ratio": 0.6160125732421875,
+          "aligned_control_iou": 0.488298017305989,
+          "road_gt_overlap_ratio": 0.029105050655173267
+        },
+        {
+          "sample_index": 52,
+          "positive_ratio": 0.017791748046875,
+          "aligned_control_iou": 0.022278481012658228,
+          "road_gt_overlap_ratio": 0.030017152658662092
+        },
+        {
+          "sample_index": 53,
+          "positive_ratio": 0.38885498046875,
+          "aligned_control_iou": 0.5657442748091603,
+          "road_gt_overlap_ratio": 0.07381101867838644
+        },
+        {
+          "sample_index": 54,
+          "positive_ratio": 0.0172271728515625,
+          "aligned_control_iou": 0.016699165041747913,
+          "road_gt_overlap_ratio": 0.1204605845881311
+        },
+        {
+          "sample_index": 55,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 56,
+          "positive_ratio": 0.2082977294921875,
+          "aligned_control_iou": 0.004195406385550736,
+          "road_gt_overlap_ratio": 0.07017800893707421
+        },
+        {
+          "sample_index": 57,
+          "positive_ratio": 0.0321807861328125,
+          "aligned_control_iou": 0.030136316400757993,
+          "road_gt_overlap_ratio": 0.07349454717875771
+        },
+        {
+          "sample_index": 58,
+          "positive_ratio": 0.365631103515625,
+          "aligned_control_iou": 0.273467267059231,
+          "road_gt_overlap_ratio": 0.01857107086219848
+        },
+        {
+          "sample_index": 59,
+          "positive_ratio": 0.115753173828125,
+          "aligned_control_iou": 0.09760881358761424,
+          "road_gt_overlap_ratio": 0.054969680991299764
+        },
+        {
+          "sample_index": 60,
+          "positive_ratio": 0.4212188720703125,
+          "aligned_control_iou": 0.15865999767360708,
+          "road_gt_overlap_ratio": 0.04524542655316066
+        },
+        {
+          "sample_index": 61,
+          "positive_ratio": 0.146270751953125,
+          "aligned_control_iou": 0.08881930655261952,
+          "road_gt_overlap_ratio": 0.04297934487794701
+        },
+        {
+          "sample_index": 62,
+          "positive_ratio": 0.020172119140625,
+          "aligned_control_iou": 0.017380842202683943,
+          "road_gt_overlap_ratio": 0.07639939485627836
+        },
+        {
+          "sample_index": 63,
+          "positive_ratio": 0.484344482421875,
+          "aligned_control_iou": 0.5726886359267881,
+          "road_gt_overlap_ratio": 0.05938504190032134
+        },
+        {
+          "sample_index": 64,
+          "positive_ratio": 0.4761810302734375,
+          "aligned_control_iou": 0.008349813227862008,
+          "road_gt_overlap_ratio": 0.051687121479155315
+        },
+        {
+          "sample_index": 65,
+          "positive_ratio": 0.0272674560546875,
+          "aligned_control_iou": 0.017348927875243666,
+          "road_gt_overlap_ratio": 0.0693900391717963
+        },
+        {
+          "sample_index": 66,
+          "positive_ratio": 0.0389404296875,
+          "aligned_control_iou": 0.03568320278503046,
+          "road_gt_overlap_ratio": 0.06857366771159874
+        },
+        {
+          "sample_index": 67,
+          "positive_ratio": 0.54498291015625,
+          "aligned_control_iou": 0.41528690172945437,
+          "road_gt_overlap_ratio": 0.011311457050061598
+        },
+        {
+          "sample_index": 68,
+          "positive_ratio": 0.1233673095703125,
+          "aligned_control_iou": 0.04380965782499589,
+          "road_gt_overlap_ratio": 0.0021026592455163882
+        },
+        {
+          "sample_index": 69,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 70,
+          "positive_ratio": 0.3535308837890625,
+          "aligned_control_iou": 0.27650965461902244,
+          "road_gt_overlap_ratio": 0.020199404376537614
+        },
+        {
+          "sample_index": 71,
+          "positive_ratio": 0.4885406494140625,
+          "aligned_control_iou": 0.5145859178226383,
+          "road_gt_overlap_ratio": 0.0694318643220789
+        },
+        {
+          "sample_index": 72,
+          "positive_ratio": 0.1816253662109375,
+          "aligned_control_iou": 0.10669517770240378,
+          "road_gt_overlap_ratio": 0.06258926321095522
+        },
+        {
+          "sample_index": 73,
+          "positive_ratio": 0.284912109375,
+          "aligned_control_iou": 0.003784891972874941,
+          "road_gt_overlap_ratio": 0.05559125964010283
+        },
+        {
+          "sample_index": 74,
+          "positive_ratio": 0.563201904296875,
+          "aligned_control_iou": 0.25645260408664927,
+          "road_gt_overlap_ratio": 0.04836087781089136
+        },
+        {
+          "sample_index": 75,
+          "positive_ratio": 0.0469970703125,
+          "aligned_control_iou": 0.04089840033034704,
+          "road_gt_overlap_ratio": 0.06915584415584415
+        },
+        {
+          "sample_index": 76,
+          "positive_ratio": 0.60809326171875,
+          "aligned_control_iou": 0.47835420998360295,
+          "road_gt_overlap_ratio": 0.030287062129880558
+        },
+        {
+          "sample_index": 77,
+          "positive_ratio": 0.0,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 78,
+          "positive_ratio": 0.01617431640625,
+          "aligned_control_iou": 0.01481049137270638,
+          "road_gt_overlap_ratio": 0.04622641509433962
+        },
+        {
+          "sample_index": 79,
+          "positive_ratio": 0.0347747802734375,
+          "aligned_control_iou": 0.03547000195427008,
+          "road_gt_overlap_ratio": 0.08512505484861782
+        }
+      ]
+    },
+    "permuted": {
+      "positive_ratio": 0.48213825225830076,
+      "aligned_control_iou": 0.5258880438873612,
+      "binary_pearson_correlation_mean": 0.08273173497048944,
+      "road_gt_overlap_ratio": 0.06308625745858146,
+      "positive_to_road_gt_distance_pixels": {
+        "status": "PASS",
+        "mean": 29.412055045276066,
+        "p50": 19.0,
+        "p95": 92.0
+      },
+      "per_sample": [
+        {
+          "sample_index": 0,
+          "positive_ratio": 0.477386474609375,
+          "aligned_control_iou": 0.15785500455551216,
+          "road_gt_overlap_ratio": 0.053410471137249886
+        },
+        {
+          "sample_index": 1,
+          "positive_ratio": 0.2013092041015625,
+          "aligned_control_iou": 0.15785500455551216,
+          "road_gt_overlap_ratio": 0.035700750397938304
+        },
+        {
+          "sample_index": 2,
+          "positive_ratio": 0.005950927734375,
+          "aligned_control_iou": 0.005895272222864408,
+          "road_gt_overlap_ratio": 0.010256410256410256
+        },
+        {
+          "sample_index": 3,
+          "positive_ratio": 0.6454315185546875,
+          "aligned_control_iou": 0.47344842657342656,
+          "road_gt_overlap_ratio": 0.02042601479940424
+        },
+        {
+          "sample_index": 4,
+          "positive_ratio": 0.5891571044921875,
+          "aligned_control_iou": 0.47344842657342656,
+          "road_gt_overlap_ratio": 0.05513972702079718
+        },
+        {
+          "sample_index": 5,
+          "positive_ratio": 0.1268310546875,
+          "aligned_control_iou": 0.008898534997287032,
+          "road_gt_overlap_ratio": 0.03344562078922041
+        },
+        {
+          "sample_index": 6,
+          "positive_ratio": 0.7489471435546875,
+          "aligned_control_iou": 0.6920338873856462,
+          "road_gt_overlap_ratio": 0.07807183749974533
+        },
+        {
+          "sample_index": 7,
+          "positive_ratio": 0.7490386962890625,
+          "aligned_control_iou": 0.5923312734173519,
+          "road_gt_overlap_ratio": 0.04096640795290187
+        },
+        {
+          "sample_index": 8,
+          "positive_ratio": 0.85406494140625,
+          "aligned_control_iou": 0.7806043760486755,
+          "road_gt_overlap_ratio": 0.12309726291717288
+        },
+        {
+          "sample_index": 9,
+          "positive_ratio": 0.0150299072265625,
+          "aligned_control_iou": 0.0,
+          "road_gt_overlap_ratio": 0.05989847715736041
+        },
+        {
+          "sample_index": 10,
+          "positive_ratio": 0.01611328125,
+          "aligned_control_iou": 0.012368300503893724,
+          "road_gt_overlap_ratio": 0.056818181818181816
+        },
+        {
+          "sample_index": 11,
+          "positive_ratio": 0.201324462890625,
+          "aligned_control_iou": 0.15965734102849452,
+          "road_gt_overlap_ratio": 0.036759132939214796
+        },
+        {
+          "sample_index": 12,
+          "positive_ratio": 0.64532470703125,
+          "aligned_control_iou": 0.4631213586215446,
+          "road_gt_overlap_ratio": 0.019743686749267002
+        },
+        {
+          "sample_index": 13,
+          "positive_ratio": 0.1187744140625,
+          "aligned_control_iou": 0.007293855853628384,
+          "road_gt_overlap_ratio": 0.0328879753340185
+        },
+        {
+          "sample_index": 14,
+          "positive_ratio": 0.7549591064453125,
+          "aligned_control_iou": 0.6262993513253784,
+          "road_gt_overlap_ratio": 0.1234513006043212
+        },
+        {
+          "sample_index": 15,
+          "positive_ratio": 0.482391357421875,
+          "aligned_control_iou": 0.15965734102849452,
+          "road_gt_overlap_ratio": 0.06301005883469349
+        },
+        {
+          "sample_index": 16,
+          "positive_ratio": 0.7943878173828125,
+          "aligned_control_iou": 0.7970547784374895,
+          "road_gt_overlap_ratio": 0.09273736578244751
+        },
+        {
+          "sample_index": 17,
+          "positive_ratio": 0.8404998779296875,
+          "aligned_control_iou": 0.6740313800832533,
+          "road_gt_overlap_ratio": 0.03688978450701668
+        },
+        {
+          "sample_index": 18,
+          "positive_ratio": 0.00555419921875,
+          "aligned_control_iou": 0.0014104372355430183,
+          "road_gt_overlap_ratio": 0.0521978021978022
+        },
+        {
+          "sample_index": 19,
+          "positive_ratio": 0.6153717041015625,
+          "aligned_control_iou": 0.4631213586215446,
+          "road_gt_overlap_ratio": 0.052170894393612534
+        },
+        {
+          "sample_index": 20,
+          "positive_ratio": 0.0538482666015625,
+          "aligned_control_iou": 0.04531184596065299,
+          "road_gt_overlap_ratio": 0.03230376877302352
+        },
+        {
+          "sample_index": 21,
+          "positive_ratio": 0.8977813720703125,
+          "aligned_control_iou": 0.6897559136744887,
+          "road_gt_overlap_ratio": 0.04058670564440743
+        },
+        {
+          "sample_index": 22,
+          "positive_ratio": 0.09857177734375,
+          "aligned_control_iou": 0.010445507173420588,
+          "road_gt_overlap_ratio": 0.008823529411764706
+        },
+        {
+          "sample_index": 23,
+          "positive_ratio": 0.0239410400390625,
+          "aligned_control_iou": 0.010305192231470472,
+          "road_gt_overlap_ratio": 0.0
+        },
+        {
+          "sample_index": 24,
+          "positive_ratio": 0.7437591552734375,
+          "aligned_control_iou": 0.7158545799581804,
+          "road_gt_overlap_ratio": 0.03596413844039144
+        },
+        {
+          "sample_index": 25,
+          "positive_ratio": 0.74627685546875,
+          "aligned_control_iou": 0.6774088085563496,
+          "road_gt_overlap_ratio": 0.12828167171014968
+        },
+        {
+          "sample_index": 26,
+          "positive_ratio": 0.2208404541015625,
+          "aligned_control_iou": 0.3396746795374056,
+          "road_gt_overlap_ratio": 0.05624265874386789
+        },
+        {
+          "sample_index": 27,
+          "positive_ratio": 0.637603759765625,
+          "aligned_control_iou": 0.5945017182130584,
+          "road_gt_overlap_ratio": 0.05185947446513186
+        },
+        {
+          "sample_index": 28,
+          "positive_ratio": 0.431396484375,
+          "aligned_control_iou": 0.3396746795374056,
+          "road_gt_overlap_ratio": 0.056239388794567066
+        },
+        {
+          "sample_index": 29,
+          "positive_ratio": 0.473968505859375,
+          "aligned_control_iou": 0.5945017182130584,
+          "road_gt_overlap_ratio": 0.07810186079453996
+        },
+        {
+          "sample_index": 30,
+          "positive_ratio": 0.897247314453125,
+          "aligned_control_iou": 0.7292365938628446,
+          "road_gt_overlap_ratio": 0.07875582463181524
+        },
+        {
+          "sample_index": 31,
+          "positive_ratio": 0.7257843017578125,
+          "aligned_control_iou": 0.47010355004350124,
+          "road_gt_overlap_ratio": 0.031788079470198675
+        },
+        {
+          "sample_index": 32,
+          "positive_ratio": 0.5891571044921875,
+          "aligned_control_iou": 0.47010355004350124,
+          "road_gt_overlap_ratio": 0.032555489368314726
+        },
+        {
+          "sample_index": 33,
+          "positive_ratio": 0.198944091796875,
+          "aligned_control_iou": 0.2011989128502121,
+          "road_gt_overlap_ratio": 0.061512501917472005
+        },
+        {
+          "sample_index": 34,
+          "positive_ratio": 0.84423828125,
+          "aligned_control_iou": 0.7886471915747242,
+          "road_gt_overlap_ratio": 0.12391555812608444
+        },
+        {
+          "sample_index": 35,
+          "positive_ratio": 0.7614593505859375,
+          "aligned_control_iou": 0.7797151941550534,
+          "road_gt_overlap_ratio": 0.10133659299040138
+        },
+        {
+          "sample_index": 36,
+          "positive_ratio": 0.1287689208984375,
+          "aligned_control_iou": 0.005728032993470042,
+          "road_gt_overlap_ratio": 0.06304064462614054
+        },
+        {
+          "sample_index": 37,
+          "positive_ratio": 0.0160064697265625,
+          "aligned_control_iou": 0.00861060912086744,
+          "road_gt_overlap_ratio": 0.042897998093422304
+        },
+        {
+          "sample_index": 38,
+          "positive_ratio": 0.00518798828125,
+          "aligned_control_iou": 0.010181818181818183,
+          "road_gt_overlap_ratio": 0.06470588235294118
+        },
+        {
+          "sample_index": 39,
+          "positive_ratio": 0.52264404296875,
+          "aligned_control_iou": 0.2011989128502121,
+          "road_gt_overlap_ratio": 0.04157421464440033
+        },
+        {
+          "sample_index": 40,
+          "positive_ratio": 0.9018096923828125,
+          "aligned_control_iou": 0.7488442783864226,
+          "road_gt_overlap_ratio": 0.041775942877447084
+        },
+        {
+          "sample_index": 41,
+          "positive_ratio": 0.5996856689453125,
+          "aligned_control_iou": 0.5072272434920957,
+          "road_gt_overlap_ratio": 0.03244192259738938
+        },
+        {
+          "sample_index": 42,
+          "positive_ratio": 0.50054931640625,
+          "aligned_control_iou": 0.3305842502787654,
+          "road_gt_overlap_ratio": 0.04444579929276917
+        },
+        {
+          "sample_index": 43,
+          "positive_ratio": 0.899688720703125,
+          "aligned_control_iou": 0.8492419021364576,
+          "road_gt_overlap_ratio": 0.12038261931413453
+        },
+        {
+          "sample_index": 44,
+          "positive_ratio": 0.0778656005859375,
+          "aligned_control_iou": 0.022930557814278746,
+          "road_gt_overlap_ratio": 0.1244366059180874
+        },
+        {
+          "sample_index": 45,
+          "positive_ratio": 0.1508941650390625,
+          "aligned_control_iou": 0.08066027535500613,
+          "road_gt_overlap_ratio": 0.05359490342805137
+        },
+        {
+          "sample_index": 46,
+          "positive_ratio": 0.0181121826171875,
+          "aligned_control_iou": 0.017079889807162536,
+          "road_gt_overlap_ratio": 0.037910699241786014
+        },
+        {
+          "sample_index": 47,
+          "positive_ratio": 0.7837371826171875,
+          "aligned_control_iou": 0.767235855705773,
+          "road_gt_overlap_ratio": 0.10743141950431244
+        },
+        {
+          "sample_index": 48,
+          "positive_ratio": 0.7591094970703125,
+          "aligned_control_iou": 0.5072272434920957,
+          "road_gt_overlap_ratio": 0.03173933144384812
+        },
+        {
+          "sample_index": 49,
+          "positive_ratio": 0.4644775390625,
+          "aligned_control_iou": 0.3305842502787654,
+          "road_gt_overlap_ratio": 0.049113009198423124
+        },
+        {
+          "sample_index": 50,
+          "positive_ratio": 0.28558349609375,
+          "aligned_control_iou": 0.08189471893868526,
+          "road_gt_overlap_ratio": 0.029333190852746313
+        },
+        {
+          "sample_index": 51,
+          "positive_ratio": 0.6126708984375,
+          "aligned_control_iou": 0.5045314091387734,
+          "road_gt_overlap_ratio": 0.03421996413628213
+        },
+        {
+          "sample_index": 52,
+          "positive_ratio": 0.575347900390625,
+          "aligned_control_iou": 0.45415003990422986,
+          "road_gt_overlap_ratio": 0.046066938948708426
+        },
+        {
+          "sample_index": 53,
+          "positive_ratio": 0.71722412109375,
+          "aligned_control_iou": 0.5045314091387734,
+          "road_gt_overlap_ratio": 0.030465492298527786
+        },
+        {
+          "sample_index": 54,
+          "positive_ratio": 0.75634765625,
+          "aligned_control_iou": 0.7138383000046978,
+          "road_gt_overlap_ratio": 0.11697062621045837
+        },
+        {
+          "sample_index": 55,
+          "positive_ratio": 0.5367431640625,
+          "aligned_control_iou": 0.45415003990422986,
+          "road_gt_overlap_ratio": 0.045229702069592904
+        },
+        {
+          "sample_index": 56,
+          "positive_ratio": 0.1026611328125,
+          "aligned_control_iou": 0.005446927374301676,
+          "road_gt_overlap_ratio": 0.089179548156956
+        },
+        {
+          "sample_index": 57,
+          "positive_ratio": 0.91363525390625,
+          "aligned_control_iou": 0.7143241489546901,
+          "road_gt_overlap_ratio": 0.07295076491415592
+        },
+        {
+          "sample_index": 58,
+          "positive_ratio": 0.7392425537109375,
+          "aligned_control_iou": 0.5847979691820137,
+          "road_gt_overlap_ratio": 0.03566784321010589
+        },
+        {
+          "sample_index": 59,
+          "positive_ratio": 0.0071868896484375,
+          "aligned_control_iou": 0.00544987685374417,
+          "road_gt_overlap_ratio": 0.025477707006369428
+        },
+        {
+          "sample_index": 60,
+          "positive_ratio": 0.0523681640625,
+          "aligned_control_iou": 0.05777927775902801,
+          "road_gt_overlap_ratio": 0.037587412587412584
+        },
+        {
+          "sample_index": 61,
+          "positive_ratio": 0.555755615234375,
+          "aligned_control_iou": 0.43408643382733964,
+          "road_gt_overlap_ratio": 0.05161715446708034
+        },
+        {
+          "sample_index": 62,
+          "positive_ratio": 0.887115478515625,
+          "aligned_control_iou": 0.7747927979422692,
+          "road_gt_overlap_ratio": 0.08185696102377103
+        },
+        {
+          "sample_index": 63,
+          "positive_ratio": 0.5842742919921875,
+          "aligned_control_iou": 0.6348012232415902,
+          "road_gt_overlap_ratio": 0.05249275286620877
+        },
+        {
+          "sample_index": 64,
+          "positive_ratio": 0.1867523193359375,
+          "aligned_control_iou": 0.007505552577161676,
+          "road_gt_overlap_ratio": 0.05008579132282049
+        },
+        {
+          "sample_index": 65,
+          "positive_ratio": 0.01397705078125,
+          "aligned_control_iou": 0.009519387044346413,
+          "road_gt_overlap_ratio": 0.07423580786026202
+        },
+        {
+          "sample_index": 66,
+          "positive_ratio": 0.7436676025390625,
+          "aligned_control_iou": 0.6787616040714387,
+          "road_gt_overlap_ratio": 0.12532572788641075
+        },
+        {
+          "sample_index": 67,
+          "positive_ratio": 0.818511962890625,
+          "aligned_control_iou": 0.7224792637582651,
+          "road_gt_overlap_ratio": 0.02356362551731852
+        },
+        {
+          "sample_index": 68,
+          "positive_ratio": 0.288818359375,
+          "aligned_control_iou": 0.43408643382733964,
+          "road_gt_overlap_ratio": 0.05890743871513102
+        },
+        {
+          "sample_index": 69,
+          "positive_ratio": 0.6392822265625,
+          "aligned_control_iou": 0.6348012232415902,
+          "road_gt_overlap_ratio": 0.04081535230093565
+        },
+        {
+          "sample_index": 70,
+          "positive_ratio": 0.8376617431640625,
+          "aligned_control_iou": 0.7022905644091367,
+          "road_gt_overlap_ratio": 0.03382698508115198
+        },
+        {
+          "sample_index": 71,
+          "positive_ratio": 0.7263641357421875,
+          "aligned_control_iou": 0.5157461698505769,
+          "road_gt_overlap_ratio": 0.035649013717622836
+        },
+        {
+          "sample_index": 72,
+          "positive_ratio": 0.0064544677734375,
+          "aligned_control_iou": 0.006296819020736076,
+          "road_gt_overlap_ratio": 0.08747044917257683
+        },
+        {
+          "sample_index": 73,
+          "positive_ratio": 0.2886199951171875,
+          "aligned_control_iou": 0.009237513699702521,
+          "road_gt_overlap_ratio": 0.05165212794078773
+        },
+        {
+          "sample_index": 74,
+          "positive_ratio": 0.5609130859375,
+          "aligned_control_iou": 0.29228698131137154,
+          "road_gt_overlap_ratio": 0.06104461371055495
+        },
+        {
+          "sample_index": 75,
+          "positive_ratio": 0.832794189453125,
+          "aligned_control_iou": 0.7902991054637034,
+          "road_gt_overlap_ratio": 0.12450071457363773
+        },
+        {
+          "sample_index": 76,
+          "positive_ratio": 0.740997314453125,
+          "aligned_control_iou": 0.5157461698505769,
+          "road_gt_overlap_ratio": 0.031053086775668218
+        },
+        {
+          "sample_index": 77,
+          "positive_ratio": 0.43511962890625,
+          "aligned_control_iou": 0.29228698131137154,
+          "road_gt_overlap_ratio": 0.03825922289241128
+        },
+        {
+          "sample_index": 78,
+          "positive_ratio": 0.787353515625,
+          "aligned_control_iou": 0.7130180856041173,
+          "road_gt_overlap_ratio": 0.08374031007751938
+        },
+        {
+          "sample_index": 79,
+          "positive_ratio": 0.2764129638671875,
+          "aligned_control_iou": 0.06717772846479726,
+          "road_gt_overlap_ratio": 0.07430306375931549
+        }
+      ]
+    }
+  },
+  "shift_128_retains_material_road_overlap": true,
+  "shift_512_reduces_correspondence": true,
+  "permutation_preserves_density_but_breaks_location": true
+}

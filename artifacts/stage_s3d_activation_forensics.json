@@ -1,0 +1,5391 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "samples_seen": 40960,
+  "runs": {
+    "R0": {
+      "aligned": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 18.0157470703125,
+          "mean": 0.1878284215927124,
+          "std": 0.5886390805244446,
+          "l1_norm": 3711772.25,
+          "l2_norm": 1998.58056640625,
+          "spatial_variance": 0.2533394992351532,
+          "nonzero_ratio": 1.0,
+          "sha256": "2943690ae49ddad61a215ae312c2f0f08bc7463a8253e82bf90192f0cf7b992a"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -8.612809181213379,
+          "max": 9.232941627502441,
+          "mean": 0.042299769818782806,
+          "std": 0.35194599628448486,
+          "l1_norm": 2374089.0,
+          "l2_norm": 1147.046875,
+          "spatial_variance": 0.08836080133914948,
+          "nonzero_ratio": 1.0,
+          "sha256": "a90b1a5ec01fd30e991da0e7988c0c35f6f5c5d2befc59134e343dad9260c77e"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.30876922607422,
+          "mean": 0.07841415703296661,
+          "std": 0.37934184074401855,
+          "l1_norm": 1644464.0,
+          "l2_norm": 1772.359619140625,
+          "spatial_variance": 0.1349600851535797,
+          "nonzero_ratio": 0.3437928259372711,
+          "sha256": "e771a37307e8510e12734b2b99fb9e0d9e7afc5f20c354b3e4d12bf17d4c6a98"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 26.349628448486328,
+          "mean": 0.0890311449766159,
+          "std": 0.35511454939842224,
+          "l1_norm": 1867118.375,
+          "l2_norm": 1675.035888671875,
+          "spatial_variance": 0.11232014000415802,
+          "nonzero_ratio": 0.44167232513427734,
+          "sha256": "29b99b02c7ef0c90cad6b6b741053a22731ed09363a5bfa3be5f3451065971a3"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      },
+      "zero": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.30876922607422,
+          "mean": 0.07841415703296661,
+          "std": 0.37934184074401855,
+          "l1_norm": 1644464.0,
+          "l2_norm": 1772.359619140625,
+          "spatial_variance": 0.1349600851535797,
+          "nonzero_ratio": 0.3437928259372711,
+          "sha256": "e771a37307e8510e12734b2b99fb9e0d9e7afc5f20c354b3e4d12bf17d4c6a98"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 26.349628448486328,
+          "mean": 0.0890311449766159,
+          "std": 0.35511454939842224,
+          "l1_norm": 1867118.375,
+          "l2_norm": 1675.035888671875,
+          "spatial_variance": 0.11232014000415802,
+          "nonzero_ratio": 0.44167232513427734,
+          "sha256": "29b99b02c7ef0c90cad6b6b741053a22731ed09363a5bfa3be5f3451065971a3"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -18.0157470703125,
+            "max": 0.27846458554267883,
+            "mean": -0.1878284215927124,
+            "std": 0.5886390805244446,
+            "l1_norm": 3711772.25,
+            "l2_norm": 1998.58056640625,
+            "spatial_variance": 0.2533394992351532,
+            "nonzero_ratio": 1.0,
+            "sha256": "b8c20af8b6d82a0b3fc240a3a872b60a7a87e586876faaf2265098257670cf3c",
+            "mean_abs": 0.35398218035697937,
+            "max_abs": 18.0157470703125
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -9.232941627502441,
+            "max": 8.612809181213379,
+            "mean": -0.042299769818782806,
+            "std": 0.35194599628448486,
+            "l1_norm": 2374089.0,
+            "l2_norm": 1147.046875,
+            "spatial_variance": 0.08836080133914948,
+            "nonzero_ratio": 1.0,
+            "sha256": "b50f1f49130c6403c5a6d6a1bcf980efd2e71e69349bcc215757fe727d04feec",
+            "mean_abs": 0.22641077637672424,
+            "max_abs": 9.232941627502441
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      },
+      "shift_fixed": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 17.058950424194336,
+          "mean": 0.18485504388809204,
+          "std": 0.5975342988967896,
+          "l1_norm": 3614997.0,
+          "l2_norm": 2023.0234375,
+          "spatial_variance": 0.2777574956417084,
+          "nonzero_ratio": 1.0,
+          "sha256": "f41db4bdcae69314317fb9f09f0fb9ba727a146f18fbc08be452bc09fab45fd0"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -7.901695251464844,
+          "max": 8.592916488647461,
+          "mean": 0.04318204149603844,
+          "std": 0.3588429391384125,
+          "l1_norm": 2371067.25,
+          "l2_norm": 1169.5447998046875,
+          "spatial_variance": 0.09627839177846909,
+          "nonzero_ratio": 1.0,
+          "sha256": "87589787f08d35bc9dd179649b7cc714a6ad878f874d6457021abefd973c88b4"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.30876922607422,
+          "mean": 0.07841415703296661,
+          "std": 0.37934184074401855,
+          "l1_norm": 1644464.0,
+          "l2_norm": 1772.359619140625,
+          "spatial_variance": 0.1349600851535797,
+          "nonzero_ratio": 0.3437928259372711,
+          "sha256": "e771a37307e8510e12734b2b99fb9e0d9e7afc5f20c354b3e4d12bf17d4c6a98"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 26.349628448486328,
+          "mean": 0.0890311449766159,
+          "std": 0.35511454939842224,
+          "l1_norm": 1867118.375,
+          "l2_norm": 1675.035888671875,
+          "spatial_variance": 0.11232014000415802,
+          "nonzero_ratio": 0.44167232513427734,
+          "sha256": "29b99b02c7ef0c90cad6b6b741053a22731ed09363a5bfa3be5f3451065971a3"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -17.957229614257812,
+            "max": 17.044099807739258,
+            "mean": -0.0029734070412814617,
+            "std": 0.7357795834541321,
+            "l1_norm": 4293478.5,
+            "l2_norm": 2380.78955078125,
+            "spatial_variance": 0.5340497493743896,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "4c8cb6db218b8e308626cbe5af3c16c1f0d79a30a50ee17f11240b5307668da5",
+            "mean_abs": 0.4094580113887787,
+            "max_abs": 17.957229614257812
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -9.22870922088623,
+            "max": 9.230501174926758,
+            "mean": 0.0008822757517918944,
+            "std": 0.43262019753456116,
+            "l1_norm": 2858053.5,
+            "l2_norm": 1400.127685546875,
+            "spatial_variance": 0.18478047847747803,
+            "nonzero_ratio": 1.0,
+            "sha256": "8752d5d32cad2a33ab7006225b36307c316f34805ea32e43e3e7ef0ba308bfbd",
+            "mean_abs": 0.27256521582603455,
+            "max_abs": 9.230501174926758
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      },
+      "shift_large": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 18.150346755981445,
+          "mean": 0.15613587200641632,
+          "std": 0.582550048828125,
+          "l1_norm": 2987911.75,
+          "l2_norm": 1950.8924560546875,
+          "spatial_variance": 0.2856596112251282,
+          "nonzero_ratio": 0.887499988079071,
+          "sha256": "423446abf3e461f72fc50c0bfd784654883cc4aaa0a6115da27ec49930b0c7d7"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -9.472780227661133,
+          "max": 8.31685733795166,
+          "mean": 0.03608058765530586,
+          "std": 0.351174533367157,
+          "l1_norm": 2015014.75,
+          "l2_norm": 1142.1357421875,
+          "spatial_variance": 0.09967084974050522,
+          "nonzero_ratio": 0.887499988079071,
+          "sha256": "8648d0d515dab7e410bb86aee9a177bc3937e1bc7660179c20c20eacf4a64305"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.30876922607422,
+          "mean": 0.07841415703296661,
+          "std": 0.37934184074401855,
+          "l1_norm": 1644464.0,
+          "l2_norm": 1772.359619140625,
+          "spatial_variance": 0.1349600851535797,
+          "nonzero_ratio": 0.3437928259372711,
+          "sha256": "e771a37307e8510e12734b2b99fb9e0d9e7afc5f20c354b3e4d12bf17d4c6a98"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 26.349628448486328,
+          "mean": 0.0890311449766159,
+          "std": 0.35511454939842224,
+          "l1_norm": 1867118.375,
+          "l2_norm": 1675.035888671875,
+          "spatial_variance": 0.11232014000415802,
+          "nonzero_ratio": 0.44167232513427734,
+          "sha256": "29b99b02c7ef0c90cad6b6b741053a22731ed09363a5bfa3be5f3451065971a3"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -16.571449279785156,
+            "max": 16.66683578491211,
+            "mean": -0.031692568212747574,
+            "std": 0.7558535933494568,
+            "l1_norm": 4595051.0,
+            "l2_norm": 2447.500244140625,
+            "spatial_variance": 0.5288071036338806,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "2e28572146b414ec9513e526de900956c980663a5f82b060c3e4e1ad8fcc9ab7",
+            "mean_abs": 0.43821820616722107,
+            "max_abs": 16.66683578491211
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -9.24875259399414,
+            "max": 8.549016952514648,
+            "mean": -0.006219184026122093,
+            "std": 0.4438183903694153,
+            "l1_norm": 3038463.25,
+            "l2_norm": 1436.421875,
+            "spatial_variance": 0.1841357946395874,
+            "nonzero_ratio": 1.0,
+            "sha256": "46baa1593c698092e4624ccb9e4943bf709142c007f44dd5f317d8cad2339864",
+            "mean_abs": 0.2897704243659973,
+            "max_abs": 9.24875259399414
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      },
+      "permuted": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 18.0157470703125,
+          "mean": 0.1878090500831604,
+          "std": 0.5886448621749878,
+          "l1_norm": 3711125.5,
+          "l2_norm": 1998.4901123046875,
+          "spatial_variance": 0.25337162613868713,
+          "nonzero_ratio": 1.0,
+          "sha256": "e1e680556204ead8397d00305a36e4739065ff623219b8a1a6156589b8c21ab8"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -8.612809181213379,
+          "max": 9.232941627502441,
+          "mean": 0.04229689761996269,
+          "std": 0.3519403338432312,
+          "l1_norm": 2373724.5,
+          "l2_norm": 1146.9715576171875,
+          "spatial_variance": 0.0883651152253151,
+          "nonzero_ratio": 1.0,
+          "sha256": "cceba8a096f7bff26ff8cecb406588af63f528c0499f09dd11f838788820daa5"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.30876922607422,
+          "mean": 0.07841415703296661,
+          "std": 0.37934184074401855,
+          "l1_norm": 1644464.0,
+          "l2_norm": 1772.359619140625,
+          "spatial_variance": 0.1349600851535797,
+          "nonzero_ratio": 0.3437928259372711,
+          "sha256": "e771a37307e8510e12734b2b99fb9e0d9e7afc5f20c354b3e4d12bf17d4c6a98"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 26.349628448486328,
+          "mean": 0.0890311449766159,
+          "std": 0.35511454939842224,
+          "l1_norm": 1867118.375,
+          "l2_norm": 1675.035888671875,
+          "spatial_variance": 0.11232014000415802,
+          "nonzero_ratio": 0.44167232513427734,
+          "sha256": "29b99b02c7ef0c90cad6b6b741053a22731ed09363a5bfa3be5f3451065971a3"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -17.962343215942383,
+            "max": 17.93633460998535,
+            "mean": -1.938575951498933e-05,
+            "std": 0.7031518816947937,
+            "l1_norm": 3890664.0,
+            "l2_norm": 2275.0361328125,
+            "spatial_variance": 0.48969751596450806,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "9fd6465363af6032725013cdc03ef5868b9a5130d9c8134e8adea7c34bc4f83c",
+            "mean_abs": 0.3710426390171051,
+            "max_abs": 17.962343215942383
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -9.198986053466797,
+            "max": 9.227620124816895,
+            "mean": -2.868659748855862e-06,
+            "std": 0.41636452078819275,
+            "l1_norm": 2630029.5,
+            "l2_norm": 1347.25048828125,
+            "spatial_variance": 0.1718408167362213,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "38474cf0a24290003b9bd007b7530596dc74536cf5303db9065b984f1cdbeb68",
+            "mean_abs": 0.2508191466331482,
+            "max_abs": 9.227620124816895
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      },
+      "all_one": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.2784636914730072,
+          "max": 5.001006126403809,
+          "mean": 0.2081235945224762,
+          "std": 0.5486336946487427,
+          "l1_norm": 4022236.0,
+          "l2_norm": 1897.528564453125,
+          "spatial_variance": 0.020153354853391647,
+          "nonzero_ratio": 1.0,
+          "sha256": "41592f95cd4fbe1524a15b2e7f6d97e522326c426305e6cc7ac05a719e343f1b"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -1.8240132331848145,
+          "max": 2.1838877201080322,
+          "mean": 0.0674649253487587,
+          "std": 0.31991639733314514,
+          "l1_norm": 2949623.25,
+          "l2_norm": 1057.979248046875,
+          "spatial_variance": 0.006675319280475378,
+          "nonzero_ratio": 1.0,
+          "sha256": "0bed2aa3aae61a53af1bd55af5dae36999b748e3b5129be7dd6e07461fe2b8cd"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "std": 0.0,
+          "l1_norm": 0.0,
+          "l2_norm": 0.0,
+          "spatial_variance": 0.0,
+          "nonzero_ratio": 0.0,
+          "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.30876922607422,
+          "mean": 0.07841415703296661,
+          "std": 0.37934184074401855,
+          "l1_norm": 1644464.0,
+          "l2_norm": 1772.359619140625,
+          "spatial_variance": 0.1349600851535797,
+          "nonzero_ratio": 0.3437928259372711,
+          "sha256": "e771a37307e8510e12734b2b99fb9e0d9e7afc5f20c354b3e4d12bf17d4c6a98"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 26.349628448486328,
+          "mean": 0.0890311449766159,
+          "std": 0.35511454939842224,
+          "l1_norm": 1867118.375,
+          "l2_norm": 1675.035888671875,
+          "spatial_variance": 0.11232014000415802,
+          "nonzero_ratio": 0.44167232513427734,
+          "sha256": "29b99b02c7ef0c90cad6b6b741053a22731ed09363a5bfa3be5f3451065971a3"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -16.165739059448242,
+            "max": 5.13653564453125,
+            "mean": 0.020295165479183197,
+            "std": 0.5938067436218262,
+            "l1_norm": 3593641.0,
+            "l2_norm": 1922.1104736328125,
+            "spatial_variance": 0.2591455578804016,
+            "nonzero_ratio": 1.0,
+            "sha256": "4f0c9f65813e451d265f473cff6eb629f62a0d982f35fbaa8c7d6cf8d70f5c78",
+            "mean_abs": 0.3427163064479828,
+            "max_abs": 16.165739059448242
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -9.103248596191406,
+            "max": 8.550308227539062,
+            "mean": 0.02516516111791134,
+            "std": 0.3491169512271881,
+            "l1_norm": 2572087.0,
+            "l2_norm": 1132.9410400390625,
+            "spatial_variance": 0.09034435451030731,
+            "nonzero_ratio": 1.0,
+            "sha256": "f17c0fc9f1871fbf38bff3e29c92b0e3b423f9fef55dc8c0aab30d170ed59545",
+            "mean_abs": 0.24529333412647247,
+            "max_abs": 9.103248596191406
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      }
+    },
+    "R1": {
+      "aligned": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 13.63025188446045,
+          "mean": 0.1855296790599823,
+          "std": 0.559910237789154,
+          "l1_norm": 3557941.75,
+          "l2_norm": 1908.01708984375,
+          "spatial_variance": 0.22726917266845703,
+          "nonzero_ratio": 1.0,
+          "sha256": "b8d051f8716f0f58cd89c3050b46d48a05552c65aa8c06e27c0cf08dac3995de"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -5.610707759857178,
+          "max": 6.606091022491455,
+          "mean": 0.030526334419846535,
+          "std": 0.2887507975101471,
+          "l1_norm": 2019980.25,
+          "l2_norm": 939.62255859375,
+          "spatial_variance": 0.0598008930683136,
+          "nonzero_ratio": 1.0,
+          "sha256": "c99ae712e8e43bcf2c3bf4faabe62137f7ce2ca9023dee3b8b214a442f33bcfd"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.29101091623306274,
+          "max": 0.29976195096969604,
+          "mean": 0.0011491964105516672,
+          "std": 0.02605997771024704,
+          "l1_norm": 823405.9375,
+          "l2_norm": 168.38328552246094,
+          "spatial_variance": 0.000477296591270715,
+          "nonzero_ratio": 1.0,
+          "sha256": "7ef861de7a6e04170aea7e8b92437ad4694ce1a8a0e0b756b036a1ed9273a491"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.29101091623306274,
+          "max": 0.29976192116737366,
+          "mean": 0.0011491964105516672,
+          "std": 0.02605997771024704,
+          "l1_norm": 823405.9375,
+          "l2_norm": 168.38328552246094,
+          "spatial_variance": 0.000477296591270715,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "4715263adf0825c7aa756d0a7157feb3028447d9e1aa27471b928719181175a3"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.143095016479492,
+          "mean": 0.0734589695930481,
+          "std": 0.390655517578125,
+          "l1_norm": 1540546.25,
+          "l2_norm": 1818.9327392578125,
+          "spatial_variance": 0.1440146267414093,
+          "nonzero_ratio": 0.34512919187545776,
+          "sha256": "5a3c2a7b8781748ae38b86f915f0f6387bf2ded98f8d22f05284f63df5f53bfb"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.981626510620117,
+          "mean": 0.0818619504570961,
+          "std": 0.3519444167613983,
+          "l1_norm": 1716769.5,
+          "l2_norm": 1653.690185546875,
+          "spatial_variance": 0.10780258476734161,
+          "nonzero_ratio": 0.40928250551223755,
+          "sha256": "ba1acb3abb94e0f73f7e18ada9b4c331abf0ae2d073015742565dffce9bbc8cc"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      },
+      "zero": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27845361828804016,
+          "max": 2.817908525466919,
+          "mean": 0.2135426104068756,
+          "std": 0.5484617352485657,
+          "l1_norm": 4558128.0,
+          "l2_norm": 1902.432373046875,
+          "spatial_variance": 0.015212221071124077,
+          "nonzero_ratio": 1.0,
+          "sha256": "ee3bdcdc644fcda40750b638e8fe14f779205879aaa8294120cfdb86a76676f6"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.8166527152061462,
+          "max": 0.7929811477661133,
+          "mean": 0.01657593809068203,
+          "std": 0.2860402762889862,
+          "l1_norm": 2307962.25,
+          "l2_norm": 927.4464111328125,
+          "spatial_variance": 0.002893930533900857,
+          "nonzero_ratio": 1.0,
+          "sha256": "415c74eff17721017750833bb94ec9ec5284bd0b2a95ba0bf76145c14d215532"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.2006075382232666,
+          "max": 0.2764703333377838,
+          "mean": 0.005617088638246059,
+          "std": 0.029975976794958115,
+          "l1_norm": 1022671.75,
+          "l2_norm": 196.9180145263672,
+          "spatial_variance": 0.00023666144988965243,
+          "nonzero_ratio": 1.0,
+          "sha256": "2840dd0a5217625adc68141484948f7f14f1ca02f0970cb9ef0371272fe50a3c"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.2006075382232666,
+          "max": 0.2764703333377838,
+          "mean": 0.005617088638246059,
+          "std": 0.029975976794958115,
+          "l1_norm": 1022671.75,
+          "l2_norm": 196.9180145263672,
+          "spatial_variance": 0.00023666144988965243,
+          "nonzero_ratio": 1.0,
+          "sha256": "e58ba93314ca5100c3c299605e48e3c8614e57a00caa204955822bdbbb85cb7a"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.063919067382812,
+          "mean": 0.07148650288581848,
+          "std": 0.3893694579601288,
+          "l1_norm": 1499180.625,
+          "l2_norm": 1811.3551025390625,
+          "spatial_variance": 0.14292718470096588,
+          "nonzero_ratio": 0.3407261371612549,
+          "sha256": "7ff3945ae9364bff3bff5e7f8a7cee3d42dd050b00cf21f569cefe3d59c31179"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.06922721862793,
+          "mean": 0.08419939130544662,
+          "std": 0.3520187735557556,
+          "l1_norm": 1765789.25,
+          "l2_norm": 1656.5284423828125,
+          "spatial_variance": 0.10740425437688828,
+          "nonzero_ratio": 0.40895408391952515,
+          "sha256": "b2a89719c4f4154126355fc02bed2937037868ccd55d0759abd8e5dabab772d1"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -12.169506072998047,
+            "max": 3.0963730812072754,
+            "mean": 0.028012942522764206,
+            "std": 0.7915581464767456,
+            "l1_norm": 6051467.5,
+            "l2_norm": 2563.579345703125,
+            "spatial_variance": 0.2432219535112381,
+            "nonzero_ratio": 1.0,
+            "sha256": "9111c46239dfaa9b21a54190420987ecc38f6ebc641d6785397df9bfad0d6f18",
+            "mean_abs": 0.5771129131317139,
+            "max_abs": 12.169506072998047
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.799968719482422,
+            "max": 5.29163122177124,
+            "mean": -0.013950401917099953,
+            "std": 0.39102619886398315,
+            "l1_norm": 3046351.75,
+            "l2_norm": 1266.4481201171875,
+            "spatial_variance": 0.06303419172763824,
+            "nonzero_ratio": 1.0,
+            "sha256": "e918ed19ebdd9c7755a39043d0c467d6d8ce396874d90069d0d92f4af421feb9",
+            "mean_abs": 0.2905227541923523,
+            "max_abs": 6.799968719482422
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3167423605918884,
+            "max": 0.3048642575740814,
+            "mean": 0.0044678919948637486,
+            "std": 0.022950870916247368,
+            "l1_norm": 744400.375,
+            "l2_norm": 150.91285705566406,
+            "spatial_variance": 0.00027167247026227415,
+            "nonzero_ratio": 1.0,
+            "sha256": "d5222d207e59ad0225eb4ce59752513cac9a59d109c7a70e8b86c1a27f37346c",
+            "mean_abs": 0.01774788834154606,
+            "max_abs": 0.3167423605918884
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.31674233078956604,
+            "max": 0.3048642575740814,
+            "mean": 0.0044678919948637486,
+            "std": 0.022950870916247368,
+            "l1_norm": 744400.375,
+            "l2_norm": 150.91285705566406,
+            "spatial_variance": 0.00027167247026227415,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "e776b71b9c4b454f761d9e2d7a4ae13d40c53e2eb75b1bcb8c3205cf4de97133",
+            "mean_abs": 0.01774788834154606,
+            "max_abs": 0.31674233078956604
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5269583463668823,
+            "max": 0.7088656425476074,
+            "mean": -0.0019724632147699594,
+            "std": 0.034776464104652405,
+            "l1_norm": 301237.59375,
+            "l2_norm": 159.4467010498047,
+            "spatial_variance": 0.0007846173830330372,
+            "nonzero_ratio": 0.37804150581359863,
+            "sha256": "a1c969a9bbb457ac7f13cecafa7c9674764b5fbce344a22938f815fcc420ed43",
+            "mean_abs": 0.01436412800103426,
+            "max_abs": 0.7088656425476074
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.6414998173713684,
+            "max": 0.8367664813995361,
+            "mean": 0.002337441546842456,
+            "std": 0.02985805831849575,
+            "l1_norm": 247075.75,
+            "l2_norm": 137.08766174316406,
+            "spatial_variance": 0.0005441533867269754,
+            "nonzero_ratio": 0.42868679761886597,
+            "sha256": "6f325bac61a275e32d20f2b912d41bc5dfa2d41cae4d2abe3bf3403ee53c0a2b",
+            "mean_abs": 0.011781489476561546,
+            "max_abs": 0.8367664813995361
+          }
+        }
+      },
+      "shift_fixed": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846455574035645,
+          "max": 18.539690017700195,
+          "mean": 0.18300622701644897,
+          "std": 0.5705618858337402,
+          "l1_norm": 3493023.0,
+          "l2_norm": 1938.2034912109375,
+          "spatial_variance": 0.2516048550605774,
+          "nonzero_ratio": 1.0,
+          "sha256": "bdfca3668a48f0241930248038b291d7376f65c9e944b1e64dcaef6b2b147dae"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -5.726154804229736,
+          "max": 7.744758129119873,
+          "mean": 0.032136641442775726,
+          "std": 0.29641085863113403,
+          "l1_norm": 2019752.875,
+          "l2_norm": 964.7847290039062,
+          "spatial_variance": 0.06639067083597183,
+          "nonzero_ratio": 1.0,
+          "sha256": "0bceafad5f8ee7ab8eca38e2f4e944dbf1a4ac1cea2c7fb4138edb6e59cba01c"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.35888561606407166,
+          "max": 0.4307778775691986,
+          "mean": 0.0015874527161940932,
+          "std": 0.027036791667342186,
+          "l1_norm": 855227.0625,
+          "l2_norm": 174.84823608398438,
+          "spatial_variance": 0.0005180934676900506,
+          "nonzero_ratio": 1.0,
+          "sha256": "782aa4f2a8a1f674eb2c66c2d0e59da8222fa4d5187daeaf74e9afdfa7938aed"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.35888561606407166,
+          "max": 0.4307778775691986,
+          "mean": 0.0015874525997787714,
+          "std": 0.027036791667342186,
+          "l1_norm": 855227.0625,
+          "l2_norm": 174.84823608398438,
+          "spatial_variance": 0.0005180934676900506,
+          "nonzero_ratio": 1.0,
+          "sha256": "3f47ad426a240644f182e07002018f536d015ffddcd2ed680ff0b308bd75bbb0"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.108890533447266,
+          "mean": 0.0734110102057457,
+          "std": 0.3899253010749817,
+          "l1_norm": 1539540.5,
+          "l2_norm": 1815.585205078125,
+          "spatial_variance": 0.14339111745357513,
+          "nonzero_ratio": 0.348515123128891,
+          "sha256": "fd9d2de8f73f436c655b9a5d429425588fda8ceae4b09c67c8d69f03ef9aa037"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.001590728759766,
+          "mean": 0.0819745808839798,
+          "std": 0.3515346944332123,
+          "l1_norm": 1719131.625,
+          "l2_norm": 1651.97119140625,
+          "spatial_variance": 0.10730636119842529,
+          "nonzero_ratio": 0.41173186898231506,
+          "sha256": "0a66f10e48149dc9aba7f94423d19b14054d4c8fa14c38c5aebfec77a5f02c46"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -12.620680809020996,
+            "max": 18.752239227294922,
+            "mean": -0.0025234720669686794,
+            "std": 0.7163218259811401,
+            "l1_norm": 4288463.0,
+            "l2_norm": 2317.6337890625,
+            "spatial_variance": 0.5033107995986938,
+            "nonzero_ratio": 0.9999997019767761,
+            "sha256": "d4fd69c83a19de1ff8bd71dff994466ed64da17673a3ad29f5ada85aed4177c0",
+            "mean_abs": 0.40897971391677856,
+            "max_abs": 18.752239227294922
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.302380561828613,
+            "max": 7.754449844360352,
+            "mean": 0.001610306790098548,
+            "std": 0.36876803636550903,
+            "l1_norm": 2589507.0,
+            "l2_norm": 1193.37255859375,
+            "spatial_variance": 0.13357089459896088,
+            "nonzero_ratio": 1.0,
+            "sha256": "044ae64596f75553053c0b05fcbf171e640963702544accf3ea31358bd85bcd0",
+            "mean_abs": 0.24695463478565216,
+            "max_abs": 7.754449844360352
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.37828096747398376,
+            "max": 0.39358729124069214,
+            "mean": 0.0004382561310194433,
+            "std": 0.02272867038846016,
+            "l1_norm": 669872.625,
+            "l2_norm": 146.65658569335938,
+            "spatial_variance": 0.0004994776099920273,
+            "nonzero_ratio": 1.0,
+            "sha256": "06aeaa5156b11f19369fcaf5768292ad66026c38068a44692be78974d6e15179",
+            "mean_abs": 0.01597100868821144,
+            "max_abs": 0.39358729124069214
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.37828096747398376,
+            "max": 0.39358729124069214,
+            "mean": 0.0004382561310194433,
+            "std": 0.02272867038846016,
+            "l1_norm": 669872.625,
+            "l2_norm": 146.65658569335938,
+            "spatial_variance": 0.0004994776099920273,
+            "nonzero_ratio": 0.9999996423721313,
+            "sha256": "07d9e8a4acdf95c1cb9727ed49b0ff0e1b49c24abe588602d683b0fecf88721d",
+            "mean_abs": 0.01597100868821144,
+            "max_abs": 0.39358729124069214
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.8293694257736206,
+            "max": 0.6921901106834412,
+            "mean": -4.795515997102484e-05,
+            "std": 0.0325683057308197,
+            "l1_norm": 262348.9375,
+            "l2_norm": 149.0701446533203,
+            "spatial_variance": 0.001026361482217908,
+            "nonzero_ratio": 0.37411174178123474,
+            "sha256": "03dd2c5f7f864a3f35dba4c094b599caa4de6b6d2912dbf06b20e4d78a243037",
+            "mean_abs": 0.012509772554039955,
+            "max_abs": 0.8293694257736206
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.7096377015113831,
+            "max": 0.8512078523635864,
+            "mean": 0.00011263121996307746,
+            "std": 0.028219731524586678,
+            "l1_norm": 219607.46875,
+            "l2_norm": 129.16749572753906,
+            "spatial_variance": 0.0007451792480424047,
+            "nonzero_ratio": 0.4268125593662262,
+            "sha256": "9b4bc9bf9bb8543e30abea2ed5397a47dbb149195dd2d5699a08f96ef62ed9ce",
+            "mean_abs": 0.010471699759364128,
+            "max_abs": 0.8512078523635864
+          }
+        }
+      },
+      "shift_large": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 15.87235164642334,
+          "mean": 0.1799021065235138,
+          "std": 0.5829387903213501,
+          "l1_norm": 3450643.5,
+          "l2_norm": 1972.85205078125,
+          "spatial_variance": 0.2574172616004944,
+          "nonzero_ratio": 1.0,
+          "sha256": "4bbd2034d939ea7d43f455c0721275957488856b6745c21cdefc5a96ef76b89e"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -5.275514602661133,
+          "max": 6.99643611907959,
+          "mean": 0.031274762004613876,
+          "std": 0.3045928180217743,
+          "l1_norm": 2000955.5,
+          "l2_norm": 990.7709350585938,
+          "spatial_variance": 0.06777474284172058,
+          "nonzero_ratio": 1.0,
+          "sha256": "2523ba78989d03effa33bcfc86300e6c3597b637f924d592fa41434dde15832b"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.3155421316623688,
+          "max": 0.40760600566864014,
+          "mean": 0.002370653208345175,
+          "std": 0.026629993692040443,
+          "l1_norm": 848265.25,
+          "l2_norm": 172.58880615234375,
+          "spatial_variance": 0.00044671184150502086,
+          "nonzero_ratio": 1.0,
+          "sha256": "72f5a4744245c53a36d77e5cd58ee77a19532fa3588200af0b4d26999c5ff863"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.3155421316623688,
+          "max": 0.40760600566864014,
+          "mean": 0.002370652975514531,
+          "std": 0.026629993692040443,
+          "l1_norm": 848265.25,
+          "l2_norm": 172.58880615234375,
+          "spatial_variance": 0.00044671184150502086,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "cd071e29b8a8c41d0d17b97c68333b28cf20df16fc6b1780f93fbf0d4fe8fe3c"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.092554092407227,
+          "mean": 0.07355976104736328,
+          "std": 0.3900059163570404,
+          "l1_norm": 1542660.0,
+          "l2_norm": 1816.0455322265625,
+          "spatial_variance": 0.14343100786209106,
+          "nonzero_ratio": 0.34760433435440063,
+          "sha256": "ea7bf9c8d83a4feaf24ed92f9f749bffaa83b7446d5082871ccbc5596ffde972"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.0570011138916,
+          "mean": 0.0827808678150177,
+          "std": 0.35162365436553955,
+          "l1_norm": 1736040.625,
+          "l2_norm": 1653.2342529296875,
+          "spatial_variance": 0.10726919025182724,
+          "nonzero_ratio": 0.41166719794273376,
+          "sha256": "2826e7930e48ab81be2e9bc1636f85302544fceebfad4ad73b29306101d11e10"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -13.623220443725586,
+            "max": 14.275383949279785,
+            "mean": -0.005627586040645838,
+            "std": 0.7444182634353638,
+            "l1_norm": 4683105.0,
+            "l2_norm": 2408.74267578125,
+            "spatial_variance": 0.4757917523384094,
+            "nonzero_ratio": 1.0,
+            "sha256": "a625b0e0786a44b6ecd67242c584a315e30c001d7d3879be13c0eac09d707d2c",
+            "mean_abs": 0.44661569595336914,
+            "max_abs": 14.275383949279785
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.6459527015686035,
+            "max": 6.555567741394043,
+            "mean": 0.0007484281086362898,
+            "std": 0.3793427050113678,
+            "l1_norm": 2733392.75,
+            "l2_norm": 1227.59375,
+            "spatial_variance": 0.1255137175321579,
+            "nonzero_ratio": 1.0,
+            "sha256": "439b56bda7718901fe6cbcdceb4428ebdb132d41263bb2b8b64458bcd2827205",
+            "mean_abs": 0.26067665219306946,
+            "max_abs": 6.6459527015686035
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3282257914543152,
+            "max": 0.4102800786495209,
+            "mean": 0.001221456448547542,
+            "std": 0.022827092558145523,
+            "l1_norm": 687682.4375,
+            "l2_norm": 147.4447021484375,
+            "spatial_variance": 0.00046154236770235,
+            "nonzero_ratio": 1.0,
+            "sha256": "25a4a95737bfade670f699190cb68621c69ea3eacdf252ca6eec2822fc168e58",
+            "mean_abs": 0.016395626589655876,
+            "max_abs": 0.4102800786495209
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3282257616519928,
+            "max": 0.4102800786495209,
+            "mean": 0.001221456448547542,
+            "std": 0.022827092558145523,
+            "l1_norm": 687682.4375,
+            "l2_norm": 147.44471740722656,
+            "spatial_variance": 0.00046154236770235,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "9de649cce33c25a65b39f9bef3fcb4f5d20310008de562e8feb84b6ee36dc13d",
+            "mean_abs": 0.016395626589655876,
+            "max_abs": 0.4102800786495209
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.8130063414573669,
+            "max": 0.6966683864593506,
+            "mean": 0.00010079539060825482,
+            "std": 0.0328734889626503,
+            "l1_norm": 267919.84375,
+            "l2_norm": 150.47190856933594,
+            "spatial_variance": 0.0009741632384248078,
+            "nonzero_ratio": 0.37444910407066345,
+            "sha256": "20b7444973dfe436dc53a109b91faa93a6b4acfc9a900b2a2de3d3db31dfff05",
+            "mean_abs": 0.012775413691997528,
+            "max_abs": 0.8130063414573669
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.860521674156189,
+            "max": 0.8168725967407227,
+            "mean": 0.0009189138072542846,
+            "std": 0.028744634240865707,
+            "l1_norm": 226704.609375,
+            "l2_norm": 131.6401824951172,
+            "spatial_variance": 0.0007259681005962193,
+            "nonzero_ratio": 0.4273158609867096,
+            "sha256": "79f207f78d1405d5056f69692c6af28d8c7ff033f2ff7476e19464d9ee180925",
+            "mean_abs": 0.010810118168592453,
+            "max_abs": 0.860521674156189
+          }
+        }
+      },
+      "permuted": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 13.63025188446045,
+          "mean": 0.1855146884918213,
+          "std": 0.5599348545074463,
+          "l1_norm": 3557567.0,
+          "l2_norm": 1908.084716796875,
+          "spatial_variance": 0.22730788588523865,
+          "nonzero_ratio": 1.0,
+          "sha256": "d882506a3de46645b2132fa8454875260b95e68cdfdc68059741303a309a99da"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -5.610707759857178,
+          "max": 6.606091022491455,
+          "mean": 0.030546898022294044,
+          "std": 0.28877124190330505,
+          "l1_norm": 2019912.5,
+          "l2_norm": 939.7343139648438,
+          "spatial_variance": 0.05981462448835373,
+          "nonzero_ratio": 1.0,
+          "sha256": "7fe1e4e5262d372fcae5bc4069b741744b3e670b4d52a53af55aaa7294a90bea"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.30140221118927,
+          "max": 0.330060750246048,
+          "mean": 0.0011726769153028727,
+          "std": 0.02692534402012825,
+          "l1_norm": 850189.125,
+          "l2_norm": 173.99288940429688,
+          "spatial_variance": 0.0005120300920680165,
+          "nonzero_ratio": 1.0,
+          "sha256": "ba4aa6668c5d69652db6efd163b4b0de4c4f25de4ce63cb5a6ce19092c6acd45"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.30140221118927,
+          "max": 0.33006078004837036,
+          "mean": 0.0011726769153028727,
+          "std": 0.02692534402012825,
+          "l1_norm": 850189.125,
+          "l2_norm": 173.99288940429688,
+          "spatial_variance": 0.0005120300920680165,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "3c757ba42d32c0c1a756e7ea0d6341b5e7cc5d24ff3c77b2747c4ea1e4b1997d"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.1262264251709,
+          "mean": 0.07294432073831558,
+          "std": 0.3899073600769043,
+          "l1_norm": 1529753.25,
+          "l2_norm": 1815.115234375,
+          "spatial_variance": 0.14356760680675507,
+          "nonzero_ratio": 0.34618014097213745,
+          "sha256": "116e8c57b4e6823dbbd0a090cf48290086e753b476db8c871bc8dcdc182b49bb"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.004152297973633,
+          "mean": 0.08132576197385788,
+          "std": 0.35117506980895996,
+          "l1_norm": 1705524.875,
+          "l2_norm": 1649.6978759765625,
+          "spatial_variance": 0.10733437538146973,
+          "nonzero_ratio": 0.41072630882263184,
+          "sha256": "74fecc70299a6c9888a04b56111319cdb1c0117496d6ca5b45fd723d53c7599a"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -12.861002922058105,
+            "max": 13.619065284729004,
+            "mean": -1.4999881386756897e-05,
+            "std": 0.6566754579544067,
+            "l1_norm": 3745936.5,
+            "l2_norm": 2124.673095703125,
+            "spatial_variance": 0.42523393034935,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "6e2197838058014b96e71a9eaa84f28b7d2882d8544f9dbe7926f278c451f3f9",
+            "mean_abs": 0.35724034905433655,
+            "max_abs": 13.619065284729004
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.326300621032715,
+            "max": 6.669857501983643,
+            "mean": 2.0563777070492506e-05,
+            "std": 0.33654215931892395,
+            "l1_norm": 2244007.0,
+            "l2_norm": 1088.961181640625,
+            "spatial_variance": 0.11179296672344208,
+            "nonzero_ratio": 1.0,
+            "sha256": "774e3d1f7a58b5083ee9daca646ab13fc07d0422e09453a616549758366d75b1",
+            "mean_abs": 0.21400518715381622,
+            "max_abs": 6.669857501983643
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3249097466468811,
+            "max": 0.31569042801856995,
+            "mean": 2.3480388335883617e-05,
+            "std": 0.021200910210609436,
+            "l1_norm": 599461.5625,
+            "l2_norm": 136.7646484375,
+            "spatial_variance": 0.0004364057385828346,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "64753534eac14cf4465200bedc883755528999b84488ef6ca0ec9f4f6894fa4e",
+            "mean_abs": 0.01429227739572525,
+            "max_abs": 0.3249097466468811
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3249097466468811,
+            "max": 0.31569042801856995,
+            "mean": 2.3480393792851828e-05,
+            "std": 0.021200910210609436,
+            "l1_norm": 599461.5625,
+            "l2_norm": 136.7646484375,
+            "spatial_variance": 0.0004364057385828346,
+            "nonzero_ratio": 0.9999997019767761,
+            "sha256": "cd4b3cb3dc0deb291b8c1d50a37678fe361bd50932fd2461297fdb2a5dc15471",
+            "mean_abs": 0.01429227739572525,
+            "max_abs": 0.3249097466468811
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.7813258171081543,
+            "max": 0.6874289512634277,
+            "mean": -0.000514655199367553,
+            "std": 0.029220081865787506,
+            "l1_norm": 225969.71875,
+            "l2_norm": 133.7690887451172,
+            "spatial_variance": 0.0008130868664011359,
+            "nonzero_ratio": 0.36866122484207153,
+            "sha256": "1595b52ede71470251bd95aef0ef4015b6d69456fc160317e59074d17cb143b1",
+            "mean_abs": 0.010775076225399971,
+            "max_abs": 0.7813258171081543
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.7189393043518066,
+            "max": 0.7348254919052124,
+            "mean": -0.0005361814401112497,
+            "std": 0.025799106806516647,
+            "l1_norm": 191499.09375,
+            "l2_norm": 118.1099853515625,
+            "spatial_variance": 0.0006205233512446284,
+            "nonzero_ratio": 0.42384761571884155,
+            "sha256": "201b2a1cd7fd7705a4243621e8c9f08eb4d2bb2e9eccc0c73b10b12a2dacef54",
+            "mean_abs": 0.009131388738751411,
+            "max_abs": 0.7348254919052124
+          }
+        }
+      },
+      "all_one": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.2784639000892639,
+          "max": 3.935608148574829,
+          "mean": 0.20174427330493927,
+          "std": 0.5181639790534973,
+          "l1_norm": 4069708.0,
+          "l2_norm": 1798.4610595703125,
+          "spatial_variance": 0.027042943984270096,
+          "nonzero_ratio": 1.0,
+          "sha256": "682cabd5227a435530fe98b6b3bfb086fb341edfa0cb9cea9cecde6cec268f95"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -1.1320456266403198,
+          "max": 1.5699013471603394,
+          "mean": 0.02579217217862606,
+          "std": 0.24015580117702484,
+          "l1_norm": 1969504.0,
+          "l2_norm": 781.5946655273438,
+          "spatial_variance": 0.006608235649764538,
+          "nonzero_ratio": 1.0,
+          "sha256": "e9c1b86e7798ed6898c8b352663dbbdcb7962dbdbc71e4f18ecfb294f8ab7ad5"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.3336091935634613,
+          "max": 0.31560981273651123,
+          "mean": -0.003701498033478856,
+          "std": 0.03069080039858818,
+          "l1_norm": 1000920.1875,
+          "l2_norm": 199.4989013671875,
+          "spatial_variance": 0.0005008592852391303,
+          "nonzero_ratio": 1.0,
+          "sha256": "b302e3dde19884bf1dbede91cce451854937fe4dddae4c9ac2b757eb49197819"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.33360910415649414,
+          "max": 0.31560981273651123,
+          "mean": -0.003701498033478856,
+          "std": 0.03069080039858818,
+          "l1_norm": 1000920.1875,
+          "l2_norm": 199.49888610839844,
+          "spatial_variance": 0.0005008592852391303,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "fa4a7c35cbcd46b3b2b38d9a4b51de38d5e9e339d40fcf2ac128ccacdd492644"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.0896053314209,
+          "mean": 0.06467406451702118,
+          "std": 0.3850325644016266,
+          "l1_norm": 1356313.5,
+          "l2_norm": 1786.6307373046875,
+          "spatial_variance": 0.1419365406036377,
+          "nonzero_ratio": 0.3253912031650543,
+          "sha256": "5971039f5f809ec6019b65c5780e2ac9a75aee72283542fc73f9c066334f0db3"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.048967361450195,
+          "mean": 0.07231474667787552,
+          "std": 0.3472517728805542,
+          "l1_norm": 1516550.125,
+          "l2_norm": 1623.2076416015625,
+          "spatial_variance": 0.10561702400445938,
+          "nonzero_ratio": 0.39959949254989624,
+          "sha256": "281f243e9a76deaa5976c178ee664a8ed1b3d7f50e4f33f9fcf360a3cc182a6c"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -13.657654762268066,
+            "max": 4.153755187988281,
+            "mean": 0.016214581206440926,
+            "std": 0.594692587852478,
+            "l1_norm": 3818244.75,
+            "l2_norm": 1925.1854248046875,
+            "spatial_variance": 0.2368961125612259,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "a3b0c00facb6cb9e0f13bfc00655a8834b318ea3a4d0c0c5b0b28961ec7430b3",
+            "mean_abs": 0.3641361892223358,
+            "max_abs": 13.657654762268066
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.758400917053223,
+            "max": 5.690202236175537,
+            "mean": -0.004734160844236612,
+            "std": 0.29594165086746216,
+            "l1_norm": 2193506.5,
+            "l2_norm": 957.9172973632812,
+            "spatial_variance": 0.062270283699035645,
+            "nonzero_ratio": 1.0,
+            "sha256": "f83941ee0c53daf74a025fe3872559d2b1a590273ecae479a6d6a38a51a8e867",
+            "mean_abs": 0.20918908715248108,
+            "max_abs": 6.758400917053223
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3149927258491516,
+            "max": 0.28889915347099304,
+            "mean": -0.004850693978369236,
+            "std": 0.025397758930921555,
+            "l1_norm": 795103.8125,
+            "l2_norm": 166.80087280273438,
+            "spatial_variance": 0.00031811094959266484,
+            "nonzero_ratio": 1.0,
+            "sha256": "1d8b10b7234dcc707aa92b9511b46ee1ddc1a4a3a428c5d97c06b62ab9d4a666",
+            "mean_abs": 0.018956752493977547,
+            "max_abs": 0.3149927258491516
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3149926960468292,
+            "max": 0.28889915347099304,
+            "mean": -0.004850693978369236,
+            "std": 0.025397758930921555,
+            "l1_norm": 795103.8125,
+            "l2_norm": 166.80087280273438,
+            "spatial_variance": 0.00031811094959266484,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "e574a33175b86276a9faa895c855924cc733dd1bff1ce5fa5ee226044f06d38b",
+            "mean_abs": 0.018956752493977547,
+            "max_abs": 0.3149926960468292
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.6954905986785889,
+            "max": 0.7125463485717773,
+            "mean": -0.008784905076026917,
+            "std": 0.03944568336009979,
+            "l1_norm": 347286.59375,
+            "l2_norm": 184.99322509765625,
+            "spatial_variance": 0.0009964691707864404,
+            "nonzero_ratio": 0.37234005331993103,
+            "sha256": "959bf7ca538dda9ede5a9489aa6f72f5d48c3d50f8fc830f5d329a9bf908ef52",
+            "mean_abs": 0.016559915617108345,
+            "max_abs": 0.7125463485717773
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.8571979999542236,
+            "max": 0.6701104640960693,
+            "mean": -0.009547206573188305,
+            "std": 0.04400341212749481,
+            "l1_norm": 378777.21875,
+            "l2_norm": 206.10423278808594,
+            "spatial_variance": 0.0009460427681915462,
+            "nonzero_ratio": 0.4319477081298828,
+            "sha256": "4f3b09798c7778c7e2eecc0d4489bf02bb501e9549aeac08578d7ef4576f1fb4",
+            "mean_abs": 0.018061505630612373,
+            "max_abs": 0.8571979999542236
+          }
+        }
+      }
+    },
+    "R2": {
+      "aligned": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 14.545243263244629,
+          "mean": 0.18334749341011047,
+          "std": 0.5879202485084534,
+          "l1_norm": 3540153.75,
+          "l2_norm": 1991.7056884765625,
+          "spatial_variance": 0.29279932379722595,
+          "nonzero_ratio": 1.0,
+          "sha256": "2cef8ed542bb8923e2a9fcec9754d10a57f7cefedf2c0e9fc7ccee7d059f89af"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -6.040197372436523,
+          "max": 6.743928909301758,
+          "mean": 0.03243141248822212,
+          "std": 0.3127831220626831,
+          "l1_norm": 2097083.625,
+          "l2_norm": 1017.6839599609375,
+          "spatial_variance": 0.08103058487176895,
+          "nonzero_ratio": 1.0,
+          "sha256": "15b0f7d4a9bda5300dd9dcf03fa750e0d472bfed0bc7172973aa7a18e76dbee1"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.4282885789871216,
+          "max": 0.3264911472797394,
+          "mean": 0.0021013538353145123,
+          "std": 0.031411878764629364,
+          "l1_norm": 1064706.25,
+          "l2_norm": 203.32310485839844,
+          "spatial_variance": 0.00031378044513985515,
+          "nonzero_ratio": 1.0,
+          "sha256": "b8e0e710b562e215b375eb602562e779668387db923b8eebc3ce29e6f30f2f34"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.4282885789871216,
+          "max": 0.3264911472797394,
+          "mean": 0.0021013538353145123,
+          "std": 0.031411878764629364,
+          "l1_norm": 1064706.25,
+          "l2_norm": 203.32308959960938,
+          "spatial_variance": 0.00031378044513985515,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "4f5b2ecf2c4f6670e44bf06b63254f034afe7e08e68a9945c4f5f8175a0ce398"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.438753128051758,
+          "mean": 0.06567204743623734,
+          "std": 0.388045072555542,
+          "l1_norm": 1377242.625,
+          "l2_norm": 1800.87939453125,
+          "spatial_variance": 0.14318016171455383,
+          "nonzero_ratio": 0.2990139126777649,
+          "sha256": "c42b0a99dd4050b5eadd9dc055027cdb5d186227f77f64d33dc89d82af2f3d11"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.161293029785156,
+          "mean": 0.07334239780902863,
+          "std": 0.347941517829895,
+          "l1_norm": 1538101.5,
+          "l2_norm": 1627.34765625,
+          "spatial_variance": 0.10636456310749054,
+          "nonzero_ratio": 0.37470048666000366,
+          "sha256": "a29fc614c70c454df8cb59d0e65356997e4d702894e11c631a48470a1e6b1bb5"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      },
+      "zero": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846387028694153,
+          "max": 2.608088970184326,
+          "mean": 0.19933131337165833,
+          "std": 0.5078912973403931,
+          "l1_norm": 3732355.75,
+          "l2_norm": 1764.589599609375,
+          "spatial_variance": 0.013254456222057343,
+          "nonzero_ratio": 1.0,
+          "sha256": "cbd2d6c6dcc904b7d652946fe798039275579e83676d5f57375aa4720431504e"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.655646562576294,
+          "max": 0.7683486342430115,
+          "mean": 0.0655803233385086,
+          "std": 0.2462693750858307,
+          "l1_norm": 2182498.0,
+          "l2_norm": 824.9312133789062,
+          "spatial_variance": 0.003504625055938959,
+          "nonzero_ratio": 1.0,
+          "sha256": "c6ef51b4dc4e79a6218f27cbd2c7ba4144a884339ff13f9be27e27d8614f0ff4"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.3087707459926605,
+          "max": 0.335796058177948,
+          "mean": 0.0013418738963082433,
+          "std": 0.02581164613366127,
+          "l1_norm": 819849.875,
+          "l2_norm": 166.84127807617188,
+          "spatial_variance": 0.00046839439892210066,
+          "nonzero_ratio": 1.0,
+          "sha256": "d53e6c8bc6710b3e95322e0b548d9e8bc7ac5d4177ea5fc64a5fd4b25d5d338b"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.3087707459926605,
+          "max": 0.3357961177825928,
+          "mean": 0.0013418738963082433,
+          "std": 0.02581164613366127,
+          "l1_norm": 819849.875,
+          "l2_norm": 166.84127807617188,
+          "spatial_variance": 0.00046839439892210066,
+          "nonzero_ratio": 1.0,
+          "sha256": "14a74cae555c8f93caec6f644bd6a71a6d56ab0d0afa646dfbb80b5f1803d709"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.464191436767578,
+          "mean": 0.07216344028711319,
+          "std": 0.39007753133773804,
+          "l1_norm": 1513377.0,
+          "l2_norm": 1815.1988525390625,
+          "spatial_variance": 0.1441289186477661,
+          "nonzero_ratio": 0.32585158944129944,
+          "sha256": "edf504a8ae7bc1d8930224ec8fe5ace74b4d7c12aca878176e14334776f57ded"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.150718688964844,
+          "mean": 0.0797380581498146,
+          "std": 0.3505711555480957,
+          "l1_norm": 1672228.25,
+          "l2_norm": 1645.3697509765625,
+          "spatial_variance": 0.10729982703924179,
+          "nonzero_ratio": 0.39515209197998047,
+          "sha256": "0a89ab357e439e95d4b14c4deca963a2bffbaab729fe130ce48c6e1948def9ba"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -14.381731033325195,
+            "max": 2.8865535259246826,
+            "mean": 0.01598379947245121,
+            "std": 0.7448937296867371,
+            "l1_norm": 5289040.5,
+            "l2_norm": 2411.703369140625,
+            "spatial_variance": 0.30487847328186035,
+            "nonzero_ratio": 1.0,
+            "sha256": "42ba15e3f5f26011853fa15f1d050ee59b560d974262e8819960451fa4902d24",
+            "mean_abs": 0.504402220249176,
+            "max_abs": 14.381731033325195
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.406948566436768,
+            "max": 6.132110595703125,
+            "mean": 0.033148910850286484,
+            "std": 0.36193859577178955,
+            "l1_norm": 2897240.25,
+            "l2_norm": 1176.431884765625,
+            "spatial_variance": 0.08422943204641342,
+            "nonzero_ratio": 1.0,
+            "sha256": "7df47c305a062fca52b577e5218c22d8f0dd2188ea7cc792ed154753529fcb66",
+            "mean_abs": 0.27630236744880676,
+            "max_abs": 6.406948566436768
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3409242033958435,
+            "max": 0.45860129594802856,
+            "mean": -0.000759479939006269,
+            "std": 0.02418561838567257,
+            "l1_norm": 774158.875,
+            "l2_norm": 156.2001190185547,
+            "spatial_variance": 0.00035855232272297144,
+            "nonzero_ratio": 1.0,
+            "sha256": "bc0e56487c60b6dd21f2968d74c4ff166e63a66a76394551601e86284dea1660",
+            "mean_abs": 0.018457386642694473,
+            "max_abs": 0.45860129594802856
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3409242033958435,
+            "max": 0.45860129594802856,
+            "mean": -0.000759479939006269,
+            "std": 0.02418561838567257,
+            "l1_norm": 774158.875,
+            "l2_norm": 156.2001190185547,
+            "spatial_variance": 0.0003585523518268019,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "63b216307558f5ead455e268fcfdfdc5e4adffd8de62ffbcc8d0c9a7f5300c7b",
+            "mean_abs": 0.018457386642694473,
+            "max_abs": 0.45860129594802856
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.6993763446807861,
+            "max": 0.7000934481620789,
+            "mean": 0.006491388194262981,
+            "std": 0.041972991079092026,
+            "l1_norm": 362098.96875,
+            "l2_norm": 194.4256591796875,
+            "spatial_variance": 0.0011069572065025568,
+            "nonzero_ratio": 0.3516710698604584,
+            "sha256": "393986885ed6ae2cfa8ce9918d14a3190e60128b62cc340326f8de9d2d402804",
+            "mean_abs": 0.017266225069761276,
+            "max_abs": 0.7000934481620789
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.621884822845459,
+            "max": 0.8635031580924988,
+            "mean": 0.0063956668600440025,
+            "std": 0.028498636558651924,
+            "l1_norm": 243239.734375,
+            "l2_norm": 133.7081756591797,
+            "spatial_variance": 0.0005453127669170499,
+            "nonzero_ratio": 0.40493932366371155,
+            "sha256": "e78cca372be4fc36f2471f72b9ad1b97d01c58a1134824d28a2caa76aff7f635",
+            "mean_abs": 0.011598573997616768,
+            "max_abs": 0.8635031580924988
+          }
+        }
+      },
+      "shift_fixed": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846455574035645,
+          "max": 16.40001106262207,
+          "mean": 0.1826341152191162,
+          "std": 0.5927812457084656,
+          "l1_norm": 3544139.0,
+          "l2_norm": 2006.167236328125,
+          "spatial_variance": 0.3013857901096344,
+          "nonzero_ratio": 1.0,
+          "sha256": "11bec3c196402818dd1562bdfdd519f25a36c5a92eef60308049caf02f3dae97"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -5.559403896331787,
+          "max": 8.285494804382324,
+          "mean": 0.03501582518219948,
+          "std": 0.3160000741481781,
+          "l1_norm": 2100753.25,
+          "l2_norm": 1028.84130859375,
+          "spatial_variance": 0.08291133493185043,
+          "nonzero_ratio": 1.0,
+          "sha256": "f64ba55210173f7e90eb82d88fed4c12c27c17ea7a852cab1b111cedd9a15dfd"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.39351686835289,
+          "max": 0.37071144580841064,
+          "mean": 0.002094988012686372,
+          "std": 0.03107352927327156,
+          "l1_norm": 1052874.25,
+          "l2_norm": 201.13636779785156,
+          "spatial_variance": 0.00031401292653754354,
+          "nonzero_ratio": 1.0,
+          "sha256": "1d81137ec433e0bab8a76409852fd38bb81f221feebd4c4279ff745dca289ff5"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.39351686835289,
+          "max": 0.37071144580841064,
+          "mean": 0.0020949882455170155,
+          "std": 0.03107352927327156,
+          "l1_norm": 1052874.25,
+          "l2_norm": 201.13636779785156,
+          "spatial_variance": 0.00031401292653754354,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "e030b04c97138a7160b3684eed1ef51e68ebc276b0928292b983619f98957490"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.42388153076172,
+          "mean": 0.06557482481002808,
+          "std": 0.3879554569721222,
+          "l1_norm": 1375203.75,
+          "l2_norm": 1800.397216796875,
+          "spatial_variance": 0.1431906372308731,
+          "nonzero_ratio": 0.2988300919532776,
+          "sha256": "aca76f0eb04a4838aaef42a8264576eee8ae89797e5d38b6ab90a65ca8c77a92"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.173358917236328,
+          "mean": 0.0736117884516716,
+          "std": 0.3482327461242676,
+          "l1_norm": 1543751.125,
+          "l2_norm": 1628.8990478515625,
+          "spatial_variance": 0.10653643310070038,
+          "nonzero_ratio": 0.37590083479881287,
+          "sha256": "a1f7fe6d2cfecd56585b87aea208e8bd084b983cc504165f38006cbe7a683ea6"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -13.833172798156738,
+            "max": 16.65550422668457,
+            "mean": -0.00071337865665555,
+            "std": 0.785581111907959,
+            "l1_norm": 4736488.0,
+            "l2_norm": 2541.910400390625,
+            "spatial_variance": 0.6081387400627136,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "2f79c3b4d3150bbb321baf9786df8d0db9deb0d1a8c2d85b007a623180e1218d",
+            "mean_abs": 0.4517067074775696,
+            "max_abs": 16.65550422668457
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.234021186828613,
+            "max": 8.303970336914062,
+            "mean": 0.0025844103656709194,
+            "std": 0.41321536898612976,
+            "l1_norm": 2886816.5,
+            "l2_norm": 1337.3665771484375,
+            "spatial_variance": 0.16838032007217407,
+            "nonzero_ratio": 1.0,
+            "sha256": "05c213326fbf3f1d990a73333b29302bf013334f9bfc97eb319be0c11b294575",
+            "mean_abs": 0.2753082811832428,
+            "max_abs": 8.303970336914062
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.44851401448249817,
+            "max": 0.4768674075603485,
+            "mean": -6.365698936861008e-06,
+            "std": 0.020129892975091934,
+            "l1_norm": 562019.4375,
+            "l2_norm": 129.89248657226562,
+            "spatial_variance": 0.00040037286817096174,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "25e39084f7491dfe26e42c7bbceccb08520c7ba8a22cf7902a2b3367ce4a08f4",
+            "mean_abs": 0.013399587944149971,
+            "max_abs": 0.4768674075603485
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.44851401448249817,
+            "max": 0.4768674075603485,
+            "mean": -6.36569984635571e-06,
+            "std": 0.020129892975091934,
+            "l1_norm": 562019.4375,
+            "l2_norm": 129.89247131347656,
+            "spatial_variance": 0.0004003728390671313,
+            "nonzero_ratio": 0.9999996423721313,
+            "sha256": "552aa8a4278574bee34fa6f1ae85f63ed448df00dce7dc962b1deb858c331025",
+            "mean_abs": 0.013399587944149971,
+            "max_abs": 0.4768674075603485
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5701025724411011,
+            "max": 0.5630178451538086,
+            "mean": -9.721778042148799e-05,
+            "std": 0.021640578284859657,
+            "l1_norm": 161903.40625,
+            "l2_norm": 99.06405639648438,
+            "spatial_variance": 0.00044993992196395993,
+            "nonzero_ratio": 0.3181917667388916,
+            "sha256": "7b7dedb557458490de731fb44153ff697d5b7dc59600fa652f028fe70de0fe2d",
+            "mean_abs": 0.007720156107097864,
+            "max_abs": 0.5701025724411011
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.6324350833892822,
+            "max": 0.9893029928207397,
+            "mean": 0.0002693942515179515,
+            "std": 0.017145613208413124,
+            "l1_norm": 118503.671875,
+            "l2_norm": 78.49040222167969,
+            "spatial_variance": 0.0002875075733754784,
+            "nonzero_ratio": 0.3854708671569824,
+            "sha256": "6e1a5780497afc21accaf7410c4b47ec9055bee7329fd0fe15f308b420268d6c",
+            "mean_abs": 0.005650695413351059,
+            "max_abs": 0.9893029928207397
+          }
+        }
+      },
+      "shift_large": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 15.429778099060059,
+          "mean": 0.18056198954582214,
+          "std": 0.5974108576774597,
+          "l1_norm": 3467712.75,
+          "l2_norm": 2018.4085693359375,
+          "spatial_variance": 0.29126930236816406,
+          "nonzero_ratio": 1.0,
+          "sha256": "8627025e032572eb90152a830ba963412e7432522ec934c0faffe2a93e07d6db"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -5.603046417236328,
+          "max": 6.9603495597839355,
+          "mean": 0.03990640863776207,
+          "std": 0.3161850869655609,
+          "l1_norm": 2065371.375,
+          "l2_norm": 1031.2020263671875,
+          "spatial_variance": 0.07933077961206436,
+          "nonzero_ratio": 1.0,
+          "sha256": "5f9d7a2724a46823fed7e1ac578a6c32adfe96d1cb2b94ac5fa094d7014b5b6f"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.43316563963890076,
+          "max": 0.40651512145996094,
+          "mean": 0.0020025100093334913,
+          "std": 0.029947848990559578,
+          "l1_norm": 1005347.625,
+          "l2_norm": 193.82720947265625,
+          "spatial_variance": 0.00033487193286418915,
+          "nonzero_ratio": 1.0,
+          "sha256": "48aa574c6ee7e2d0a35caaa20b890a72a55df8bb6a062c339bc0cd718f8ab85e"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.43316563963890076,
+          "max": 0.40651512145996094,
+          "mean": 0.0020025100093334913,
+          "std": 0.029947848990559578,
+          "l1_norm": 1005347.625,
+          "l2_norm": 193.8271942138672,
+          "spatial_variance": 0.00033487193286418915,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "49fb04ce12a1395088c4025497bff37db07e439bae6c506ebcc18325fad17885"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.512102127075195,
+          "mean": 0.06629829108715057,
+          "std": 0.3881145119667053,
+          "l1_norm": 1390375.875,
+          "l2_norm": 1801.6732177734375,
+          "spatial_variance": 0.14330363273620605,
+          "nonzero_ratio": 0.30298519134521484,
+          "sha256": "e8df957059e40e936a0f0a4a4541cf6dbecc6ef9436493811bedf0ae6cdd6685"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.169307708740234,
+          "mean": 0.07438120990991592,
+          "std": 0.3484870493412018,
+          "l1_norm": 1559887.0,
+          "l2_norm": 1630.7720947265625,
+          "spatial_variance": 0.1065775603055954,
+          "nonzero_ratio": 0.3792351186275482,
+          "sha256": "da1b70c77070492d8fee51aa14b856005da4fa17f39fdd7dbf92e4ad80b7e7d3"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -14.464116096496582,
+            "max": 15.339126586914062,
+            "mean": -0.002785502467304468,
+            "std": 0.7913336753845215,
+            "l1_norm": 4937012.0,
+            "l2_norm": 2560.478515625,
+            "spatial_variance": 0.5736004114151001,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "8fb5484d72908fb32899fd3fd271aeab3b45c6724166f6834363b8320e5826fb",
+            "mean_abs": 0.47083014249801636,
+            "max_abs": 15.339126586914062
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.289843559265137,
+            "max": 6.851179599761963,
+            "mean": 0.007474997080862522,
+            "std": 0.41124433279037476,
+            "l1_norm": 2949562.75,
+            "l2_norm": 1331.0076904296875,
+            "spatial_variance": 0.15793287754058838,
+            "nonzero_ratio": 1.0,
+            "sha256": "153d8e1815ac464c5897c8149e68ed45322159779aba942387b84ea82f507ed4",
+            "mean_abs": 0.28129222989082336,
+            "max_abs": 6.851179599761963
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.4595486521720886,
+            "max": 0.5143119096755981,
+            "mean": -9.884382598102093e-05,
+            "std": 0.021087655797600746,
+            "l1_norm": 616240.75,
+            "l2_norm": 136.0137939453125,
+            "spatial_variance": 0.0003972078557126224,
+            "nonzero_ratio": 1.0,
+            "sha256": "d8dbad5f1ae95bd1d50b18a7ab5fc9c4200b4d7aab3fee1e9306f589b0bc0792",
+            "mean_abs": 0.014692324213683605,
+            "max_abs": 0.5143119096755981
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.4595486521720886,
+            "max": 0.5143119096755981,
+            "mean": -9.884384053293616e-05,
+            "std": 0.021087655797600746,
+            "l1_norm": 616240.75,
+            "l2_norm": 136.0137939453125,
+            "spatial_variance": 0.0003972078557126224,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "b92c1a601c47b5bf52223e06cb217d97e621d606a838d17b81b0658414c54ecf",
+            "mean_abs": 0.014692324213683605,
+            "max_abs": 0.5143119096755981
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5679759383201599,
+            "max": 0.5717907547950745,
+            "mean": 0.0006262337556108832,
+            "std": 0.026884770020842552,
+            "l1_norm": 209125.84375,
+            "l2_norm": 123.10706329345703,
+            "spatial_variance": 0.000559197913389653,
+            "nonzero_ratio": 0.3250964283943176,
+            "sha256": "0c8bba74d48797a0efbbb0f210a2dbc1518cd17955df2a2c2c0fd0c8ff3a572e",
+            "mean_abs": 0.00997189711779356,
+            "max_abs": 0.5717907547950745
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.6049326062202454,
+            "max": 0.6378466486930847,
+            "mean": 0.0010388217633590102,
+            "std": 0.020271077752113342,
+            "l1_norm": 148331.90625,
+            "l2_norm": 92.91453552246094,
+            "spatial_variance": 0.00034698177478276193,
+            "nonzero_ratio": 0.3890487253665924,
+            "sha256": "4ff499778638d11d4a504c45a67f26b976cd34e2bf16b7adf4e666f4b6c0c538",
+            "mean_abs": 0.007073016371577978,
+            "max_abs": 0.6378466486930847
+          }
+        }
+      },
+      "permuted": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 14.545243263244629,
+          "mean": 0.18333187699317932,
+          "std": 0.5879399180412292,
+          "l1_norm": 3539766.0,
+          "l2_norm": 1991.7410888671875,
+          "spatial_variance": 0.292816698551178,
+          "nonzero_ratio": 1.0,
+          "sha256": "5bd1d5d14050f6d7cb19cdf4f0b693c2fb9e221e0b3d11a0027be5d75d63f6e2"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -6.040197372436523,
+          "max": 6.743928909301758,
+          "mean": 0.03245466947555542,
+          "std": 0.31279927492141724,
+          "l1_norm": 2096891.5,
+          "l2_norm": 1017.7568359375,
+          "spatial_variance": 0.08103904873132706,
+          "nonzero_ratio": 1.0,
+          "sha256": "0e1bd510d7ad53c1bc2efb7480cc0b107a3d26e82c9edd71adcf10cdae9278c2"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.4357704222202301,
+          "max": 0.3393551707267761,
+          "mean": 0.002092126989737153,
+          "std": 0.03141533583402634,
+          "l1_norm": 1064741.0,
+          "l2_norm": 203.34117126464844,
+          "spatial_variance": 0.0003142089117318392,
+          "nonzero_ratio": 1.0,
+          "sha256": "2953ca611e68781cc3875807c04dbfbc169e8c0ddba3cf4137fd63d91030b522"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.4357704222202301,
+          "max": 0.3393551707267761,
+          "mean": 0.002092126989737153,
+          "std": 0.03141533583402634,
+          "l1_norm": 1064741.0,
+          "l2_norm": 203.34117126464844,
+          "spatial_variance": 0.0003142089117318392,
+          "nonzero_ratio": 1.0,
+          "sha256": "d270eeaeb580acd11ea08828bc893a3b5d6a6f7f2fc17708e0eb1661e2e352c1"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.443294525146484,
+          "mean": 0.06560587137937546,
+          "std": 0.3879140615463257,
+          "l1_norm": 1375854.875,
+          "l2_norm": 1800.2396240234375,
+          "spatial_variance": 0.143107607960701,
+          "nonzero_ratio": 0.29881519079208374,
+          "sha256": "7127374d285b5b00f5abec2e66b621a08e2dc128f0593e843d41f8c860679878"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.174148559570312,
+          "mean": 0.07335802912712097,
+          "std": 0.3478555679321289,
+          "l1_norm": 1538429.375,
+          "l2_norm": 1626.968994140625,
+          "spatial_variance": 0.10634994506835938,
+          "nonzero_ratio": 0.3749842643737793,
+          "sha256": "3711206cfe833737ab6ce4f2482dfcef7a08533030451e54d04a79fb2a8bdf11"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -13.763501167297363,
+            "max": 14.551580429077148,
+            "mean": -1.5613948562531732e-05,
+            "std": 0.7559133172035217,
+            "l1_norm": 4363445.5,
+            "l2_norm": 2445.623046875,
+            "spatial_variance": 0.5660908222198486,
+            "nonzero_ratio": 1.0,
+            "sha256": "39b2e6ed29daade696703bbb2941264195b623ebdcef05aae8d8501eae1ae0d6",
+            "mean_abs": 0.41613060235977173,
+            "max_abs": 14.551580429077148
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.405673027038574,
+            "max": 6.3949384689331055,
+            "mean": 2.3256032363860868e-05,
+            "std": 0.3973686099052429,
+            "l1_norm": 2676250.75,
+            "l2_norm": 1285.779052734375,
+            "spatial_variance": 0.1566101461648941,
+            "nonzero_ratio": 1.0,
+            "sha256": "75be942087ba0e1b683fa6d89c2377d40eff2123a3caf56105fb41db468bf3c3",
+            "mean_abs": 0.25522714853286743,
+            "max_abs": 6.405673027038574
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.4773363769054413,
+            "max": 0.49242720007896423,
+            "mean": -9.226911060977727e-06,
+            "std": 0.01985842175781727,
+            "l1_norm": 543672.6875,
+            "l2_norm": 128.14659118652344,
+            "spatial_variance": 0.00038869676063768566,
+            "nonzero_ratio": 1.0,
+            "sha256": "8de5ce5fa4343b16146c0f294462a12145888e0cc93c760bd21c7178f5de0c8b",
+            "mean_abs": 0.012962167151272297,
+            "max_abs": 0.49242720007896423
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.4773363769054413,
+            "max": 0.49242720007896423,
+            "mean": -9.226909241988324e-06,
+            "std": 0.01985842175781727,
+            "l1_norm": 543672.6875,
+            "l2_norm": 128.14659118652344,
+            "spatial_variance": 0.00038869676063768566,
+            "nonzero_ratio": 0.9999995231628418,
+            "sha256": "fa8409f366273f7ee5c79f32f512434d8fcd1420dd42698562114587250a3e53",
+            "mean_abs": 0.012962167151272297,
+            "max_abs": 0.49242720007896423
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5865041613578796,
+            "max": 0.5658625364303589,
+            "mean": -6.617174949496984e-05,
+            "std": 0.021394524723291397,
+            "l1_norm": 158502.390625,
+            "l2_norm": 97.93372344970703,
+            "spatial_variance": 0.0004351024399511516,
+            "nonzero_ratio": 0.317268431186676,
+            "sha256": "5f5a17ea0f2b1e7f055c56077f72e4a9f8bf1815e4e9f02ce4ea8037279e1a17",
+            "mean_abs": 0.007557983044534922,
+            "max_abs": 0.5865041613578796
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.6418989896774292,
+            "max": 0.623349666595459,
+            "mean": 1.5639085177099332e-05,
+            "std": 0.017159173265099525,
+            "l1_norm": 115904.0859375,
+            "l2_norm": 78.53988647460938,
+            "spatial_variance": 0.00028448578086681664,
+            "nonzero_ratio": 0.38423728942871094,
+            "sha256": "83cb397e4c6389f4a1e747bfb4d94261580456c2a51ec77bee449cea34e39932",
+            "mean_abs": 0.005526737309992313,
+            "max_abs": 0.6418989896774292
+          }
+        }
+      },
+      "all_one": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.2784644663333893,
+          "max": 5.81592321395874,
+          "mean": 0.20592591166496277,
+          "std": 0.5507324934005737,
+          "l1_norm": 4271295.5,
+          "l2_norm": 1902.400634765625,
+          "spatial_variance": 0.04512082785367966,
+          "nonzero_ratio": 1.0,
+          "sha256": "b11add069e14253c818b955908b49980cac4d533f8803256354f89c244634067"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -1.8457220792770386,
+          "max": 2.4639108180999756,
+          "mean": 0.0419391505420208,
+          "std": 0.2645608186721802,
+          "l1_norm": 2358573.25,
+          "l2_norm": 866.306884765625,
+          "spatial_variance": 0.01277458481490612,
+          "nonzero_ratio": 1.0,
+          "sha256": "7a080ce322dfc75f6df9f7facc41f110f33ad9721ddf8d5d1055d48a7159a723"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.2563454806804657,
+          "max": 0.26684173941612244,
+          "mean": 0.002555067418143153,
+          "std": 0.041520796716213226,
+          "l1_norm": 1449585.375,
+          "l2_norm": 268.7374572753906,
+          "spatial_variance": 0.00024200373445637524,
+          "nonzero_ratio": 1.0,
+          "sha256": "6b8512fdb4a3fd2aea974b21495832f2d246444fef058d4cb7d68e5d2791476e"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.2563454806804657,
+          "max": 0.26684173941612244,
+          "mean": 0.002555067418143153,
+          "std": 0.041520796716213226,
+          "l1_norm": 1449585.375,
+          "l2_norm": 268.7374572753906,
+          "spatial_variance": 0.00024200374900829047,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "480f058e0037ac5f917ff7f05b69064b4fd013393ace23e2fba5923ed93cbb14"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.4388370513916,
+          "mean": 0.06434494256973267,
+          "std": 0.3893391191959381,
+          "l1_norm": 1349411.25,
+          "l2_norm": 1805.7457275390625,
+          "spatial_variance": 0.1427629292011261,
+          "nonzero_ratio": 0.2823760509490967,
+          "sha256": "3384ba6ef27894f44a9b1aa365e1728fbce10a962497c705ed3a05f3090b1645"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.184600830078125,
+          "mean": 0.06959016621112823,
+          "std": 0.34617167711257935,
+          "l1_norm": 1459411.625,
+          "l2_norm": 1615.9691162109375,
+          "spatial_variance": 0.10594217479228973,
+          "nonzero_ratio": 0.3596886992454529,
+          "sha256": "4e67562f243645fad797005e52878d245abee17c088391a344dfd044c83e1b59"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -14.799201965332031,
+            "max": 6.047543048858643,
+            "mean": 0.022578435018658638,
+            "std": 0.7027904391288757,
+            "l1_norm": 4575568.0,
+            "l2_norm": 2274.931884765625,
+            "spatial_variance": 0.31815969944000244,
+            "nonzero_ratio": 1.0,
+            "sha256": "2d97b8661346f60452690eec72c1e99241f1c101ca2418062c4ca0f76aa3633c",
+            "mean_abs": 0.4363601803779602,
+            "max_abs": 14.799201965332031
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.617750644683838,
+            "max": 6.172712326049805,
+            "mean": 0.009507730603218079,
+            "std": 0.3611874580383301,
+            "l1_norm": 2682934.25,
+            "l2_norm": 1169.3477783203125,
+            "spatial_variance": 0.08858233690261841,
+            "nonzero_ratio": 1.0,
+            "sha256": "3c924ad054d734bf2a846f67451532223154989c6bdd8351016439d72a6cce2c",
+            "mean_abs": 0.25586456060409546,
+            "max_abs": 6.617750644683838
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.32614603638648987,
+            "max": 0.5273749828338623,
+            "mean": 0.00045371343730948865,
+            "std": 0.022119032219052315,
+            "l1_norm": 685471.9375,
+            "l2_norm": 142.71011352539062,
+            "spatial_variance": 0.00025347949122078717,
+            "nonzero_ratio": 1.0,
+            "sha256": "f7dbacd284b218e3ffcd9db96c583144ad1c0dfcc7019d576662bab58fac3180",
+            "mean_abs": 0.016342924907803535,
+            "max_abs": 0.5273749828338623
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3261460065841675,
+            "max": 0.5273749828338623,
+            "mean": 0.00045371343730948865,
+            "std": 0.022119032219052315,
+            "l1_norm": 685471.9375,
+            "l2_norm": 142.71011352539062,
+            "spatial_variance": 0.00025347949122078717,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "07337a55d51710ce71e2a412901f1a65262c819c7aa71fac84d984bdc446fd06",
+            "mean_abs": 0.016342924907803535,
+            "max_abs": 0.5273749828338623
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5871421098709106,
+            "max": 0.7221742272377014,
+            "mean": -0.0013271041680127382,
+            "std": 0.04043533653020859,
+            "l1_norm": 335050.28125,
+            "l2_norm": 185.21084594726562,
+            "spatial_variance": 0.0007225241861306131,
+            "nonzero_ratio": 0.3278113007545471,
+            "sha256": "04cf2fbc4133aa9bf42a9904bcb94ac6e8086060de3da1c94811b2ecdf345cf2",
+            "mean_abs": 0.015976442024111748,
+            "max_abs": 0.7221742272377014
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5772491097450256,
+            "max": 0.6768417358398438,
+            "mean": -0.0037522190250456333,
+            "std": 0.021410023793578148,
+            "l1_norm": 171770.890625,
+            "l2_norm": 99.49625396728516,
+            "spatial_variance": 0.0002984107122756541,
+            "nonzero_ratio": 0.3817666471004486,
+            "sha256": "43a3435d4c7af3e1aecf56eb88728d9ba41bdd538568260556991baacae9a41b",
+            "mean_abs": 0.00819067470729351,
+            "max_abs": 0.6768417358398438
+          }
+        }
+      }
+    },
+    "R3": {
+      "aligned": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 14.439141273498535,
+          "mean": 0.1868380755186081,
+          "std": 0.552750289440155,
+          "l1_norm": 3569763.5,
+          "l2_norm": 1886.888916015625,
+          "spatial_variance": 0.20998649299144745,
+          "nonzero_ratio": 1.0,
+          "sha256": "cfadcaef82bc7b39cd7cfd4a38cfa0659fc74cfc508cae2165339e97f673b2f3"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -6.236348628997803,
+          "max": 5.991128921508789,
+          "mean": 0.051764924079179764,
+          "std": 0.2762211561203003,
+          "l1_norm": 1971009.375,
+          "l2_norm": 909.478515625,
+          "spatial_variance": 0.05029277130961418,
+          "nonzero_ratio": 1.0,
+          "sha256": "a54fc6dbe1e40ee194a85796ca2264f5ed749327105d631f5b608c0285d24b7f"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.3290157616138458,
+          "max": 0.3705298602581024,
+          "mean": -0.00022820397862233222,
+          "std": 0.027166351675987244,
+          "l1_norm": 853178.6875,
+          "l2_norm": 175.38894653320312,
+          "spatial_variance": 0.0005267144297249615,
+          "nonzero_ratio": 1.0,
+          "sha256": "d4f4f102b79ba05c5bee471c346c9d8ccb06d4201e520d5e1a00715da7480347"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.3290157616138458,
+          "max": 0.3705298602581024,
+          "mean": -0.00022820397862233222,
+          "std": 0.027166351675987244,
+          "l1_norm": 853178.6875,
+          "l2_norm": 175.38894653320312,
+          "spatial_variance": 0.0005267144297249615,
+          "nonzero_ratio": 1.0,
+          "sha256": "11c865d6005ae56a185bdb82caa5dde637433bd0e514ca8dcc3c5491f186a6c0"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.398286819458008,
+          "mean": 0.07145830243825912,
+          "std": 0.3890311121940613,
+          "l1_norm": 1498589.25,
+          "l2_norm": 1809.91259765625,
+          "spatial_variance": 0.14347109198570251,
+          "nonzero_ratio": 0.34178614616394043,
+          "sha256": "8b87669704cc93b99fc038973436cbd841331fcead5e8f0664cf7f4ce0f9a9a1"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.04168128967285,
+          "mean": 0.08020301163196564,
+          "std": 0.34874823689460754,
+          "l1_norm": 1681979.0,
+          "l2_norm": 1637.67138671875,
+          "spatial_variance": 0.10576961934566498,
+          "nonzero_ratio": 0.4392840266227722,
+          "sha256": "91c4b25d5f30f324254b0ac24c5130f7e424729dee5e33b7c86f4da45a20eea9"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "352f88613f95f8e508d928e6eebce0da68153aa0376ee0f6b604bc0799ca9266",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "3c2ccb74075ed6b73fd385c7b8bf730758f51d7824d77248f864959bcb2e28ed",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "l1_norm": 0.0,
+            "l2_norm": 0.0,
+            "spatial_variance": 0.0,
+            "nonzero_ratio": 0.0,
+            "sha256": "22c5ede9b921dabff73e80f99c8c3e9221f69a61fca2746ddf57e8a46cf5a684",
+            "mean_abs": 0.0,
+            "max_abs": 0.0
+          }
+        }
+      },
+      "zero": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27842453122138977,
+          "max": 1.5730165243148804,
+          "mean": 0.21335403621196747,
+          "std": 0.4797784686088562,
+          "l1_norm": 4184350.5,
+          "l2_norm": 1696.2593994140625,
+          "spatial_variance": 0.008835233747959137,
+          "nonzero_ratio": 1.0,
+          "sha256": "833e817d8560779c9196914950edb5aff677b8e24177f073bcd81549e02522b3"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.5131561160087585,
+          "max": 0.7841899991035461,
+          "mean": 0.08308668434619904,
+          "std": 0.2356656938791275,
+          "l1_norm": 2074840.625,
+          "l2_norm": 809.0020751953125,
+          "spatial_variance": 0.0023422115482389927,
+          "nonzero_ratio": 1.0,
+          "sha256": "94bc4a4ffecf5dfc42ad1bd45c8569c0d1453edf546e02497429d778a715ee25"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.23573625087738037,
+          "max": 0.299715518951416,
+          "mean": -0.003060745308175683,
+          "std": 0.03108959272503853,
+          "l1_norm": 1008217.9375,
+          "l2_norm": 201.6049041748047,
+          "spatial_variance": 0.0004087892302777618,
+          "nonzero_ratio": 1.0,
+          "sha256": "7923d20cf96296df4c761831ea6d3630250ad6cc1daca96c4144fc400e9939e1"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.23573625087738037,
+          "max": 0.299715518951416,
+          "mean": -0.003060745308175683,
+          "std": 0.03108959272503853,
+          "l1_norm": 1008217.9375,
+          "l2_norm": 201.6049041748047,
+          "spatial_variance": 0.0004087892302777618,
+          "nonzero_ratio": 1.0,
+          "sha256": "728e33bcbb2daa7be9d65fc170dd0786314a44a26dbb358486fca5c18cdf5fe3"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.429359436035156,
+          "mean": 0.06620369851589203,
+          "std": 0.3861424922943115,
+          "l1_norm": 1388392.25,
+          "l2_norm": 1792.9150390625,
+          "spatial_variance": 0.14233677089214325,
+          "nonzero_ratio": 0.3217257857322693,
+          "sha256": "bd1dc5d62c5a6035ebdde86ea3c0a0691783357365ccfefa8d767d75592ac711"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.041261672973633,
+          "mean": 0.07338978350162506,
+          "std": 0.3444906771183014,
+          "l1_norm": 1539095.25,
+          "l2_norm": 1611.85888671875,
+          "spatial_variance": 0.10448803752660751,
+          "nonzero_ratio": 0.42754310369491577,
+          "sha256": "f6090ff24d433d71c1eaecef92e7685f38a0ce6acc85091ed4122cfe571950d2"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -14.225677490234375,
+            "max": 1.8512725830078125,
+            "mean": 0.02651592157781124,
+            "std": 0.5826092958450317,
+            "l1_norm": 4024153.75,
+            "l2_norm": 1887.3809814453125,
+            "spatial_variance": 0.21212680637836456,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "c10149c47caa12010499d972b65a079ce756304947006a73229719c1d9973437",
+            "mean_abs": 0.38377320766448975,
+            "max_abs": 14.225677490234375
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.022083759307861,
+            "max": 6.304615497589111,
+            "mean": 0.031321752816438675,
+            "std": 0.2814037799835205,
+            "l1_norm": 2196255.0,
+            "l2_norm": 916.4673461914062,
+            "spatial_variance": 0.050973080098629,
+            "nonzero_ratio": 1.0,
+            "sha256": "c13218a73b63f5edfdbe7d534362ce5b3d90321c5d235d5ba17a0b9ba6746266",
+            "mean_abs": 0.20945119857788086,
+            "max_abs": 6.304615497589111
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3853319585323334,
+            "max": 0.32181185483932495,
+            "mean": -0.0028325412422418594,
+            "std": 0.021352453157305717,
+            "l1_norm": 697313.6875,
+            "l2_norm": 139.04299926757812,
+            "spatial_variance": 0.00021558176376856863,
+            "nonzero_ratio": 1.0,
+            "sha256": "86541a13e62a1a636557d1b6f700ae17412ee0c8a40a2cdb2bf1caca0d375997",
+            "mean_abs": 0.01662525348365307,
+            "max_abs": 0.3853319585323334
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.3853319585323334,
+            "max": 0.32181185483932495,
+            "mean": -0.0028325412422418594,
+            "std": 0.021352453157305717,
+            "l1_norm": 697313.6875,
+            "l2_norm": 139.04299926757812,
+            "spatial_variance": 0.00021558176376856863,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "deb595b01b245d94ccf476c8c8ee4c6266c7d586e4810be08e01ddf066a93f62",
+            "mean_abs": 0.01662525348365307,
+            "max_abs": 0.3853319585323334
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.7487798929214478,
+            "max": 0.3957280218601227,
+            "mean": -0.005254607181996107,
+            "std": 0.0308193601667881,
+            "l1_norm": 277916.5,
+            "l2_norm": 143.1085205078125,
+            "spatial_variance": 0.0005669804522767663,
+            "nonzero_ratio": 0.36378854513168335,
+            "sha256": "4d25a437fbdb85e0c8c0ac7b04bcdcb0140609e4dddc0fa82dc38b4bb8ca12e2",
+            "mean_abs": 0.013252091594040394,
+            "max_abs": 0.7487798929214478
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.9518120884895325,
+            "max": 0.413091242313385,
+            "mean": -0.0068132332526147366,
+            "std": 0.03495977818965912,
+            "l1_norm": 314272.09375,
+            "l2_norm": 163.04209899902344,
+            "spatial_variance": 0.0005702683120034635,
+            "nonzero_ratio": 0.4639013707637787,
+            "sha256": "d0521c1f0385769ee983144483afc7da8ecb21d4ee61cb7f6c329d580f9639c4",
+            "mean_abs": 0.014985661022365093,
+            "max_abs": 0.9518120884895325
+          }
+        }
+      },
+      "shift_fixed": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 15.350311279296875,
+          "mean": 0.18405291438102722,
+          "std": 0.564071536064148,
+          "l1_norm": 3516300.75,
+          "l2_norm": 1918.7857666015625,
+          "spatial_variance": 0.23798462748527527,
+          "nonzero_ratio": 1.0,
+          "sha256": "7afe6bbe177a093e43aaf0cfe6e4b605f8c53440dbc2bccfc3b3ed6512bcf5f2"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -5.5731329917907715,
+          "max": 7.524166107177734,
+          "mean": 0.04943443834781647,
+          "std": 0.2830423414707184,
+          "l1_norm": 1976343.0,
+          "l2_norm": 929.7413330078125,
+          "spatial_variance": 0.05683963745832443,
+          "nonzero_ratio": 1.0,
+          "sha256": "a00e5895a0695dea81d07d5e3314400354928ceb38b4f26817dd46ebe40cf67d"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.4752643406391144,
+          "max": 0.4408973157405853,
+          "mean": 0.00032699471921660006,
+          "std": 0.026486026123166084,
+          "l1_norm": 835396.25,
+          "l2_norm": 170.99327087402344,
+          "spatial_variance": 0.0004954432952217758,
+          "nonzero_ratio": 1.0,
+          "sha256": "c42a21ec9e1efca0bfc8a6b34d6eaa8492b58a6e518d3cfb6c687b1f44147213"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.4752643406391144,
+          "max": 0.4408973455429077,
+          "mean": 0.0003269947483204305,
+          "std": 0.026486026123166084,
+          "l1_norm": 835396.25,
+          "l2_norm": 170.99325561523438,
+          "spatial_variance": 0.0004954432952217758,
+          "nonzero_ratio": 0.9999998211860657,
+          "sha256": "c01f468a8d66cb63d4b6cd4904bbd5851f046ed3fe2418d05afcdefbe6f3d135"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.35120391845703,
+          "mean": 0.07162164151668549,
+          "std": 0.3895229995250702,
+          "l1_norm": 1502014.75,
+          "l2_norm": 1812.26708984375,
+          "spatial_variance": 0.14380505681037903,
+          "nonzero_ratio": 0.3396039605140686,
+          "sha256": "d6c3e9b5d3db2f63644b13f20f627c0ac5fad728715f2d9bbbc3de4c98ad9855"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.010395050048828,
+          "mean": 0.08108630776405334,
+          "std": 0.34897056221961975,
+          "l1_norm": 1700503.125,
+          "l2_norm": 1639.5782470703125,
+          "spatial_variance": 0.10587283223867416,
+          "nonzero_ratio": 0.44056805968284607,
+          "sha256": "97d490242fb238b41005f35440248f83877828fa129aefd3f45e2dbadd9f8f25"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -13.669046401977539,
+            "max": 15.382625579833984,
+            "mean": -0.0027851827908307314,
+            "std": 0.7054303288459778,
+            "l1_norm": 4252682.5,
+            "l2_norm": 2282.4677734375,
+            "spatial_variance": 0.4857044816017151,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "a673f618da1f32d96b0552f5f6fed30ceaf5f56ad73e98a59a947ca006636ad6",
+            "mean_abs": 0.4055674076080322,
+            "max_abs": 15.382625579833984
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -5.986189365386963,
+            "max": 7.51883602142334,
+            "mean": -0.002330490853637457,
+            "std": 0.34529581665992737,
+            "l1_norm": 2384901.0,
+            "l2_norm": 1117.38330078125,
+            "spatial_variance": 0.11649928241968155,
+            "nonzero_ratio": 1.0,
+            "sha256": "8b36af67e81dd780b3311cd3b2f03911f7d35db2063048a79a3765cd66d94352",
+            "mean_abs": 0.22744187712669373,
+            "max_abs": 7.51883602142334
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.473850816488266,
+            "max": 0.4033692181110382,
+            "mean": 0.0005551986396312714,
+            "std": 0.019580798223614693,
+            "l1_norm": 564977.25,
+            "l2_norm": 126.4234619140625,
+            "spatial_variance": 0.0003694995539262891,
+            "nonzero_ratio": 1.0,
+            "sha256": "138408e60a493d25839ef701b40252303a36fc3c8ac066a7bbe833b06edafb6b",
+            "mean_abs": 0.013470107689499855,
+            "max_abs": 0.473850816488266
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.473850816488266,
+            "max": 0.4033692479133606,
+            "mean": 0.0005551986396312714,
+            "std": 0.019580798223614693,
+            "l1_norm": 564977.25,
+            "l2_norm": 126.4234619140625,
+            "spatial_variance": 0.0003694995539262891,
+            "nonzero_ratio": 0.9999996423721313,
+            "sha256": "6fca557b2a8c353079f6c3eecd8dd16854a0a89e1896d1906b0c9292b1998373",
+            "mean_abs": 0.013470107689499855,
+            "max_abs": 0.473850816488266
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5549682378768921,
+            "max": 0.5880076885223389,
+            "mean": 0.00016333695384673774,
+            "std": 0.022249817848205566,
+            "l1_norm": 173887.03125,
+            "l2_norm": 101.84392547607422,
+            "spatial_variance": 0.0004802798794116825,
+            "nonzero_ratio": 0.35969334840774536,
+            "sha256": "e81055c577b757ae52f1771a821d5db56a78e57d1167af85da7a24d3e45d7c23",
+            "mean_abs": 0.008291579782962799,
+            "max_abs": 0.5880076885223389
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.7796547412872314,
+            "max": 0.585556149482727,
+            "mean": 0.0008832979947328568,
+            "std": 0.02200460620224476,
+            "l1_norm": 162732.703125,
+            "l2_norm": 100.79930877685547,
+            "spatial_variance": 0.00044236512621864676,
+            "nonzero_ratio": 0.4528500437736511,
+            "sha256": "1096dc18b791ee4a6d7c5d2a4991bdc603fd096e4c433d19033ec013bd14d889",
+            "mean_abs": 0.007759700063616037,
+            "max_abs": 0.7796547412872314
+          }
+        }
+      },
+      "shift_large": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 16.409664154052734,
+          "mean": 0.1799599975347519,
+          "std": 0.571834146976471,
+          "l1_norm": 3437359.25,
+          "l2_norm": 1938.5838623046875,
+          "spatial_variance": 0.24744221568107605,
+          "nonzero_ratio": 1.0,
+          "sha256": "d75d4e2497d3d3dbea1842e92ca7d09c3f4de95a72ee758036db8b2d4383b636"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -4.959535121917725,
+          "max": 7.239823818206787,
+          "mean": 0.05006937310099602,
+          "std": 0.2870756685733795,
+          "l1_norm": 1936258.75,
+          "l2_norm": 942.8843994140625,
+          "spatial_variance": 0.05904700607061386,
+          "nonzero_ratio": 1.0,
+          "sha256": "48ce665f9ce95d863f926a5fcfc2b0e5d12aefb16c8afa502a79f24f7b4caf26"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.404389351606369,
+          "max": 0.45063668489456177,
+          "mean": 0.0002449929597787559,
+          "std": 0.026340635493397713,
+          "l1_norm": 830018.8125,
+          "l2_norm": 170.0299530029297,
+          "spatial_variance": 0.00046295119682326913,
+          "nonzero_ratio": 1.0,
+          "sha256": "7dfc3136b676fe8cf0603efff608850bb7a04b8df442c8e00f8ddef8a4710433"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.4043893814086914,
+          "max": 0.45063668489456177,
+          "mean": 0.00024499298888258636,
+          "std": 0.026340635493397713,
+          "l1_norm": 830018.8125,
+          "l2_norm": 170.02996826171875,
+          "spatial_variance": 0.00046295119682326913,
+          "nonzero_ratio": 1.0,
+          "sha256": "ddff894d323466b935c4c7c298ad93d6abc5a945b966252b78c61ce095b96126"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.361785888671875,
+          "mean": 0.07123641669750214,
+          "std": 0.38947102427482605,
+          "l1_norm": 1493936.0,
+          "l2_norm": 1811.74072265625,
+          "spatial_variance": 0.14388911426067352,
+          "nonzero_ratio": 0.33804330229759216,
+          "sha256": "5b96ec8f7d9cd1eea648dc638cfc7e1462c2ed825850b4a264e53a07ad654c6c"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.93731117248535,
+          "mean": 0.0808713287115097,
+          "std": 0.3487766683101654,
+          "l1_norm": 1695994.625,
+          "l2_norm": 1638.488525390625,
+          "spatial_variance": 0.1057618111371994,
+          "nonzero_ratio": 0.4402586817741394,
+          "sha256": "d696f7be2b3d631a6af658ed4e35395d3cc04d621eefec646595d29cfe360aa7"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -14.35511589050293,
+            "max": 12.815469741821289,
+            "mean": -0.00687806960195303,
+            "std": 0.7028376460075378,
+            "l1_norm": 4364935.0,
+            "l2_norm": 2274.13525390625,
+            "spatial_variance": 0.4472476840019226,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "474e06cd6b94ee0277a33e1b389108eb1ddf7de11f83b667c0ef09ec0877ce4d",
+            "mean_abs": 0.4162726402282715,
+            "max_abs": 14.35511589050293
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -5.981351852416992,
+            "max": 6.28252649307251,
+            "mean": -0.0016955513274297118,
+            "std": 0.34354710578918457,
+            "l1_norm": 2448834.75,
+            "l2_norm": 1111.7327880859375,
+            "spatial_variance": 0.1070425733923912,
+            "nonzero_ratio": 1.0,
+            "sha256": "f51c979a847968d3ccde8311ea7ef6056d875ebabed775dc50f576e27a9513fa",
+            "mean_abs": 0.23353907465934753,
+            "max_abs": 6.28252649307251
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.4170718193054199,
+            "max": 0.37467390298843384,
+            "mean": 0.00047319699660874903,
+            "std": 0.020312029868364334,
+            "l1_norm": 603404.0,
+            "l2_norm": 131.09719848632812,
+            "spatial_variance": 0.00035758138983510435,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "aa995620b7f4f33536d520bbe55f291d81e95be4c62bc1e0dcb50bd60c129434",
+            "mean_abs": 0.014386272057890892,
+            "max_abs": 0.4170718193054199
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.4170718491077423,
+            "max": 0.37467390298843384,
+            "mean": 0.00047319699660874903,
+            "std": 0.020312029868364334,
+            "l1_norm": 603404.0,
+            "l2_norm": 131.09719848632812,
+            "spatial_variance": 0.00035758138983510435,
+            "nonzero_ratio": 0.9999997019767761,
+            "sha256": "f57b7a13f9d29901403a7116a3bba4411a6b4a111f15f2ea42986ff4e8101fc9",
+            "mean_abs": 0.014386272057890892,
+            "max_abs": 0.4170718491077423
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5393016338348389,
+            "max": 0.6118102073669434,
+            "mean": -0.0002218911686213687,
+            "std": 0.02431371808052063,
+            "l1_norm": 196649.4375,
+            "l2_norm": 111.29662322998047,
+            "spatial_variance": 0.0005187554634176195,
+            "nonzero_ratio": 0.361743688583374,
+            "sha256": "c2cd9938cc0bb8b6e921cad42ab359d8e772e20ae06581f6fccabcb6c36666c0",
+            "mean_abs": 0.00937697570770979,
+            "max_abs": 0.6118102073669434
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.819221556186676,
+            "max": 0.7037228345870972,
+            "mean": 0.0006683076499029994,
+            "std": 0.025197429582476616,
+            "l1_norm": 192025.375,
+            "l2_norm": 115.37446594238281,
+            "spatial_variance": 0.00048186490312218666,
+            "nonzero_ratio": 0.45569515228271484,
+            "sha256": "d55a3201f27b8fd928b9e1ad694384daa424da4ec7fc0afad66440cc761e4983",
+            "mean_abs": 0.009156483225524426,
+            "max_abs": 0.819221556186676
+          }
+        }
+      },
+      "permuted": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27846458554267883,
+          "max": 14.439141273498535,
+          "mean": 0.18682783842086792,
+          "std": 0.5527815818786621,
+          "l1_norm": 3569568.25,
+          "l2_norm": 1887.072021484375,
+          "spatial_variance": 0.2100200653076172,
+          "nonzero_ratio": 1.0,
+          "sha256": "29554aece3bdc8a6c64348e4585aa97e52c3c46191fdafaf0b2b197347ece19c"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -6.236348628997803,
+          "max": 5.991128921508789,
+          "mean": 0.05177180841565132,
+          "std": 0.2762371599674225,
+          "l1_norm": 1970934.125,
+          "l2_norm": 909.55224609375,
+          "spatial_variance": 0.050301242619752884,
+          "nonzero_ratio": 1.0,
+          "sha256": "05004e639c4fde809350eb4a31a2be0ef219b0719dd3ca85fd9111eb7408c058"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.33789804577827454,
+          "max": 0.35564443469047546,
+          "mean": -0.00014764346997253597,
+          "std": 0.02711215615272522,
+          "l1_norm": 852151.5625,
+          "l2_norm": 175.03404235839844,
+          "spatial_variance": 0.0005183954490348697,
+          "nonzero_ratio": 1.0,
+          "sha256": "2eacfb4716cc68cf58b0dc05272f61beab87be4ea3effea078e23a3a13aeb07c"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.33789804577827454,
+          "max": 0.35564443469047546,
+          "mean": -0.00014764346997253597,
+          "std": 0.02711215615272522,
+          "l1_norm": 852151.5625,
+          "l2_norm": 175.03402709960938,
+          "spatial_variance": 0.0005183954490348697,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "b4a73b3d57378d3dd4130cd18e6bc180c71320c8e6684bce894b8f377d60e888"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.417991638183594,
+          "mean": 0.07141228765249252,
+          "std": 0.38927310705184937,
+          "l1_norm": 1497624.25,
+          "l2_norm": 1810.961669921875,
+          "spatial_variance": 0.14366328716278076,
+          "nonzero_ratio": 0.340383917093277,
+          "sha256": "5c5f5849ace13f2772d59d88d8dc09f7b706abfefb0da7bf1eb30c9f146513ae"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.019969940185547,
+          "mean": 0.08018113672733307,
+          "std": 0.34866422414779663,
+          "l1_norm": 1681520.25,
+          "l2_norm": 1637.2860107421875,
+          "spatial_variance": 0.10576633363962173,
+          "nonzero_ratio": 0.4384884834289551,
+          "sha256": "e1ea97a799ca35c688e17c9052194b3b69152f6c74254b9835595359353eca4e"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -14.200211524963379,
+            "max": 14.432594299316406,
+            "mean": -1.02574940683553e-05,
+            "std": 0.6235020160675049,
+            "l1_norm": 3500592.5,
+            "l2_norm": 2017.400146484375,
+            "spatial_variance": 0.3827011287212372,
+            "nonzero_ratio": 1.0,
+            "sha256": "031a120e7b1e7433fbbd1aeeaff0c0691e52acfa6ebd89cdf1e7e9250b0c2ca5",
+            "mean_abs": 0.33384251594543457,
+            "max_abs": 14.432594299316406
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.250428676605225,
+            "max": 6.127800464630127,
+            "mean": 6.881554327264894e-06,
+            "std": 0.30534490942955017,
+            "l1_norm": 1990587.25,
+            "l2_norm": 987.9525146484375,
+            "spatial_variance": 0.09177804738283157,
+            "nonzero_ratio": 1.0,
+            "sha256": "13de4a5b495dd0f2152dcb8e3798808dd4d3b1b675cc9b24c99e89011fcaf305",
+            "mean_abs": 0.18983718752861023,
+            "max_abs": 6.250428676605225
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.34805431962013245,
+            "max": 0.33922186493873596,
+            "mean": 8.056049409788102e-05,
+            "std": 0.017975112423300743,
+            "l1_norm": 495410.0625,
+            "l2_norm": 115.91200256347656,
+            "spatial_variance": 0.00031669001327827573,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "aaad470d3cc177a735fec58fe1f18609ca6d25a5ac7ffc872e75597c6bc64fba",
+            "mean_abs": 0.011811496689915657,
+            "max_abs": 0.34805431962013245
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.34805431962013245,
+            "max": 0.33922186493873596,
+            "mean": 8.056050137383863e-05,
+            "std": 0.017975112423300743,
+            "l1_norm": 495410.0625,
+            "l2_norm": 115.91199493408203,
+            "spatial_variance": 0.00031669001327827573,
+            "nonzero_ratio": 0.9999996423721313,
+            "sha256": "e0bb691d56eed5902451becbbac91560440270ab2b746241539c4e3f83c4664d",
+            "mean_abs": 0.011811496689915657,
+            "max_abs": 0.34805431962013245
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.5249496698379517,
+            "max": 0.5596954226493835,
+            "mean": -4.601652835845016e-05,
+            "std": 0.019724126905202866,
+            "l1_norm": 148572.40625,
+            "l2_norm": 90.28421783447266,
+            "spatial_variance": 0.00037821990554220974,
+            "nonzero_ratio": 0.35726094245910645,
+            "sha256": "08236884a61d89e301ed838ded4a40480c82d6e55d9d8433cec4ce87558ba68a",
+            "mean_abs": 0.007084484212100506,
+            "max_abs": 0.5596954226493835
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.8177859783172607,
+            "max": 0.794759213924408,
+            "mean": -2.1872681827517226e-05,
+            "std": 0.018500113859772682,
+            "l1_norm": 132892.921875,
+            "l2_norm": 84.67938232421875,
+            "spatial_variance": 0.0003252931928727776,
+            "nonzero_ratio": 0.44943714141845703,
+            "sha256": "368dff86bf367bdc55ff2d1fb6116bd93d4d136c5943bf636dcb103876c1e6a1",
+            "mean_abs": 0.006336828228086233,
+            "max_abs": 0.8177859783172607
+          }
+        }
+      },
+      "all_one": {
+        "traj_feature_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.27845990657806396,
+          "max": 2.2529966831207275,
+          "mean": 0.2059500515460968,
+          "std": 0.4996359050273895,
+          "l1_norm": 3994861.75,
+          "l2_norm": 1747.259521484375,
+          "spatial_variance": 0.016502970829606056,
+          "nonzero_ratio": 1.0,
+          "sha256": "6c6cf65e636154ee9728108e1234ce0b6aac816b8d7586ec444e8c23e8b31d44"
+        },
+        "projected_traj_seg_only": {
+          "shape": [
+            80,
+            32,
+            64,
+            64
+          ],
+          "min": -0.9590200781822205,
+          "max": 0.7962898015975952,
+          "mean": 0.06229988485574722,
+          "std": 0.23620441555976868,
+          "l1_norm": 2041234.25,
+          "l2_norm": 791.0718994140625,
+          "spatial_variance": 0.0035555020440369844,
+          "nonzero_ratio": 1.0,
+          "sha256": "599ec72287aa35912df43171ae23e78e13e4cb21cc411ee02ce96fed79124fe3"
+        },
+        "raster_delta_seg_only": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.27118590474128723,
+          "max": 0.34523528814315796,
+          "mean": -0.002054155571386218,
+          "std": 0.03283580020070076,
+          "l1_norm": 1057094.25,
+          "l2_norm": 212.29605102539062,
+          "spatial_variance": 0.0005825685220770538,
+          "nonzero_ratio": 1.0,
+          "sha256": "f0937c030e4e0e172336347d04b174c41bab8bfd40f8fc968f9c7e81176af9db"
+        },
+        "stage_fuse_delta": {
+          "shape": [
+            80,
+            128,
+            64,
+            64
+          ],
+          "min": -0.27118682861328125,
+          "max": 0.34523528814315796,
+          "mean": -0.002054155571386218,
+          "std": 0.03283580020070076,
+          "l1_norm": 1057094.25,
+          "l2_norm": 212.29603576660156,
+          "spatial_variance": 0.0005825685220770538,
+          "nonzero_ratio": 0.9999998807907104,
+          "sha256": "0aa0e3693e233879afbbf36570d80a39bb3ab637e5d0f1dfdafb33221bb20b0c"
+        },
+        "road_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 24.443492889404297,
+          "mean": 0.06811025738716125,
+          "std": 0.38727855682373047,
+          "l1_norm": 1428375.625,
+          "l2_norm": 1799.3165283203125,
+          "spatial_variance": 0.1426902711391449,
+          "nonzero_ratio": 0.33120495080947876,
+          "sha256": "d4aab688bb6e367e723c708653a04fed9f1aa43effe8ae44a1470ca8afd23fdc"
+        },
+        "junc_fts": {
+          "shape": [
+            80,
+            64,
+            64,
+            64
+          ],
+          "min": 0.0,
+          "max": 25.04969596862793,
+          "mean": 0.07379624992609024,
+          "std": 0.34433379769325256,
+          "l1_norm": 1547619.5,
+          "l2_norm": 1611.5413818359375,
+          "spatial_variance": 0.10454628616571426,
+          "nonzero_ratio": 0.42791905999183655,
+          "sha256": "82c6dbdd9ade82cddce1fb28261d6201a3ac4fc2b091d56e3c15a18a3475de73"
+        },
+        "fusion_gate": {
+          "status": "NOT_INSTRUMENTED",
+          "reason": "S3C fusion has no explicit gate tensor"
+        },
+        "difference_vs_aligned": {
+          "traj_feature_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -14.338727951049805,
+            "max": 2.5314602851867676,
+            "mean": 0.019111964851617813,
+            "std": 0.5475362539291382,
+            "l1_norm": 3462319.5,
+            "l2_norm": 1772.7335205078125,
+            "spatial_variance": 0.21216349303722382,
+            "nonzero_ratio": 0.9999998211860657,
+            "sha256": "4235212ac53c5618daa96b3fc0ec1b0ad8842b7b5a0c8df5791494426aaffbfd",
+            "mean_abs": 0.330192506313324,
+            "max_abs": 14.338727951049805
+          },
+          "projected_traj_seg_only": {
+            "shape": [
+              80,
+              32,
+              64,
+              64
+            ],
+            "min": -6.103055477142334,
+            "max": 6.334039688110352,
+            "mean": 0.010534959845244884,
+            "std": 0.2637963593006134,
+            "l1_norm": 1912842.25,
+            "l2_norm": 854.234375,
+            "spatial_variance": 0.050744783133268356,
+            "nonzero_ratio": 1.0,
+            "sha256": "f8651221136635a2908e6e674e7b9af0a8daeab6417118df066dfea9de5efe58",
+            "mean_abs": 0.18242284655570984,
+            "max_abs": 6.334039688110352
+          },
+          "raster_delta_seg_only": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.36819007992744446,
+            "max": 0.34422066807746887,
+            "mean": -0.0018259517382830381,
+            "std": 0.018817851319909096,
+            "l1_norm": 567679.25,
+            "l2_norm": 121.96817779541016,
+            "spatial_variance": 0.00022063709911890328,
+            "nonzero_ratio": 1.0,
+            "sha256": "a97d4177049e75169d63f9db76c872eb8e70317e091877bc84c195e368f011e4",
+            "mean_abs": 0.013534528203308582,
+            "max_abs": 0.36819007992744446
+          },
+          "stage_fuse_delta": {
+            "shape": [
+              80,
+              128,
+              64,
+              64
+            ],
+            "min": -0.36819007992744446,
+            "max": 0.34422069787979126,
+            "mean": -0.0018259517382830381,
+            "std": 0.018817851319909096,
+            "l1_norm": 567679.25,
+            "l2_norm": 121.96817779541016,
+            "spatial_variance": 0.00022063709911890328,
+            "nonzero_ratio": 0.9999998807907104,
+            "sha256": "0d3b0109b90d5f39fd59c6e112268ac5cf1f2cab74fee2212887b0d1699977ac",
+            "mean_abs": 0.013534528203308582,
+            "max_abs": 0.36819007992744446
+          },
+          "road_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -0.7862734794616699,
+            "max": 0.561096727848053,
+            "mean": -0.003348046448081732,
+            "std": 0.02718331664800644,
+            "l1_norm": 217902.296875,
+            "l2_norm": 125.36949157714844,
+            "spatial_variance": 0.0005346990074031055,
+            "nonzero_ratio": 0.3595197796821594,
+            "sha256": "4983349aaa2d58ed2392e1f03a2b41e1746e704c868374f455f7ec6056813f7d",
+            "mean_abs": 0.010390391573309898,
+            "max_abs": 0.7862734794616699
+          },
+          "junc_fts": {
+            "shape": [
+              80,
+              64,
+              64,
+              64
+            ],
+            "min": -1.0863393545150757,
+            "max": 0.44220829010009766,
+            "mean": -0.006406769156455994,
+            "std": 0.02965291030704975,
+            "l1_norm": 243712.484375,
+            "l2_norm": 138.86033630371094,
+            "spatial_variance": 0.000511111575178802,
+            "nonzero_ratio": 0.4530181288719177,
+            "sha256": "15af7c8be070472d88eb953b5599c46bc825183fc8418afbc1aa5b0b803e1575",
+            "mean_abs": 0.011621116660535336,
+            "max_abs": 1.0863393545150757
+          }
+        }
+      }
+    }
+  }
+}

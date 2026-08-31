@@ -1,0 +1,7 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "phase": "C",
+  "status": "BLOCKED_NO_ELIGIBLE_GPU",
+  "jobs": [],
+  "external_processes_terminated": false
+}

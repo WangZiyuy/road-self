@@ -1,0 +1,32 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "mode": "raster_road_zero_preserving",
+  "max_samples_seen": 40960,
+  "checkpoint_grid": [
+    0,
+    2560,
+    5120,
+    7680,
+    10240,
+    12800,
+    15360,
+    17920,
+    20480,
+    25600,
+    30720,
+    35840,
+    40960
+  ],
+  "seed": 20260827,
+  "road_only": true,
+  "junction_strict_image_only": true,
+  "raw_raster_direct_to_anchor": false,
+  "zero_property": "F(stage_fuse_img, zero)=stage_fuse_img",
+  "graph_caps": {
+    "max_iterations": 3000,
+    "max_vertices": 5000,
+    "max_directed_edges": 10000,
+    "max_wall_time_seconds": 900
+  }
+}
