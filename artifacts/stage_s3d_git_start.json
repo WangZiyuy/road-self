@@ -1,0 +1,16 @@
+{
+  "stage": "seg_raster_stage_s3d",
+  "status": "PASS",
+  "worktree": "${LOCAL_SEG_RASTER_WORKTREE}",
+  "branch": "feat/seg-raster-only",
+  "upstream": "origin/feat/seg-raster-only",
+  "s3d_base_sha": "2271a83a563c39f3d971df9a6342ad6c8a464a78",
+  "s3c_run_code_sha": "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3",
+  "worktree_clean": true,
+  "s3c_result_commit_pushed": true,
+  "trajectory_branch_modified": false,
+  "other_branch_merged": false,
+  "remote": "origin",
+  "formal_execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel"
+}

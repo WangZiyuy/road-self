@@ -10,10 +10,12 @@ from typing import Any
 TRAJ_MODE_NONE = "none"
 TRAJ_MODE_LEGACY = "legacy_current"
 TRAJ_MODE_RASTER_SEG_ONLY = "raster_seg_only"
+TRAJ_MODE_RASTER_ROAD_ZERO_PRESERVING = "raster_road_zero_preserving"
 VALID_TRAJ_MODES = frozenset({
     TRAJ_MODE_NONE,
     TRAJ_MODE_LEGACY,
     TRAJ_MODE_RASTER_SEG_ONLY,
+    TRAJ_MODE_RASTER_ROAD_ZERO_PRESERVING,
 })
 
 _MISSING = object()
@@ -70,7 +72,10 @@ def resolve_trajectory_mode(cfg: Any) -> str:
     mode = validate_trajectory_mode(configured_mode)
     if (
         legacy_value is not _MISSING
-        and mode != TRAJ_MODE_RASTER_SEG_ONLY
+        and mode not in {
+            TRAJ_MODE_RASTER_SEG_ONLY,
+            TRAJ_MODE_RASTER_ROAD_ZERO_PRESERVING,
+        }
         and mode != legacy_mode
     ):
         conflict = (mode, bool(legacy_value))
@@ -99,6 +104,7 @@ def trajectory_uses_raster(mode: str) -> bool:
     return validate_trajectory_mode(mode) in {
         TRAJ_MODE_LEGACY,
         TRAJ_MODE_RASTER_SEG_ONLY,
+        TRAJ_MODE_RASTER_ROAD_ZERO_PRESERVING,
     }
 
 
@@ -120,23 +126,29 @@ def validate_trajectory_model_compatibility(
             "as the image-only baseline.".format(model_name)
         )
     if (
-        resolved_mode == TRAJ_MODE_RASTER_SEG_ONLY
+        resolved_mode in {
+            TRAJ_MODE_RASTER_SEG_ONLY,
+            TRAJ_MODE_RASTER_ROAD_ZERO_PRESERVING,
+        }
         and model_name is not _MISSING
         and str(model_name).lower() != "origin"
     ):
         raise ValueError(
-            "TRAJ.MODE='raster_seg_only' requires TRAIN.MODEL='origin'; "
+            "The selected raster mode requires TRAIN.MODEL='origin'; "
             "legacy DSFNet is not a formal raster-seg-only path. Got {!r}."
             .format(model_name)
         )
 
-    if resolved_mode == TRAJ_MODE_RASTER_SEG_ONLY:
+    if resolved_mode in {
+        TRAJ_MODE_RASTER_SEG_ONLY,
+        TRAJ_MODE_RASTER_ROAD_ZERO_PRESERVING,
+    }:
         traj_cfg = _get_value(cfg, "TRAJ", None)
         raster_cfg = _get_value(traj_cfg, "RASTER", None)
         semantics = _get_value(raster_cfg, "INPUT_SEMANTICS", _MISSING)
         if semantics is not _MISSING and semantics != "binary_presence":
             raise ValueError(
-                "raster_seg_only supports only "
+                "formal raster modes support only "
                 "TRAJ.RASTER.INPUT_SEMANTICS='binary_presence'; got {!r}."
                 .format(semantics)
             )
@@ -144,7 +156,7 @@ def validate_trajectory_model_compatibility(
         sequence_enabled = _get_value(sequence_cfg, "ENABLED", False)
         if bool(sequence_enabled):
             raise ValueError(
-                "raster_seg_only cannot be combined with trajectory sequence "
+                "formal raster modes cannot be combined with trajectory sequence "
                 "loading or a sequence Transformer."
             )
 

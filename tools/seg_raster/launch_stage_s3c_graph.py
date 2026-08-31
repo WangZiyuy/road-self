@@ -46,6 +46,8 @@ def main() -> int:
     args = parser.parse_args()
     assert_frozen(args.run_code_sha)
     plan = json.loads(args.graph_plan.read_text(encoding="utf-8"))
+    stage_s3d = plan.get("stage") == "seg_raster_stage_s3d"
+    stage_label = "seg_raster_stage_s3d" if stage_s3d else "seg_raster_stage_s3c"
     if plan.get("run_code_sha") != args.run_code_sha:
         raise RuntimeError("graph plan code SHA mismatch")
     samples, apps = collect_inventory(7.0)
@@ -56,7 +58,7 @@ def main() -> int:
     eligible = [row for row in eligibility if row["eligible"]]
     phase = str(plan.get("phase", "GRAPH"))
     write_json(args.output_root / ("gpu_inventory_phase_" + phase + ".json"), {
-        "stage": "seg_raster_stage_s3c", "phase": phase,
+        "stage": stage_label, "phase": phase,
         "execution_environment": "REMOTE_TRAINING_SERVER",
         "remote_host_label": "exp-237-tunnel",
         "run_code_sha": args.run_code_sha,
@@ -84,9 +86,10 @@ def main() -> int:
             key, spec = queue.pop(0)
             gpu_index = scheduler.allocate(key)
             kind = spec.get("checkpoint_kind", "stage_s3c")
+            source_run_id = spec.get("source_run_id", spec.get("run_id"))
             checkpoint = (Path(spec["checkpoint"])
                           if kind == "official_release" else
-                          args.run_root / spec["source_run_id"] / "checkpoints"
+                          args.run_root / source_run_id / "checkpoints"
                           / spec["checkpoint"])
             output_dir = args.output_root / "graph" / key
             output_dir.mkdir(parents=True, exist_ok=True)
@@ -130,7 +133,7 @@ def main() -> int:
                 "stdout": stdout_handle, "stderr": stderr_handle}
         peak = max(peak, len(running))
         write_json(schedule_path, {
-            "stage": "seg_raster_stage_s3c", "phase": phase,
+            "stage": stage_label, "phase": phase,
             "status": "RUNNING", "run_code_sha": args.run_code_sha,
             "jobs": records,
             "parallel_job_peak": peak,
@@ -172,7 +175,7 @@ def main() -> int:
             del running[gpu_index]
     status = "PASS" if all(row["exit_code"] == 0 for row in records) else "FAIL"
     write_json(schedule_path, {
-        "stage": "seg_raster_stage_s3c", "phase": phase,
+        "stage": stage_label, "phase": phase,
         "status": status, "run_code_sha": args.run_code_sha,
         "jobs": records, "parallel_job_peak": peak,
         "preferred_homogeneous_gpu_model": preferred_model,

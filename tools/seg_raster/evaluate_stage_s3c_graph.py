@@ -47,9 +47,13 @@ def prepare_config(args: argparse.Namespace) -> Path:
     base = deep_merge(defaults, load_stage_s3_config(
         REPO_ROOT / "configs/stage_s3c_common.yml"))
     config = deepcopy(base)
-    raster = args.run_key in ("R1", "R2", "R3")
-    control = {"R1": "aligned", "R2": "zero", "R3": "shift_fixed"}.get(
-        args.run_key)
+    stage_s3d = args.run_key in ("N0", "N1", "N2", "N3", "N4")
+    raster = args.run_key in ("R1", "R2", "R3") or stage_s3d
+    control = {
+        "R1": "aligned", "R2": "zero", "R3": "shift_fixed",
+        "N0": "null", "N1": "aligned", "N2": "zero",
+        "N3": "shift_large", "N4": "permuted",
+    }.get(args.run_key)
     checkpoint_dir = args.output_dir / "checkpoint"
     checkpoint_dir.mkdir(parents=True, exist_ok=True)
     link = checkpoint_dir / "selected.pth.tar"
@@ -58,21 +62,27 @@ def prepare_config(args: argparse.Namespace) -> Path:
     trajectory_dir = args.output_dir / "graph_trajectory"
     trajectory_dir.mkdir(parents=True, exist_ok=True)
     if raster:
-        source = args.control_root / control
+        source = args.control_root / ("aligned" if control == "null" else control)
         raster_link = trajectory_dir / "xian.png"
         if not raster_link.exists():
             raster_link.symlink_to(source / "xian_0_0.png")
-    config["TASK"] = "stage_s3c_{}_graph".format(args.run_key)
+    config["TASK"] = "{}_{}_graph".format(
+        "stage_s3d" if stage_s3d else "stage_s3c", args.run_key)
     config["TRAJ"] = {
-        "MODE": "raster_seg_only" if raster else "none",
+        "MODE": ("raster_road_zero_preserving" if stage_s3d
+                 else "raster_seg_only" if raster else "none"),
         "SEQUENCE": {"ENABLED": False},
         "RASTER": {"CONTROL": control, "INPUT_SEMANTICS": "binary_presence",
                    "USE_VALID_MASK": True, "VALID_EXTENT_WH": [4096, 4096],
-                   "ANCHOR_GRAD_TO_SEG": False, "SHIFT_X": 128, "SHIFT_Y": 128}}
+                   "ANCHOR_GRAD_TO_SEG": False,
+                   "BYPASS": args.run_key == "N0",
+                   "SHIFT_X": 512 if args.run_key == "N3" else 128,
+                   "SHIFT_Y": 512 if args.run_key == "N3" else 128}}
     config["DIR"].update({
         "CHECK_POINT_DIR": str(checkpoint_dir),
         "TEST_TRAJ_DIR": str(trajectory_dir),
-        "TRAJ_DIR": str(args.control_root / (control or "aligned")),
+        "TRAJ_DIR": str(args.control_root / (
+            "aligned" if control in (None, "null") else control)),
         "SAVE_SEG_DIR": str(args.output_dir / "segmentation"),
         "INFER_STEP_DIR": str(args.output_dir / "infer_step"),
         "SAVE_GRAPH_DIR": str(args.output_dir / "graphs"),
@@ -104,10 +114,13 @@ def prepare_config(args: argparse.Namespace) -> Path:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-code-sha", required=True)
-    parser.add_argument("--run-key", choices=("BASELINE", "R0", "R1", "R2", "R3"),
+    parser.add_argument("--run-key", choices=(
+        "BASELINE", "R0", "R1", "R2", "R3",
+        "N0", "N1", "N2", "N3", "N4"),
                         required=True)
     parser.add_argument("--checkpoint", type=Path, required=True)
-    parser.add_argument("--checkpoint-kind", choices=("official_release", "stage_s3c"),
+    parser.add_argument("--checkpoint-kind", choices=(
+        "official_release", "stage_s3c", "stage_s3d"),
                         required=True)
     parser.add_argument("--control-root", type=Path, required=True)
     parser.add_argument("--threshold", type=float, default=0.3)
@@ -119,11 +132,11 @@ def main() -> int:
     if not torch.cuda.is_available():
         raise RuntimeError("formal graph evaluation requires remote CUDA")
     payload = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
-    if args.checkpoint_kind == "stage_s3c":
+    if args.checkpoint_kind in ("stage_s3c", "stage_s3d"):
         if payload.get("code_sha") != args.run_code_sha:
             raise RuntimeError("checkpoint/run-code SHA mismatch")
         if payload.get("kind") != "versioned_model_only":
-            raise RuntimeError("Stage S3C graph requires a versioned checkpoint")
+            raise RuntimeError("versioned graph checkpoint kind is invalid")
     elif set(payload) != {"state_dict"}:
         raise RuntimeError("official release checkpoint wrapper is unexpected")
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -170,7 +183,8 @@ def main() -> int:
     status = ("RESOURCE_CAP_REACHED"
               if resource["status"] == "RESOURCE_CAP_REACHED" else "PASS")
     result = {
-        "stage": "seg_raster_stage_s3c", "status": status,
+        "stage": ("seg_raster_stage_s3d" if args.checkpoint_kind == "stage_s3d"
+                  else "seg_raster_stage_s3c"), "status": status,
         "natural_termination": status == "PASS",
         "execution_environment": "REMOTE_TRAINING_SERVER",
         "run_code_sha": args.run_code_sha, "run_key": args.run_key,

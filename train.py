@@ -20,6 +20,7 @@ except ImportError:
 from utils.additional_methods import visualize_batch_data_grid
 from utils.trajectory_mode import (
     TRAJ_MODE_NONE,
+    TRAJ_MODE_RASTER_ROAD_ZERO_PRESERVING,
     TRAJ_MODE_RASTER_SEG_ONLY,
     prepare_trajectory_sequence_batch,
     resolve_trajectory_mode,
@@ -139,6 +140,8 @@ def main():
         enable_trajectory_modules=use_sequence,
         enable_raster_segmentation=(
             trajectory_mode == TRAJ_MODE_RASTER_SEG_ONLY),
+        enable_zero_preserving_road_adapter=(
+            trajectory_mode == TRAJ_MODE_RASTER_ROAD_ZERO_PRESERVING),
         raster_use_valid_mask=raster_cfg.get("USE_VALID_MASK", True),
         anchor_grad_to_seg=raster_cfg.get("ANCHOR_GRAD_TO_SEG", True),
     )
@@ -289,7 +292,8 @@ def main():
                     model=cfg.TRAIN.MODEL,
                     use_traj=use_sequence,
                     trajectory_mode=trajectory_mode,
-                    traj_valid_mask=batch_traj_valid_mask_cuda)
+                    traj_valid_mask=batch_traj_valid_mask_cuda,
+                    raster_adapter_bypass=raster_cfg.get("BYPASS", False))
 
                 # # 为了比较轨迹的影响，也运行一次不使用轨迹的版本
                 # if data_dict.batch_valid_trajectory_inputs[0].size(0) > 1:

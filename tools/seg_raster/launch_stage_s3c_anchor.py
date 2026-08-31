@@ -43,6 +43,11 @@ def main() -> int:
     parser.add_argument("--required-free-memory-mb", type=int, default=12000)
     args = parser.parse_args()
     assert_frozen(args.run_code_sha)
+    plan_payload = json.loads(args.plan.read_text(encoding="utf-8"))
+    stage_s3d = plan_payload.get("stage") == "seg_raster_stage_s3d"
+    stage_label = "seg_raster_stage_s3d" if stage_s3d else "seg_raster_stage_s3c"
+    output_name = ("stage_s3d_anchor_raw.json" if stage_s3d
+                   else "stage_s3c_anchor_raw.json")
     samples, apps = collect_inventory(7.0)
     eligibility_policy = gpu_eligibility_overrides_from_environment()
     eligibility = evaluate_gpu_eligibility(
@@ -50,7 +55,7 @@ def main() -> int:
         excluded_indices=excluded_indices(), **eligibility_policy)
     eligible = [row for row in eligibility if row["eligible"]]
     write_json(args.output_root / "gpu_inventory_phase_ANCHOR.json", {
-        "stage": "seg_raster_stage_s3c", "phase": "ANCHOR",
+        "stage": stage_label, "phase": "ANCHOR",
         "execution_environment": "REMOTE_TRAINING_SERVER",
         "remote_host_label": "exp-237-tunnel",
         "run_code_sha": args.run_code_sha,
@@ -67,10 +72,12 @@ def main() -> int:
     environment["CUDA_VISIBLE_DEVICES"] = str(gpu["index"])
     command = [
         sys.executable,
-        str(REPO_ROOT / "tools/seg_raster/evaluate_stage_s3c_anchor.py"),
+        str(REPO_ROOT / "tools/seg_raster" / (
+            "evaluate_stage_s3d_anchor.py" if stage_s3d
+            else "evaluate_stage_s3c_anchor.py")),
         "--run-code-sha", args.run_code_sha,
         "--plan", str(args.plan), "--run-root", str(args.run_root),
-        "--output", str(args.output_root / "stage_s3c_anchor_raw.json"),
+        "--output", str(args.output_root / output_name),
         "--physical-gpu", str(gpu["index"]),
     ]
     started = utc_now()
@@ -109,7 +116,7 @@ def main() -> int:
     completed_code = int(process.returncode)
     record["end_time"] = utc_now()
     record["exit_code"] = completed_code
-    result_path = args.output_root / "stage_s3c_anchor_raw.json"
+    result_path = args.output_root / output_name
     if result_path.is_file():
         result = json.loads(result_path.read_text(encoding="utf-8"))
         record["peak_allocated_memory_mb"] = result.get(
@@ -117,7 +124,7 @@ def main() -> int:
         record["peak_reserved_memory_mb"] = result.get(
             "peak_gpu_memory_reserved_mb")
     write_json(args.output_root / "gpu_schedule_phase_ANCHOR.json", {
-        "stage": "seg_raster_stage_s3c", "phase": "ANCHOR",
+        "stage": stage_label, "phase": "ANCHOR",
         "run_code_sha": args.run_code_sha,
         "status": "PASS" if completed_code == 0 else "FAIL",
         "jobs": [record],

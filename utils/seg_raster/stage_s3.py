@@ -107,8 +107,10 @@ def validate_experiment_config(config: Mapping[str, Any]) -> None:
     train = config.get("TRAIN", {})
     mode = traj.get("MODE")
     anchor_grad = bool(traj.get("RASTER", {}).get("ANCHOR_GRAD_TO_SEG", True))
-    if mode not in ("none", "raster_seg_only"):
-        raise ValueError("S3 supports only none or raster_seg_only")
+    if mode not in (
+        "none", "raster_seg_only", "raster_road_zero_preserving",
+    ):
+        raise ValueError("unsupported S3 trajectory mode")
     if traj.get("SEQUENCE", {}).get("ENABLED", False):
         raise ValueError("S3 forbids trajectory sequence input")
     if train.get("MODEL", "origin") != "origin":
@@ -124,6 +126,10 @@ def validate_experiment_config(config: Mapping[str, Any]) -> None:
         raise ValueError("image-only runs cannot declare a raster control")
     if mode == "raster_seg_only" and control not in CONTROLS:
         raise ValueError("raster_seg_only requires an S3 control")
+    if mode == "raster_road_zero_preserving" and control not in {
+        "null", CONTROL_ALIGNED, CONTROL_ZERO, "shift_large", "permuted",
+    }:
+        raise ValueError("strict road raster mode requires an S3D control")
     declared = s3.get("ANCHOR_GRAD_TO_SEG")
     if declared is not None and bool(declared) != anchor_grad:
         raise ValueError("S3 and TRAJ anchor-gradient declarations differ")
