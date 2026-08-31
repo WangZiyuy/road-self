@@ -490,15 +490,19 @@ def preflight(args: argparse.Namespace) -> int:
     loss = road_loss(aligned, to_cuda(batch.batch_road_segmentation))
     loss.backward()
     optimizer.step()
+    aligned_eval = forward_model(model.eval(), batch, "aligned")
     zero_batch = copy.copy(batch)
     zero_batch.batch_traj_inputs = np.zeros_like(batch.batch_traj_inputs)
-    zero = forward_model(model.eval(), zero_batch, "zero")
+    zero = forward_model(model, zero_batch, "zero")
     bypass = forward_model(model.eval(), batch, "null")
     residual = zero["feature_maps"]["strict_raster_residual"]
     zero_identity = torch.equal(
         zero["feature_maps"]["stage_fuse_road"],
         zero["feature_maps"]["stage_fuse_img"])
-    junction_equal = torch.equal(zero["junc"], aligned["junc"])
+    junction_equal = (
+        torch.equal(zero["junc"], aligned_eval["junc"])
+        and torch.equal(bypass["junc"], aligned_eval["junc"])
+    )
     null_equal = torch.equal(zero["road"], bypass["road"])
     gradients = [parameter.grad for parameter in model.parameters()
                  if parameter.requires_grad]

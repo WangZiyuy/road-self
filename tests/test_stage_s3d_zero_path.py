@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import inspect
+
 from model.seg_raster import StrictZeroPreservingRoadAdapter
+from tools.seg_raster.audit_stage_s3d_remote import preflight
 from utils.seg_raster.stage_s3d import classify_current_zero_path
 
 
@@ -22,3 +25,14 @@ def test_current_s3c_zero_path_classifies_multiple_runtime_causes() -> None:
         runtime_residual_nonzero=True,
     )
     assert result == "MULTIPLE_CAUSES"
+
+
+def test_preflight_compares_post_step_eval_junctions() -> None:
+    source = inspect.getsource(preflight)
+    optimizer_step = source.index("optimizer.step()")
+    aligned_eval = source.index(
+        'aligned_eval = forward_model(model.eval(), batch, "aligned")')
+    junction_compare = source.index(
+        'torch.equal(zero["junc"], aligned_eval["junc"])')
+    assert optimizer_step < aligned_eval < junction_compare
+    assert 'torch.equal(zero["junc"], aligned["junc"])' not in source
