@@ -40,10 +40,16 @@ class StrictZeroPreservingRoadAdapter(nn.Module):
         self,
         image_channels: int = 128,
         hidden_channels: int = 32,
+        projection_init: str = "default",
+        use_support_multiplier: bool = True,
     ) -> None:
         super().__init__()
         self.image_channels = int(image_channels)
         self.hidden_channels = int(hidden_channels)
+        if projection_init not in ("default", "zero"):
+            raise ValueError("projection_init must be 'default' or 'zero'")
+        self.projection_init = projection_init
+        self.use_support_multiplier = bool(use_support_multiplier)
         self.encoder = nn.Sequential(
             nn.Conv2d(1, 16, 3, stride=2, padding=1, bias=False),
             nn.ReLU(inplace=False),
@@ -53,6 +59,8 @@ class StrictZeroPreservingRoadAdapter(nn.Module):
         )
         self.projection = nn.Conv2d(
             self.hidden_channels, self.image_channels, 1, bias=False)
+        if self.projection_init == "zero":
+            nn.init.zeros_(self.projection.weight)
 
     def _parameter_zero(self, reference: torch.Tensor) -> torch.Tensor:
         zero = reference.new_zeros(())
@@ -95,7 +103,8 @@ class StrictZeroPreservingRoadAdapter(nn.Module):
                 feature, size=target_size, mode="bilinear",
                 align_corners=False)
         projected = self.projection(feature)
-        residual = support * valid_down * projected
+        multiplier = support if self.use_support_multiplier else torch.ones_like(support)
+        residual = multiplier * valid_down * projected
         if bypass:
             residual = torch.zeros_like(residual) + self._parameter_zero(residual)
         stage_fuse_road = stage_fuse_img + residual

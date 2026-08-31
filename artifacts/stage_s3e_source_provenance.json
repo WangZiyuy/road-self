@@ -1,0 +1,35 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "status": "PASS",
+  "source_stage": "seg_raster_stage_s3d",
+  "s3d_formal_run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
+  "official_rpnet_checkpoint": {
+    "logical_path": "${OFFICIAL_VECROAD_RELEASE}/data/ckpt/vecroad.pth.tar",
+    "sha256": "498abc76e4ea461040b2b4ce69dc3d896cb975e93aae58815fe76443f6acf7c3"
+  },
+  "versioned_checkpoint_inventory": {
+    "logical_path": "artifacts/stage_s3d_checkpoint_inventory.json",
+    "sha256": "94565368704d02d7d805ab8e01f64452751444e9fe940884e854afba671d338f",
+    "n0_sample0_sha256": "facb858b1890b857590cebd8afd1963cf4cb362cd4a69a73372d41ba3a67ce4a",
+    "n0_final_sha256": "4703db29a472c608e1b3ecd09ce73308ec19e25aed3ac4f34124c3373ddff964",
+    "n1_sample0_sha256": "5bd10e4feed6ac4170d75cd265988b2b5f3701cdc2098dd6989643f92ed3c0cf",
+    "n1_final_sha256": "694b588448ac4febc1164abdd93041aba503428f8c43a6a4d9dc51b6500075a5",
+    "common_checkpoint_count": 13
+  },
+  "xian_data": {
+    "canonical_raster_sha256": "f67ba7a9383abc8adcbbc7033cd4cb704ddddc1b4f74bbc9de128685b00e0821",
+    "aligned_tile_sha256": "b36055cf866e0e3eb62f278ce5d77cf42d62cd0d714e29aa6555cd40ee1425b1",
+    "release_prepare_data_sha256": "6c669aa3dc129bc5224da633bf994c29694f9f7e441df2fe566f78d8b2db80a7"
+  },
+  "sample_plan_sha256": "b3e35b1e152988ebe222b79bb3252628cba01ac3cb597a056dc894bca942d0e9",
+  "sample_plan_contract_sha256": "3d156b4815e484469c46fef1b3f3ba34a7cb2c3f2ab29a5dd0762f66e55c5219",
+  "split_manifest_sha256": "7e6d5d4c7ad10e18ff49cb85cad1dafd4cf6c064628cd913ecb08341c87018da",
+  "validation_plan_sha256": "00ea19ec5699fb05bf0d59bb5544baefeb16608479c084efe7f28fcad3ea93c4",
+  "source_artifacts": {
+    "stage_s3d_training_dynamics_sha256": "1997c1ae474c0905a993583f31d623bd355ff46f339cb660d18e22b059614b84",
+    "stage_s3d_sample_parity_sha256": "086abff0ae413b1a3f134a635132ac74a4b7832f60448f7244e7e5cf97f310ef",
+    "stage_s3d_data_baseline_parity_sha256": "e71373cfa950217efc8f3a2952673c0f36e24adc1514aadffd0d8108778d99c2"
+  },
+  "source_checkpoints_read_only": true,
+  "source_artifacts_overwritten": false
+}

@@ -1,0 +1,17 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "status": "PASS",
+  "worktree": "${LOCAL_SEG_RASTER_WORKTREE}",
+  "branch": "feat/seg-raster-only",
+  "upstream": "origin/feat/seg-raster-only",
+  "s3e_base_sha": "57a68f89f1362d7eaced998c5243fe91ec351b2b",
+  "worktree_clean_at_start": false,
+  "preexisting_out_of_scope_untracked": [
+    "artifacts/stage_s3d_slice_visuals/",
+    "tools/seg_raster/diagnose_stage_s3d_feature_harm.py",
+    "tools/seg_raster/visualize_stage_s3d_slices.py"
+  ],
+  "preexisting_untracked_modified_by_stage_s3e": false,
+  "formal_execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel"
+}

@@ -200,7 +200,9 @@ class RPNet(nn.Module):
             enable_raster_segmentation=False,
             enable_zero_preserving_road_adapter=False,
             raster_use_valid_mask=True,
-            anchor_grad_to_seg=True):
+            anchor_grad_to_seg=True,
+            raster_projection_init="default",
+            raster_use_support_multiplier=True):
         super(RPNet, self).__init__()
         self.num_targets = num_targets
         self.enable_trajectory_modules = bool(enable_trajectory_modules)
@@ -311,7 +313,9 @@ class RPNet(nn.Module):
         if self.enable_zero_preserving_road_adapter:
             self.zero_preserving_road_adapter = (
                 StrictZeroPreservingRoadAdapter(
-                    image_channels=128, hidden_channels=32))
+                    image_channels=128, hidden_channels=32,
+                    projection_init=raster_projection_init,
+                    use_support_multiplier=raster_use_support_multiplier))
 
     def conv_stage(
             self,

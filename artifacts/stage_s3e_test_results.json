@@ -1,0 +1,32 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "status": "PASS",
+  "tested_candidate_base_sha": "57a68f89f1362d7eaced998c5243fe91ec351b2b",
+  "s3e_run_code_sha": "TO_BE_RECORDED_AFTER_FREEZE_COMMIT",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "remote_host_label": "exp-237-tunnel",
+  "cuda_used": false,
+  "commands": [
+    {
+      "command": "python -m pytest tests/test_stage_s3e_*.py -q -p no:cacheprovider",
+      "result": "26 passed",
+      "warnings": 1
+    },
+    {
+      "command": "python -m pytest tests -q -p no:cacheprovider",
+      "result": "415 passed",
+      "warnings": 13
+    }
+  ],
+  "candidate_transport": {
+    "kind": "explicit_file_copy_to_detached_remote_test_worktree",
+    "remote_worktree_label": "${REMOTE_S3E_PREFLIGHT_WORKTREE}",
+    "base_sha": "57a68f89f1362d7eaced998c5243fe91ec351b2b",
+    "formal_optimizer_steps_executed": 0
+  },
+  "notes": [
+    "The remote test worktree contained only the base commit plus explicitly copied Stage S3E candidate files.",
+    "No local GPU was queried or used.",
+    "Warnings were dependency deprecation and torch.load future warnings; no test failed."
+  ]
+}
