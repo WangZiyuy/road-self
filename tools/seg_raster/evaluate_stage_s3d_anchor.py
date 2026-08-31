@@ -7,6 +7,11 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sys
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 import numpy as np
 import torch
@@ -16,9 +21,6 @@ from tools.seg_raster.train_stage_s3c import array_sha256, set_seed, to_cuda, wr
 from tools.seg_raster.train_stage_s3d import build_batches
 from utils.seg_raster.stage_s3 import anchor_metrics, identity_sha256, load_stage_s3_config, sha256_file
 from utils.seg_raster.stage_s3d import STAGE_S3D_SEED, configure_road_only_training
-
-
-REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
 def verify_checkout(expected_sha: str) -> None:

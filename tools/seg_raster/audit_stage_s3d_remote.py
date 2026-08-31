@@ -8,7 +8,12 @@ import json
 import os
 from pathlib import Path
 import shutil
+import sys
 import time
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 import numpy as np
 from PIL import Image
@@ -36,7 +41,6 @@ from utils.seg_raster.stage_s3d import (
 )
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
 S3C_RUN_CODE_SHA = "dbac3ac3c38d04ea20d25a8abc4aa0cfe91818e3"
 RUN_IDS = {key: key + "_seed20260827" for key in ("R0", "R1", "R2", "R3")}
 

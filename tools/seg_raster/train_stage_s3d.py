@@ -6,7 +6,12 @@ import argparse
 import json
 import os
 from pathlib import Path
+import sys
 import time
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 import numpy as np
 import torch
@@ -32,9 +37,6 @@ from utils.seg_raster.stage_s3d import (
     set_road_only_train_mode, strict_load_stage_s3d_baseline,
     trainable_gradient_sha256,
 )
-
-
-REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
 def configure(args: argparse.Namespace) -> dict:
