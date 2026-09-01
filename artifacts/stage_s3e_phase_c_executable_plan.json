@@ -1,0 +1,24 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "phase": "C",
+  "status": "READY_WITH_C4_NOT_EXECUTABLE",
+  "run_code_sha": "96d86d0b6e6f27a969685b0d618d0133f3b3f0cb",
+  "calibration_status": "FAIL_TARGET_NOT_REACHED",
+  "calibration_manifest_sha256": "b402c22af678ca78a45708f36819121191baa930f1dd0c6763cf1db34f7f9e3a",
+  "c4_disposition": "NOT_EXECUTED_CALIBRATION_TARGET_INFEASIBLE",
+  "c4_reason": "The lowest predeclared nonnegative class weight still produced a residual negative/positive gradient-mass ratio of 2.081747171163464, outside the frozen 1.0 plus-or-minus 0.20 acceptance interval.",
+  "jobs": [
+    {
+      "run_key": "C1",
+      "run_id": "C1_frozen_road_head_seed20260827"
+    },
+    {
+      "run_key": "C2",
+      "run_id": "C2_no_support_multiplier_seed20260827"
+    },
+    {
+      "run_key": "C3",
+      "run_id": "C3_frozen_encoder_seed20260827"
+    }
+  ]
+}

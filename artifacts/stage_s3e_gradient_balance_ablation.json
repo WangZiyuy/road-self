@@ -1,0 +1,17 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "status": "NOT_EXECUTED_CALIBRATION_TARGET_INFEASIBLE",
+  "result": "INCONCLUSIVE_CALIBRATION_TARGET_INFEASIBLE",
+  "evidence": {
+    "status": "NOT_EXECUTED_CALIBRATION_TARGET_INFEASIBLE",
+    "calibration_run_code_sha": "96d86d0b6e6f27a969685b0d618d0133f3b3f0cb",
+    "negative_weight": 0.005,
+    "verified_gradient_ratio": 2.081747171163464,
+    "gradient_ratio_absolute_error_from_one": 1.0817471711634639,
+    "predeclared_tolerances": {
+      "gradient_ratio_absolute_error_max": 0.2,
+      "road_head_gradient_l2_relative_error_max": 0.01
+    },
+    "optimizer_steps_executed": 0
+  }
+}

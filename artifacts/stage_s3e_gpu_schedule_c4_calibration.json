@@ -1,0 +1,113 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "job": "c4-calibration",
+  "status": "FAIL",
+  "run_code_sha": "96d86d0b6e6f27a969685b0d618d0133f3b3f0cb",
+  "jobs": [
+    {
+      "job": "c4-calibration",
+      "physical_index": 0,
+      "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+      "gpu_name": "NVIDIA GeForce RTX 4090",
+      "prelaunch_gpu_samples": [
+        {
+          "sampled_at": "2026-09-01T03:04:31.444168+00:00",
+          "memory_used_mb": 1560,
+          "memory_free_mb": 22533,
+          "utilization_percent": 16,
+          "external_compute_processes": [
+            {
+              "pid": 3470742,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 638,
+              "process_name": "python"
+            },
+            {
+              "pid": 539826,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 504,
+              "process_name": "python3"
+            },
+            {
+              "pid": 640077,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 384,
+              "process_name": "python"
+            }
+          ],
+          "external_compute_memory_mb": 1526
+        },
+        {
+          "sampled_at": "2026-09-01T03:04:38.660849+00:00",
+          "memory_used_mb": 1560,
+          "memory_free_mb": 22533,
+          "utilization_percent": 17,
+          "external_compute_processes": [
+            {
+              "pid": 3470742,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 638,
+              "process_name": "python"
+            },
+            {
+              "pid": 539826,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 504,
+              "process_name": "python3"
+            },
+            {
+              "pid": 640077,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 384,
+              "process_name": "python"
+            }
+          ],
+          "external_compute_memory_mb": 1526
+        },
+        {
+          "sampled_at": "2026-09-01T03:04:45.911190+00:00",
+          "memory_used_mb": 1560,
+          "memory_free_mb": 22533,
+          "utilization_percent": 10,
+          "external_compute_processes": [
+            {
+              "pid": 3470742,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 638,
+              "process_name": "python"
+            },
+            {
+              "pid": 539826,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 504,
+              "process_name": "python3"
+            },
+            {
+              "pid": 640077,
+              "gpu_uuid": "GPU-2980e015-2725-bf9e-f4f9-b0e905dee75b",
+              "used_memory_mb": 384,
+              "process_name": "python"
+            }
+          ],
+          "external_compute_memory_mb": 1526
+        }
+      ],
+      "start_time": "2026-09-01T03:04:45.918813+00:00",
+      "end_time": "2026-09-01T03:06:10.114687+00:00",
+      "exit_code": 1,
+      "post_launch_contention": {
+        "observed": false,
+        "sample_count": 16,
+        "min_free_memory_mb": 19098,
+        "max_external_compute_memory_mb": 3516,
+        "new_external_pids": [],
+        "gpu_query_error_count": 0,
+        "last_sampled_at": "2026-09-01T03:06:10.114045+00:00"
+      },
+      "optimizer_steps_executed": 0,
+      "pid": 702027
+    }
+  ],
+  "parallel_job_peak": 1,
+  "external_processes_terminated": false
+}

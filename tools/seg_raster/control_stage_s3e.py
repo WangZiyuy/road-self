@@ -220,10 +220,16 @@ def reduce_b(
     write(output, result)
 
 
-def reduce_c(run_root: Path, phase_b: Path, output: Path) -> None:
+def reduce_c(
+    run_root: Path, phase_b: Path, output: Path,
+    c4_calibration: Path | None = None,
+) -> None:
     image = summary(run_root, "Z0")
     reference = summary(run_root, "Z2")
-    runs = {key: summary(run_root, key) for key in ("C1", "C2", "C3", "C4")}
+    runs = {key: summary(run_root, key) for key in ("C1", "C2", "C3")}
+    c4_summary = run_root / RUN_IDS["C4"] / "summary.json"
+    if c4_summary.is_file():
+        runs["C4"] = summary(run_root, "C4")
     ref_aligned = reference["final_counterfactual_controls"]["aligned"]
     image_null = image["final_counterfactual_controls"]["null"]
     ref_null = reference["final_counterfactual_controls"]["null"]
@@ -246,12 +252,26 @@ def reduce_c(run_root: Path, phase_b: Path, output: Path) -> None:
         comparisons[key]["head_drift_auprc_gap_reduction_vs_z2"] = (
             1.0 - abs(gap_run) / max(abs(gap_ref), 1e-30))
     c1 = comparisons["C1"]
+    c1_initial = runs["C1"]["validation_metrics_by_update"]["0"]
+    c1_final_change = metric_delta(c1_initial, c1["final_aligned"])
     c1_adapter_gain = (
         float(c1["final_aligned"]["road_auprc"])
         - float(c1["final_null"]["road_auprc"]))
-    road_head_result = (
-        "SUPPORTED" if c1["road_head_checksum_unchanged"]
-        and c1_adapter_gain > 0 else "NOT_NECESSARY")
+    degradation_without_head_update = (
+        c1_final_change["road_f1"] <= -0.005
+        or c1_final_change["road_recall"] <= -0.01)
+    if c1["road_head_checksum_unchanged"] and degradation_without_head_update:
+        road_head_result = "NOT_NECESSARY"
+    elif c1["road_head_checksum_unchanged"] and c1_adapter_gain > 0:
+        road_head_result = "SUPPORTED"
+    else:
+        road_head_result = "INCONCLUSIVE"
+    comparisons["C1"].update({
+        "final_aligned_vs_initial": c1_final_change,
+        "final_aligned_auprc_gain_over_null": c1_adapter_gain,
+        "functional_degradation_persists_with_frozen_head":
+            degradation_without_head_update,
+    })
     c2 = comparisons["C2"]
     support_result = (
         "SUPPORTED_AS_AMPLIFIER"
@@ -265,18 +285,46 @@ def reduce_c(run_root: Path, phase_b: Path, output: Path) -> None:
         and c3["head_drift_auprc_gap_reduction_vs_z2"] >= 0.20
         and c3["metrics_vs_z2"]["road_auprc"] >= 0.002
         else "NOT_NECESSARY")
-    c4 = comparisons["C4"]
-    calibrated_ratio = float(runs["C4"]["run_profile"].get(
-        "calibrated_initial_gradient_ratio", 1.0))
-    gradient_result = (
-        "SUPPORTED"
-        if abs(calibrated_ratio - 1.0) <= 0.20
-        and c4["head_drift_auprc_gap_reduction_vs_z2"] >= 0.20
-        and c4["metrics_vs_z2"]["road_recall"] >= 0.01
-        else "CORRELATED_NOT_CAUSAL")
+    if "C4" in runs:
+        c4 = comparisons["C4"]
+        calibrated_ratio = float(runs["C4"]["run_profile"].get(
+            "calibrated_initial_gradient_ratio", 1.0))
+        gradient_result = (
+            "SUPPORTED"
+            if abs(calibrated_ratio - 1.0) <= 0.20
+            and c4["head_drift_auprc_gap_reduction_vs_z2"] >= 0.20
+            and c4["metrics_vs_z2"]["road_recall"] >= 0.01
+            else "CORRELATED_NOT_CAUSAL")
+        c4_status = "PASS"
+    else:
+        if c4_calibration is None:
+            raise RuntimeError("missing C4 run requires calibration evidence")
+        calibration = read(c4_calibration)
+        if (calibration.get("status") != "FAIL"
+                or calibration.get("calibration_acceptance") is not False):
+            raise RuntimeError("C4 omission requires a failed acceptance gate")
+        comparisons["C4"] = {
+            "status": "NOT_EXECUTED_CALIBRATION_TARGET_INFEASIBLE",
+            "calibration_run_code_sha": calibration.get("run_code_sha"),
+            "negative_weight": calibration.get("negative_weight"),
+            "verified_gradient_ratio": calibration.get("verified", {}).get(
+                "adapter_residual_negative_positive_gradient_mass_ratio"),
+            "gradient_ratio_absolute_error_from_one": calibration.get(
+                "gradient_ratio_absolute_error_from_one"),
+            "predeclared_tolerances": calibration.get(
+                "predeclared_tolerances"),
+            "optimizer_steps_executed": calibration.get(
+                "optimizer_steps_executed"),
+        }
+        gradient_result = "INCONCLUSIVE_CALIBRATION_TARGET_INFEASIBLE"
+        c4_status = comparisons["C4"]["status"]
     result = {
-        "stage": "seg_raster_stage_s3e", "phase": "C", "status": "PASS",
+        "stage": "seg_raster_stage_s3e", "phase": "C",
+        "status": ("PASS" if c4_status == "PASS"
+                   else "PASS_WITH_C4_NOT_EXECUTED"),
         "phase_b_zero_init_status": read(phase_b)["zero_init_root_cause_status"],
+        "completed_run_keys": sorted(runs),
+        "c4_status": c4_status,
         "comparisons": comparisons,
         "road_head_update_ablation": road_head_result,
         "support_ablation": support_result,
@@ -305,6 +353,7 @@ def main() -> int:
     p = sub.add_parser("reduce-c")
     p.add_argument("--run-root", type=Path, required=True)
     p.add_argument("--phase-b", type=Path, required=True)
+    p.add_argument("--c4-calibration", type=Path)
     p.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.command == "plan-b":
@@ -317,7 +366,7 @@ def main() -> int:
         reduce_b(args.run_root, args.legacy_dynamics, args.phase_a_cross,
                  args.output)
     else:
-        reduce_c(args.run_root, args.phase_b, args.output)
+        reduce_c(args.run_root, args.phase_b, args.output, args.c4_calibration)
     return 0
 
 

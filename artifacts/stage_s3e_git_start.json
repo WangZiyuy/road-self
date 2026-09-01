@@ -13,5 +13,5 @@
   ],
   "preexisting_untracked_modified_by_stage_s3e": false,
   "formal_execution_environment": "REMOTE_TRAINING_SERVER",
-  "remote_host_label": "exp-237-tunnel"
+  "remote_host_label": "REMOTE_TRAINING_SERVER"
 }

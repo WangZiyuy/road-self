@@ -1,0 +1,53 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "status": "PASS",
+  "result": "SUPPORTED",
+  "evidence": {
+    "metrics_vs_z2": {
+      "road_precision": -0.009670449587454666,
+      "road_recall": 0.005005005005005003,
+      "road_f1": 0.005374042639701898,
+      "road_iou": 0.0033725217310016653,
+      "road_auprc": 0.003636861136624092
+    },
+    "final_null": {
+      "road_precision": 0.45264562027567806,
+      "road_recall": 0.11988459047282576,
+      "road_f1": 0.18956286951259252,
+      "road_iou": 0.10470557984057598,
+      "road_auprc": 0.2403908960797378,
+      "gt_mean_probability": 0.12111277974849041,
+      "background_mean_probability": 0.02265286553020635,
+      "residual_to_image_l2_ratio": 0.0,
+      "road_prediction_sha256": "ef226147a5ed93d9e08f255bb50f551883d008ac167a0f1163f3026d582d281f",
+      "validation_sample_count": 80,
+      "road_composite": 0.17821978181096876
+    },
+    "final_aligned": {
+      "road_precision": 0.5046087888531618,
+      "road_recall": 0.13860919743272684,
+      "road_f1": 0.21747967479674796,
+      "road_iou": 0.12200684150513112,
+      "road_auprc": 0.25754119501246814,
+      "gt_mean_probability": 0.14561953387116275,
+      "background_mean_probability": 0.03227998461178926,
+      "residual_to_image_l2_ratio": 0.07453021794823424,
+      "road_prediction_sha256": "547e7ac87b6467b788841b4644199f8ae5bf445d6da3a0a5362d7a4162006a6b",
+      "validation_sample_count": 80,
+      "road_composite": 0.19900923710478238
+    },
+    "road_head_checksum_unchanged": null,
+    "encoder_checksum_unchanged": true,
+    "run_profile": {
+      "control": "aligned",
+      "projection_init": "zero",
+      "use_support_multiplier": true,
+      "road_head_lr": 1e-05,
+      "freeze_encoder": true,
+      "negative_weight": 1.0,
+      "loss_scale": 1.0
+    },
+    "head_drift_auprc_gap": -0.022687668110144332,
+    "head_drift_auprc_gap_reduction_vs_z2": 0.21640828602802753
+  }
+}

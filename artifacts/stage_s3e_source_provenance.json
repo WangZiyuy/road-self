@@ -2,6 +2,12 @@
   "stage": "seg_raster_stage_s3e",
   "status": "PASS",
   "source_stage": "seg_raster_stage_s3d",
+  "stage_s3e_code_provenance": {
+    "phase_a_b_training_code_sha": "46ac4b703cd83acde0a0d1170622727aec190fcd",
+    "phase_c_training_code_sha": "96d86d0b6e6f27a969685b0d618d0133f3b3f0cb",
+    "phase_c_refreeze_reason": "C4_CALIBRATION_SEARCH_RANGE_AND_FAILED_CALIBRATION_GATE",
+    "phase_a_b_reused_after_refreeze": true
+  },
   "s3d_formal_run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
   "official_rpnet_checkpoint": {
     "logical_path": "${OFFICIAL_VECROAD_RELEASE}/data/ckpt/vecroad.pth.tar",

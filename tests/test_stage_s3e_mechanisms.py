@@ -205,3 +205,12 @@ def test_phase_c_plan_rejects_failed_calibration() -> None:
     finally:
         calibration.unlink(missing_ok=True)
         output.unlink(missing_ok=True)
+
+
+def test_phase_c_reducer_preserves_infeasible_c4_status() -> None:
+    from tools.seg_raster import control_stage_s3e
+    source = inspect.getsource(control_stage_s3e.reduce_c)
+    assert '"C1", "C2", "C3"' in source
+    assert "NOT_EXECUTED_CALIBRATION_TARGET_INFEASIBLE" in source
+    assert "INCONCLUSIVE_CALIBRATION_TARGET_INFEASIBLE" in source
+    assert "functional_degradation_persists_with_frozen_head" in source

@@ -1,0 +1,2032 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "phase": "A_cross_transplant",
+  "status": "PASS",
+  "execution_environment": "REMOTE_TRAINING_SERVER",
+  "optimizer_steps_executed": 0,
+  "common_sample_counts": [
+    0,
+    2560,
+    5120,
+    7680,
+    10240,
+    12800,
+    15360,
+    17920,
+    20480,
+    25600,
+    30720,
+    35840,
+    40960
+  ],
+  "checkpoint_inventory_sha256": "94565368704d02d7d805ab8e01f64452751444e9fe940884e854afba671d338f",
+  "source_stage_s3d_run_code_sha": "68566e6319d59bf9726beda656c6abbe372b5be4",
+  "checkpoints": {
+    "0": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.31849698054126596,
+          "road_recall": 0.16769710887357947,
+          "road_f1": 0.21971070395371264,
+          "road_iou": 0.12341292195692681,
+          "road_auprc": 0.2095589758941738,
+          "gt_mean_probability": 0.13348032030467621,
+          "background_mean_probability": 0.02610386054645242,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "7b4803973448bf0ef7200de1b4b610c4e47ca43e10594146a49303948633a4e9",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.24619922850011344,
+          "road_recall": 0.2555496673143732,
+          "road_f1": 0.25078732194966913,
+          "road_iou": 0.14337154372171385,
+          "road_auprc": 0.18512822978153015,
+          "gt_mean_probability": 0.17044206912488075,
+          "background_mean_probability": 0.043771913923291904,
+          "residual_to_image_l2_ratio": 0.36800609921824,
+          "road_prediction_sha256": "0d39fbaeb36209ced505971e477edff304c0fa693d826e621acb28b514fd42d3",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.31849698054126596,
+          "road_recall": 0.16769710887357947,
+          "road_f1": 0.21971070395371264,
+          "road_iou": 0.12341292195692681,
+          "road_auprc": 0.2095589758941738,
+          "gt_mean_probability": 0.13348032030467621,
+          "background_mean_probability": 0.02610386054645242,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "7b4803973448bf0ef7200de1b4b610c4e47ca43e10594146a49303948633a4e9",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.24619922850011344,
+          "road_recall": 0.2555496673143732,
+          "road_f1": 0.25078732194966913,
+          "road_iou": 0.14337154372171385,
+          "road_auprc": 0.18512822978153015,
+          "gt_mean_probability": 0.17044206912488075,
+          "background_mean_probability": 0.043771913923291904,
+          "residual_to_image_l2_ratio": 0.36800609921824,
+          "road_prediction_sha256": "0d39fbaeb36209ced505971e477edff304c0fa693d826e621acb28b514fd42d3",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": 0.0,
+          "adapter_on_clean_head": 0.031076617995956485,
+          "adapter_on_adapted_head": 0.031076617995956485,
+          "interaction": 0.0
+        },
+        "road_iou": {
+          "head_drift": 0.0,
+          "adapter_on_clean_head": 0.019958621764787035,
+          "adapter_on_adapted_head": 0.019958621764787035,
+          "interaction": 0.0
+        },
+        "road_auprc": {
+          "head_drift": 0.0,
+          "adapter_on_clean_head": -0.024430746112643648,
+          "adapter_on_adapted_head": -0.024430746112643648,
+          "interaction": 0.0
+        },
+        "road_precision": {
+          "head_drift": 0.0,
+          "adapter_on_clean_head": -0.07229775204115252,
+          "adapter_on_adapted_head": -0.07229775204115252,
+          "interaction": 0.0
+        },
+        "road_recall": {
+          "head_drift": 0.0,
+          "adapter_on_clean_head": 0.0878525584407937,
+          "adapter_on_adapted_head": 0.0878525584407937,
+          "interaction": 0.0
+        },
+        "gt_mean_probability": {
+          "head_drift": 0.0,
+          "adapter_on_clean_head": 0.03696174882020453,
+          "adapter_on_adapted_head": 0.03696174882020453,
+          "interaction": 0.0
+        },
+        "background_mean_probability": {
+          "head_drift": 0.0,
+          "adapter_on_clean_head": 0.017668053376839483,
+          "adapter_on_adapted_head": 0.017668053376839483,
+          "interaction": 0.0
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "437a165600b3c385937696c7e769ada0a6a1f226b79d00463b14e76420dd091d",
+          "adapter_sha256": "b06de8e3255d85f6d40d571eb2c4caa420617379fae5a80cb8db19e374b47530",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "437a165600b3c385937696c7e769ada0a6a1f226b79d00463b14e76420dd091d",
+          "adapter_sha256": "b06de8e3255d85f6d40d571eb2c4caa420617379fae5a80cb8db19e374b47530",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "437a165600b3c385937696c7e769ada0a6a1f226b79d00463b14e76420dd091d",
+          "adapter_sha256": "b06de8e3255d85f6d40d571eb2c4caa420617379fae5a80cb8db19e374b47530",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "437a165600b3c385937696c7e769ada0a6a1f226b79d00463b14e76420dd091d",
+          "adapter_sha256": "b06de8e3255d85f6d40d571eb2c4caa420617379fae5a80cb8db19e374b47530",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "facb858b1890b857590cebd8afd1963cf4cb362cd4a69a73372d41ba3a67ce4a",
+        "N1": "5bd10e4feed6ac4170d75cd265988b2b5f3701cdc2098dd6989643f92ed3c0cf"
+      }
+    },
+    "2560": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.3184747015950143,
+          "road_recall": 0.17753047164811872,
+          "road_f1": 0.22797731568998114,
+          "road_iou": 0.12865372306379347,
+          "road_auprc": 0.21419708229907455,
+          "gt_mean_probability": 0.1413525349324586,
+          "background_mean_probability": 0.028543435275658006,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "011679d438194599a2fa95ff47bf71d14f7071328ce10a12a5c0033b2350d823",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.2963498954815887,
+          "road_recall": 0.21704056998174645,
+          "road_f1": 0.2505693212331328,
+          "road_iou": 0.143229065475034,
+          "road_auprc": 0.20695484071814516,
+          "gt_mean_probability": 0.15776410369198465,
+          "background_mean_probability": 0.04213747100190879,
+          "residual_to_image_l2_ratio": 0.38359444109903396,
+          "road_prediction_sha256": "95a680bb8506c0294cc44e20a6e9b19f7ba726a91ae669a0b92f72382d6a7170",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.3328483084758094,
+          "road_recall": 0.16163222045574988,
+          "road_f1": 0.21759809750297265,
+          "road_iou": 0.12208138759172782,
+          "road_auprc": 0.21265821474608484,
+          "gt_mean_probability": 0.13040237138063085,
+          "background_mean_probability": 0.025130593576370364,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "7cf64b461555a5e5c0fed3ebca1063697e31a0ce3214d115962af0ea07622588",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.32730125523012554,
+          "road_recall": 0.18424306659600778,
+          "road_f1": 0.2357683758429718,
+          "road_iou": 0.1336379943623473,
+          "road_auprc": 0.21030427792918158,
+          "gt_mean_probability": 0.14223678683264437,
+          "background_mean_probability": 0.035746380278467146,
+          "residual_to_image_l2_ratio": 0.38359444109903396,
+          "road_prediction_sha256": "ee0c4291ec00e8bafbc821d03a11972821ca3c70056a010dcd89c46b1492a65b",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.010379218187008488,
+          "adapter_on_clean_head": 0.02259200554315166,
+          "adapter_on_adapted_head": 0.018170278339999152,
+          "interaction": -0.004421727203152509
+        },
+        "road_iou": {
+          "head_drift": -0.006572335472065649,
+          "adapter_on_clean_head": 0.014575342411240533,
+          "adapter_on_adapted_head": 0.011556606770619482,
+          "interaction": -0.003018735640621051
+        },
+        "road_auprc": {
+          "head_drift": -0.001538867552989709,
+          "adapter_on_clean_head": -0.007242241580929398,
+          "adapter_on_adapted_head": -0.002353936816903268,
+          "interaction": 0.00488830476402613
+        },
+        "road_precision": {
+          "head_drift": 0.014373606880795087,
+          "adapter_on_clean_head": -0.0221248061134256,
+          "adapter_on_adapted_head": -0.005547053245683831,
+          "interaction": 0.01657775286774177
+        },
+        "road_recall": {
+          "head_drift": -0.015898251192368845,
+          "adapter_on_clean_head": 0.03951009833362773,
+          "adapter_on_adapted_head": 0.022610846140257906,
+          "interaction": -0.016899252193369824
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.010950163551827763,
+          "adapter_on_clean_head": 0.01641156875952604,
+          "adapter_on_adapted_head": 0.011834415452013525,
+          "interaction": -0.004577153307512516
+        },
+        "background_mean_probability": {
+          "head_drift": -0.0034128416992876415,
+          "adapter_on_clean_head": 0.013594035726250783,
+          "adapter_on_adapted_head": 0.010615786702096782,
+          "interaction": -0.002978249024153997
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "fcde7350d983db1f7394f64fab403de27b622a076324027fe230e22c65b107e1",
+          "adapter_sha256": "4de7998b737d0ee7d4643f47f30dada8ffee55f3a5e5cfe8a902306c05ff16e8",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "fcde7350d983db1f7394f64fab403de27b622a076324027fe230e22c65b107e1",
+          "adapter_sha256": "d7b2f07a67b14f6130b36aa767b71269b66bd1030aec9fdaff706a7fbfc0f263",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "f7070636409defaf30295bffd62c46b07791e80a15bdb596e2d39baf40d04d9f",
+          "adapter_sha256": "d7b2f07a67b14f6130b36aa767b71269b66bd1030aec9fdaff706a7fbfc0f263",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "f7070636409defaf30295bffd62c46b07791e80a15bdb596e2d39baf40d04d9f",
+          "adapter_sha256": "d7b2f07a67b14f6130b36aa767b71269b66bd1030aec9fdaff706a7fbfc0f263",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "f43fbe77ae22ceed55a29b64c4457c8b5dd2359e704733539a4bde917b870179",
+        "N1": "3d9da4be3c4c83ed12790cc16139bb5f674e1909426f837a4f344a832fbd2987"
+      }
+    },
+    "5120": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.32137703566274994,
+          "road_recall": 0.1835953600659483,
+          "road_f1": 0.2336893385797264,
+          "road_iou": 0.13230364492722876,
+          "road_auprc": 0.21884430281559464,
+          "gt_mean_probability": 0.14730481324573072,
+          "background_mean_probability": 0.03059115779723374,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "c75ba317ab558058c62d90d5ddf322adc5b59e501e4d6baa1281593bdbdfc340",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.32109844745580185,
+          "road_recall": 0.21068126950479893,
+          "road_f1": 0.25442650927967003,
+          "road_iou": 0.1457552550105915,
+          "road_auprc": 0.2233404671598163,
+          "gt_mean_probability": 0.16436509987803274,
+          "background_mean_probability": 0.04434905840641652,
+          "residual_to_image_l2_ratio": 0.38808616822856423,
+          "road_prediction_sha256": "e989b72af110ee92e2c3067e282c9defbd4eda7a0aa111c40ceb18abd0d1474d",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.34201123021949975,
+          "road_recall": 0.15780486368721663,
+          "road_f1": 0.21596357629235666,
+          "road_iou": 0.12105334477618682,
+          "road_auprc": 0.21501793052230642,
+          "gt_mean_probability": 0.12916429251491612,
+          "background_mean_probability": 0.024677246018468366,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "2cb9a816d3015e9b2e4bea759682dfd024dac71ab7125259088804f248490a17",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.375311884438608,
+          "road_recall": 0.16828593299181535,
+          "road_f1": 0.23237661598503948,
+          "road_iou": 0.13146274149034037,
+          "road_auprc": 0.22561233417185422,
+          "gt_mean_probability": 0.14402494594811543,
+          "background_mean_probability": 0.034782433153032234,
+          "residual_to_image_l2_ratio": 0.38808616822856423,
+          "road_prediction_sha256": "8cddee1e521225c6a2ba53dbbb291ce70e392ae1f36af173ca989d4570a3fd9f",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.017725762287369745,
+          "adapter_on_clean_head": 0.02073717069994363,
+          "adapter_on_adapted_head": 0.016413039692682818,
+          "interaction": -0.004324131007260812
+        },
+        "road_iou": {
+          "head_drift": -0.011250300151041948,
+          "adapter_on_clean_head": 0.013451610083362736,
+          "adapter_on_adapted_head": 0.010409396714153557,
+          "interaction": -0.003042213369209179
+        },
+        "road_auprc": {
+          "head_drift": -0.0038263722932882216,
+          "adapter_on_clean_head": 0.004496164344221676,
+          "adapter_on_adapted_head": 0.010594403649547807,
+          "interaction": 0.006098239305326131
+        },
+        "road_precision": {
+          "head_drift": 0.020634194556749808,
+          "adapter_on_clean_head": -0.00027858820694809383,
+          "adapter_on_adapted_head": 0.03330065421910827,
+          "interaction": 0.033579242426056366
+        },
+        "road_recall": {
+          "head_drift": -0.025790496378731653,
+          "adapter_on_clean_head": 0.02708590943885064,
+          "adapter_on_adapted_head": 0.010481069304598717,
+          "interaction": -0.016604840134251925
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.018140520730814597,
+          "adapter_on_clean_head": 0.017060286632302024,
+          "adapter_on_adapted_head": 0.014860653433199311,
+          "interaction": -0.002199633199102713
+        },
+        "background_mean_probability": {
+          "head_drift": -0.005913911778765376,
+          "adapter_on_clean_head": 0.01375790060918278,
+          "adapter_on_adapted_head": 0.010105187134563869,
+          "interaction": -0.003652713474618912
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "f9492f3a6cc8749980da7644c36ccf3d2c61ce962320511e0acdc403f4e754dd",
+          "adapter_sha256": "cf60bcade2dc545530105c1cad77cc962965aa3d8de5cdcfdb72e7a8d94997a1",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "f9492f3a6cc8749980da7644c36ccf3d2c61ce962320511e0acdc403f4e754dd",
+          "adapter_sha256": "edac71c148baaa44e821f1d6cd5bdab5ff486615ed2126208b430d2cbb69a6b8",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "0ca06440ea5aca80c9d38ae07cddb955b1a1eeb79c87753cfcb08a28276c98d9",
+          "adapter_sha256": "edac71c148baaa44e821f1d6cd5bdab5ff486615ed2126208b430d2cbb69a6b8",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "0ca06440ea5aca80c9d38ae07cddb955b1a1eeb79c87753cfcb08a28276c98d9",
+          "adapter_sha256": "edac71c148baaa44e821f1d6cd5bdab5ff486615ed2126208b430d2cbb69a6b8",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "85f5db7a4756ebbdca8b1c5f9447645dc76a74eab5eb97e655056f493202ea51",
+        "N1": "c9339affbce4e5f531cb23aacaedcfabcc92bc6169a3bb3d48955b20592e342f"
+      }
+    },
+    "7680": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.3275595422208475,
+          "road_recall": 0.18706942236354002,
+          "road_f1": 0.23813807060939957,
+          "road_iou": 0.13516273133375878,
+          "road_auprc": 0.22339304711637412,
+          "gt_mean_probability": 0.15184148556252455,
+          "background_mean_probability": 0.03230609206613424,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "5e15dee03f0a37d6e364c907b8215f0659db35962cbc41f16ef57ef6a57cc9a3",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.3428343631652382,
+          "road_recall": 0.20255549667314374,
+          "road_f1": 0.2546544768108968,
+          "road_iou": 0.14590490732493533,
+          "road_auprc": 0.23126117684006825,
+          "gt_mean_probability": 0.16956066944493656,
+          "background_mean_probability": 0.047146324107537864,
+          "residual_to_image_l2_ratio": 0.3865983772401145,
+          "road_prediction_sha256": "1633d4c8ae8d36483443c01da7e5f93a20897761d9aff0b7193b4616933279a4",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.35026666666666667,
+          "road_recall": 0.15468409586056645,
+          "road_f1": 0.21459788424621165,
+          "road_iou": 0.12019582723279648,
+          "road_auprc": 0.21695374592812833,
+          "gt_mean_probability": 0.12818948441801717,
+          "background_mean_probability": 0.024361954359650252,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "2b5ea00de11cb1c85488a61481f0df0ecafb84a96b271200e95b2acc59df5249",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.40328412172341066,
+          "road_recall": 0.15762821645174585,
+          "road_f1": 0.22666271538038185,
+          "road_iou": 0.1278170359052712,
+          "road_auprc": 0.23103870344609742,
+          "gt_mean_probability": 0.14580590181493455,
+          "background_mean_probability": 0.03508279491849765,
+          "residual_to_image_l2_ratio": 0.3865983772401145,
+          "road_prediction_sha256": "9ce8774388ae4c78dbdf4cd9762a20e7fcb20aebf801071c6d39bd0d4763f24d",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.023540186363187915,
+          "adapter_on_clean_head": 0.016516406201497247,
+          "adapter_on_adapted_head": 0.0120648311341702,
+          "interaction": -0.004451575067327046
+        },
+        "road_iou": {
+          "head_drift": -0.014966904100962297,
+          "adapter_on_clean_head": 0.01074217599117655,
+          "adapter_on_adapted_head": 0.007621208672474705,
+          "interaction": -0.003120967318701845
+        },
+        "road_auprc": {
+          "head_drift": -0.0064393011882457885,
+          "adapter_on_clean_head": 0.007868129723694134,
+          "adapter_on_adapted_head": 0.014084957517969093,
+          "interaction": 0.0062168277942749595
+        },
+        "road_precision": {
+          "head_drift": 0.022707124445819182,
+          "adapter_on_clean_head": 0.015274820944390699,
+          "adapter_on_adapted_head": 0.05301745505674399,
+          "interaction": 0.03774263411235329
+        },
+        "road_recall": {
+          "head_drift": -0.03238532650297357,
+          "adapter_on_clean_head": 0.01548607430960372,
+          "adapter_on_adapted_head": 0.0029441205911794055,
+          "interaction": -0.012541953718424315
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.023652001144507384,
+          "adapter_on_clean_head": 0.017719183882412004,
+          "adapter_on_adapted_head": 0.017616417396917383,
+          "interaction": -0.00010276648549462086
+        },
+        "background_mean_probability": {
+          "head_drift": -0.007944137706483986,
+          "adapter_on_clean_head": 0.014840232041403625,
+          "adapter_on_adapted_head": 0.010720840558847401,
+          "interaction": -0.004119391482556224
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "7f9127a16455a03f77b9e2d9c3249c344de884085b5393fc1da68082843997ca",
+          "adapter_sha256": "b7cf40b70482f18a62ef218c6d97759ea0b63e1d9022a7c4c4abb7e75ddf870f",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "7f9127a16455a03f77b9e2d9c3249c344de884085b5393fc1da68082843997ca",
+          "adapter_sha256": "67e63feee16ba87f03ad73f0312574c2a98b076730827926ec668f9d271916a7",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "3f2e396cca6795852fd1097a19eacc4c6678bd6fb8fcda531956c670a27fdff4",
+          "adapter_sha256": "67e63feee16ba87f03ad73f0312574c2a98b076730827926ec668f9d271916a7",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "3f2e396cca6795852fd1097a19eacc4c6678bd6fb8fcda531956c670a27fdff4",
+          "adapter_sha256": "67e63feee16ba87f03ad73f0312574c2a98b076730827926ec668f9d271916a7",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "c9764d468eb30217c5e8c50446269101380b4f3fd00ad7ced904b5c452d60a29",
+        "N1": "fb7925505348187ef079d7a78b633859f96dece56d47780d82c7c36c67828215"
+      }
+    },
+    "10240": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.3384302822925577,
+          "road_recall": 0.18636283342165696,
+          "road_f1": 0.24036453389026008,
+          "road_iou": 0.13659905049633148,
+          "road_auprc": 0.22759359104731966,
+          "gt_mean_probability": 0.15356922976697163,
+          "background_mean_probability": 0.03321108055676244,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "a21a41d0f7d37b983bde8a7e249c6e4f1ae45328b2edc616483bbb26de356b30",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.3763135121770305,
+          "road_recall": 0.17923806159100278,
+          "road_f1": 0.24282067645181876,
+          "road_iou": 0.13818776103141456,
+          "road_auprc": 0.23502813446966392,
+          "gt_mean_probability": 0.1638921847588851,
+          "background_mean_probability": 0.045836304709215514,
+          "residual_to_image_l2_ratio": 0.37706489653845854,
+          "road_prediction_sha256": "7d12807940c40c1fbb7823809710edb5e38c7aab7625713c52a49481fc40325b",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.3605011261261261,
+          "road_recall": 0.15079785668020962,
+          "road_f1": 0.21264582554905137,
+          "road_iou": 0.11897240546316083,
+          "road_auprc": 0.21822701628596788,
+          "gt_mean_probability": 0.12565628613445637,
+          "background_mean_probability": 0.023563100670206387,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "9e4268ae0b3691614be2c1ae8372862b20a3d87fa3ff64f555356c93afb87e23",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.4431753283837807,
+          "road_recall": 0.13707825472531354,
+          "road_f1": 0.20939017808958446,
+          "road_iou": 0.11693791440626884,
+          "road_auprc": 0.23308309307592315,
+          "gt_mean_probability": 0.13651432380613276,
+          "background_mean_probability": 0.03171909232354717,
+          "residual_to_image_l2_ratio": 0.37706489653845854,
+          "road_prediction_sha256": "e610db9c0b1120d28b5cabee114055876ec3183532c91e2e223f28c39350a239",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.02771870834120871,
+          "adapter_on_clean_head": 0.002456142561558683,
+          "adapter_on_adapted_head": -0.0032556474594669094,
+          "interaction": -0.005711790021025592
+        },
+        "road_iou": {
+          "head_drift": -0.017626645033170643,
+          "adapter_on_clean_head": 0.0015887105350830821,
+          "adapter_on_adapted_head": -0.0020344910568919905,
+          "interaction": -0.0036232015919750726
+        },
+        "road_auprc": {
+          "head_drift": -0.009366574761351776,
+          "adapter_on_clean_head": 0.007434543422344259,
+          "adapter_on_adapted_head": 0.014856076789955264,
+          "interaction": 0.007421533367611005
+        },
+        "road_precision": {
+          "head_drift": 0.022070843833568388,
+          "adapter_on_clean_head": 0.03788322988447279,
+          "adapter_on_adapted_head": 0.0826742022576546,
+          "interaction": 0.0447909723731818
+        },
+        "road_recall": {
+          "head_drift": -0.035564976741447346,
+          "adapter_on_clean_head": -0.007124771830654186,
+          "adapter_on_adapted_head": -0.013719601954896077,
+          "interaction": -0.0065948301242418905
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.027912943632515258,
+          "adapter_on_clean_head": 0.010322954991913463,
+          "adapter_on_adapted_head": 0.010858037671676396,
+          "interaction": 0.0005350826797629327
+        },
+        "background_mean_probability": {
+          "head_drift": -0.009647979886556052,
+          "adapter_on_clean_head": 0.012625224152453075,
+          "adapter_on_adapted_head": 0.008155991653340786,
+          "interaction": -0.00446923249911229
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "28ad24191b7f2ad5f835cfd2d5f165af10be69f98976c6bb38cbf15e4524e265",
+          "adapter_sha256": "1eeefe3475211afadc696d1c2d792656e9918d0b70e815248595acd7456adef2",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "28ad24191b7f2ad5f835cfd2d5f165af10be69f98976c6bb38cbf15e4524e265",
+          "adapter_sha256": "b0a2100ddc23a481e86ef99633ec9de9702476ac133b3ccb576a03c4932991a1",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "c1774a8bc37febff31faa77d36fc75bb24fa2c98d912bddbdc7f33dd50054a31",
+          "adapter_sha256": "b0a2100ddc23a481e86ef99633ec9de9702476ac133b3ccb576a03c4932991a1",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "c1774a8bc37febff31faa77d36fc75bb24fa2c98d912bddbdc7f33dd50054a31",
+          "adapter_sha256": "b0a2100ddc23a481e86ef99633ec9de9702476ac133b3ccb576a03c4932991a1",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "e3860ff712416d8d1b5027161697649f373a961ac7ed8afda428b4d99556b5c1",
+        "N1": "2cf42f53c2a4fd001fab916ce0050081837cf7fc1e5a24a90258301e6b5dc527"
+      }
+    },
+    "12800": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.3484197775575377,
+          "road_recall": 0.18630395100983335,
+          "road_f1": 0.24278698588090852,
+          "road_iou": 0.13816593886462883,
+          "road_auprc": 0.23198917539957314,
+          "gt_mean_probability": 0.15635243565437684,
+          "background_mean_probability": 0.03453115927186796,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "058d87b8c5ba24e756e35cc16197d6ad04942fbe152fe64ffae90fe007197b58",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.4051267363597308,
+          "road_recall": 0.1665783430489313,
+          "road_f1": 0.236084452975048,
+          "road_iou": 0.1338411316648531,
+          "road_auprc": 0.23989001521816294,
+          "gt_mean_probability": 0.1656245909517262,
+          "background_mean_probability": 0.04808453057730585,
+          "residual_to_image_l2_ratio": 0.37481319045932093,
+          "road_prediction_sha256": "4edff841be7e002b016ee6d2c4badf5ac95be833e7b7120e3ac20c75573e1dc0",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.3687076832499264,
+          "road_recall": 0.14750044161808867,
+          "road_f1": 0.21070782689153386,
+          "road_iou": 0.11776043625423091,
+          "road_auprc": 0.2196836150258425,
+          "gt_mean_probability": 0.12467424926088974,
+          "background_mean_probability": 0.023270320535178707,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "6fea7d66a25340909394201dd6fcf3f3b613e1822dee6b3c035080c0245e520e",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.4752242631354122,
+          "road_recall": 0.13101336630748395,
+          "road_f1": 0.2054004154165705,
+          "road_iou": 0.11445473251028807,
+          "road_auprc": 0.23642141127537505,
+          "gt_mean_probability": 0.13715977604857382,
+          "background_mean_probability": 0.032278022864923456,
+          "residual_to_image_l2_ratio": 0.37481319045932093,
+          "road_prediction_sha256": "092255a2cabd5ca61ff6271b3d1db600a73abdfa71534246df2821a0fef84db8",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.03207915898937466,
+          "adapter_on_clean_head": -0.0067025329058605365,
+          "adapter_on_adapted_head": -0.005307411474963358,
+          "interaction": 0.0013951214308971782
+        },
+        "road_iou": {
+          "head_drift": -0.02040550261039792,
+          "adapter_on_clean_head": -0.004324807199775738,
+          "adapter_on_adapted_head": -0.003305703743942845,
+          "interaction": 0.0010191034558328926
+        },
+        "road_auprc": {
+          "head_drift": -0.01230556037373065,
+          "adapter_on_clean_head": 0.0079008398185898,
+          "adapter_on_adapted_head": 0.01673779624953256,
+          "interaction": 0.00883695643094276
+        },
+        "road_precision": {
+          "head_drift": 0.020287905692388697,
+          "adapter_on_clean_head": 0.056706958802193064,
+          "adapter_on_adapted_head": 0.1065165798854858,
+          "interaction": 0.04980962108329273
+        },
+        "road_recall": {
+          "head_drift": -0.03880350939174468,
+          "adapter_on_clean_head": -0.01972560796090206,
+          "adapter_on_adapted_head": -0.016487075310604726,
+          "interaction": 0.003238532650297332
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.0316781863934871,
+          "adapter_on_clean_head": 0.009272155297349371,
+          "adapter_on_adapted_head": 0.012485526787684081,
+          "interaction": 0.00321337149033471
+        },
+        "background_mean_probability": {
+          "head_drift": -0.01126083873668925,
+          "adapter_on_clean_head": 0.013553371305437892,
+          "adapter_on_adapted_head": 0.009007702329744748,
+          "interaction": -0.004545668975693147
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "cc6b5f53d9ce1b6c3106d7ee258e4ca81a3adea0e58719b1a08db63b7d7f0604",
+          "adapter_sha256": "27679254b02a6281025a5ce4d54e70fbf58be7fed6a64b8efcff4bfd73d18bd6",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "cc6b5f53d9ce1b6c3106d7ee258e4ca81a3adea0e58719b1a08db63b7d7f0604",
+          "adapter_sha256": "df104a0878b89c21784ecadbe974c0a5b3a22d301a5a68d95b725c10aed7831f",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "95b5f1a35314ab2b6e4a5ead8988676b37702fbe51676f9e6bc4a020967aa5a8",
+          "adapter_sha256": "df104a0878b89c21784ecadbe974c0a5b3a22d301a5a68d95b725c10aed7831f",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "95b5f1a35314ab2b6e4a5ead8988676b37702fbe51676f9e6bc4a020967aa5a8",
+          "adapter_sha256": "df104a0878b89c21784ecadbe974c0a5b3a22d301a5a68d95b725c10aed7831f",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "09a18dc1f8680a608189770bb2afe0f322ded46bee0e2da80c21da13707fd688",
+        "N1": "4f386adb855d9dacc005efb25cff3fc3ed1bb817ff7395a573f22dd7aa106c8b"
+      }
+    },
+    "15360": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.3631910426871938,
+          "road_recall": 0.18335983041865395,
+          "road_f1": 0.2436905740110342,
+          "road_iou": 0.13875150380965112,
+          "road_auprc": 0.23604548227787592,
+          "gt_mean_probability": 0.15705248398872115,
+          "background_mean_probability": 0.03510465116770551,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "2dd24af8ba66ab145386b09bcaeeb28226c742b6c3d38a210a9f6c78b611f646",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.4255874673629243,
+          "road_recall": 0.16316316316316315,
+          "road_f1": 0.23589001447178004,
+          "road_iou": 0.13371616078753076,
+          "road_auprc": 0.24413791820891206,
+          "gt_mean_probability": 0.1675537094611107,
+          "background_mean_probability": 0.049028973778704986,
+          "residual_to_image_l2_ratio": 0.3687065020231899,
+          "road_prediction_sha256": "ba9b34f5c1f4bfe646fc23938eef5f2737a52ef09313f9783e2a0afdc211dea6",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.3730964467005076,
+          "road_recall": 0.14714714714714713,
+          "road_f1": 0.21105527638190955,
+          "road_iou": 0.11797752808988764,
+          "road_auprc": 0.22114556149934728,
+          "gt_mean_probability": 0.12504336206376676,
+          "background_mean_probability": 0.023262521235747128,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "fff468dc5e1ca70542203214c58efc0713399f332f9f159df3f4f4a17988742e",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.47090383821708626,
+          "road_recall": 0.13436966378142848,
+          "road_f1": 0.20907966466626965,
+          "road_iou": 0.1167442574308078,
+          "road_auprc": 0.23903056612332144,
+          "gt_mean_probability": 0.14131722153351034,
+          "background_mean_probability": 0.03296747464085375,
+          "residual_to_image_l2_ratio": 0.3687065020231899,
+          "road_prediction_sha256": "409a7bec09a9ec1c6bd317f9de15365a012a5344d41fe218bba22a7e0871d90c",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.03263529762912465,
+          "adapter_on_clean_head": -0.007800559539254154,
+          "adapter_on_adapted_head": -0.0019756117156398967,
+          "interaction": 0.005824947823614257
+        },
+        "road_iou": {
+          "head_drift": -0.020773975719763485,
+          "adapter_on_clean_head": -0.005035343022120359,
+          "adapter_on_adapted_head": -0.001233270659079841,
+          "interaction": 0.0038020723630405318
+        },
+        "road_auprc": {
+          "head_drift": -0.014899920778528641,
+          "adapter_on_clean_head": 0.008092435931036146,
+          "adapter_on_adapted_head": 0.01788500462397416,
+          "interaction": 0.009792568692938014
+        },
+        "road_precision": {
+          "head_drift": 0.009905404013313801,
+          "adapter_on_clean_head": 0.06239642467573048,
+          "adapter_on_adapted_head": 0.09780739151657863,
+          "interaction": 0.03541096684084816
+        },
+        "road_recall": {
+          "head_drift": -0.03621268327150681,
+          "adapter_on_clean_head": -0.020196667255490797,
+          "adapter_on_adapted_head": -0.012777483365718656,
+          "interaction": 0.007419183889772141
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.03200912192495439,
+          "adapter_on_clean_head": 0.010501225472389547,
+          "adapter_on_adapted_head": 0.01627385946974358,
+          "interaction": 0.005772633997354032
+        },
+        "background_mean_probability": {
+          "head_drift": -0.011842129931958382,
+          "adapter_on_clean_head": 0.013924322610999476,
+          "adapter_on_adapted_head": 0.00970495340510662,
+          "interaction": -0.004219369205892852
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "b907be69667cdacf3aa809ee2cfdad9ecd10f43b5ac9012aa6f68137e361b17e",
+          "adapter_sha256": "3313d2c011900f1a1223c1e3453a20c4cc8838c68492dc615bda43cb4b975781",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "b907be69667cdacf3aa809ee2cfdad9ecd10f43b5ac9012aa6f68137e361b17e",
+          "adapter_sha256": "dc45f0e1a5f6560aff6413b61bddc45645842af3901dd0ef210e3aa7a04eca8d",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "47219c08532719ed79b3931a14db224868ba0c237651a562472366e1269fbc47",
+          "adapter_sha256": "dc45f0e1a5f6560aff6413b61bddc45645842af3901dd0ef210e3aa7a04eca8d",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "47219c08532719ed79b3931a14db224868ba0c237651a562472366e1269fbc47",
+          "adapter_sha256": "dc45f0e1a5f6560aff6413b61bddc45645842af3901dd0ef210e3aa7a04eca8d",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "ad4179bc2b43c4f29e49984380b033fef8a1a785c58f3dc7beb226415af2cfcd",
+        "N1": "9bb8e747c8a45c44eddddde2a2fe07719f678a63145ee2315be315adc70ffffb"
+      }
+    },
+    "17920": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.3783817324398114,
+          "road_recall": 0.1795324736501207,
+          "road_f1": 0.24352062617307618,
+          "road_iou": 0.13864132411786104,
+          "road_auprc": 0.2399222079320958,
+          "gt_mean_probability": 0.1571895881220413,
+          "background_mean_probability": 0.035430818186559215,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "b7446d95ce58ea9d7a54586114652caea4c86d43eafa0888bba4087e9292c46d",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.4470433207049909,
+          "road_recall": 0.15980686568921862,
+          "road_f1": 0.23544721089615683,
+          "road_iou": 0.13343166175024582,
+          "road_auprc": 0.2474262911226755,
+          "gt_mean_probability": 0.16736741009937445,
+          "background_mean_probability": 0.04894012669140762,
+          "residual_to_image_l2_ratio": 0.3636590474853563,
+          "road_prediction_sha256": "3483778d099ad42e22f00b2178a7fc198ac0aebe4f2feee53ff13dc668f722b7",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.3750378673129355,
+          "road_recall": 0.14579285167520462,
+          "road_f1": 0.20996396014415944,
+          "road_iou": 0.11729594012032782,
+          "road_auprc": 0.22254307707249554,
+          "gt_mean_probability": 0.12524870523367493,
+          "background_mean_probability": 0.023214012421831028,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "21aa080d624650c2aff13b308847a113b566d210597707e98fdd99c7027cd346",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.47372776168804304,
+          "road_recall": 0.1348407230760172,
+          "road_f1": 0.20992803776871247,
+          "road_iou": 0.11727351871767297,
+          "road_auprc": 0.2409497259131345,
+          "gt_mean_probability": 0.14262674957430185,
+          "background_mean_probability": 0.032672979885457205,
+          "residual_to_image_l2_ratio": 0.3636590474853563,
+          "road_prediction_sha256": "63e5ba3a327633445b3f1249bc4a0f7313afe44c5dd417081280a82a7265afb3",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.03355666602891674,
+          "adapter_on_clean_head": -0.008073415276919349,
+          "adapter_on_adapted_head": -3.5922375446972854e-05,
+          "interaction": 0.008037492901472376
+        },
+        "road_iou": {
+          "head_drift": -0.021345383997533218,
+          "adapter_on_clean_head": -0.00520966236761522,
+          "adapter_on_adapted_head": -2.24214026548486e-05,
+          "interaction": 0.005187240964960371
+        },
+        "road_auprc": {
+          "head_drift": -0.017379130859600245,
+          "adapter_on_clean_head": 0.007504083190579713,
+          "adapter_on_adapted_head": 0.018406648840638945,
+          "interaction": 0.010902565650059232
+        },
+        "road_precision": {
+          "head_drift": -0.0033438651268759,
+          "adapter_on_clean_head": 0.06866158826517954,
+          "adapter_on_adapted_head": 0.09868989437510756,
+          "interaction": 0.030028306109928016
+        },
+        "road_recall": {
+          "head_drift": -0.03373962197491609,
+          "adapter_on_clean_head": -0.019725607960902086,
+          "adapter_on_adapted_head": -0.010952128599187427,
+          "interaction": 0.008773479361714659
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.031940882888366384,
+          "adapter_on_clean_head": 0.010177821977333135,
+          "adapter_on_adapted_head": 0.017378044340626925,
+          "interaction": 0.00720022236329379
+        },
+        "background_mean_probability": {
+          "head_drift": -0.012216805764728188,
+          "adapter_on_clean_head": 0.013509308504848404,
+          "adapter_on_adapted_head": 0.009458967463626178,
+          "interaction": -0.004050341041222226
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "0985f05aa520c5323587b9b6c3873088d49aedfc10c997dc51c8541bf1affb69",
+          "adapter_sha256": "67b2d0a8ea006729f8039c573a34735c56268f850ca6cfa787c68e8804b8da51",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "0985f05aa520c5323587b9b6c3873088d49aedfc10c997dc51c8541bf1affb69",
+          "adapter_sha256": "884d18165a2f45cda4d0a66f2436c7884afbfcc08dc9e615540e889167957434",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "b27322cc8b318f463c75a8a97af62a9cfaf43a61b3bd5d9b5d6cb340f96934d1",
+          "adapter_sha256": "884d18165a2f45cda4d0a66f2436c7884afbfcc08dc9e615540e889167957434",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "b27322cc8b318f463c75a8a97af62a9cfaf43a61b3bd5d9b5d6cb340f96934d1",
+          "adapter_sha256": "884d18165a2f45cda4d0a66f2436c7884afbfcc08dc9e615540e889167957434",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "9bbf6cc7ba11f3a4db6c9cd33c26305623165106fd2655b228d7a309e146ffaf",
+        "N1": "c40821c1fcc096276db48f81a14a5b08b74de9173fc9538bb685fbdc24c823ed"
+      }
+    },
+    "20480": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.3925467474321833,
+          "road_recall": 0.1755284696461167,
+          "road_f1": 0.24258453025186152,
+          "road_iou": 0.13803482126319688,
+          "road_auprc": 0.24376056783269642,
+          "gt_mean_probability": 0.1578008482425996,
+          "background_mean_probability": 0.03610024443389956,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "eff0d1c1b8071ea8d7d10b866a3c11e337c315307dc817080809e744a4b44a4c",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.46936562443520696,
+          "road_recall": 0.1529176235058588,
+          "road_f1": 0.23068040504530113,
+          "road_iou": 0.1303780310256539,
+          "road_auprc": 0.249579251562521,
+          "gt_mean_probability": 0.162993270111805,
+          "background_mean_probability": 0.047983885124519336,
+          "residual_to_image_l2_ratio": 0.3600613704101373,
+          "road_prediction_sha256": "967a46fdbbdac4cbe2b19fcac0dbbeb5c475041dfa4028ef8becf8a024dc365f",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.378473821587594,
+          "road_recall": 0.14514514514514515,
+          "road_f1": 0.20982294858699357,
+          "road_iou": 0.11720793114925586,
+          "road_auprc": 0.22374024917290378,
+          "gt_mean_probability": 0.12560264304043256,
+          "background_mean_probability": 0.023288766462050126,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "5601b395fc3a7d4db4fadf837b702656315f0725146a5dc94715f5ac2007d22f",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.487133984028394,
+          "road_recall": 0.1293057763645999,
+          "road_f1": 0.20436461774696382,
+          "road_iou": 0.11381186835967867,
+          "road_auprc": 0.24251156112563763,
+          "gt_mean_probability": 0.13850373247451525,
+          "background_mean_probability": 0.03126625256180122,
+          "residual_to_image_l2_ratio": 0.3600613704101373,
+          "road_prediction_sha256": "b54844f5d4282670fd0e852493103793fb99c878c56e6ee53918237066b32295",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.03276158166486795,
+          "adapter_on_clean_head": -0.011904125206560395,
+          "adapter_on_adapted_head": -0.0054583308400297514,
+          "interaction": 0.006445794366530644
+        },
+        "road_iou": {
+          "head_drift": -0.020826890113941024,
+          "adapter_on_clean_head": -0.007656790237542982,
+          "adapter_on_adapted_head": -0.0033960627895771867,
+          "interaction": 0.004260727447965795
+        },
+        "road_auprc": {
+          "head_drift": -0.020020318659792646,
+          "adapter_on_clean_head": 0.005818683729824581,
+          "adapter_on_adapted_head": 0.01877131195273385,
+          "interaction": 0.012952628222909268
+        },
+        "road_precision": {
+          "head_drift": -0.014072925844589301,
+          "adapter_on_clean_head": 0.07681887700302364,
+          "adapter_on_adapted_head": 0.10866016244079996,
+          "interaction": 0.03184128543777631
+        },
+        "road_recall": {
+          "head_drift": -0.03038332450097156,
+          "adapter_on_clean_head": -0.022610846140257906,
+          "adapter_on_adapted_head": -0.01583936878054526,
+          "interaction": 0.0067714773597126465
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.03219820520216704,
+          "adapter_on_clean_head": 0.005192421869205405,
+          "adapter_on_adapted_head": 0.012901089434082691,
+          "interaction": 0.007708667564877286
+        },
+        "background_mean_probability": {
+          "head_drift": -0.012811477971849432,
+          "adapter_on_clean_head": 0.011883640690619778,
+          "adapter_on_adapted_head": 0.007977486099751092,
+          "interaction": -0.0039061545908686823
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "d433807da2862ad605e2ac8f5476b8513570c1a749812fe6d3700b1671323283",
+          "adapter_sha256": "1e961f8c491520d349226a3c3620b6b0418ad3e89d23b2544f34e14df8bf68cd",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "d433807da2862ad605e2ac8f5476b8513570c1a749812fe6d3700b1671323283",
+          "adapter_sha256": "f7b10374c9cb5a74ffef35aed1762a7c4134561f1bde0248d80dd1743c5af7cc",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "70567231b78f14df807e172e91840311a2c00418df9fdeebcfbcc47fc1bc4c39",
+          "adapter_sha256": "f7b10374c9cb5a74ffef35aed1762a7c4134561f1bde0248d80dd1743c5af7cc",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "70567231b78f14df807e172e91840311a2c00418df9fdeebcfbcc47fc1bc4c39",
+          "adapter_sha256": "f7b10374c9cb5a74ffef35aed1762a7c4134561f1bde0248d80dd1743c5af7cc",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "0b95a6d36c05ab0ccdc1426df88ad7fcdde9024a17e66d2ef14b36ef7cbadffa",
+        "N1": "156a0ed91f3e3ef9b7033b5cc641aa70033222adc9f4e612e5d839dd5146f92a"
+      }
+    },
+    "25600": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.4232749742533471,
+          "road_recall": 0.16940469881646353,
+          "road_f1": 0.24196804037005887,
+          "road_iou": 0.1376357460651581,
+          "road_auprc": 0.25054800946426875,
+          "gt_mean_probability": 0.1577062137972848,
+          "background_mean_probability": 0.036533785322504474,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "b068c343a4ebad5c6d499eabe76939c9b4c1eac742df977143b6f4329727ebc4",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.49931332156170294,
+          "road_recall": 0.1498557380910322,
+          "road_f1": 0.2305253623188406,
+          "road_iou": 0.13027898643460456,
+          "road_auprc": 0.2536190547655731,
+          "gt_mean_probability": 0.16239367069988508,
+          "background_mean_probability": 0.04810939374061593,
+          "residual_to_image_l2_ratio": 0.35729858494692474,
+          "road_prediction_sha256": "da1a7e9ad9e6a8cd9e3642066e74b7a28cbd04b2d2e85407424a181bdf1abeda",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.3859593392630241,
+          "road_recall": 0.14308426073131955,
+          "road_f1": 0.20877185446110227,
+          "road_iou": 0.11655235263082163,
+          "road_auprc": 0.22619467432862586,
+          "gt_mean_probability": 0.12592034045280198,
+          "background_mean_probability": 0.02326010412126973,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "1e09ce279211cdcd54ef7a56d1f1c987beccbbb9b91f59b65720bb0d5ea38745",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.49618149146451035,
+          "road_recall": 0.13007124771830655,
+          "road_f1": 0.20611149988336835,
+          "road_iou": 0.11489649433059398,
+          "road_auprc": 0.24573519080601788,
+          "gt_mean_probability": 0.14080784514789524,
+          "background_mean_probability": 0.03145184795469888,
+          "residual_to_image_l2_ratio": 0.35729858494692474,
+          "road_prediction_sha256": "0c97362bc5b4b5649d0c559ee7ea874c4372b5cb36bc7033aa6ff29b4f0fdee7",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.033196185908956594,
+          "adapter_on_clean_head": -0.011442678051218264,
+          "adapter_on_adapted_head": -0.00266035457773392,
+          "interaction": 0.008782323473484344
+        },
+        "road_iou": {
+          "head_drift": -0.021083393434336475,
+          "adapter_on_clean_head": -0.007356759630553544,
+          "adapter_on_adapted_head": -0.0016558583002276445,
+          "interaction": 0.005700901330325914
+        },
+        "road_auprc": {
+          "head_drift": -0.02435333513564289,
+          "adapter_on_clean_head": 0.003071045301304365,
+          "adapter_on_adapted_head": 0.019540516477392023,
+          "interaction": 0.016469471176087658
+        },
+        "road_precision": {
+          "head_drift": -0.03731563499032298,
+          "adapter_on_clean_head": 0.07603834730835585,
+          "adapter_on_adapted_head": 0.11022215220148623,
+          "interaction": 0.03418380489313039
+        },
+        "road_recall": {
+          "head_drift": -0.026320438085143977,
+          "adapter_on_clean_head": -0.01954896072543133,
+          "adapter_on_adapted_head": -0.013013013013012997,
+          "interaction": 0.006535947712418333
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.03178587334448282,
+          "adapter_on_clean_head": 0.004687456902600279,
+          "adapter_on_adapted_head": 0.014887504695093257,
+          "interaction": 0.010200047792492978
+        },
+        "background_mean_probability": {
+          "head_drift": -0.013273681201234743,
+          "adapter_on_clean_head": 0.011575608418111456,
+          "adapter_on_adapted_head": 0.00819174383342915,
+          "interaction": -0.00338386458468231
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "9a724fb5ea44b820bc2a111d3aa5815f4047bb45af12986b3a7c0c682147a92e",
+          "adapter_sha256": "33199246609c18c164e649762a2a516aa4e1f187d0c466c11237c47c6c28f5ce",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "9a724fb5ea44b820bc2a111d3aa5815f4047bb45af12986b3a7c0c682147a92e",
+          "adapter_sha256": "21cb2b1a23b731f68aefbac777b60c4ff07c2dcafa4f186348df3027e2a3515d",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "36888c244b04753263d05fdd41675da9fb0beaae51a2e07608931c5a5c0ef24d",
+          "adapter_sha256": "21cb2b1a23b731f68aefbac777b60c4ff07c2dcafa4f186348df3027e2a3515d",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "36888c244b04753263d05fdd41675da9fb0beaae51a2e07608931c5a5c0ef24d",
+          "adapter_sha256": "21cb2b1a23b731f68aefbac777b60c4ff07c2dcafa4f186348df3027e2a3515d",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "de1e9647f1711a1052b23eca7c8309213b1c32e348acd7b0b954c096bfe99400",
+        "N1": "6e9c21168986195d641d755b4deaeba5301312e6b744f8a86577d0b55d5d4d48"
+      }
+    },
+    "30720": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.44828685258964146,
+          "road_recall": 0.16563622445975387,
+          "road_f1": 0.24189526184538654,
+          "road_iou": 0.1375886524822695,
+          "road_auprc": 0.2560176497592461,
+          "gt_mean_probability": 0.15773452185200998,
+          "background_mean_probability": 0.0369998755200563,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "404226d6942bfefa80d2d8862157eb56a177f40ecc0e48c9f16ce22494e4a89c",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.5186170212765957,
+          "road_recall": 0.14926691397279632,
+          "road_f1": 0.23181381738375012,
+          "road_iou": 0.13110260653702938,
+          "road_auprc": 0.25593287666719183,
+          "gt_mean_probability": 0.16075798708296563,
+          "background_mean_probability": 0.048087628391297196,
+          "residual_to_image_l2_ratio": 0.3526690489751471,
+          "road_prediction_sha256": "a0ea3caa7a8aaa2cf2c96bf597bb11d1f7f66ff09f05d6348cdafef9f123c815",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.38926174496644295,
+          "road_recall": 0.1434375552022611,
+          "road_f1": 0.2096295340131664,
+          "road_iou": 0.1170872386445566,
+          "road_auprc": 0.2285515367324419,
+          "gt_mean_probability": 0.12764693450089643,
+          "background_mean_probability": 0.023706542455442358,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "87241c4e2b799ea5e9395e99edd4db4ccb40d91ee62407a3a4d741aa8a002cda",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.5012429378531074,
+          "road_recall": 0.13060118942471885,
+          "road_f1": 0.20721225710014946,
+          "road_iou": 0.11558103178738927,
+          "road_auprc": 0.24822070274976366,
+          "gt_mean_probability": 0.1413142794093015,
+          "background_mean_probability": 0.03154392477385316,
+          "residual_to_image_l2_ratio": 0.3526690489751471,
+          "road_prediction_sha256": "909f04fc03562a532e1a0b39d3c328f0fd32983a44af48ae3f8c03e33584ea3e",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.03226572783222015,
+          "adapter_on_clean_head": -0.010081444461636418,
+          "adapter_on_adapted_head": -0.002417276913016936,
+          "interaction": 0.007664167548619483
+        },
+        "road_iou": {
+          "head_drift": -0.02050141383771291,
+          "adapter_on_clean_head": -0.006486045945240132,
+          "adapter_on_adapted_head": -0.0015062068571673332,
+          "interaction": 0.004979839088072785
+        },
+        "road_auprc": {
+          "head_drift": -0.027466113026804212,
+          "adapter_on_clean_head": -8.477309205429107e-05,
+          "adapter_on_adapted_head": 0.019669166017321743,
+          "interaction": 0.019753939109376034
+        },
+        "road_precision": {
+          "head_drift": -0.059025107623198514,
+          "adapter_on_clean_head": 0.07033016868695424,
+          "adapter_on_adapted_head": 0.11198119288666442,
+          "interaction": 0.041651024199710174
+        },
+        "road_recall": {
+          "head_drift": -0.02219866925749278,
+          "adapter_on_clean_head": -0.016369310486957556,
+          "adapter_on_adapted_head": -0.012836365777542241,
+          "interaction": 0.0035329447094153144
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.030087587351113554,
+          "adapter_on_clean_head": 0.0030234652309556465,
+          "adapter_on_adapted_head": 0.013667344908405071,
+          "interaction": 0.010643879677449425
+        },
+        "background_mean_probability": {
+          "head_drift": -0.01329333306461394,
+          "adapter_on_clean_head": 0.011087752871240898,
+          "adapter_on_adapted_head": 0.007837382318410805,
+          "interaction": -0.0032503705528300966
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "1cfe2284c9979325faad3f09c6b12c2d92b867e3f01a5259819d7cdaafe27a86",
+          "adapter_sha256": "a006806f76da4c13bfd9af19b2d205109fd17ab193c0687fd5d92c5b96de1a35",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "1cfe2284c9979325faad3f09c6b12c2d92b867e3f01a5259819d7cdaafe27a86",
+          "adapter_sha256": "32e7a32d52fb1687acd314c552eada857924fd6650ceb9e6085b88fa8a4a07fd",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "a2b022218682581974ef7ec0be87a772d1a1fb3a2b17b3610732c50e9b2c3d8d",
+          "adapter_sha256": "32e7a32d52fb1687acd314c552eada857924fd6650ceb9e6085b88fa8a4a07fd",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "a2b022218682581974ef7ec0be87a772d1a1fb3a2b17b3610732c50e9b2c3d8d",
+          "adapter_sha256": "32e7a32d52fb1687acd314c552eada857924fd6650ceb9e6085b88fa8a4a07fd",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "82f1e5d83221eeba76856b11263dc1ff5d5157ba3fddd09ac50a3ce5c4003de3",
+        "N1": "074a5db9c1e776a769358844f4b358801496737681cbc143dc5cb08b8c3bfe49"
+      }
+    },
+    "35840": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.4717338848672871,
+          "road_recall": 0.16116116116116116,
+          "road_f1": 0.2402457757296467,
+          "road_iou": 0.13652234636871508,
+          "road_auprc": 0.2596299479175448,
+          "gt_mean_probability": 0.15517570442645862,
+          "background_mean_probability": 0.036061525240609876,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "833a5f8b9218e804f4ba29ca06835d248fe9bbe0afe7b151acb9440951bdf697",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.529547359597653,
+          "road_recall": 0.1487958546782076,
+          "road_f1": 0.23231441048034934,
+          "road_iou": 0.13142292490118576,
+          "road_auprc": 0.2574798218635512,
+          "gt_mean_probability": 0.15853903284455292,
+          "background_mean_probability": 0.04619064399998887,
+          "residual_to_image_l2_ratio": 0.3487767609109461,
+          "road_prediction_sha256": "99de5bbac3511751d83afae62443513b335206ae24894a2856eb9fa319df213a",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.3936135549038775,
+          "road_recall": 0.14225990696578933,
+          "road_f1": 0.20898750054063409,
+          "road_iou": 0.11668679063028255,
+          "road_auprc": 0.2306441753777981,
+          "gt_mean_probability": 0.1282964264518303,
+          "background_mean_probability": 0.023748380877938836,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "e7716f57b9b7d407997c550045b7f4b21ae351b3be78fc35071e2470731297f4",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.49531692441733827,
+          "road_recall": 0.13389860448683977,
+          "road_f1": 0.2108093074997682,
+          "road_iou": 0.11782383419689119,
+          "road_auprc": 0.25090505584710177,
+          "gt_mean_probability": 0.14374880460879902,
+          "background_mean_probability": 0.031239215331289462,
+          "residual_to_image_l2_ratio": 0.3487767609109461,
+          "road_prediction_sha256": "d5152d785f3701b00464d0d55691917eefd315418ea5921d00cd3b7f0c966e2b",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.03125827518901261,
+          "adapter_on_clean_head": -0.007931365249297356,
+          "adapter_on_adapted_head": 0.0018218069591341146,
+          "interaction": 0.009753172208431471
+        },
+        "road_iou": {
+          "head_drift": -0.019835555738432528,
+          "adapter_on_clean_head": -0.005099421467529314,
+          "adapter_on_adapted_head": 0.0011370435666086393,
+          "interaction": 0.006236465034137939
+        },
+        "road_auprc": {
+          "head_drift": -0.028985772539746685,
+          "adapter_on_clean_head": -0.0021501260539936173,
+          "adapter_on_adapted_head": 0.02026088046930366,
+          "interaction": 0.022411006523297278
+        },
+        "road_precision": {
+          "head_drift": -0.07812032996340962,
+          "adapter_on_clean_head": 0.057813474730365855,
+          "adapter_on_adapted_head": 0.10170336951346076,
+          "interaction": 0.04388989478309491
+        },
+        "road_recall": {
+          "head_drift": -0.018901254195371836,
+          "adapter_on_clean_head": -0.012365306482953559,
+          "adapter_on_adapted_head": -0.008361302478949562,
+          "interaction": 0.004004004004003997
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.02687927797462833,
+          "adapter_on_clean_head": 0.003363328418094308,
+          "adapter_on_adapted_head": 0.015452378156968732,
+          "interaction": 0.012089049738874424
+        },
+        "background_mean_probability": {
+          "head_drift": -0.01231314436267104,
+          "adapter_on_clean_head": 0.010129118759378997,
+          "adapter_on_adapted_head": 0.007490834453350626,
+          "interaction": -0.002638284306028374
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "b1e51cd6d4f2a2bd9ca87c0c57f21520f73200db1d9d5e763b70c46b26f6c2f6",
+          "adapter_sha256": "3f7417fc4a31a6507320bf7cbde15249e468a5e9eb1bd9f6fc38085c3213265a",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "b1e51cd6d4f2a2bd9ca87c0c57f21520f73200db1d9d5e763b70c46b26f6c2f6",
+          "adapter_sha256": "969aa521292497507d58f44bda2b24f9ad5a736e68796546fd4b45a14b33497e",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "a0174e3c294c36b9d48e15f48dda72d674f73bfe8cd63f7ebc82ac05c268db6f",
+          "adapter_sha256": "969aa521292497507d58f44bda2b24f9ad5a736e68796546fd4b45a14b33497e",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "a0174e3c294c36b9d48e15f48dda72d674f73bfe8cd63f7ebc82ac05c268db6f",
+          "adapter_sha256": "969aa521292497507d58f44bda2b24f9ad5a736e68796546fd4b45a14b33497e",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "7a4459f45cfddd88bc674e3ecc4c5591bbeefb6725ce5d098f654f8f92db90de",
+        "N1": "d1494004d90dc390e2f3ba2efa4e5d39e2a2ba9bed6f76222c08a62168aa6441"
+      }
+    },
+    "40960": {
+      "metrics": {
+        "T00": {
+          "road_precision": 0.48875802997858675,
+          "road_recall": 0.16127892598480834,
+          "road_f1": 0.24252888829857883,
+          "road_iou": 0.1379987908101572,
+          "road_auprc": 0.2630785641898821,
+          "gt_mean_probability": 0.15659187227377894,
+          "background_mean_probability": 0.03669514526704431,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "bd75a035e386bb3f0c8d4f0fea8caece73ed589d9b9db4cc3826af130ba86e6f",
+          "validation_sample_count": 80
+        },
+        "T01": {
+          "road_precision": 0.5428134556574924,
+          "road_recall": 0.1463227933816169,
+          "road_f1": 0.230508789017207,
+          "road_iou": 0.13026840008387502,
+          "road_auprc": 0.2583660067114964,
+          "gt_mean_probability": 0.15784647763235468,
+          "background_mean_probability": 0.046726412602410505,
+          "residual_to_image_l2_ratio": 0.3497945914110971,
+          "road_prediction_sha256": "9d1dfa4315a6921843904d89c5b20c96128d18835264ca2ba7f410346ee9f331",
+          "validation_sample_count": 80
+        },
+        "T10": {
+          "road_precision": 0.4007074279939363,
+          "road_recall": 0.14008125772831656,
+          "road_f1": 0.20759162303664921,
+          "road_iou": 0.11581714619541406,
+          "road_auprc": 0.23250723432515802,
+          "gt_mean_probability": 0.12820751065287217,
+          "background_mean_probability": 0.023731250828590546,
+          "residual_to_image_l2_ratio": 0.0,
+          "road_prediction_sha256": "d921df4fa1da5c00820846cf6ccda15ae523f07e923abb0b7d7c93b3bebba607",
+          "validation_sample_count": 80
+        },
+        "T11": {
+          "road_precision": 0.5120537783959203,
+          "road_recall": 0.13007124771830655,
+          "road_f1": 0.207447058271118,
+          "road_iou": 0.11572715842414082,
+          "road_auprc": 0.2527316355736499,
+          "gt_mean_probability": 0.1424659157888538,
+          "background_mean_probability": 0.031419658423903214,
+          "residual_to_image_l2_ratio": 0.3497945914110971,
+          "road_prediction_sha256": "2b32dd57db0fdeb01ed696e5d5c681ee6861f9b58a49ec0841b5a18b35c6aafe",
+          "validation_sample_count": 80
+        }
+      },
+      "decomposition": {
+        "road_f1": {
+          "head_drift": -0.03493726526192961,
+          "adapter_on_clean_head": -0.012020099281371821,
+          "adapter_on_adapted_head": -0.00014456476553120767,
+          "interaction": 0.011875534515840613
+        },
+        "road_iou": {
+          "head_drift": -0.022181644614743146,
+          "adapter_on_clean_head": -0.007730390726282177,
+          "adapter_on_adapted_head": -8.998777127323943e-05,
+          "interaction": 0.007640402955008951
+        },
+        "road_auprc": {
+          "head_drift": -0.030571329864724106,
+          "adapter_on_clean_head": -0.004712557478385726,
+          "adapter_on_adapted_head": 0.020224401248491897,
+          "interaction": 0.024936958726877623
+        },
+        "road_precision": {
+          "head_drift": -0.08805060198465042,
+          "adapter_on_clean_head": 0.054055425678905644,
+          "adapter_on_adapted_head": 0.11134635040198393,
+          "interaction": 0.057290924723078285
+        },
+        "road_recall": {
+          "head_drift": -0.021197668256491775,
+          "adapter_on_clean_head": -0.014956132603191424,
+          "adapter_on_adapted_head": -0.010010010010010006,
+          "interaction": 0.004946122593181418
+        },
+        "gt_mean_probability": {
+          "head_drift": -0.028384361620906767,
+          "adapter_on_clean_head": 0.0012546053585757444,
+          "adapter_on_adapted_head": 0.014258405135981617,
+          "interaction": 0.013003799777405872
+        },
+        "background_mean_probability": {
+          "head_drift": -0.012963894438453763,
+          "adapter_on_clean_head": 0.010031267335366197,
+          "adapter_on_adapted_head": 0.0076884075953126685,
+          "interaction": -0.002342859740053528
+        }
+      },
+      "transplant_audit": {
+        "T00": {
+          "combination": "T00",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "cbe107680c6798c6cf34e20c6a85996ba94605f7ff893a6c74dcb083ad159b6a",
+          "adapter_sha256": "00ce858dc2ab98febe4db2261e146cefc5be69cdca76fa7569b6ad1a1c221011",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T01": {
+          "combination": "T01",
+          "sources": {
+            "road_head": "N0",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [
+            "zero_preserving_road_adapter.encoder.0.weight",
+            "zero_preserving_road_adapter.encoder.2.weight",
+            "zero_preserving_road_adapter.projection.weight"
+          ],
+          "road_head_sha256": "cbe107680c6798c6cf34e20c6a85996ba94605f7ff893a6c74dcb083ad159b6a",
+          "adapter_sha256": "602241bab9f63674a63147f40c2bf6713b80c90ed165c550b2821f4057046569",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T10": {
+          "combination": "T10",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "BYPASSED",
+            "raster_control": "null"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "4443004589cb133c3fd74d86e6364e93b83e019e9c83b8d0a34823079e392077",
+          "adapter_sha256": "602241bab9f63674a63147f40c2bf6713b80c90ed165c550b2821f4057046569",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        },
+        "T11": {
+          "combination": "T11",
+          "sources": {
+            "road_head": "N1",
+            "adapter": "N1",
+            "raster_control": "aligned"
+          },
+          "transplanted_tensor_names": [],
+          "road_head_sha256": "4443004589cb133c3fd74d86e6364e93b83e019e9c83b8d0a34823079e392077",
+          "adapter_sha256": "602241bab9f63674a63147f40c2bf6713b80c90ed165c550b2821f4057046569",
+          "backbone_sha256": "a0e346749948c20cc6a3f73ef5ddb913c4ad0e6e571b81f673b73dface88a0d0"
+        }
+      },
+      "source_checkpoint_sha256": {
+        "N0": "4703db29a472c608e1b3ecd09ce73308ec19e25aed3ac4f34124c3373ddff964",
+        "N1": "694b588448ac4febc1164abdd93041aba503428f8c43a6a4d9dc51b6500075a5"
+      }
+    }
+  },
+  "generated_at": "2026-08-31T16:32:48.204485+00:00",
+  "run_code_sha": "46ac4b703cd83acde0a0d1170622727aec190fcd",
+  "validation_plan_sha256": "00ea19ec5699fb05bf0d59bb5544baefeb16608479c084efe7f28fcad3ea93c4",
+  "runtime_seconds": 166.46993732452393
+}

@@ -1,0 +1,39 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "status": "PASS",
+  "invalid_run_count": 2,
+  "invalid_runs": [
+    {
+      "code_sha": "46ac4b703cd83acde0a0d1170622727aec190fcd",
+      "phase": "C",
+      "status": "INVALIDATED_BY_CODE_CHANGE",
+      "reason": [
+        "C4_CALIBRATION_SEARCH_RANGE_INSUFFICIENT",
+        "PHASE_C_PLAN_ACCEPTED_FAILED_CALIBRATION"
+      ],
+      "calibration_optimizer_steps": 0,
+      "affected_training_runs": ["C1", "C2", "C3"],
+      "c4_training_started": false,
+      "maximum_observed_dense_checkpoint_update": 16,
+      "evidence_retained": true,
+      "external_processes_terminated": false
+    },
+    {
+      "code_sha": "96d86d0b6e6f27a969685b0d618d0133f3b3f0cb",
+      "phase": "C4_calibration",
+      "status": "INVALID_CONFIGURATION_ATTEMPT",
+      "reason": "MISSING_DATA_SELF_COMPONENT_IN_CONTROL_ROOT",
+      "optimizer_steps": 0,
+      "training_runs_started": false,
+      "evidence_retained": true,
+      "external_processes_terminated": false
+    }
+  ],
+  "formal_c4_disposition": {
+    "status": "NOT_EXECUTED_CALIBRATION_TARGET_INFEASIBLE",
+    "optimizer_steps": 0,
+    "negative_weight": 0.005,
+    "verified_gradient_ratio": 2.081747171163464,
+    "target_interval": [0.8, 1.2]
+  }
+}

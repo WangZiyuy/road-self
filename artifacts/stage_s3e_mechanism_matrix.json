@@ -1,0 +1,183 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "phase": "C",
+  "status": "PASS_WITH_C4_NOT_EXECUTED",
+  "phase_b_zero_init_status": "INITIAL_HARM_CONFIRMED_BUT_NOT_MAIN_FINAL_CAUSE",
+  "completed_run_keys": [
+    "C1",
+    "C2",
+    "C3"
+  ],
+  "c4_status": "NOT_EXECUTED_CALIBRATION_TARGET_INFEASIBLE",
+  "comparisons": {
+    "C1": {
+      "metrics_vs_z2": {
+        "road_precision": -0.04738028373678377,
+        "road_recall": -0.007360301477948528,
+        "road_f1": -0.01335708059273552,
+        "road_iou": -0.008295170991256734,
+        "road_auprc": -0.020462419481984656
+      },
+      "final_null": {
+        "road_precision": 0.31849698054126596,
+        "road_recall": 0.16769710887357947,
+        "road_f1": 0.21971070395371264,
+        "road_iou": 0.12341292195692681,
+        "road_auprc": 0.2095589758941738,
+        "gt_mean_probability": 0.13348032030467621,
+        "background_mean_probability": 0.02610386054645242,
+        "residual_to_image_l2_ratio": 0.0,
+        "road_prediction_sha256": "7b4803973448bf0ef7200de1b4b610c4e47ca43e10594146a49303948633a4e9",
+        "validation_sample_count": 80,
+        "road_composite": 0.18422753393493774
+      },
+      "final_aligned": {
+        "road_precision": 0.46689895470383275,
+        "road_recall": 0.1262438909497733,
+        "road_f1": 0.19874855156431054,
+        "road_iou": 0.11033914878287272,
+        "road_auprc": 0.2334419143938594,
+        "gt_mean_probability": 0.13617417452967168,
+        "background_mean_probability": 0.0321192010042109,
+        "residual_to_image_l2_ratio": 0.22007729186602798,
+        "road_prediction_sha256": "a09e1d40cf68a3e70e1249a912de30728caa4eb12dc59cc693091ff0de55560d",
+        "validation_sample_count": 80,
+        "road_composite": 0.1808432049136809
+      },
+      "road_head_checksum_unchanged": true,
+      "encoder_checksum_unchanged": null,
+      "run_profile": {
+        "control": "aligned",
+        "projection_init": "zero",
+        "use_support_multiplier": true,
+        "road_head_lr": 0.0,
+        "freeze_encoder": false,
+        "negative_weight": 1.0,
+        "loss_scale": 1.0
+      },
+      "head_drift_auprc_gap": -0.053519588295708326,
+      "head_drift_auprc_gap_reduction_vs_z2": -0.8484714127564699,
+      "final_aligned_vs_initial": {
+        "road_precision": 0.14840197416256679,
+        "road_recall": -0.04145321792380616,
+        "road_f1": -0.020962152389402106,
+        "road_iou": -0.013073773174054087,
+        "road_auprc": 0.02388293849968559
+      },
+      "final_aligned_auprc_gain_over_null": 0.02388293849968559,
+      "functional_degradation_persists_with_frozen_head": true
+    },
+    "C2": {
+      "metrics_vs_z2": {
+        "road_precision": 0.0014598126542739731,
+        "road_recall": -0.00047105929458871043,
+        "road_f1": -0.00047086826880718413,
+        "road_iou": -0.0002945312260293903,
+        "road_auprc": 1.2505253849104392e-06
+      },
+      "final_null": {
+        "road_precision": 0.4102881385893583,
+        "road_recall": 0.13666607784254844,
+        "road_f1": 0.20503533568904594,
+        "road_iou": 0.11422806240464589,
+        "road_auprc": 0.23347975338001345,
+        "gt_mean_probability": 0.12452800547244017,
+        "background_mean_probability": 0.022980866801225852,
+        "residual_to_image_l2_ratio": 0.0,
+        "road_prediction_sha256": "c3cab2c716b414fb4d5276094a61706f493ca4032b1fc4cdde8d5270c917cccb",
+        "validation_sample_count": 80,
+        "road_composite": 0.18424771715790178
+      },
+      "final_aligned": {
+        "road_precision": 0.5157390510948905,
+        "road_recall": 0.13313313313313313,
+        "road_f1": 0.21163476388823887,
+        "road_iou": 0.11833978854810007,
+        "road_auprc": 0.25390558440122896,
+        "gt_mean_probability": 0.14340694772712848,
+        "background_mean_probability": 0.031597629792843786,
+        "residual_to_image_l2_ratio": 0.15166915114125382,
+        "road_prediction_sha256": "8bbab96f0e69892e0347dc49c71a54c028d1405038e01aebe1f699137e3524fd",
+        "validation_sample_count": 80,
+        "road_composite": 0.1946267122791893
+      },
+      "road_head_checksum_unchanged": null,
+      "encoder_checksum_unchanged": null,
+      "run_profile": {
+        "control": "aligned",
+        "projection_init": "zero",
+        "use_support_multiplier": false,
+        "road_head_lr": 1e-05,
+        "freeze_encoder": false,
+        "negative_weight": 1.0,
+        "loss_scale": 1.0
+      },
+      "head_drift_auprc_gap": -0.029598810809868675,
+      "head_drift_auprc_gap_reduction_vs_z2": -0.02229029362725421
+    },
+    "C3": {
+      "metrics_vs_z2": {
+        "road_precision": -0.009670449587454666,
+        "road_recall": 0.005005005005005003,
+        "road_f1": 0.005374042639701898,
+        "road_iou": 0.0033725217310016653,
+        "road_auprc": 0.003636861136624092
+      },
+      "final_null": {
+        "road_precision": 0.45264562027567806,
+        "road_recall": 0.11988459047282576,
+        "road_f1": 0.18956286951259252,
+        "road_iou": 0.10470557984057598,
+        "road_auprc": 0.2403908960797378,
+        "gt_mean_probability": 0.12111277974849041,
+        "background_mean_probability": 0.02265286553020635,
+        "residual_to_image_l2_ratio": 0.0,
+        "road_prediction_sha256": "ef226147a5ed93d9e08f255bb50f551883d008ac167a0f1163f3026d582d281f",
+        "validation_sample_count": 80,
+        "road_composite": 0.17821978181096876
+      },
+      "final_aligned": {
+        "road_precision": 0.5046087888531618,
+        "road_recall": 0.13860919743272684,
+        "road_f1": 0.21747967479674796,
+        "road_iou": 0.12200684150513112,
+        "road_auprc": 0.25754119501246814,
+        "gt_mean_probability": 0.14561953387116275,
+        "background_mean_probability": 0.03227998461178926,
+        "residual_to_image_l2_ratio": 0.07453021794823424,
+        "road_prediction_sha256": "547e7ac87b6467b788841b4644199f8ae5bf445d6da3a0a5362d7a4162006a6b",
+        "validation_sample_count": 80,
+        "road_composite": 0.19900923710478238
+      },
+      "road_head_checksum_unchanged": null,
+      "encoder_checksum_unchanged": true,
+      "run_profile": {
+        "control": "aligned",
+        "projection_init": "zero",
+        "use_support_multiplier": true,
+        "road_head_lr": 1e-05,
+        "freeze_encoder": true,
+        "negative_weight": 1.0,
+        "loss_scale": 1.0
+      },
+      "head_drift_auprc_gap": -0.022687668110144332,
+      "head_drift_auprc_gap_reduction_vs_z2": 0.21640828602802753
+    },
+    "C4": {
+      "status": "NOT_EXECUTED_CALIBRATION_TARGET_INFEASIBLE",
+      "calibration_run_code_sha": "96d86d0b6e6f27a969685b0d618d0133f3b3f0cb",
+      "negative_weight": 0.005,
+      "verified_gradient_ratio": 2.081747171163464,
+      "gradient_ratio_absolute_error_from_one": 1.0817471711634639,
+      "predeclared_tolerances": {
+        "gradient_ratio_absolute_error_max": 0.2,
+        "road_head_gradient_l2_relative_error_max": 0.01
+      },
+      "optimizer_steps_executed": 0
+    }
+  },
+  "road_head_update_ablation": "NOT_NECESSARY",
+  "support_ablation": "NOT_PRIMARY",
+  "encoder_ablation": "SUPPORTED",
+  "gradient_balance_ablation": "INCONCLUSIVE_CALIBRATION_TARGET_INFEASIBLE"
+}

@@ -1,0 +1,357 @@
+{
+  "stage": "seg_raster_stage_s3e",
+  "branch": "feat/seg-raster-only",
+  "s3e_base_sha": "57a68f89f1362d7eaced998c5243fe91ec351b2b",
+  "s3e_run_code_sha": "96d86d0b6e6f27a969685b0d618d0133f3b3f0cb",
+  "manifest_self_policy": {
+    "path": "artifacts/stage_s3e_commit_manifest.json",
+    "listed_in_entries": false,
+    "reason": "A manifest cannot contain a stable digest of itself."
+  },
+  "entries": [
+    {
+      "path": "artifacts/stage_s3e_c4_calibration.json",
+      "size_bytes": 3309,
+      "sha256": "b402c22af678ca78a45708f36819121191baa930f1dd0c6763cf1db34f7f9e3a",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_conclusion.json",
+      "size_bytes": 11761,
+      "sha256": "47e17c497bc49cf21085ff10bd141375118625e9787d0169e27daae55e69f492",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_cross_transplant.json",
+      "size_bytes": 86779,
+      "sha256": "497c933f1ce6d7c6e6758b49291f3de72e79d7df409a799f5409f0f2ab43aa4f",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_encoder_ablation.json",
+      "size_bytes": 1923,
+      "sha256": "f8c8ce992b76db003924ba459a5e2821f53315ffdf66ca318627416a51b1afd4",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_git_start.json",
+      "size_bytes": 649,
+      "sha256": "bd3d615f4e417d0da1b1e6c320ab6dbea1951d466c94aa6cfa99e0be17141ee1",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_gpu_inventory.json",
+      "size_bytes": 120636,
+      "sha256": "6408bed152c96e28d3121f9d64ed0ee7edd88ee6c72f3df1d6a95eea27daabf4",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_gpu_inventory_c.json",
+      "size_bytes": 24552,
+      "sha256": "6c0189732d0495df4d45cfe6659b777e35e0d7a50a8dcac5b7e953cffa2dfcf6",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_gpu_inventory_c4_calibration.json",
+      "size_bytes": 31498,
+      "sha256": "1950f86e70295413840325e971eb75e610d055cad37c07cc692a5790f12b4a6f",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_gpu_schedule.json",
+      "size_bytes": 26448,
+      "sha256": "069864e2c31668aeaff29cedd84ea06b50b323dbee151645ed3bf5e84c4b7c7c",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_gpu_schedule_c.json",
+      "size_bytes": 9053,
+      "sha256": "4b78367109f8665a6f0181274806c94c24e7123e18c9e2098b568e7bb20af607",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_gpu_schedule_c4_calibration.json",
+      "size_bytes": 3653,
+      "sha256": "931783b3894c35188007d0ac96affa9b0ae78cc3bb96f8019165a9da80301e3f",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_gradient_balance_ablation.json",
+      "size_bytes": 633,
+      "sha256": "f58931446b262b34f4aa8f8bc746387abea1c0f994811114c30f57d964edc7c2",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_gradient_field.json",
+      "size_bytes": 7530,
+      "sha256": "abd9fc018f329ba14e2c8e21beb6deac89fd52ce6cbf181dc0f2501664353f17",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_head_parameter_drift.json",
+      "size_bytes": 50939,
+      "sha256": "65959f5fcf00f6f76679282710b082c0f6ce646480b45f98c3ba67429e5feff8",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_invalid_runs.json",
+      "size_bytes": 1237,
+      "sha256": "2dbdf0532967cd42f624d92e93944783a1676b61e79df0922b754302733a9920",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_mechanism_matrix.json",
+      "size_bytes": 7207,
+      "sha256": "476930aa1b71fe62d28b7a4eb370e13cff5dfefe26986434df4580e87b6c86aa",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_phase_c_executable_plan.json",
+      "size_bytes": 873,
+      "sha256": "ebeadfdc08435ed069626d5e2bce1ce0fd6527aa5c5383f7350a07ee5598b6c4",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_phase_c_summary.json",
+      "size_bytes": 7207,
+      "sha256": "476930aa1b71fe62d28b7a4eb370e13cff5dfefe26986434df4580e87b6c86aa",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_source_provenance.json",
+      "size_bytes": 2433,
+      "sha256": "34eb82422fff3d9417cd9c86c2cb4d17d18d58c62c6f3095eba1f95c0c1d00d6",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_support_ablation.json",
+      "size_bytes": 1938,
+      "sha256": "63358186e309a4cd46be497e96c2d4d1c3a9048e8b3afbc0d4da2c5e0c66cb6b",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_test_results.json",
+      "size_bytes": 1402,
+      "sha256": "1db2c82edfa353fb91ad53f63f4afe56eff9932ce1c824a772194eea65462d20",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_zero_init_dynamics.json",
+      "size_bytes": 231866,
+      "sha256": "b0467853f86a84b2250ed950e9480ffc9b101dcec92e82cf1d9f16749fc9f037",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "artifacts/stage_s3e_zero_init_experiment.json",
+      "size_bytes": 7541,
+      "sha256": "68fdffbeac0a6fd9c397cb2f244f9515818d5b58725455a829afbeab8d529f71",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "configs/stage_s3e_common.yml",
+      "size_bytes": 1625,
+      "sha256": "c8093e870354628ca88a18004dd59b359fd47bf3523a73a8e0ba1a401386122a",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "docs/audits/stage_s3e_cross_transplant.md",
+      "size_bytes": 942,
+      "sha256": "4ca2dbd2e4cc95b5296ddeeee4c93f090c7f63f9361231ab300eab168006d1f0",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "docs/audits/stage_s3e_final_report.md",
+      "size_bytes": 2087,
+      "sha256": "b639ff3f3da53155dd3e9606d256339c21d7fb36eb40d6779ab23ab2a80d5d03",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "docs/audits/stage_s3e_mechanism_ablation.md",
+      "size_bytes": 1422,
+      "sha256": "97c55ab8f239875fdc431ee41a9570dce6688ab54a825d1db614a8edb213ffed",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "docs/audits/stage_s3e_zero_init.md",
+      "size_bytes": 864,
+      "sha256": "d0df2f2ea8c18cfc264643a1df67240fe92e94a48063b2dd1aa76967e44452d3",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "model/model.py",
+      "size_bytes": 31637,
+      "sha256": "1b671969a0e17526bbf916ef1f84d52ef819c811147fdba9e9deb9279d649e66",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "model/seg_raster/zero_preserving_road_adapter.py",
+      "size_bytes": 5540,
+      "sha256": "9debf8a9aa26a1578665606f7d770559605685f5482dadd7d39d8f4bc316ad5a",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tests/test_stage_s3e_cross_transplant.py",
+      "size_bytes": 3867,
+      "sha256": "837923a7a0eff7b8d57ec4ef88fbd418dc7307c0550cc140d34b2ce1164dcace",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tests/test_stage_s3e_mechanisms.py",
+      "size_bytes": 8790,
+      "sha256": "dd96b9ee0cca3375f8eb7cdd76ddbd072908df3628f7a4b52675cdfc6301a6f3",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tests/test_stage_s3e_zero_init.py",
+      "size_bytes": 4142,
+      "sha256": "b727ae51826cf164cf5dcc05d01d313066d9a400e48fa5936a48270739d2bf50",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tools/seg_raster/build_stage_s3e_commit_manifest.py",
+      "size_bytes": 3115,
+      "sha256": "cd910152916360d6f3bf947e7874b9a3ad124c4bb2a001df14fc9a79c01a64aa",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tools/seg_raster/calibrate_stage_s3e_gradient_balance.py",
+      "size_bytes": 6762,
+      "sha256": "50884fa3b36c95aa461ff43be1f216bd4aadaa726553c8b3c091296e3b2f72b8",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tools/seg_raster/control_stage_s3e.py",
+      "size_bytes": 16841,
+      "sha256": "b17152ceae2af1b2b60ced40fd2a21522b4c321207f48ff2b0779eefc370221e",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tools/seg_raster/evaluate_stage_s3e_cross_transplant.py",
+      "size_bytes": 14559,
+      "sha256": "b3a7921a1ff23462116dd12295c2289b65ac67851eceacad47979cbd6ccf2420",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tools/seg_raster/finalize_stage_s3e.py",
+      "size_bytes": 12498,
+      "sha256": "a1b466f8b77dfa9b290629caa2cdb4f0dfea6c283e1b8ac39c8823220db5ce5c",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tools/seg_raster/launch_stage_s3e_phase.py",
+      "size_bytes": 9006,
+      "sha256": "9344a0de261adf0ad36f3b4671f5575713c3067a9372e3dbf2ac2646173629fd",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tools/seg_raster/launch_stage_s3e_readonly.py",
+      "size_bytes": 7201,
+      "sha256": "48e6c975638557c3df8cdbbcaae9c3421c38c38cdc8e01698c887766716edd49",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "tools/seg_raster/train_stage_s3e.py",
+      "size_bytes": 24607,
+      "sha256": "81c1f047fa1b4497485bda9203e3c1ce28d19f7fbbe205d8f5f8869deb827048",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    },
+    {
+      "path": "utils/seg_raster/stage_s3e.py",
+      "size_bytes": 11757,
+      "sha256": "0f30d2b82d1913f051128bc0ce396dd346c2b4fd4c820a7da66bc8b1358b8adb",
+      "generated_by_stage_s3e": true,
+      "intended_for_commit": true,
+      "reason": "Stage S3E frozen code, test, audit, or small evidence."
+    }
+  ],
+  "exclusion_assertions": {
+    "checkpoints_in_commit": false,
+    "datasets_in_commit": false,
+    "raster_in_commit": false,
+    "model_weights_in_commit": false,
+    "cache_in_commit": false,
+    "large_logs_in_commit": false
+  }
+}
