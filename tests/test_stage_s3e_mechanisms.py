@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import inspect
+import json
 from pathlib import Path
 
 import torch
@@ -179,3 +180,28 @@ def test_c4_calibration_has_predeclared_acceptance_gates() -> None:
     assert "ratio_error <= 0.20" in source
     assert "gradient_relative_error <= 0.01" in source
     assert '"optimizer_steps_executed": 0' in source
+    grid = calibrate_stage_s3e_gradient_balance.NEGATIVE_WEIGHT_CANDIDATE_GRID
+    assert min(grid) <= 0.005
+    assert max(grid) == 1.0
+
+
+def test_phase_c_plan_rejects_failed_calibration() -> None:
+    from tools.seg_raster.control_stage_s3e import plan
+    sha = "a" * 40
+    calibration = Path(__file__).with_name("_stage_s3e_failed_calibration.json")
+    output = Path(__file__).with_name("_stage_s3e_phase_c_plan.json")
+    try:
+        calibration.write_text(json.dumps({
+            "status": "FAIL", "run_code_sha": sha,
+            "optimizer_steps_executed": 0,
+        }), encoding="utf-8")
+        try:
+            plan("C", sha, output, calibration)
+        except RuntimeError as error:
+            assert "non-PASS" in str(error)
+        else:
+            raise AssertionError("Phase C accepted a failed calibration")
+        assert not output.exists()
+    finally:
+        calibration.unlink(missing_ok=True)
+        output.unlink(missing_ok=True)

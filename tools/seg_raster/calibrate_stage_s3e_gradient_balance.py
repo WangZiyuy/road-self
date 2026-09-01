@@ -26,6 +26,13 @@ from utils.seg_raster.stage_s3e import (
     named_gradient_vector, weighted_road_loss)
 
 
+# This grid is part of the frozen C4 protocol.  Its lower bound is deliberately
+# below the failed 0.05 boundary from the invalidated Phase C attempt so the
+# predeclared search can bracket a unit residual-gradient mass ratio.
+NEGATIVE_WEIGHT_CANDIDATE_GRID = tuple(
+    float(value) for value in np.geomspace(0.005, 1.0, 61))
+
+
 def write(path: Path, value: object) -> None:
     finite_tree(value)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -92,7 +99,7 @@ def main() -> int:
     batch = batches[0]
     baseline = measure(new_model(args.baseline_checkpoint), batch, 1.0, 1.0)
     candidates = []
-    for weight in np.geomspace(0.05, 1.0, 41):
+    for weight in NEGATIVE_WEIGHT_CANDIDATE_GRID:
         candidates.append(measure(
             new_model(args.baseline_checkpoint), batch, float(weight), 1.0))
     selected = min(candidates, key=lambda row: (
@@ -124,7 +131,7 @@ def main() -> int:
         "calibration_batch_sha256": common_batch_sha(batch),
         "validation_plan_sha256": validation_sha,
         "baseline_checkpoint_sha256": sha256_file(args.baseline_checkpoint),
-        "candidate_grid": [float(value) for value in np.geomspace(0.05, 1.0, 41)],
+        "candidate_grid": list(NEGATIVE_WEIGHT_CANDIDATE_GRID),
         "legacy": baseline, "selected_unscaled": selected,
         "negative_weight": selected["negative_weight"],
         "loss_scale": float(loss_scale), "verified": verified_a,

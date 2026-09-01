@@ -11,6 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from utils.seg_raster.stage_s3 import sha256_file
 from utils.seg_raster.stage_s3e import finite_tree
 
 
@@ -38,16 +39,30 @@ def write(path: Path, value: object) -> None:
 
 def plan(phase: str, sha: str, output: Path, calibration: Path | None) -> None:
     keys = ("Z0", "Z1", "Z2") if phase == "B" else ("C1", "C2", "C3", "C4")
+    calibration_record = None
+    if phase == "C":
+        if calibration is None:
+            raise ValueError("Phase C requires the C4 calibration manifest")
+        calibration_record = read(calibration)
+        if calibration_record.get("status") != "PASS":
+            raise RuntimeError("Phase C refuses a non-PASS C4 calibration")
+        if calibration_record.get("run_code_sha") != sha:
+            raise RuntimeError("Phase C calibration SHA does not match run SHA")
+        if calibration_record.get("optimizer_steps_executed") != 0:
+            raise RuntimeError("Phase C calibration must be read-only")
     jobs = []
     for key in keys:
         row = {"run_key": key, "run_id": RUN_IDS[key]}
         if key == "C4":
-            if calibration is None:
-                raise ValueError("Phase C requires the C4 calibration manifest")
             row["calibration_manifest"] = str(calibration)
+            row["calibration_manifest_sha256"] = sha256_file(calibration)
         jobs.append(row)
     write(output, {"stage": "seg_raster_stage_s3e", "phase": phase,
-                   "status": "READY", "run_code_sha": sha, "jobs": jobs})
+                   "status": "READY", "run_code_sha": sha,
+                   "calibration_status": (
+                       calibration_record["status"]
+                       if calibration_record is not None else None),
+                   "jobs": jobs})
 
 
 def classify_adapter(row: dict) -> str:
